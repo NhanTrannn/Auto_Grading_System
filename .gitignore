@@ -1,0 +1,17 @@
+# secrets
+.env
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# outputs & data lớn (tùy bạn muốn track hay không)
+output/*.json
+output/*.csv
+review.json
+Results_Ma_de_1.json
+*.log
+
+# IDE
+.vscode/
