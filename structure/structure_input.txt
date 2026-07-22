@@ -1,0 +1,47 @@
+{
+  "sample_id": "cau_{N}_{variant}__{HS}_{index}",   // e.g. "cau_1_001__HS_2"
+  "student_index": 2,                                // số thứ tự trong danh sách thi
+  "ma_de": "1",
+  "question_type": "fill_in_the_blank" | "multi_type", <-- Nên để none vì có phần route đặt question_type rồi
+  "image_path": "...",
+  "question": {
+    "text": "...",
+    "parts": [
+      {
+        "part_label": "main" | "a" | "b" | "c" | ...,
+        "text": "...",
+        "tables": [],
+        "answer_slots": [{ "slot_id": "..." }]
+      }
+    ]
+  },
+
+  "question_number": numbers,  // số thứ tự câu hỏi trong đề thi
+  "max_score": points,  // số điểm tối đa của câu hỏi
+  "student_answer": {
+    "full_text": "...",
+    "lines": [
+      {
+        "line_id": "L1",
+        "part_label": "main",
+        "text": "...",
+        "bbox": [0, 0, 0, 0],
+        "confidence": 1.0
+      }
+    ],
+    "tokens": [
+      {
+        "token_id": "L1T1",
+        "line_id": "L1",
+        "part_label": "main",
+        "order": 1,
+        "text": "...",
+        "bbox": [0, 0, 0, 0],
+        "confidence": 1.0
+      }
+    ],
+
+    "tables": [], // chỉ dùng cho câu có bảng vẽ
+    "visual_answers": []   // chỉ dùng cho câu có hình/bảng vẽ
+  }
+}

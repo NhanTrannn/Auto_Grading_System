@@ -1,0 +1,4230 @@
+[
+  {
+    "sample_id": "cau_1_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_1_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 1. Cho một chương trình C++ và yêu cầu xác định kết quả in ra màn hình.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "answer_slots": [
+            {
+              "slot_id": "cau_1_001_main_S1"
+            }
+          ],
+          "tables": []
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "3529",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "3529",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "3",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W2",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 2,
+          "text": "5",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W3",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 3,
+          "text": "2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W4",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 4,
+          "text": "9",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 1
+  },
+  {
+    "sample_id": "cau_2_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_2_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 2. Cho một chương trình C++ và yêu cầu xác định kết quả in ra màn hình.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_2_001_main_S1"
+            },
+            {
+              "slot_id": "cau_2_001_main_S2"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "12 -4",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "12 -4",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "12",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W2",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 2,
+          "text": "-4",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 2
+  },
+  {
+    "sample_id": "cau_3_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_3_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 3...",
+      "parts": [
+        {
+          "part_label": "main_S1",
+          "text": "Số thứ tự của sinh viên trong danh sách thi (c = ...).",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_3_001_main_S1"
+            }
+          ]
+        },
+        {
+          "part_label": "main_S2",
+          "text": "Với số thứ tự trong danh sách thi là 7, xác định output chương trình.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_3_001_main_S2"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "7\n57918",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main_S1",
+          "text": "7",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "text": "57918",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main_S1",
+          "order": 1,
+          "text": "7",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W2",
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "order": 2,
+          "text": "5",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W3",
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "order": 3,
+          "text": "7",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W4",
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "order": 4,
+          "text": "9",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W5",
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "order": 5,
+          "text": "18",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 3
+  },
+  {
+    "sample_id": "cau_4_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_4_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 4.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Giá trị nhập vào cho biến a là số thứ tự trong danh sách thi. Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_4_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "40",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "40",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "40",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 4
+  },
+  {
+    "sample_id": "cau_5_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_5_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 5.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_5_001_main"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "1055",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "1055",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "1055",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 5
+  },
+  {
+    "sample_id": "cau_6_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_6_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 6.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Trong hàm input, nhập số thứ tự của sinh viên trong danh sách thi. Chương trình xuất ra kết quả là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_6_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "4",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "4",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "4",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 6
+  },
+  {
+    "sample_id": "cau_7_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_7_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 7.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_7_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "8",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "8",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "8",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 7
+  },
+  {
+    "sample_id": "cau_8_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_8_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 8. Cho một chương trình C++ liên quan đến con trỏ và địa chỉ.",
+      "parts": [
+        {
+          "part_label": "main_S1",
+          "text": "Giá trị nhập vào cho biến c là số thứ tự của bạn trong danh sách thi và c = ....... Bốn dòng đầu tiên được in ra màn hình là (đề CHO SẴN).",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_8_001_main_S1"
+            }
+          ]
+        },
+        {
+          "part_label": "main_S2",
+          "text": "Những dòng tiếp theo được in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_8_001_main_S2"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "&a=0x505298 &pa=0x50528c &b=0x505294 &pb=0x505288\n0x505294 8 0 0",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main_S1",
+          "text": "&a=0x505298 &pa=0x50528c &b=0x505294 &pb=0x505288",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "text": "0x505294 8 0 0",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main_S1",
+          "order": 1,
+          "text": "&a=0x505298",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W2",
+          "line_id": "L1",
+          "part_label": "main_S1",
+          "order": 2,
+          "text": "&pa=0x50528c",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W3",
+          "line_id": "L1",
+          "part_label": "main_S1",
+          "order": 3,
+          "text": "&b=0x505294",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W4",
+          "line_id": "L1",
+          "part_label": "main_S1",
+          "order": 4,
+          "text": "&pb=0x505288",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W5",
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "order": 5,
+          "text": "0x505294",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W6",
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "order": 6,
+          "text": "8",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W7",
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "order": 7,
+          "text": "0",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W8",
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "order": 8,
+          "text": "0",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 8
+  },
+  {
+    "sample_id": "cau_9_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_9_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 9.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Ở dòng lệnh cin >> var, nhập số thứ tự của sinh viên trong danh sách thi. Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_9_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "2",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 9
+  },
+  {
+    "sample_id": "cau_10_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_10_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 10. Cho một chương trình C++ xử lý mảng. Người dùng nhập dãy 4 2 10 4 5 6 70 3 2 1 7 3 8 9.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_10_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "10 70 2 3 4 4 5 6 2 1",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "10 70 2 3 4 4 5 6 2 1",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "10",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W2",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 2,
+          "text": "70",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W3",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 3,
+          "text": "2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W4",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 4,
+          "text": "3",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W5",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 5,
+          "text": "4",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W6",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 6,
+          "text": "4",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W7",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 7,
+          "text": "5",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W8",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 8,
+          "text": "6",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W9",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 9,
+          "text": "2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W10",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 10,
+          "text": "1",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 10
+  },
+  {
+    "sample_id": "cau_11_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_11_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 11.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_11_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "20",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "20",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "20",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 11
+  },
+  {
+    "sample_id": "cau_12_001",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_12_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 12. Cho một chương trình C++ xử lý struct Date và con trỏ.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_12_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "10/1/2026",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "10/1/2026",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "10",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W2",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 2,
+          "text": "1",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W3",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 3,
+          "text": "2026",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 12
+  },
+  {
+    "sample_id": "cau_13",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_13_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 13. Cho một chương trình chưa hoàn thiện. Yêu cầu viết tiếp các hàm: a) tính tổng các phần tử là số nguyên tố, b) tìm vị trí phần tử có giá trị lớn nhất đầu tiên trong mảng, c) hoàn thiện main để gọi các hàm.",
+      "parts": [
+        {
+          "part_label": "a",
+          "text": "Hàm tính tổng giá trị của tất cả các phần tử mà giá trị của phần tử đó là số nguyên tố.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_13_a_S1"
+            },
+            {
+              "slot_id": "cau_13_a_S2"
+            },
+            {
+              "slot_id": "cau_13_a_S3"
+            },
+            {
+              "slot_id": "cau_13_a_S4"
+            },
+            {
+              "slot_id": "cau_13_a_S5"
+            }
+          ]
+        },
+        {
+          "part_label": "b",
+          "text": "Hàm tìm vị trí của phần tử có giá trị lớn nhất đầu tiên trong mảng.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_13_b_S1"
+            }
+          ]
+        },
+        {
+          "part_label": "c",
+          "text": "Hoàn thiện hàm main bằng cách viết thêm các dòng lệnh để gọi các hàm trong câu a và b.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_13_c_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "int KiemtraSNT(int n){\n    if(n<2) return 0;\n    for(int i=2; i*i<=n; i++)\n        if(n%i==0) return 0;\n    return 1;\n}\nint TongSNT(int a[], int n){\n    int S=0;\n    for(int i=0; i<n; i++)\n        if(KiemtraSNT(a[i])) S+=a[i];\n    return S;\n}\nint TimMax(int a[], int n){\n    int m=0;\n    for(int i=1; i<n; i++)\n        if(a[i]>a[m]) m=i;\n    return m;\n}\ncout<<\"Tong so SNT=\"<<TongSNT(a,n);\ncout<<\"Vi tri phan tu lon nhat dau tien=\"<<TimMax(a,n);",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "text": "int KiemtraSNT(int n){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "text": "    if(n<2) return 0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "text": "    for(int i=2; i*i<=n; i++)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "text": "        if(n%i==0) return 0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "text": "    return 1;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L7",
+          "part_label": "a",
+          "text": "int TongSNT(int a[], int n){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L8",
+          "part_label": "a",
+          "text": "    int S=0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L9",
+          "part_label": "a",
+          "text": "    for(int i=0; i<n; i++)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L10",
+          "part_label": "a",
+          "text": "        if(KiemtraSNT(a[i])) S+=a[i];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L11",
+          "part_label": "a",
+          "text": "    return S;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L12",
+          "part_label": "a",
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L13",
+          "part_label": "b",
+          "text": "int TimMax(int a[], int n){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L14",
+          "part_label": "b",
+          "text": "    int m=0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L15",
+          "part_label": "b",
+          "text": "    for(int i=1; i<n; i++)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L16",
+          "part_label": "b",
+          "text": "        if(a[i]>a[m]) m=i;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L17",
+          "part_label": "b",
+          "text": "    return m;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L18",
+          "part_label": "b",
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L19",
+          "part_label": "c",
+          "text": "cout<<\"Tong so SNT=\"<<TongSNT(a,n);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L20",
+          "part_label": "c",
+          "text": "cout<<\"Vi tri phan tu lon nhat dau tien=\"<<TimMax(a,n);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 1,
+          "text": "int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W2",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 2,
+          "text": "KiemtraSNT(int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W3",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 3,
+          "text": "n){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W4",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 4,
+          "text": "if(n<2)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W5",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 5,
+          "text": "return",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W6",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 6,
+          "text": "0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W7",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 7,
+          "text": "for(int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W8",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 8,
+          "text": "i=2;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W9",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 9,
+          "text": "i*i<=n;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W10",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 10,
+          "text": "i++)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W11",
+          "line_id": "L4",
+          "part_label": "a",
+          "order": 11,
+          "text": "if(n%i==0)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W12",
+          "line_id": "L4",
+          "part_label": "a",
+          "order": 12,
+          "text": "return",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W13",
+          "line_id": "L4",
+          "part_label": "a",
+          "order": 13,
+          "text": "0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W14",
+          "line_id": "L5",
+          "part_label": "a",
+          "order": 14,
+          "text": "return",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W15",
+          "line_id": "L5",
+          "part_label": "a",
+          "order": 15,
+          "text": "1;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W16",
+          "line_id": "L6",
+          "part_label": "a",
+          "order": 16,
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W17",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 17,
+          "text": "int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W18",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 18,
+          "text": "TongSNT(int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W19",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 19,
+          "text": "a[],",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W20",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 20,
+          "text": "int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W21",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 21,
+          "text": "n){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W22",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 22,
+          "text": "int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W23",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 23,
+          "text": "S=0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W24",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 24,
+          "text": "for(int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W25",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 25,
+          "text": "i=0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W26",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 26,
+          "text": "i<n;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W27",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 27,
+          "text": "i++)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W28",
+          "line_id": "L10",
+          "part_label": "a",
+          "order": 28,
+          "text": "if(KiemtraSNT(a[i]))",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W29",
+          "line_id": "L10",
+          "part_label": "a",
+          "order": 29,
+          "text": "S+=a[i];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W30",
+          "line_id": "L11",
+          "part_label": "a",
+          "order": 30,
+          "text": "return",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W31",
+          "line_id": "L11",
+          "part_label": "a",
+          "order": 31,
+          "text": "S;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W32",
+          "line_id": "L12",
+          "part_label": "a",
+          "order": 32,
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W33",
+          "line_id": "L13",
+          "part_label": "b",
+          "order": 33,
+          "text": "int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W34",
+          "line_id": "L13",
+          "part_label": "b",
+          "order": 34,
+          "text": "TimMax(int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W35",
+          "line_id": "L13",
+          "part_label": "b",
+          "order": 35,
+          "text": "a[],",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W36",
+          "line_id": "L13",
+          "part_label": "b",
+          "order": 36,
+          "text": "int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W37",
+          "line_id": "L13",
+          "part_label": "b",
+          "order": 37,
+          "text": "n){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W38",
+          "line_id": "L14",
+          "part_label": "b",
+          "order": 38,
+          "text": "int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W39",
+          "line_id": "L14",
+          "part_label": "b",
+          "order": 39,
+          "text": "m=0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W40",
+          "line_id": "L15",
+          "part_label": "b",
+          "order": 40,
+          "text": "for(int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W41",
+          "line_id": "L15",
+          "part_label": "b",
+          "order": 41,
+          "text": "i=1;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W42",
+          "line_id": "L15",
+          "part_label": "b",
+          "order": 42,
+          "text": "i<n;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W43",
+          "line_id": "L15",
+          "part_label": "b",
+          "order": 43,
+          "text": "i++)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W44",
+          "line_id": "L16",
+          "part_label": "b",
+          "order": 44,
+          "text": "if(a[i]>a[m])",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W45",
+          "line_id": "L16",
+          "part_label": "b",
+          "order": 45,
+          "text": "m=i;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W46",
+          "line_id": "L17",
+          "part_label": "b",
+          "order": 46,
+          "text": "return",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W47",
+          "line_id": "L17",
+          "part_label": "b",
+          "order": 47,
+          "text": "m;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W48",
+          "line_id": "L18",
+          "part_label": "b",
+          "order": 48,
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W49",
+          "line_id": "L19",
+          "part_label": "c",
+          "order": 49,
+          "text": "cout<<\"Tong",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W50",
+          "line_id": "L19",
+          "part_label": "c",
+          "order": 50,
+          "text": "so",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W51",
+          "line_id": "L19",
+          "part_label": "c",
+          "order": 51,
+          "text": "SNT=\"<<TongSNT(a,n);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W52",
+          "line_id": "L20",
+          "part_label": "c",
+          "order": 52,
+          "text": "cout<<\"Vi",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W53",
+          "line_id": "L20",
+          "part_label": "c",
+          "order": 53,
+          "text": "tri",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W54",
+          "line_id": "L20",
+          "part_label": "c",
+          "order": 54,
+          "text": "phan",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W55",
+          "line_id": "L20",
+          "part_label": "c",
+          "order": 55,
+          "text": "tu",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W56",
+          "line_id": "L20",
+          "part_label": "c",
+          "order": 56,
+          "text": "lon",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W57",
+          "line_id": "L20",
+          "part_label": "c",
+          "order": 57,
+          "text": "nhat",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W58",
+          "line_id": "L20",
+          "part_label": "c",
+          "order": 58,
+          "text": "dau",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W59",
+          "line_id": "L20",
+          "part_label": "c",
+          "order": 59,
+          "text": "tien=\"<<TimMax(a,n);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 2.0,
+    "question_number": 13
+  },
+  {
+    "sample_id": "cau_14",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_14_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 14. Sinh viên thực hiện yêu cầu về struct Sinhvien, nhập thông tin sinh viên và in danh sách sinh viên có nơi sinh TPHCM.",
+      "parts": [
+        {
+          "part_label": "a",
+          "text": "Khai báo kiểu dữ liệu cấu trúc Sinhvien gồm các thuộc tính MaSV, HoTen, NamSinh, NoiSinh, DTB.",
+          "tables": [
+            {
+              "table_id": "TB1",
+              "source": "printed",
+              "bbox": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "columns": [
+                {
+                  "col_id": "C1",
+                  "header": "Tên thuộc tính"
+                },
+                {
+                  "col_id": "C2",
+                  "header": "Kiểu dữ liệu"
+                },
+                {
+                  "col_id": "C3",
+                  "header": "Ý nghĩa"
+                }
+              ],
+              "rows": []
+            }
+          ],
+          "answer_slots": [
+            {
+              "slot_id": "cau_14_a_S1"
+            },
+            {
+              "slot_id": "cau_14_a_S2"
+            },
+            {
+              "slot_id": "cau_14_a_S3"
+            },
+            {
+              "slot_id": "cau_14_a_S4"
+            },
+            {
+              "slot_id": "cau_14_a_S5"
+            },
+            {
+              "slot_id": "cau_14_a_S6"
+            }
+          ]
+        },
+        {
+          "part_label": "b",
+          "text": "Hoàn thiện hàm NhapSV để nhập thông tin của một sinh viên từ bàn phím.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_14_b_S1"
+            }
+          ]
+        },
+        {
+          "part_label": "c",
+          "text": "Hoàn thiện hàm InDSSV để in ra thông tin các sinh viên có nơi sinh TPHCM.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_14_c_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "struct Sinhvien{\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin, x.HoTen);\n    getline(cin, x.NoiSinh);\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\nvoid InDSSV(Sinhvien a[], int n){\n    for(int i=0; i<n; i++)\n        if(a[i].NoiSinh==\"TPHCM\")\n            cout<<a[i].MaSV<<a[i].HoTen<<a[i].NamSinh<<a[i].NoiSinh<<a[i].DTB;\n}",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "text": "struct Sinhvien{",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "text": "    string MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "text": "    string HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "text": "    int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "text": "    string NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "text": "    float DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L7",
+          "part_label": "a",
+          "text": "};",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L8",
+          "part_label": "b",
+          "text": "void NhapSV(Sinhvien &x){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L9",
+          "part_label": "b",
+          "text": "    getline(cin, x.MaSV);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L10",
+          "part_label": "b",
+          "text": "    getline(cin, x.HoTen);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L11",
+          "part_label": "b",
+          "text": "    getline(cin, x.NoiSinh);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L12",
+          "part_label": "b",
+          "text": "    cin>>x.NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L13",
+          "part_label": "b",
+          "text": "    cin>>x.DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L14",
+          "part_label": "b",
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L15",
+          "part_label": "c",
+          "text": "void InDSSV(Sinhvien a[], int n){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L16",
+          "part_label": "c",
+          "text": "    for(int i=0; i<n; i++)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L17",
+          "part_label": "c",
+          "text": "        if(a[i].NoiSinh==\"TPHCM\")",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L18",
+          "part_label": "c",
+          "text": "            cout<<a[i].MaSV<<a[i].HoTen<<a[i].NamSinh<<a[i].NoiSinh<<a[i].DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L19",
+          "part_label": "c",
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 1,
+          "text": "struct",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W2",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 2,
+          "text": "Sinhvien{",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W3",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 3,
+          "text": "string",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W4",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 4,
+          "text": "MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W5",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 5,
+          "text": "string",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W6",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 6,
+          "text": "HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W7",
+          "line_id": "L4",
+          "part_label": "a",
+          "order": 7,
+          "text": "int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W8",
+          "line_id": "L4",
+          "part_label": "a",
+          "order": 8,
+          "text": "NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W9",
+          "line_id": "L5",
+          "part_label": "a",
+          "order": 9,
+          "text": "string",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W10",
+          "line_id": "L5",
+          "part_label": "a",
+          "order": 10,
+          "text": "NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W11",
+          "line_id": "L6",
+          "part_label": "a",
+          "order": 11,
+          "text": "float",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W12",
+          "line_id": "L6",
+          "part_label": "a",
+          "order": 12,
+          "text": "DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W13",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 13,
+          "text": "};",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W14",
+          "line_id": "L8",
+          "part_label": "b",
+          "order": 14,
+          "text": "void",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W15",
+          "line_id": "L8",
+          "part_label": "b",
+          "order": 15,
+          "text": "NhapSV(Sinhvien",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W16",
+          "line_id": "L8",
+          "part_label": "b",
+          "order": 16,
+          "text": "&x){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W17",
+          "line_id": "L9",
+          "part_label": "b",
+          "order": 17,
+          "text": "getline(cin,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W18",
+          "line_id": "L9",
+          "part_label": "b",
+          "order": 18,
+          "text": "x.MaSV);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W19",
+          "line_id": "L10",
+          "part_label": "b",
+          "order": 19,
+          "text": "getline(cin,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W20",
+          "line_id": "L10",
+          "part_label": "b",
+          "order": 20,
+          "text": "x.HoTen);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W21",
+          "line_id": "L11",
+          "part_label": "b",
+          "order": 21,
+          "text": "getline(cin,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W22",
+          "line_id": "L11",
+          "part_label": "b",
+          "order": 22,
+          "text": "x.NoiSinh);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W23",
+          "line_id": "L12",
+          "part_label": "b",
+          "order": 23,
+          "text": "cin>>x.NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W24",
+          "line_id": "L13",
+          "part_label": "b",
+          "order": 24,
+          "text": "cin>>x.DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W25",
+          "line_id": "L14",
+          "part_label": "b",
+          "order": 25,
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W26",
+          "line_id": "L15",
+          "part_label": "c",
+          "order": 26,
+          "text": "void",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W27",
+          "line_id": "L15",
+          "part_label": "c",
+          "order": 27,
+          "text": "InDSSV(Sinhvien",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W28",
+          "line_id": "L15",
+          "part_label": "c",
+          "order": 28,
+          "text": "a[],",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W29",
+          "line_id": "L15",
+          "part_label": "c",
+          "order": 29,
+          "text": "int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W30",
+          "line_id": "L15",
+          "part_label": "c",
+          "order": 30,
+          "text": "n){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W31",
+          "line_id": "L16",
+          "part_label": "c",
+          "order": 31,
+          "text": "for(int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W32",
+          "line_id": "L16",
+          "part_label": "c",
+          "order": 32,
+          "text": "i=0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W33",
+          "line_id": "L16",
+          "part_label": "c",
+          "order": 33,
+          "text": "i<n;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W34",
+          "line_id": "L16",
+          "part_label": "c",
+          "order": 34,
+          "text": "i++)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W35",
+          "line_id": "L17",
+          "part_label": "c",
+          "order": 35,
+          "text": "if(a[i].NoiSinh==\"TPHCM\")",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W36",
+          "line_id": "L18",
+          "part_label": "c",
+          "order": 36,
+          "text": "cout<<a[i].MaSV<<a[i].HoTen<<a[i].NamSinh<<a[i].NoiSinh<<a[i].DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W37",
+          "line_id": "L19",
+          "part_label": "c",
+          "order": 37,
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_15",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": null,
+    "image_path": "images/cau_15_001.jpg",
+    "bbox_format": "ymin_xmin_ymax_xmax",
+    "question": {
+      "text": "Câu 15. (1 điểm) Một đoàn vừa có người vừa có ngựa...",
+      "parts": [
+        {
+          "part_label": "a",
+          "text": "Đặt tên biến và mô tả kiểu dữ liệu cho input và output của bài toán.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_15_a_S1"
+            },
+            {
+              "slot_id": "cau_15_a_S2"
+            },
+            {
+              "slot_id": "cau_15_a_S3"
+            }
+          ]
+        },
+        {
+          "part_label": "b",
+          "text": "Tìm 3 ví dụ cho bài toán.",
+          "tables": [
+            {
+              "table_id": "TB1",
+              "source": "printed",
+              "bbox": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "columns": [
+                {
+                  "col_id": "C1",
+                  "header": "Input"
+                },
+                {
+                  "col_id": "C2",
+                  "header": "Output"
+                }
+              ],
+              "rows": [
+                {
+                  "row_id": "R1",
+                  "cells": [
+                    {
+                      "cell_id": "R1C1",
+                      "col_id": "C1",
+                      "text": "",
+                      "bbox": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "tokens": []
+                    },
+                    {
+                      "cell_id": "R1C2",
+                      "col_id": "C2",
+                      "text": "",
+                      "bbox": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "tokens": []
+                    }
+                  ]
+                },
+                {
+                  "row_id": "R2",
+                  "cells": [
+                    {
+                      "cell_id": "R2C1",
+                      "col_id": "C1",
+                      "text": "",
+                      "bbox": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "tokens": []
+                    },
+                    {
+                      "cell_id": "R2C2",
+                      "col_id": "C2",
+                      "text": "",
+                      "bbox": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "tokens": []
+                    }
+                  ]
+                },
+                {
+                  "row_id": "R3",
+                  "cells": [
+                    {
+                      "cell_id": "R3C1",
+                      "col_id": "C1",
+                      "text": "",
+                      "bbox": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "tokens": []
+                    },
+                    {
+                      "cell_id": "R3C2",
+                      "col_id": "C2",
+                      "text": "",
+                      "bbox": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "tokens": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "answer_slots": [
+            {
+              "slot_id": "cau_15_b_S1"
+            }
+          ]
+        },
+        {
+          "part_label": "c",
+          "text": "Vẽ lưu đồ thuật toán hoặc mô tả thuật toán hoặc mã giả giải quyết bài toán.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_15_c_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "student_answer": {
+      "full_text": "Input: N (int, so dau, khong am), M (int, so chan, khong am)\nOutput: x (int, so nguoi, khong am), y (int, so ngua, khong am) hoac 'gia dinh sai'\nHe PT: X + Y = N, 2X + 4Y = M\nB1: neu M le hoac M/2 < N hoac 2*N < M/2 thi in 'gia dinh sai'\nB2: X = 2*N - M/2\nB3: Y = M/2 - N",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "text": "Input: N (int, so dau, khong am), M (int, so chan, khong am)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "text": "Output: x (int, so nguoi, khong am), y (int, so ngua, khong am) hoac 'gia dinh sai'",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "Lc0",
+          "part_label": "c",
+          "text": "He PT: X + Y = N, 2X + 4Y = M",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "text": "B1: neu M le hoac M/2 < N hoac 2*N < M/2 thi in 'gia dinh sai'",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L4",
+          "part_label": "c",
+          "text": "B2: X = 2*N - M/2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "line_id": "L5",
+          "part_label": "c",
+          "text": "B3: Y = M/2 - N",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 1,
+          "text": "Input:",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W2",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 2,
+          "text": "N",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W3",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 3,
+          "text": "(int,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W4",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 4,
+          "text": "so",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W5",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 5,
+          "text": "dau,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W6",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 6,
+          "text": "khong",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W7",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 7,
+          "text": "am),",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W8",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 8,
+          "text": "M",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W9",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 9,
+          "text": "(int,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W10",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 10,
+          "text": "so",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W11",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 11,
+          "text": "chan,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W12",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 12,
+          "text": "khong",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W13",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 13,
+          "text": "am)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W14",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 14,
+          "text": "Output:",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W15",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 15,
+          "text": "x",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W16",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 16,
+          "text": "(int,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W17",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 17,
+          "text": "so",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W18",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 18,
+          "text": "nguoi,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W19",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 19,
+          "text": "khong",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W20",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 20,
+          "text": "am),",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W21",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 21,
+          "text": "y",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W22",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 22,
+          "text": "(int,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W23",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 23,
+          "text": "so",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W24",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 24,
+          "text": "ngua,",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W25",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 25,
+          "text": "khong",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W26",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 26,
+          "text": "am)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W27",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 27,
+          "text": "hoac",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W28",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 28,
+          "text": "'gia",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W29",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 29,
+          "text": "dinh",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W30",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 30,
+          "text": "sai'",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W31",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 31,
+          "text": "B1:",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W32",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 32,
+          "text": "neu",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W33",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 33,
+          "text": "M",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W34",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 34,
+          "text": "le",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W35",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 35,
+          "text": "hoac",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W36",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 36,
+          "text": "M/2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W37",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 37,
+          "text": "<",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W38",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 38,
+          "text": "N",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W39",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 39,
+          "text": "hoac",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W40",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 40,
+          "text": "2*N",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W41",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 41,
+          "text": "<",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W42",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 42,
+          "text": "M/2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W43",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 43,
+          "text": "thi",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W44",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 44,
+          "text": "in",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W45",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 45,
+          "text": "'gia",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W46",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 46,
+          "text": "dinh",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W47",
+          "line_id": "L3",
+          "part_label": "c",
+          "order": 47,
+          "text": "sai'",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W48",
+          "line_id": "L4",
+          "part_label": "c",
+          "order": 48,
+          "text": "B2:",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W49",
+          "line_id": "L4",
+          "part_label": "c",
+          "order": 49,
+          "text": "X",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W50",
+          "line_id": "L4",
+          "part_label": "c",
+          "order": 50,
+          "text": "=",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W51",
+          "line_id": "L4",
+          "part_label": "c",
+          "order": 51,
+          "text": "2*N",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W52",
+          "line_id": "L4",
+          "part_label": "c",
+          "order": 52,
+          "text": "-",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W53",
+          "line_id": "L4",
+          "part_label": "c",
+          "order": 53,
+          "text": "M/2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W54",
+          "line_id": "L5",
+          "part_label": "c",
+          "order": 54,
+          "text": "B3:",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W55",
+          "line_id": "L5",
+          "part_label": "c",
+          "order": 55,
+          "text": "Y",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W56",
+          "line_id": "L5",
+          "part_label": "c",
+          "order": 56,
+          "text": "=",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W57",
+          "line_id": "L5",
+          "part_label": "c",
+          "order": 57,
+          "text": "M/2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W58",
+          "line_id": "L5",
+          "part_label": "c",
+          "order": 58,
+          "text": "-",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        },
+        {
+          "token_id": "W59",
+          "line_id": "L5",
+          "part_label": "c",
+          "order": 59,
+          "text": "N",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.99
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TB1",
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "col_id": "C1",
+              "text": "6 18",
+              "tokens": []
+            },
+            {
+              "cell_id": "R1C2",
+              "col_id": "C2",
+              "text": "3 3",
+              "tokens": []
+            },
+            {
+              "cell_id": "R2C1",
+              "col_id": "C1",
+              "text": "5 20",
+              "tokens": []
+            },
+            {
+              "cell_id": "R2C2",
+              "col_id": "C2",
+              "text": "0 5",
+              "tokens": []
+            },
+            {
+              "cell_id": "R3C1",
+              "col_id": "C1",
+              "text": "9 10",
+              "tokens": []
+            },
+            {
+              "cell_id": "R3C2",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "tokens": []
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "visual_id": "V1",
+          "part_label": "c",
+          "type": "algorithm_description_or_blank",
+          "source": "student_drawing",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "image_crop_path": "crops/cau_15_perfect_part_c.png",
+          "ocr_text_inside": "He PT: X + Y = N, 2X + 4Y = M\nB1: neu M le hoac M/2 < N hoac 2*N < M/2 → gia dinh sai\nB2: X = 2*N - M/2\nB3: Y = M/2 - N",
+          "inner_lines": [
+            {
+              "line_id": "VL0",
+              "text": "He PT: X + Y = N, 2X + 4Y = M",
+              "bbox": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "confidence": 0.99
+            },
+            {
+              "line_id": "VL1",
+              "text": "B1: neu M le hoac M/2 < N hoac 2*N < M/2 → gia dinh sai",
+              "bbox": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "confidence": 0.99
+            },
+            {
+              "line_id": "VL2",
+              "text": "B2: X = 2*N - M/2",
+              "bbox": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "confidence": 0.99
+            },
+            {
+              "line_id": "VL3",
+              "text": "B3: Y = M/2 - N",
+              "bbox": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "confidence": 0.99
+            }
+          ],
+          "inner_tokens": [],
+          "note": "SV trình bày đầy đủ thuật toán với điều kiện giả định sai và công thức X, Y."
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  }
+]

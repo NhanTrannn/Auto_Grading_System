@@ -1,0 +1,9 @@
+=== Token Usage & Cost Summary ===
+Model: Claude Sonnet 4.6
+Samples: 300
+
+Prompt tokens:        2,230,214   @ $0.104/MTok  = $0.2319
+Completion tokens:    1,096,984   @ $0.416/MTok = $0.4563
+Total tokens:         3,327,198
+
+Estimated cost: $0.6883 USD

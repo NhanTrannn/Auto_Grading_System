@@ -1,0 +1,2958 @@
+[
+  {
+    "sample_id": "cau_1_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_01_Cau_01.jpg",
+    "question": {
+      "text": "Câu 1. Cho một chương trình như sau: #include <iostream> using namespace std; int main() { int a = 2, b =4,  d; float c = float((++b) / (a++)}; d = 2*c +b; cout << a << b << c << d; return 0;} và yêu cầu xác định kết quả in ra màn hình.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "answer_slots": [
+            {
+              "slot_id": "cau_1_001_main_S1"
+            }
+          ],
+          "tables": []
+        }
+      ]
+    },
+    "question_number": 1,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "3.5 16",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "3.5 16",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "3.5",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T2",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 2,
+          "text": "16",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_2_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_01_Cau_02.jpg",
+    "question": {
+      "text": "Câu 2. Cho một chương trình C++ và yêu cầu xác định kết quả in ra màn hình.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_2_001_main_S1"
+            },
+            {
+              "slot_id": "cau_2_001_main_S2"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 2,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "12",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "12",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "12",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_3_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_03.jpg",
+    "question": {
+      "text": "Câu 3...",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Với số thứ tự trong danh sách thi là 7, xác định output chương trình.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_3_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 3,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "a = 23\na: 59918",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "a = 23",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "main",
+          "text": "a: 59918",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "a",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T2",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 2,
+          "text": "=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T3",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 3,
+          "text": "23",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T1",
+          "line_id": "L2",
+          "part_label": "main",
+          "order": 1,
+          "text": "a:",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T2",
+          "line_id": "L2",
+          "part_label": "main",
+          "order": 2,
+          "text": "59918",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_4_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_04.jpg",
+    "question": {
+      "text": "Câu 4.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Giá trị nhập vào cho biến a là số thứ tự trong danh sách thi. Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_4_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 4,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "4.1211...",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "4.1211...",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "4.1211...",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_5_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_05.jpg",
+    "question": {
+      "text": "Câu 5.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_5_001_main_S1"
+            },
+            {
+              "slot_id": "cau_5_001_main_S2"
+            },
+            {
+              "slot_id": "cau_5_001_main_S3"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 5,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "1055",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "1055",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "1055",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_6_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_03_Cau_06.jpg",
+    "question": {
+      "text": "Câu 6.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Trong hàm input, nhập số thứ tự của sinh viên trong danh sách thi. Chương trình xuất ra kết quả là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_6_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 6,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "4",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "4",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "4",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_7_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_03_Cau_07.jpg",
+    "question": {
+      "text": "Câu 7.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_7_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 7,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "20",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "20",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "20",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_8__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "multi_type",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_08_1.jpg",
+    "question": {
+      "text": "Câu 8. Cho một chương trình C++ liên quan đến con trỏ và địa chỉ.",
+      "parts": [
+        {
+          "part_label": "a",
+          "text": "Bốn dòng địa chỉ bộ nhớ đầu tiên được in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_8_a_S1"
+            },
+            {
+              "slot_id": "cau_8_a_S2"
+            },
+            {
+              "slot_id": "cau_8_a_S3"
+            },
+            {
+              "slot_id": "cau_8_a_S4"
+            }
+          ]
+        },
+        {
+          "part_label": "b",
+          "text": "Giá trị nhập vào cho biến c là số thứ tự trong danh sách thi. Những dòng tiếp theo được in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_8_b_S1"
+            },
+            {
+              "slot_id": "cau_8_b_S2"
+            },
+            {
+              "slot_id": "cau_8_b_S3"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 8,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "=23\n0x505294800",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "text": "=23",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "text": "0x505294800",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 1,
+          "text": "=23",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T1",
+          "line_id": "L2",
+          "part_label": "b",
+          "order": 1,
+          "text": "0x505294800",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_9_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_09.jpg",
+    "question": {
+      "text": "Câu 9.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Ở dòng lệnh cin >> var, nhập số thứ tự của sinh viên trong danh sách thi. Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_9_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 9,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "2",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "2",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "2",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_10_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_05_Cau_10.jpg",
+    "question": {
+      "text": "Câu 10. Cho một chương trình C++ xử lý mảng. Người dùng nhập dãy 4 2 10 4 5 6 70 3 2 1 7 3 8 9.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_10_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 10,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "0 2 0 2 4 4 5 6 2 1",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "0 2 0 2 4 4 5 6 2 1",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "0",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T2",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 2,
+          "text": "2",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T3",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 3,
+          "text": "0",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T4",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 4,
+          "text": "2",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T5",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 5,
+          "text": "4",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T6",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 6,
+          "text": "4",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T7",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 7,
+          "text": "5",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T8",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 8,
+          "text": "6",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T9",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 9,
+          "text": "2",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T10",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 10,
+          "text": "1",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_11_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_05_Cau_11.jpg",
+    "question": {
+      "text": "Câu 11.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_11_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 11,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "20",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "20",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "20",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_12_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "fill_in_the_blank",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_06_Cau_12.jpg",
+    "question": {
+      "text": "Câu 12. Cho một chương trình C++ xử lý struct Date và con trỏ.",
+      "parts": [
+        {
+          "part_label": "main",
+          "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_12_001_main_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 12,
+    "max_score": 0.5,
+    "student_answer": {
+      "full_text": "a: 112024",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "text": "a: 112024",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 1,
+          "text": "a:",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T2",
+          "line_id": "L1",
+          "part_label": "main",
+          "order": 2,
+          "text": "112024",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_13__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "multi_type",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_06_Cau_13a.jpg",
+    "question": {
+      "text": "Câu 13. Cho một chương trình chưa hoàn thiện. Yêu cầu viết tiếp các hàm: a) tính tổng các phần tử là số nguyên tố, b) tìm vị trí phần tử có giá trị lớn nhất đầu tiên trong mảng, c) hoàn thiện main để gọi các hàm.",
+      "parts": [
+        {
+          "part_label": "a",
+          "text": "Hàm tính tổng giá trị của tất cả các phần tử mà giá trị của phần tử đó là số nguyên tố.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_13_a_S1"
+            },
+            {
+              "slot_id": "cau_13_a_S2"
+            },
+            {
+              "slot_id": "cau_13_a_S3"
+            },
+            {
+              "slot_id": "cau_13_a_S4"
+            },
+            {
+              "slot_id": "cau_13_a_S5"
+            }
+          ]
+        },
+        {
+          "part_label": "b",
+          "text": "Hàm tìm vị trí của phần tử có giá trị lớn nhất đầu tiên trong mảng.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_13_b_S1"
+            }
+          ]
+        },
+        {
+          "part_label": "c",
+          "text": "Hoàn thiện hàm main bằng cách viết thêm các dòng lệnh để gọi các hàm trong câu a và b.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_13_c_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 13,
+    "max_score": 2.0,
+    "student_answer": {
+      "full_text": "bool isPrime(int n) {\n  for(int i = 0; i < n; i++) {\n    if(n % i == 0) return 0;\n  }\n  return 1;\n  if(n < 2) return 0;\n  if(n != 2 && n % 2 == 0) return 0;\n  for(int i = 3; i * i <= n; i++) {\n    if(n % i == 0) return 0;\n  }\n  return 1;\nint main()\n{\n    int a[MAX], n=0;\n    NhapMang(a,n);\n    cout << SumPrime(a,n) << endl;\n    int max = findMax(a,n);\n    cout << findMin(a,n,max) << endl;\n    return 0;\n}",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "text": "bool isPrime(int n) {",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "text": "  for(int i = 0; i < n; i++) {",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "text": "    if(n % i == 0) return 0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "text": "  }",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "text": "  return 1;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "text": "  if(n < 2) return 0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L7",
+          "part_label": "a",
+          "text": "  if(n != 2 && n % 2 == 0) return 0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L8",
+          "part_label": "a",
+          "text": "  for(int i = 3; i * i <= n; i++) {",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L9",
+          "part_label": "a",
+          "text": "    if(n % i == 0) return 0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L10",
+          "part_label": "a",
+          "text": "  }",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L11",
+          "part_label": "a",
+          "text": "  return 1;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L12",
+          "part_label": "c",
+          "text": "int main()",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L13",
+          "part_label": "c",
+          "text": "{",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L14",
+          "part_label": "c",
+          "text": "    int a[MAX], n=0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L15",
+          "part_label": "c",
+          "text": "    NhapMang(a,n);",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L16",
+          "part_label": "c",
+          "text": "    cout << SumPrime(a,n) << endl;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L17",
+          "part_label": "c",
+          "text": "    int max = findMax(a,n);",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L18",
+          "part_label": "c",
+          "text": "    cout << findMin(a,n,max) << endl;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L19",
+          "part_label": "c",
+          "text": "    return 0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L20",
+          "part_label": "c",
+          "text": "}",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 1,
+          "text": "bool",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T2",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 2,
+          "text": "isPrime(int",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T3",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 3,
+          "text": "n)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T4",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 4,
+          "text": "{",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T1",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 1,
+          "text": "for(int",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T2",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 2,
+          "text": "i",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T3",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 3,
+          "text": "=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T4",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 4,
+          "text": "0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T5",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 5,
+          "text": "i",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T6",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 6,
+          "text": "<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T7",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 7,
+          "text": "n;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T8",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 8,
+          "text": "i++)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T9",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 9,
+          "text": "{",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L3T1",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 1,
+          "text": "if(n",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L3T2",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 2,
+          "text": "%",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L3T3",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 3,
+          "text": "i",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L3T4",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 4,
+          "text": "==",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L3T5",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 5,
+          "text": "0)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L3T6",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 6,
+          "text": "return",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L3T7",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 7,
+          "text": "0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L4T1",
+          "line_id": "L4",
+          "part_label": "a",
+          "order": 1,
+          "text": "}",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L5T1",
+          "line_id": "L5",
+          "part_label": "a",
+          "order": 1,
+          "text": "return",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L5T2",
+          "line_id": "L5",
+          "part_label": "a",
+          "order": 2,
+          "text": "1;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L6T1",
+          "line_id": "L6",
+          "part_label": "a",
+          "order": 1,
+          "text": "if(n",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L6T2",
+          "line_id": "L6",
+          "part_label": "a",
+          "order": 2,
+          "text": "<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L6T3",
+          "line_id": "L6",
+          "part_label": "a",
+          "order": 3,
+          "text": "2)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L6T4",
+          "line_id": "L6",
+          "part_label": "a",
+          "order": 4,
+          "text": "return",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L6T5",
+          "line_id": "L6",
+          "part_label": "a",
+          "order": 5,
+          "text": "0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T1",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 1,
+          "text": "if(n",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T2",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 2,
+          "text": "!=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T3",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 3,
+          "text": "2",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T4",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 4,
+          "text": "&&",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T5",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 5,
+          "text": "n",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T6",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 6,
+          "text": "%",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T7",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 7,
+          "text": "2",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T8",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 8,
+          "text": "==",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T9",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 9,
+          "text": "0)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T10",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 10,
+          "text": "return",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T11",
+          "line_id": "L7",
+          "part_label": "a",
+          "order": 11,
+          "text": "0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T1",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 1,
+          "text": "for(int",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T2",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 2,
+          "text": "i",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T3",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 3,
+          "text": "=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T4",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 4,
+          "text": "3;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T5",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 5,
+          "text": "i",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T6",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 6,
+          "text": "*",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T7",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 7,
+          "text": "i",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T8",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 8,
+          "text": "<=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T9",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 9,
+          "text": "n;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T10",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 10,
+          "text": "i++)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T11",
+          "line_id": "L8",
+          "part_label": "a",
+          "order": 11,
+          "text": "{",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L9T1",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 1,
+          "text": "if(n",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L9T2",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 2,
+          "text": "%",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L9T3",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 3,
+          "text": "i",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L9T4",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 4,
+          "text": "==",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L9T5",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 5,
+          "text": "0)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L9T6",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 6,
+          "text": "return",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L9T7",
+          "line_id": "L9",
+          "part_label": "a",
+          "order": 7,
+          "text": "0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L10T1",
+          "line_id": "L10",
+          "part_label": "a",
+          "order": 1,
+          "text": "}",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L11T1",
+          "line_id": "L11",
+          "part_label": "a",
+          "order": 1,
+          "text": "return",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L11T2",
+          "line_id": "L11",
+          "part_label": "a",
+          "order": 2,
+          "text": "1;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L12T1",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 1,
+          "text": "int",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L12T2",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 2,
+          "text": "main()",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L13T1",
+          "line_id": "L13",
+          "part_label": "c",
+          "order": 1,
+          "text": "{",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L14T1",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 1,
+          "text": "int",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L14T2",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 2,
+          "text": "a[MAX],",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L14T3",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 3,
+          "text": "n=0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L15T1",
+          "line_id": "L15",
+          "part_label": "c",
+          "order": 1,
+          "text": "NhapMang(a,n);",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L16T1",
+          "line_id": "L16",
+          "part_label": "c",
+          "order": 1,
+          "text": "cout",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L16T2",
+          "line_id": "L16",
+          "part_label": "c",
+          "order": 2,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L16T3",
+          "line_id": "L16",
+          "part_label": "c",
+          "order": 3,
+          "text": "SumPrime(a,n)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L16T4",
+          "line_id": "L16",
+          "part_label": "c",
+          "order": 4,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L16T5",
+          "line_id": "L16",
+          "part_label": "c",
+          "order": 5,
+          "text": "endl;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L17T1",
+          "line_id": "L17",
+          "part_label": "c",
+          "order": 1,
+          "text": "int",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L17T2",
+          "line_id": "L17",
+          "part_label": "c",
+          "order": 2,
+          "text": "max",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L17T3",
+          "line_id": "L17",
+          "part_label": "c",
+          "order": 3,
+          "text": "=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L17T4",
+          "line_id": "L17",
+          "part_label": "c",
+          "order": 4,
+          "text": "findMax(a,n);",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L18T1",
+          "line_id": "L18",
+          "part_label": "c",
+          "order": 1,
+          "text": "cout",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L18T2",
+          "line_id": "L18",
+          "part_label": "c",
+          "order": 2,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L18T3",
+          "line_id": "L18",
+          "part_label": "c",
+          "order": 3,
+          "text": "findMin(a,n,max)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L18T4",
+          "line_id": "L18",
+          "part_label": "c",
+          "order": 4,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L18T5",
+          "line_id": "L18",
+          "part_label": "c",
+          "order": 5,
+          "text": "endl;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L19T1",
+          "line_id": "L19",
+          "part_label": "c",
+          "order": 1,
+          "text": "return",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L19T2",
+          "line_id": "L19",
+          "part_label": "c",
+          "order": 2,
+          "text": "0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L20T1",
+          "line_id": "L20",
+          "part_label": "c",
+          "order": 1,
+          "text": "}",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_14__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "multi_type",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_14a.jpg",
+    "question": {
+      "text": "Câu 14. Sinh viên thực hiện yêu cầu về struct Sinhvien, nhập thông tin sinh viên và in danh sách sinh viên có nơi sinh TPHCM.",
+      "parts": [
+        {
+          "part_label": "a",
+          "text": "Khai báo kiểu dữ liệu cấu trúc Sinhvien gồm các thuộc tính MaSV, HoTen, NamSinh, NoiSinh, DTB.",
+          "tables": [
+            {
+              "table_id": "TB1",
+              "source": "printed",
+              "columns": [
+                {
+                  "col_id": "C1",
+                  "header": "Tên thuộc tính"
+                },
+                {
+                  "col_id": "C2",
+                  "header": "Kiểu dữ liệu"
+                },
+                {
+                  "col_id": "C3",
+                  "header": "Ý nghĩa"
+                }
+              ],
+              "rows": []
+            }
+          ],
+          "answer_slots": [
+            {
+              "slot_id": "cau_14_a_S1"
+            },
+            {
+              "slot_id": "cau_14_a_S2"
+            },
+            {
+              "slot_id": "cau_14_a_S3"
+            },
+            {
+              "slot_id": "cau_14_a_S4"
+            },
+            {
+              "slot_id": "cau_14_a_S5"
+            },
+            {
+              "slot_id": "cau_14_a_S6"
+            }
+          ]
+        },
+        {
+          "part_label": "b",
+          "text": "Hoàn thiện hàm NhapSV để nhập thông tin của một sinh viên từ bàn phím.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_14_b_S1"
+            }
+          ]
+        },
+        {
+          "part_label": "c",
+          "text": "Hoàn thiện hàm InDSSV để in ra thông tin các sinh viên có nơi sinh TPHCM.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_14_c_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 14,
+    "max_score": 1.0,
+    "student_answer": {
+      "full_text": "char MaSV[20];\nchar HoTen[50];\nint NamSinh;\nvoid NhapSV(SinhVien &a)\ncin.ignore();\nfgets(a.HoTen, 50, stdin);\ncin.ignore();\nfgets(a.NamSinh, 50, stdin);\ncin.ignore();\nvoid InDSSV(Sinhvien a[], int n)\n{\nfor (int i = 0; i < n; i++) {\nif (a[i].NamSinh == 1990) {\ncout << a[i].MaSV << \" \" << a[i].HoTen << \" \" << a[i].NamSinh << \" \" << a[i].NoiSinh << \" \" << a[i].DTB << endl;\n}\n}",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "text": "char MaSV[20];",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "text": "char HoTen[50];",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "text": "int NamSinh;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "b",
+          "text": "void NhapSV(SinhVien &a)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "b",
+          "text": "cin.ignore();",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "b",
+          "text": "fgets(a.HoTen, 50, stdin);",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L7",
+          "part_label": "b",
+          "text": "cin.ignore();",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L8",
+          "part_label": "b",
+          "text": "fgets(a.NamSinh, 50, stdin);",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L9",
+          "part_label": "b",
+          "text": "cin.ignore();",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L10",
+          "part_label": "c",
+          "text": "void InDSSV(Sinhvien a[], int n)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "line_id": "L11",
+          "part_label": "c",
+          "text": "{",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "line_id": "L12",
+          "part_label": "c",
+          "text": "for (int i = 0; i < n; i++) {",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "line_id": "L13",
+          "part_label": "c",
+          "text": "if (a[i].NamSinh == 1990) {",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "line_id": "L14",
+          "part_label": "c",
+          "text": "cout << a[i].MaSV << \" \" << a[i].HoTen << \" \" << a[i].NamSinh << \" \" << a[i].NoiSinh << \" \" << a[i].DTB << endl;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "line_id": "L15",
+          "part_label": "c",
+          "text": "}",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "line_id": "L16",
+          "part_label": "c",
+          "text": "}",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 1,
+          "text": "char",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L1T2",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 2,
+          "text": "MaSV[20];",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T1",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 1,
+          "text": "char",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L2T2",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 2,
+          "text": "HoTen[50];",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L3T1",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 1,
+          "text": "int",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L3T2",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 2,
+          "text": "NamSinh;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L4T1",
+          "line_id": "L4",
+          "part_label": "b",
+          "order": 1,
+          "text": "void",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L4T2",
+          "line_id": "L4",
+          "part_label": "b",
+          "order": 2,
+          "text": "NhapSV(SinhVien",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L4T3",
+          "line_id": "L4",
+          "part_label": "b",
+          "order": 3,
+          "text": "&a)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L5T1",
+          "line_id": "L5",
+          "part_label": "b",
+          "order": 1,
+          "text": "cin.ignore();",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L6T1",
+          "line_id": "L6",
+          "part_label": "b",
+          "order": 1,
+          "text": "fgets(a.HoTen,",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L6T2",
+          "line_id": "L6",
+          "part_label": "b",
+          "order": 2,
+          "text": "50,",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L6T3",
+          "line_id": "L6",
+          "part_label": "b",
+          "order": 3,
+          "text": "stdin);",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L7T1",
+          "line_id": "L7",
+          "part_label": "b",
+          "order": 1,
+          "text": "cin.ignore();",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T1",
+          "line_id": "L8",
+          "part_label": "b",
+          "order": 1,
+          "text": "fgets(a.NamSinh,",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T2",
+          "line_id": "L8",
+          "part_label": "b",
+          "order": 2,
+          "text": "50,",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L8T3",
+          "line_id": "L8",
+          "part_label": "b",
+          "order": 3,
+          "text": "stdin);",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L9T1",
+          "line_id": "L9",
+          "part_label": "b",
+          "order": 1,
+          "text": "cin.ignore();",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        },
+        {
+          "token_id": "L10T1",
+          "line_id": "L10",
+          "part_label": "c",
+          "order": 1,
+          "text": "void",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L10T2",
+          "line_id": "L10",
+          "part_label": "c",
+          "order": 2,
+          "text": "InDSSV(Sinhvien",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L10T3",
+          "line_id": "L10",
+          "part_label": "c",
+          "order": 3,
+          "text": "a[],",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L10T4",
+          "line_id": "L10",
+          "part_label": "c",
+          "order": 4,
+          "text": "int",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L10T5",
+          "line_id": "L10",
+          "part_label": "c",
+          "order": 5,
+          "text": "n)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L11T1",
+          "line_id": "L11",
+          "part_label": "c",
+          "order": 1,
+          "text": "{",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L12T1",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 1,
+          "text": "for",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L12T2",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 2,
+          "text": "(int",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L12T3",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 3,
+          "text": "i",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L12T4",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 4,
+          "text": "=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L12T5",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 5,
+          "text": "0;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L12T6",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 6,
+          "text": "i",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L12T7",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 7,
+          "text": "<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L12T8",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 8,
+          "text": "n;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L12T9",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 9,
+          "text": "i++)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L12T10",
+          "line_id": "L12",
+          "part_label": "c",
+          "order": 10,
+          "text": "{",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L13T1",
+          "line_id": "L13",
+          "part_label": "c",
+          "order": 1,
+          "text": "if",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L13T2",
+          "line_id": "L13",
+          "part_label": "c",
+          "order": 2,
+          "text": "(a[i].NamSinh",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L13T3",
+          "line_id": "L13",
+          "part_label": "c",
+          "order": 3,
+          "text": "==",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L13T4",
+          "line_id": "L13",
+          "part_label": "c",
+          "order": 4,
+          "text": "1990)",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L13T5",
+          "line_id": "L13",
+          "part_label": "c",
+          "order": 5,
+          "text": "{",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T1",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 1,
+          "text": "cout",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T2",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 2,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T3",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 3,
+          "text": "a[i].MaSV",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T4",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 4,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T5",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 5,
+          "text": "\"",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T6",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 6,
+          "text": "\"",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T7",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 7,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T8",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 8,
+          "text": "a[i].HoTen",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T9",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 9,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T10",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 10,
+          "text": "\"",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T11",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 11,
+          "text": "\"",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T12",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 12,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T13",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 13,
+          "text": "a[i].NamSinh",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T14",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 14,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T15",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 15,
+          "text": "\"",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T16",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 16,
+          "text": "\"",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T17",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 17,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T18",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 18,
+          "text": "a[i].NoiSinh",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T19",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 19,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T20",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 20,
+          "text": "\"",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T21",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 21,
+          "text": "\"",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T22",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 22,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T23",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 23,
+          "text": "a[i].DTB",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T24",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 24,
+          "text": "<<",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L14T25",
+          "line_id": "L14",
+          "part_label": "c",
+          "order": 25,
+          "text": "endl;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L15T1",
+          "line_id": "L15",
+          "part_label": "c",
+          "order": 1,
+          "text": "}",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L16T1",
+          "line_id": "L16",
+          "part_label": "c",
+          "order": 1,
+          "text": "}",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    }
+  },
+  {
+    "sample_id": "cau_15__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "multi_type",
+    "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15a.jpg",
+    "question": {
+      "text": "Câu 15. (1 điểm) Một đoàn vừa có người vừa có ngựa...",
+      "parts": [
+        {
+          "part_label": "a",
+          "text": "Đặt tên biến và mô tả kiểu dữ liệu cho input và output của bài toán.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_15_a_S1"
+            },
+            {
+              "slot_id": "cau_15_a_S2"
+            },
+            {
+              "slot_id": "cau_15_a_S3"
+            }
+          ]
+        },
+        {
+          "part_label": "b",
+          "text": "Tìm 3 ví dụ cho bài toán.",
+          "tables": [
+            {
+              "table_id": "TB1",
+              "source": "printed",
+              "columns": [
+                {
+                  "col_id": "C1",
+                  "header": "Input"
+                },
+                {
+                  "col_id": "C2",
+                  "header": "Output"
+                }
+              ],
+              "rows": [
+                {
+                  "row_id": "R1",
+                  "cells": [
+                    {
+                      "cell_id": "R1C1",
+                      "col_id": "C1",
+                      "text": "",
+                      "tokens": []
+                    },
+                    {
+                      "cell_id": "R1C2",
+                      "col_id": "C2",
+                      "text": "",
+                      "tokens": []
+                    }
+                  ]
+                },
+                {
+                  "row_id": "R2",
+                  "cells": [
+                    {
+                      "cell_id": "R2C1",
+                      "col_id": "C1",
+                      "text": "",
+                      "tokens": []
+                    },
+                    {
+                      "cell_id": "R2C2",
+                      "col_id": "C2",
+                      "text": "",
+                      "tokens": []
+                    }
+                  ]
+                },
+                {
+                  "row_id": "R3",
+                  "cells": [
+                    {
+                      "cell_id": "R3C1",
+                      "col_id": "C1",
+                      "text": "",
+                      "tokens": []
+                    },
+                    {
+                      "cell_id": "R3C2",
+                      "col_id": "C2",
+                      "text": "",
+                      "tokens": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "answer_slots": [
+            {
+              "slot_id": "cau_15_b_S1"
+            }
+          ]
+        },
+        {
+          "part_label": "c",
+          "text": "Vẽ lưu đồ thuật toán hoặc mô tả thuật toán hoặc mã giả giải quyết bài toán.",
+          "tables": [],
+          "answer_slots": [
+            {
+              "slot_id": "cau_15_c_S1"
+            }
+          ]
+        }
+      ]
+    },
+    "question_number": 15,
+    "max_score": 1.0,
+    "student_answer": {
+      "full_text": "int clau, chan, ngua;\nInput: nhap dau 6 clau = 6\nnhap chau 10 chan = 10\nOutput: Ngua = 3\nNgua = 3",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "text": "int clau, chan, ngua;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "text": "Input: nhap dau 6 clau = 6",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "text": "nhap chau 10 chan = 10",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "text": "Output: Ngua = 3",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "text": "Ngua = 3",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "L1T1",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 1,
+          "text": "int",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L1T2",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 2,
+          "text": "clau,",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L1T3",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 3,
+          "text": "chan,",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L1T4",
+          "line_id": "L1",
+          "part_label": "a",
+          "order": 4,
+          "text": "ngua;",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L2T1",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 1,
+          "text": "Input:",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L2T2",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 2,
+          "text": "nhap",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L2T3",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 3,
+          "text": "dau",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L2T4",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 4,
+          "text": "6",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L2T5",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 5,
+          "text": "clau",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L2T6",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 6,
+          "text": "=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L2T7",
+          "line_id": "L2",
+          "part_label": "a",
+          "order": 7,
+          "text": "6",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L3T1",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 1,
+          "text": "nhap",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L3T2",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 2,
+          "text": "chau",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L3T3",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 3,
+          "text": "10",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L3T4",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 4,
+          "text": "chan",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L3T5",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 5,
+          "text": "=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L3T6",
+          "line_id": "L3",
+          "part_label": "a",
+          "order": 6,
+          "text": "10",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L4T1",
+          "line_id": "L4",
+          "part_label": "a",
+          "order": 1,
+          "text": "Output:",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L4T2",
+          "line_id": "L4",
+          "part_label": "a",
+          "order": 2,
+          "text": "Ngua",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L4T3",
+          "line_id": "L4",
+          "part_label": "a",
+          "order": 3,
+          "text": "=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L4T4",
+          "line_id": "L4",
+          "part_label": "a",
+          "order": 4,
+          "text": "3",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L5T1",
+          "line_id": "L5",
+          "part_label": "a",
+          "order": 1,
+          "text": "Ngua",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L5T2",
+          "line_id": "L5",
+          "part_label": "a",
+          "order": 2,
+          "text": "=",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        },
+        {
+          "token_id": "L5T3",
+          "line_id": "L5",
+          "part_label": "a",
+          "order": 3,
+          "text": "3",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 0.67
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "TB1",
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "col_id": "C1",
+              "text": "6 t8 cleu=6 chan=18",
+              "tokens": []
+            },
+            {
+              "cell_id": "R1C2",
+              "col_id": "C2",
+              "text": "3-3 ngvui=3 ngua=3",
+              "tokens": []
+            },
+            {
+              "cell_id": "R2C1",
+              "col_id": "C1",
+              "text": "12-30 cleu=12 chan=30",
+              "tokens": []
+            },
+            {
+              "cell_id": "R2C2",
+              "col_id": "C2",
+              "text": "5-9 ngvui=3 ngua=9",
+              "tokens": []
+            },
+            {
+              "cell_id": "R3C1",
+              "col_id": "C1",
+              "text": "8-10 cleu=8 chan=40",
+              "tokens": []
+            },
+            {
+              "cell_id": "R3C2",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "tokens": []
+            }
+          ]
+        }
+      ],
+      "visual_answers": []
+    }
+  }
+]

@@ -1,0 +1,499 @@
+================================================================================
+  STRUCTURE PAREM — Tài liệu định dạng file đáp án / barem chấm điểm
+  File: sample_parem.json
+  Hệ thống: MMLAB Grading System — IT001 Nhập môn lập trình
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+1. CẤU TRÚC TỔNG THỂ
+────────────────────────────────────────────────────────────────────────────────
+
+{
+  "ma_de"      : "1"                    // Mã đề thi (string). Dùng để phân biệt
+                                        // các đề khác nhau trong cùng môn học.
+
+  "subject"    : "IT001 - Nhập môn lập trình"
+                                        // Tên môn học (chỉ để ghi chú, không
+                                        // ảnh hưởng pipeline).
+
+  "teacher_barem": [ ... ]              // Danh sách các entry barem, mỗi entry
+                                        // tương ứng 1 câu hỏi (hoặc 1 nhóm
+                                        // tiêu chí của câu hỏi đó).
+                                        // Mỗi câu hỏi CHỈ xuất hiện 1 lần.
+                                        // Xem mục 2.
+}
+
+
+────────────────────────────────────────────────────────────────────────────────
+2. MỘT ENTRY TRONG teacher_barem
+────────────────────────────────────────────────────────────────────────────────
+
+Mỗi entry mô tả đầy đủ 1 câu hỏi: phần đề bài (question) và phần quy tắc
+chấm điểm (grading_rule).
+
+{
+  "sample_id"     : "cau_1_001"         // ID duy nhất của câu hỏi.
+                                        // Quy tắc đặt tên:
+                                        //   cau_{số_câu}_{variant}
+                                        //   variant = "001" nếu chỉ có 1 phiên bản
+                                        //   Ví dụ: "cau_8_001", "cau_13"
+
+  "question_number": 1                  // Số thứ tự câu trong đề thi (integer).
+
+  "question"      : { ... }             // Mô tả đề bài. Xem mục 3.
+
+  "question_type" : "multi_type"        // CHỈ có ở câu multi_type (câu 13,14,15).
+                                        // Với fill_in_the_blank thì KHÔNG có
+                                        // trường này ở cấp entry — nó nằm bên
+                                        // trong grading_rule[].
+
+  "score"         : 2.0                 // Tổng điểm của câu hỏi. CHỈ bắt buộc
+                                        // với multi_type. Với fill_in_the_blank
+                                        // thì lấy từ grading_rule[0].score.
+
+  "grading_rule"  : [ ... ]             // Danh sách các tiêu chí chấm điểm.
+                                        // Xem mục 4 và 5.
+}
+
+
+────────────────────────────────────────────────────────────────────────────────
+3. TRƯỜNG question — Mô tả đề bài
+────────────────────────────────────────────────────────────────────────────────
+
+{
+  "text"  : "Câu 1: (0.5 điểm) ..."    // Toàn bộ nội dung câu hỏi bao gồm
+                                        // chương trình C++ nếu có.
+                                        // Dùng \n cho xuống dòng.
+
+  "parts" : [                           // Danh sách các phần của câu hỏi.
+                                        // Mỗi part tương ứng 1 vùng trả lời
+                                        // vật lý trên tờ giấy thi.
+    {
+      "part_label"   : "main"           // Nhãn định danh phần này. Dùng để
+                                        //   - grading_rule biết chấm phần nào
+                                        //   - pipeline lấy đúng text sinh viên
+                                        // Quy tắc đặt tên:
+                                        //   "main"    — câu 1 phần (fill_in_the_blank)
+                                        //   "main_S1" — slot thứ 1 khi câu có
+                                        //               nhiều vùng trả lời
+                                        //   "main_S2" — slot thứ 2
+                                        //   "a","b","c" — các phần a/b/c (multi_type)
+                                        //   "stt"     — ô sinh viên ghi số thứ tự
+
+      "text"         : "Sau khi..."     // Nội dung yêu cầu của phần này.
+
+      "tables"       : [ ... ]          // Bảng in sẵn trên đề (nếu có).
+                                        // Để [] nếu không có bảng.
+                                        // Xem mục 3.1.
+
+      "answer_slots" : [                // Danh sách các ô trống sinh viên điền.
+        {
+          "slot_id": "cau_1_001_main"   // ID duy nhất của ô trả lời.
+                                        // Quy tắc đặt tên:
+                                        //   {sample_id}_{part_label}
+                                        //     nếu part chỉ có 1 slot
+                                        //   {sample_id}_{part_label}_S{n}
+                                        //     nếu part có nhiều slot (n = 1,2,3...)
+                                        // Ví dụ:
+                                        //   "cau_1_001_main"     (1 slot)
+                                        //   "cau_14_b_S1"        (slot 1 trong 2)
+                                        //   "cau_15_a_S1"        (slot 1 trong 3)
+        }
+      ],
+
+      "note"         : "..."            // (Tùy chọn) Ghi chú cho giáo viên/
+                                        // pipeline về phần này. Không ảnh hưởng
+                                        // chấm điểm tự động.
+    }
+  ]
+}
+
+────────────────────────────────────────────────────────────────────────────────
+3.1. Trường tables — Bảng in sẵn trên đề
+────────────────────────────────────────────────────────────────────────────────
+
+(Chỉ dùng khi đề có bảng cần sinh viên điền vào)
+
+{
+  "table_id" : "TB1"                    // ID bảng trong phần này.
+  "source"   : "printed"               // "printed" = bảng in sẵn trên đề
+                                        // (ngược với bảng sinh viên tự vẽ).
+  "columns"  : [
+    { "col_id": "C1", "header": "Input"  },
+    { "col_id": "C2", "header": "Output" }
+  ],
+  "rows"     : [
+    {
+      "row_id": "R1",
+      "cells" : [
+        {
+          "cell_id" : "R1C1",
+          "col_id"  : "C1",
+          "text"    : "",               // Nội dung ô (rỗng nếu SV tự điền).
+          "tokens"  : []
+        }
+      ]
+    }
+  ]
+}
+
+
+────────────────────────────────────────────────────────────────────────────────
+4. grading_rule — CÂU fill_in_the_blank
+────────────────────────────────────────────────────────────────────────────────
+
+Với câu fill_in_the_blank, grading_rule là mảng gồm 1 hoặc nhiều tiêu chí.
+Mỗi tiêu chí là 1 object:
+
+{
+  "criterion_id"  : "T1"               // ID tiêu chí. Quy tắc đặt tên:
+                                        //   T{số_câu}         — tiêu chí chính
+                                        //   T{số_câu}_{label} — tiêu chí phụ
+                                        // Ví dụ: T1, T3_main_s1, T3_main_s2
+
+  "question_type" : "fill_in_the_blank" // Loại câu hỏi của tiêu chí này.
+                                        // Các giá trị hợp lệ:
+                                        //   "fill_in_the_blank" — điền đáp án
+                                        //   "code"              — viết code
+                                        //   "table"             — điền vào bảng
+                                        //   "multi_type"        — hỗn hợp
+
+  "part_label"    : "main"             // Phần của câu hỏi tiêu chí này chấm.
+                                        // Phải khớp với một part_label trong
+                                        // question.parts[].
+
+  "slot_ids"      : ["cau_1_001_main"] // Danh sách slot_id mà tiêu chí này
+                                        // chấm điểm. Được tự động tổng hợp từ
+                                        // answer_slots của part tương ứng.
+
+  "content"       : "Ghi đúng kết quả..."
+                                        // Mô tả tiêu chí chấm điểm bằng tiếng
+                                        // Việt. Pipeline LLM đọc trường này để
+                                        // hiểu yêu cầu chấm.
+
+  "score"         : 0.5                // Điểm tối đa của tiêu chí (float).
+
+  // ── ĐÁNH GIÁ ĐÁP ÁN ──────────────────────────────────────────────────────
+
+  "expected_value": {                  // Giá trị kỳ vọng dạng dict (cho phép
+                                        // pipeline Heuristic so sánh từng field).
+    "a": 3, "b": 5, "c": 2, "d": 9   // Ví dụ câu 1: 4 biến có giá trị cụ thể.
+  }
+  // HOẶC:
+  "expected_value": {
+    "rule": "match_student_index"      // Rule đặc biệt — pipeline tự tính
+  }                                    // dựa trên student_index.
+                                        // Các rule hỗ trợ:
+                                        //   "match_student_index"
+                                        //   "answer_by_student_index_mod_4"
+                                        //   "answer_by_student_index_parity"
+                                        //   "fixed_address_plus_answer_by_student_index_mod_4"
+
+  "expected_output": "3529"            // Chuỗi output kỳ vọng (string).
+                                        // null nếu dùng conditional_outputs.
+
+  "expected_output_tokens": ["3","5","2","9"]
+                                        // Output tách thành các token riêng lẻ.
+                                        // Pipeline heuristic so sánh từng token.
+                                        // Dùng khi output gồm nhiều số/từ ghép liền.
+
+  "accepted_outputs": ["3529"]         // Danh sách các dạng viết được chấp nhận
+                                        // là đúng hoàn toàn.
+                                        // Ví dụ: ["12-4"] hoặc ["10/1/2026","10/01/2026"]
+
+  "accepted_special_answers": [        // (Tùy chọn) Đáp án đặc biệt được chấp
+    {                                  // nhận với điều kiện kèm theo.
+      "text_patterns": ["runtime error", "bị lỗi"],
+      "required_explanation": true,    // true = bắt buộc có giải thích kèm theo
+      "score": 0.5,
+      "explanation_hint": "Hàm NhapMang thiếu return..."
+    }
+  ]
+
+  // ── ĐÁP ÁN PHỤ THUỘC SỐ THỨ TỰ SINH VIÊN ──────────────────────────────
+
+  "conditional_outputs": [             // Dùng khi đáp án khác nhau theo STT SV.
+    {
+      "condition"             : "student_index % 4 == 0",
+                                        // Điều kiện Python. Biến có thể dùng:
+                                        //   student_index  — STT trong danh sách thi
+      "expected_output"       : "24615",
+      "expected_output_tokens": ["2","4","6","15"]
+    },
+    { "condition": "student_index % 4 == 1", "expected_output": "35716", "expected_output_tokens": ["3","5","7","16"] },
+    { "condition": "student_index % 4 == 2", "expected_output": "46817", "expected_output_tokens": ["4","6","8","17"] },
+    { "condition": "student_index % 4 == 3", "expected_output": "57918", "expected_output_tokens": ["5","7","9","18"] }
+  ]
+
+  // ── ĐIỂM BÁN PHẦN ───────────────────────────────────────────────────────
+
+  "partial_credit_rule": {             // (Tùy chọn) Quy tắc tính điểm bán phần.
+                                        // Bỏ qua nếu chỉ có all-or-nothing.
+    "type"         : "count_correct_tokens",
+                                        // Các type hỗ trợ:
+                                        //   "count_correct_tokens"
+                                        //     → đếm số token đúng
+                                        //   "count_wrong_tokens"
+                                        //     → đếm số token sai
+                                        //   "date_partial_match"
+                                        //     → khớp một phần ngày/tháng/năm
+                                        //   "position_tolerance"
+                                        //     → sai lệch vị trí giới hạn
+
+    "partial_score": 0.25,             // Điểm được cộng khi điều kiện thoả.
+
+    "condition"    : "correct_token_count in [2, 3]"
+                                        // Điều kiện Python xác định khi nào
+                                        // được partial_score.
+                                        // Biến có thể dùng:
+                                        //   correct_token_count
+                                        //   wrong_token_count
+  }
+
+  // ── GHI CHÚ ──────────────────────────────────────────────────────────────
+
+  "grader_note"   : "..."              // (Tùy chọn) Ghi chú cho giáo viên hoặc
+                                        // LLM grader. Không bắt buộc.
+}
+
+
+────────────────────────────────────────────────────────────────────────────────
+5. grading_rule — CÂU multi_type (câu 13, 14, 15)
+────────────────────────────────────────────────────────────────────────────────
+
+Với câu multi_type, grading_rule chứa các sub-question (phần a, b, c,...).
+Mỗi sub-question có thể có sub_criteria lồng bên trong.
+
+grading_rule: [
+  {
+    "sub_label"    : "a"               // Nhãn phần (a, b, c). Tương ứng với
+                                        // part_label trong question.parts[].
+
+    "criterion_id" : "T13A"           // ID tiêu chí chính của phần này.
+
+    "content"      : "Hàm tính tổng..."// Mô tả yêu cầu của phần này.
+
+    "score"        : 1.0              // Tổng điểm của phần này.
+
+    "question_type": "multi_type"      // Loại câu hỏi của phần này:
+                                        //   "code"       — viết code
+                                        //   "multi_type" — có sub_criteria bên trong
+                                        //   "table"      — điền vào bảng
+
+    "slot_ids"     : ["cau_13_a"]     // Slot(s) tương ứng với phần này.
+
+    "grader_note"  : "..."            // Ghi chú chấm điểm chi tiết.
+
+    "combined_allowed": true           // (Tùy chọn) true = cho phép SV viết
+                                        // gộp 2 hàm thành 1 và vẫn được điểm.
+
+    "all_or_nothing": true             // (Tùy chọn) true = chỉ cho điểm khi
+                                        // đúng TẤT CẢ các sub_criteria.
+                                        // Không có/false = cộng từng phần.
+
+    "scoring_note" : "..."            // Ghi chú riêng về cách tính điểm.
+                                        // Thường dùng khi all_or_nothing = true
+                                        // để giải thích sub_criteria không được
+                                        // tính riêng lẻ.
+
+    "expected_value": { ... }         // Đáp án kỳ vọng (nếu phần này là code):
+                                        //   "function"  — tên hàm cần viết
+                                        //   "logic"     — danh sách logic key
+                                        //   "parameter" — tham số cần dùng
+                                        //   "comparison"— điều kiện so sánh
+                                        //   "return"    — giá trị trả về
+                                        //   "struct_name"/"fields" — cho struct
+
+    "sub_criteria" : [                 // (Tùy chọn) Danh sách tiêu chí con.
+                                        // Dùng khi phần này có nhiều điểm nhỏ.
+      {
+        "criterion_id" : "T13A1"
+        "content"      : "Hàm kiểm tra số nguyên tố (0.5đ)."
+        "score"        : 0.5           // Điểm của tiêu chí con.
+                                        // Nếu "gradable": false thì không có
+                                        // "score", chỉ có "weight" để phản hồi.
+        "weight"       : 0.125         // (Thay thế score khi gradable=false)
+                                        // Trọng số dùng để breakdown feedback,
+                                        // KHÔNG được tích lũy điểm riêng lẻ.
+        "gradable"     : false         // false = tiêu chí này chỉ dùng để phản
+                                        // hồi, không cộng điểm độc lập.
+        "question_type": "code"        // Loại câu hỏi của tiêu chí con.
+        "expected_value": { ... }
+        "grader_note"  : "..."
+        // Với question_type = "table":
+        "row_id"       : "R1"          // Dòng trong bảng cần kiểm tra.
+        "column_map"   : {             // Map tên field → col_id.
+          "input" : "C1",
+          "output": "C2"
+        }
+        // Với question_type = "fill_in_the_blank":
+        // → dùng expected_value tương tự như mục 4
+      }
+    ]
+  }
+]
+
+
+────────────────────────────────────────────────────────────────────────────────
+6. QUY TẮC ĐẶT TÊN ID
+────────────────────────────────────────────────────────────────────────────────
+
+  sample_id     : cau_{số_câu}_{variant}
+                  Ví dụ: cau_1_001, cau_8_001, cau_13
+
+  criterion_id  : T{số_câu}                    — tiêu chí đơn
+                  T{số_câu}{Phần}              — tiêu chí phần (T13A, T13B)
+                  T{số_câu}{Phần}{Số}          — tiêu chí con (T13A1, T13A2)
+                  T{số_câu}_{part_label}       — tiêu chí slot đặc biệt
+
+  part_label    : "main"       — phần chính (fill_in_the_blank đơn giản)
+                  "main_S1"    — slot 1 (khi câu có nhiều vùng trả lời)
+                  "main_S2"    — slot 2
+                  "a","b","c"  — phần a/b/c (multi_type)
+                  "stt"        — ô sinh viên ghi số thứ tự
+
+  slot_id       : {sample_id}_{part_label}        — nếu part có 1 slot
+                  {sample_id}_{part_label}_S{n}   — nếu part có nhiều slot
+                  Ví dụ: cau_1_001_main, cau_14_b_S1, cau_15_a_S3
+
+
+────────────────────────────────────────────────────────────────────────────────
+7. LOẠI CÂU HỎI (question_type)
+────────────────────────────────────────────────────────────────────────────────
+
+  "fill_in_the_blank"
+      Sinh viên điền đáp án vào ô trống.
+      Pipeline: so sánh text với expected_output / conditional_outputs.
+
+  "code"
+      Sinh viên viết đoạn code / hàm.
+      Pipeline: LLM đánh giá logic code dựa trên expected_value.logic.
+
+  "table"
+      Sinh viên điền vào bảng (ví dụ/testcase).
+      Pipeline: so sánh từng ô theo row_id và column_map.
+
+  "multi_type"
+      Câu hỏi hỗn hợp gồm nhiều phần khác loại nhau.
+      grading_rule chứa nhiều sub-question, mỗi cái có question_type riêng.
+
+
+────────────────────────────────────────────────────────────────────────────────
+8. VÍ DỤ ĐẦY ĐỦ — CÂU fill_in_the_blank ĐƠN GIẢN (câu 1)
+────────────────────────────────────────────────────────────────────────────────
+
+{
+  "sample_id"     : "cau_1_001",
+  "question_number": 1,
+  "question": {
+    "text": "Câu 1: ...",
+    "parts": [
+      {
+        "part_label"  : "main",
+        "text"        : "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+        "tables"      : [],
+        "answer_slots": [{ "slot_id": "cau_1_001_main" }]
+      }
+    ]
+  },
+  "grading_rule": [
+    {
+      "criterion_id"         : "T1",
+      "question_type"        : "fill_in_the_blank",
+      "part_label"           : "main",
+      "slot_ids"             : ["cau_1_001_main"],
+      "content"              : "Ghi đúng kết quả chương trình. Đáp án đúng là 3529. Nếu đúng 2 hoặc 3 con số thì được 0.25 điểm.",
+      "expected_value"       : { "a": 3, "b": 5, "c": 2, "d": 9 },
+      "expected_output"      : "3529",
+      "expected_output_tokens": ["3", "5", "2", "9"],
+      "accepted_outputs"     : ["3529"],
+      "partial_credit_rule"  : {
+        "type"         : "count_correct_tokens",
+        "partial_score": 0.25,
+        "condition"    : "correct_token_count in [2, 3]"
+      },
+      "score": 0.5
+    }
+  ]
+}
+
+
+────────────────────────────────────────────────────────────────────────────────
+9. VÍ DỤ ĐẦY ĐỦ — CÂU fill_in_the_blank NHIỀU SLOT (câu 3)
+────────────────────────────────────────────────────────────────────────────────
+
+{
+  "sample_id"     : "cau_3_001",
+  "question_number": 3,
+  "question": {
+    "text": "Câu 3: ...",
+    "parts": [
+      {
+        "part_label"  : "main_S1",
+        "text"        : "a = .......",
+        "tables"      : [],
+        "answer_slots": [{ "slot_id": "cau_3_001_main_S1" }]
+      },
+      {
+        "part_label"  : "main_S2",
+        "text"        : "Kết quả in ra màn hình là gì?",
+        "tables"      : [],
+        "answer_slots": [{ "slot_id": "cau_3_001_main_S2" }]
+      }
+    ]
+  },
+  "grading_rule": [
+    {
+      "criterion_id" : "T3_main_s1",
+      "question_type": "fill_in_the_blank",
+      "part_label"   : "main_S1",
+      "slot_ids"     : ["cau_3_001_main_S1"],
+      "content"      : "Sinh viên ghi đúng số thứ tự của mình. Không tính điểm.",
+      "expected_value": { "rule": "match_student_index" },
+      "score"        : 0
+    },
+    {
+      "criterion_id"          : "T3_main_s2",
+      "question_type"         : "fill_in_the_blank",
+      "part_label"            : "main_S2",
+      "slot_ids"              : ["cau_3_001_main_S2"],
+      "content"               : "Đáp án gồm 4 số. Chỉ sai 1 hoặc 2 số thì được 0.25 điểm.",
+      "expected_value"        : { "rule": "answer_by_student_index_mod_4" },
+      "expected_output"       : null,
+      "conditional_outputs"   : [
+        { "condition": "student_index % 4 == 0", "expected_output": "24615", "expected_output_tokens": ["2","4","6","15"] },
+        { "condition": "student_index % 4 == 1", "expected_output": "35716", "expected_output_tokens": ["3","5","7","16"] },
+        { "condition": "student_index % 4 == 2", "expected_output": "46817", "expected_output_tokens": ["4","6","8","17"] },
+        { "condition": "student_index % 4 == 3", "expected_output": "57918", "expected_output_tokens": ["5","7","9","18"] }
+      ],
+      "partial_credit_rule"   : {
+        "type"         : "count_wrong_tokens",
+        "partial_score": 0.25,
+        "condition"    : "wrong_token_count in [1, 2]"
+      },
+      "score": 0.5
+    }
+  ]
+}
+
+
+────────────────────────────────────────────────────────────────────────────────
+10. LƯU Ý KHI CHỈNH SỬA
+────────────────────────────────────────────────────────────────────────────────
+
+  [!] sample_parem.json là nguồn gốc (source of truth). Chỉnh sửa file này
+      khi muốn thay đổi rubric.
+
+  [!] barem_dict.json được sinh ra TỰ ĐỘNG từ sample_parem.json bằng cách
+      chạy tool/Print_barem_dict.py. Không sửa tay barem_dict.json.
+
+  [!] JSON không hỗ trợ comment (//). Không được viết comment trong file JSON.
+
+  [!] Sau khi sửa sample_parem.json, chạy lại:
+        python tool/Print_barem_dict.py
+      để cập nhật barem_dict.json.
+
+  [!] Điểm của tất cả grading_rule[].score phải cộng lại bằng tổng điểm câu.
+      Với multi_type: tổng sub-question score phải bằng entry.score.
+
+================================================================================

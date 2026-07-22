@@ -1,0 +1,366 @@
+{
+  "HS_2": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_01.jpg",
+      "content": {
+        "lines": ["3529"]
+      },
+      "pass1_content": {
+        "lines": ["3529"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_02.jpg",
+      "content": {
+        "lines": ["12-4"]
+      },
+      "pass1_content": {
+        "lines": ["12-4"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_03": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_03.jpg",
+      "content": {
+        "lines": ["2", "46817"]
+      },
+      "pass1_content": {
+        "lines": ["2", "46817"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      },
+      "pass1_content": {
+        "lines": ["40"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_05.jpg",
+      "content": {
+        "lines": ["1055"]
+      },
+      "pass1_content": {
+        "lines": ["1055"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      },
+      "pass1_content": {
+        "lines": ["4"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_07.jpg",
+      "content": {
+        "lines": ["8"]
+      },
+      "pass1_content": {
+        "lines": ["8"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_08": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_08_1.jpg",
+      "content": {
+        "lines": ["2", "0x505294 8 0 -2"]
+      },
+      "pass1_content": {
+        "lines": ["2", "0x505294 8 0 -2"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_09.jpg",
+      "content": {
+        "lines": ["1"]
+      },
+      "pass1_content": {
+        "lines": ["1"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_10.jpg",
+      "content": {
+        "lines": ["10 70 2 3 4 4 5 6 2 1"]
+      },
+      "pass1_content": {
+        "lines": ["10 70 2 3 4 4 5 6 2 1"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      },
+      "pass1_content": {
+        "lines": ["20"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_12.jpg",
+      "content": {
+        "lines": ["10/1/2026"]
+      },
+      "pass1_content": {
+        "lines": ["10/1/2026"]
+      },
+      "confidence": 1.0
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int KiemtraSNT(int n) {",
+          "    if (n < 2) return 0;",
+          "    for (int i = 2; i * i <= n; i++)",
+          "        if (n % i == 0) return 0;",
+          "    return 1;",
+          "}",
+          "int TongSNT(int a[], int n) {",
+          "    int S = 0;",
+          "    for (int i = 0; i < n; i++)",
+          "        if (KiemtraSNT(a[i])) S += a[i];",
+          "    return S;",
+          "}"
+        ]
+      },
+      "pass1_content": {
+        "lines": [
+          "int KiemtraSNT(int n) {",
+          "    if (n < 2) return 0;",
+          "    for (int i = 2; i * i <= n; i++)",
+          "        if (n % i == 0) return 0;",
+          "    return 1;",
+          "}",
+          "int TongSNT(int a[], int n) {",
+          "    int S = 0;",
+          "    for (int i = 0; i < n; i++)",
+          "        if (KiemtraSNT(a[i])) S += a[i];",
+          "    return S;",
+          "}"
+        ]
+      },
+      "confidence": 1.0
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int TimMax(int a[], int n) {",
+          "    int m = 0;",
+          "    for (int i = 1; i < n; i++)",
+          "        if (a[i] > a[m]) m = i;",
+          "    return m;",
+          "}"
+        ]
+      },
+      "pass1_content": {
+        "lines": [
+          "int TimMax(int a[], int n) {",
+          "    int m = 0;",
+          "    for (int i = 1; i < n; i++)",
+          "        if (a[i] > a[m]) m = i;",
+          "    return m;",
+          "}"
+        ]
+      },
+      "confidence": 1.0
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << \"Tong so SNT: \" << TongSNT(a, n) << endl;",
+          "cout << \"Vi tri phan tu lon nhat dau tien: \" << TimMax(a, n) << endl;"
+        ]
+      },
+      "pass1_content": {
+        "lines": [
+          "cout << \"Tong so SNT: \" << TongSNT(a, n) << endl;",
+          "cout << \"Vi tri phan tu lon nhat dau tien: \" << TimMax(a, n) << endl;"
+        ]
+      },
+      "confidence": 1.0
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct Sinhvien {",
+          "    string MaSV;",
+          "    string HoTen;",
+          "    int NamSinh;",
+          "    string NoiSinh;",
+          "    float DTB;",
+          "};"
+        ]
+      },
+      "pass1_content": {
+        "lines": [
+          "struct Sinhvien {",
+          "    string MaSV;",
+          "    string HoTen;",
+          "    int NamSinh;",
+          "    string NoiSinh;",
+          "    float DTB;",
+          "};"
+        ]
+      },
+      "confidence": 1.0
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &x) {",
+          "    cin >> x.MaSV;",
+          "    cin.ignore();",
+          "    getline(cin, x.HoTen);",
+          "    cin >> x.NamSinh;",
+          "    cin.ignore();",
+          "    getline(cin, x.NoiSinh);",
+          "    cin >> x.DTB;",
+          "}"
+        ]
+      },
+      "pass1_content": {
+        "lines": [
+          "void NhapSV(Sinhvien &x) {",
+          "    cin >> x.MaSV;",
+          "    cin.ignore();",
+          "    getline(cin, x.HoTen);",
+          "    cin >> x.NamSinh;",
+          "    cin.ignore();",
+          "    getline(cin, x.NoiSinh);",
+          "    cin >> x.DTB;",
+          "}"
+        ]
+      },
+      "confidence": 1.0
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "void InDSSV(Sinhvien a[], int n) {",
+          "    for (int i = 0; i < n; i++)",
+          "        if (a[i].NoiSinh == \"TPHCM\")",
+          "            cout << a[i].MaSV << \" \" << a[i].HoTen << endl;",
+          "}"
+        ]
+      },
+      "pass1_content": {
+        "lines": [
+          "void InDSSV(Sinhvien a[], int n) {",
+          "    for (int i = 0; i < n; i++)",
+          "        if (a[i].NoiSinh == \"TPHCM\")",
+          "            cout << a[i].MaSV << \" \" << a[i].HoTen << endl;",
+          "}"
+        ]
+      },
+      "confidence": 1.0
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "Input: N (so nguyen khong am - so dau), M (so nguyen khong am - so chan)",
+          "Output: x (so nguyen khong am - so nguoi), y (so nguyen khong am - so ngua) hoac 'gia dinh sai'"
+        ]
+      },
+      "pass1_content": {
+        "lines": [
+          "Input: N (so nguyen khong am - so dau), M (so nguyen khong am - so chan)",
+          "Output: x (so nguyen khong am - so nguoi), y (so nguyen khong am - so ngua) hoac 'gia dinh sai'"
+        ]
+      },
+      "confidence": 1.0
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {"col_1": "6 18", "col_2": "3 3"},
+          {"col_1": "5 20", "col_2": "0 5"},
+          {"col_1": "9 10", "col_2": "gia dinh sai"}
+        ]
+      },
+      "pass1_content": {
+        "table_extracted": [
+          {"col_1": "6 18", "col_2": "3 3"},
+          {"col_1": "5 20", "col_2": "0 5"},
+          {"col_1": "9 10", "col_2": "gia dinh sai"}
+        ]
+      },
+      "confidence": 1.0
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "completed",
+      "image_path": "images/HS_2/Cau_15c.jpg",
+      "content": {
+        "nodes": [],
+        "edges": []
+      },
+      "pass1_content": {
+        "nodes": [],
+        "edges": []
+      },
+      "confidence": 1.0
+    }
+  }
+}
