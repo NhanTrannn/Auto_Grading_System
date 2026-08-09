@@ -1,0 +1,58 @@
+{
+  "ma_de": "1",
+  "HS_2": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "*Biến: int dau, chan, nguoi, ngua;",
+          "Input: dau = 6",
+          "chan = 18",
+          "Output: nguoi = 3",
+          "ngua = 3"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
+            "col_1": "dau = 6 chan = 18",
+            "col_2": "nguoi = 3 ngua = 3"
+          },
+          {
+            "col_1": "dau = 12 chan = 30",
+            "col_2": "nguoi = 3 ngua = 9"
+          },
+          {
+            "col_1": "dau = 8 chan = 40",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg",
+      "content": {
+        "nodes": [],
+        "edges": []
+      },
+      "pass1_content": {
+        "nodes": [],
+        "edges": []
+      },
+      "confidence": 1.0
+    }
+  }
+}

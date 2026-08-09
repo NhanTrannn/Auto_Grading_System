@@ -1,0 +1,555 @@
+[
+  {
+    "sample_id": "cau_13_001__HS_1",
+    "student_index": 1,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 13.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "int KiemtraSNT(int n){ if(n<2) return 0; for(int i=2;i<=n/2;i++) if(n%i==0) return 0; return 1; }\nint TongSNT(int a[], int n){ int S=0; for(int i=0;i<n;i++) if(KiemtraSNT(a[i])) S+=a[i]; return S; }\nint TimMax(int a[], int n){ int m=0; for(int i=1;i<n;i++) if(a[i]>a[m]) m=i; return m; }\ncout << \"Tong so SNT = \" << TongSNT(a,n);\ncout << \"Vi tri phan tu lon nhat dau tien\" << TimMax(a,n);",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "int KiemtraSNT(int n){ if(n<2) return 0; for(int i=2;i<=n/2;i++) if(n%i==0) return 0; return 1; }",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "int TongSNT(int a[], int n){ int S=0; for(int i=0;i<n;i++) if(KiemtraSNT(a[i])) S+=a[i]; return S; }",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "b",
+          "slot_id": "cau_13_001_b",
+          "text": "int TimMax(int a[], int n){ int m=0; for(int i=1;i<n;i++) if(a[i]>a[m]) m=i; return m; }",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "c",
+          "slot_id": "cau_13_001_c",
+          "text": "cout << \"Tong so SNT = \" << TongSNT(a,n);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "c",
+          "slot_id": "cau_13_001_c",
+          "text": "cout << \"Vi tri phan tu lon nhat dau tien\" << TimMax(a,n);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 2.0,
+    "question_number": 13
+  },
+  {
+    "sample_id": "cau_14_001__HS_1",
+    "student_index": 1,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "struct Sinhvien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    cin >> x.HoTen;\n    cin >> x.NamSinh;\n    cin >> x.DTB;\n}\nvoid InDSSV(Sinhvien a[], int n){\n    for(int i=0;i<n;i++)\n        if(a[i].NoiSinh == \"TPHCM\")\n            cout << a[i].MaSV << \"- \" << a[i].HoTen;\n}",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct Sinhvien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    float DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L7",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "};",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L8",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "void NhapSV(Sinhvien &x){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L9",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "    getline(cin, x.MaSV);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L10",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "    cin >> x.HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L11",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "    cin >> x.NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L12",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "    cin >> x.DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L13",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L14",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "void InDSSV(Sinhvien a[], int n){",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L15",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "    for(int i=0;i<n;i++)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L16",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "        if(a[i].NoiSinh == \"TPHCM\")",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L17",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "            cout << a[i].MaSV << \"- \" << a[i].HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L18",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_15_001__HS_1",
+    "student_index": 1,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Input: N, M la hai so nguyen khong am\nOutput: chuoi 'gia dinh sai' hoac hai so nguyen khong am x, y",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Input: N, M la hai so nguyen khong am",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Output: chuoi 'gia dinh sai' hoac hai so nguyen khong am x, y",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_13_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 13.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "int KiemtraSNT(int n){ return n>1; }\nint TongSNT(int a[], int n){ return 0; }",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "int KiemtraSNT(int n){ return n>1; }",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "int TongSNT(int a[], int n){ return 0; }",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "b",
+          "slot_id": "cau_13_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L4",
+          "part_label": "c",
+          "slot_id": "cau_13_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 2.0,
+    "question_number": 13
+  },
+  {
+    "sample_id": "cau_14_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "struct Sinhvien { int x; };",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct Sinhvien { int x; };",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_15_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Input la N, M. Output la x, y",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Input la N, M. Output la x, y",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 15
+  }
+]

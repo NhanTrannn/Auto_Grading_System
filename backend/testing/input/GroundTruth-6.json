@@ -1,0 +1,4558 @@
+{
+  "ma_de": "1",
+  "HS_2": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["3516"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["23"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["57918"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["41211"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1055"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["23"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505294 8 0 0"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["0 2 0 3 4 4 5 6 2 1"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["1/1/2028"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool isPrime(int n) {",
+          "    if (n<2) return 0;",
+          "    if (n!=2 && n%2==0) return 0;",
+          "    for(int i = 3; i*i<=n; i++) {",
+          "        if(n % i == 0) return 0;",
+          "    }",
+          "    return 1;",
+          "int SumPrime(int a[]",
+          "    int S = 0;",
+          "    for(int i = 0; i < n; i",
+          "        if(isPrime(a[",
+          "        {   S += a[i];",
+          "    return S;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int findmax(int a[], int n) {",
+          "    int max=a[0];",
+          "    for(int i = 1; i<n; i++) {",
+          "int findvtmax (int a[], int",
+          "    for(int i = 0; i < n; i++) {",
+          "        if (a[i]==max)"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout << SumPrime(a,n) << endl;",
+          "    int max = findMax(a,n);",
+          "    cout << findvtmax(a,n,max) << endl;",
+          "    return 0;",
+          "}"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinhvien {",
+          "   char MaSV[20];",
+          "   char HoTen[50];",
+          "   int NamSinh;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien a)",
+          "cin>>a.MaSV;",
+          "cin.ignore();",
+          "fgets(a.HoTen, 50, stdin);",
+          "cin>>a.NamSinh; cin.ignore();",
+          "fgets(a.NoiSinh, 50, stdin);",
+          "cin>>a.DTB"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for (int i = 0; i < n; i++) {",
+          "        if (a[i].NoiSinh == TPHCM) {",
+          "            cout << a[i].MaSV << \" \" << a[i].HoTen << ",
+          "a[i].NamSinh<<\" \"<<a[i].NoiSinh",
+          "a[i].DTB<<endl;",
+          "        }",
+          "    }"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "*Biến: int dau, chan, nguoi, ngua;",
+          "Input: dau = 6",
+          "chan = 18",
+          "Output: nguoi = 3",
+          "ngua = 3"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "input",
+            "col_2":"output"
+          },
+          {
+            "col_1": "dau = 6 chan = 18",
+            "col_2": "nguoi = 3 ngua = 3"
+          },
+          {
+            "col_1": "dau = 12 chan = 30",
+            "col_2": "nguoi = 3 ngua = 9"
+          },
+          {
+            "col_1": "dau = 8 chan = 40",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg",
+      "content": {
+        "nodes": [],
+        "edges": []
+      },
+      "pass1_content": {
+        "nodes": [],
+        "edges": []
+      },
+      "confidence": 1.0
+    }
+  },
+  "HS_3": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["3529"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["28"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["3"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["5"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["9113"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["9"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["9"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["3"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x50528c", "8", "0", "8"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["-1"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["22"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["28/1/2026"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "include <iostream>",
+          "Struct SinhVien{",
+          "string MaSV;",
+          "string HoTen;",
+          "int NamSinh;",
+          "string NoiSinh;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien &ds)",
+          "cin << SinhVien.MaSV;",
+          "cin << SinhVien.HoTen;",
+          "cin << SinhVien.NamSinh;",
+          "cin << SinhVien.NoiSinh;",
+          "cin << SinhVien.DTB;",
+          "return;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for(int i; i < n; i++){",
+          "        if(Sinhvien.NoiSinh[a[i]] == 'TPHCM')",
+          "            x = true;",
+          "        else x = false;",
+          "        }",
+          "        switch(x) {",
+          "            case 1: cout << SinhVien;",
+          "            case 0: break;",
+          "        }"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "input: N, M là số nguyên dương",
+          "output: Kết luận cuối sau tính toán để khẳng định / phủ định giả định trên"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "6 18",
+            "col_2": "giả định đúng"
+          },
+          {
+            "col_1": "20 45",
+            "col_2": "giả định sai"
+          },
+          {
+            "col_1": "10 18",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS3_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_7": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["342.08"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["128"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["26"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["46817"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1055"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["35"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["26"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505294 8 0 -2"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["1"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["10 70 2 3 4 4 5 6 2 1"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["7/1/2026"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool nt(int n)",
+          "{   if (n < 2) return false;",
+          "    for (int i = 2; i*i <= n; i++)",
+          "        if (n % i == 0) return false;",
+          "    return true;",
+          "}",
+          "int tong(int a[], int n)",
+          "{   int tam = 0;",
+          "    for (int i = 0; i < n; i++)",
+          "        if (nt(a[i]))",
+          "            tam = tam + a[i];",
+          "    return tam;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int vitri(int a[], int n)",
+          "{ int ma = a[0];",
+          "for(int i = 1; i < n; i++) ma = max(ma, a[i]);",
+          "for(int i = 0; i < n; i++)"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": ["    cout<<tong(a,n)<<endl;", "    cout<<vitri(a,n);", "}"]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct SinhVien",
+          "{ char MaSV[30];",
+          "char HoTen[255];",
+          "int NamSinh;",
+          "char NoiSinh[255];",
+          "float DTB;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien &t)",
+          "cin >> t.MaSV;",
+          "cin.getline(t.HoTen, 50);",
+          "cin >> t.NamSinh; cin.ignore();",
+          "cin.getline(t.NoiSinh, 50);",
+          "cin >> DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for (int i = 0; i < n; i++)",
+          "        if (strcmp(a[i].NoiSinh, \"TPHCM\") == 0)",
+          "            cout << a[i].MaSV << endl;",
+          "            cout << a[i].HoTen << endl;",
+          "            cout << a[i].NamSinh << endl;",
+          "            cout << a[i].NoiSinh << endl;",
+          "            cout << a[i].DTB << endl;"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "int N; // biến N có kiểu int để mô tả số lượng đầu là m số nguyên",
+          "int M; // biến M có kiểu int để mô tả số lượng chân là một số nguyên",
+          "int nguoi; // biến nguoi kiểu int lưu kết quả cho số người tính đ từ dữ liệu đề bài",
+          "int ngua; // biến ngua kiểu int lưu kết quả cho số ngựa tính được từ đề bài"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "N=6, M=18",
+            "col_2": "nguoi=3, ngua=3"
+          },
+          {
+            "col_1": "N=220, M=680",
+            "col_2": "nguoi=100, ngua=120"
+          },
+          {
+            "col_1": "N=6, M=17",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS7_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_9": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["352.510"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12 - 4"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["28"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["24615"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1055"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["10"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["28"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505288 8 0 -6"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["0"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["10 9 8 7 6 5 4 3 2 1"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["7/1/2026"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool snt(int n) {",
+          "if (n < 2) return false;",
+          "for (int i = 2; i*i <= n; i++)",
+          "if (n % i == 0)",
+          "return false;",
+          "return true; }",
+          "int tongSnt(int a[], int n) {",
+          "int tong = 0;",
+          "for (int i = 0; i < n; i++)",
+          "if (snt(a[i]) == true) sum += a[i];",
+          "return tong; }"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int timmax(int a[], int n) {",
+          "int Max = a[0];",
+          "for (int i = 1; i < n; i++)",
+          "if (a[i] > Max) Max = a[i];"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": ["cout << tongsnt(a,n) << endl;", "cout << timmax(a,n);"]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct SinhVien {",
+          "    char MaSV[10];",
+          "    char HoTen[50];",
+          "    int NamSinh;",
+          "    char NoiSinh[20];",
+          "    float DTB; };"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &a)",
+          "{ cin.getline(a.MaSV, 9);",
+          "cin.getline(a.HoTen, 49);",
+          "cin >> a.NamSinh;",
+          "cin.ignore();",
+          "cin.getline(a.NoiSinh);",
+          "cin >> a.DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for(int i = 0; i < n; i++) {",
+          "        if(strcmp(a[i].NoiSinh, \"TPHCM\") == 0) {",
+          "            cout << a[i].MaSV << \" \" << a[i].HoTen",
+          "                << a[i].NamSinh << \" \" << a[i].NoiSinh",
+          "                << a[i].DTB << endl; }",
+          "        }"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "Biến n: N cái đầu, Biến nguoi: số người",
+          "Biến m: M cái chân, Biến ngua: số ngựa",
+          "Input: số nguyên n đầu, số nguyên m chân",
+          "Output: số nguyên người (biến nguoi), số nguyên ngựa hoặc \"giả định sai\""
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "6 18",
+            "col_2": "3 3"
+          },
+          {
+            "col_1": "8 28",
+            "col_2": "2 6"
+          },
+          {
+            "col_1": "2 27",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS9_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_10": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["3"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["5"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["35716"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1051"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["5"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["10/12/2025"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int bool laSNT(int a[], int n)",
+          "{",
+          "for(int i=0; i<n; i++)",
+          "if(a[i]<2) return false;",
+          "else if(a[i]==2) return true;",
+          "else",
+          "for(int j=2; j<a[i]; j++)",
+          "if(a[i]%j==0) return false;",
+          "return true;",
+          "}",
+          "int TonggiatriSNT(int a[], int n) {",
+          "return S;"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int VitriPhantulonnhat(int a[], int n) {",
+          "    int max_1 = a[0];",
+          "    for(int i = 1; i < n; i++)",
+          "        if(a[i] > max_1)"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << \"Tổng giá trị các phần tử là Số nguyên tố là:\" << TonggiatriSNT",
+          "cout << \"Vị trí phần tử có giá trị lớn nhất đầu tiên trong mảng la\" << VitriPhantulonnhat(a,n) << endl;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": ["Struct Sinh vien {", "int NamSinh;", "float DTB;", "}"]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "cin >> a.MaSV;",
+          "cin >> a.HoTen;",
+          "cin >> a.NamSinh;",
+          "cin >> a.NoiSinh;",
+          "cin >> a.DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for(int i = 0; i < n; i++)",
+          "        if(a[i].NoiSinh == \"TPHCM\") {",
+          "            cout << a[i].MaSV;",
+          "            cout << a[i].HoTen;",
+          "            cout << a[i].NamSinh;",
+          "            cout << a[i].NoiSinh;",
+          "            cout << a[i].DTB;",
+          "        }",
+          "    }"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "Input: nhập vào 2 số nguyên N và M với N là số cái đầu và M là số cái chân nhìn thấy được",
+          "Output: Nếu giả định khong có người hay ngựa nào thiếu chân hoặc đầu là đúng thì in ra số người và số ngựa",
+          "Ngược lại, in ra \"giả định sai\""
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "8 32",
+            "col_2": "3 người 5 ngựa"
+          },
+          {
+            "col_1": "4 8",
+            "col_2": "2 người 1 ngựa"
+          },
+          {
+            "col_1": "8 23",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS10_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_12": {
+    "Cau_15a": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["3 4 2,5"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["7"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["27"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["1227"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["10 3 1"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4532"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["6"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["7"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0", "8", "0", "16"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["7"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["18"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["7/5/2027"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": ["void Tinhtong(int a[], int n) {"]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": ["struct SinhVien {", "int NamSinh;"]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": []
+      }
+    }
+  },
+  "HS_15": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["352.57"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["10"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["46817"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1055"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["1"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["8"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["10"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505294 8 0 -2"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["1"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["10 70 2 3 4 4 5 2 1 7"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["7/1/2026"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool snt(int n) {",
+          "    if (n < 2) ",
+          "        return false;",
+          "    for (int i = 2; i*i <= n; i++)",
+          "        if (n % i == 0) {",
+          "            return false;",
+          "    return true;",
+          "}",
+          "int Tong(int a[], int n) {",
+          "    int s = 0;",
+          "    for (int i = 0; i < n; i++) {",
+          "        if (snt(a[i]))",
+          "            s = s + a[i];",
+          "    return s;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int TimViTri(int a[], int n) {",
+          "    int max = a[0];",
+          "    for(int i = 0; i < n; i++) {",
+          "        if(a[i] > max) ",
+          "            max = a[i];",
+          "    for(int i = 0; i < n; i++) {",
+          "        if(a[i] == max) ",
+          "            return i;"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "  cout << \"Tong cac so nguyen to trong mang:\" << Tong(a,n) << endl;",
+          "  cout << \"Vi tri lon nhat dau tien:\" << TimViTri(a,n);",
+          "  return 0;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct SinhVien {",
+          "char MaSV[100];",
+          "char HoTen[100];",
+          "int NamSinh;",
+          "char NoiSinh[100];"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien &a)",
+          "cin.getline(a.MaSV, 100);",
+          "cin.getline(a.HoTen, 100);",
+          "cin >> a.NamSinh;",
+          "cin.ignore(); cin.getline(a.NoiSinh, 100); cin>>a.DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "for(int i=0; i<n; i++)",
+          "if (a[i].NoiSinh == \"TPHCM\") {",
+          "puts(a[i].MaSV);",
+          "puts(a[i].HoTen);",
+          "cout<<a[i]",
+          "puts(a[i].NoiSinh);",
+          "cout << a[i].DTB << endl;",
+          "}",
+          "}"
+        ]
+      }
+    }
+  },
+  "HS_17": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["24"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["8 - 2"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["12"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["24615"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["41222"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1053"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["1"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["8"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["12"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505288 -3 0x000000", "2"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["1"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["7 1 9 3", "4 5 6 9 2 1 0"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["25"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["24/1/2026"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int tong(int a[], int &n)",
+          "int t = 0;",
+          "bool flag = true;",
+          "for(int i=0; i<n; i++)",
+          "{ for(int j=2; j<a[i]; j++)",
+          "if(a[i] % j == 0)",
+          "{ flag = false;",
+          "break; }",
+          "if(flag == true) t+=a[i];",
+          "flag = true; }"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int find(int a[], int &n)",
+          "int ma = a[0]; int skibidi = 0;",
+          "for (int i = 1; i < n; i++) ",
+          "  if (a[i] > ma) skibidi = i;"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": ["cout << tong(a,n) << \" \" << find(a,n);", "return 0;"]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct Sinhvien {",
+          "string MaSV, HoTen, NoiSinh;",
+          "int Nam Sinh;",
+          "float DTB;",
+          "};"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "cin >> a.MaSV >> a.HoTen >> a.NamSinh >> a.NoiSinh >> a.DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for (int i = 0; i < n; i++)",
+          "        if (a[i].NoiSinh == \"TPHCM\")",
+          "            cout << a[i].MaSV << \" \" << a[i].HoTen << \" \" << a[i].NamSinh << \" \" << a[i].NoiSinh << \" \" << a[i].DTB << endl;"
+        ]
+      }
+    }
+  },
+  "HS_18": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["352.510"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12-4"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["16"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["24615"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["41218"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1055"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["8"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["16"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x50528c 5 0 -6"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["0"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["0 -1 2 -1 4", "-1"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["18"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["7/5/2027"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool kiemtrasnt(int n)",
+          "if (n < 2) return 0;",
+          "for (int i = 2; i < n; i++)",
+          "{ if (n % i == 0) return 0;",
+          "return 1; }",
+          "int tonggiatritatcasonguyenTo(int a[], int n)",
+          "{ int Dem = 0;",
+          "for (int i = 0; i < n; i++)",
+          "{ if (kiemtrasnt(a[i]))",
+          "{ Dem = Dem + a[i];",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int timvitricuamax(int a[], int n)",
+          "int m = 0;",
+          "for(int i = 0; i < n; i++)",
+          "{ if(a[i] < a[i+1]",
+          "    { m = i+1;"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << tonggiatricuatatcasonguyento(a,n) << endl;",
+          "cout << timvitricuamax(a,n) << endl;",
+          "return 0;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinhvien",
+          "{ string MaSV;",
+          "string HoTen;",
+          "int NamSinh;",
+          "string NoiSinh;",
+          "float DTB;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &ao)",
+          "getline(a.MaSV);",
+          "getline(a.HoTen);",
+          "cin >> a.NamSinh;",
+          "cin.ignore(1, '\\n');",
+          "getline(a.NoiSinh);",
+          "cin >> DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "for(int i=0; i<n; i++)",
+          "{ if(a.NoiSinh == 'TPHCM')",
+          "{ cout << a[i].MaSV;",
+          "cout << a[i].HoTen;",
+          "cout << a[i].NamSinh;",
+          "cout << a[i].NoiSinh;",
+          "count << a[i].DTB;",
+          "}"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "int a là tổng số đầu",
+          "int b là tổng số chân",
+          "cout << là xuất ra số con ngựa",
+          "cout << là xuất ra số con người"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "4 12",
+            "col_2": "2 2"
+          },
+          {
+            "col_1": "2 6",
+            "col_2": "1 1"
+          },
+          {
+            "col_1": "",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS18_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_19": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["352.510"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["128"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["17"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["3"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["41217"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["2101"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["8"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["17"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505294 8 -4 6"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["0"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["7/1/2026"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool KtraSNT(int x) {",
+          "    if (x < 2) return false;",
+          "    for (int i = 2; i < x / 2; i++) {",
+          "        if (x % i == 0) return false;",
+          "    }",
+          "    return true;",
+          "}",
+          "int tong(int a[], int n) {",
+          "    int s=0;"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int GTLN(int a[], int n) {",
+          "int max_val = a[0];",
+          "for(int i = 0; i < n; i++) {",
+          "  if (a[i] > a[0])"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "        cout << \"Tong la: \" << tong(a,n);",
+          "        cout << \"GTLN la: \" << GTLN(a,n);",
+          "    return 0;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "#include <iostream>",
+          "#include <string>",
+          "using namespace std;",
+          "struct SinhVien {",
+          "    string MaSV, HoTen, NoiSinh;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &s)",
+          "    getline(cin, s.MaSV);",
+          "    getline(cin, s.HoTen);",
+          "    cin >> s.NamSinh;",
+          "    getline(cin, s.NoiSinh);",
+          "    cin >> s.DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for (int i = 0; i < n; i++) {",
+          "        if (s.NoiSinh == \"TP HCM\") {",
+          "            cout << s.maSV << \" \" << s.HoTen << \" \" << s.NamSinh << \" \" << a[i].NoiSinh;",
+          "        }",
+          "}"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "Input: số người: x; số ngựa: y",
+          "Kiểu số nguyên: x, y, M, N",
+          "int x, y, M, N"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS19_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_21": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12-4"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["19"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["57918"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1011"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["9"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["19"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505288 5 -3 0"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["4 2 10 4 5 6 70 3 2 1"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["28/1/2026"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool ktraSNT(int n)",
+          "{",
+          "if(n<2){",
+          "return 0;",
+          "}",
+          "for(int i=0;i<n;i++){",
+          "return 1;",
+          "return 0;",
+          "}",
+          "int Tong(int a[],int &n)",
+          "{",
+          "Sum=0",
+          "while(ktraSNT){"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int TimViTri(int a[], int n) {",
+          "    for (int i = 0; i < n; i++) {",
+          "        if (a[i] =< a[i+1]) {",
+          "            return i;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout << \"Tổng giá trị các số nguyên tố:\" << Tong(a,n) << endl;",
+          "    cout << \"Vị trí phần tử có giá trị lớn nhất:\" << TimViTri;",
+          "    return 0;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "#include <iostream>",
+          "using namespace std;",
+          "struct SinhVien {",
+          "    string MaSV, HoTen, NoiSinh;",
+          "    int NamSinh;",
+          "    float DTB;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien a[], int n)",
+          "    cout << \"Nhập số sinh viên: \";",
+          "    cin >> n;",
+          "    for (int i = 0; i < n; i++)",
+          "        cin >> a[i].MaSV >> a[i].HoTen >> a[i].NamSinh >> a[i].NoiSinh>>;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for (int i = 0; i < n; i++) {",
+          "        if (a[i].NoiSinh == \"TP.HCM\") {",
+          "            cout << Sinhvien.a[i];",
+          "        }",
+          "    }"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS21_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_24": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["3529"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12-4"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["21"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["35716"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1055"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["10"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["21"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505294 8 0 0"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["10 -1 2 -1 4 -1 -1 -1 -1 -1"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["18"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["10/1/2026"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool isPrime(int n) {",
+          "    if (n < 2)",
+          "        return 0;",
+          "    for (int i = 0; i <= n; i++)",
+          "        if (n % i == 0)",
+          "            return 0;",
+          "    return 1;",
+          "}",
+          "int TongPrime(int a[], int n) {",
+          "{",
+          "    int s = 0;",
+          "    for (int i = 0; i < n; i++)",
+          "        if (isPrime(a[i]))",
+          "            s += a[i];",
+          "    return s;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int Vitri(int a[], int n) {",
+          "    int Max = a[0]",
+          "    for(int i = 0; i < n-1; i++)",
+          "        if(a[i] < a[i+1])",
+          "            Max=a[i+1];",
+          "    for (int i=0; i<n; i++)",
+          "        if (a[i] == Max)",
+          "            return i;"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout << TongPrime(a,n) << endl;",
+          "    cout << Vitri(a,n);",
+          "    return 0;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct Sinhvien {",
+          "string MaSV;",
+          "string HoTen, NoiSinh",
+          "int NamSinh;",
+          "float DTB;",
+          "};"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &x)",
+          "gets(x.MaSV);",
+          "gets(x.HoTen);",
+          "cin >> x.NamSinh;",
+          "gets(x.NoiSinh);",
+          "cin >> x.DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for(int i=0; i<n; i++)",
+          "        if(strcmp(a[i].NoiSinh, \"TPHCM\") == 0) {",
+          "            puts(a[i].MaSV);",
+          "            puts(a[i].HoTen);",
+          "            cout << a[i].NamSinh; puts(a[i].NoiSinh);",
+          "            cout << a[i].DTB;",
+          "        }"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS24_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_26": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["352.510"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["-412"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["30"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["46817"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["41204"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1052"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["30"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505298 -1 8 6"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["1"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["10 70 2 3", "4 4 5 6 8 9"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["7/1/2026"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool isprime(int x) {",
+          "if(x == 1 || x == 2)",
+          "return false;",
+          "for(int i = 2; i < x; i++) {",
+          "if(x % i == 0)",
+          "return false;",
+          "}",
+          "return true;",
+          "}",
+          "longlong Tong(int a[], int n) {",
+          "int S = 0;",
+          "for (int i=0; i<n; i++) {",
+          "if (isprime(a[i])",
+          "S += a[i];",
+          "}",
+          "return S;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int ViTri(int a[], int n) {",
+          "    int max1 = a[0], cnt=0;",
+          "    for (int i = 1; i < n; i++) {",
+          "        if (a[i] >= max1) {",
+          "        }",
+          "    return cnt;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout << Tong(a,n);",
+          "    cout << ViTri(a,n);",
+          "    return 0;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinhvien {",
+          "char MaSV;",
+          "char HoTen;",
+          "int NamSinh;",
+          "char NoiSinh;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien a[])",
+          "    cin >> MaSV;",
+          "    cin.ignore();",
+          "    cin >> a.HoTen;",
+          "    cin >> NamSinh >> NoiSinh >> DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "for(int i=0; i<n; i++){",
+          "if(a[i].NoiSinh == \"TPHCM\"){",
+          "cout << a[i].MaSV << endl;",
+          "cout << a[i].HoTen << endl;",
+          "cout << a[i].NamSinh << endl;",
+          "cout << a[i].NoiSinh << endl;",
+          "cout << a[i].DTB << endl;",
+          "}"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "N: số cái đầu",
+          "M: số cái chân",
+          "n: số người",
+          "m: số ngựa",
+          "input: số cái đầu và số cái chân",
+          "output: số người và số ngựa (số nguyên) hoặc kết luận \"giả định sai\""
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "2 6",
+            "col_2": "1 1"
+          },
+          {
+            "col_1": "3 10",
+            "col_2": "1 2"
+          },
+          {
+            "col_1": "3 11",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS26_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_28": {
+    "Cau_14b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/ERROR_Trang_08_Original.jpg",
+      "content": null
+    },
+    "Cau_14c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/ERROR_Trang_08_Original.jpg",
+      "content": null
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["352,510"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12 - 4"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["3"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["41233"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["155"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["0"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["1"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["9 7 0 1 2 3 4 5 6 7"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["7/1/2020"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": ["void TinhTong(int a[], int &n)"]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": []
+      }
+    }
+  },
+  "HS_29": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["3529"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12-4"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["32"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["24615"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["8"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["32"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505288 -3 0 -6"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["1"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["2", "10 -1 2 -1 4 -1 -1 -1 -1 -1"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["28/1/2026"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool sngt(int n)",
+          "{ if (n < 2)",
+          "return 0;",
+          "for (int i = 0; i*i <= n; i++)",
+          "if (n % i == 0)",
+          "return 0;",
+          "return 1;",
+          "}",
+          "int tong (int a[], int n)",
+          "{ int sum = 0;",
+          "for (int i = 0; i < n; i++)",
+          "if sngt(a[i])",
+          "sum = sum + a[i];"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "{ int Max = A[0];",
+          "for (int i = 1; i < n; i++)",
+          "if (A[i] > Max)",
+          "for (int i=0; i<n; i++",
+          "if (a[i]=Max)",
+          "return i;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "int k = tong(a,n);",
+          "int v = CoViTri(a,n);",
+          "cout << \"tong so nguyen to trong mang la:\" << k <<",
+          "cout << \"vi tri cua phan tu co gia tri lon nhat dau tien\" << v;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinhvien {",
+          "char MaSV[MAX]",
+          "char HoTen[MAX]",
+          "int NamSinh",
+          "char NơiSinh[MAX]",
+          "float DTB};"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &x)",
+          "cin.getline(x.MaSV, MAX);",
+          "cin.getline(x.HoTen, MAX);",
+          "cin.getline(x.NoiSinh, MAX);",
+          "cin>>x.NamSinh;",
+          "cin>>x.DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "for (int i=0; i<n; i++) {",
+          "if (a[i].NoiSinh == \"TPHCM\") ",
+          "{ cout << a[i].MaSV << \" \n \";",
+          "{ cout << a[i].HoTen << \" \n \";",
+          "{ cout << a[i].NoiSinh << \" \n \";",
+          "{ cout << a[i].NamSinh << \" \n \";",
+          "{ cout << a[i].DTB << \" \n \";"
+        ]
+      }
+    }
+  },
+  "HS_30": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["352.510"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["35716"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["105"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["8"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["33"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505294 8 0 -4"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["0 70 1 2 3 4 5 6 7 8"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool SNT(int a)",
+          "{   if(a<2)",
+          "        return 1;",
+          "    for(int i=2;i*i<n;i++)",
+          "        if(n%i==0)",
+          "            return 0;",
+          "    return 1;",
+          "}",
+          "int Tong(int a[], int n)",
+          "    int dem=0;",
+          "{    for(int i=0;i<n;i++)",
+          "        if(SNT(a[i]))",
+          "            dem = dem + a[i];"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int m = a[0];",
+          "for(int i=0; i<n; i++)",
+          "if(m < a[i])",
+          "m = a[i];",
+          "for(int i=0; i<n; i++)"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout<<\"Tong cac so nguyen to cua mang\"<<Tong(a,n);",
+          "    cout<<\"Vi tri dau cua phan tu gia tri lon nhat la\"<<",
+          "    LonNhat(a,n);",
+          "    return 0;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct SinhVien {",
+          "char MaSV[];",
+          "char HoTen[];",
+          "int NamSinh;",
+          "char NoiSinh[];"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": ["void NhapSV(Sinhvien &a)"]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "for(int i=0;i<n;i++)",
+          "if(a.NoiSinh==\"TPHCM\")",
+          "cout<<a.MaSV<<a.HoTen<<a.NamSinh<<a.NoiSinh<<",
+          "a.DTB;",
+          "else",
+          "Continue;"
+        ]
+      }
+    }
+  },
+  "HS_32": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["352510"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12 - 4"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["35"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["57918"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1022"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["7"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["35"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505294 8 0 0"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["1070"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["28/12/202"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int main(){",
+          "int Sum = 0;",
+          "for (int i = 0; i < n; i++)",
+          "if (a[i] % 4 == 0 && a[i] % 100 == 0)",
+          "Sum += a[i];",
+          "return Sum;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "int sum = 0;",
+          "cout << \"Tong gia tri cac so nguyen to = \" << sum;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "#include <iostream>",
+          "using namespace std;",
+          "int main() {",
+          "    string MaSV;",
+          "    string NoiSinh;",
+          "    float DTB;",
+          "    string HoTen;",
+          "    int NamSinh;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(a[])",
+          "cin << a[i].MaSV;",
+          "cin << a[i].HoTen;",
+          "cin << a[i].NamSinh;",
+          "cin << a[i].Noisinh;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": []
+      }
+    }
+  },
+  "HS_34": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["35"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["26"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["3"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1055"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["8"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["37"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["10 1 2 2 3 4 5 6 7"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool Songto(int n)",
+          "{",
+          "    if(n < 2) return false;",
+          "    for(int i = 2; i <= n/2; i++)",
+          "    {",
+          "        if(n % i == 0) return false;",
+          "    }",
+          "    return true;",
+          "}",
+          "int Tinh(int a[], int n) {",
+          "    int s = 0;",
+          "    for(int i = 0; i < n; i++) {"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int Tim(int a[], int n) {",
+          "int max = a[0];",
+          "for (int i = 1; i <= n; i++)",
+          "if (max < a[i]) max = a[i];"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": ["cout << Tinh(a,n);", "cout << Tim(a,n);", "return 0;"]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct Sinhvien {",
+          "char MaSV;",
+          "char HoTen;",
+          "int NamSinh;",
+          "char NoiSinh;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &x)",
+          "cin.getline(x.MaSV);",
+          "cin.getline(x.HoTen);",
+          "cin >> x.NamSinh;",
+          "cin.getline(x.NoiSinh);",
+          "cin >> x.DTB;"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": ["if(x.NoiSinh == 'TPHCM')", "Cout << x"]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "int N; // Tổng cộng số đầu",
+          "int M; // Tổng cộng số chân",
+          "input là 2 số nguyên với M > N > 2",
+          "output là 2 số nguyên là số người và số ng"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "3 8",
+            "col_2": "2 1"
+          },
+          {
+            "col_1": "5 16",
+            "col_2": "2 3"
+          },
+          {
+            "col_1": "5 8",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS34_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_36": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["352.510"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["26"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["57918"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1055"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["8"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": [""]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505294 8 0 0"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["2"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["10 70 2 3 4 5 6 7 8 9"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["10/1/202"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int tongsnt(int a[], int n) {",
+          "    int S = 0;",
+          "    for (int i = 0; i < n; i++) ",
+          "        for (int j = 0; j * j <= a[i]; j++) {",
+          "            if (a[i] % j == 0) {",
+          "                break;",
+          "            if (j * j == a[i])",
+          "                S++; }"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int solonnhat(int a[], int n) {",
+          "for (int i = 0; i < n; i++)",
+          "s = a[i];",
+          "if (a[i] < a[i+1])"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << tongstn(a,n);",
+          "cout << solonnhat(a,n);",
+          "return 0;"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct SinhVien {",
+          "int NamSinh;",
+          "char MaSV, HoTen, NoiSinh;",
+          "float DTB;",
+          "};"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien a[])",
+          "cin >> a.NamSinh;",
+          "cin >> a.DTB;",
+          "cin.ignore();",
+          "cin.getline(a.MaSV,100);",
+          "cin.getline(a.HoTen,100);",
+          "cin.getline(a.NoiSinh,100);"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "input: n cái đầu, m cái chân (n, m ∈ N)",
+          "output: có a người, b ngựa"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "Số đầu: 1\nSố chân: 2",
+            "col_2": "1 người, 0 ngựa"
+          },
+          {
+            "col_1": "Số đầu: 2\nSố chân: 8",
+            "col_2": "2 người, 1 ngựa"
+          },
+          {
+            "col_1": "Số đầu: -1\nSố chân: 1.3",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS36_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_39": {
+    "Cau_14b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/ERROR_Trang_08_Original.jpg",
+      "content": null
+    },
+    "Cau_14c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/ERROR_Trang_08_Original.jpg",
+      "content": null
+    },
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": ["352.59"]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": ["12-4"]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["14"]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": ["46817"]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": ["40"]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": ["1055"]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": ["4"]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": ["8"]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": ["24"]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": ["0x505288 8 0 -2"]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": ["1"]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": ["97012345678"]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": ["20"]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": ["10/1/2"]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int tong(int b[], int n) {",
+          "    for (int i = 0; i < n; i++) {",
+          "    {",
+          "        for (int j = 2; j * j <= b[i]; j++)",
+          "            if (b[i] % j == 0) ",
+          "            {",
+          "                Nto = false;",
+          "                break;",
+          "            }",
+          "        if (Nto == true) S+ = b[i];",
+          "    }",
+          "    return S;"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int LN = c[0]; int t ",
+          "for (int i = 0; i < n; i++) {",
+          "  if (c[i] > LN) {",
+          "    t = i;",
+          "    LN = c[i];}"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << \"Tong gia tri cua tat ca cac phan tu la so nguyen to << \" \" << tong(a,n);",
+          "cout << \"Vi tri cua phan tu co GTLN dau tien trong mang la: \" << GTLN(a,n);"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct SinhVien {",
+          "    string MaSV;",
+          "    string HoTen;",
+          "    int NamSinh;",
+          "    string NoiSinh;"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "int daunguoi, daungua; int N;",
+          "int channguoi, channgua; int M;",
+          "Input: N phải là số nguyên",
+          "M phải là số nguyên (đặc biệt M là",
+          "Output: daunguoi // số người"
+        ]
+      }
+    }
+  }
+}

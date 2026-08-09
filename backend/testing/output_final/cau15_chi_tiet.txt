@@ -1,0 +1,1129 @@
+CÂU 15 - HỌC SINH HS_2
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  *Biến: int dau, chan, nguoi, ngua;
+  Input: dau = 6
+  chan = 18
+  Output: nguoi = 3
+  ngua = 3
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh không đặt tên biến input đúng theo yêu cầu (N, M) mà dùng 'dau', 'chan', thiếu điều kiện 'không âm' cho input, và output chỉ mô tả kết quả cụ thể mà không đề cập đến trường hợp 'giả định sai'. Do đó, không đáp ứng đủ cả input lẫn output.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input="dau = 6 chan = 18"  Output="nguoi = 3 ngua = 3"
+  R2: Input="dau = 12 chan = 30"  Output="nguoi = 3 ngua = 9"
+  R3: Input="dau = 8 chan = 40"  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh ghi 'dau = 12 chan = 30' nhưng không khớp với Output 'nguoi = 3 ngua = 9' (vì 3 người + 9 ngựa = 12 đầu, nhưng chân là 3×2 + 9×4 = 42 ≠ 30). Mâu thuẫn logic → sai.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output 'nguoi = 3 ngua = 9' không phù hợp với Input '12 đầu, 30 chân' vì tổng chân tính ra là 42, không phải 30. Không nhất quán nội tại → sai.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Input 'dau = 8 chan = 40' → hệ phương trình x+y=8 và 2x+4y=40 → giải ra x=-4, y=12 → không tồn tại nghiệm nguyên không âm. Học sinh chưa điền Output nhưng Input đúng logic → đạt yêu cầu.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output 'giả định sai' phù hợp với Input '8 đầu, 40 chân' vì không có nghiệm nguyên không âm thỏa mãn. Kết luận chính xác → đúng.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Ô Input R4C1 trống → học sinh không cung cấp dữ liệu đầu vào cho ví dụ thứ 3. Thiếu dữ liệu → không đáp ứng yêu cầu tìm 3 ví dụ → sai.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: /kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg
+
+Điểm: 0/0.5 (needs_vision_teacher_review)
+
+Lý do chấm (LLM/Vision):
+Vision LLM error: Image file not found: /kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_3
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  input: N, M là số nguyên dương
+  output: Kết luận cuối sau tính toán để khẳng định / phủ định giả định trên
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh mô tả input sai: ghi 'số nguyên dương' thay vì 'số nguyên không âm'. Output cũng sai: không nêu cụ thể hai trường hợp in 'giả định sai' hoặc hai số nguyên x, y.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input="6 18"  Output="giả định đúng"
+  R2: Input="20 45"  Output="giả định sai"
+  R3: Input="10 18"  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh điền Input '20 45' và kết luận đúng là 'giả định sai' vì không tồn tại nghiệm nguyên không âm cho hệ phương trình P + H = 20 và 2P + 4H = 45 (H = 2.5). Dù khác đáp án gợi ý, nhưng logic chính xác → ĐÚNG.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh điền Output 'giả định sai' cho Input '20 45', phù hợp với phân tích toán học (không có nghiệm nguyên không âm). Dù khác đáp án gợi ý '3 3', nhưng kết luận đúng dựa trên Input đã cho → ĐÚNG.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh điền Input '10 18' và kết luận 'giả định sai' vì hệ phương trình P + H = 10 và 2P + 4H = 18 dẫn đến H = -1 (không hợp lý). Logic chính xác → ĐÚNG.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh điền Output 'giả định sai' cho Input '10 18', phù hợp với phân tích toán học (không có nghiệm không âm). Dù khác đáp án gợi ý '0 5', nhưng kết luận đúng dựa trên Input đã chọn → ĐÚNG.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh chưa điền Input cho ví dụ thứ 3 (R4C1 trống), trong khi Output đã in sẵn 'giả định sai'. Không thể đánh giá tính hợp lệ của ví dụ do thiếu dữ liệu → SAI.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS3_Cau_15c.jpg
+
+Điểm: 0.0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+Sinh viên chưa trình bày hệ phương trình, điều kiện 'giả định sai' sai hoàn toàn, và không tính được số người và số ngựa. Bài làm không đáp ứng bất kỳ tiêu chí nào của đề bài.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_7
+======================================================================
+Tổng: 0.65/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  int N; // biến N có kiểu int để mô tả số lượng đầu là m số nguyên
+  int M; // biến M có kiểu int để mô tả số lượng chân là một số nguyên
+  int nguoi; // biến nguoi kiểu int lưu kết quả cho số người tính đ từ dữ liệu đề bài
+  int ngua; // biến ngua kiểu int lưu kết quả cho số ngựa tính được từ đề bài
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh thiếu mô tả 'không âm' cho input và hoàn toàn không mô tả output, bao gồm trường hợp 'giả định sai'. Theo tiêu chí, phải đúng cả input lẫn output mới đạt điểm.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input="N=6, M=18"  Output="nguoi=3, ngua=3"
+  R2: Input="N=220, M=680"  Output="nguoi=100, ngua=120"
+  R3: Input="N=6, M=17"  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh đưa ra input N=220, M=680, và output nguoi=100, ngua=120 khớp hoàn toàn về mặt toán học (tổng đầu = 220, tổng chân = 680). Đây là ví dụ hợp lệ, đúng logic, nên đạt điểm đầy đủ.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output 'nguoi=100, ngua=120' khớp với input N=220, M=680 về mặt toán học (100×2 + 120×4 = 680 chân, 100+120=220 đầu). Kết quả hợp lý, không vi phạm giả định, nên đạt điểm đầy đủ.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Input N=6, M=17 dẫn đến hệ phương trình vô nghiệm nguyên không âm (y=2.5), nên kết luận 'giả định sai' là chính xác. Học sinh đã chọn ví dụ hợp lệ để minh họa trường hợp không có nghiệm, đạt điểm đầy đủ.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output 'giả định sai' phù hợp với input N=6, M=17 vì không tồn tại nghiệm nguyên không âm cho hệ phương trình. Học sinh đã đưa ra kết luận đúng đắn dựa trên dữ liệu đầu vào, nên đạt điểm đầy đủ.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Ô Input trống, không thể xác nhận học sinh đã cung cấp ví dụ hợp lệ nào. Dù có thể suy ra học sinh có ý định dùng ví dụ như N=9, M=10 (hợp lệ dẫn đến 'giả định sai'), nhưng việc bỏ trống là thiếu sót nghiêm trọng trong bài làm, nên không tính điểm.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS7_Cau_15c.jpg
+
+Điểm: 0.4/0.5 (partially_correct)
+
+Lý do chấm (LLM/Vision):
+Sinh viên có ý tưởng và công thức tính số người, ngựa đúng (tương đương), nhưng điều kiện 'giả định sai' bị sai khi kiểm tra N lẻ và thiếu kiểm tra các trường hợp số người/số ngựa âm.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_9
+======================================================================
+Tổng: 0.55/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  Biến n: N cái đầu, Biến nguoi: số người
+  Biến m: M cái chân, Biến ngua: số ngựa
+  Input: số nguyên n đầu, số nguyên m chân
+  Output: số nguyên người (biến nguoi), số nguyên ngựa hoặc "giả định sai"
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh thiếu mô tả 'không âm' trong phần input, mặc dù đã nêu đúng ý nghĩa các biến và output. Theo yêu cầu giáo viên, chỉ ghi 'số nguyên' mà không có 'không âm' sẽ bị tính là sai. Do đó, không đạt đủ điều kiện để được điểm.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input="6 18"  Output="3 3"
+  R2: Input="8 28"  Output="2 6"
+  R3: Input="2 27"  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Input '8 28' kết hợp với Output '2 6' tạo thành cặp dữ liệu hợp lý về mặt toán học: 2 người + 6 ngựa → tổng đầu = 8, tổng chân = 4 + 24 = 28. Nghiệm nguyên không âm, đúng logic bài toán.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output '2 6' khớp hoàn toàn với Input '8 28' về mặt toán học: số đầu = 2+6=8, số chân = 2×2 + 6×4 = 28. Đáp án hợp lý, đúng yêu cầu.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Input '2 27' dẫn đến hệ phương trình vô nghiệm nguyên (y=11.5), do đó kết luận 'giả định sai' là chính xác và hợp lý. Ví dụ này được chấp nhận vì đề bài cho phép có trường hợp không thỏa mãn giả định.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output 'giả định sai' phù hợp với Input '2 27' vì không tồn tại nghiệm nguyên không âm cho hệ phương trình. Kết luận đúng về mặt toán học.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Ô Input bị bỏ trống, mặc dù Output đã được in sẵn là 'giả định sai'. Học sinh không cung cấp dữ liệu đầu vào để kiểm tra tính hợp lý của ví dụ thứ 3, vi phạm yêu cầu 'tìm 3 ví dụ'. Do đó, không thể đánh giá và bị trừ điểm.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS9_Cau_15c.jpg
+
+Điểm: 0.3/0.5 (partially_correct)
+
+Lý do chấm (LLM/Vision):
+Sinh viên mô tả đúng hệ phương trình và điều kiện kiểm tra tính nguyên, nhưng thiếu công thức cụ thể để tính số người và số ngựa, cũng như không kiểm tra điều kiện không âm.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_10
+======================================================================
+Tổng: 0.45/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  Input: nhập vào 2 số nguyên N và M với N là số cái đầu và M là số cái chân nhìn thấy được
+  Output: Nếu giả định khong có người hay ngựa nào thiếu chân hoặc đầu là đúng thì in ra số người và số ngựa
+  Ngược lại, in ra "giả định sai"
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh thiếu từ khóa 'không âm' trong mô tả input, mặc dù đã mô tả đúng output. Theo yêu cầu bắt buộc của giáo viên và nguyên tắc chấm điểm, phải đúng cả input lẫn output mới được điểm.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input="8 32"  Output="3 người 5 ngựa"
+  R2: Input="4 8"  Output="2 người 1 ngựa"
+  R3: Input="8 23"  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Input là '4 8' (4 đầu, 8 chân). Với số đầu = 4, số chân = 8, hệ phương trình cho ra 4 người, 0 ngựa. Tuy nhiên học sinh ghi Output là '2 người 1 ngựa', tổng đầu = 3 ≠ 4 → không khớp với Input → sai logic.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output '2 người 1 ngựa' không thỏa mãn Input '4 8' vì tổng đầu chỉ là 3, không bằng 4. Do đó, Output không nhất quán với Input → sai.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Input '8 23' → giải hệ: x + y = 8, 2x + 4y = 23 → y = 3.5, không nguyên → vô nghiệm → kết luận 'giả định sai' là đúng → hợp lý và đúng logic.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Với Input '8 23', không tồn tại nghiệm nguyên không âm → Output 'giả định sai' là chính xác và phù hợp với Input → đúng logic.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh không điền giá trị nào vào ô Input (R4C1) → thiếu dữ liệu để đánh giá. Yêu cầu đề bài là tìm 3 ví dụ, bỏ sót ví dụ thứ 3 → sai.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS10_Cau_15c.jpg
+
+Điểm: 0.2/0.5 (partially_correct)
+
+Lý do chấm (LLM/Vision):
+Sinh viên nhận diện đúng hệ phương trình và có điều kiện M lẻ để kiểm tra 'giả định sai', nhưng thiếu các điều kiện còn lại (M/2 < N, 2*N < M/2) và không thể hiện công thức tính số người hoặc ngựa cụ thể.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_12
+======================================================================
+Tổng: 0.0/1.0 (ungraded)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: None
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+No visual answer found.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_15
+======================================================================
+Tổng: 0.0/1.0 (ungraded)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: None
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+No visual answer found.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_17
+======================================================================
+Tổng: 0.0/1.0 (ungraded)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: None
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+No visual answer found.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_18
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  int a là tổng số đầu
+  int b là tổng số chân
+  cout << là xuất ra số con ngựa
+  cout << là xuất ra số con người
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh sử dụng tên biến sai (a, b thay vì N, M), thiếu mô tả 'không âm' cho input, và hoàn toàn bỏ qua phần output 'giả định sai'. Không đáp ứng đủ điều kiện để được điểm.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input="4 12"  Output="2 2"
+  R2: Input="2 6"  Output="1 1"
+  R3: Input=""  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh điền Input='2 6' và Output='1 1', thỏa mãn hệ phương trình x+y=2, 2x+4y=6 → nghiệm (x,y)=(1,1) hợp lệ. Quan hệ toán học nhất quán, dù khác đáp án gợi ý.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output='1 1' khớp với Input='2 6' theo mô hình toán học đã kiểm tra ở T15B1. Không có lỗi logic, nên được coi là đúng.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh bỏ trống ô Input (R3C1), không cung cấp dữ liệu đầu vào cần thiết để tạo thành ví dụ. Do đó, ví dụ 2 không hoàn chỉnh và không đạt yêu cầu.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output='giả định sai' được điền nhưng không có Input tương ứng để xác minh tính hợp lệ. Vì thiếu Input, ví dụ không thể được công nhận là hoàn chỉnh, nên không được điểm.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh bỏ trống ô Input (R4C1) cho ví dụ 3, mặc dù Output đã in sẵn. Việc không điền Input khiến ví dụ không hoàn chỉnh, vi phạm yêu cầu tìm 3 ví dụ đầy đủ.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS18_Cau_15c.jpg
+
+Điểm: 0.0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+Bài làm hoàn toàn trống, không có nội dung nào liên quan đến yêu cầu của câu c, do đó không đạt bất kỳ tiêu chí nào trong 0.5 điểm.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_19
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  Input: số người: x; số ngựa: y
+  Kiểu số nguyên: x, y, M, N
+  int x, y, M, N
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh thiếu cụm từ 'không âm' trong mô tả input và thiếu trường hợp 'giả định sai' trong output. Theo tiêu chí, phải đúng cả hai phần mới được điểm.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input=""  Output=""
+  R2: Input=""  Output=""
+  R3: Input=""  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh không điền input ở ô R2C1, dẫn đến không thể xác định trường hợp nào đang được xét. Việc điền output 'giả định sai' ở R2C2 là vô nghĩa vì thiếu input, và không thể kiểm tra tính đúng đắn của kết luận.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output 'giả định sai' ở R2C2 không phù hợp với input mặc định '6 18' (nếu có), vì cặp này có nghiệm hợp lệ (3 người, 3 ngựa). Hơn nữa, học sinh không điền input → không thể xác minh logic, nên output bị đánh giá là sai.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh không điền input ở ô R3C1, dẫn đến không thể xác định trường hợp nào đang được xét. Output '0 5' có thể đúng với input '5 20', nhưng vì thiếu input, không thể xác nhận tính hợp lệ của ví dụ.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output '0 5' ở R3C2 có thể đúng nếu input là '5 20', nhưng học sinh không điền input → không thể xác minh tính đúng đắn. Việc điền output mà thiếu input làm mất tính hoàn chỉnh và hợp lệ của ví dụ.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh không điền input ở ô R4C1, dù output 'giả định sai' đã được in sẵn. Không có input → không thể xác minh rằng học sinh đã chọn đúng trường hợp không có nghiệm. Thiếu input khiến ví dụ không hoàn chỉnh và không thể chấm điểm.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS19_Cau_15c.jpg
+
+Điểm: 0.0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+Bài làm hoàn toàn trống, không có nội dung nào liên quan đến yêu cầu giải bài toán như mô tả thuật toán, mã giả, lưu đồ hoặc công thức tính. Không thể đạt bất kỳ điểm nào trong tiêu chí.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_21
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input=""  Output=""
+  R2: Input=""  Output=""
+  R3: Input=""  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh không điền input (R2C1 trống), và output (R2C2) là 'giả định sai' — nhưng với input 6 18 (đáp án gợi ý), kết quả đúng phải là '3 3'. Output sai và không có input để xác định logic, nên đánh giá là sai.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output 'giả định sai' không phù hợp với bất kỳ input hợp lý nào trong bối cảnh bài toán. Với input 6 18 (đáp án gợi ý), kết quả đúng là '3 3', do đó output sai. Không có input để kiểm tra mối quan hệ, nên đánh giá là sai.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Input (R3C1) trống, không thể xác định ví dụ học sinh đang xét. Mặc dù output '0 5' đúng với input 5 20, nhưng thiếu input làm mất tính nhất quán. Theo quy tắc chấm, phải điền đầy đủ cả input và output mới được điểm.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output '0 5' đúng với input 5 20, nhưng input (R3C1) trống → không thể xác nhận học sinh đang xét ví dụ nào. Thiếu input làm mất cơ sở đánh giá tính nhất quán, nên không ghi điểm.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Input (R4C1) trống, mặc dù output đã in sẵn là 'giả định sai' — phù hợp với input 9 10. Tuy nhiên, học sinh không điền input, nên không thể xác nhận ý định hoặc logic. Thiếu input dẫn đến không thể chấm điểm.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS21_Cau_15c.jpg
+
+Điểm: 0.0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+Bài làm hoàn toàn trống, không có nội dung nào được trình bày để giải bài toán theo yêu cầu phần c (lưu đồ, mô tả thuật toán, mã giả). Không đáp ứng bất kỳ tiêu chí nào.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_24
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input=""  Output=""
+  R2: Input=""  Output=""
+  R3: Input=""  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh không điền giá trị vào ô Input (R2C1), dẫn đến không thể xác định ví dụ cụ thể. Việc để trống ô Input vi phạm yêu cầu 'tìm 3 ví dụ' và khiến không thể đánh giá tính đúng đắn của ví dụ.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Ô Output (R2C2) ghi 'giả định sai' nhưng không có Input tương ứng để kiểm tra tính hợp lệ. Do thiếu Input, không thể xác minh liệu kết quả này có đúng với một cặp (N,M) vi phạm điều kiện hay không. Vì vậy, không thể chấm đúng.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Ô Input (R3C1) trống, trong khi Output (R3C2) là '0 5' – một kết quả hợp lý nếu Input là '5 20'. Tuy nhiên, do không có Input, không thể xác nhận học sinh đang dùng ví dụ nào. Thiếu thông tin đầu vào nên không thể chấm đúng.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Mặc dù Output '0 5' là hợp lý toán học (tương ứng với Input '5 20'), nhưng ô Input (R3C1) trống. Theo yêu cầu bài tập, mỗi ví dụ phải có cả Input và Output. Việc bỏ trống Input khiến ví dụ không hoàn chỉnh và không thể chấp nhận được.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Ô Input (R4C1) trống, trong khi Output (R4C2) là 'giả định sai'. Mặc dù có thể tồn tại các cặp (N,M) hợp lệ cho kết quả này (ví dụ '9 10' hoặc '10 30'), nhưng vì không có Input cụ thể, không thể xác định học sinh đang dùng ví dụ nào. Thiếu dữ liệu đầu vào nên không thể chấm đúng.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS24_Cau_15c.jpg
+
+Điểm: 0.0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+Bài làm hoàn toàn trống, không có nội dung nào được trình bày. Không thể xác định được ý tưởng, thuật toán, công thức hay điều kiện 'giả định sai' như yêu cầu.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_26
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  N: số cái đầu
+  M: số cái chân
+  n: số người
+  m: số ngựa
+  input: số cái đầu và số cái chân
+  output: số người và số ngựa (số nguyên) hoặc kết luận "giả định sai"
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh thiếu mô tả 'không âm' cho biến input N, M – điều kiện bắt buộc theo hướng dẫn giáo viên. Theo nguyên tắc chấm, phải đúng cả input lẫn output mới được điểm, nên bị trừ toàn bộ.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input="2 6"  Output="1 1"
+  R2: Input="3 10"  Output="1 2"
+  R3: Input="3 11"  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh điền Input '3 10' hợp lệ và giải ra Output '1 2' khớp với logic toán học (x=1 người, y=2 ngựa). Dù khác đáp án gợi ý '6 18', nhưng vẫn đúng yêu cầu tìm ví dụ hợp lệ.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output '1 2' khớp chính xác với Input '3 10' về mặt hệ phương trình (tổng đầu=3, tổng chân=10 → nghiệm nguyên). Dù khác đáp án gợi ý '3 3', nhưng đúng logic toán học.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh chọn Input '3 11' → dẫn đến nghiệm không nguyên (y=2.5) → kết luận 'giả định sai' là đúng. Hợp lệ theo yêu cầu tìm ví dụ không thỏa mãn giả định.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output 'giả định sai' phù hợp với Input '3 11' vì không tồn tại nghiệm nguyên cho hệ phương trình. Dù khác đáp án gợi ý '0 5', nhưng đúng logic toán học.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh không điền giá trị vào ô Input của ví dụ thứ 3 (R4C1), mặc dù Output được in sẵn là 'giả định sai'. Không thể đánh giá tính hợp lệ của ví dụ nếu thiếu Input → chưa hoàn thành yêu cầu tìm 3 ví dụ.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS26_Cau_15c.jpg
+
+Điểm: 0.0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+Bài làm chỉ dừng ở giai đoạn nhập dữ liệu và ý định giải hệ, thiếu hoàn toàn các bước xử lý logic như nêu hệ phương trình, kiểm tra điều kiện 'giả định sai', và tính toán số người/ ngựa. Không đạt yêu cầu tối thiểu.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_28
+======================================================================
+Tổng: 0.0/1.0 (ungraded)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: None
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+No visual answer found.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_29
+======================================================================
+Tổng: 0.0/1.0 (ungraded)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: None
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+No visual answer found.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_30
+======================================================================
+Tổng: 0.0/1.0 (ungraded)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: None
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+No visual answer found.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_32
+======================================================================
+Tổng: 0.0/1.0 (ungraded)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: None
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+No visual answer found.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_34
+======================================================================
+Tổng: 0.55/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  int N; // Tổng cộng số đầu
+  int M; // Tổng cộng số chân
+  input là 2 số nguyên với M > N > 2
+  output là 2 số nguyên là số người và số ng
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh thiếu mô tả 'không âm' cho input và hoàn toàn bỏ qua trường hợp output 'giả định sai', vi phạm yêu cầu bắt buộc của tiêu chí. Theo quy định, phải đúng cả input lẫn output mới được điểm.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input="3 8"  Output="2 1"
+  R2: Input="5 16"  Output="2 3"
+  R3: Input="5 8"  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh ghi Input '5 16', dẫn đến Output '2 3' đúng về mặt logic (x=2 người, y=3 ngựa). Dù không khớp với đáp án gợi ý '6 18', nhưng quan hệ Input-Output nhất quán và đúng toán học.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output '2 3' phù hợp với Input '5 16' (tổng đầu=5, tổng chân=16 → x=2, y=3). Không khớp với đáp án gợi ý '3 3', nhưng đó là do Input khác nên Output cũng khác — vẫn đúng về mặt logic.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh chọn Input '5 8' → giải hệ phương trình cho ra y=-1 (vô lý) → Output 'giả định sai' là chính xác. Dù không khớp với đáp án gợi ý '5 20', nhưng thỏa mãn yêu cầu đề bài về việc báo lỗi khi không có nghiệm hợp lý.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Với Input '5 8', hệ phương trình vô nghiệm (y=-1), nên Output 'giả định sai' là đúng. Đáp án gợi ý '0 5' không phù hợp vì nếu x=0, y=5 thì tổng chân = 20 ≠ 8 → học sinh phản ánh đúng tình huống.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh để trống ô Input ở ví dụ 3, mặc dù Output đã in sẵn là 'giả định sai'. Do không điền Input, không thể đánh giá tính hợp lệ của ví dụ và coi như chưa hoàn thành nhiệm vụ. Theo tiêu chí nghiêm ngặt: bỏ trống = sai.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS34_Cau_15c.jpg
+
+Điểm: 0.3/0.5 (partially_correct)
+
+Lý do chấm (LLM/Vision):
+Sinh viên đã đưa ra công thức đúng để tính số người và số ngựa từ hệ phương trình, nhưng thiếu hoàn toàn phần kiểm tra điều kiện 'giả định sai' — yêu cầu bắt buộc trong đề bài.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_36
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  input: n cái đầu, m cái chân (n, m ∈ N)
+  output: có a người, b ngựa
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh không ghi rõ 'không âm' cho input (dùng ký hiệu ∈ N thay vì mô tả bằng tiếng Việt) và bỏ qua hoàn toàn phần output 'giả định sai', chỉ mô tả trường hợp có nghiệm.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+  R1: Input="Số đầu: 1
+Số chân: 2"  Output="1 người, 0 ngựa"
+  R2: Input="Số đầu: 2
+Số chân: 8"  Output="2 người, 1 ngựa"
+  R3: Input="Số đầu: -1
+Số chân: 1.3"  Output="giả định sai"
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: R2C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output không khớp với Input: học sinh ghi '2 người, 1 ngựa' nhưng tổng đầu là 3, trong khi Input yêu cầu số đầu là 2 → mâu thuẫn về logic toán học. Giải đúng phải là 0 người, 2 ngựa để tổng đầu = 2 và tổng chân = 8.
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: R2C2  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output '2 người, 1 ngựa' không thỏa mãn Input 'Số đầu: 2, Số chân: 8'. Tổng đầu thực tế là 3 ≠ 2 → sai về điều kiện đầu vào. Dù tổng chân đúng, nhưng không nhất quán với Input.
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: R3C1  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Học sinh chọn Input 'Số đầu: -1, Số chân: 1.3' – rõ ràng không hợp lý (số đầu âm, số chân thập phân). Kết luận Output 'giả định sai' là hoàn toàn hợp lý và nhất quán với Input.
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: R3C2  |  llm_status gốc: correct  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Output 'giả định sai' phù hợp với Input 'Số đầu: -1, Số chân: 1.3' vì các giá trị này không thể tồn tại trong thực tế. Logic được duy trì nhất quán giữa Input và Output.
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: R4C1  |  llm_status gốc: wrong  |  status hiển thị: correct (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: Ô Input trống → học sinh không cung cấp dữ liệu đầu vào cho ví dụ thứ 3. Do đó, không thể xác định tính hợp lý của Output 'giả định sai' (mặc dù đã in sẵn). Yêu cầu tìm 3 ví dụ bị thiếu 1 → không đạt yêu cầu.
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: c:\Users\Nhan Tran\Documents\MMLAB\Grading System\Diagram\HS36_Cau_15c.jpg
+
+Điểm: 0.0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+Bài làm hoàn toàn trống, không có nội dung nào liên quan đến yêu cầu trình bày thuật toán, mã giả hoặc lưu đồ. Không đạt bất kỳ tiêu chí nào.
+
+======================================================================
+
+
+CÂU 15 - HỌC SINH HS_39
+======================================================================
+Tổng: 0.0/1.0 (ungraded)
+
+--- PHẦN A (T15A) ---
+
+Bài làm học sinh:
+  int daunguoi, daungua; int N;
+  int channguoi, channgua; int M;
+  Input: N phải là số nguyên
+  M phải là số nguyên (đặc biệt M là
+  Output: daunguoi // số người
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh không mô tả đầy đủ input (thiếu điều kiện 'không âm') và output (thiếu trường hợp 'giả định sai' và số ngựa), vi phạm yêu cầu bắt buộc của tiêu chí.
+
+--- PHẦN B (bảng ví dụ — T15B1..T15B5) ---
+
+Bảng học sinh điền (Input | Output):
+
+Điểm tối đa cả nhóm T15B (all_or_nothing): 0.25
+
+  [T15B1] Ví dụ 1 (hàng R2) — ô Input: 6 18.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B2] Ví dụ 1 (hàng R2) — ô Output: 3 3.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B3] Ví dụ 2 (hàng R3) — ô Input: 5 20.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B4] Ví dụ 2 (hàng R3) — ô Output: 0 5.
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+  [T15B5] Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).
+    row/col: NoneNone  |  llm_status gốc: None  |  status hiển thị: wrong (LƯU Ý: bug max_score=0 khiến status luôn hiện 'correct' bất kể llm_status thật — xem doc.md mục 6e)
+    Lý do LLM: (không có)
+
+
+--- PHẦN C (T15C, visual) ---
+
+Ảnh bài làm: None
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM/Vision):
+No visual answer found.
+
+======================================================================
+

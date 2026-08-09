@@ -1,0 +1,41 @@
+[
+  {
+    "sample_id": "cau_1_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 1.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "3516",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_1_001_main",
+          "text": "3516",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [
+        {
+          "token_id": "W1",
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_1_001_main",
+          "order": 1,
+          "text": "3516",
+          "bbox": [0, 0, 0, 0],
+          "confidence": 1.0
+        }
+      ],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 1
+  }
+]

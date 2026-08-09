@@ -1,0 +1,109 @@
+========== call_llm_cot - THINK prompt ==========
+
+Bạn là giáo viên chấm thi môn IT001 - Nhập môn lập trình đang phân tích bài làm.
+Hãy SUY LUẬN CHI TIẾT từng bước trước khi đưa ra điểm số.
+
+NGUYÊN TẮC CHẤM: Chấp nhận mọi cách làm tương đương — code/công thức/thuật toán khác nhau về hình thức nhưng đúng về kết quả và logic đều được điểm đầy đủ. Không yêu cầu giống hệt đáp án mẫu.
+
+=== TIÊU CHÍ CHẤM ===
+Hàm kiểm tra số nguyên tố và hàm tính tổng giá trị các phần tử là số nguyên tố trong mảng (1.0 điểm).
+
+=== ĐÁP ÁN KỲ VỌNG ===
+(không có đáp án cố định)
+
+=== BÀI LÀM HỌC SINH ===
+int KiemtraSNT(int n){ if(n<2) return 0; for(int i=2;i<=n/2;i++) if(n%i==0) return 0; return 1; } int TongSNT(int a[], int n){ int S=0; for(int i=0;i<n;i++) if(KiemtraSNT(a[i])) S+=a[i]; return S; }
+
+=== ĐIỂM TỐI ĐA ===
+1.0
+
+══ GỢI Ý TỪ HEURISTIC GRADER ══
+Found: Found:2/2 expected keywords found: KiemtraSNT, TongSNT.
+Từ khóa/ý đã tìm thấy trong bài làm:
+  [OK] KiemtraSNT
+  [OK] TongSNT
+Từ khóa/ý CHƯA tìm thấy:
+  (không có)
+
+══ ĐỀ BÀI GỐC ══
+Câu 13: (2.0 điểm) Cho một chương trình chưa hoàn thiện như sau:
+#include <iostream>
+using namespace std;
+const int MAX=50;
+void NhapMang(int a[], int &n)
+{   do{
+        cout<<"Nhap so phan tu n=";
+        cin>>n;
+    }while(n<1 || n>MAX);
+
+    for(int i=0; i<n; i++)
+      cin>>a[i];
+}
+
+[Yêu cầu riêng phần a] Hàm Tính tổng giá trị của tất cả các phần tử mà giá trị của phần tử đó là số nguyên tố (1.0 điểm).
+══ ĐÁP ÁN / LOGIC KỲ VỌNG ══
+- keywords: KiemtraSNT, TongSNT
+- Đáp án mẫu tham khảo (CHỈ THAM KHẢO để đối chiếu logic, KHÔNG yêu cầu bài học sinh giống hệt): int KiemtraSNT(int n){
+    if(n<2) return 0;
+    for(int i=2; i*i < n; i++)
+        if( n%i==0) return 0;
+    return 1;
+}
+
+int TongSNT(int a[], int n){
+    int S = 0;
+    for(int i=0; i < n; i++)
+        if(KiemtraSNT(a[i])) S = S + a[i];
+    return S;
+}
+══ GHI CHÚ CỦA GIÁO VIÊN (BẮT BUỘC TUÂN THỦ) ══
+Nếu sinh viên viết chung 1 hàm có cả phần kiểm tra SNT lẫn tính tổng, chấm dựa trên 2 phần riêng biệt trong hàm đó.
+
+══ HƯỚNG DẪN CHAIN-OF-THOUGHT ══
+1. Trước hết, suy luận độc lập mà KHÔNG bị ảnh hưởng bởi gợi ý
+2. Phân tích chi tiết từng tiêu chí, so sánh bài làm với tiêu chuẩn
+3. PHẢI tuân thủ đúng "GHI CHÚ CỦA GIÁO VIÊN" và "QUY TẮC ĐIỂM BÁN PHẦN" nếu có — không tự đặt thêm yêu cầu ngoài tiêu chí đã cho.
+4. Sau khi suy luận xong, so sánh kết luận của bạn với gợi ý của Heuristic:
+   - Nếu bạn đồng ý → hãy giải thích tại sao
+   - Nếu bạn không đồng ý → giải thích tại sao gợi ý có thể không chính xác
+5. Đưa ra quyết định cuối cùng dựa trên suy luận của bạn
+
+Hãy suy luận tuần tự theo các bước sau (viết rõ từng bước):
+1. Đọc và hiểu tiêu chí: tiêu chí này yêu cầu gì?
+2. Phân tích đáp án kỳ vọng (nếu có): cần khớp điều gì?
+3. Phân tích bài làm học sinh: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?
+4. Kiểm tra tương đương: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.
+5. So sánh: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?
+6. Kết luận sơ bộ: điểm dự kiến và lý do.
+
+========== call_llm_cot - DECIDE prompt ==========
+
+Dựa trên phân tích sau đây:
+
+--- BẮT ĐẦU PHÂN TÍCH ---
+Tiêu chí yêu cầu 2 hàm: KiemtraSNT (kiểm tra số nguyên tố) và TongSNT (tính tổng các phần tử là
+số nguyên tố trong mảng). Cả 2 tên hàm đều xuất hiện trong bài làm học sinh — khớp với gợi ý
+heuristic (2/2 keyword tìm thấy: KiemtraSNT, TongSNT).
+Đối chiếu logic từng hàm với sample_solution: (1) KiemtraSNT — học sinh dùng vòng lặp
+i<=n/2 thay vì i*i<n như code mẫu, đây là cách viết khác về hình thức (chặn trên lỏng hơn) nhưng
+không đổi tính đúng đắn thuật toán — theo NGUYÊN TẮC CHẤM, coi là tương đương logic. (2) TongSNT —
+khởi tạo S=0, duyệt mảng, cộng dồn phần tử nguyên tố qua gọi KiemtraSNT, trả về S — khớp đúng
+logic sample_solution.
+Học sinh viết 2 hàm tách riêng (không gộp chung 1 hàm), nên GHI CHÚ CỦA GIÁO VIÊN về trường hợp
+gộp hàm không áp dụng ở đây — chấm bình thường theo 2 hàm riêng biệt, cả 2 đều đúng.
+Kết luận sơ bộ: 1.0/1.0 điểm, trạng thái correct, cả 2 hàm đều cài đúng logic dù khác cách viết
+vòng lặp ở KiemtraSNT so với đáp án mẫu.
+--- KẾT THÚC PHÂN TÍCH ---
+
+Hãy đưa ra quyết định chấm điểm chính thức.
+Điểm tối đa: 1.0
+
+Trả về JSON (và CHỈ JSON):
+{
+  "score": <số thực từ 0 đến 1.0>,
+  "status": "<correct|partially_correct|wrong>",
+  "reasoning": "<tóm tắt lý do ngắn gọn 1-2 câu>",
+  "confidence": <số thực từ 0.0 đến 1.0>,
+  "feedback": "<nếu sai hoặc thiếu điểm: liệt kê cụ thể điểm nào sai/thiếu; để chuỗi rỗng nếu đúng hoàn toàn>",
+  "suggestion": "<nếu sai hoặc thiếu điểm: hướng dẫn cách sửa cụ thể; để chuỗi rỗng nếu đúng hoàn toàn>"
+}

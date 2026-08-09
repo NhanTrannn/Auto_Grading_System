@@ -1,0 +1,128 @@
+{
+  "ma_de": "1",
+  "HS_1": {
+    "Cau_13a": {
+      "type": "long_text",
+      "status": "completed",
+      "content": {
+        "lines": [
+          "int KiemtraSNT(int n){ if(n<2) return 0; for(int i=2;i<=n/2;i++) if(n%i==0) return 0; return 1; }",
+          "int TongSNT(int a[], int n){ int S=0; for(int i=0;i<n;i++) if(KiemtraSNT(a[i])) S+=a[i]; return S; }"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "long_text",
+      "status": "completed",
+      "content": {
+        "lines": [
+          "int TimMax(int a[], int n){ int m=0; for(int i=1;i<n;i++) if(a[i]>a[m]) m=i; return m; }"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "long_text",
+      "status": "completed",
+      "content": {
+        "lines": [
+          "cout << \"Tong so SNT = \" << TongSNT(a,n);",
+          "cout << \"Vi tri phan tu lon nhat dau tien\" << TimMax(a,n);"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "long_text",
+      "status": "completed",
+      "content": {
+        "lines": [
+          "struct Sinhvien {",
+          "    string MaSV;",
+          "    string HoTen;",
+          "    int NamSinh;",
+          "    string NoiSinh;",
+          "    float DTB;",
+          "};"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "long_text",
+      "status": "completed",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &x){",
+          "    getline(cin, x.MaSV);",
+          "    cin >> x.HoTen;",
+          "    cin >> x.NamSinh;",
+          "    cin >> x.DTB;",
+          "}"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "long_text",
+      "status": "completed",
+      "content": {
+        "lines": [
+          "void InDSSV(Sinhvien a[], int n){",
+          "    for(int i=0;i<n;i++)",
+          "        if(a[i].NoiSinh == \"TPHCM\")",
+          "            cout << a[i].MaSV << \"- \" << a[i].HoTen;",
+          "}"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "content": {
+        "lines": [
+          "Input: N, M la hai so nguyen khong am",
+          "Output: chuoi 'gia dinh sai' hoac hai so nguyen khong am x, y"
+        ]
+      }
+    }
+  },
+  "HS_2": {
+    "Cau_13a": {
+      "type": "long_text",
+      "status": "completed",
+      "content": {
+        "lines": [
+          "int KiemtraSNT(int n){ return n>1; }",
+          "int TongSNT(int a[], int n){ return 0; }"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "long_text",
+      "status": "completed",
+      "content": { "lines": [""] }
+    },
+    "Cau_13c": {
+      "type": "long_text",
+      "status": "completed",
+      "content": { "lines": [""] }
+    },
+    "Cau_14a": {
+      "type": "long_text",
+      "status": "completed",
+      "content": { "lines": ["struct Sinhvien { int x; };"] }
+    },
+    "Cau_14b": {
+      "type": "long_text",
+      "status": "completed",
+      "content": { "lines": [""] }
+    },
+    "Cau_14c": {
+      "type": "long_text",
+      "status": "completed",
+      "content": { "lines": [""] }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "content": { "lines": ["Input la N, M. Output la x, y"] }
+    }
+  }
+}

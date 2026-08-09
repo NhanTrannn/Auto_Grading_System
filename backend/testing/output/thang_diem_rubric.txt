@@ -1,0 +1,280 @@
+THANG DANH GIA CHAM DIEM - IT001 - Nhập môn lập trình - Ma de: 1
+Tong diem: 10.0 (Trac nghiem: 6.0, Tu luan: 4.0)
+==========================================================================================
+
+CAU 1
+------------------------------------------------------------------------------------------
+De bai: Câu 1: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | using namespace std; | int main(){ |     int a = 2, b = 4, d; |     float c = float((++b) / (a++)); |     d = 2 * c + b; |     cout << a << b << c << d; |     return 0; | }
+
+- [T1] (phan main, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Ghi đúng kết quả chương trình. Đáp án đúng là 3529. Nếu đúng 2 hoặc 3 con số thì được 0.25 điểm.
+  Dap an/logic mong doi: {"a": 3, "b": 5, "c": 2, "d": 9}
+  Ket qua mong doi: 3529
+  Quy tac diem thanh phan: {"type": "count_correct_tokens", "partial_score": 0.25, "condition": "correct_token_count in [2, 3]"}
+
+==========================================================================================
+
+CAU 2
+------------------------------------------------------------------------------------------
+De bai: Câu 2: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | using namespace std; | int main(){ |     int x = 8, y = 3; |     switch(x % y){ |         case 2: y--; |         default: y *= 6; |         case 0: |             x = (y == 64 ? y - x : x - y); |             break; |         case 1: y /= 2; |         case 3: x %= 3; |     } |     cout << y << x; |     return 0; | }
+
+- [T2] (phan main, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Ghi đúng kết quả chương trình. Đáp án đúng là 12-4. Nếu đúng 1 con số thì được 0.25 điểm.
+  Dap an/logic mong doi: {"value_1": 12, "value_2": -4}
+  Ket qua mong doi: 12-4
+  Quy tac diem thanh phan: {"type": "count_correct_tokens", "partial_score": 0.25, "condition": "correct_token_count == 1"}
+
+==========================================================================================
+
+CAU 3
+------------------------------------------------------------------------------------------
+De bai: Câu 3: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | using namespace std; | int main() | {   int a; |     cin>>a; |     for(int i=1;i<4;i++) |         for(int j=2;j<=2*i;j+=3) |             cout<< i*j+a%4; |     return 0; | }
+
+- [T3_main_s1] (phan main_S1, 0 diem, loai: fill_in_the_blank)
+  Noi dung: Sinh viên ghi đúng số thứ tự của mình (ví dụ: sinh viên số 2 chỉ cần ghi '2'). Không cần format 'a = ...'.
+  Dap an/logic mong doi: {"rule": "match_student_index"}
+
+- [T3_main_s2] (phan main_S2, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Đáp án phụ thuộc số thứ tự sinh viên. Đáp án là 1 chuỗi 5 chữ số liền nhau (VD: '46817'). Chỉ sai 1 hoặc 2 chữ số thì được 0.25 điểm, sai nhiều hơn thì 0 điểm.
+  Dap an/logic mong doi: {"rule": "answer_by_student_index_mod_4"}
+  Quy tac diem thanh phan: {"type": "count_wrong_tokens", "partial_score": 0.25, "condition": "wrong_token_count in [1, 2]"}
+
+==========================================================================================
+
+CAU 4
+------------------------------------------------------------------------------------------
+De bai: Câu 4: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | #include <cmath> | using namespace std; | int func(int &m) | {   int a=0; |     do |     {   a++; |         m=m/10; |     } |     while(m!=0); |     return a; | } | int main() | {   int n,a; |     cin>>a; |     n=a-1234; |     int x = func(n); |     cout<<x<<abs(n); |     return 0; | }
+
+- [T4] (phan main, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Đáp án luôn là 40, bất chấp số thứ tự. Nếu đúng 1 giá trị (1 trong 2 chữ số) thì chấm 0.25 điểm.
+  Ghi chu cham: Nếu đúng 1 giá trị thì chấm 0.25 điểm
+  Dap an/logic mong doi: {"result": 40}
+  Ket qua mong doi: 40
+  Quy tac diem thanh phan: {"type": "count_correct_tokens", "partial_score": 0.25, "condition": "correct_token_count == 1"}
+
+==========================================================================================
+
+CAU 5
+------------------------------------------------------------------------------------------
+De bai: Câu 5: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | using namespace std; | int func(int b, int &a){ |     a -= 2; |     b = ++a + 3; |     return b; | } | int main(){ |     int a = 10, b = 3; |     int &c = b; |     b = func(a, c); |     cout << a << b << c; |     return 0; | }
+
+- [T5] (phan main, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Ghi đúng kết quả 1055. Nếu đúng 2 con số thì được 0.25 điểm.
+  Dap an/logic mong doi: {"value_1": 10, "value_2": 5, "value_3": 5}
+  Ket qua mong doi: 1055
+  Quy tac diem thanh phan: {"type": "count_correct_tokens", "partial_score": 0.25, "condition": "correct_token_count == 2"}
+
+==========================================================================================
+
+CAU 6
+------------------------------------------------------------------------------------------
+De bai: Câu 6: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | int function(int n){ |     if (n<10) return n; |     return function(n/10); | } | void input(int n){ |     std::cin >> n; | } | int main(){ |     int a=45321; |     input(a); |     std::cout << function(a); |     return 0; | }
+
+- [T6] (phan main, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Đáp án luôn là 4, bất chấp số thứ tự.
+  Dap an/logic mong doi: {"result": 4}
+  Ket qua mong doi: 4
+
+==========================================================================================
+
+CAU 7
+------------------------------------------------------------------------------------------
+De bai: Câu 7: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | using namespace std; | int funcS(int n) | { |     if (n == 1) |         return 1; |     int i=1,res=0; |     do{ |         res += funcS(i); |         i ++ ; |     }while(i<n); |     return res; | } | int main (){ |     cout<< funcS(5); |     return 0; | }
+
+- [T7] (phan main, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Đáp án đúng là 8.
+  Dap an/logic mong doi: {"result": 8}
+  Ket qua mong doi: 8
+
+==========================================================================================
+
+CAU 8
+------------------------------------------------------------------------------------------
+De bai: Câu 8: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | using namespace std; | int main() | {   int a=8, b=5, c; |     cin>>c; |     int *pa=&a, *pb=&b; |     cout<<"&a="<<&a<<endl; |     cout<<"&pa="<<&pa<<endl; |     cout<<"&b="<<&b<<endl; |     cout<<"&pb="<<&pb<<endl; |     *pb+=c%4; |     pa=pb; |     *pa=*pb - a; |     cout<<&(*pa)<<" "; |     cout<<*(&a)<<" "; |     cout<<pb-pa<<" "; |     cout<<(*pb)+(*pa)<<" "; |     return 0; | }
+
+- [T8_main_s1] (phan main_S1, 0 diem, loai: fill_in_the_blank)
+  Noi dung: Sinh viên ghi đúng số thứ tự của mình (chỉ cần ghi con số, VD: '10'). Không yêu cầu format 'c = 10'. Không tính điểm, chỉ dùng để xác minh sinh viên dùng đúng input.
+  Dap an/logic mong doi: {"rule": "match_student_index"}
+
+- [T8_main_s2] (phan main_S2, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Ghi đúng kết quả in ra màn hình. Đáp án gồm 4 số: 1 địa chỉ cố định (0x505294) + 3 số phụ thuộc STT. Đúng 2 hoặc 3 trong 4 số thì được 0.25 điểm.
+  Ghi chu cham: Đã sửa lại theo đúng bảng đáp án trong Word: chỉ có 1 cụm đáp án gồm 4 số (không tách thành 2 phần a/b với 4 địa chỉ &a/&pa/&b/&pb riêng biệt như bản trước, vì 4 địa chỉ đó KHÔNG xuất hiện trong file đáp án Word này và chưa được xác minh). Nếu đề thi gốc thực sự có phần in 4 địa chỉ bộ nhớ đầu tiên riêng biệt, cần đối chiếu lại với đề thi gốc (không có trong file đã cung cấp) để khôi phục đúng cấu trúc và thang điểm chi tiết. Hầu hết SV sai số đầu và số cuối (theo ghi chú gốc).
+  Dap an/logic mong doi: {"rule": "fixed_address_plus_answer_by_student_index_mod_4"}
+  Quy tac diem thanh phan: {"type": "count_correct_tokens", "partial_score": 0.25, "condition": "correct_token_count in [2, 3]"}
+
+==========================================================================================
+
+CAU 9
+------------------------------------------------------------------------------------------
+De bai: Câu 9: (0.5 điểm) Cho một chương trình như sau: | #include<iostream> | using namespace std; | void increment(int *ptr) { |     (*ptr)++; | } | int main() { |     int var; |     cin>>var; |     var = var%2; |     increment(&var); |     cout << var; |     return 0; | }
+
+- [T9] (phan main, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Nếu số thứ tự là số chẵn thì in ra 1. Nếu số thứ tự là số lẻ thì in ra 2.
+  Dap an/logic mong doi: {"rule": "answer_by_student_index_parity"}
+
+==========================================================================================
+
+CAU 10
+------------------------------------------------------------------------------------------
+De bai: Câu 10: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | using namespace std; | bool KiemTra(int X[], int n){ |     for (int i = 0; i < n; i++){ |         if (X[i] == -1) return false; |     } |     return true; | } | int NhapMang(int X[], int n){ |     int v; |     while(1){ |         cin >> v; |         int i = v % 10; |         while(X[i] != -1){ |             i++; |             if (i == n) i = 0; |         } |         X[i] = v; |         if (KiemTra(X, n)) break; |     } | } | int main(){ |     int A[10]; |     for (int i = 0; i < 10; i++) |         A[i] = -1; |     NhapMang(A, 10); |     for (int i = 0; i < 10; i++) |         cout << A[i] << " "; |     return 0; | }
+
+- [T10] (phan main, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Ghi đúng kết quả in ra màn hình. Đáp án đúng là: 10 70 2 3 4 4 5 6 2 1.
+  Ghi chu cham: Nếu SV trả lời runtime error hoặc bị lỗi thì bắt buộc phải kèm giải thích đúng (ví dụ: hàm NhapMang thiếu return) mới được 0.5đ. Không có giải thích thì 0đ.
+  Dap an/logic mong doi: {"sequence": [10, 70, 2, 3, 4, 4, 5, 6, 2, 1]}
+  Ket qua mong doi: 10 70 2 3 4 4 5 6 2 1
+  Quy tac diem thanh phan: {"type": "position_tolerance", "partial_score": 0.25, "condition": "wrong_positions_limited_to_first_2_or_last_2"}
+
+==========================================================================================
+
+CAU 11
+------------------------------------------------------------------------------------------
+De bai: Câu 11: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | using namespace std; | int fun(int a[]) | { |     int* p = a+6; |     int S=0; |     for (int i = 0; i < 5; i++) |         S += *(--p); |     return S; | } | int main() { |     int a[] = {1,2,3,4,5,6,7,8,9,10}; |     cout<<fun(a); |     return 0; | }
+
+- [T11] (phan main, 0.5 diem, loai: fill_in_the_blank)
+  Dap an/logic mong doi: {"result": 20}
+  Ket qua mong doi: 20
+
+==========================================================================================
+
+CAU 12
+------------------------------------------------------------------------------------------
+De bai: Câu 12: (0.5 điểm) Cho một chương trình như sau: | #include <iostream> | using namespace std; | struct Date{ |     int d,m,y; | }; | void Input(Date* &a){ |     Date t={10,5,2027}; |     *a = t; |     a = new Date {7,1,2026}; | } | int main(){ |     Date a={28,12,2025}; |     Date* p = &a; |     Input(p); |     cout<<a.d<<"/"<<p->m<<"/"<<p->y; |     return 0; | }
+
+- [T12] (phan main, 0.5 diem, loai: fill_in_the_blank)
+  Noi dung: Ghi đúng kết quả in ra màn hình. Đáp án Đề 1 là 10/1/2026.
+  Ghi chu cham: Đây là Đề 1: hàm Input có signature Input(Date* &a), tham số là con trỏ tham chiếu. Kết quả đúng: 10/1/2026. Nếu SV ghi đúng tháng và năm (1/2026) nhưng sai ngày thì được 0.25đ.
+  Dap an/logic mong doi: {"day": 10, "month": 1, "year": 2026}
+  Ket qua mong doi: 10/1/2026
+  Quy tac diem thanh phan: {"type": "date_partial_match", "partial_score": 0.25, "condition": "month == 1 and year == 2026"}
+
+==========================================================================================
+
+CAU 13
+------------------------------------------------------------------------------------------
+De bai: Câu 13: (2.0 điểm) Cho một chương trình chưa hoàn thiện như sau: | #include <iostream> | using namespace std; | const int MAX=50; | void NhapMang(int a[], int &n) | {   do{ |         cout<<"Nhap so phan tu n="; |         cin>>n; |     }while(n<1 || n>MAX); |  |     for(int i=0; i<n; i++) |       cin>>a[i]; | }
+
+- [T13A] (phan a, 1.0 diem, loai: )
+  Noi dung: Hàm tính tổng giá trị các phần tử là số nguyên tố (1.0đ).
+  Ghi chu cham: Nếu SV viết chung 1 hàm có cả phần kiểm tra SNT lẫn tính tổng, chấm dựa trên 2 phần riêng biệt trong hàm đó.
+
+  - [T13A1] (phan , 0.5 diem, loai: code)
+    Noi dung: Hàm kiểm tra số nguyên tố KiemtraSNT (0.5đ).
+    Dap an/logic mong doi: {"function": "KiemtraSNT", "logic": ["n < 2 thì không phải số nguyên tố", "duyệt ước từ 2 đến căn n", "nếu chia hết thì trả về 0", "nếu không có ước thì trả về 1"]}
+
+  - [T13A2] (phan , 0.5 diem, loai: code)
+    Noi dung: Hàm tính tổng TongSNT (0.5đ).
+    Dap an/logic mong doi: {"function": "TongSNT", "logic": ["khởi tạo tổng S = 0", "duyệt tất cả phần tử trong mảng", "nếu phần tử là số nguyên tố thì cộng vào S", "trả về S"]}
+
+- [T13B] (phan b, 0.5 diem, loai: code)
+  Noi dung: Hàm tìm vị trí phần tử có giá trị lớn nhất ĐẦU TIÊN trong mảng (0.5đ). Đề 1 tìm max, Đề 2 tìm min.
+  Ghi chu cham: Vì yêu cầu tìm phần tử ĐẦU TIÊN nên trong lệnh if KHÔNG có dấu =: phải dùng a[i] > a[m], không được dùng a[i] >= a[m]. Nếu dùng >= thì tìm phần tử cuối cùng => 0đ.
+  Dap an/logic mong doi: {"function": "TimMax", "initial_index": 0, "loop_start": 1, "comparison": "a[i] > a[m]", "strict_greater": true, "return": "m"}
+
+- [T13C] (phan c, 0.5 diem, loai: code)
+  Noi dung: Hoàn thiện hàm main: gọi các hàm ở câu a và b, in kết quả ra màn hình (0.5đ).
+  Ghi chu cham: Mỗi lời gọi hàm đúng (đúng tên + tham số) và có in kết quả thì được 0.25đ.
+
+  - [T13C1] (phan , 0.25 diem, loai: code)
+    Noi dung: Gọi hàm tính tổng SNT (tên hàm do sinh viên định nghĩa ở 13A) và in kết quả (0.25đ).
+    Ghi chu cham: Chấp nhận bất kỳ tên hàm tính tổng SNT nào mà sinh viên đã định nghĩa ở 13A (VD: SumPrime, TongSNT, tinhTong, v.v.). Không yêu cầu đúng tên 'TongSNT'. Chỉ cần: (1) gọi đúng hàm tính tổng SNT của chính sinh viên đó với tham số mảng và n, (2) có in kết quả ra màn hình.
+    Dap an/logic mong doi: {"required_call": "TongSNT(a,n)", "required_output": "Tong so SNT"}
+
+  - [T13C2] (phan , 0.25 diem, loai: code)
+    Noi dung: Gọi hàm tìm max (tên hàm do sinh viên định nghĩa ở 13B) và in kết quả (0.25đ).
+    Ghi chu cham: Chấp nhận bất kỳ tên hàm tìm max nào mà sinh viên đã định nghĩa ở 13B (VD: TimMax, findMax, findvtmax, v.v.). Không yêu cầu đúng tên 'TimMax'. Chỉ cần: (1) gọi đúng hàm tìm max của chính sinh viên đó với tham số mảng và n, (2) có in kết quả ra màn hình.
+    Dap an/logic mong doi: {"required_call": "TimMax(a,n)", "required_output": "Vi tri phan tu lon nhat dau tien"}
+
+==========================================================================================
+
+CAU 14
+------------------------------------------------------------------------------------------
+De bai: Câu 14: (1.0 điểm) Sinh viên thực hiện yêu cầu sau:
+
+- [T14A] (phan a, 0.25 diem, loai: code)
+  Noi dung: Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính (0.25đ).
+  Ghi chu cham: Tên các thuộc tính phải đúng như đề (MaSV, HoTen, NamSinh, NoiSinh, DTB). Bắt buộc có dấu chấm phẩy (;) sau dấu } đóng struct, thiếu dấu này => 0đ. Cho phép dùng typedef struct.
+  Dap an/logic mong doi: {"struct_name": "Sinhvien", "fields": {"MaSV": "string", "HoTen": "string", "NamSinh": "int", "NoiSinh": "string", "DTB": "float"}, "requires_semicolon_after_struct": true}
+
+- [T14B] (phan b, 0.5 diem, loai: multi_type)
+  Noi dung: Hoàn thiện hàm NhapSV để nhập thông tin một sinh viên từ bàn phím (0.5đ).
+  Ghi chu cham: Hai tiêu chí độc lập: (1) truyền đúng tham biến/tham chiếu; (2) nhập đúng kiểu chuỗi có khoảng trắng.
+
+  - [T14B1] (phan , 0.25 diem, loai: code)
+    Noi dung: Tham số truyền đúng tham biến/tham chiếu: Sinhvien &x (0.25đ).
+    Ghi chu cham: Truyền tham trị (Sinhvien x) thì 0đ vì sửa không có tác dụng ngoài hàm.
+    Dap an/logic mong doi: {"function": "NhapSV", "parameter": "Sinhvien &x"}
+
+  - [T14B2] (phan , 0.25 diem, loai: code)
+    Noi dung: Nhập đúng kiểu chuỗi có khoảng trắng bằng getline hoặc cin.getline/gets (0.25đ).
+    Ghi chu cham: Nếu nhập HoTen hoặc NoiSinh bằng cin>> thì T14B2 = 0đ. Phải dùng getline(cin, x.HoTen) hoặc tương đương mới được điểm.
+    Dap an/logic mong doi: {"string_input_method": "getline", "fields_requiring_getline": ["HoTen", "NoiSinh"], "numeric_input_fields": ["NamSinh", "DTB"]}
+
+- [T14C] (phan c, 0.25 diem, loai: code)
+  Noi dung: Hàm InDSSV in thông tin sinh viên có NoiSinh là "TPHCM" (0.25đ).
+  Ghi chu cham: Kiểm tra điều kiện so sánh đúng theo kiểu dữ liệu: string dùng ==, mảng ký tự char[] dùng strcmp(...) == 0. Không cần in toàn bộ trường, chỉ cần in đủ là được điểm.
+  Dap an/logic mong doi: {"function": "InDSSV", "loop": "for i from 0 to n-1", "condition": "a[i].NoiSinh == \"TPHCM\"", "output": "print student information"}
+
+==========================================================================================
+
+CAU 15
+------------------------------------------------------------------------------------------
+De bai: Câu 15: (1 điểm) Trong chương trình Đường lên đỉnh Olympia năm 2025 có câu hỏi: "Một đoàn vừa có người vừa có ngựa chạy ngang qua, người ta thấy có tổng cộng 6 cái đầu và 18 cái chân. Hỏi đoàn đó có bao nhiêu người và bao nhiêu ngựa?" | Năm nay đã là 2026 và bạn đã là sinh viên Đại học Công nghệ Thông tin, bạn hãy dùng kiến thức lập trình để giải quyết phiên bản nâng cao của câu hỏi đó như sau: "Một đoàn vừa có người vừa có ngựa chạy ngang qua, người ta thấy có tổng cộng N cái đầu và M cái chân. Giả định là trong đoàn không có người nào hay con ngựa nào bị thiếu chân hay thiếu đầu thì đoàn có bao nhiêu người và bao nhiêu ngựa? Nếu giả định trên không thể thoả mãn hãy đưa ra kết luận: 'giả định sai'."
+
+- [T15A] (phan , 0.25 diem, loai: multi_type)
+  Noi dung: Đặt tên biến và mô tả kiểu dữ liệu cho input và output của bài toán (0.25đ).
+  Ghi chu cham: Phải đúng CẢ input lẫn output mới được 0.25đ. Đúng một trong hai thì 0đ.
+
+  - [T15A1] (phan ,  diem, loai: fill_in_the_blank)
+    Noi dung: Input: N và M là hai số nguyên không âm.
+    Ghi chu cham: Phải chỉ rõ "không âm". Chỉ ghi "số nguyên" thì 0đ. (Chỉ dùng để phản hồi, không cộng điểm riêng — xem scoring_note ở T15A.)
+    Dap an/logic mong doi: {"input": {"N": "non_negative_integer", "M": "non_negative_integer"}}
+
+  - [T15A2] (phan ,  diem, loai: fill_in_the_blank)
+    Noi dung: Output: chuỗi "giả định sai" hoặc hai số nguyên x (người) và y (ngựa).
+    Ghi chu cham: Output phải nhất quán với câu c: chọn không âm => thuật toán cho phép x=0 hoặc y=0; chọn dương => thuật toán yêu cầu x>0 và y>0. (Chỉ dùng để phản hồi, không cộng điểm riêng — xem scoring_note ở T15A.)
+    Dap an/logic mong doi: {"output": ["string: giả định sai", "two non-negative integers x and y"], "consistency_requirement": "Nhất quán với điều kiện giả định sai ở câu c."}
+
+- [T15B] (phan , 0.25 diem, loai: multi_type)
+  Noi dung: Tìm 3 ví dụ cho bài toán (0.25đ).
+  Ghi chu cham: Phải đúng TOÀN BỘ cả 3 ví dụ mới được 0.25đ. Đúng 1 hoặc 2 ví dụ thì 0đ.
+
+  - [T15B1] (phan ,  diem, loai: table)
+    Noi dung: Ví dụ 1: Input 6 18 → Output 3 3.
+    Dap an/logic mong doi: {"input": "6 18", "output": "3 3"}
+    Ket qua mong doi: 6 18 → 3 3
+
+  - [T15B2] (phan ,  diem, loai: table)
+    Noi dung: Ví dụ 2: Input 5 20 → Output 0 5.
+    Dap an/logic mong doi: {"input": "5 20", "output": "0 5"}
+    Ket qua mong doi: 5 20 → 0 5
+
+  - [T15B3] (phan ,  diem, loai: table)
+    Noi dung: Ví dụ 3: Input 9 10 → Output "gia dinh sai".
+    Dap an/logic mong doi: {"input": "9 10", "output": "gia dinh sai"}
+    Ket qua mong doi: 9 10 → gia dinh sai
+
+- [T15C] (phan , 0.5 diem, loai: multi_type)
+  Noi dung: Vẽ lưu đồ / mô tả thuật toán / mã giả giải quyết bài toán (0.5đ).
+  Ghi chu cham: Cho phép cách giải khác ngoài hệ phương trình, quan trọng là điều kiện "giả định sai" phủ đúng tất cả trường hợp không hợp lệ đã xác định ở câu a. Điều kiện phải nhất quán với lựa chọn TH1/TH2 ở câu a (T15A2).
+
+  - [T15C1] (phan , 0.1 diem, loai: visual)
+    Noi dung: Trình bày ý tưởng/hệ phương trình: X+Y=N, 2X+4Y=M (0.1đ).
+    Dap an/logic mong doi: {"equations": ["X + Y = N", "2X + 4Y = M"], "variables": {"X": "number_of_people", "Y": "number_of_horses", "N": "number_of_heads", "M": "number_of_legs"}}
+
+  - [T15C2] (phan , 0.2 diem, loai: visual)
+    Noi dung: Xác định đúng điều kiện "giả định sai" (0.2đ).
+    Ghi chu cham: TH1 (không âm): sai khi M lẻ, hoặc M/2 < N, hoặc 2*N < M/2. TH2 (dương): đổi dấu < thành <=. Phải nhất quán với T15A2.
+    Dap an/logic mong doi: {"invalid_conditions_TH1": ["M is odd", "M/2 < N", "2*N < M/2"], "invalid_conditions_TH2": ["M is odd", "M/2 <= N", "2*N <= M/2"], "note": "Dùng TH1 hay TH2 phải nhất quán với output đã chọn ở T15A2."}
+
+  - [T15C3] (phan , 0.1 diem, loai: fill_in_the_blank)
+    Noi dung: Tính đúng số người X = 2*N - M/2 (0.1đ).
+    Ghi chu cham: Chấp nhận cách tính tương đương: nếu sinh viên tính Y trước rồi X = N - Y cũng được xem là đúng (vì X = N - Y = N - (M/2 - N) = 2N - M/2). Không yêu cầu viết đúng dạng 2*N - M/2, chỉ cần công thức tương đương.
+    Dap an/logic mong doi: {"X": "2*N - M/2"}
+
+  - [T15C4] (phan , 0.1 diem, loai: fill_in_the_blank)
+    Noi dung: Tính đúng số ngựa Y = M/2 - N (0.1đ).
+    Ghi chu cham: Cho phép ký hiệu biến khác nhưng công thức phải đúng.
+    Dap an/logic mong doi: {"Y": "M/2 - N"}
+
+==========================================================================================

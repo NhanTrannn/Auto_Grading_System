@@ -1,17 +1,29 @@
 # secrets
 .env
 
+# Claude Code project instructions — local only, not shared via git
+CLAUDE.md
+
 # python
 __pycache__/
 *.pyc
 .venv/
 
 # outputs & data lớn (tùy bạn muốn track hay không)
-output/*.json
-output/*.csv
-review.json
-Results_Ma_de_1.json
+backend/testing/output/*.json
+backend/testing/output/*.csv
+backend/review.json
+backend/Results_Ma_de_1.json
 *.log
 
 # IDE
 .vscode/
+
+# backend
+backend/var/
+backend/*.db
+backend/.pytest_cache/
+
+# frontend
+frontend/node_modules/
+frontend/dist/

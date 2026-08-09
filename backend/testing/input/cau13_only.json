@@ -1,0 +1,917 @@
+{
+  "ma_de": "1",
+  "HS_2": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool isPrime(int n) {",
+          "    if (n<2) return 0;",
+          "    if (n!=2 && n%2==0) return 0;",
+          "    for(int i = 3; i*i<=n; i++) {",
+          "        if(n % i == 0) return 0;",
+          "    }",
+          "    return 1;",
+          "int SumPrime(int a[]",
+          "    int S = 0;",
+          "    for(int i = 0; i < n; i",
+          "        if(isPrime(a[",
+          "        {   S += a[i];",
+          "    return S;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int findmax(int a[], int n) {",
+          "    int max=a[0];",
+          "    for(int i = 1; i<n; i++) {",
+          "int findvtmax (int a[], int",
+          "    for(int i = 0; i < n; i++) {",
+          "        if (a[i]==max)"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout << SumPrime(a,n) << endl;",
+          "    int max = findMax(a,n);",
+          "    cout << findvtmax(a,n,max) << endl;",
+          "    return 0;",
+          "}"
+        ]
+      }
+    }
+  },
+  "HS_3": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": []
+      }
+    }
+  },
+  "HS_7": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool nt(int n)",
+          "{   if (n < 2) return false;",
+          "    for (int i = 2; i*i <= n; i++)",
+          "        if (n % i == 0) return false;",
+          "    return true;",
+          "}",
+          "int tong(int a[], int n)",
+          "{   int tam = 0;",
+          "    for (int i = 0; i < n; i++)",
+          "        if (nt(a[i]))",
+          "            tam = tam + a[i];",
+          "    return tam;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int vitri(int a[], int n)",
+          "{ int ma = a[0];",
+          "for(int i = 1; i < n; i++) ma = max(ma, a[i]);",
+          "for(int i = 0; i < n; i++)"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout<<tong(a,n)<<endl;",
+          "    cout<<vitri(a,n);",
+          "}"
+        ]
+      }
+    }
+  },
+  "HS_9": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool snt(int n) {",
+          "if (n < 2) return false;",
+          "for (int i = 2; i*i <= n; i++)",
+          "if (n % i == 0)",
+          "return false;",
+          "return true; }",
+          "int tongSnt(int a[], int n) {",
+          "int tong = 0;",
+          "for (int i = 0; i < n; i++)",
+          "if (snt(a[i]) == true) sum += a[i];",
+          "return tong; }"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int timmax(int a[], int n) {",
+          "int Max = a[0];",
+          "for (int i = 1; i < n; i++)",
+          "if (a[i] > Max) Max = a[i];"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << tongsnt(a,n) << endl;",
+          "cout << timmax(a,n);"
+        ]
+      }
+    }
+  },
+  "HS_10": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int bool laSNT(int a[], int n)",
+          "{",
+          "for(int i=0; i<n; i++)",
+          "if(a[i]<2) return false;",
+          "else if(a[i]==2) return true;",
+          "else",
+          "for(int j=2; j<a[i]; j++)",
+          "if(a[i]%j==0) return false;",
+          "return true;",
+          "}",
+          "int TonggiatriSNT(int a[], int n) {",
+          "return S;"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int VitriPhantulonnhat(int a[], int n) {",
+          "    int max_1 = a[0];",
+          "    for(int i = 1; i < n; i++)",
+          "        if(a[i] > max_1)"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << \"Tổng giá trị các phần tử là Số nguyên tố là:\" << TonggiatriSNT",
+          "cout << \"Vị trí phần tử có giá trị lớn nhất đầu tiên trong mảng la\" << VitriPhantulonnhat(a,n) << endl;"
+        ]
+      }
+    }
+  },
+  "HS_12": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "void Tinhtong(int a[], int n) {"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": []
+      }
+    }
+  },
+  "HS_15": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool snt(int n) {",
+          "    if (n < 2) ",
+          "        return false;",
+          "    for (int i = 2; i*i <= n; i++)",
+          "        if (n % i == 0) {",
+          "            return false;",
+          "    return true;",
+          "}",
+          "int Tong(int a[], int n) {",
+          "    int s = 0;",
+          "    for (int i = 0; i < n; i++) {",
+          "        if (snt(a[i]))",
+          "            s = s + a[i];",
+          "    return s;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int TimViTri(int a[], int n) {",
+          "    int max = a[0];",
+          "    for(int i = 0; i < n; i++) {",
+          "        if(a[i] > max) ",
+          "            max = a[i];",
+          "    for(int i = 0; i < n; i++) {",
+          "        if(a[i] == max) ",
+          "            return i;"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "  cout << \"Tong cac so nguyen to trong mang:\" << Tong(a,n) << endl;",
+          "  cout << \"Vi tri lon nhat dau tien:\" << TimViTri(a,n);",
+          "  return 0;"
+        ]
+      }
+    }
+  },
+  "HS_17": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int tong(int a[], int &n)",
+          "int t = 0;",
+          "bool flag = true;",
+          "for(int i=0; i<n; i++)",
+          "{ for(int j=2; j<a[i]; j++)",
+          "if(a[i] % j == 0)",
+          "{ flag = false;",
+          "break; }",
+          "if(flag == true) t+=a[i];",
+          "flag = true; }"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int find(int a[], int &n)",
+          "int ma = a[0]; int skibidi = 0;",
+          "for (int i = 1; i < n; i++) ",
+          "  if (a[i] > ma) skibidi = i;"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << tong(a,n) << \" \" << find(a,n);",
+          "return 0;"
+        ]
+      }
+    }
+  },
+  "HS_18": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool kiemtrasnt(int n)",
+          "if (n < 2) return 0;",
+          "for (int i = 2; i < n; i++)",
+          "{ if (n % i == 0) return 0;",
+          "return 1; }",
+          "int tonggiatritatcasonguyenTo(int a[], int n)",
+          "{ int Dem = 0;",
+          "for (int i = 0; i < n; i++)",
+          "{ if (kiemtrasnt(a[i]))",
+          "{ Dem = Dem + a[i];",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int timvitricuamax(int a[], int n)",
+          "int m = 0;",
+          "for(int i = 0; i < n; i++)",
+          "{ if(a[i] < a[i+1]",
+          "    { m = i+1;"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << tonggiatricuatatcasonguyento(a,n) << endl;",
+          "cout << timvitricuamax(a,n) << endl;",
+          "return 0;"
+        ]
+      }
+    }
+  },
+  "HS_19": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool KtraSNT(int x) {",
+          "    if (x < 2) return false;",
+          "    for (int i = 2; i < x / 2; i++) {",
+          "        if (x % i == 0) return false;",
+          "    }",
+          "    return true;",
+          "}",
+          "int tong(int a[], int n) {",
+          "    int s=0;"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int GTLN(int a[], int n) {",
+          "int max_val = a[0];",
+          "for(int i = 0; i < n; i++) {",
+          "  if (a[i] > a[0])"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "        cout << \"Tong la: \" << tong(a,n);",
+          "        cout << \"GTLN la: \" << GTLN(a,n);",
+          "    return 0;"
+        ]
+      }
+    }
+  },
+  "HS_21": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool ktraSNT(int n)",
+          "{",
+          "if(n<2){",
+          "return 0;",
+          "}",
+          "for(int i=0;i<n;i++){",
+          "return 1;",
+          "return 0;",
+          "}",
+          "int Tong(int a[],int &n)",
+          "{",
+          "Sum=0",
+          "while(ktraSNT){"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int TimViTri(int a[], int n) {",
+          "    for (int i = 0; i < n; i++) {",
+          "        if (a[i] =< a[i+1]) {",
+          "            return i;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout << \"Tổng giá trị các số nguyên tố:\" << Tong(a,n) << endl;",
+          "    cout << \"Vị trí phần tử có giá trị lớn nhất:\" << TimViTri;",
+          "    return 0;"
+        ]
+      }
+    }
+  },
+  "HS_24": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool isPrime(int n) {",
+          "    if (n < 2)",
+          "        return 0;",
+          "    for (int i = 0; i <= n; i++)",
+          "        if (n % i == 0)",
+          "            return 0;",
+          "    return 1;",
+          "}",
+          "int TongPrime(int a[], int n) {",
+          "{",
+          "    int s = 0;",
+          "    for (int i = 0; i < n; i++)",
+          "        if (isPrime(a[i]))",
+          "            s += a[i];",
+          "    return s;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int Vitri(int a[], int n) {",
+          "    int Max = a[0]",
+          "    for(int i = 0; i < n-1; i++)",
+          "        if(a[i] < a[i+1])",
+          "            Max=a[i+1];",
+          "    for (int i=0; i<n; i++)",
+          "        if (a[i] == Max)",
+          "            return i;"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout << TongPrime(a,n) << endl;",
+          "    cout << Vitri(a,n);",
+          "    return 0;"
+        ]
+      }
+    }
+  },
+  "HS_26": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool isprime(int x) {",
+          "if(x == 1 || x == 2)",
+          "return false;",
+          "for(int i = 2; i < x; i++) {",
+          "if(x % i == 0)",
+          "return false;",
+          "}",
+          "return true;",
+          "}",
+          "longlong Tong(int a[], int n) {",
+          "int S = 0;",
+          "for (int i=0; i<n; i++) {",
+          "if (isprime(a[i])",
+          "S += a[i];",
+          "}",
+          "return S;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int ViTri(int a[], int n) {",
+          "    int max1 = a[0], cnt=0;",
+          "    for (int i = 1; i < n; i++) {",
+          "        if (a[i] >= max1) {",
+          "        }",
+          "    return cnt;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout << Tong(a,n);",
+          "    cout << ViTri(a,n);",
+          "    return 0;"
+        ]
+      }
+    }
+  },
+  "HS_28": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "void TinhTong(int a[], int &n)"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": []
+      }
+    }
+  },
+  "HS_29": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool sngt(int n)",
+          "{ if (n < 2)",
+          "return 0;",
+          "for (int i = 0; i*i <= n; i++)",
+          "if (n % i == 0)",
+          "return 0;",
+          "return 1;",
+          "}",
+          "int tong (int a[], int n)",
+          "{ int sum = 0;",
+          "for (int i = 0; i < n; i++)",
+          "if sngt(a[i])",
+          "sum = sum + a[i];"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "{ int Max = A[0];",
+          "for (int i = 1; i < n; i++)",
+          "if (A[i] > Max)",
+          "for (int i=0; i<n; i++",
+          "if (a[i]=Max)",
+          "return i;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "int k = tong(a,n);",
+          "int v = CoViTri(a,n);",
+          "cout << \"tong so nguyen to trong mang la:\" << k <<",
+          "cout << \"vi tri cua phan tu co gia tri lon nhat dau tien\" << v;"
+        ]
+      }
+    }
+  },
+  "HS_30": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool SNT(int a)",
+          "{   if(a<2)",
+          "        return 1;",
+          "    for(int i=2;i*i<n;i++)",
+          "        if(n%i==0)",
+          "            return 0;",
+          "    return 1;",
+          "}",
+          "int Tong(int a[], int n)",
+          "    int dem=0;",
+          "{    for(int i=0;i<n;i++)",
+          "        if(SNT(a[i]))",
+          "            dem = dem + a[i];"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int m = a[0];",
+          "for(int i=0; i<n; i++)",
+          "if(m < a[i])",
+          "m = a[i];",
+          "for(int i=0; i<n; i++)"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout<<\"Tong cac so nguyen to cua mang\"<<Tong(a,n);",
+          "    cout<<\"Vi tri dau cua phan tu gia tri lon nhat la\"<<",
+          "    LonNhat(a,n);",
+          "    return 0;"
+        ]
+      }
+    }
+  },
+  "HS_32": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int main(){",
+          "int Sum = 0;",
+          "for (int i = 0; i < n; i++)",
+          "if (a[i] % 4 == 0 && a[i] % 100 == 0)",
+          "Sum += a[i];",
+          "return Sum;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "int sum = 0;",
+          "cout << \"Tong gia tri cac so nguyen to = \" << sum;"
+        ]
+      }
+    }
+  },
+  "HS_34": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool Songto(int n)",
+          "{",
+          "    if(n < 2) return false;",
+          "    for(int i = 2; i <= n/2; i++)",
+          "    {",
+          "        if(n % i == 0) return false;",
+          "    }",
+          "    return true;",
+          "}",
+          "int Tinh(int a[], int n) {",
+          "    int s = 0;",
+          "    for(int i = 0; i < n; i++) {"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int Tim(int a[], int n) {",
+          "int max = a[0];",
+          "for (int i = 1; i <= n; i++)",
+          "if (max < a[i]) max = a[i];"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << Tinh(a,n);",
+          "cout << Tim(a,n);",
+          "return 0;"
+        ]
+      }
+    }
+  },
+  "HS_36": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int tongsnt(int a[], int n) {",
+          "    int S = 0;",
+          "    for (int i = 0; i < n; i++) ",
+          "        for (int j = 0; j * j <= a[i]; j++) {",
+          "            if (a[i] % j == 0) {",
+          "                break;",
+          "            if (j * j == a[i])",
+          "                S++; }"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int solonnhat(int a[], int n) {",
+          "for (int i = 0; i < n; i++)",
+          "s = a[i];",
+          "if (a[i] < a[i+1])"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << tongstn(a,n);",
+          "cout << solonnhat(a,n);",
+          "return 0;"
+        ]
+      }
+    }
+  },
+  "HS_39": {
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "int tong(int b[], int n) {",
+          "    for (int i = 0; i < n; i++) {",
+          "    {",
+          "        for (int j = 2; j * j <= b[i]; j++)",
+          "            if (b[i] % j == 0) ",
+          "            {",
+          "                Nto = false;",
+          "                break;",
+          "            }",
+          "        if (Nto == true) S+ = b[i];",
+          "    }",
+          "    return S;"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int LN = c[0]; int t ",
+          "for (int i = 0; i < n; i++) {",
+          "  if (c[i] > LN) {",
+          "    t = i;",
+          "    LN = c[i];}"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "cout << \"Tong gia tri cua tat ca cac phan tu la so nguyen to << \" \" << tong(a,n);",
+          "cout << \"Vi tri cua phan tu co GTLN dau tien trong mang la: \" << GTLN(a,n);"
+        ]
+      }
+    }
+  }
+}

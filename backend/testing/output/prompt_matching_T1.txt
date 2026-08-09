@@ -1,0 +1,88 @@
+========== call_llm_cot - THINK prompt ==========
+
+Bạn là giáo viên chấm thi môn IT001 - Nhập môn lập trình đang phân tích bài làm.
+Hãy SUY LUẬN CHI TIẾT từng bước trước khi đưa ra điểm số.
+
+=== TIÊU CHÍ CHẤM ===
+Ghi đúng kết quả chương trình. Đáp án đúng là 3529. Nếu đúng 2 hoặc 3 con số thì được 0.25 điểm.
+
+=== ĐÁP ÁN KỲ VỌNG ===
+3529
+
+=== BÀI LÀM HỌC SINH ===
+3520
+
+=== ĐIỂM TỐI ĐA ===
+0.5
+
+══ GỢI Ý TỪ HEURISTIC GRADER ══
+Score gợi ý : 0.25/0.5
+Status gợi ý: partially_correct
+Lý do       : 3/4 tokens correct (partial credit applied). And wrong tokens are:
+Token 3: expected='9', student='None'.
+Chi tiet tung token:
+  [0] expected='3' student='3' > [OK]
+  [1] expected='5' student='5' > [OK]
+  [2] expected='2' student='2' > [OK]
+  [3] expected='9' student='None' > [FAIL]
+
+══ ĐỀ BÀI GỐC ══
+Câu 1: (0.5 điểm) Cho một chương trình như sau:
+#include <iostream>
+using namespace std;
+int main(){
+    int a = 2, b = 4, d;
+    float c = float((++b) / (a++));
+    d = 2 * c + b;
+    cout << a << b << c << d;
+    return 0;
+}
+══ QUY TẮC ĐIỂM BÁN PHẦN ══
+{"type": "count_correct_tokens", "partial_score": 0.25, "condition": "correct_token_count in [2, 3]"}
+
+══ HƯỚNG DẪN CHAIN-OF-THOUGHT ══
+1. Trước hết, suy luận độc lập mà KHÔNG bị ảnh hưởng bởi gợi ý
+2. Phân tích chi tiết từng tiêu chí, so sánh bài làm với tiêu chuẩn
+3. PHẢI tuân thủ đúng "GHI CHÚ CỦA GIÁO VIÊN" và "QUY TẮC ĐIỂM BÁN PHẦN" nếu có — không tự đặt thêm yêu cầu ngoài tiêu chí đã cho.
+4. Sau khi suy luận xong, so sánh kết luận của bạn với gợi ý của Heuristic:
+   - Nếu bạn đồng ý → hãy giải thích tại sao
+   - Nếu bạn không đồng ý → giải thích tại sao gợi ý có thể không chính xác
+5. Đưa ra quyết định cuối cùng dựa trên suy luận của bạn
+
+Hãy suy luận tuần tự theo các bước sau (viết rõ từng bước):
+1. Đọc và hiểu tiêu chí: tiêu chí này yêu cầu gì?
+2. Phân tích đáp án kỳ vọng (nếu có): cần khớp điều gì?
+3. Phân tích bài làm học sinh: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?
+4. Kiểm tra tương đương: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.
+5. So sánh: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?
+6. Kết luận sơ bộ: điểm dự kiến và lý do.
+
+========== call_llm_cot - DECIDE prompt ==========
+
+Dựa trên phân tích sau đây:
+
+--- BẮT ĐẦU PHÂN TÍCH ---
+Đáp án kỳ vọng là chuỗi số "3529" (4 token: 3, 5, 2, 9). Bài làm học sinh ghi "3520".
+So khớp từng token theo thứ tự: token[0]='3' khớp '3' (OK), token[1]='5' khớp '5' (OK),
+token[2]='2' khớp '2' (OK), token[3]='9' không khớp '0' (FAIL). Vậy học sinh đúng 3/4 token.
+Đây là dạng ghi kết quả chương trình — output là 1 giá trị cố định duy nhất, không có khái
+niệm "cách viết tương đương" cho số bị sai, nên không thể coi 3520 tương đương 3529.
+Đối chiếu QUY TẮC ĐIỂM BÁN PHẦN: correct_token_count=3, nằm trong [2, 3] → áp dụng
+partial_score=0.25. Gợi ý của Heuristic (0.25đ, partially_correct) khớp với suy luận độc
+lập ở trên, đồng ý với gợi ý.
+Kết luận sơ bộ: 0.25/0.5 điểm, trạng thái partially_correct, do sai đúng 1 token (token
+cuối, kỳ vọng '9' nhưng học sinh không ghi số này).
+--- KẾT THÚC PHÂN TÍCH ---
+
+Hãy đưa ra quyết định chấm điểm chính thức.
+Điểm tối đa: 0.5
+
+Trả về JSON (và CHỈ JSON):
+{
+  "score": <số thực từ 0 đến 0.5>,
+  "status": "<correct|partially_correct|wrong>",
+  "reasoning": "<tóm tắt lý do ngắn gọn 1-2 câu>",
+  "confidence": <số thực từ 0.0 đến 1.0>,
+  "feedback": "<nếu sai hoặc thiếu điểm: liệt kê cụ thể điểm nào sai/thiếu; để chuỗi rỗng nếu đúng hoàn toàn>",
+  "suggestion": "<nếu sai hoặc thiếu điểm: hướng dẫn cách sửa cụ thể; để chuỗi rỗng nếu đúng hoàn toàn>"
+}

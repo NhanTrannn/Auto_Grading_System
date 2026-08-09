@@ -1,0 +1,113 @@
+{
+  "sample_id": "cau_{N}_{variant}__{HS}_{index}",   // e.g. "cau_1_001__HS_2"
+                                        // Tự sinh bởi convert_results_to_samples()
+                                        // khi convert từ input Results format —
+                                        // KHÔNG copy trực tiếp từ barem's
+                                        // sample_id (barem thường không có
+                                        // "__HS_N" suffix, xem structure_parem.txt
+                                        // mục 6).
+  "student_index": 2,                                // số thứ tự trong danh sách thi
+                                        // (ground truth — KHÁC với số sinh viên
+                                        // TỰ GHI trong bài, đọc qua
+                                        // condition_source.type="self_reported").
+  "ma_de": "1",
+  "question_type": null,   // Nên để null — apply_question_routing() sẽ tự
+                            // gán từ barem (parem) khi chấm. Giá trị này ở
+                            // input CHỈ là fallback cấp sample (dùng khi
+                            // parem không có), KHÔNG quyết định cách chấm
+                            // từng phần a/b/c — mỗi criterion trong parem
+                            // (sample_parem.json) mới là nơi khai báo
+                            // question_type THẬT cho từng phần, xem
+                            // structure/structure_parem.txt mục 5 và 7.
+  "image_path": "...",
+  "question": {
+    "text": "...",
+    "parts": [
+      {
+        "part_label": "main" | "a" | "b" | "c" | ...,
+        "text": "...",
+        "tables": [],
+        "answer_slots": [{ "slot_id": "..." }]
+      }
+    ]
+  },
+
+  "question_number": numbers,  // số thứ tự câu hỏi trong đề thi
+  "max_score": points,  // số điểm tối đa của câu hỏi
+  "student_answer": {
+    "full_text": "...",
+    "lines": [
+      {
+        "line_id": "L1",
+        "part_label": "main",
+        "text": "...",           // Nguyên văn OCR — CHỈ .rstrip() (bỏ khoảng
+                                  // trắng/CR thừa cuối dòng do OCR), KHÔNG
+                                  // .strip() đầu dòng — thụt đầu dòng gốc của
+                                  // sinh viên (indentation) được giữ nguyên.
+                                  // Dòng trống cũng được giữ lại (không bị lọc
+                                  // bỏ) — cấu trúc code nhiều dòng của sinh
+                                  // viên (khoảng trắng + dòng trống) phản ánh
+                                  // đúng bài làm gốc, không bị "dồn phẳng" như
+                                  // bản cũ trước khi fix.
+        "bbox": [0, 0, 0, 0],
+        "confidence": 1.0
+      }
+    ],
+    "tokens": [],   // LUÔN LUÔN RỖNG — dead field, KHÔNG có heuristic/LLM nào
+                     // đọc field này. convert_results_to_samples() từng có 1
+                     // vòng lặp gọi tokenize_answer() để build list này, nhưng
+                     // tokenize_answer() không tồn tại ở đâu trong pipeline.py
+                     // (NameError crash trên MỌI input thật có câu trả lời
+                     // không rỗng) — vòng lặp đã bị xóa hẳn, "tokens" giờ luôn
+                     // là [] cố định. KHÔNG code lại field này trừ khi có một
+                     // grader thật sự cần đọc nó.
+
+    "tables": [], // chỉ dùng cho câu có bảng vẽ. Mỗi phần tử:
+                   // {"table_id": "...", "cells": [{"cell_id": "R2C1",
+                   //   "col_id": "C1", "text": "...", "is_blank": bool}, ...]}
+                   // "text" ở đây cũng KHÔNG bị .strip() — giữ nguyên nội dung
+                   // OCR thô của từng ô.
+    "visual_answers": []   // chỉ dùng cho câu có hình/bảng vẽ.
+                            // {"image_path": "...", ...} — grade_visual_criterion()
+                            // đọc trực tiếp image_path để gọi Vision LLM.
+  }
+}
+
+────────────────────────────────────────────────────────────────────────────────
+GHI CHÚ — evidence["student_answer"] (KHÔNG phải trong sample gốc, mà là
+kết quả trung gian pipeline tự build khi chấm)
+────────────────────────────────────────────────────────────────────────────────
+
+get_student_evidence_for_slot(sample, part_label, slot_ids) — hàm mọi heuristic
+grader gọi để lấy bài làm sinh viên — trả về 1 dict evidence, KHÔNG phải
+sample["student_answer"] nguyên bản. Field quan trọng nhất:
+
+  evidence["student_answer"]   // str — nguyên văn bài làm (ghép nhiều dòng
+                                // nếu slot có nhiều lines, nối bằng "\n").
+                                // Tên field là "student_answer", KHÔNG phải
+                                // "text" (đổi tên để tránh trùng nghĩa với các
+                                // key "text" khác trong codebase — line/token/
+                                // cell object ở sample["student_answer"]["lines"/
+                                // "tables"] là schema hoàn toàn khác, vẫn giữ
+                                // key "text" riêng của chúng).
+                                // KHÔNG bị .strip() ở bước ghép cuối cùng —
+                                // giữ nguyên khoảng trắng đầu/cuối của cả khối.
+  evidence["tokens"]           // Luôn [] — xem ghi chú "tokens" ở trên.
+  evidence["tables"]           // List các bảng liên quan tới slot này.
+  evidence["visual_answers"]   // List các visual_answer liên quan.
+  evidence["part_label"]       // part_label thực sự dùng để lọc.
+  evidence["type"]             // "slot_matched" | "part_matched" | "blank" |
+                                // "full_text" — nguồn evidence đến từ đâu (lọc
+                                // theo slot_ids chính xác, fallback part_label,
+                                // bài trống, hay fallback cuối cùng dump toàn
+                                // bộ raw text — nhánh cuối chỉ xảy ra khi cả
+                                // slot_ids lẫn part_label đều không khớp gì).
+  evidence["found"]            // bool — có tìm thấy evidence nào không.
+  evidence["is_blank"]         // bool — chỉ có khi type="blank".
+
+QUY TẮC "KHÔNG NORMALIZE" — áp dụng xuyên suốt từ OCR đến khi LLM đọc:
+Không có bước lowercase, không gộp khoảng trắng giữa các từ, không strip đầu
+dòng — MỌI so sánh grading phải phản ánh ĐÚNG những gì sinh viên viết, kể cả
+thụt đầu dòng và dòng trống trong code nhiều dòng. Điểm duy nhất còn ".strip()"
+là trim khoảng trắng/CR THỪA Ở CUỐI do lỗi OCR (rstrip), không phải normalize
+nội dung.

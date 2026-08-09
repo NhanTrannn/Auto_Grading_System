@@ -1,0 +1,51 @@
+========== _call_vision_llm_for_criterion - THINK prompt (kem anh base64, chi in phan text) ==========
+
+Bạn là giáo viên chấm thi môn IT001 - Nhập môn lập trình. NGUYÊN TẮC CHẤM: Chấp nhận mọi cách làm tương đương — code/công thức khác nhau về hình thức nhưng đúng về kết quả/logic đều được điểm đầy đủ. Không yêu cầu giống hệt đáp án mẫu.
+
+=== TIÊU CHÍ ===
+Vẽ lưu đồ / mô tả thuật toán / mã giả giải quyết bài toán — gồm: trình bày ý tưởng/hệ phương trình X+Y=N, 2X+4Y=M (0.1đ); xác định đúng điều kiện "giả định sai" (0.2đ); tính đúng số người X = 2*N - M/2 (0.1đ); tính đúng số ngựa Y = M/2 - N (0.1đ) (0.5đ).
+
+=== ĐỀ BÀI GỐC ===
+Câu 15: (1 điểm) Trong chương trình Đường lên đỉnh Olympia năm 2025 có câu hỏi: "Một đoàn vừa có người vừa có ngựa chạy ngang qua, người ta thấy có tổng cộng 6 cái đầu và 18 cái chân. Hỏi đoàn đó có bao nhiêu người và bao nhiêu ngựa?"
+Năm nay đã là 2026 và bạn đã là sinh viên Đại học Công nghệ Thông tin, bạn hãy dùng kiến thức lập trình để giải quyết phiên bản nâng cao của câu hỏi đó như sau: "Một đoàn vừa có người vừa có ngựa chạy ngang qua, người ta thấy có tổng cộng N cái đầu và M cái chân. Giả định là trong đoàn không có người nào hay con ngựa nào bị thiếu chân hay thiếu đầu thì đoàn có bao nhiêu người và bao nhiêu ngựa? Nếu giả định trên không thể thoả mãn hãy đưa ra kết luận: 'giả định sai'."
+
+[Yêu cầu riêng phần c] Vẽ lưu đồ thuật toán hoặc mô tả thuật toán hoặc mã giả giải quyết bài toán trên. (0.5 điểm)
+
+=== ĐÁP ÁN / CÔNG THỨC KỲ VỌNG ===
+- equations: X + Y = N, 2X + 4Y = M
+- variables: {'X': 'number_of_people', 'Y': 'number_of_horses', 'N': 'number_of_heads', 'M': 'number_of_legs'}
+- invalid_conditions_TH1: M is odd, M/2 < N, 2*N < M/2
+- invalid_conditions_TH2: M is odd, M/2 <= N, 2*N <= M/2
+- X: 2*N - M/2
+- Y: M/2 - N
+- Lưu ý: Dùng TH1 hay TH2 phải nhất quán với output đã chọn ở T15A2.
+
+=== GHI CHÚ GIÁO VIÊN (BẮT BUỘC TUÂN THỦ) ===
+Cho phép cách giải khác ngoài hệ phương trình, quan trọng là điều kiện "giả định sai" phủ đúng tất cả trường hợp không hợp lệ đã xác định ở câu a. Điều kiện phải nhất quán với lựa chọn TH1/TH2 ở câu a (T15A2).
+TH1 (không âm): sai khi M lẻ, hoặc M/2 < N, hoặc 2*N < M/2. TH2 (dương): đổi dấu < thành <=. Phải nhất quán với T15A2.
+Chấp nhận cách tính tương đương cho X: nếu sinh viên tính Y trước rồi X = N - Y cũng được xem là đúng (vì X = N - Y = N - (M/2 - N) = 2N - M/2). Không yêu cầu viết đúng dạng 2*N - M/2, chỉ cần công thức tương đương.
+Cho phép ký hiệu biến khác cho Y nhưng công thức phải đúng.
+
+=== ĐIỂM TỐI ĐA ===
+0.5
+
+Hãy xem ảnh bài làm và suy luận chi tiết theo các bước:
+1. Đọc và nhận dạng những gì sinh viên đã viết/vẽ trong ảnh.
+2. So sánh với tiêu chí và đáp án kỳ vọng — kiểm tra tương đương toán học/logic nếu cần.
+3. Đánh giá mức độ đúng: hoàn toàn / một phần / sai.
+4. Kết luận sơ bộ: điểm dự kiến và lý do.
+
+========== DECIDE prompt ==========
+
+Dựa trên phân tích sau:
+
+Sinh viên vẽ lưu đồ thể hiện: (1) hệ phương trình X+Y=N, 2X+4Y=M — khớp đáp án kỳ vọng.
+(2) Điều kiện kiểm tra "giả định sai" — cần đối chiếu đúng TH1 hay TH2 tùy lựa chọn không âm/dương
+ở câu a (T15A2), và phải phủ đủ các trường hợp: M lẻ, M/2 < N (hoặc <=), 2*N < M/2 (hoặc <=).
+(3) Công thức tính X = 2*N - M/2 (hoặc cách tính tương đương qua Y trước) — chấp nhận theo ghi chú
+giáo viên. (4) Công thức tính Y = M/2 - N. Tất cả 4 phần đều xuất hiện rõ ràng và nhất quán với
+nhau trong lưu đồ.
+
+Điểm tối đa: 0.5
+Trả về JSON (chỉ JSON):
+{"score": <0 đến 0.5>, "status": "correct"|"partially_correct"|"wrong", "reasoning": "<tóm tắt 1-2 câu>", "confidence": <0.0-1.0>}

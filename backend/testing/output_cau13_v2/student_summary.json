@@ -1,0 +1,190 @@
+[
+  {
+    "hs": "HS_2",
+    "score": 0.25,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b",
+      "13c"
+    ]
+  },
+  {
+    "hs": "HS_3",
+    "score": 0.0,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b",
+      "13c"
+    ]
+  },
+  {
+    "hs": "HS_7",
+    "score": 1.5,
+    "max_score": 2.0,
+    "wrong": [
+      "13b"
+    ]
+  },
+  {
+    "hs": "HS_9",
+    "score": 1.0,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b"
+    ]
+  },
+  {
+    "hs": "HS_10",
+    "score": 0.25,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b",
+      "13c"
+    ]
+  },
+  {
+    "hs": "HS_12",
+    "score": 0.0,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b",
+      "13c"
+    ]
+  },
+  {
+    "hs": "HS_15",
+    "score": 1.5,
+    "max_score": 2.0,
+    "wrong": [
+      "13b"
+    ]
+  },
+  {
+    "hs": "HS_17",
+    "score": 0.9,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b"
+    ]
+  },
+  {
+    "hs": "HS_18",
+    "score": 0.5,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b"
+    ]
+  },
+  {
+    "hs": "HS_19",
+    "score": 1.0,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b"
+    ]
+  },
+  {
+    "hs": "HS_21",
+    "score": 0.25,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b",
+      "13c"
+    ]
+  },
+  {
+    "hs": "HS_24",
+    "score": 0.5,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b"
+    ]
+  },
+  {
+    "hs": "HS_26",
+    "score": 0.5,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b"
+    ]
+  },
+  {
+    "hs": "HS_28",
+    "score": 0.0,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b",
+      "13c"
+    ]
+  },
+  {
+    "hs": "HS_29",
+    "score": 0.0,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b",
+      "13c"
+    ]
+  },
+  {
+    "hs": "HS_30",
+    "score": 0.25,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b",
+      "13c"
+    ]
+  },
+  {
+    "hs": "HS_32",
+    "score": 0.0,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b",
+      "13c"
+    ]
+  },
+  {
+    "hs": "HS_34",
+    "score": 1.0,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b"
+    ]
+  },
+  {
+    "hs": "HS_36",
+    "score": 0.5,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b"
+    ]
+  },
+  {
+    "hs": "HS_39",
+    "score": 1.05,
+    "max_score": 2.0,
+    "wrong": [
+      "13a",
+      "13b",
+      "13c"
+    ]
+  }
+]

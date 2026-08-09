@@ -1,0 +1,201 @@
+[
+  {
+    "sample_id": "cau_15_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "*Biến: int dau, chan, nguoi, ngua;\nInput: dau = 6\nchan = 18\nOutput: nguoi = 3\nngua = 3",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "*Biến: int dau, chan, nguoi, ngua;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Input: dau = 6",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "chan = 18",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Output: nguoi = 3",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "ngua = 3",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L7",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "dau = 6 chan = 18",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "nguoi = 3 ngua = 3",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "dau = 12 chan = 30",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "nguoi = 3 ngua = 9",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "dau = 8 chan = 40",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  }
+]

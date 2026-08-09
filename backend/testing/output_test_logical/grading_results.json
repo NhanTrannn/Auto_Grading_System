@@ -1,0 +1,1009 @@
+[
+  {
+    "sample_id": "cau_13_001__HS_1",
+    "ma_de": "1",
+    "question_number": 13,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T13A)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 2.0,
+    "max_score": 2.0,
+    "status": "correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 331480,
+    "token_usage": {
+      "prompt_tokens": 26536,
+      "completion_tokens": 15109,
+      "total_tokens": 41645
+    },
+    "llm_feedbacks": [],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T13A",
+        "part_label": "a",
+        "criterion_content": "Hàm kiểm tra số nguyên tố và hàm tính tổng giá trị các phần tử là số nguyên tố trong mảng (1.0 điểm).",
+        "score": 1.0,
+        "max_score": 1.0,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh đã viết đúng hai hàm theo yêu cầu: KiemtraSNT và TongSNT. Mặc dù hàm kiểm tra số nguyên tố không tối ưu (dùng n/2 thay vì √n), nhưng vẫn đúng về mặt logic và kết quả. Cả hai hàm đều hoạt động chính xác, cú pháp đúng, tuân thủ yêu cầu đề bài.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm:  \n> *Hàm kiểm tra số nguyên tố và hàm tính tổng giá trị các phần tử là số nguyên tố trong mảng (1.0 điểm).*\n\n→ Yêu cầu rõ ràng: Học sinh phải viết **2 hàm riêng biệt**:\n- Hàm `KiemtraSNT(int n)` để kiểm tra xem một số có phải là số nguyên tố hay không.\n- Hàm `TongSNT(int a[], int n)` để tính tổng các phần tử trong marray mà giá trị của chúng là số nguyên tố.\n\n→ Không yêu cầu giống hệt đáp án mẫu, chỉ cần đúng logic và kết quả.\n\n→ Điểm tối đa: 1.0 điểm cho cả hai hàm (có thể chia nhỏ nếu cần, nhưng đề không yêu cầu chi tiết phân điểm).\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu tham khảo:\n\n```cpp\nint KiemtraSNT(int n){\n    if(n<2) return 0;\n    for(int i=2; i*i < n; i++)\n        if( n%i==0) return 0;\n    return 1;\n}\n\nint TongSNT(int a[], int n){\n    int S = 0;\n    for(int i=0; i < n; i++)\n        if(KiemtraSNT(a[i])) S = S + a[i];\n    return S;\n}\n```\n\n→ Logic:\n- Hàm `KiemtraSNT`: Kiểm tra số nguyên tố bằng cách duyệt từ 2 đến √n → tối ưu hơn so với duyệt đến n/2.\n- Hàm `TongSNT`: Duyệt mảng, gọi hàm `KiemtraSNT` để kiểm tra từng phần tử, nếu là SNT thì cộng vào tổng.\n\n→ Đây là **đáp án tham khảo**, không bắt buộc học sinh phải viết y hệt.\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm:\n\n```cpp\nint KiemtraSNT(int n){ \n    if(n<2) return 0; \n    for(int i=2;i<=n/2;i++) \n        if(n%i==0) return 0; \n    return 1; \n}\n\nint TongSNT(int a[], int n){ \n    int S=0; \n    for(int i=0;i<n;i++) \n        if(KiemtraSNT(a[i])) S+=a[i]; \n    return S; \n}\n```\n\n→ **Phân tích hàm KiemtraSNT:**\n- Kiểm tra điều kiện cơ bản: `n<2` → trả về 0 (đúng).\n- Duyệt từ `i=2` đến `n/2` → đây là cách kiểm tra truyền thống, không tối ưu nhất (vì không cần đến n/2, chỉ cần đến √n), nhưng **vẫn đúng về mặt logic**.\n- Nếu tìm thấy ước → trả về 0.\n- Nếu không tìm thấy ước → trả về 1.\n\n→ **Phân tích hàm TongSNT:**\n- Khởi tạo biến tổng `S=0`.\n- Duyệt toàn bộ mảng từ 0 đến n-1.\n- Gọi hàm `KiemtraSNT(a[i])` để kiểm tra mỗi phần tử.\n- Nếu là SNT → cộng giá trị đó vào S.\n- Trả về tổng S.\n\n→ Cả hai hàm đều **được định nghĩa đúng tên**, **cú pháp đúng**, **logic chính xác**, **kết quả đúng**.\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- So sánh với đáp án mẫu:\n  - Hàm `KiemtraSNT` của học sinh dùng `i <= n/2`, trong khi đáp án mẫu dùng `i*i < n`.  \n    → **Không ảnh hưởng đến kết quả**: vì nếu n là số nguyên tố, thì không có ước nào từ 2 đến n/2 (hoặc √n) → cả hai cách đều đúng.  \n    → Tuy nhiên, cách của học sinh kém hiệu quả hơn (đặc biệt với số lớn), nhưng **về mặt chức năng và kết quả — hoàn toàn tương đương**.\n\n  - Hàm `TongSNT` hoàn toàn giống về cấu trúc và logic với đáp án mẫu.\n\n→ Kết luận: **Bài làm học sinh hoàn toàn tương đương với đáp án kỳ vọng về mặt chức năng và kết quả.**\n\n---\n\n### **BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Bài làm học sinh | Khớp? |\n|----------|------------------|-------|\n| Có hàm `KiemtraSNT` đúng tên, đúng chức năng | ✅ | ✔️ |\n| Có hàm `TongSNT` đúng tên, đúng chức năng | ✅ | ✔️ |\n| Logic kiểm tra SNT đúng (dù không tối ưu) | ✅ | ✔️ |\n| Logic tính tổng đúng | ✅ | ✔️ |\n| Cú pháp C++ đúng | ✅ | ✔️ |\n\n→ **100% khớp theo tiêu chí chấm**.\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n- Học sinh đã thực hiện đúng yêu cầu: viết 2 hàm riêng biệt, đúng tên, đúng chức năng.\n- Mặc dù cách kiểm tra SNT không tối ưu như đáp án mẫu (dùng n/2 thay vì √n), nhưng **về mặt logic và kết quả — hoàn toàn đúng**.\n- Không có lỗi cú pháp, không có sai sót logic.\n- Tuân thủ nguyên tắc: “Chấp nhận mọi cách làm tương đương”.\n\n→ **Điểm dự kiến: 1.0 / 1.0**\n\n---\n\n### **SO SÁNH VỚI GỢI Ý HEURISTIC GRADER**\n\nGợi ý Heuristic Grader:\n> Found: KiemtraSNT, TongSNT → OK\n\n→ Gợi ý này chỉ kiểm tra sự hiện diện của tên hàm, không đánh giá nội dung.\n\n→ Nhưng **bài làm học sinh không chỉ có tên hàm đúng, mà còn logic đúng, chức năng đầy đủ**.\n\n→ Do đó, **gợi ý Heuristic là đúng hướng**, tuy nhiên nó **không đủ sâu** để đánh giá toàn bộ bài làm. Nhưng trong trường hợp này, vì bài làm hoàn chỉnh và đúng, nên gợi ý cũng dẫn đến kết luận đúng.\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG**\n\n> **Điểm: 1.0 / 1.0**\n\n**Lý do chi tiết:**\n- Học sinh đã viết đúng hai hàm theo yêu cầu: `KiemtraSNT` và `TongSNT`.\n- Hàm kiểm tra SNT mặc dù không tối ưu (dùng n/2 thay vì √n) nhưng **vẫn đúng về mặt toán học và logic**.\n- Hàm tính tổng sử dụng đúng hàm kiểm tra, lặp đúng vòng, cộng đúng giá trị.\n- Không có lỗi cú pháp, không có sai sót logic.\n- Tuân thủ nguyên tắc: chấp nhận mọi cách làm tương đương.\n\n→ **Bài làm đạt yêu cầu đầy đủ, được điểm tối đa.**\n\n---",
+        "feedback": "",
+        "suggestion": "",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: KiemtraSNT, TongSNT.",
+        "heuristic_weight": 0.0,
+        "llm_score": 1.0,
+        "llm_status": "correct",
+        "token_usage": {
+          "prompt_tokens": 9379,
+          "completion_tokens": 5595,
+          "total_tokens": 14974
+        },
+        "evidence": {
+          "student_answer": "int KiemtraSNT(int n){ if(n<2) return 0; for(int i=2;i<=n/2;i++) if(n%i==0) return 0; return 1; }\nint TongSNT(int a[], int n){ int S=0; for(int i=0;i<n;i++) if(KiemtraSNT(a[i])) S+=a[i]; return S; }",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "a",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "KiemtraSNT"
+          },
+          {
+            "value": "TongSNT"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 81147
+      },
+      {
+        "criterion_id": "T13B",
+        "part_label": "b",
+        "criterion_content": "Hàm tìm vị trí phần tử có giá trị lớn nhất ĐẦU TIÊN trong mảng (0.5đ).",
+        "score": 0.5,
+        "max_score": 0.5,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Bài làm hoàn toàn đúng về tên hàm, tham số, logic và đặc biệt tuân thủ yêu cầu 'tìm phần tử lớn nhất đầu tiên' bằng việc sử dụng điều kiện a[i] > a[m]. Không có lỗi cú pháp hay logic.",
+        "cot_reasoning": "**BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí yêu cầu:  \n> **Hàm tìm vị trí phần tử có giá trị lớn nhất ĐẦU TIÊN trong mảng (0.5đ).**\n\n→ Cần viết một hàm có tên là `TimMax` (theo gợi ý từ đề bài và đáp án mẫu), nhận tham số là mảng `a[]` và số phần tử `n`, trả về **vị trí (index)** của phần tử có giá trị **lớn nhất đầu tiên**.\n\nChú ý quan trọng từ **GHI CHÚ CỦA GIÁO VIÊN**:  \n> Vì yêu cầu tìm phần tử **ĐẦU TIÊN** nên trong lệnh `if` **KHÔNG được dùng `>=`**, chỉ được dùng `>` để đảm bảo khi gặp phần tử bằng nhau, ta chọn phần tử xuất hiện **trước** (do không cập nhật m khi bằng).\n\n---\n\n**BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu (tham khảo):  \n```cpp\nint TimMax(int a[], int n){\n    int m = 0;\n    for(int i=1; i < n; i++)\n        if(a[i]>a[m]) m=i;\n    return m;\n}\n```\n\n→ Logic:\n- Khởi tạo `m = 0` (giả sử phần tử đầu tiên là lớn nhất).\n- Duyệt từ `i=1` đến `n-1`.\n- Nếu `a[i] > a[m]`, thì cập nhật `m = i`.\n- Trả về `m` — vị trí của phần tử lớn nhất **đầu tiên**.\n\n→ Điều kiện `a[i] > a[m]` đảm bảo rằng khi có hai phần tử bằng nhau, phần tử trước sẽ được giữ lại → đúng yêu cầu “đầu tiên”.\n\n---\n\n**BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:  \n```cpp\nint TimMax(int a[], int n){ int m=0; for(int i=1;i<n;i++) if(a[i]>a[m]) m=i; return m; }\n```\n\n→ So sánh với đáp án mẫu:\n\n- **Tên hàm**: `TimMax` → ✓ Đúng.\n- **Tham số**: `int a[], int n` → ✓ Đúng.\n- **Khởi tạo**: `m = 0` → ✓ Đúng.\n- **Vòng lặp**: `for(int i=1; i<n; i++)` → ✓ Đúng.\n- **Điều kiện so sánh**: `if(a[i]>a[m])` → ✓ **Đúng theo yêu cầu giáo viên** (dùng `>` chứ không phải `>=`).\n- **Cập nhật**: `m=i` → ✓ Đúng.\n- **Trả về**: `return m` → ✓ Đúng.\n\n→ Không có lỗi cú pháp, không có lỗi logic, hoàn toàn khớp với đáp án mẫu về cấu trúc và điều kiện.\n\n---\n\n**BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n→ Bài làm học sinh **không khác biệt gì** so với đáp án mẫu về hình thức, logic, và kết quả.\n\n→ Có thể có cách làm khác (ví dụ: duyệt từ sau, hoặc dùng thuật toán khác) nhưng ở đây học sinh đã làm đúng theo cách chuẩn, hiệu quả, và **đúng yêu cầu \"đầu tiên\"** nhờ dùng `>`.\n\n→ Không có trường hợp nào mà bài làm này trả về sai vị trí khi có nhiều phần tử lớn nhất bằng nhau.\n\n→ **Tương đương 100% với kỳ vọng.**\n\n---\n\n**BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Học sinh có? | Ghi chú |\n|----------|--------------|---------|\n| Tên hàm đúng (`TimMax`) | ✓ | Đúng |\n| Tham số đúng | ✓ | Đúng |\n| Khởi tạo `m=0` | ✓ | Đúng |\n| Duyệt từ i=1 đến n-1 | ✓ | Đúng |\n| So sánh đúng: `a[i] > a[m]` | ✓ | **Rất quan trọng – đúng yêu cầu giáo viên** |\n| Cập nhật m khi tìm thấy lớn hơn | ✓ | Đúng |\n| Trả về vị trí | ✓ | Đúng |\n\n→ **Toàn bộ các yếu tố cần thiết đều có, không thiếu, không sai.**\n\n---\n\n**BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n→ Bài làm học sinh **hoàn toàn đúng**, đúng tiêu chí, đúng yêu cầu đặc biệt về “đầu tiên”, đúng logic, đúng cú pháp.\n\n→ Không có sai sót nào.\n\n→ **Điểm dự kiến: 0.5/0.5**\n\n---\n\n**SO SÁNH VỚI GỢI Ý CỦA HEURISTIC GRADER**\n\nHeuristic grader nói:  \n> Found: TimMax → OK  \n> Không có từ khóa nào bị thiếu.\n\n→ Gợi ý này **phù hợp** và **đúng hướng**, vì nó xác nhận tên hàm và không phát hiện lỗi cơ bản.\n\n→ Tuy nhiên, **heuristic không kiểm tra điều kiện `>` vs `>=`** — đây là điểm then chốt mà giáo viên nhấn mạnh.\n\n→ Nhưng trong trường hợp này, **bài làm học sinh dùng `>`**, nên **gợi ý dù không kiểm tra kỹ vẫn đúng**.\n\n→ Do đó, tôi **đồng ý** với gợi ý, nhưng **chỉ đồng ý vì bài làm thực tế đúng**, chứ không phải vì heuristic đủ tốt.\n\n---\n\n✅ **QUYẾT ĐỊNH CUỐI CÙNG:**\n\n> **Điểm: 0.5/0.5**\n\n**Lý do chi tiết:**  \nBài làm học sinh đúng hoàn toàn về tên hàm, tham số, logic, và đặc biệt tuân thủ yêu cầu “tìm phần tử lớn nhất **đầu tiên**” bằng việc sử dụng `a[i] > a[m]` thay vì `>=`. Không có lỗi cú pháp hay logic. Kết quả tương đương với đáp án mẫu và đúng yêu cầu đề bài.\n\n---  \n**Kết luận cuối cùng: 0.5 điểm.**",
+        "feedback": "",
+        "suggestion": "",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:1/1 expected keywords found: TimMax.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.5,
+        "llm_status": "correct",
+        "token_usage": {
+          "prompt_tokens": 7849,
+          "completion_tokens": 4366,
+          "total_tokens": 12215
+        },
+        "evidence": {
+          "student_answer": "int TimMax(int a[], int n){ int m=0; for(int i=1;i<n;i++) if(a[i]>a[m]) m=i; return m; }",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "TimMax"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 81697
+      },
+      {
+        "criterion_id": "T13C",
+        "part_label": "c",
+        "criterion_content": "Hãy hoàn thiện hàm main sau bằng cách viết thêm các dòng lệnh để gọi hàm tính tổng SNT (định nghĩa ở câu a) và hàm tìm max (định nghĩa ở câu b), in cả 2 kết quả ra màn hình (0.5 điểm).",
+        "score": 0.5,
+        "max_score": 0.5,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Bài làm đã gọi đúng hai hàm TongSNT và TimMax với tham số hợp lệ, và in kết quả ra màn hình như yêu cầu. Tên hàm phù hợp với ngữ cảnh và không có lỗi logic hay cú pháp nghiêm trọng.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: TIÊU CHÍ NÀY YÊU CẦU GÌ?**\n\n- Yêu cầu: **Hoàn thiện hàm main** bằng cách **viết thêm các dòng lệnh để gọi hai hàm đã định nghĩa ở câu a và b**, cụ thể:\n  - Hàm tính tổng các số nguyên tố (SNT) trong mảng.\n  - Hàm tìm vị trí phần tử lớn nhất đầu tiên trong mảng.\n- Sau khi gọi, **in cả hai kết quả ra màn hình**.\n- Điểm tối đa: **0.5 điểm**.\n- Mỗi lời gọi hàm đúng (đúng tên + tham số) và có in kết quả → **0.25 điểm**.\n\n→ Tức là:  \n✅ Gọi đúng hàm tính tổng SNT + in kết quả → 0.25đ  \n✅ Gọi đúng hàm tìm max + in kết quả → 0.25đ  \n→ Tổng cộng 0.5đ nếu cả hai đều đúng.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (NẾU CÓ)**\n\n- Không có đáp án cố định — chấp nhận mọi cách làm tương đương.\n- Đáp án mẫu tham khảo (chỉ để đối chiếu logic):  \n  ```cpp\n  cout<<\"Tong so SNT = \"<<TongSNT(a,n); \n  cout<<\"Vi tri phan tu lon nhat dau tien\"<< TimMax(a,n);\n  ```\n- **Chú ý**: Đây chỉ là ví dụ, không yêu cầu sinh viên phải viết y hệt.\n\n→ Do đó, tiêu chí chấm chính là:\n- Có gọi đúng **hàm tính tổng SNT** (tên tùy sinh viên, nhưng phải là hàm họ đã định nghĩa ở câu a).\n- Có gọi đúng **hàm tìm max** (tên tùy sinh viên, nhưng phải là hàm họ đã định nghĩa ở câu b).\n- Có **in kết quả ra màn hình** cho cả hai.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\ncout << \"Tong so SNT = \" << TongSNT(a,n);\ncout << \"Vi tri phan tu lon nhat dau tien\" << TimMax(a,n);\n```\n\n→ Phân tích từng dòng:\n\n**Dòng 1**:  \n`cout << \"Tong so SNT = \" << TongSNT(a,n);`  \n- In chuỗi `\"Tong so SNT = \"` + giá trị trả về của `TongSNT(a,n)`.\n- Giả sử rằng sinh viên đã định nghĩa hàm `TongSNT` ở câu a → đây là **gọi đúng hàm tính tổng SNT** với tham số đúng (`a`, `n`).\n- Có in kết quả ra màn hình → **thỏa mãn điều kiện**.\n\n→ ✅ Đạt 0.25 điểm.\n\n**Dòng 2**:  \n`cout << \"Vi tri phan tu lon nhat dau tien\" << TimMax(a,n);`  \n- In chuỗi `\"Vi tri phan tu lon nhat dau tien\"` + giá trị trả về của `TimMax(a,n)`.\n- Giả sử sinh viên đã định nghĩa hàm `TimMax` ở câu b → đây là **gọi đúng hàm tìm max** với tham số đúng (`a`, `n`).\n- Có in kết quả ra màn hình → **thỏa mãn điều kiện**.\n\n→ ✅ Đạt 0.25 điểm.\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- Bài làm **không giống hệt** đáp án mẫu (vì thiếu dấu `:` sau “dau tien”, và không có khoảng trắng trước `<< TimMax`), nhưng **logic và chức năng hoàn toàn tương đương**.\n- Không có lỗi cú pháp nghiêm trọng (trừ việc thiếu khoảng trắng, nhưng điều này không ảnh hưởng đến chạy chương trình – chỉ ảnh hưởng đến format hiển thị).\n- Theo ghi chú giáo viên: **“Chấp nhận bất kỳ tên hàm... nào mà sinh viên đã định nghĩa”** → vì bài làm dùng `TongSNT` và `TimMax`, và đề bài gốc cũng dùng tên này → rất khả thi rằng sinh viên đã định nghĩa đúng tên này ở câu a và b.\n\n→ **Tương đương về logic và chức năng** → đủ điều kiện được điểm đầy đủ.\n\n---\n\n### **5. SO SÁNH: MỨC ĐỘ KHỚP GIỮA BÀI LÀM VÀ TIÊU CHÍ/ĐÁP ÁN KỲ VỌNG**\n\n| Tiêu chí | Bài làm học sinh | Khớp? |\n|----------|------------------|-------|\n| Gọi đúng hàm tính tổng SNT | `TongSNT(a,n)` | ✅ |\n| Có in kết quả hàm SNT | Có `cout << ...` | ✅ |\n| Gọi đúng hàm tìm max | `TimMax(a,n)` | ✅ |\n| Có in kết quả hàm tìm max | Có `cout << ...` | ✅ |\n| Chấp nhận tên hàm tùy sinh viên | `TongSNT`, `TimMax` – hợp lý | ✅ |\n\n→ **Toàn bộ yêu cầu được đáp ứng**.\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: ĐIỂM DỰ KIẾN VÀ LÝ DO**\n\n- Học sinh đã:\n  - Gọi đúng hai hàm theo yêu cầu (dù tên hàm có thể khác nếu họ định nghĩa khác, nhưng ở đây trùng khớp với tên trong đáp án mẫu → rất hợp lý).\n  - In cả hai kết quả ra màn hình.\n  - Không vi phạm quy tắc chấm (không yêu cầu giống hệt, chấp nhận tương đương).\n\n→ **Điểm dự kiến: 0.5/0.5**\n\n---\n\n### **SO SÁNH VỚI GỢI Ý CỦA HEURISTIC GRADER**\n\nHeuristic grader nói:\n> Found:2/2 expected keywords found: TongSNT, TimMax.\n\n→ Điều này đúng: cả hai từ khóa cần thiết đều hiện diện.\n\n→ **Tôi đồng ý với gợi ý của Heuristic Grader**, vì:\n- Từ khóa được tìm thấy → chứng tỏ sinh viên đã gọi đúng tên hàm.\n- Không có từ khóa nào bị thiếu → phù hợp với tiêu chí.\n- Không có dấu hiệu sai lệch nghiêm trọng về logic hoặc cú pháp.\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG**\n\n> **Điểm: 0.5/0.5**\n\n**Lý do**: Bài làm học sinh đã thực hiện đúng yêu cầu: gọi đúng hai hàm (tính tổng SNT và tìm max) với tham số hợp lệ, và in kết quả ra màn hình. Các tên hàm phù hợp với ngữ cảnh (có thể là tên sinh viên đã dùng ở câu a và b). Không có lỗi logic hay cú pháp nghiêm trọng. Thoả mãn đầy đủ tiêu chí chấm điểm.\n\n---",
+        "feedback": "",
+        "suggestion": "",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: TongSNT, TimMax.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.5,
+        "llm_status": "correct",
+        "token_usage": {
+          "prompt_tokens": 9308,
+          "completion_tokens": 5148,
+          "total_tokens": 14456
+        },
+        "evidence": {
+          "student_answer": "cout << \"Tong so SNT = \" << TongSNT(a,n);\ncout << \"Vi tri phan tu lon nhat dau tien\" << TimMax(a,n);",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "c",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "TongSNT"
+          },
+          {
+            "value": "TimMax"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 168635
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đạt đầy đủ tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 3,
+      "agreed_count": 0,
+      "overridden_count": 3,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_1",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14A)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.75,
+    "max_score": 1.0,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 343953,
+    "token_usage": {
+      "prompt_tokens": 27720,
+      "completion_tokens": 16827,
+      "total_tokens": 44547
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0.25,
+        "max_score": 0.5,
+        "feedback": "Sai ở phần nhập chuỗi: dùng cin >> thay vì getline cho HoTen; thiếu nhập NoiSinh.",
+        "suggestion": "Sửa lại bằng cách dùng getline(cin, x.HoTen); và thêm dòng getline(cin, x.NoiSinh); để đảm bảo nhập đầy đủ thông tin sinh viên."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14A",
+        "part_label": "a",
+        "criterion_content": "Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.25,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Bài làm khai báo struct Sinhvien đúng tên, các thuộc tính có tên và kiểu dữ liệu phù hợp (string, int, float), cú pháp đúng và có dấu chấm phẩy sau } — hoàn toàn đáp ứng tiêu chí.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: TIÊU CHÍ NÀY YÊU CẦU GÌ?**\n\nTiêu chí:  \n> *Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính (0.25đ).*\n\n→ Đây là một yêu cầu kỹ thuật cụ thể trong lập trình C++. Học sinh cần khai báo một cấu trúc (struct) có tên **Sinhvien**, gồm các thành phần (thuộc tính) được liệt kê trong đề bài.\n\n**Các yếu tố bắt buộc theo tiêu chí:**\n- Tên struct phải là **Sinhvien** (chính xác, không viết sai chính tả).\n- Các thuộc tính phải có **tên đúng như đề bài**: MaSV, HoTen, NamSinh, NoiSinh, DTB.\n- Mỗi thuộc tính phải được khai báo với **kiểu dữ liệu phù hợp** (theo đáp án mẫu: string, int, float — tuy nhiên đề bài không yêu cầu kiểu dữ liệu cụ thể, chỉ yêu cầu “đúng kiểu”, nên ta phải suy luận từ ngữ cảnh: đây là môn Nhập môn lập trình, thường dùng `string` cho chuỗi, `int` cho năm sinh, `float` cho điểm trung bình → nên coi đó là kỳ vọng mặc định).\n- **Phải có dấu chấm phẩy (;) sau dấu } đóng struct** — điều này được ghi rõ trong \"GHI CHÚ CỦA GIÁO VIÊN\".\n\n→ Do đó, tiêu chí này đánh giá **sự chính xác về cú pháp và nội dung khai báo struct**.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (NẾU CÓ)**\n\nĐề bài không đưa ra đáp án cố định, nhưng có **đáp án mẫu tham khảo**:\n\n```cpp\nstruct Sinhvien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};\n```\n\n→ Điều này cho thấy:\n- Cấu trúc phải có tên **Sinhvien**.\n- Các thuộc tính phải đúng tên: MaSV, HoTen, NamSinh, NoiSinh, DTB.\n- Kiểu dữ liệu được sử dụng: `string`, `int`, `float` — phù hợp với ngữ cảnh.\n- Có dấu `;` sau `}` — **bắt buộc** theo ghi chú giáo viên.\n\n→ **Không yêu cầu giống hệt**, nhưng phải **đúng về tên, kiểu, và cú pháp cơ bản**.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nstruct Sinhvien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};\n```\n\n→ So sánh với đáp án mẫu và tiêu chí:\n\n✅ **Tên struct**: `Sinhvien` — đúng.\n\n✅ **Các thuộc tính**: \n- `MaSV` → đúng tên, kiểu `string` → phù hợp.\n- `HoTen` → đúng tên, kiểu `string` → phù hợp.\n- `NamSinh` → đúng tên, kiểu `int` → phù hợp.\n- `NoiSinh` → đúng tên, kiểu `string` → phù hợp.\n- `DTB` → đúng tên, kiểu `float` → phù hợp.\n\n✅ **Dấu chấm phẩy sau `}`**: Có mặt → thỏa mãn yêu cầu bắt buộc.\n\n✅ **Cú pháp tổng thể**: Đúng cú pháp C++ khi khai báo struct.\n\n→ **Không có lỗi nào về tên, kiểu, cú pháp.**\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- Bài làm **giống hệt** đáp án mẫu (về hình thức), nhưng đề bài nói: *\"Chấp nhận mọi cách làm tương đương — code/công thức/thuật toán khác nhau về hình thức nhưng đúng về kết quả và logic đều được điểm đầy đủ.\"*\n\n→ Tuy nhiên, ở đây **không có sự khác biệt hình thức nào** — bài làm hoàn toàn khớp với đáp án mẫu.\n\n→ Nếu học sinh dùng `typedef struct Sinhvien { ... } Sinhvien;` thì vẫn được chấp nhận (như ghi chú giáo viên nói).\n\n→ Nhưng học sinh **không dùng typedef**, mà dùng `struct Sinhvien { ... };` — cũng hoàn toàn hợp lệ và đúng chuẩn.\n\n→ **Vì vậy, bài làm không chỉ tương đương, mà còn hoàn toàn trùng khớp với kỳ vọng.**\n\n---\n\n### **5. SO SÁNH: MỨC ĐỘ KHỚP GIỮA BÀI LÀM VÀ TIÊU CHÍ/ĐÁP ÁN KỲ VỌNG**\n\n→ **100% khớp**:\n- Tên struct đúng.\n- Tất cả 5 thuộc tính đúng tên.\n- Kiểu dữ liệu phù hợp với ngữ cảnh (được coi là đúng theo kỳ vọng mặc định của môn học).\n- Có dấu `;` sau `}` → tuân thủ ghi chú bắt buộc.\n- Cú pháp đúng, không lỗi.\n\n→ Không có sai sót nào.\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: ĐIỂM DỰ KIẾN VÀ LÝ DO**\n\n→ **Điểm: 0.25/0.25**\n\nLý do:\n- Bài làm hoàn toàn đáp ứng tất cả các yêu cầu của tiêu chí.\n- Tuân thủ nghiêm ngặt các quy định trong \"GHI CHÚ CỦA GIÁO VIÊN\" (dấu chấm phẩy, tên thuộc tính đúng, kiểu dữ liệu phù hợp).\n- Không có sai sót cú pháp hay logic.\n- Chấp nhận được dù không giống hệt đáp án mẫu (vì thực tế nó giống hệt, nhưng nếu khác đi mà đúng vẫn được điểm — nhưng ở đây không cần đến điều đó).\n\n---\n\n### **SO SÁNH VỚI GỢI Ý CỦA HEURISTIC GRADER**\n\nHeuristic Grader báo:\n> Found: 6/6 expected keywords found: Sinhvien, MaSV, HoTen, NamSinh, NoiSinh, DTB.\n\n→ Điều này cho thấy hệ thống đã phát hiện đúng tất cả các từ khóa quan trọng.\n\n→ **Tôi đồng ý hoàn toàn với gợi ý này**.\n\nTuy nhiên, Heuristic Grader **không kiểm tra dấu chấm phẩy** hay kiểu dữ liệu — nhưng trong trường hợp này, bài làm học sinh **có dấu chấm phẩy** và **kiểu dữ liệu phù hợp** → nên tôi **xác nhận thêm** rằng bài làm không chỉ khớp về từ khóa mà còn khớp về cú pháp và nội dung.\n\n→ Vì vậy, **gợi ý của Heuristic là chính xác và đầy đủ** cho trường hợp này.\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG**\n\n**Điểm: 0.25/0.25**\n\n**Lý do chi tiết**:  \nBài làm học sinh khai báo đúng struct `Sinhvien` với các thuộc tính có tên chính xác như đề bài yêu cầu (MaSV, HoTen, NamSinh, NoiSinh, DTB), sử dụng kiểu dữ liệu phù hợp (string, int, float), cú pháp đúng, và có dấu chấm phẩy sau dấu `}` — hoàn toàn tuân thủ các yêu cầu của tiêu chí và ghi chú giáo viên. Không có sai sót nào. Do đó, đạt điểm tối đa.\n\n--- \n\n✅ **Điểm cuối cùng: 0.25**",
+        "feedback": "",
+        "suggestion": "",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:6/6 expected keywords found: Sinhvien, MaSV, HoTen, NamSinh, NoiSinh, DTB.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "correct",
+        "token_usage": {
+          "prompt_tokens": 8214,
+          "completion_tokens": 4729,
+          "total_tokens": 12943
+        },
+        "evidence": {
+          "student_answer": "struct Sinhvien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "a",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "Sinhvien"
+          },
+          {
+            "value": "MaSV"
+          },
+          {
+            "value": "HoTen"
+          },
+          {
+            "value": "NamSinh"
+          },
+          {
+            "value": "NoiSinh"
+          },
+          {
+            "value": "DTB"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 112900
+      },
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.5,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh sử dụng đúng tham chiếu (&x) nên đạt 0.25 điểm phần 1. Tuy nhiên, phần 2 sai vì dùng cin >> cho HoTen (không xử lý khoảng trắng) và thiếu nhập trường NoiSinh.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm gồm **2 phần độc lập**, mỗi phần 0.25đ, tổng cộng 0.5đ:\n\n1. **Kiểm tra kiểu truyền tham số**: phải là **tham chiếu** (dùng `&`) để thay đổi được giá trị bên ngoài hàm. Nếu dùng tham trị (`Sinhvien x`), thì **0 điểm** vì không ảnh hưởng đến biến gốc ngoài hàm.\n\n2. **Kiểm tra lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không**: tức là **phải sử dụng `getline`** cho các trường **chuỗi có thể chứa khoảng trắng** như `HoTen`, `NoiSinh`. Nếu dùng `cin >>`, sẽ bị cắt bỏ khoảng trắng → sai logic → **0 điểm phần này**.\n\n> ⚠️ Ghi chú giáo viên nhấn mạnh: **Hai tiêu chí độc lập, đúng phần nào tính điểm phần đó**. Không cần toàn bộ đúng mới có điểm.\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu (chỉ tham khảo):\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ Logic kỳ vọng:\n- Truyền tham chiếu: ✅ (`&x`)\n- Dùng `getline` cho **tất cả các chuỗi** (MaSV, HoTen, NoiSinh) → vì chúng đều có thể chứa khoảng trắng.\n- Dùng `cin >>` cho các số nguyên/float (NamSinh, DTB) → hợp lý.\n\n> ❗ Lưu ý: Đề bài yêu cầu **nhập thông tin sinh viên từ bàn phím**, và mặc định các trường chuỗi có thể chứa khoảng trắng (đặc biệt là Họ tên, Nơi sinh). Vì vậy, việc dùng `cin >>` cho chuỗi là sai.\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\n```cpp\nstruct Sinhvien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};\n\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    cin >> x.HoTen;\n    cin >> x.NamSinh;\n    cin >> x.DTB;\n}\n```\n\n#### ✅ Phân tích từng phần:\n\n1. **Truyền tham số**: `Sinhvien &x` → **đúng**, dùng tham chiếu → **đạt tiêu chí 1 (0.25đ)**.\n\n2. **Lệnh nhập chuỗi**:\n   - `getline(cin, x.MaSV)` → ✅ đúng, dùng `getline` cho chuỗi.\n   - `cin >> x.HoTen` → ❌ **sai**, vì `HoTen` là chuỗi có thể chứa khoảng trắng, nên phải dùng `getline`.\n   - `cin >> x.NamSinh` → ✅ đúng, vì là số nguyên.\n   - `cin >> x.DTB` → ✅ đúng, vì là số thực.\n\n→ **Chỉ có 1 lỗi: dùng `cin >>` thay vì `getline` cho `HoTen`**.\n\n> 💡 Nhưng theo đề bài, **các trường chuỗi đều cần xử lý khoảng trắng**, đặc biệt `HoTen` và `NoiSinh`. Trong bài làm, học sinh **không nhập `NoiSinh` tại tất cả** — nhưng điều này không ảnh hưởng vì đề chỉ yêu cầu hoàn thiện hàm `NhapSV`, và trong hàm này, học sinh **không nhập `NoiSinh`**.\n\n⚠️ **Vấn đề nghiêm trọng**: Bài làm **không nhập `NoiSinh`**! → Có thể là lỗi thiếu, hoặc do học sinh quên.\n\nTuy nhiên, **theo đề bài**: “**hàm NhapSV để nhập thông tin của một sinh viên**” → nghĩa là phải nhập **tất cả các trường**.\n\n→ Nhưng trong bài làm, học sinh **không nhập `NoiSinh`** → **thiếu dữ liệu đầu vào quan trọng**.\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- **Truyền tham chiếu**: ✅ đúng → đạt 0.25đ.\n\n- **Nhập chuỗi**: \n   - `MaSV`: dùng `getline` → ✅\n   - `HoTen`: dùng `cin >>` → ❌ (bị cắt khoảng trắng)\n   - `NoiSinh`: **không nhập** → ❌ (thiếu dữ liệu)\n\n→ **Không có cách nào tương đương về logic** nếu không nhập đầy đủ các trường, đặc biệt là `NoiSinh` (vì nó được dùng trong hàm `InDSSV` ở phần sau).\n\n> 🔍 **Lưu ý**: Đề bài không yêu cầu kiểm tra hàm `InDSSV`, chỉ yêu cầu hoàn thiện `NhapSV`. Tuy nhiên, **nếu hàm `NhapSV` không nhập `NoiSinh`**, thì khi chạy chương trình, `NoiSinh` sẽ giữ giá trị cũ (hoặc rác) → dẫn đến lỗi logic khi in danh sách sinh viên ở TPHCM.\n\n→ Do đó, **việc không nhập `NoiSinh` là sai về mặt chức năng**.\n\n---\n\n### **BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Học sinh có đúng? | Lý do |\n|----------|-------------------|-------|\n| 1. Truyền tham chiếu | ✅ Đúng | Dùng `&x` |\n| 2. Nhập chuỗi đúng kiểu | ❌ Sai | `cin >> x.HoTen` (không xử lý khoảng trắng), **thiếu `NoiSinh`** |\n\n→ **Tiêu chí 1: Đạt → 0.25đ**\n\n→ **Tiêu chí 2: Không đạt → 0đ**\n\n> 📌 Theo ghi chú giáo viên: “Nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng... thì tính zero điểm phần đó.”\n\n→ Học sinh **không nhập `NoiSinh`**, và **sử dụng `cin >>` cho `HoTen`** → **vi phạm cả hai điều kiện** → **phần 2 = 0đ**\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n- Điểm phần 1: **0.25đ** (truyền tham chiếu đúng)\n- Điểm phần 2: **0đ** (sai cách nhập chuỗi, thiếu trường `NoiSinh`)\n\n→ **Tổng điểm: 0.25 / 0.5**\n\n---\n\n### **SO SÁNH VỚI GỢI Ý CỦA HEURISTIC GRADER**\n\nGợi ý Heuristic:  \n> Found:2/2 expected keywords found: NhapSV, getline.  \n> [OK] NhapSV  \n> [OK] getline\n\n→ Heuristic chỉ kiểm tra **có xuất hiện từ khóa `NhapSV` và `getline` hay không**, không kiểm tra:\n- Có dùng `getline` cho **tất cả chuỗi**?\n- Có nhập **tất cả các trường**?\n- Có dùng `cin >>` cho `HoTen` (sai)?\n- Có **thiếu `NoiSinh`**?\n\n→ **Heuristic đánh giá quá lạc quan**, chỉ dựa trên từ khóa, **không phản ánh chính xác lỗi logic và chức năng**.\n\n> ❗ Kết luận: **Tôi KHÔNG đồng ý với gợi ý của Heuristic**. Vì học sinh đã **sai về mặt chức năng và logic** (không nhập `NoiSinh`, dùng `cin >>` cho `HoTen`), nên **không thể đạt điểm toàn phần cho tiêu chí 2**.\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG**\n\n> **Điểm: 0.25 / 0.5**\n\n**Lý do chi tiết**:\n- **Truyền tham chiếu đúng** → đạt 0.25đ.\n- **Nhập chuỗi sai**: dùng `cin >>` cho `HoTen` (không xử lý khoảng trắng), **không nhập `NoiSinh`** → vi phạm yêu cầu nhập đầy đủ thông tin sinh viên → **không đạt tiêu chí 2 → 0đ**.\n\n→ Tổng: **0.25đ**\n\n---\n\n✅ **Tuân thủ nguyên tắc**: Chấp nhận mọi cách làm tương đương → nhưng đây **không tương đương**, vì **thiếu dữ liệu và sai cách nhập chuỗi**.\n\n✅ **Tuân thủ ghi chú giáo viên**: Hai tiêu chí độc lập → đúng phần nào tính phần đó.\n\n---\n\n**→ ĐIỂM CUỐI CÙNG: 0.25**",
+        "feedback": "Sai ở phần nhập chuỗi: dùng cin >> thay vì getline cho HoTen; thiếu nhập NoiSinh.",
+        "suggestion": "Sửa lại bằng cách dùng getline(cin, x.HoTen); và thêm dòng getline(cin, x.NoiSinh); để đảm bảo nhập đầy đủ thông tin sinh viên.",
+        "agreed_with_heuristic": false,
+        "confidence": 0.95,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: NhapSV, getline.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 10846,
+          "completion_tokens": 7128,
+          "total_tokens": 17974
+        },
+        "evidence": {
+          "student_answer": "struct Sinhvien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    cin >> x.HoTen;\n    cin >> x.NamSinh;\n    cin >> x.DTB;\n}\nvoid InDSSV(Sinhvien a[], int n){\n    for(int i=0;i<n;i++)\n        if(a[i].NoiSinh == \"TPHCM\")\n            cout << a[i].MaSV << \"- \" << a[i].HoTen;\n}",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "fallback",
+          "found": false
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 102282
+      },
+      {
+        "criterion_id": "T14C",
+        "part_label": "c",
+        "criterion_content": "Hàm InDSSV in thông tin sinh viên có NoiSinh là \"TPHCM\" (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.25,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh đã viết hàm InDSSV đúng tên, tham số, điều kiện lọc NoiSinh == \"TPHCM\" và in thông tin sinh viên (MaSV và HoTen) — đủ để nhận diện sinh viên, phù hợp với yêu cầu không bắt buộc in toàn bộ trường.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm:  \n> *Hàm InDSSV in thông tin sinh viên có NoiSinh là \"TPHCM\" (0.25đ).*\n\n→ Yêu cầu rõ ràng:  \n- Viết hàm `InDSSV` với tham số là mảng `Sinhvien a[]` và số lượng `n`.  \n- Trong hàm, phải **in ra thông tin** của các sinh viên **có trường `NoiSinh` bằng \"TPHCM\"**.  \n- Không yêu cầu in toàn bộ thông tin — chỉ cần **in đủ để thể hiện thông tin sinh viên**, không bắt buộc in tất cả các trường.  \n\n→ Điểm tối đa: **0.25 điểm** — đây là phần nhỏ trong câu hỏi lớn hơn (câu 14), nên tiêu chí này tập trung vào **tính đúng đắn về điều kiện lọc và hành động in**.\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu (tham khảo) cho thấy:\n\n```cpp\nvoid InDSSV(Sinhvien a[ ], int n){\n    for (int i=0; i<n; i++)\n        if(a[i].NoiSinh == \"TPHCM\") \n            cout<< a[i].MaSV <<\"- \"<<a[i].HoTen<<\"- \"\n            <<a[i].NoiSinh<<\"- \"<<a[i].NamSinh<<\"- \"<<a[i].DTB;\n}\n```\n\n→ Điều kiện: `a[i].NoiSinh == \"TPHCM\"` → đúng theo kiểu `string` (giả sử `NoiSinh` là `string`, vì dùng `==`).  \n→ Hành động: in thông tin sinh viên → đã in đầy đủ các trường (dù đề bài không bắt buộc).  \n\n→ Tuy nhiên, **đề bài không yêu cầu in tất cả các trường**, chỉ yêu cầu “in thông tin sinh viên” — do đó, việc in ít hơn (chỉ MaSV và HoTen như học sinh làm) vẫn hợp lệ.\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nvoid InDSSV(Sinhvien a[], int n){\n    for(int i=0;i<n;i++)\n        if(a[i].NoiSinh == \"TPHCM\")\n            cout << a[i].MaSV << \"- \" << a[i].HoTen;\n}\n```\n\n→ **Tương tự đáp án mẫu**:  \n- Tên hàm đúng: `InDSSV` ✅  \n- Tham số đúng: `Sinhvien a[], int n` ✅  \n- Dùng vòng lặp `for` để duyệt mảng ✅  \n- Điều kiện kiểm tra: `a[i].NoiSinh == \"TPHCM\"` ✅ → đúng cú pháp nếu `NoiSinh` là `std::string`  \n- In thông tin sinh viên: chỉ in `MaSV` và `HoTen` — **đủ để nhận diện sinh viên**, phù hợp với yêu cầu “in thông tin sinh viên” ❗\n\n→ **Không có lỗi cú pháp hoặc logic rõ ràng**.  \n→ **Không in quá nhiều** — nhưng cũng **không thiếu đến mức không thể nhận diện sinh viên**.\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- **Logic tương đương?**  \n  Có. Học sinh đã:\n  - Duyệt qua từng sinh viên.\n  - Kiểm tra điều kiện nơi sinh = \"TPHCM\".\n  - In thông tin sinh viên (tối thiểu: mã SV + họ tên).\n\n→ Đây là cách thực hiện hoàn toàn hợp lý, đúng mục đích. Không cần in thêm NamSinh, DTB, v.v. nếu không yêu cầu.\n\n- **Cú pháp so sánh?**  \n  Dùng `==` cho chuỗi → giả sử `NoiSinh` là `string` (kiểu dữ liệu phổ biến trong môn IT001). Nếu là `char[]`, thì cần `strcmp`, nhưng đề bài **không nói rõ kiểu dữ liệu**, và **gợi ý Heuristic không báo lỗi**, nên ta **xem xét theo ngữ cảnh lớp học**.\n\n→ Trong môn Nhập môn lập trình (IT001), thường dùng `string` thay vì `char[]` để đơn giản hóa. Việc dùng `==` cho `string` là chuẩn và được chấp nhận.\n\n→ **Ghi chú giáo viên** nhắc: “Không cần in toàn bộ trường, chỉ cần in đủ là được điểm” → học sinh đã tuân thủ.\n\n---\n\n### **BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Bài làm học sinh | Khớp? |\n|----------|------------------|-------|\n| Tên hàm đúng | `InDSSV` | ✅ |\n| Tham số đúng | `Sinhvien a[], int n` | ✅ |\n| Duyệt mảng | `for(i=0; i<n; i++)` | ✅ |\n| Điều kiện lọc đúng | `NoiSinh == \"TPHCM\"` | ✅ |\n| In thông tin sinh viên | `MaSV - HoTen` | ✅ (đủ để nhận diện) |\n| Cú pháp so sánh string | `==` | ✅ (giả định kiểu string) |\n\n→ **Toàn bộ các yếu tố cần thiết đều có mặt và đúng.**\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n→ Bài làm **đúng yêu cầu kỹ thuật và logic**, không sai sót nào đáng kể.  \n→ Học sinh đã **thực hiện đúng chức năng của hàm**: lọc sinh viên theo nơi sinh và in thông tin.  \n→ Không vi phạm nguyên tắc: “Chấp nhận mọi cách làm tương đương”.  \n→ Gợi ý Heuristic cũng xác nhận tìm thấy các từ khóa quan trọng: `InDSSV`, `TPHCM`, `NoiSinh`.\n\n→ **Do đó, bài làm xứng đáng đạt điểm tối đa 0.25/0.25.**\n\n---\n\n## ✅ **QUYẾT ĐỊNH CUỐI CÙNG: 0.25 điểm**\n\n**Lý do chi tiết:**  \n- Hàm có tên đúng, tham số đúng.  \n- Duyệt mảng đúng, điều kiện lọc đúng (`NoiSinh == \"TPHCM\"`).  \n- In thông tin sinh viên (MaSV và Họ Tên) — đủ để nhận diện sinh viên, phù hợp với yêu cầu “in thông tin sinh viên”, không bắt buộc in toàn bộ.  \n- Không có lỗi cú pháp hay logic.  \n- Tuân thủ ghi chú giáo viên: không cần in hết các trường.  \n- Tương đương với đáp án mẫu về chức năng và kết quả.\n\n---\n\n> 🔚 **Kết luận cuối cùng: Học sinh được 0.25 điểm đầy đủ.**",
+        "feedback": "",
+        "suggestion": "",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:3/3 expected keywords found: InDSSV, TPHCM, NoiSinh.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "correct",
+        "token_usage": {
+          "prompt_tokens": 8660,
+          "completion_tokens": 4970,
+          "total_tokens": 13630
+        },
+        "evidence": {
+          "student_answer": "void InDSSV(Sinhvien a[], int n){\n    for(int i=0;i<n;i++)\n        if(a[i].NoiSinh == \"TPHCM\")\n            cout << a[i].MaSV << \"- \" << a[i].HoTen;\n}",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "c",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "InDSSV"
+          },
+          {
+            "value": "TPHCM"
+          },
+          {
+            "value": "NoiSinh"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 128771
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 3,
+      "agreed_count": 0,
+      "overridden_count": 3,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_15_001__HS_1",
+    "ma_de": "1",
+    "question_number": 15,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T15A)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.25,
+    "max_score": 0.25,
+    "status": "correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 66615,
+    "token_usage": {
+      "prompt_tokens": 9068,
+      "completion_tokens": 4995,
+      "total_tokens": 14063
+    },
+    "llm_feedbacks": [],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T15A",
+        "part_label": "a",
+        "criterion_content": "Đặt tên biến và mô tả kiểu dữ liệu cho input (N, M là hai số nguyên không âm) và output (chuỗi \"giả định sai\" hoặc hai số nguyên x, y) của bài toán (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.25,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh đã chính xác mô tả cả input (N, M là hai số nguyên không âm) và output (chuỗi 'gia dinh sai' hoặc hai số nguyên không âm x, y), đáp ứng đầy đủ yêu cầu. Dù có lỗi chính tả nhẹ ('khong am', 'gia dinh sai'), nhưng ý nghĩa vẫn rõ ràng và đúng.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm cho phần này là:\n\n> **Đặt tên biến và mô tả kiểu dữ liệu cho input (N, M là hai số nguyên không âm) và output (chuỗi \"giả định sai\" hoặc hai số nguyên x, y) của bài toán. (0.25đ)**\n\n→ Đây là một phần **mô tả đầu vào và đầu ra**, **không yêu cầu code**. Học sinh chỉ cần ghi rõ:\n\n- **Input**: N, M — hai số nguyên **không âm**\n- **Output**: Chuỗi `\"gia dinh sai\"` hoặc hai số nguyên x, y (có thể là 0, vì đề bài nói “không âm”)\n\n→ **Yêu cầu chính xác**:  \nPhải **gọi đúng tên biến** (N, M), **xác định đúng kiểu dữ liệu** (số nguyên), **và đặc biệt nhấn mạnh “không âm”**.\n\nVề output: phải ghi rõ **hai trường hợp**: chuỗi `\"gia dinh sai\"` hoặc hai số nguyên x, y. Không được bỏ sót bất kỳ trường hợp nào.\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG / LOGIC KỲ VỌNG**\n\nTheo gợi ý từ giáo viên và đề bài gốc:\n\n- Input: `N, M` — **số nguyên không âm**\n- Output: `\"gia dinh sai\"` hoặc `x, y` — **hai số nguyên không âm**\n\n→ Do đó, **cả hai thành phần input và output đều phải đầy đủ và chính xác**.\n\nGhi chú của giáo viên nhấn mạnh:\n\n> **Phải đúng CẢ input lẫn output mới được 0.25đ. Đúng một trong hai thì 0đ.**\n\n→ Đây là điểm quan trọng: **không chấp nhận nửa điểm**. Nếu thiếu một phần (input hoặc output), toàn bộ mất điểm.\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n> **Input: N, M la hai so nguyen khong am**  \n> **Output: chuoi 'gia dinh sai' hoac hai so nguyen khong am x, y**\n\n#### Phân tích từng phần:\n\n**Input:**\n- Gọi đúng tên biến: **N, M** ✅\n- Xác định kiểu dữ liệu: **số nguyên** ✅\n- Có ghi **“không âm”** → tuy viết là “khong am”, nhưng đây là dạng viết tắt phổ biến trong tiếng Việt, **có thể chấp nhận như “không âm”** ✅\n\n→ **Input hoàn chỉnh, đúng tiêu chí**\n\n**Output:**\n- Ghi rõ hai trường hợp: **chuỗi \"gia dinh sai\"** (viết đúng từ khóa) ✅\n- Và **hai số nguyên không âm x, y** ✅\n- Có ghi “không âm” cho x, y → điều này **rất quan trọng** vì nếu chỉ ghi “số nguyên”, có thể bị hiểu là có thể âm, nhưng đề bài yêu cầu “không âm”. Tuy nhiên, học sinh đã ghi rõ “không âm” → ✅\n\n→ **Output hoàn chỉnh, đúng tiêu chí**\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- Bài làm **không giống hệt đáp án mẫu** (vì không có đáp án cố định), nhưng **về nội dung và logic hoàn toàn tương đương**.\n- Học sinh đã:\n  - Đặt tên biến đúng (N, M)\n  - Chỉ rõ kiểu dữ liệu là số nguyên không âm\n  - Mô tả output đầy đủ với cả hai trường hợp và cũng nhấn mạnh “không âm” cho x, y\n\n→ **Tương đương về mặt yêu cầu, không có sai lệch logic hay ngữ nghĩa**\n\n---\n\n### **BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Học sinh có đúng? | Ghi chú |\n|----------|-------------------|---------|\n| Input: N, M | ✅ | Đúng tên biến |\n| Input: số nguyên | ✅ | Có ghi |\n| Input: không âm | ✅ | Dù viết “khong am”, vẫn được hiểu là “không âm” |\n| Output: chuỗi \"gia dinh sai\" | ✅ | Viết đúng từ khóa |\n| Output: hai số nguyên x, y | ✅ | Có ghi |\n| Output: không âm (cho x, y) | ✅ | Rất quan trọng, học sinh đã ghi |\n\n→ **Toàn bộ các yếu tố cần thiết đều có, không thiếu, không sai**\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n- Học sinh đã **đáp ứng đầy đủ cả hai phần: input và output**.\n- Mọi thông tin cần thiết đều có, dù cách viết hơi giản lược (“la”, “khong am”) nhưng **vẫn truyền đạt đúng ý nghĩa**.\n- Không có lỗi về logic, không bỏ sót trường hợp, không sai tên biến.\n- Tuân thủ đúng ghi chú của giáo viên: **phải đúng cả input lẫn output mới được điểm** → học sinh đúng cả hai → **được điểm tối đa**.\n\n---\n\n### **SO SÁNH VỚI GỢI Ý CỦA HEURISTIC GRADER**\n\nHeuristic Grader nói:\n\n> Found: 2/4 expected keywords found: N, M.  \n> [MISS] không âm  \n> [MISS] giả định sai\n\n→ **Lỗi ở đây là Heuristic Grader đang dùng “không âm” và “giả định sai” như những keyword riêng lẻ, nhưng không phân biệt ngữ cảnh.**\n\nTuy nhiên:\n\n- Học sinh đã ghi **“khong am”** → rõ ràng là “không âm”, nên **nên được tính là có**.\n- Học sinh đã ghi **“gia dinh sai”** → mặc dù viết thiếu dấu nháy, nhưng từ khóa chính xác, nên **nên được tính là có**.\n\n→ **Heuristic Grader đánh giá quá máy móc, không xử lý tốt dạng viết tắt hoặc lỗi chính tả nhẹ.**\n\n→ **Tôi KHÔNG đồng ý với gợi ý của Heuristic Grader**, vì nó **bỏ sót hai từ khóa quan trọng mà thực tế học sinh đã cung cấp đầy đủ về nghĩa.**\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG**\n\n**Điểm: 0.25/0.25**\n\n**Lý do:**  \nHọc sinh đã **đúng cả input và output** theo yêu cầu:  \n- Input: N, M – số nguyên không âm (dù viết “khong am”, nhưng rõ ràng là “không âm”)  \n- Output: chuỗi “gia dinh sai” hoặc hai số nguyên không âm x, y  \n\n→ **Toàn bộ yêu cầu được đáp ứng đầy đủ, không thiếu, không sai.**\n\n---\n\n✅ **Chấm điểm: 0.25 điểm**",
+        "feedback": "",
+        "suggestion": "",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/4 expected keywords found: N, M.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "correct",
+        "token_usage": {
+          "prompt_tokens": 9068,
+          "completion_tokens": 4995,
+          "total_tokens": 14063
+        },
+        "evidence": {
+          "student_answer": "Input: N, M la hai so nguyen khong am\nOutput: chuoi 'gia dinh sai' hoac hai so nguyen khong am x, y",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "a",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "N"
+          },
+          {
+            "value": "M"
+          }
+        ],
+        "missing": [
+          {
+            "value": "không âm"
+          },
+          {
+            "value": "giả định sai"
+          }
+        ],
+        "latency_ms": 66615
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đạt đầy đủ tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_13_001__HS_2",
+    "ma_de": "1",
+    "question_number": 13,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T13A)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 2.0,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 79185,
+    "token_usage": {
+      "prompt_tokens": 9204,
+      "completion_tokens": 5877,
+      "total_tokens": 15081
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T13A",
+        "part_label": "a",
+        "score": 0,
+        "max_score": 1.0,
+        "feedback": "Hàm KiemtraSNT cần kiểm tra xem số có chỉ chia hết cho 1 và chính nó hay không. Hàm TongSNT cần duyệt mảng, kiểm tra từng phần tử bằng KiemtraSNT và cộng các giá trị nguyên tố vào tổng.",
+        "suggestion": "Sửa lại hàm KiemtraSNT: kiểm tra từ 2 đến √n để xác định số nguyên tố. Sửa hàm TongSNT: duyệt mảng, gọi KiemtraSNT cho từng phần tử, nếu đúng thì cộng vào tổng."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T13A",
+        "part_label": "a",
+        "criterion_content": "Hàm kiểm tra số nguyên tố và hàm tính tổng giá trị các phần tử là số nguyên tố trong mảng (1.0 điểm).",
+        "score": 0,
+        "max_score": 1.0,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Hàm KiemtraSNT sai logic (coi mọi số >1 là nguyên tố), hàm TongSNT không thực hiện tính toán nào và luôn trả về 0. Không đạt yêu cầu đề bài.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm:  \n> *Hàm kiểm tra số nguyên tố và hàm tính tổng giá trị các phần tử là số nguyên tố trong mảng (1.0 điểm).*\n\n→ Yêu cầu rõ ràng gồm **2 thành phần**:\n- Viết một hàm `KiemtraSNT(int n)` để kiểm tra xem `n` có phải là số nguyên tố hay không.\n- Viết một hàm `TongSNT(int a[], int n)` để tính tổng các phần tử trong mảng `a` mà **giá trị của phần tử đó là số nguyên tố**.\n\n→ **Không yêu cầu giống hệt đáp án mẫu**, chỉ cần đúng về **logic và kết quả**.\n\n→ **Điểm tối đa: 1.0 điểm** cho cả hai hàm (có thể chia nhỏ nếu cần, nhưng đề không quy định chi tiết).\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu tham khảo:\n\n```cpp\nint KiemtraSNT(int n){\n    if(n<2) return 0;\n    for(int i=2; i*i < n; i++)\n        if( n%i==0) return 0;\n    return 1;\n}\n\nint TongSNT(int a[], int n){\n    int S = 0;\n    for(int i=0; i < n; i++)\n        if(KiemtraSNT(a[i])) S = S + a[i];\n    return S;\n}\n```\n\n→ Logic kỳ vọng:\n- `KiemtraSNT`: trả về 1 nếu `n` là số nguyên tố, 0 nếu không.\n- `TongSNT`: duyệt qua từng phần tử trong mảng, nếu phần tử đó là số nguyên tố thì cộng vào tổng.\n\n→ Đây là **một cách làm chuẩn**, nhưng **không phải duy nhất**.\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nint KiemtraSNT(int n){ return n>1; }\nint TongSNT(int a[], int n){ return 0; }\n```\n\n#### Phân tích từng hàm:\n\n**1. Hàm `KiemtraSNT(int n)`**\n- Code: `return n>1;`\n- Ý nghĩa: Trả về 1 nếu `n > 1`, 0 nếu `n <= 1`.\n\n→ **Lỗi nghiêm trọng**: \n- Số nguyên tố là số lớn hơn 1 **và chỉ chia hết cho 1 và chính nó**.\n- Với hàm này:\n  - `n=4` → trả về 1 → sai (4 không phải SNT)\n  - `n=9` → trả về 1 → sai (9 không phải SNT)\n  - `n=2` → trả về 1 → đúng\n  - `n=1` → trả về 0 → đúng\n\n→ **Hàm này hoàn toàn sai logic**: nó coi mọi số >1 đều là số nguyên tố → **sai về bản chất**.\n\n→ **Không chấp nhận được** vì vi phạm định nghĩa cơ bản của số nguyên tố.\n\n**2. Hàm `TongSNT(int a[], int n)`**\n- Code: `return 0;`\n- Ý nghĩa: luôn trả về 0, bất kể đầu vào.\n\n→ **Không thực hiện chức năng nào**: không duyệt mảng, không gọi hàm kiểm tra, không cộng gì cả.\n\n→ **Sai hoàn toàn về chức năng**.\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n→ Có tồn tại **cách làm khác** tương đương với đáp án mẫu? Có, ví dụ:\n- Dùng vòng lặp từ 2 đến √n để kiểm tra chia hết.\n- Hoặc dùng mảng đánh dấu (sieve), nhưng không phù hợp vì chỉ cần kiểm tra đơn lẻ.\n- Hoặc viết hàm kiểm tra bằng đệ quy, v.v.\n\n→ Nhưng bài làm học sinh **không tương đương** với bất kỳ cách làm nào đúng về mặt logic.\n\n→ Cụ thể:\n- Hàm `KiemtraSNT` **sai về định nghĩa** → không thể dùng để lọc số nguyên tố.\n- Hàm `TongSNT` **không xử lý dữ liệu** → không thể tính tổng.\n\n→ **Không có sự tương đương nào về kết quả hoặc logic**.\n\n---\n\n### **BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Bài làm học sinh | Kết luận |\n|----------|------------------|----------|\n| Có hàm `KiemtraSNT`? | Có | ✅ |\n| Có hàm `TongSNT`? | Có | ✅ |\n| Hàm `KiemtraSNT` đúng logic? | Không (trả về 1 với mọi n>1) | ❌ |\n| Hàm `TongSNT` đúng chức năng? | Không (luôn trả về 0) | ❌ |\n| Có sử dụng `KiemtraSNT` trong `TongSNT`? | Không | ❌ |\n| Tổng thể đạt yêu cầu đề bài? | Không | ❌ |\n\n→ **Không có phần nào đúng về logic hoặc chức năng**.\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n→ **Không đạt yêu cầu**.\n\n→ Mặc dù có viết đúng tên hàm và cú pháp, nhưng **hàm không hoạt động đúng chức năng**.\n\n→ Theo nguyên tắc chấm: “Chấp nhận mọi cách làm tương đương — code/công thức/thuật toán khác nhau về hình thức nhưng đúng về kết quả và logic đều được điểm đầy đủ”.\n\n→ **Bài làm này KHÔNG đúng về kết quả và KHÔNG đúng về logic**.\n\n→ Do đó, **không được điểm nào**.\n\n---\n\n### **SO SÁNH VỚI GỢI Ý CỦA HEURISTIC GRADER**\n\nGợi ý Heuristic:\n\n> Found: 2/2 expected keywords found: KiemtraSNT, TongSNT.\n\n→ Hệ thống chỉ kiểm tra **tên hàm có xuất hiện hay không**, **không kiểm tra nội dung**.\n\n→ Đây là **lỗi hệ thống**: Heuristic Grader đang **chỉ dựa trên keyword**, không phân tích logic.\n\n→ **Tôi KHÔNG ĐỒNG Ý** với gợi ý này vì:\n\n- Nó **không phản ánh chất lượng bài làm**.\n- Việc có tên hàm không đồng nghĩa với việc hàm đúng.\n- Nếu chấm theo gợi ý này, học sinh sẽ được điểm dù viết sai hoàn toàn.\n\n→ **Heuristic Grader ở đây đã thất bại trong việc đánh giá logic**.\n\n---\n\n### **QUYẾT ĐỊNH CUỐI CÙNG**\n\n→ **Điểm: 0.0 / 1.0**\n\n→ **Lý do**:  \nBài làm học sinh **viết đúng tên hàm**, nhưng **hàm kiểm tra số nguyên tố sai hoàn toàn về định nghĩa** (coi mọi số >1 là nguyên tố), và **hàm tính tổng không thực hiện bất kỳ thao tác nào** (luôn trả về 0). Không có sự tương đương về logic hay kết quả với yêu cầu đề bài.\n\n→ Tuân thủ nguyên tắc: “Không yêu cầu giống hệt đáp án mẫu”, nhưng **phải đúng về logic và kết quả**.\n\n→ Học sinh **không đạt yêu cầu**.\n\n---\n\n✅ **ĐIỂM CHẤM CUỐI CÙNG: 0.0**",
+        "feedback": "Hàm KiemtraSNT cần kiểm tra xem số có chỉ chia hết cho 1 và chính nó hay không. Hàm TongSNT cần duyệt mảng, kiểm tra từng phần tử bằng KiemtraSNT và cộng các giá trị nguyên tố vào tổng.",
+        "suggestion": "Sửa lại hàm KiemtraSNT: kiểm tra từ 2 đến √n để xác định số nguyên tố. Sửa hàm TongSNT: duyệt mảng, gọi KiemtraSNT cho từng phần tử, nếu đúng thì cộng vào tổng.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: KiemtraSNT, TongSNT.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 9204,
+          "completion_tokens": 5877,
+          "total_tokens": 15081
+        },
+        "evidence": {
+          "student_answer": "int KiemtraSNT(int n){ return n>1; }\nint TongSNT(int a[], int n){ return 0; }",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "a",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "KiemtraSNT"
+          },
+          {
+            "value": "TongSNT"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 79185
+      },
+      {
+        "criterion_id": "T13B",
+        "part_label": "b",
+        "criterion_content": "Hàm tìm vị trí phần tử có giá trị lớn nhất ĐẦU TIÊN trong mảng (0.5đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": false,
+        "grading_method": "blank_skip",
+        "stage": "heuristic",
+        "llm_reasoning": "Student left this part blank.",
+        "cot_reasoning": "",
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "blank",
+          "found": false,
+          "is_blank": true
+        },
+        "detected_errors": [
+          {
+            "error_type": "blank_answer",
+            "message": "Sinh viên không làm phần này."
+          }
+        ],
+        "latency_ms": 0
+      },
+      {
+        "criterion_id": "T13C",
+        "part_label": "c",
+        "criterion_content": "Hãy hoàn thiện hàm main sau bằng cách viết thêm các dòng lệnh để gọi hàm tính tổng SNT (định nghĩa ở câu a) và hàm tìm max (định nghĩa ở câu b), in cả 2 kết quả ra màn hình (0.5 điểm).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": false,
+        "grading_method": "blank_skip",
+        "stage": "heuristic",
+        "llm_reasoning": "Student left this part blank.",
+        "cot_reasoning": "",
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "c",
+          "type": "blank",
+          "found": false,
+          "is_blank": true
+        },
+        "detected_errors": [
+          {
+            "error_type": "blank_answer",
+            "message": "Sinh viên không làm phần này."
+          }
+        ],
+        "latency_ms": 0
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [
+      {
+        "criterion_id": "T13B",
+        "part_label": "b",
+        "error_type": "blank_answer",
+        "message": "Sinh viên không làm phần này."
+      },
+      {
+        "criterion_id": "T13C",
+        "part_label": "c",
+        "error_type": "blank_answer",
+        "message": "Sinh viên không làm phần này."
+      }
+    ],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 3,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 2
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_2",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14A)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 1.0,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 147388,
+    "token_usage": {
+      "prompt_tokens": 16037,
+      "completion_tokens": 9798,
+      "total_tokens": 25835
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14A",
+        "part_label": "a",
+        "score": 0,
+        "max_score": 0.25,
+        "feedback": "Thiếu các thuộc tính bắt buộc: MaSV, HoTen, NamSinh, NoiSinh, DTB. Chỉ có một thuộc tính không liên quan: int x;",
+        "suggestion": "Cần khai báo đầy đủ 5 thuộc tính theo yêu cầu: string MaSV; string HoTen; int NamSinh; string NoiSinh; float DTB; trong struct Sinhvien."
+      },
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0,
+        "max_score": 0.5,
+        "feedback": "Không có hàm NhapSV; không truyền tham chiếu; không dùng getline để nhập chuỗi Họ tên và Nơi sinh.",
+        "suggestion": "Viết hàm NhapSV với tham số là tham chiếu đến cấu trúc Sinhvien. Dùng getline(cin, ...) để nhập các trường chuỗi (MaSV, HoTen, NoiSinh) và cin>> để nhập NamSinh và DTB."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14A",
+        "part_label": "a",
+        "criterion_content": "Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính (0.25đ).",
+        "score": 0,
+        "max_score": 0.25,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh khai báo struct đúng tên và có dấu ; nhưng thiếu hoàn toàn các thuộc tính yêu cầu (MaSV, HoTen, NamSinh, NoiSinh, DTB), chỉ có một biến vô nghĩa int x; nên không đạt điểm.",
+        "cot_reasoning": "**Suy luận chi tiết từng bước:**\n\n---\n\n### **1. Đọc và hiểu tiêu chí: tiêu chí này yêu cầu gì?**\n\nTiêu chí:  \n> *Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính (0.25đ).*\n\n→ Yêu cầu học sinh khai báo một cấu trúc (struct) có tên là `Sinhvien`, và bên trong phải có **các thuộc tính với tên đúng như đề bài**: `MaSV`, `HoTen`, `NamSinh`, `NoiSinh`, `DTB`.\n\nKhông yêu cầu kiểu dữ liệu cụ thể (ví dụ không bắt buộc phải dùng `string` hay `float`), nhưng **tên thuộc tính phải chính xác**, vì đề bài ghi rõ:\n\n> *Tên các thuộc tính phải đúng như đề (MaSV, HoTen, NamSinh, NoiSinh, DTB).*\n\n→ Ngoài ra, theo ghi chú giáo viên: **bắt buộc phải có dấu chấm phẩy (;) sau dấu } đóng struct**, nếu thiếu → 0 điểm.\n\n→ Cho phép dùng `typedef struct` — tức là không bắt buộc phải viết `struct Sinhvien { ... };` mà có thể viết `typedef struct { ... } Sinhvien;` cũng được chấp nhận.\n\n---\n\n### **2. Phân tích đáp án kỳ vọng (nếu có): cần khớp điều gì?**\n\nĐáp án mẫu tham khảo:\n```c\nstruct Sinhvien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};\n```\n\n→ Đây chỉ là **mẫu tham khảo**, không yêu cầu giống hệt. Tuy nhiên, nó minh họa rõ ràng:\n\n- Tên struct: `Sinhvien`\n- Các thuộc tính: `MaSV`, `HoTen`, `NamSinh`, `NoiSinh`, `DTB`\n- Kiểu dữ liệu: tuy không bắt buộc, nhưng thường sẽ phù hợp (string cho tên, int cho năm sinh, float cho điểm trung bình)\n- Có dấu `;` ở cuối\n\n→ Do đó, **điểm mấu chốt để đạt điểm đầy đủ là:**\n- Tên struct đúng: `Sinhvien`\n- Các thuộc tính **phải có đầy đủ 5 tên đúng**: `MaSV`, `HoTen`, `NamSinh`, `NoiSinh`, `DTB`\n- Có dấu `;` sau dấu `}`\n\n---\n\n### **3. Phân tích bài làm học sinh: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh:\n```c\nstruct Sinhvien { int x; };\n```\n\n→ **Phân tích chi tiết:**\n\n- ✅ **Tên struct đúng**: `Sinhvien` → thỏa mãn.\n- ✅ **Có dấu `;` sau dấu `}`** → thỏa mãn yêu cầu về cú pháp.\n- ❌ **Thiếu hoàn toàn các thuộc tính yêu cầu**: không có `MaSV`, `HoTen`, `NamSinh`, `NoiSinh`, `DTB`.\n- ❌ Thay vào đó, chỉ có một thuộc tính vô nghĩa: `int x;` → không liên quan đến yêu cầu.\n\n→ Học sinh đã khai báo một struct có tên đúng, cú pháp đúng, nhưng **không chứa bất kỳ thuộc tính nào theo yêu cầu**.\n\n---\n\n### **4. Kiểm tra tương đương: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.**\n\n→ **Tương đương về logic? Không.**\n\n- Bài làm học sinh chỉ định nghĩa một struct với một biến `x` kiểu `int`. Nó **hoàn toàn không thể dùng để lưu thông tin sinh viên** theo yêu cầu đề bài.\n- Dù học sinh có dùng `typedef` hay đổi tên biến, miễn là **thiếu 5 thuộc tính yêu cầu**, thì **không thể coi là tương đương**.\n\n→ Tiêu chí đánh giá không nói “tương đương về chức năng”, mà nói rõ:  \n> *“Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính”* — tức là **phải có các thuộc tính với tên đúng như đề bài**.\n\n→ Vì vậy, **không chấp nhận dạng “tương đương” nếu thiếu thuộc tính**.\n\n---\n\n### **5. So sánh: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n| Tiêu chí | Bài làm học sinh | Kết luận |\n|----------|------------------|----------|\n| Tên struct đúng (`Sinhvien`) | ✅ Có | Đạt |\n| Có dấu `;` sau `}` | ✅ Có | Đạt |\n| Có đầy đủ 5 thuộc tính: MaSV, HoTen, NamSinh, NoiSinh, DTB | ❌ Không có | **Không đạt** |\n\n→ **Chỉ đạt 2/3 yếu tố cơ bản, nhưng thiếu phần cốt lõi nhất: các thuộc tính yêu cầu.**\n\n→ Theo ghi chú giáo viên: **Tên các thuộc tính phải đúng như đề** → đây là điều kiện bắt buộc.\n\n→ Nếu thiếu tên thuộc tính → **không đạt điểm**.\n\n---\n\n### **6. Kết luận sơ bộ: điểm dự kiến và lý do.**\n\n→ **Điểm: 0.00 / 0.25**\n\n**Lý do:**\n\n- Mặc dù học sinh khai báo đúng tên struct và có dấu `;` đúng cú pháp, nhưng **không khai báo bất kỳ thuộc tính nào theo yêu cầu của đề bài**.\n- Đề bài yêu cầu rõ ràng: **các thuộc tính phải là MaSV, HoTen, NamSinh, NoiSinh, DTB**.\n- Việc thay thế bằng `int x;` là **sai hoàn toàn về nội dung**, không thể coi là tương đương.\n- Theo nguyên tắc chấm thi: **chấp nhận mọi cách làm tương đương về kết quả và logic**, nhưng ở đây **logic bị sai nghiêm trọng** — struct không thể dùng để lưu thông tin sinh viên.\n\n→ **Do đó, không đủ điều kiện để đạt điểm.**\n\n---\n\n### **So sánh với gợi ý của Heuristic Grader:**\n\nHeuristic Grader nói:\n> Found: 1/6 expected keywords found: Sinhvien.  \n> [OK] Sinhvien  \n> [MISS] MaSV, HoTen, NamSinh, NoiSinh, DTB\n\n→ Gợi ý này **rất chính xác**.\n\n→ Hệ thống đã phát hiện học sinh chỉ có 1/6 từ khóa cần thiết (chỉ có `Sinhvien`), còn lại đều thiếu.\n\n→ **Tôi đồng ý hoàn toàn với gợi ý của Heuristic Grader.**\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG:**\n\n> **Điểm: 0.00 / 0.25**\n\n**Lý do cuối cùng:**  \nHọc sinh chưa thực hiện đầy đủ yêu cầu đề bài: thiếu 5 thuộc tính bắt buộc (MaSV, HoTen, NamSinh, NoiSinh, DTB). Dù có đúng tên struct và cú pháp, nhưng nội dung không đáp ứng yêu cầu nên **không được điểm**.\n\n---",
+        "feedback": "Thiếu các thuộc tính bắt buộc: MaSV, HoTen, NamSinh, NoiSinh, DTB. Chỉ có một thuộc tính không liên quan: int x;",
+        "suggestion": "Cần khai báo đầy đủ 5 thuộc tính theo yêu cầu: string MaSV; string HoTen; int NamSinh; string NoiSinh; float DTB; trong struct Sinhvien.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:1/6 expected keywords found: Sinhvien.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 8121,
+          "completion_tokens": 5129,
+          "total_tokens": 13250
+        },
+        "evidence": {
+          "student_answer": "struct Sinhvien { int x; };",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "a",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "Sinhvien"
+          }
+        ],
+        "missing": [
+          {
+            "value": "MaSV"
+          },
+          {
+            "value": "HoTen"
+          },
+          {
+            "value": "NamSinh"
+          },
+          {
+            "value": "NoiSinh"
+          },
+          {
+            "value": "DTB"
+          }
+        ],
+        "latency_ms": 83405
+      },
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh chỉ định nghĩa struct Sinhvien mà không viết hàm NhapSV, không truyền tham chiếu và không sử dụng getline để nhập chuỗi, nên không đạt bất kỳ tiêu chí nào.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm gồm **2 phần độc lập**, mỗi phần 0.25 điểm, tổng cộng 0.5 điểm:\n\n1. **Truyền tham số đúng kiểu**: phải truyền tham chiếu (tham biến không được vì không thay đổi được giá trị ngoài hàm).  \n   → Yêu cầu: `Sinhvien &x` hoặc tương đương (ví dụ: `Sinhvien* x`, nhưng đề bài không yêu cầu con trỏ nên ưu tiên tham chiếu).\n\n2. **Nhập chuỗi có khoảng trắng đúng cách**: phải dùng `getline(cin, ...)` cho các trường là chuỗi (Mã SV, Họ tên, Nơi sinh), **không được dùng `cin>>`** vì sẽ cắt bỏ khoảng trắng.\n\n→ **Lưu ý**: Hai tiêu chí này **độc lập**, tức là nếu học sinh làm đúng 1 phần thì được 0.25 điểm, đúng cả hai thì 0.5 điểm.\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu (tham khảo):\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   \n    getline(cin,x.NoiSinh); \n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ **Logic kỳ vọng**:\n- Truyền tham chiếu: `Sinhvien &x` ✅\n- Dùng `getline` cho các chuỗi: MaSV, HoTen, NoiSinh ✅\n- Dùng `cin>>` cho số nguyên/float: NamSinh, DTB ✅\n\n→ **Tuyệt đối không chấp nhận**:\n- Truyền tham trị (`Sinhvien x`) ❌ → 0 điểm phần 1\n- Dùng `cin>>` cho chuỗi có khoảng trắng ❌ → 0 điểm phần 2\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nstruct Sinhvien { int x; };\n```\n\n→ Đây **không phải là hàm `NhapSV`**, mà chỉ là định nghĩa một cấu trúc đơn giản có 1 biến nguyên.\n\n→ Không có hàm `NhapSV()` nào được viết.\n→ Không có bất kỳ lệnh nhập dữ liệu nào.\n→ Không có việc sử dụng `getline` hay `cin>>`.\n\n→ **Rất rõ ràng: học sinh chưa hoàn thành yêu cầu** — chỉ định nghĩa struct, không viết hàm, không xử lý nhập dữ liệu.\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\nCó thể học sinh đã cố gắng viết hàm nhưng bị thiếu? Hay chỉ định nghĩa struct?\n\n→ **Không có dấu hiệu nào cho thấy học sinh đã viết hàm `NhapSV`**.  \n→ Không có truyền tham số nào được định nghĩa trong hàm (vì không có hàm).  \n→ Không có lệnh nhập dữ liệu nào.\n\n→ **Không có sự tương đương logic nào với yêu cầu đề bài**.\n\n> Gợi ý từ Heuristic Grader cũng xác nhận: [MISS] NhapSV, [MISS] getline → không tìm thấy các từ khóa cần thiết.\n\n---\n\n### **BƯỚC 5: SO SÁNH VỚI TIÊU CHÍ**\n\n| Tiêu chí | Học sinh có đáp ứng? | Lý do |\n|----------|----------------------|-------|\n| **1. Truyền tham số đúng kiểu (tham chiếu)** | ❌ Không | Không có hàm `NhapSV`, không có tham số được khai báo. |\n| **2. Nhập chuỗi đúng cách (dùng getline)** | ❌ Không | Không có lệnh nhập nào, không dùng getline. |\n\n→ Cả hai tiêu chí đều **không đạt**.\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n→ Học sinh **chưa thực hiện yêu cầu** — chỉ định nghĩa struct, không viết hàm `NhapSV`, không có lệnh nhập.\n\n→ Do đó, **không đạt bất kỳ tiêu chí nào**.\n\n→ Theo nguyên tắc: “**Chấp nhận mọi cách làm tương đương — code/công thức/thuật toán khác nhau về hình thức nhưng đúng về kết quả và logic đều được điểm đầy đủ**” — nhưng ở đây **không có logic nào được thực hiện**, nên **không thể coi là tương đương**.\n\n→ **Không có điểm nào được tính**.\n\n---\n\n### **SO SÁNH VỚI GỢI Ý HEURISTIC GRADER**\n\nGợi ý của Heuristic:  \n> Found: 0/2 expected keywords found: .  \n> [MISS] NhapSV  \n> [MISS] getline\n\n→ **Hoàn toàn phù hợp với suy luận của tôi**.  \n→ Hệ thống phát hiện đúng: không có hàm `NhapSV`, không có `getline`.  \n→ Kết luận: không đạt tiêu chí → 0 điểm.\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG**\n\n**Điểm: 0.0 / 0.5**\n\n---\n\n### 🔍 **LÝ DO CHI TIẾT**\n\n- Học sinh chỉ định nghĩa cấu trúc `Sinhvien` với một biến `int x`, **không liên quan đến yêu cầu nhập thông tin sinh viên**.\n- **Không có hàm `NhapSV` nào được viết** → vi phạm tiêu chí 1 (truyền tham số) và tiêu chí 2 (nhập chuỗi).\n- Không có bất kỳ lệnh nhập nào → không thể kiểm tra việc dùng `getline` hay `cin>>`.\n- **Không có hành động nào tương đương với yêu cầu đề bài** → không đủ điều kiện để được điểm.\n\n---\n\n✅ **Tuân thủ nghiêm ngặt ghi chú giáo viên**:  \n> \"Truyền tham trị... thì 0đ\", \"nếu nhập Họ tên và Nơi sinh mà không dùng getline thì zero điểm phần đó\".  \n→ Ở đây, **cả hai phần đều không được thực hiện**, nên 0 điểm.\n\n---\n\n### 📌 **KẾT LUẬN TƯƠNG THỰC**\n\n> **Bài làm học sinh không hoàn thành yêu cầu đề bài. Không có hàm `NhapSV`, không có việc truyền tham chiếu, không có lệnh nhập chuỗi bằng `getline`. Do đó, không đạt bất kỳ tiêu chí nào. Điểm: 0.0.**\n\n---",
+        "feedback": "Không có hàm NhapSV; không truyền tham chiếu; không dùng getline để nhập chuỗi Họ tên và Nơi sinh.",
+        "suggestion": "Viết hàm NhapSV với tham số là tham chiếu đến cấu trúc Sinhvien. Dùng getline(cin, ...) để nhập các trường chuỗi (MaSV, HoTen, NoiSinh) và cin>> để nhập NamSinh và DTB.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:0/2 expected keywords found: .",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 7916,
+          "completion_tokens": 4669,
+          "total_tokens": 12585
+        },
+        "evidence": {
+          "student_answer": "struct Sinhvien { int x; };",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "fallback",
+          "found": false
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [],
+        "missing": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 63983
+      },
+      {
+        "criterion_id": "T14C",
+        "part_label": "c",
+        "criterion_content": "Hàm InDSSV in thông tin sinh viên có NoiSinh là \"TPHCM\" (0.25đ).",
+        "score": 0,
+        "max_score": 0.25,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": false,
+        "grading_method": "blank_skip",
+        "stage": "heuristic",
+        "llm_reasoning": "Student left this part blank.",
+        "cot_reasoning": "",
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "c",
+          "type": "blank",
+          "found": false,
+          "is_blank": true
+        },
+        "detected_errors": [
+          {
+            "error_type": "blank_answer",
+            "message": "Sinh viên không làm phần này."
+          }
+        ],
+        "latency_ms": 0
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [
+      {
+        "criterion_id": "T14C",
+        "part_label": "c",
+        "error_type": "blank_answer",
+        "message": "Sinh viên không làm phần này."
+      }
+    ],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 3,
+      "agreed_count": 0,
+      "overridden_count": 2,
+      "blank_skipped": 1
+    }
+  },
+  {
+    "sample_id": "cau_15_001__HS_2",
+    "ma_de": "1",
+    "question_number": 15,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T15A)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 0.25,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 71878,
+    "token_usage": {
+      "prompt_tokens": 9264,
+      "completion_tokens": 5444,
+      "total_tokens": 14708
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T15A",
+        "part_label": "a",
+        "score": 0,
+        "max_score": 0.25,
+        "feedback": "Thiếu mô tả kiểu dữ liệu và điều kiện 'không âm' cho input N, M; thiếu trường hợp output 'giả định sai'.",
+        "suggestion": "Cần mô tả rõ: Input là N, M (số nguyên không âm); Output gồm hai trường hợp: nếu không thỏa mãn thì in 'giả định sai', nếu thỏa mãn thì in x, y (số người và số ngựa)."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T15A",
+        "part_label": "a",
+        "criterion_content": "Đặt tên biến và mô tả kiểu dữ liệu cho input (N, M là hai số nguyên không âm) và output (chuỗi \"giả định sai\" hoặc hai số nguyên x, y) của bài toán (0.25đ).",
+        "score": 0,
+        "max_score": 0.25,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Bài làm thiếu mô tả kiểu dữ liệu và điều kiện 'không âm' cho input N, M, đồng thời không nêu trường hợp output 'giả định sai'. Theo hướng dẫn, phải đúng cả input lẫn output mới được điểm.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm:  \n> *Đặt tên biến và mô tả kiểu dữ liệu cho input (N, M là hai số nguyên không âm) và output (chuỗi \"giả định sai\" hoặc hai số nguyên x, y) của bài toán (0.25đ).*\n\n→ Đây là một phần nhỏ trong câu hỏi lớn hơn (câu 15), nhưng được tách riêng ra để đánh giá kỹ năng **mô tả rõ ràng đầu vào và đầu ra**.\n\n**Yêu cầu cụ thể:**\n- **Input**: Phải nêu rõ **tên biến** (N, M) và **kiểu dữ liệu + điều kiện** → “số nguyên **không âm**”.\n- **Output**: Phải nêu rõ **hai trường hợp**:\n  - Nếu giả định không thỏa mãn → in chuỗi `\"giả định sai\"`\n  - Nếu thỏa mãn → in hai số nguyên x, y (số người và số ngựa)\n- **Tính nhất quán**: Output phải phù hợp với logic bài toán (x, y ≥ 0, vì đề nói “không có ai bị thiếu chân hay đầu”, tức là số người/ngựa có thể bằng 0).\n\n→ **Quy tắc nghiêm ngặt từ ghi chú giáo viên**:  \n> *Phải đúng CẢ input lẫn output mới được 0.25đ. Đúng một trong hai thì 0đ.*\n\n→ Do đó, nếu học sinh chỉ mô tả đúng input mà thiếu output, hoặc ngược lại, thì **bị trừ toàn bộ điểm**.\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nKhông có đáp án cố định, nhưng:\n\n- **Keywords cần có**: `N`, `M`, `không âm`, `giả định sai`\n- **Logic kỳ vọng**: Học sinh phải nhận diện được:\n  - Input: N (số đầu), M (số chân) — đều là **số nguyên không âm**\n  - Output: Có 2 khả năng:\n    - In `\"giả định sai\"` nếu không tồn tại nghiệm (ví dụ: M lẻ, hoặc M < 2N, hoặc M > 4N, v.v.)\n    - In `x y` (số người, số ngựa) nếu tồn tại nghiệm không âm\n\n→ **Mục đích tiêu chí này**: Kiểm tra học sinh có hiểu rõ yêu cầu đầu vào/đầu ra, có tư duy lập trình hệ thống (không chỉ viết code, mà còn mô tả rõ ràng cấu trúc dữ liệu đầu vào/đầu ra).\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\n> **Bài làm**: `Input la N, M. Output la x, y`\n\n→ **Phân tích chi tiết**:\n\n1. **Input**:\n   - Đã nêu tên biến: `N, M` ✅\n   - Nhưng **không nêu kiểu dữ liệu** → thiếu thông tin quan trọng.\n   - **Không nêu điều kiện “không âm”** ❌ → vi phạm nghiêm trọng theo ghi chú giáo viên.\n\n2. **Output**:\n   - Đã nêu tên kết quả: `x, y` ✅\n   - Nhưng **thiếu trường hợp “giả định sai”** ❌ → không phản ánh đầy đủ logic bài toán.\n   - Không nêu rõ x, y là gì? (số người, số ngựa?) → tuy nhiên, trong bối cảnh bài toán, có thể suy ra, nhưng **không đủ rõ ràng theo tiêu chí**.\n\n→ **Tổng kết bài làm**:\n- Chỉ nêu tên biến, không mô tả kiểu dữ liệu và điều kiện.\n- Thiếu hoàn toàn trường hợp “giả định sai” trong output.\n\n→ **Vi phạm trực tiếp quy tắc giáo viên**:  \n> *Phải đúng CẢ input lẫn output mới được 0.25đ. Đúng một trong hai thì 0đ.*\n\n→ Bài làm **chưa đạt cả hai yếu tố**:\n- Input thiếu điều kiện “không âm”\n- Output thiếu trường hợp “giả định sai”\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n→ Tiêu chí này **không yêu cầu code**, mà yêu cầu **mô tả đầu vào/đầu ra**.\n\n→ Bài làm học sinh **không tương đương** với yêu cầu kỳ vọng vì:\n- Không cung cấp đủ thông tin về **kiểu dữ liệu và ràng buộc** của input (không âm).\n- Không cung cấp đủ thông tin về **tất cả các trường hợp output** (phải có “giả định sai”).\n\n→ Dù học sinh có thể hiểu bài toán, nhưng **không thể hiện đầy đủ yêu cầu** trong phần mô tả.\n\n→ Vì vậy, **không chấp nhận được** theo nguyên tắc: “Chấp nhận mọi cách làm tương đương”.\n\n---\n\n### **BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Yếu tố | Yêu cầu | Bài làm | Kết luận |\n|--------|---------|----------|----------|\n| Input: tên biến | N, M | ✅ | Đạt |\n| Input: kiểu dữ liệu & điều kiện | Số nguyên không âm | ❌ Không có | Không đạt |\n| Output: trường hợp 1 | \"giả định sai\" | ❌ Không có | Không đạt |\n| Output: trường hợp 2 | x, y (số người, ngựa) | ✅ | Đạt |\n\n→ **Kết luận**: Học sinh **chỉ đạt một phần nhỏ** (tên biến), nhưng **thiếu hai yếu tố then chốt** theo quy định: điều kiện “không âm” và trường hợp “giả định sai”.\n\n→ Theo ghi chú giáo viên: **“Phải đúng CẢ input lẫn output mới được 0.25đ. Đúng một trong hai thì 0đ.”**\n\n→ Vì vậy, **bài làm không đủ điều kiện để lấy điểm**.\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n→ **Điểm dự kiến: 0.00**\n\n→ **Lý do**:  \n- Học sinh chưa mô tả đầy đủ kiểu dữ liệu và điều kiện của input (thiếu “không âm”) → lỗi nghiêm trọng.\n- Học sinh chưa mô tả đầy đủ output (thiếu trường hợp “giả định sai”) → lỗi nghiêm trọng.\n- Theo quy định giáo viên: **phải đúng cả hai mới được điểm** → nên **trừ toàn bộ điểm**.\n\n---\n\n### **SO SÁT VỚI GỢI Ý HEURISTIC GRADER**\n\n> Heuristic tìm thấy: `N`, `M` → OK  \n> Chưa tìm thấy: `không âm`, `giả định sai` → MISS\n\n→ Gợi ý heuristic **hoàn toàn chính xác** và **phù hợp với phân tích của tôi**.\n\n→ Nó phản ánh đúng những gì thiếu trong bài làm: thiếu hai keyword quan trọng.\n\n→ Tôi **đồng ý hoàn toàn** với gợi ý này.\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG**\n\n> **Điểm: 0.00**\n\n**Lý do chi tiết**:  \nBài làm học sinh chỉ nêu tên biến N, M và output là x, y — **không mô tả kiểu dữ liệu (số nguyên không âm)** và **thiếu trường hợp output \"giả định sai\"**. Theo hướng dẫn chấm của giáo viên: **phải đúng cả input lẫn output mới được điểm**. Do đó, **bài làm không đạt yêu cầu, không được điểm**.\n\n---",
+        "feedback": "Thiếu mô tả kiểu dữ liệu và điều kiện 'không âm' cho input N, M; thiếu trường hợp output 'giả định sai'.",
+        "suggestion": "Cần mô tả rõ: Input là N, M (số nguyên không âm); Output gồm hai trường hợp: nếu không thỏa mãn thì in 'giả định sai', nếu thỏa mãn thì in x, y (số người và số ngựa).",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/4 expected keywords found: N, M.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 9264,
+          "completion_tokens": 5444,
+          "total_tokens": 14708
+        },
+        "evidence": {
+          "student_answer": "Input la N, M. Output la x, y",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "a",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "N"
+          },
+          {
+            "value": "M"
+          }
+        ],
+        "missing": [
+          {
+            "value": "không âm"
+          },
+          {
+            "value": "giả định sai"
+          }
+        ],
+        "latency_ms": 71878
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  }
+]

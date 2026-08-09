@@ -1,0 +1,233 @@
+[
+  {
+    "sample_id": "cau_14_001__HS_2",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14A)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 1.0,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 302558,
+    "token_usage": {
+      "prompt_tokens": 31542,
+      "completion_tokens": 20244,
+      "total_tokens": 51786
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14A",
+        "part_label": "a",
+        "score": 0,
+        "max_score": 0.25,
+        "feedback": "Lỗi 1: Viết sai từ khóa struct → 'Struct'. Lỗi 2: Thiếu thuộc tính NoiSinh và DTB. Lỗi 3: Thiếu dấu ';' sau dấu '}'. Lỗi 4: Kiểu dữ liệu không đúng (dùng char[] thay vì string).",
+        "suggestion": "Sửa lại từ khóa thành 'struct', bổ sung đầy đủ 5 thuộc tính: MaSV, HoTen, NamSinh, NoiSinh, DTB với kiểu dữ liệu phù hợp (string, int, float), và thêm dấu ';' sau dấu '}'. Nếu dùng C++, nên dùng std::string thay vì char[]."
+      },
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0,
+        "max_score": 0.5,
+        "feedback": "1. Truyền tham trị (SinhVien a) → sai, phải dùng tham chiếu (SinhVien &a). 2. Thiếu dấu ';' ở cuối dòng `cin>>a.DTB` → lỗi cú pháp. 3. Dùng `fgets` nhưng không xử lý ký tự xuống dòng → rủi ro lỗi khi nhập tiếp. 4. Không dùng `getline` như đáp án kỳ vọng, dù có thể chấp nhận nếu xử lý tốt, nhưng ở đây không xử lý.",
+        "suggestion": "Sửa lại thành: `void NhapSV(SinhVien &x)`; dùng `getline(cin, x.MaSV);`, `getline(cin, x.HoTen);`, `getline(cin, x.NoiSinh);` cho các chuỗi; dùng `cin >> x.NamSinh;` và `cin >> x.DTB;` cho số; đảm bảo mỗi lệnh nhập chuỗi bằng getline đều được xử lý đúng cách."
+      },
+      {
+        "criterion_id": "T14C",
+        "part_label": "c",
+        "score": 0,
+        "max_score": 0.25,
+        "feedback": "Lỗi 1: So sánh chuỗi phải dùng \"TPHCM\" thay vì TPHCM. Lỗi 2: Thiếu toán tử << giữa a[i].NoiSinh và a[i].DTB trong câu lệnh in.",
+        "suggestion": "Sửa lại thành: if (a[i].NoiSinh == \"TPHCM\") { cout << a[i].MaSV << \" \" << a[i].HoTen << \" \" << a[i].NamSinh << \" \" << a[i].NoiSinh << \" \" << a[i].DTB << endl; }"
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14A",
+        "part_label": "a",
+        "criterion_content": "Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính (0.25đ).",
+        "score": 0,
+        "max_score": 0.25,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Bài làm có nhiều lỗi nghiêm trọng: từ khóa 'struct' viết sai thành 'Struct', thiếu hai thuộc tính bắt buộc (NoiSinh, DTB), thiếu dấu ';' sau '}', và sử dụng kiểu dữ liệu char[] thay vì string như yêu cầu.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: TIÊU CHÍ NÀY YÊU CẦU GÌ?**\n\nTiêu chí:  \n> *Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính (0.25đ).*\n\n→ Đây là một yêu cầu **rất cụ thể**:  \n- Tên cấu trúc phải là `Sinhvien` (chữ hoa đầu, không sai chính tả).  \n- Phải có **các thuộc tính đúng tên như đề bài yêu cầu**: MaSV, HoTen, NamSinh, NoiSinh, DTB.  \n- Mỗi thuộc tính phải được khai báo với **kiểu dữ liệu phù hợp** (theo đáp án mẫu: MaSV, HoTen, NoiSinh là string; NamSinh là int; DTB là float).  \n- **Phải có dấu chấm phẩy (;) sau dấu } đóng struct** — theo ghi chú của giáo viên, thiếu dấu này → 0 điểm.  \n- Cho phép dùng `typedef struct`, nhưng nếu dùng thì vẫn phải đảm bảo tên cấu trúc và các thành phần đúng.\n\n→ **Tóm lại**, để đạt điểm tối đa 0.25, học sinh phải:  \n✅ Có từ khóa `struct` (hoặc `typedef struct`) + tên `Sinhvien`  \n✅ Có đầy đủ 5 thuộc tính: MaSV, HoTen, NamSinh, NoiSinh, DTB  \n✅ Mỗi thuộc tính có kiểu dữ liệu phù hợp (string/int/float)  \n✅ Có dấu `;` sau dấu `}`  \n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (LOGIC & YÊU CẦU)**\n\nĐáp án mẫu tham khảo:  \n```c\nstruct Sinhvien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};\n```\n\n→ Điều này cho thấy:\n- **Tên cấu trúc đúng**: `Sinhvien`\n- **Các thuộc tính đầy đủ**: MaSV, HoTen, NamSinh, NoiSinh, DTB ✅\n- **Kiểu dữ liệu phù hợp**: string, int, float ✅\n- **Dấu ; sau }** ✅\n\n→ Ngoài ra, đề bài không yêu cầu buộc dùng `typedef`, nên dùng `struct` trực tiếp là chấp nhận được.\n\n→ **Ghi chú giáo viên nhấn mạnh**:  \n> Tên các thuộc tính phải đúng như đề (MaSV, HoTen, NamSinh, NoiSinh, DTB).  \n> Bắt buộc có dấu chấm phẩy (;) sau dấu } đóng struct, thiếu dấu này => 0đ.  \n> Cho phép dùng typedef struct.\n\n→ Như vậy, **mọi sai sót về tên thuộc tính hoặc thiếu thuộc tính đều bị trừ điểm**, không được coi là \"tương đương\".\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:  \n```c\nStruct Sinhvien {\n   char MaSV[20];\n   char HoTen[50];\n   int NamSinh;\n```\n\n→ **Nhận xét chi tiết từng lỗi:**\n\n- **Lỗi 1: Viết sai từ khóa `struct` → `Struct` (viết hoa chữ S)**  \n  → Trong C/C++, từ khóa `struct` phải viết thường. Viết `Struct` là **sai ngữ pháp**, không biên dịch được.  \n  → **Trực tiếp vi phạm nguyên tắc “không thể biên dịch được” → không được coi là tương đương.**\n\n- **Lỗi 2: Thiếu 2 thuộc tính bắt buộc: `NoiSinh` và `DTB`**  \n  → Đề bài yêu cầu 5 thuộc tính, học sinh chỉ khai báo 3.  \n  → **Thiếu thông tin bắt buộc → không thỏa mãn tiêu chí.**\n\n- **Lỗi 3: Không có dấu `;` sau dấu `}`**  \n  → Bài làm không kết thúc bằng `;` → **vi phạm ghi chú giáo viên: thiếu dấu ; → 0 điểm.**\n\n- **Lỗi 4: Kiểu dữ liệu không khớp với đáp án kỳ vọng**  \n  - Đề bài mẫu dùng `string` (có thể là `std::string` trong C++), nhưng học sinh dùng `char[]`.  \n  - Dù `char[]` có thể dùng để lưu chuỗi, nhưng **không tương đương về kiểu dữ liệu** nếu đề bài yêu cầu `string`.  \n  - Tuy nhiên, ở đây **đề bài không rõ ràng về kiểu dữ liệu**, chỉ nói \"khai báo với đúng tên và kiểu dữ liệu\".  \n  - Nhưng **gợi ý đáp án mẫu dùng `string`**, và **ghi chú giáo viên không nói cho phép dùng `char[]`** → do đó, **xem xét kiểu dữ liệu không phù hợp**.\n\n→ **Tổng kết lỗi:**  \n❌ Từ khóa `Struct` sai (không biên dịch được)  \n❌ Thiếu 2 thuộc tính bắt buộc (`NoiSinh`, `DTB`)  \n❌ Thiếu dấu `;` sau `}`  \n❌ Kiểu dữ liệu không khớp (dùng `char[]` thay vì `string`)\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n→ Học sinh đã cố gắng khai báo struct tên `Sinhvien` với một số thuộc tính đúng tên.  \n→ Tuy nhiên:\n\n- **Không thể coi là tương đương vì:**\n  - **Code không biên dịch được** do `Struct` viết sai → vi phạm nguyên tắc \"không được coi là tương đương khi thiếu sót cấu trúc\".\n  - **Thiếu thuộc tính bắt buộc** → không thể xem là hoàn chỉnh.\n  - **Không có dấu `;`** → vi phạm ghi chú giáo viên rõ ràng.\n  - **Kiểu dữ liệu không đúng** → nếu đề bài yêu cầu kiểu dữ liệu cụ thể (như trong đáp án mẫu), thì dùng `char[]` thay vì `string` là sai.\n\n→ **Do đó, KHÔNG được áp dụng nguyên tắc \"tương đương\" dù hướng đi đúng.**\n\n---\n\n### **5. SO SÁNH: MỨC ĐỘ KHỚP GIỮA BÀI LÀM VÀ TIÊU CHÍ / ĐÁP ÁN KỲ VỌNG**\n\n| Tiêu chí | Bài làm học sinh | Kết luận |\n|----------|------------------|----------|\n| Tên struct đúng | `Struct` → Sai | ❌ |\n| Các thuộc tính đầy đủ (5 cái) | Chỉ có 3: MaSV, HoTen, NamSinh | ❌ |\n| Kiểu dữ liệu phù hợp | Dùng `char[]` thay vì `string` | ❌ |\n| Dấu `;` sau `}` | Thiếu | ❌ |\n\n→ **Tổng kết: không đáp ứng bất kỳ tiêu chí nào đầy đủ.**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: ĐIỂM DỰ KIẾN VÀ LÝ DO**\n\n→ Theo **ghi chú giáo viên**: thiếu dấu `;` → 0 điểm.  \n→ Thêm vào đó, bài làm còn **không biên dịch được** (do `Struct` sai) và **thiếu thuộc tính bắt buộc**.\n\n→ Do đó, **bài làm không đạt yêu cầu cơ bản nhất** của tiêu chí.\n\n→ **Điểm: 0.00**\n\n---\n\n### **SO SÁNH VỚI GỢI Ý HEURISTIC GRADER**\n\nGợi ý Heuristic:  \n> Found: 4/6 expected keywords found: Sinhvien, MaSV, HoTen, NamSinh.  \n> [MISS] NoiSinh, DTB\n\n→ Heuristic chỉ **tìm thấy tên các thuộc tính**, nhưng **không kiểm tra**:\n- Từ khóa `struct` viết đúng hay sai\n- Có dấu `;` hay không\n- Kiểu dữ liệu có đúng không\n- Code có biên dịch được không\n\n→ **Heuristic đánh giá quá nhẹ nhàng**, bỏ qua những lỗi nghiêm trọng về cú pháp và thiếu sót cấu trúc.\n\n→ **Tôi KHÔNG ĐỒNG Ý với gợi ý Heuristic**, vì nó **không phản ánh thực tế bài làm** — bài làm có nhiều lỗi nghiêm trọng khiến code không hoạt động, và **không đủ điều kiện để được điểm**.\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG**\n\n> **Điểm: 0.00**\n\n**Lý do chi tiết:**  \n- Viết sai từ khóa `struct` → `Struct` (không biên dịch được) → vi phạm nguyên tắc không được coi là tương đương.  \n- Thiếu 2 thuộc tính bắt buộc: `NoiSinh`, `DTB`.  \n- Thiếu dấu `;` sau `}` → vi phạm ghi chú giáo viên rõ ràng.  \n- Kiểu dữ liệu không khớp (dùng `char[]` thay vì `string` như trong đáp án mẫu).\n\n→ **Bài làm không đáp ứng đủ tiêu chí nào → 0 điểm.**\n\n--- \n\n✅ **XONG.**",
+        "feedback": "Lỗi 1: Viết sai từ khóa struct → 'Struct'. Lỗi 2: Thiếu thuộc tính NoiSinh và DTB. Lỗi 3: Thiếu dấu ';' sau dấu '}'. Lỗi 4: Kiểu dữ liệu không đúng (dùng char[] thay vì string).",
+        "suggestion": "Sửa lại từ khóa thành 'struct', bổ sung đầy đủ 5 thuộc tính: MaSV, HoTen, NamSinh, NoiSinh, DTB với kiểu dữ liệu phù hợp (string, int, float), và thêm dấu ';' sau dấu '}'. Nếu dùng C++, nên dùng std::string thay vì char[].",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:4/6 expected keywords found: Sinhvien, MaSV, HoTen, NamSinh.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 9869,
+          "completion_tokens": 6299,
+          "total_tokens": 16168
+        },
+        "evidence": {
+          "student_answer": "Struct Sinhvien {\n   char MaSV[20];\n   char HoTen[50];\n   int NamSinh;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "a",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "Sinhvien"
+          },
+          {
+            "value": "MaSV"
+          },
+          {
+            "value": "HoTen"
+          },
+          {
+            "value": "NamSinh"
+          }
+        ],
+        "missing": [
+          {
+            "value": "NoiSinh"
+          },
+          {
+            "value": "DTB"
+          }
+        ],
+        "latency_ms": 96261
+      },
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh truyền tham trị (SinhVien a) nên không thể thay đổi đối tượng ngoài hàm, và sử dụng fgets mà không xử lý ký tự xuống dòng cùng với thiếu dấu ';' dẫn đến lỗi cú pháp và logic, không đảm bảo nhập dữ liệu đúng.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm gồm **2 phần độc lập**, mỗi phần 0.25 điểm, tổng cộng 0.5 điểm:\n\n1. **Truyền tham số đúng kiểu**: phải dùng **tham chiếu** (truyền tham biến/tham chiếu) để thay đổi đối tượng bên ngoài hàm.\n   - Nếu dùng `SinhVien a` (tham trị), thì thay đổi trong hàm không ảnh hưởng đến đối tượng ngoài → **sai**.\n   - Phải là `SinhVien &a` hoặc tương đương.\n\n2. **Nhập chuỗi có khoảng trắng đúng cách**: Họ tên và Nơi sinh là chuỗi có thể chứa khoảng trắng → **phải dùng `getline` hoặc `fgets`** để đọc toàn bộ dòng.\n   - Dùng `cin >>` sẽ chỉ đọc đến dấu cách đầu tiên → **sai**.\n\n→ Hai tiêu chí **độc lập**, nên nếu sai một phần thì chỉ trừ điểm phần đó, không trừ hết.\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\n- Hàm: `void NhapSV(SinhVien &x)` → truyền tham chiếu ✅\n- Nhập:\n  - `getline(cin, x.MaSV);` → đúng (giả sử MaSV là chuỗi)\n  - `getline(cin, x.HoTen);` → đúng (có khoảng trắng)\n  - `getline(cin, x.NoiSinh);` → đúng (có khoảng trắng)\n  - `cin >> x.NamSinh;` → đúng (số nguyên, không cần getline)\n  - `cin >> x.DTB;` → đúng (số thực, không cần getline)\n\n→ Tất cả các bước đều đúng về logic và cú pháp.\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\n```cpp\nvoid NhapSV(SinhVien a)\ncin>>a.MaSV;\ncin.ignore();\nfgets(a.HoTen, 50, stdin);\ncin>>a.NamSinh; cin.ignore();\nfgets(a.NoiSinh, 50, stdin);\ncin>>a.DTB\n```\n\n#### **Phân tích từng phần:**\n\n1. **Tham số truyền vào**: `SinhVien a`\n   - Đây là **truyền tham trị** (value semantics).\n   - Theo ghi chú giáo viên: **\"Truyền tham trị (Sinhvien x) thì 0đ vì sửa không có tác dụng ngoài hàm.\"**\n   - → **Sai tiêu chí 1: 0 điểm cho phần này.**\n\n2. **Nhập dữ liệu:**\n\n   - `cin>>a.MaSV;` → giả sử MaSV là chuỗi → **sai nếu có khoảng trắng**, nhưng đề bài không nói rõ MaSV có khoảng trắng hay không.\n     - Tuy nhiên, trong đáp án mẫu dùng `getline`, và thường MaSV là mã sinh viên dạng \"SV001\", không có khoảng trắng → **có thể chấp nhận**.\n     - Nhưng ở đây học sinh dùng `cin>>`, và sau đó dùng `cin.ignore()` → **không hợp lý** vì `cin>>` không bỏ qua ký tự xuống dòng, `cin.ignore()` chỉ làm việc nếu có dư thừa ký tự.\n     - → **Không chắc chắn đúng**, nhưng tạm coi là chấp nhận được nếu MaSV không có khoảng trắng.\n\n   - `cin.ignore();` → **dùng sai chỗ**: nó được gọi ngay sau `cin>>a.MaSV;`, nhưng `cin.ignore()` chỉ loại bỏ **1 ký tự**, thường dùng để loại bỏ `\\n` sau `cin>>`. Tuy nhiên, ở đây chưa rõ ràng, và không đủ để xử lý dòng tiếp theo.\n\n   - `fgets(a.HoTen, 50, stdin);` → **đúng về mặt kỹ thuật** (đọc toàn bộ dòng, bao gồm khoảng trắng). \n     - Tuy nhiên, `fgets` đọc **bao gồm ký tự xuống dòng**, và nếu không xử lý, có thể gây lỗi khi nhập tiếp.\n     - Nhưng trong ngữ cảnh này, nếu học sinh đã xử lý tốt (ví dụ cắt bỏ `\\n`), thì **có thể chấp nhận**.\n     - Tuy nhiên, đề bài yêu cầu dùng `getline` (gợi ý từ Heuristic), nhưng **không bắt buộc** — chỉ yêu cầu “nhập chuỗi có khoảng trắng đúng cách”.\n\n   - `cin>>a.NamSinh; cin.ignore();` → **sai**: `cin.ignore()` sau `cin>>` là thừa, và không cần thiết. Nhưng lỗi nghiêm trọng hơn là: **sau fgets, buffer còn `\\n`**, nên `cin>>a.NamSinh;` sẽ bị bỏ qua do gặp `\\n` → **không đọc được giá trị**.\n     - → **Lỗi logic nghiêm trọng**: dữ liệu không được nhập đúng.\n\n   - `fgets(a.NoiSinh, 50, stdin);` → **tương tự như trên**, có thể chấp nhận nếu xử lý tốt, nhưng lại để lại `\\n` trong buffer.\n\n   - `cin>>a.DTB` → thiếu dấu `;` → **lỗi cú pháp**, không biên dịch được.\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- Học sinh **không dùng `getline`**, mà dùng `fgets` → tuy hình thức khác, nhưng **về chức năng có thể tương đương** nếu xử lý đúng.\n- Tuy nhiên, **cấu trúc chương trình bị lỗi**:\n  - Không xử lý `\\n` từ `fgets`.\n  - `cin.ignore()` được dùng sai chỗ, không giải quyết vấn đề.\n  - Thiếu dấu `;` ở cuối → **không biên dịch được** → vi phạm nguyên tắc: “KHÔNG áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC”.\n- Về **logic nhập chuỗi**: `fgets` có thể chấp nhận nếu học sinh biết xử lý, nhưng trong bài làm **không thấy xử lý**, nên **rủi ro cao**.\n\n→ **Không thể coi là tương đương đầy đủ**, vì:\n- Thiếu dấu `;` → lỗi cú pháp → **không chạy được** → **bị trừ điểm**.\n- Truyền tham trị → **0 điểm cho tiêu chí 1**.\n- Nhập chuỗi bằng `fgets` nhưng không xử lý `\\n` → **rủi ro lỗi logic**, không đảm bảo kết quả đúng.\n\n---\n\n### **BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Bài làm học sinh | Kết luận |\n|----------|------------------|----------|\n| 1. Truyền tham chiếu | `SinhVien a` → tham trị | ❌ Sai → 0 điểm |\n| 2. Nhập chuỗi đúng (Họ tên, Nơi sinh) | Dùng `fgets`, nhưng không xử lý `\\n`, và thiếu `;` | ❌ Có rủi ro, không đảm bảo, không biên dịch được → 0 điểm |\n\n→ **Tổng: 0/0.5 điểm**\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\nDựa trên suy luận chi tiết:\n\n- **Thiếu dấu `;`** → lỗi cú pháp → **không biên dịch được** → không thể chấp nhận như “tương đương”.\n- **Truyền tham trị** → không thay đổi đối tượng ngoài hàm → **vi phạm nguyên tắc cơ bản**.\n- **Dùng `fgets`** → mặc dù có thể chấp nhận nếu xử lý tốt, nhưng trong bài làm **không thấy xử lý ký tự xuống dòng**, dẫn đến lỗi logic khi nhập tiếp.\n- **Không dùng `getline`** → nhưng đề bài không bắt buộc, chỉ yêu cầu “nhập đúng kiểu chuỗi có khoảng trắng”, và `fgets` có thể được chấp nhận nếu đúng cách. Tuy nhiên, ở đây **không đúng cách**.\n\n→ **Tất cả các yếu tố đều sai hoặc thiếu sót nghiêm trọng**, không đủ điều kiện để đạt điểm.\n\n---\n\n### **SO SÁNH VỚI GỢI Ý CỦA HEURISTIC GRADER**\n\nHeuristic nói:  \n> Found: 1/2 expected keywords found: NhapSV.  \n> [OK] NhapSV  \n> [MISS] getline\n\n→ Heuristic chỉ kiểm tra **từ khóa**, và **chỉ thấy thiếu `getline`**, nhưng **không phát hiện**:\n- Truyền tham trị\n- Thiếu dấu `;`\n- Lỗi cấu trúc với `cin.ignore()`\n- Rủi ro từ `fgets`\n\n→ **Gợi ý của Heuristic không đầy đủ**, chỉ tập trung vào từ khóa, bỏ qua các lỗi cú pháp và logic quan trọng.\n\n---\n\n### **QUYẾT ĐỊNH CUỐI CÙNG**\n\n✅ **Điểm: 0.0 / 0.5**\n\n**Lý do chi tiết:**\n- Truyền tham trị (`SinhVien a`) → **vi phạm nguyên tắc thay đổi đối tượng ngoài hàm** → 0 điểm tiêu chí 1.\n- Nhập chuỗi dùng `fgets` nhưng **không xử lý ký tự xuống dòng**, và **thiếu dấu `;`** → **không biên dịch được, có lỗi logic** → 0 điểm tiêu chí 2.\n- Dù hướng đi có thể chấp nhận (dùng `fgets` thay `getline`), nhưng **do thiếu sót nghiêm trọng về cú pháp và cấu trúc**, không thể coi là “tương đương đúng”.\n\n---\n\n✅ **KẾT LUẬN:**  \n**Điểm: 0.0** — học sinh không đạt yêu cầu về cả hai tiêu chí, và có nhiều lỗi kỹ thuật không thể chấp nhận.\n\n---",
+        "feedback": "1. Truyền tham trị (SinhVien a) → sai, phải dùng tham chiếu (SinhVien &a). 2. Thiếu dấu ';' ở cuối dòng `cin>>a.DTB` → lỗi cú pháp. 3. Dùng `fgets` nhưng không xử lý ký tự xuống dòng → rủi ro lỗi khi nhập tiếp. 4. Không dùng `getline` như đáp án kỳ vọng, dù có thể chấp nhận nếu xử lý tốt, nhưng ở đây không xử lý.",
+        "suggestion": "Sửa lại thành: `void NhapSV(SinhVien &x)`; dùng `getline(cin, x.MaSV);`, `getline(cin, x.HoTen);`, `getline(cin, x.NoiSinh);` cho các chuỗi; dùng `cin >> x.NamSinh;` và `cin >> x.DTB;` cho số; đảm bảo mỗi lệnh nhập chuỗi bằng getline đều được xử lý đúng cách.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:1/2 expected keywords found: NhapSV.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 10588,
+          "completion_tokens": 6862,
+          "total_tokens": 17450
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(SinhVien a)\ncin>>a.MaSV;\ncin.ignore();\nfgets(a.HoTen, 50, stdin);\ncin>>a.NamSinh; cin.ignore();\nfgets(a.NoiSinh, 50, stdin);\ncin>>a.DTB",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          }
+        ],
+        "missing": [
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 91692
+      },
+      {
+        "criterion_id": "T14C",
+        "part_label": "c",
+        "criterion_content": "Hàm InDSSV in thông tin sinh viên có NoiSinh là \"TPHCM\" (0.25đ).",
+        "score": 0,
+        "max_score": 0.25,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Bài làm có lỗi cú pháp nghiêm trọng: thiếu dấu ngoặc kép khi so sánh chuỗi 'TPHCM' và thiếu toán tử << trong câu lệnh cout, khiến chương trình không thể biên dịch và không thực hiện đúng chức năng.",
+        "cot_reasoning": "---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí:  \n> Hàm `InDSSV` in thông tin sinh viên có `NoiSinh` là \"TPHCM\" (0.25đ).\n\n→ Yêu cầu rõ ràng:  \n- Viết thân hàm `InDSSV(Sinhvien a[], int n)` để **in ra thông tin của các sinh viên có nơi sinh là \"TPHCM\"**.\n- Không yêu cầu in toàn bộ trường, chỉ cần **in đủ thông tin để nhận diện sinh viên** (theo ghi chú giáo viên: “không cần in toàn bộ trường, chỉ cần in đủ là được điểm”).\n- Điều kiện lọc: `NoiSinh == \"TPHCM\"` (dùng so sánh chuỗi, vì kiểu dữ liệu thường là `string` hoặc `char[]`, nhưng đề bài không nói cụ thể → ta giả định dùng `string` vì dễ và phổ biến trong C++ nhập môn).\n- Nếu sử dụng `char[]`, phải dùng `strcmp(a[i].NoiSinh, \"TPHCM\") == 0`, nhưng nếu bài làm dùng `==` với `\"TPHCM\"` thì **chỉ đúng khi `NoiSinh` là `string`**.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (THAM KHẢO)**\n\nĐáp án mẫu tham khảo:\n```cpp\nvoid InDSSV(Sinhvien a[ ], int n){\n    for (int i=0; i<n; i++)\n        if(a[i].NoiSinh == \"TPHCM\")\n            cout<< a[i].MaSV <<\"- \"<<a[i].HoTen<<\"- \"\n            <<a[i].NoiSinh<<\"- \"<<a[i].NamSinh<<\"- \"<<a[i].DTB;\n}\n```\n\n→ Logic kỳ vọng:\n- Duyệt mảng từ 0 đến n-1.\n- Kiểm tra điều kiện `a[i].NoiSinh == \"TPHCM\"` — đúng về cú pháp nếu `NoiSinh` là `string`.\n- In một số trường: MaSV, HoTen, NoiSinh, NamSinh, DTB — tuy nhiên, theo ghi chú: **không cần in toàn bộ**, nên việc in nhiều hơn không bị trừ điểm, miễn là in đúng những gì cần thiết.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n```cpp\nfor (int i = 0; i < n; i++) {\n    if (a[i].NoiSinh == TPHCM) {\n        cout << a[i].MaSV << \" \" << a[i].HoTen <<\n        a[i].NamSinh<<\" \"<<a[i].NoiSinh\n        a[i].DTB<<endl;\n    }\n}\n```\n\n→ **Phân tích từng phần:**\n\n#### a) **Vòng lặp**\n- `for (int i = 0; i < n; i++)` → hoàn chỉnh, đúng cấu trúc, chạy đúng số lần → **đúng**.\n\n#### b) **Điều kiện kiểm tra**\n- `if (a[i].NoiSinh == TPHCM)`\n  - **Sai nghiêm trọng**: `TPHCM` không được đặt trong dấu ngoặc kép (`\"\"`), mà lại viết như một hằng số hoặc biến chưa khai báo.\n  - Trong C++, nếu `NoiSinh` là kiểu `string`, thì phải so sánh với `\"TPHCM\"` (chuỗi ký tự).\n  - Nếu `NoiSinh` là `char[50]`, thì phải dùng `strcmp(a[i].NoiSinh, \"TPHCM\") == 0`.\n  - Việc viết `TPHCM` (không có \"\") → **là lỗi cú pháp, không biên dịch được** → **sai logic và cấu trúc**.\n\n→ **KẾT LUẬN: Điều kiện sai → không thể thực hiện đúng chức năng.**\n\n#### c) **In thông tin**\n- `cout << a[i].MaSV << \" \" << a[i].HoTen << a[i].NamSinh<<\" \"<<a[i].NoiSinh a[i].DTB<<endl;`\n  - Có **lỗi cú pháp**: thiếu dấu `<<` giữa `a[i].NoiSinh` và `a[i].DTB`.\n    - Cụ thể: `a[i].NoiSinh a[i].DTB` → đây là **sai cú pháp**, không thể biên dịch.\n    - Phải là: `<< a[i].NoiSinh << a[i].DTB`\n  - Ngoài ra, sau `a[i].NoiSinh` có khoảng trắng nhưng không có `<<`, cũng gây lỗi.\n  - Do đó, **câu lệnh in này không thể biên dịch được**.\n\n→ **KẾT LUẬN: Câu lệnh in bị lỗi cú pháp → không thể chạy được.**\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- Học sinh đã cố gắng:\n  - Duyệt mảng → đúng.\n  - Kiểm tra `NoiSinh` → đúng ý tưởng.\n  - In một số trường → đúng mục đích.\n\n→ Nhưng:\n- **Không tương đương về kết quả** vì:\n  - Điều kiện sai → không lọc đúng sinh viên.\n  - Câu lệnh in sai cú pháp → không in được gì cả.\n- **Không thể coi là “tương đương”** theo nguyên tắc chấm thi vì:\n  > “KHÔNG áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC...”\n\n→ Bài làm **không thể biên dịch** do hai lỗi lớn: thiếu dấu ngoặc kép và thiếu toán tử `<<`.\n\n---\n\n### **5. SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Bài làm học sinh | Kết luận |\n|----------|------------------|----------|\n| Duyệt mảng đúng | ✅ | Đúng |\n| Điều kiện lọc đúng | ❌ (sai cú pháp: `TPHCM` thay vì `\"TPHCM\"`) | Sai |\n| In thông tin đúng | ❌ (lỗi cú pháp: thiếu `<<` giữa các trường) | Sai |\n| Có thể biên dịch? | ❌ | Không |\n| Đạt yêu cầu chức năng? | ❌ | Không |\n\n→ **Không đạt yêu cầu nào ngoài việc có ý tưởng đúng về vòng lặp.**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ**\n\n- Bài làm **có hướng đi đúng** (duyệt, kiểm tra, in), nhưng **bị lỗi cú pháp nghiêm trọng** ở hai chỗ quan trọng:\n  1. So sánh chuỗi thiếu dấu ngoặc kép → không đúng kiểu dữ liệu.\n  2. Thiếu toán tử `<<` trong câu lệnh `cout` → không thể biên dịch.\n\n- Theo nguyên tắc chấm thi:\n  > “KHÔNG áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC...”\n\n→ **Không được điểm đầy đủ**.\n\n- Tuy nhiên, học sinh đã:\n  - Hiểu được yêu cầu (in sinh viên có NoiSinh = TPHCM).\n  - Viết đúng cấu trúc vòng lặp.\n  - Có ý định in các trường cần thiết.\n\n→ **Có thể cho 0.1 điểm** nếu xét đến nỗ lực và hiểu được ý đồ, nhưng theo nguyên tắc chấm nghiêm ngặt (phải đúng về kết quả và logic), **nên trừ hết điểm vì không thể biên dịch và không thực hiện đúng chức năng**.\n\n---\n\n### **SO SÁNH VỚI GỢI Ý HEURISTIC GRADER**\n\nGợi ý Heuristic:\n> Found: 2/2 expected keywords found: TPHCM, NoiSinh.\n\n→ Hệ thống chỉ tìm thấy từ khóa \"TPHCM\" và \"NoiSinh\", nhưng **không kiểm tra cú pháp hay tính khả thi**.\n\n→ Đây là **gợi ý sai** vì:\n- Từ khóa có mặt, nhưng **viết sai cú pháp** → không hoạt động.\n- Hệ thống không phát hiện lỗi `<<` thiếu → dẫn đến đánh giá lạc quan.\n\n→ **Tôi KHÔNG ĐỒNG Ý với gợi ý Heuristic**, vì nó đánh giá dựa trên từ khóa chứ không dựa trên tính đúng đắn về logic và cú pháp.\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG**\n\n**Điểm: 0.0 / 0.25**\n\n**Lý do:**\n- Bài làm có lỗi cú pháp nghiêm trọng:\n  1. So sánh chuỗi thiếu dấu ngoặc kép: `TPHCM` thay vì `\"TPHCM\"` → không đúng kiểu dữ liệu.\n  2. Thiếu toán tử `<<` trong câu lệnh `cout` → không thể biên dịch.\n- Do đó, chương trình **không thể chạy**, **không thực hiện đúng chức năng**.\n- Không thỏa mãn nguyên tắc “tương đương” vì **thiếu sót cấu trúc khiến code không thể biên dịch**.\n\n---\n\n✅ **TỔNG KẾT:**\n> **0.0 điểm** – Vì bài làm không thể biên dịch và không thực hiện đúng chức năng, mặc dù có ý tưởng đúng. Không được điểm vì vi phạm nguyên tắc “không chấp nhận code thiếu sót hoặc không thể biên dịch”.",
+        "feedback": "Lỗi 1: So sánh chuỗi phải dùng \"TPHCM\" thay vì TPHCM. Lỗi 2: Thiếu toán tử << giữa a[i].NoiSinh và a[i].DTB trong câu lệnh in.",
+        "suggestion": "Sửa lại thành: if (a[i].NoiSinh == \"TPHCM\") { cout << a[i].MaSV << \" \" << a[i].HoTen << \" \" << a[i].NamSinh << \" \" << a[i].NoiSinh << \" \" << a[i].DTB << endl; }",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: TPHCM, NoiSinh.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 11085,
+          "completion_tokens": 7083,
+          "total_tokens": 18168
+        },
+        "evidence": {
+          "student_answer": "    for (int i = 0; i < n; i++) {\n        if (a[i].NoiSinh == TPHCM) {\n            cout << a[i].MaSV << \" \" << a[i].HoTen <<\na[i].NamSinh<<\" \"<<a[i].NoiSinh\na[i].DTB<<endl;\n        }\n    }",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "c",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "TPHCM"
+          },
+          {
+            "value": "NoiSinh"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 114605
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 3,
+      "agreed_count": 0,
+      "overridden_count": 3,
+      "blank_skipped": 0
+    }
+  }
+]

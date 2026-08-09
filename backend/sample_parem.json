@@ -1,0 +1,1061 @@
+{
+  "ma_de": "1",
+  "subject": "IT001 - Nhập môn lập trình",
+  "teacher_barem": [
+    {
+      "sample_id": "cau_1_001",
+      "question_number": 1,
+      "question": {
+        "text": "Câu 1: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nint main(){\n    int a = 2, b = 4, d;\n    float c = float((++b) / (a++));\n    d = 2 * c + b;\n    cout << a << b << c << d;\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+            "answer_slots": [
+              {
+                "slot_id": "cau_1_001_main"
+              }
+            ],
+            "tables": []
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T1",
+          "question_type": "matching",
+          "part_label": "main",
+          "content": "Ghi đúng kết quả chương trình. Đáp án đúng là 3529. Nếu đúng 2 hoặc 3 con số thì được 0.25 điểm.",
+          "expected_output_tokens": ["3", "5", "2", "9"],
+          "expected_outputs": ["3529"],
+          "partial_credit_rule": {
+            "type": "count_correct_tokens",
+            "partial_score": 0.25,
+            "condition": "correct_token_count in [2, 3]"
+          },
+          "score": 0.5,
+          "slot_ids": ["cau_1_001_main"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_2_001",
+      "question_number": 2,
+      "question": {
+        "text": "Câu 2: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nint main(){\n    int x = 8, y = 3;\n    switch(x % y){\n        case 2: y--;\n        default: y *= 6;\n        case 0:\n            x = (y == 64 ? y - x : x - y);\n            break;\n        case 1: y /= 2;\n        case 3: x %= 3;\n    }\n    cout << y << x;\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_2_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T2",
+          "question_type": "matching",
+          "part_label": "main",
+          "content": "Ghi đúng kết quả chương trình. Đáp án đúng là 12-4. Nếu đúng 1 con số thì được 0.25 điểm.",
+          "expected_output_tokens": ["12", "-4"],
+          "expected_outputs": ["12-4"],
+          "partial_credit_rule": {
+            "type": "count_correct_tokens",
+            "partial_score": 0.25,
+            "condition": "correct_token_count == 1"
+          },
+          "score": 0.5,
+          "slot_ids": ["cau_2_001_main"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_3_001",
+      "question_number": 3,
+      "question": {
+        "text": "Câu 3: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nint main()\n{   int a;\n    cin>>a;\n    for(int i=1;i<4;i++)\n        for(int j=2;j<=2*i;j+=3)\n            cout<< i*j+a%4;\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main_S1",
+            "text": "Giá trị nhập vào cho biến a là số thứ tự của bạn trong danh sách thi. a = .......",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_3_001_main_S1"
+              }
+            ]
+          },
+          {
+            "part_label": "main_S2",
+            "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_3_001_main_S2"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T3_main_s1",
+          "question_type": "matching",
+          "part_label": "main_S1",
+          "content": "Sinh viên phải ghi CHÍNH XÁC chỉ số thứ tự của mình (ví dụ: sinh viên số 2 phải ghi đúng '2'). KHÔNG được thêm ký tự nào khác (ví dụ 'a=2', 'a = 2' đều tính là SAI).",
+          "expected_output_tokens": [],
+          "expected_outputs": ["student_index"],
+          "score": 0.25,
+          "slot_ids": ["cau_3_001_main_S1"]
+        },
+        {
+          "criterion_id": "T3_main_s2",
+          "question_type": "matching",
+          "part_label": "main_S2",
+          "content": "Đáp án phụ thuộc số thứ tự sinh viên. Đáp án là 1 chuỗi 5 chữ số liền nhau (VD: '46817'). Chỉ sai 1 hoặc 2 chữ số thì được 0.25 điểm, sai nhiều hơn thì 0 điểm.",
+          "conditional_outputs": [
+            {
+              "condition": "value % 4 == 0",
+              "expected_output_tokens": ["2", "4", "6", "15"],
+              "expected_outputs": ["24615"]
+            },
+            {
+              "condition": "value % 4 == 1",
+              "expected_output_tokens": ["3", "5", "7", "16"],
+              "expected_outputs": ["35716"]
+            },
+            {
+              "condition": "value % 4 == 2",
+              "expected_output_tokens": ["4", "6", "8", "17"],
+              "expected_outputs": ["46817"]
+            },
+            {
+              "condition": "value % 4 == 3",
+              "expected_output_tokens": ["5", "7", "9", "18"],
+              "expected_outputs": ["57918"]
+            }
+          ],
+          "partial_credit_rule": {
+            "type": "count_wrong_tokens",
+            "partial_score": 0.25,
+            "condition": "wrong_token_count in [1, 2]"
+          },
+          "score": 0.25,
+          "slot_ids": ["cau_3_001_main_S2"],
+          "condition_source": {
+            "type": "self_reported",
+            "slot_ids": ["cau_3_001_main_S1"]
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_4_001",
+      "question_number": 4,
+      "question": {
+        "text": "Câu 4: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\n#include <cmath>\nusing namespace std;\nint func(int &m)\n{   int a=0;\n    do\n    {   a++;\n        m=m/10;\n    }\n    while(m!=0);\n    return a;\n}\nint main()\n{   int n,a;\n    cin>>a;\n    n=a-1234;\n    int x = func(n);\n    cout<<x<<abs(n);\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Giá trị nhập vào cho biến a là số thứ tự của bạn trong danh sách thi. Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_4_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T4",
+          "question_type": "matching",
+          "part_label": "main",
+          "content": "Đáp án luôn là 40, bất chấp số thứ tự. Nếu đúng 1 giá trị (1 trong 2 chữ số) thì chấm 0.25 điểm.",
+          "expected_output_tokens": ["4", "0"],
+          "expected_outputs": ["40"],
+          "partial_credit_rule": {
+            "type": "count_correct_tokens",
+            "partial_score": 0.25,
+            "condition": "correct_token_count == 1"
+          },
+          "score": 0.5,
+          "grader_note": "Nếu đúng 1 giá trị thì chấm 0.25 điểm",
+          "slot_ids": ["cau_4_001_main"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_5_001",
+      "question_number": 5,
+      "question": {
+        "text": "Câu 5: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nint func(int b, int &a){\n    a -= 2;\n    b = ++a + 3;\n    return b;\n}\nint main(){\n    int a = 10, b = 3;\n    int &c = b;\n    b = func(a, c);\n    cout << a << b << c;\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_5_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T5",
+          "question_type": "matching",
+          "part_label": "main",
+          "content": "Ghi đúng kết quả 1055. Nếu đúng 2 con số thì được 0.25 điểm.",
+          "expected_output_tokens": ["10", "5", "5"],
+          "expected_outputs": ["1055"],
+          "partial_credit_rule": {
+            "type": "count_correct_tokens",
+            "partial_score": 0.25,
+            "condition": "correct_token_count == 2"
+          },
+          "score": 0.5,
+          "slot_ids": ["cau_5_001_main"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_6_001",
+      "question_number": 6,
+      "question": {
+        "text": "Câu 6: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nint function(int n){\n    if (n<10) return n;\n    return function(n/10);\n}\nvoid input(int n){\n    std::cin >> n;\n}\nint main(){\n    int a=45321;\n    input(a);\n    std::cout << function(a);\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Trong hàm input, ta nhập cho biến n giá trị số thứ tự của bạn trong danh sách thi. Chương trình xuất ra kết quả là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_6_001_main"
+              }
+            ],
+            "note": "'input(int n)' truyền tham số n theo GIÁ TRỊ nên việc nhập liệu bên trong hàm input KHÔNG ảnh hưởng tới biến a trong main -> a luôn giữ nguyên 45321 bất kể STT nhập vào."
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T6",
+          "question_type": "matching",
+          "part_label": "main",
+          "content": "Đáp án luôn là 4, bất chấp số thứ tự.",
+          "expected_output_tokens": ["4"],
+          "expected_outputs": ["4"],
+          "score": 0.5,
+          "slot_ids": ["cau_6_001_main"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_7_001",
+      "question_number": 7,
+      "question": {
+        "text": "Câu 7: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nint funcS(int n)\n{\n    if (n == 1)\n        return 1;\n    int i=1,res=0;\n    do{\n        res += funcS(i);\n        i ++ ;\n    }while(i<n);\n    return res;\n}\nint main (){\n    cout<< funcS(5);\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_7_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T7",
+          "question_type": "matching",
+          "part_label": "main",
+          "content": "Đáp án đúng là 8.",
+          "expected_output_tokens": ["8"],
+          "expected_outputs": ["8"],
+          "score": 0.5,
+          "slot_ids": ["cau_7_001_main"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_8_001",
+      "question_number": 8,
+      "question": {
+        "text": "Câu 8: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nint main()\n{   int a=8, b=5, c;\n    cin>>c;\n    int *pa=&a, *pb=&b;\n    cout<<\"&a=\"<<&a<<endl;\n    cout<<\"&pa=\"<<&pa<<endl;\n    cout<<\"&b=\"<<&b<<endl;\n    cout<<\"&pb=\"<<&pb<<endl;\n    *pb+=c%4;\n    pa=pb;\n    *pa=*pb - a;\n    cout<<&(*pa)<<\" \";\n    cout<<*(&a)<<\" \";\n    cout<<pb-pa<<\" \";\n    cout<<(*pb)+(*pa)<<\" \";\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main_S1",
+            "text": "Giá trị nhập vào cho biến c là số thứ tự của bạn trong danh sách thi và c = ....... (Sinh viên tự ghi số thứ tự, KHÔNG chấm điểm ô này).\n\nBốn dòng đầu tiên được in ra màn hình là (đề CHO SẴN, không phải chỗ trống để SV trả lời):\n&a=0x505298\n&pa=0x50528c\n&b=0x505294\n&pb=0x505288",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_8_001_main_S1"
+              }
+            ],
+            "note": "Đây là dữ liệu ĐỀ CHO SẴN để sinh viên dùng làm căn cứ tính tiếp, KHÔNG phải là câu hỏi cần sinh viên trả lời -- không được đưa vào phần chấm điểm."
+          },
+          {
+            "part_label": "main_S2",
+            "text": "Những dòng tiếp theo được in ra màn hình là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_8_001_main_S2"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T8_main_s1",
+          "question_type": "matching",
+          "part_label": "main_S1",
+          "content": "Sinh viên ghi đúng số thứ tự của mình (chỉ cần ghi con số, VD: '10'). Không yêu cầu format 'c = 10'. Không tính điểm, chỉ dùng để xác minh sinh viên dùng đúng input.",
+          "expected_output_tokens": [],
+          "expected_outputs": ["student_index"],
+          "score": 0,
+          "slot_ids": ["cau_8_001_main_S1"]
+        },
+        {
+          "criterion_id": "T8_main_s2",
+          "question_type": "matching",
+          "part_label": "main_S2",
+          "content": "Ghi đúng kết quả in ra màn hình. Đáp án gồm 4 số: 1 địa chỉ cố định (0x505294) + 3 số phụ thuộc STT. Đúng 2 hoặc 3 trong 4 số thì được 0.25 điểm.",
+          "conditional_outputs": [
+            {
+              "condition": "value % 4 == 1",
+              "expected_output_tokens": ["0x505294", "8", "0", "-4"],
+              "expected_outputs": ["0x505294 8 0 -4"]
+            },
+            {
+              "condition": "value % 4 == 2",
+              "expected_output_tokens": ["0x505294", "8", "0", "-2"],
+              "expected_outputs": ["0x505294 8 0 -2"]
+            },
+            {
+              "condition": "value % 4 == 3",
+              "expected_output_tokens": ["0x505294", "8", "0", "0"],
+              "expected_outputs": ["0x505294 8 0 0"]
+            },
+            {
+              "condition": "value % 4 == 0",
+              "expected_output_tokens": ["0x505294", "8", "0", "-6"],
+              "expected_outputs": ["0x505294 8 0 -6"]
+            }
+          ],
+          "partial_credit_rule": {
+            "type": "count_correct_tokens",
+            "partial_score": 0.25,
+            "condition": "correct_token_count in [2, 3]"
+          },
+          "score": 0.5,
+          "grader_note": "Đã sửa lại theo đúng bảng đáp án trong Word: chỉ có 1 cụm đáp án gồm 4 số (không tách thành 2 phần a/b với 4 địa chỉ &a/&pa/&b/&pb riêng biệt như bản trước, vì 4 địa chỉ đó KHÔNG xuất hiện trong file đáp án Word này và chưa được xác minh). Nếu đề thi gốc thực sự có phần in 4 địa chỉ bộ nhớ đầu tiên riêng biệt, cần đối chiếu lại với đề thi gốc (không có trong file đã cung cấp) để khôi phục đúng cấu trúc và thang điểm chi tiết. Hầu hết sinh viên sai số đầu và số cuối (theo ghi chú gốc).",
+          "slot_ids": ["cau_8_001_main_S2"],
+          "condition_source": {
+            "type": "self_reported",
+            "slot_ids": ["cau_8_001_main_S1"]
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_9_001",
+      "question_number": 9,
+      "question": {
+        "text": "Câu 9: (0.5 điểm) Cho một chương trình như sau:\n#include<iostream>\nusing namespace std;\nvoid increment(int *ptr) {\n    (*ptr)++;\n}\nint main() {\n    int var;\n    cin>>var;\n    var = var%2;\n    increment(&var);\n    cout << var;\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Ở dòng lệnh cin>>var; nhập số thứ tự của bạn trong danh sách thi. Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_9_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T9",
+          "question_type": "matching",
+          "part_label": "main",
+          "content": "Nếu số thứ tự là số chẵn thì in ra 1. Nếu số thứ tự là số lẻ thì in ra 2.",
+          "conditional_outputs": [
+            {
+              "condition": "value % 2 == 0",
+              "expected_output_tokens": ["1"],
+              "expected_outputs": ["1"]
+            },
+            {
+              "condition": "value % 2 == 1",
+              "expected_output_tokens": ["2"],
+              "expected_outputs": ["2"]
+            }
+          ],
+          "score": 0.5,
+          "slot_ids": ["cau_9_001_main"],
+          "condition_source": {
+            "type": "sample_field",
+            "field": "student_index"
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_10_001",
+      "question_number": 10,
+      "question": {
+        "text": "Câu 10: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nbool KiemTra(int X[], int n){\n    for (int i = 0; i < n; i++){\n        if (X[i] == -1) return false;\n    }\n    return true;\n}\nint NhapMang(int X[], int n){\n    int v;\n    while(1){\n        cin >> v;\n        int i = v % 10;\n        while(X[i] != -1){\n            i++;\n            if (i == n) i = 0;\n        }\n        X[i] = v;\n        if (KiemTra(X, n)) break;\n    }\n}\nint main(){\n    int A[10];\n    for (int i = 0; i < 10; i++)\n        A[i] = -1;\n    NhapMang(A, 10);\n    for (int i = 0; i < 10; i++)\n        cout << A[i] << \" \";\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Người dùng nhập vào dãy 4 2 10 4 5 6 70 3 2 1 7 3 8 9 (có thể không nhập hết). Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_10_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T10",
+          "question_type": "matching",
+          "expected_output_tokens": [
+            "10",
+            "70",
+            "2",
+            "3",
+            "4",
+            "4",
+            "5",
+            "6",
+            "2",
+            "1"
+          ],
+          "expected_outputs": ["10 70 2 3 4 4 5 6 2 1"],
+          "partial_credit_rule": {
+            "type": "position_tolerance",
+            "partial_score": 0.25,
+            "condition": "wrong_positions_limited_to_first_2_or_last_2"
+          },
+          "score": 0.5,
+          "part_label": "main",
+          "content": "Ghi đúng kết quả in ra màn hình. Đáp án đúng là: 10 70 2 3 4 4 5 6 2 1.",
+          "grader_note": "Nếu sinh viên trả lời runtime error hoặc bị lỗi thì bắt buộc phải kèm giải thích đúng (ví dụ: hàm NhapMang thiếu return) mới được 0.5đ. Không có giải thích thì 0đ.",
+          "slot_ids": ["cau_10_001_main"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_11_001",
+      "question_number": 11,
+      "question": {
+        "text": "Câu 11: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nint fun(int a[])\n{\n    int* p = a+6;\n    int S=0;\n    for (int i = 0; i < 5; i++)\n        S += *(--p);\n    return S;\n}\nint main() {\n    int a[] = {1,2,3,4,5,6,7,8,9,10};\n    cout<<fun(a);\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_11_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T11",
+          "question_type": "matching",
+          "expected_output_tokens": ["20"],
+          "expected_outputs": ["20"],
+          "score": 0.5,
+          "part_label": "main",
+          "slot_ids": ["cau_11_001_main"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_12_001",
+      "question_number": 12,
+      "question": {
+        "text": "Câu 12: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nstruct Date{\n    int d,m,y;\n};\nvoid Input(Date* &a){\n    Date t={10,5,2027};\n    *a = t;\n    a = new Date {7,1,2026};\n}\nint main(){\n    Date a={28,12,2025};\n    Date* p = &a;\n    Input(p);\n    cout<<a.d<<\"/\"<<p->m<<\"/\"<<p->y;\n    return 0;\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Sau khi thực hiện xong chương trình, kết quả in ra màn hình là gì? (Lưu ý: đây là Đề 1, hàm Input nhận tham số Date*&a -- con trỏ truyền theo tham chiếu.)",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_12_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T12",
+          "question_type": "matching",
+          "expected_output_tokens": ["10", "1", "2026"],
+          "expected_outputs": ["10/1/2026", "10/01/2026"],
+          "partial_credit_rule": {
+            "type": "date_partial_match",
+            "partial_score": 0.25,
+            "condition": "month == 1 and year == 2026"
+          },
+          "score": 0.5,
+          "content": "Ghi đúng kết quả in ra màn hình. Đáp án Đề 1 là 10/1/2026.",
+          "grader_note": "Đây là Đề 1: hàm Input có signature Input(Date* &a), tham số là con trỏ tham chiếu. Kết quả đúng: 10/1/2026. Nếu sinh viên ghi đúng tháng và năm (1/2026) nhưng sai ngày thì được 0.25đ.",
+          "part_label": "main",
+          "slot_ids": ["cau_12_001_main"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_13",
+      "question_number": 13,
+      "question": {
+        "text": "Câu 13: (2.0 điểm) Cho một chương trình chưa hoàn thiện như sau:\n#include <iostream>\nusing namespace std;\nconst int MAX=50;\nvoid NhapMang(int a[], int &n)\n{   do{\n        cout<<\"Nhap so phan tu n=\";\n        cin>>n;\n    }while(n<1 || n>MAX);\n\n    for(int i=0; i<n; i++)\n      cin>>a[i];\n}",
+        "parts": [
+          {
+            "part_label": "a",
+            "text": "Hàm Tính tổng giá trị của tất cả các phần tử mà giá trị của phần tử đó là số nguyên tố (1.0 điểm).",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_13_001_a"
+              }
+            ]
+          },
+          {
+            "part_label": "b",
+            "text": "Hàm Tìm vị trí của phần tử có giá trị lớn nhất đầu tiên trong mảng (0.5 điểm).",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_13_001_b"
+              }
+            ]
+          },
+          {
+            "part_label": "c",
+            "text": "Hãy hoàn thiện hàm main sau bằng cách viết thêm các dòng lệnh để gọi các hàm trong câu a và b nhằm in các kết quả ra màn hình (0.5 điểm).\nint main()\n{   int a[MAX], n=0;\n    NhapMang(a,n);\n    // Sinh viên viết thêm các dòng lệnh ở đây\n}",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_13_001_c"
+              }
+            ]
+          }
+        ]
+      },
+      "score": 2.0,
+      "grading_rule": [
+        {
+          "criterion_id": "T13A",
+          "part_label": "a",
+          "content": "Hàm kiểm tra số nguyên tố và hàm tính tổng giá trị các phần tử là số nguyên tố trong mảng (1.0 điểm).",
+          "score": 1.0,
+          "expected_value": {
+            "keywords": ["KiemtraSNT", "TongSNT"],
+            "sample_solution": "int KiemtraSNT(int n){\n    if(n<2) return 0;\n    for(int i=2; i*i < n; i++)\n        if( n%i==0) return 0;\n    return 1;\n}\n\nint TongSNT(int a[], int n){\n    int S = 0;\n    for(int i=0; i < n; i++)\n        if(KiemtraSNT(a[i])) S = S + a[i];\n    return S;\n}"
+          },
+          "grader_note": "Nếu sinh viên viết chung 1 hàm có cả phần kiểm tra SNT lẫn tính tổng, chấm dựa trên 2 phần riêng biệt trong hàm đó.",
+          "question_type": "logical",
+          "slot_ids": ["cau_13_001_a"]
+        },
+        {
+          "part_label": "b",
+          "criterion_id": "T13B",
+          "content": "Hàm tìm vị trí phần tử có giá trị lớn nhất ĐẦU TIÊN trong mảng (0.5đ).",
+          "score": 0.5,
+          "grader_note": "Vì yêu cầu tìm phần tử ĐẦU TIÊN nên trong lệnh if KHÔNG có so sánh bằng: phải dùng a[i] > a[m], không được dùng a[i] >= a[m]. Nếu dùng >= thì tìm phần tử cuối cùng => 0đ.",
+          "expected_value": {
+            "keywords": ["TimMax"],
+            "sample_solution": "int TimMax(int a[], int n){\n    int m = 0;\n    for(int i=1; i < n; i++)\n        if(a[i]>a[m]) m=i;\n    return m;\n}"
+          },
+          "question_type": "logical",
+          "slot_ids": ["cau_13_001_b"]
+        },
+        {
+          "part_label": "c",
+          "criterion_id": "T13C",
+          "question_type": "logical",
+          "content": "Hãy hoàn thiện hàm main sau bằng cách viết thêm các dòng lệnh để gọi hàm tính tổng SNT (định nghĩa ở câu a) và hàm tìm max (định nghĩa ở câu b), in cả 2 kết quả ra màn hình (0.5 điểm).",
+          "score": 0.5,
+          "expected_value": {
+            "keywords": ["TongSNT", "TimMax"],
+            "sample_solution": "cout<<\"Tong so SNT = \"<<TongSNT(a,n); \ncout<<\"Vi tri phan tu lon nhat dau tien\"<< TimMax(a,n);"
+          },
+          "grader_note": "Mỗi lời gọi hàm đúng (đúng tên + tham số) và có in kết quả thì được 0.25đ.\nChấp nhận bất kỳ tên hàm tính tổng SNT nào mà sinh viên đã định nghĩa ở 13A (VD: SumPrime, TongSNT, tinhTong, v.v.). Không yêu cầu đúng tên 'TongSNT'. Chỉ cần: (1) gọi đúng hàm tính tổng SNT của chính sinh viên đó với tham số mảng và n, (2) có in kết quả ra màn hình.\nChấp nhận bất kỳ tên hàm tìm max nào mà sinh viên đã định nghĩa ở 13B (VD: TimMax, findMax, findvtmax, v.v.). Không yêu cầu đúng tên 'TimMax'. Chỉ cần: (1) gọi đúng hàm tìm max của chính sinh viên đó với tham số mảng và n, (2) có in kết quả ra màn hình.",
+          "slot_ids": ["cau_13_001_c"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_14",
+      "question_number": 14,
+      "question": {
+        "text": "Câu 14: (1.0 điểm) Sinh viên thực hiện yêu cầu sau:",
+        "parts": [
+          {
+            "part_label": "a",
+            "text": "Khai báo kiểu dữ liệu cấu trúc (struct) Sinhvien gồm các thuộc tính (thành phần) sau (0.25 điểm):",
+            "tables": [
+              {
+                "table_id": "TB1",
+                "table_slot": [
+                  {
+                    "cell_id": "R1C1",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C1",
+                    "text": "Tên thuộc tính"
+                  },
+                  {
+                    "cell_id": "R1C2",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C2",
+                    "text": "Kiểu dữ liệu"
+                  },
+                  {
+                    "cell_id": "R1C3",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C3",
+                    "text": "Ý nghĩa"
+                  },
+                  {
+                    "cell_id": "R2C1",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C1",
+                    "text": "MaSV"
+                  },
+                  {
+                    "cell_id": "R2C2",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R2C3",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C3",
+                    "text": "Mã sinh viên"
+                  },
+                  {
+                    "cell_id": "R3C1",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C1",
+                    "text": "HoTen"
+                  },
+                  {
+                    "cell_id": "R3C2",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R3C3",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C3",
+                    "text": "Họ và tên sinh viên"
+                  },
+                  {
+                    "cell_id": "R4C1",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C1",
+                    "text": "NamSinh"
+                  },
+                  {
+                    "cell_id": "R4C2",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C2",
+                    "text": "Kiểu số nguyên"
+                  },
+                  {
+                    "cell_id": "R4C3",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C3",
+                    "text": "Năm sinh"
+                  },
+                  {
+                    "cell_id": "R5C1",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C1",
+                    "text": "NoiSinh"
+                  },
+                  {
+                    "cell_id": "R5C2",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R5C3",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C3",
+                    "text": "Nơi sinh"
+                  },
+                  {
+                    "cell_id": "R6C1",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C1",
+                    "text": "DTB"
+                  },
+                  {
+                    "cell_id": "R6C2",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C2",
+                    "text": "Số thực"
+                  },
+                  {
+                    "cell_id": "R6C3",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C3",
+                    "text": "Điểm trung bình"
+                  }
+                ]
+              }
+            ],
+            "answer_slots": [
+              {
+                "slot_id": "cau_14_001_a"
+              }
+            ]
+          },
+          {
+            "part_label": "b",
+            "text": "Hãy hoàn thiện hàm NhapSV để nhập thông tin của một sinh viên từ bàn phím (0.5 điểm).\nvoid NhapSV(......................)\n{ ......................\n}",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_14_001_b_S1"
+              },
+              {
+                "slot_id": "cau_14_001_b_S2"
+              }
+            ]
+          },
+          {
+            "part_label": "c",
+            "text": "Hãy hoàn thiện hàm InDSSV để in ra thông tin của các sinh viên có nơi sinh \"TPHCM\" (0.25 điểm).\nvoid InDSSV(Sinhvien a[ ], int n)\n{ ......................\n}",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_14_001_c"
+              }
+            ]
+          }
+        ]
+      },
+      "score": 1.0,
+      "grading_rule": [
+        {
+          "part_label": "a",
+          "criterion_id": "T14A",
+          "content": "Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính (0.25đ).",
+          "score": 0.25,
+          "grader_note": "Tên các thuộc tính phải đúng như đề (MaSV, HoTen, NamSinh, NoiSinh, DTB). Bắt buộc có dấu chấm phẩy (;) sau dấu } đóng struct, thiếu dấu này => 0đ. Cho phép dùng typedef struct.",
+          "expected_value": {
+            "keywords": [
+              "Sinhvien",
+              "MaSV",
+              "HoTen",
+              "NamSinh",
+              "NoiSinh",
+              "DTB"
+            ],
+            "sample_solution": "struct Sinhvien  // Hoac dung typedef\n{\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};"
+          },
+          "question_type": "logical",
+          "slot_ids": ["cau_14_001_a"]
+        },
+        {
+          "part_label": "b",
+          "criterion_id": "T14B",
+          "content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+          "score": 0.5,
+          "expected_value": {
+            "keywords": ["NhapSV", "getline"],
+            "sample_solution": "void NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}"
+          },
+          "grader_note": "Hai tiêu chí độc lập, đúng phần nào tính điểm phần đó: (1) truyền đúng tham biến/tham chiếu; (2) nhập đúng kiểu chuỗi có khoảng trắng.\nTruyền tham trị (Sinhvien x) thì 0đ vì sửa không có tác dụng ngoài hàm.\nNếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng (dùng cin>> thay vì getline) thì tính zero điểm phần đó.",
+          "question_type": "logical",
+          "slot_ids": ["cau_14_001_b_S1", "cau_14_001_b_S2"]
+        },
+        {
+          "part_label": "c",
+          "criterion_id": "T14C",
+          "content": "Hàm InDSSV in thông tin sinh viên có NoiSinh là \"TPHCM\" (0.25đ).",
+          "score": 0.25,
+          "grader_note": "Kiểm tra điều kiện so sánh đúng theo kiểu dữ liệu: string dùng ==, mảng ký tự char[] dùng strcmp(...) == 0. Không cần in toàn bộ trường, chỉ cần in đủ là được điểm.\nLưu ý: khai báo hàm \"void InDSSV(Sinhvien a[ ], int n)\" đã được in sẵn trong đề, học sinh chỉ cần viết phần thân hàm (nội dung trong { }). KHÔNG được trừ điểm hay coi là thiếu sót vì bài làm không viết lại dòng khai báo hàm.",
+          "expected_value": {
+            "keywords": ["TPHCM", "NoiSinh"],
+            "sample_solution": "void InDSSV(Sinhvien a[ ], int n){\n    for (int i=0; i<n; i++)\n        if(a[i].NoiSinh == \"TPHCM\") // Kiem tra dieu kien\n        // In thong tin sinh vien, khong can in tat ca\n            cout<< a[i].MaSV <<\"- \"<<a[i].HoTen<<\"- \"\n            <<a[i].NoiSinh<<\"- \"<<a[i].NamSinh<<\"- \"<<a[i].DTB;\n}"
+          },
+          "question_type": "logical",
+          "slot_ids": ["cau_14_001_c"]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_15",
+      "question_number": 15,
+      "question": {
+        "text": "Câu 15: (1 điểm) Trong chương trình Đường lên đỉnh Olympia năm 2025 có câu hỏi: \"Một đoàn vừa có người vừa có ngựa chạy ngang qua, người ta thấy có tổng cộng 6 cái đầu và 18 cái chân. Hỏi đoàn đó có bao nhiêu người và bao nhiêu ngựa?\"\nNăm nay đã là 2026 và bạn đã là sinh viên Đại học Công nghệ Thông tin, bạn hãy dùng kiến thức lập trình để giải quyết phiên bản nâng cao của câu hỏi đó như sau: \"Một đoàn vừa có người vừa có ngựa chạy ngang qua, người ta thấy có tổng cộng N cái đầu và M cái chân. Giả định là trong đoàn không có người nào hay con ngựa nào bị thiếu chân hay thiếu đầu thì đoàn có bao nhiêu người và bao nhiêu ngựa? Nếu giả định trên không thể thoả mãn hãy đưa ra kết luận: 'giả định sai'.\"",
+        "parts": [
+          {
+            "part_label": "a",
+            "text": "Đặt tên biến và mô tả kiểu dữ liệu cho input và output của bài toán trên. (0.25 điểm)",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_15_001_a"
+              }
+            ]
+          },
+          {
+            "part_label": "b",
+            "text": "Hãy tìm 3 ví dụ cho bài toán trên: (0.25 điểm)",
+            "tables": [
+              {
+                "table_id": "TB1",
+                "table_slot": [
+                  {
+                    "cell_id": "R1C1",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C1",
+                    "text": "Input"
+                  },
+                  {
+                    "cell_id": "R1C2",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C2",
+                    "text": "Output"
+                  },
+                  {
+                    "cell_id": "R2C1",
+                    "source": "student_text",
+                    "row_id": "R2",
+                    "col_id": "C1",
+                    "text": ""
+                  },
+                  {
+                    "cell_id": "R2C2",
+                    "source": "student_text",
+                    "row_id": "R2",
+                    "col_id": "C2",
+                    "text": ""
+                  },
+                  {
+                    "cell_id": "R3C1",
+                    "source": "student_text",
+                    "row_id": "R3",
+                    "col_id": "C1",
+                    "text": ""
+                  },
+                  {
+                    "cell_id": "R3C2",
+                    "source": "student_text",
+                    "row_id": "R3",
+                    "col_id": "C2",
+                    "text": ""
+                  },
+                  {
+                    "cell_id": "R4C1",
+                    "source": "student_text",
+                    "row_id": "R4",
+                    "col_id": "C1",
+                    "text": ""
+                  },
+                  {
+                    "cell_id": "R4C2",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C2",
+                    "text": "'giả định sai'"
+                  }
+                ]
+              }
+            ],
+            "answer_slots": [
+              {
+                "slot_id": "cau_15_001_b_S1",
+                "cell_id": "R2C1",
+                "row_id": "R2",
+                "col_id": "C1"
+              },
+              {
+                "slot_id": "cau_15_001_b_S2",
+                "cell_id": "R2C2",
+                "row_id": "R2",
+                "col_id": "C2"
+              },
+              {
+                "slot_id": "cau_15_001_b_S3",
+                "cell_id": "R3C1",
+                "row_id": "R3",
+                "col_id": "C1"
+              },
+              {
+                "slot_id": "cau_15_001_b_S4",
+                "cell_id": "R3C2",
+                "row_id": "R3",
+                "col_id": "C2"
+              },
+              {
+                "slot_id": "cau_15_001_b_S5",
+                "cell_id": "R4C1",
+                "row_id": "R4",
+                "col_id": "C1"
+              }
+            ]
+          },
+          {
+            "part_label": "c",
+            "text": "Vẽ lưu đồ thuật toán hoặc mô tả thuật toán hoặc mã giả giải quyết bài toán trên. (0.5 điểm)",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_15_c"
+              }
+            ]
+          }
+        ]
+      },
+      "score": 1.0,
+      "grading_rule": [
+        {
+          "sub_label": "a",
+          "criterion_id": "T15A",
+          "content": "Đặt tên biến và mô tả kiểu dữ liệu cho input (N, M là hai số nguyên không âm) và output (chuỗi \"giả định sai\" hoặc hai số nguyên x, y) của bài toán (0.25đ).",
+          "score": 0.25,
+          "expected_value": {
+            "keywords": ["N", "M", "không âm", "giả định sai"],
+            "sample_solution": "int N, M; // N: so dau, M: so chan\n\nif (condition_for_invalid_case) {\n    cout << \"gia dinh sai\";\n} else {\n    cout << x << \" \" << y;\n}"
+          },
+          "grader_note": "Phải đúng CẢ input lẫn output mới được 0.25đ. Đúng một trong hai thì 0đ.\nInput phải chỉ rõ \"không âm\". Chỉ ghi \"số nguyên\" thì tính là sai.\nOutput phải nhất quán với câu c: chọn không âm => thuật toán cho phép x=0 hoặc y=0; chọn dương => thuật toán yêu cầu x>0 và y>0.\nOutput phải nhất quán với điều kiện giả định sai ở câu c.",
+          "question_type": "logical",
+          "slot_ids": ["cau_15_001_a"]
+        },
+        {
+          "sub_label": "b",
+          "criterion_id": "T15B",
+          "content": "Tìm 3 ví dụ cho bài toán (0.25đ).",
+          "score": 0.25,
+          "all_or_nothing": true,
+          "grader_note": "Phải đúng TOÀN BỘ cả 3 ví dụ mới được 0.25đ. Đúng 1 hoặc 2 ví dụ thì 0đ.",
+          "sub_criteria": [
+            {
+              "criterion_id": "T15B1",
+              "content": "Ví dụ 1 (hàng R2) — ô Input: 6 18.",
+              "weight": 0.05,
+              "expected_value": { "sample_solution": "6 18" },
+              "row_id": "R2",
+              "col_id": "C1",
+              "question_type": "table"
+            },
+            {
+              "criterion_id": "T15B2",
+              "content": "Ví dụ 1 (hàng R2) — ô Output: 3 3.",
+              "weight": 0.05,
+              "expected_value": { "sample_solution": "3 3" },
+              "row_id": "R2",
+              "col_id": "C2",
+              "question_type": "table"
+            },
+            {
+              "criterion_id": "T15B3",
+              "content": "Ví dụ 2 (hàng R3) — ô Input: 5 20.",
+              "weight": 0.05,
+              "expected_value": { "sample_solution": "5 20" },
+              "row_id": "R3",
+              "col_id": "C1",
+              "question_type": "table"
+            },
+            {
+              "criterion_id": "T15B4",
+              "content": "Ví dụ 2 (hàng R3) — ô Output: 0 5.",
+              "weight": 0.05,
+              "expected_value": { "sample_solution": "0 5" },
+              "row_id": "R3",
+              "col_id": "C2",
+              "question_type": "table"
+            },
+            {
+              "criterion_id": "T15B5",
+              "content": "Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).",
+              "weight": 0.05,
+              "expected_value": { "sample_solution": "9 10" },
+              "row_id": "R4",
+              "col_id": "C1",
+              "question_type": "table"
+            }
+          ],
+          "question_type": "multi_type",
+          "slot_ids": [
+            "cau_15_001_b_S1",
+            "cau_15_001_b_S2",
+            "cau_15_001_b_S3",
+            "cau_15_001_b_S4",
+            "cau_15_001_b_S5"
+          ]
+        },
+        {
+          "sub_label": "c",
+          "criterion_id": "T15C",
+          "content": "Vẽ lưu đồ / mô tả thuật toán / mã giả giải quyết bài toán — gồm: trình bày ý tưởng/hệ phương trình X+Y=N, 2X+4Y=M (0.1đ); xác định đúng điều kiện \"giả định sai\" (0.2đ); tính đúng số người X = 2*N - M/2 (0.1đ); tính đúng số ngựa Y = M/2 - N (0.1đ) (0.5đ).",
+          "score": 0.5,
+          "expected_value": {},
+          "grader_note": "Cho phép cách giải khác ngoài hệ phương trình, quan trọng là điều kiện \"giả định sai\" phủ đúng tất cả trường hợp không hợp lệ đã xác định ở câu a. Điều kiện phải nhất quán với lựa chọn TH1/TH2 ở câu a (T15A2).\nTH1 (không âm): sai khi M lẻ, hoặc M/2 < N, hoặc 2*N < M/2. TH2 (dương): đổi dấu < thành <=. Phải nhất quán với T15A2.\nChấp nhận cách tính tương đương cho X: nếu sinh viên tính Y trước rồi X = N - Y cũng được xem là đúng (vì X = N - Y = N - (M/2 - N) = 2N - M/2). Không yêu cầu viết đúng dạng 2*N - M/2, chỉ cần công thức tương đương.\nCho phép ký hiệu biến khác cho Y nhưng công thức phải đúng.",
+          "question_type": "visual",
+          "slot_ids": ["cau_15_001_c"]
+        }
+      ]
+    }
+  ],
+  "total_score": 10.0,
+  "mc_total": 6.0,
+  "essay_total": 4.0,
+  "student_index_note": "\"student_index\" là số thứ tự (STT) 1-based của sinh viên trong danh sách thi. Ví dụ: Sinh viên đầu tiên có student_index = 1. Dùng student_index % 4 và student_index % 2 để tra conditional_outputs."
+}

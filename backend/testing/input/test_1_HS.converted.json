@@ -1,0 +1,1205 @@
+[
+  {
+    "sample_id": "cau_1_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 1.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "3516",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_1_001_main",
+          "text": "3516",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 1
+  },
+  {
+    "sample_id": "cau_2_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 2.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "12",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_2_001_main",
+          "text": "12",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 2
+  },
+  {
+    "sample_id": "cau_3_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 3.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "23\n57918",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main_S1",
+          "slot_id": "cau_3_001_main_S1",
+          "text": "23",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "slot_id": "cau_3_001_main_S2",
+          "text": "57918",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 3
+  },
+  {
+    "sample_id": "cau_4_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 4.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "41211",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_4_001_main",
+          "text": "41211",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 4
+  },
+  {
+    "sample_id": "cau_5_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 5.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "1055",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_5_001_main",
+          "text": "1055",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 5
+  },
+  {
+    "sample_id": "cau_6_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 6.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "4",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_6_001_main",
+          "text": "4",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 6
+  },
+  {
+    "sample_id": "cau_7_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 7.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "20",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_7_001_main",
+          "text": "20",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 7
+  },
+  {
+    "sample_id": "cau_8_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 8.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "23\n0x505294 8 0 0",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main_S1",
+          "slot_id": "cau_8_001_main_S1",
+          "text": "23",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "main_S2",
+          "slot_id": "cau_8_001_main_S2",
+          "text": "0x505294 8 0 0",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 8
+  },
+  {
+    "sample_id": "cau_9_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 9.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "2",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_9_001_main",
+          "text": "2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 9
+  },
+  {
+    "sample_id": "cau_10_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 10.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "0 2 0 3 4 4 5 6 2 1",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_10_001_main",
+          "text": "0 2 0 3 4 4 5 6 2 1",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 10
+  },
+  {
+    "sample_id": "cau_11_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 11.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_11_001_main",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 11
+  },
+  {
+    "sample_id": "cau_12_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 12.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "1/1/2028",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_12_001_main",
+          "text": "1/1/2028",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.5,
+    "question_number": 12
+  },
+  {
+    "sample_id": "cau_13_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 13.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "bool isPrime(int n) {\n    if (n<2) return 0;\n    if (n!=2 && n%2==0) return 0;\n    for(int i = 3; i*i<=n; i++) {\n        if(n % i == 0) return 0;\n    }\n    return 1;\nint SumPrime(int a[]\n    int S = 0;\n    for(int i = 0; i < n; i\n        if(isPrime(a[\n        {   S += a[i];\n    return S;\n}\nint findmax(int a[], int n) {\n    int max=a[0];\n    for(int i = 1; i<n; i++) {\nint findvtmax (int a[], int\n    for(int i = 0; i < n; i++) {\n        if (a[i]==max)\n    cout << SumPrime(a,n) << endl;\n    int max = findMax(a,n);\n    cout << findvtmax(a,n,max) << endl;\n    return 0;\n}",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "bool isPrime(int n) {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "    if (n<2) return 0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "    if (n!=2 && n%2==0) return 0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "    for(int i = 3; i*i<=n; i++) {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "        if(n % i == 0) return 0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "    }",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L7",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "    return 1;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L8",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "int SumPrime(int a[]",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L9",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "    int S = 0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L10",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "    for(int i = 0; i < n; i",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L11",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "        if(isPrime(a[",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L12",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "        {   S += a[i];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L13",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "    return S;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L14",
+          "part_label": "a",
+          "slot_id": "cau_13_001_a",
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L15",
+          "part_label": "b",
+          "slot_id": "cau_13_001_b",
+          "text": "int findmax(int a[], int n) {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L16",
+          "part_label": "b",
+          "slot_id": "cau_13_001_b",
+          "text": "    int max=a[0];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L17",
+          "part_label": "b",
+          "slot_id": "cau_13_001_b",
+          "text": "    for(int i = 1; i<n; i++) {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L18",
+          "part_label": "b",
+          "slot_id": "cau_13_001_b",
+          "text": "int findvtmax (int a[], int",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L19",
+          "part_label": "b",
+          "slot_id": "cau_13_001_b",
+          "text": "    for(int i = 0; i < n; i++) {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L20",
+          "part_label": "b",
+          "slot_id": "cau_13_001_b",
+          "text": "        if (a[i]==max)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L21",
+          "part_label": "c",
+          "slot_id": "cau_13_001_c",
+          "text": "    cout << SumPrime(a,n) << endl;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L22",
+          "part_label": "c",
+          "slot_id": "cau_13_001_c",
+          "text": "    int max = findMax(a,n);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L23",
+          "part_label": "c",
+          "slot_id": "cau_13_001_c",
+          "text": "    cout << findvtmax(a,n,max) << endl;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L24",
+          "part_label": "c",
+          "slot_id": "cau_13_001_c",
+          "text": "    return 0;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L25",
+          "part_label": "c",
+          "slot_id": "cau_13_001_c",
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 2.0,
+    "question_number": 13
+  },
+  {
+    "sample_id": "cau_14_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Struct Sinhvien {\n   char MaSV[20];\n   char HoTen[50];\n   int NamSinh;\nvoid NhapSV(SinhVien a)\ncin>>a.MaSV;\ncin.ignore();\nfgets(a.HoTen, 50, stdin);\ncin>>a.NamSinh; cin.ignore();\nfgets(a.NoiSinh, 50, stdin);\ncin>>a.DTB\n    for (int i = 0; i < n; i++) {\n        if (a[i].NoiSinh == TPHCM) {\n            cout << a[i].MaSV << \" \" << a[i].HoTen <<\na[i].NamSinh<<\" \"<<a[i].NoiSinh\na[i].DTB<<endl;\n        }\n    }",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "Struct Sinhvien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "   char MaSV[20];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "   char HoTen[50];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "   int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "void NhapSV(SinhVien a)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "cin>>a.MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L7",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "cin.ignore();",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L8",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "fgets(a.HoTen, 50, stdin);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L9",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "cin>>a.NamSinh; cin.ignore();",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L10",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "fgets(a.NoiSinh, 50, stdin);",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L11",
+          "part_label": "b",
+          "slot_id": "cau_14_001_b",
+          "text": "cin>>a.DTB",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L12",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "    for (int i = 0; i < n; i++) {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L13",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "        if (a[i].NoiSinh == TPHCM) {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L14",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "            cout << a[i].MaSV << \" \" << a[i].HoTen <<",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L15",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "a[i].NamSinh<<\" \"<<a[i].NoiSinh",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L16",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "a[i].DTB<<endl;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L17",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "        }",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L18",
+          "part_label": "c",
+          "slot_id": "cau_14_001_c",
+          "text": "    }",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_15_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "*Biến: int dau, chan, nguoi, ngua;\nInput: dau = 6\nchan = 18\nOutput: nguoi = 3\nngua = 3",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "*Biến: int dau, chan, nguoi, ngua;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Input: dau = 6",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "chan = 18",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Output: nguoi = 3",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "ngua = 3",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L7",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "dau = 6 chan = 18",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "nguoi = 3 ngua = 3",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "dau = 12 chan = 30",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "nguoi = 3 ngua = 9",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "dau = 8 chan = 40",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  }
+]

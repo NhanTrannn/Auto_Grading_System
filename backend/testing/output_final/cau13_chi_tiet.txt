@@ -1,0 +1,1029 @@
+CÂU 13 - HỌC SINH HS_2
+======================================================================
+Tổng: 0.25/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool isPrime(int n) {
+      if (n<2) return 0;
+      if (n!=2 && n%2==0) return 0;
+      for(int i = 3; i*i<=n; i++) {
+          if(n % i == 0) return 0;
+      }
+      return 1;
+  int SumPrime(int a[]
+      int S = 0;
+      for(int i = 0; i < n; i
+          if(isPrime(a[
+          {   S += a[i];
+      return S;
+  }
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Học sinh có ý tưởng đúng nhưng mắc nhiều lỗi cú pháp nghiêm trọng khiến cả hai hàm không thể biên dịch, không đáp ứng được yêu cầu kỹ thuật của đề bài.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int findmax(int a[], int n) {
+      int max=a[0];
+      for(int i = 1; i<n; i++) {
+  int findvtmax (int a[], int
+      for(int i = 0; i < n; i++) {
+          if (a[i]==max)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng (thiếu dấu đóng ngoặc, hàm bị chồng, thiếu return) và logic sai (không cập nhật giá trị max, dùng == thay vì >), dẫn đến không thể tìm được vị trí phần tử lớn nhất đầu tiên.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+      cout << SumPrime(a,n) << endl;
+      int max = findMax(a,n);
+      cout << findvtmax(a,n,max) << endl;
+      return 0;
+  }
+
+Điểm: 0.25/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh đã gọi đúng hàm tính tổng số nguyên tố và in kết quả, nhưng chưa in kết quả của hàm tìm max (dù đã gọi hàm findMax), thay vào đó in kết quả của hàm findvtmax – không đảm bảo là hàm tìm max theo định nghĩa ở câu b.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_3
+======================================================================
+Tổng: 0.0/2.0 (wrong)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_7
+======================================================================
+Tổng: 1.5/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool nt(int n)
+  {   if (n < 2) return false;
+      for (int i = 2; i*i <= n; i++)
+          if (n % i == 0) return false;
+      return true;
+  }
+  int tong(int a[], int n)
+  {   int tam = 0;
+      for (int i = 0; i < n; i++)
+          if (nt(a[i]))
+              tam = tam + a[i];
+      return tam;
+  }
+
+Điểm: 1.0/1.0 (correct)
+
+Lý do chấm (LLM):
+Học sinh đã viết đúng hai hàm theo yêu cầu: hàm kiểm tra số nguyên tố và hàm tính tổng các phần tử là số nguyên tố trong mảng. Cả hai hàm đều đúng logic, không thiếu sót, có thể chạy được và tương đương hoàn toàn với đáp án kỳ vọng.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int vitri(int a[], int n)
+  { int ma = a[0];
+  for(int i = 1; i < n; i++) ma = max(ma, a[i]);
+  for(int i = 0; i < n; i++)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm không hoàn chỉnh: vòng lặp thứ hai thiếu câu lệnh, không có return, và chưa tìm được vị trí phần tử lớn nhất đầu tiên. Code không biên dịch được.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+      cout<<tong(a,n)<<endl;
+      cout<<vitri(a,n);
+  }
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Bài làm đúng yêu cầu: gọi hai hàm tính tổng số nguyên tố và tìm vị trí phần tử lớn nhất đầu tiên với tham số đúng, in kết quả ra màn hình. Tên hàm khác đáp án mẫu nhưng được chấp nhận theo hướng dẫn.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_9
+======================================================================
+Tổng: 1.0/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool snt(int n) {
+  if (n < 2) return false;
+  for (int i = 2; i*i <= n; i++)
+  if (n % i == 0)
+  return false;
+  return true; }
+  int tongSnt(int a[], int n) {
+  int tong = 0;
+  for (int i = 0; i < n; i++)
+  if (snt(a[i]) == true) sum += a[i];
+  return tong; }
+
+Điểm: 0.5/1.0 (partially_correct)
+
+Lý do chấm (LLM):
+Hàm kiểm tra số nguyên tố đúng hoàn chỉnh, nhưng hàm tính tổng có lỗi cú pháp nghiêm trọng (sử dụng biến 'sum' chưa khai báo), khiến code không thể biên dịch được.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int timmax(int a[], int n) {
+  int Max = a[0];
+  for (int i = 1; i < n; i++)
+  if (a[i] > Max) Max = a[i];
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm không trả về vị trí phần tử lớn nhất mà trả về giá trị lớn nhất, đồng thời thiếu lệnh return, vi phạm nghiêm trọng yêu cầu của hàm.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  cout << tongsnt(a,n) << endl;
+  cout << timmax(a,n);
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Bài làm đúng yêu cầu: gọi hai hàm tính tổng số nguyên tố và tìm max (với tên hàm viết thường phù hợp với định nghĩa của sinh viên), truyền đúng tham số a và n, in kết quả ra màn hình bằng cout. Không có lỗi cú pháp hay thiếu sót cấu trúc.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_10
+======================================================================
+Tổng: 0.25/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  int bool laSNT(int a[], int n)
+  {
+  for(int i=0; i<n; i++)
+  if(a[i]<2) return false;
+  else if(a[i]==2) return true;
+  else
+  for(int j=2; j<a[i]; j++)
+  if(a[i]%j==0) return false;
+  return true;
+  }
+  int TonggiatriSNT(int a[], int n) {
+  return S;
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Hàm kiểm tra số nguyên tố có lỗi cú pháp nghiêm trọng (int bool), sai tham số (nhận mảng thay vì số) và logic sai. Hàm tính tổng không có nội dung, thiếu khai báo biến và vòng lặp, không thể hoạt động.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int VitriPhantulonnhat(int a[], int n) {
+      int max_1 = a[0];
+      for(int i = 1; i < n; i++)
+          if(a[i] > max_1)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có ý tưởng đúng về điều kiện so sánh (> thay vì >=), nhưng thiếu hoàn toàn phần xử lý trong if (không cập nhật vị trí) và không có lệnh return → hàm không hoàn chỉnh, không thể chạy được.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  cout << "Tổng giá trị các phần tử là Số nguyên tố là:" << TonggiatriSNT
+  cout << "Vị trí phần tử có giá trị lớn nhất đầu tiên trong mảng la" << VitriPhantulonnhat(a,n) << endl;
+
+Điểm: 0.25/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh đã gọi đúng hàm tìm vị trí phần tử lớn nhất và in kết quả, nhưng lời gọi hàm tính tổng số nguyên tố bị thiếu dấu ngoặc và dấu chấm phẩy, dẫn đến lỗi cú pháp không thể biên dịch.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_12
+======================================================================
+Tổng: 0.0/2.0 (wrong)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  void Tinhtong(int a[], int n) {
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Bài làm chỉ có khung hàm chưa hoàn chỉnh, thiếu hoàn toàn hàm kiểm tra số nguyên tố và logic tính tổng các phần tử là số nguyên tố trong mảng. Không thể biên dịch và không thực hiện được chức năng yêu cầu.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_15
+======================================================================
+Tổng: 1.5/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool snt(int n) {
+      if (n < 2)
+          return false;
+      for (int i = 2; i*i <= n; i++)
+          if (n % i == 0) {
+              return false;
+      return true;
+  }
+  int Tong(int a[], int n) {
+      int s = 0;
+      for (int i = 0; i < n; i++) {
+          if (snt(a[i]))
+              s = s + a[i];
+      return s;
+  }
+
+Điểm: 1.0/1.0 (correct)
+
+Lý do chấm (LLM):
+Học sinh đã viết đúng hai hàm theo yêu cầu: kiểm tra số nguyên tố và tính tổng các phần tử là số nguyên tố trong mảng. Mặc dù có thiếu dấu '}' trong hàm snt, nhưng lỗi này không ảnh hưởng đến chức năng và kết quả. Tên hàm khác đáp án mẫu nhưng vẫn đúng chức năng.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int TimViTri(int a[], int n) {
+      int max = a[0];
+      for(int i = 0; i < n; i++) {
+          if(a[i] > max)
+              max = a[i];
+      for(int i = 0; i < n; i++) {
+          if(a[i] == max)
+              return i;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng (thiếu dấu '}' đóng vòng lặp và hàm), khiến mã không thể biên dịch được. Dù ý tưởng tìm max rồi tìm vị trí đầu tiên là đúng, nhưng không đáp ứng điều kiện cơ bản để xét tương đương.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+    cout << "Tong cac so nguyen to trong mang:" << Tong(a,n) << endl;
+    cout << "Vi tri lon nhat dau tien:" << TimViTri(a,n);
+    return 0;
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Học sinh đã gọi đúng hai hàm tính tổng số nguyên tố và tìm vị trí phần tử lớn nhất đầu tiên với tham số a, n và in kết quả ra màn hình. Tên hàm tuy khác đáp án mẫu nhưng được chấp nhận theo ghi chú của giáo viên.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_17
+======================================================================
+Tổng: 0.9/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  int tong(int a[], int &n)
+  int t = 0;
+  bool flag = true;
+  for(int i=0; i<n; i++)
+  { for(int j=2; j<a[i]; j++)
+  if(a[i] % j == 0)
+  { flag = false;
+  break; }
+  if(flag == true) t+=a[i];
+  flag = true; }
+
+Điểm: 0.4/1.0 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh có logic đúng về kiểm tra số nguyên tố và tính tổng các phần tử là số nguyên tố, nhưng code có lỗi cú pháp nghiêm trọng (thiếu dấu đóng hàm và thiếu câu lệnh return), khiến không thể biên dịch và chạy được.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int find(int a[], int &n)
+  int ma = a[0]; int skibidi = 0;
+  for (int i = 1; i < n; i++)
+    if (a[i] > ma) skibidi = i;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng (thiếu dấu ;, thiếu {}, thiếu return) và lỗi logic (biến ma không được cập nhật), dẫn đến hàm không hoạt động đúng. Dù sử dụng điều kiện > đúng, nhưng không đủ để cứu vãn toàn bộ thuật toán.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  cout << tong(a,n) << " " << find(a,n);
+  return 0;
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Bài làm đúng yêu cầu: gọi hai hàm với tham số a và n, in kết quả ra màn hình. Tên hàm `tong` và `find` được chấp nhận nếu sinh viên đã định nghĩa chúng ở câu a và b, theo nguyên tắc linh hoạt tên hàm của giáo viên.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_18
+======================================================================
+Tổng: 0.5/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool kiemtrasnt(int n)
+  if (n < 2) return 0;
+  for (int i = 2; i < n; i++)
+  { if (n % i == 0) return 0;
+  return 1; }
+  int tonggiatritatcasonguyenTo(int a[], int n)
+  { int Dem = 0;
+  for (int i = 0; i < n; i++)
+  { if (kiemtrasnt(a[i]))
+  { Dem = Dem + a[i];
+  }
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Học sinh đã viết đúng logic kiểm tra số nguyên tố và tính tổng, nhưng cả hai hàm đều có lỗi cú pháp nghiêm trọng (thiếu dấu ngoặc mở/đóng và thiếu return) khiến code không thể biên dịch được. Theo nguyên tắc chấm thi, lỗi này không được chấp nhận như 'tương đương' nên không được điểm.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int timvitricuamax(int a[], int n)
+  int m = 0;
+  for(int i = 0; i < n; i++)
+  { if(a[i] < a[i+1]
+      { m = i+1;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng (thiếu dấu ngoặc, thiếu đóng hàm), logic sai (so sánh sai và truy cập ngoài mảng), không có return. Không thể biên dịch và không đảm bảo tìm được vị trí phần tử lớn nhất đầu tiên.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  cout << tonggiatricuatatcasonguyento(a,n) << endl;
+  cout << timvitricuamax(a,n) << endl;
+  return 0;
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Bài làm đúng hoàn toàn yêu cầu: gọi đúng hai hàm (với tên tự đặt phù hợp), truyền tham số (a,n) chính xác, và in kết quả ra màn hình bằng cout. Thỏa mãn đầy đủ tiêu chí và ghi chú của giáo viên.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_19
+======================================================================
+Tổng: 1.0/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool KtraSNT(int x) {
+      if (x < 2) return false;
+      for (int i = 2; i < x / 2; i++) {
+          if (x % i == 0) return false;
+      }
+      return true;
+  }
+  int tong(int a[], int n) {
+      int s=0;
+
+Điểm: 0.5/1.0 (partially_correct)
+
+Lý do chấm (LLM):
+Hàm kiểm tra số nguyên tố được viết đúng và đầy đủ, nhưng hàm tính tổng chỉ có khai báo và khởi tạo biến, thiếu hoàn toàn phần xử lý nên không thể hoạt động.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int GTLN(int a[], int n) {
+  int max_val = a[0];
+  for(int i = 0; i < n; i++) {
+    if (a[i] > a[0])
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm sai mục tiêu (tìm giá trị thay vì vị trí), logic so sánh sai (so sánh với a[0] thay vì giá trị lớn nhất hiện tại), thiếu cập nhật vị trí, thiếu return và code không hoàn chỉnh.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+          cout << "Tong la: " << tong(a,n);
+          cout << "GTLN la: " << GTLN(a,n);
+      return 0;
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Học sinh đã gọi đúng hai hàm tính tổng số nguyên tố và tìm giá trị lớn nhất với tên hàm tùy chỉnh (tong, GTLN) như đã định nghĩa ở các câu trước, truyền tham số đúng và in kết quả ra màn hình. Toàn bộ yêu cầu được đáp ứng đầy đủ.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_21
+======================================================================
+Tổng: 0.25/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool ktraSNT(int n)
+  {
+  if(n<2){
+  return 0;
+  }
+  for(int i=0;i<n;i++){
+  return 1;
+  return 0;
+  }
+  int Tong(int a[],int &n)
+  {
+  Sum=0
+  while(ktraSNT){
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Hàm kiểm tra số nguyên tố sai hoàn toàn về logic (luôn trả về 1 nếu n≥2), hàm tính tổng không thể biên dịch do thiếu dấu chấm phẩy và cú pháp sai. Không đạt yêu cầu đề bài.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int TimViTri(int a[], int n) {
+      for (int i = 0; i < n; i++) {
+          if (a[i] =< a[i+1]) {
+              return i;
+  }
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng (=< không hợp lệ, thiếu dấu } và ; sau return) và logic hoàn toàn sai – không tìm phần tử lớn nhất mà tìm vị trí đầu tiên thỏa mãn a[i] <= a[i+1]. Không thể biên dịch và không đáp ứng yêu cầu.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+      cout << "Tổng giá trị các số nguyên tố:" << Tong(a,n) << endl;
+      cout << "Vị trí phần tử có giá trị lớn nhất:" << TimViTri;
+      return 0;
+
+Điểm: 0.25/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Dòng 1 gọi hàm Tong(a,n) có thể đúng nếu sinh viên đã định nghĩa hàm này ở câu a để tính tổng SNT. Dòng 2 gọi biến TimViTri thay vì hàm tìm max, thiếu dấu () và tham số → sai nghiêm trọng.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_24
+======================================================================
+Tổng: 0.5/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool isPrime(int n) {
+      if (n < 2)
+          return 0;
+      for (int i = 0; i <= n; i++)
+          if (n % i == 0)
+              return 0;
+      return 1;
+  }
+  int TongPrime(int a[], int n) {
+  {
+      int s = 0;
+      for (int i = 0; i < n; i++)
+          if (isPrime(a[i]))
+              s += a[i];
+      return s;
+  }
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Hàm kiểm tra số nguyên tố có lỗi nghiêm trọng: chia cho 0 và luôn trả về sai do khởi tạo vòng lặp từ i=0. Hàm tính tổng mặc dù cấu trúc đúng nhưng phụ thuộc vào hàm sai nên không hoạt động đúng.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int Vitri(int a[], int n) {
+      int Max = a[0]
+      for(int i = 0; i < n-1; i++)
+          if(a[i] < a[i+1])
+              Max=a[i+1];
+      for (int i=0; i<n; i++)
+          if (a[i] == Max)
+              return i;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp (thiếu dấu ';') và logic tìm giá trị lớn nhất sai, dẫn đến không thể đảm bảo kết quả đúng. Không thỏa mãn yêu cầu tìm vị trí phần tử lớn nhất đầu tiên.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+      cout << TongPrime(a,n) << endl;
+      cout << Vitri(a,n);
+      return 0;
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Bài làm đúng yêu cầu: gọi đúng hai hàm tính tổng SNT và tìm max (với tên hàm tùy sinh viên), truyền tham số đúng, in kết quả ra màn hình. Thỏa mãn toàn bộ tiêu chí và ghi chú của giáo viên về việc chấp nhận tên hàm linh hoạt.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_26
+======================================================================
+Tổng: 0.5/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool isprime(int x) {
+  if(x == 1 || x == 2)
+  return false;
+  for(int i = 2; i < x; i++) {
+  if(x % i == 0)
+  return false;
+  }
+  return true;
+  }
+  longlong Tong(int a[], int n) {
+  int S = 0;
+  for (int i=0; i<n; i++) {
+  if (isprime(a[i])
+  S += a[i];
+  }
+  return S;
+  }
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Hàm kiểm tra số nguyên tố sai logic (số 2 được trả về false) và hàm tính tổng có lỗi cú pháp (thiếu dấu ';'), khiến code không biên dịch được và kết quả sai.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int ViTri(int a[], int n) {
+      int max1 = a[0], cnt=0;
+      for (int i = 1; i < n; i++) {
+          if (a[i] >= max1) {
+          }
+      return cnt;
+  }
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp (thiếu dấu '}' sau vòng lặp), không cập nhật vị trí, và sử dụng điều kiện '>=' sai logic (trái với yêu cầu tìm phần tử lớn nhất đầu tiên). Do đó, code không biên dịch được và không đáp ứng yêu cầu.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+      cout << Tong(a,n);
+      cout << ViTri(a,n);
+      return 0;
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Sinh viên đã gọi đúng hai hàm với tên phù hợp với định nghĩa ở câu a và b (giả định sinh viên đã định nghĩa đúng tên như họ gọi), truyền tham số đúng và in kết quả ra màn hình đầy đủ, đáp ứng hoàn toàn yêu cầu tiêu chí.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_28
+======================================================================
+Tổng: 0.0/2.0 (wrong)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  void TinhTong(int a[], int &n)
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Bài làm chỉ có khai báo hàm mà không có thân hàm, thiếu hoàn toàn hàm kiểm tra số nguyên tố và logic tính tổng. Không thể biên dịch hoặc đánh giá tính đúng đắn.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_29
+======================================================================
+Tổng: 0.0/2.0 (wrong)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool sngt(int n)
+  { if (n < 2)
+  return 0;
+  for (int i = 0; i*i <= n; i++)
+  if (n % i == 0)
+  return 0;
+  return 1;
+  }
+  int tong (int a[], int n)
+  { int sum = 0;
+  for (int i = 0; i < n; i++)
+  if sngt(a[i])
+  sum = sum + a[i];
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Hàm kiểm tra số nguyên tố có lỗi nghiêm trọng (chia cho 0 do bắt đầu vòng lặp từ i=0) và hàm tính tổng thiếu dấu ngoặc trong điều kiện if, dẫn đến lỗi cú pháp và không thể biên dịch.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  { int Max = A[0];
+  for (int i = 1; i < n; i++)
+  if (A[i] > Max)
+  for (int i=0; i<n; i++
+  if (a[i]=Max)
+  return i;
+  }
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có nhiều lỗi cú pháp nghiêm trọng (thiếu dấu ')', ';', dùng '=' thay '==', tên mảng không nhất quán) và logic sai (không cập nhật giá trị Max, dẫn đến không tìm được phần tử lớn nhất). Không thể biên dịch hoặc chạy được.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  int k = tong(a,n);
+  int v = CoViTri(a,n);
+  cout << "tong so nguyen to trong mang la:" << k <<
+  cout << "vi tri cua phan tu co gia tri lon nhat dau tien" << v;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng: thiếu dấu ';' sau dòng cout, khiến code không thể biên dịch và thực thi được. Mặc dù có gọi đúng hai hàm và ý định in kết quả, nhưng lỗi cú pháp khiến toàn bộ chương trình không chạy.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_30
+======================================================================
+Tổng: 0.25/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool SNT(int a)
+  {   if(a<2)
+          return 1;
+      for(int i=2;i*i<n;i++)
+          if(n%i==0)
+              return 0;
+      return 1;
+  }
+  int Tong(int a[], int n)
+      int dem=0;
+  {    for(int i=0;i<n;i++)
+          if(SNT(a[i]))
+              dem = dem + a[i];
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng (thiếu dấu ngoặc, dùng biến chưa khai báo) và sai logic cơ bản (trả về true khi số nhỏ hơn 2), khiến cả hai hàm không thể biên dịch hoặc chạy đúng.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int m = a[0];
+  for(int i=0; i<n; i++)
+  if(m < a[i])
+  m = a[i];
+  for(int i=0; i<n; i++)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm không thực hiện được chức năng yêu cầu: không tìm vị trí phần tử lớn nhất đầu tiên, không có hàm hợp lệ, không trả về kết quả và vòng lặp thứ hai hoàn toàn rỗng.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+      cout<<"Tong cac so nguyen to cua mang"<<Tong(a,n);
+      cout<<"Vi tri dau cua phan tu gia tri lon nhat la"<<
+      LonNhat(a,n);
+      return 0;
+
+Điểm: 0.25/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Sinh viên đã viết đúng cấu trúc và tên hàm phù hợp với định nghĩa ở câu a và b (giả sử), nhưng dòng thứ hai thiếu toán tử << dẫn đến lỗi cú pháp, không thể biên dịch.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_32
+======================================================================
+Tổng: 0.0/2.0 (wrong)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  int main(){
+  int Sum = 0;
+  for (int i = 0; i < n; i++)
+  if (a[i] % 4 == 0 && a[i] % 100 == 0)
+  Sum += a[i];
+  return Sum;
+  }
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Bài làm không có hàm kiểm tra số nguyên tố và hàm tính tổng, logic sai hoàn toàn (tính tổng các số chia hết cho 100 thay vì số nguyên tố), và không thể biên dịch do thiếu khai báo biến.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  int sum = 0;
+  cout << "Tong gia tri cac so nguyen to = " << sum;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Học sinh không gọi bất kỳ hàm nào đã định nghĩa ở câu a và b, mà chỉ in giá trị mặc định 0 — không phản ánh việc sử dụng các hàm tính tổng SNT và tìm max như yêu cầu.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_34
+======================================================================
+Tổng: 1.0/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  bool Songto(int n)
+  {
+      if(n < 2) return false;
+      for(int i = 2; i <= n/2; i++)
+      {
+          if(n % i == 0) return false;
+      }
+      return true;
+  }
+  int Tinh(int a[], int n) {
+      int s = 0;
+      for(int i = 0; i < n; i++) {
+
+Điểm: 0.5/1.0 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh viết đúng hàm kiểm tra số nguyên tố (Songto), nhưng hàm tính tổng (Tinh) thiếu phần xử lý chính: không gọi hàm kiểm tra và không cộng dồn giá trị, nên chưa hoàn chỉnh.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int Tim(int a[], int n) {
+  int max = a[0];
+  for (int i = 1; i <= n; i++)
+  if (max < a[i]) max = a[i];
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Học sinh viết hàm tìm giá trị lớn nhất thay vì vị trí, thiếu lệnh return và truy cập ngoài mảng, dẫn đến sai lệch hoàn toàn về yêu cầu.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  cout << Tinh(a,n);
+  cout << Tim(a,n);
+  return 0;
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Sinh viên đã gọi đúng hai hàm tương ứng với câu a và b (với tên hàm tự đặt là Tinh và Tim), truyền tham số đúng (a, n) và in kết quả ra màn hình. Thỏa mãn đầy đủ yêu cầu tiêu chí.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_36
+======================================================================
+Tổng: 0.5/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  int tongsnt(int a[], int n) {
+      int S = 0;
+      for (int i = 0; i < n; i++)
+          for (int j = 0; j * j <= a[i]; j++) {
+              if (a[i] % j == 0) {
+                  break;
+              if (j * j == a[i])
+                  S++; }
+
+Điểm: 0/1.0 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi chia cho 0, cấu trúc code sai (thiếu dấu đóng ngoặc), và sai mục đích (đếm số lượng thay vì tính tổng giá trị các phần tử là số nguyên tố). Không thể biên dịch và không đáp ứng yêu cầu.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int solonnhat(int a[], int n) {
+  for (int i = 0; i < n; i++)
+  s = a[i];
+  if (a[i] < a[i+1])
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm không thể biên dịch do thiếu khai báo biến, thiếu dấu ngoặc và thiếu lệnh return. Logic hoàn toàn sai, không thực hiện chức năng tìm vị trí phần tử lớn nhất đầu tiên.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  cout << tongstn(a,n);
+  cout << solonnhat(a,n);
+  return 0;
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Học sinh đã gọi đúng hai hàm tương ứng với câu a và b (tính tổng SNT và tìm max) với tham số phù hợp, in kết quả ra màn hình. Tên hàm khác với đáp án mẫu nhưng được chấp nhận theo hướng dẫn của giáo viên.
+
+======================================================================
+
+
+CÂU 13 - HỌC SINH HS_39
+======================================================================
+Tổng: 1.05/2.0 (partially_correct)
+
+--- PHẦN A (T13A) ---
+
+Bài làm học sinh:
+  int tong(int b[], int n) {
+      for (int i = 0; i < n; i++) {
+      {
+          for (int j = 2; j * j <= b[i]; j++)
+              if (b[i] % j == 0)
+              {
+                  Nto = false;
+                  break;
+              }
+          if (Nto == true) S+ = b[i];
+      }
+      return S;
+
+Điểm: 0.5/1.0 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh hiểu đúng logic kiểm tra số nguyên tố và tính tổng các phần tử là số nguyên tố, nhưng code không thể biên dịch do thiếu khai báo biến Nto và S, cùng với cú pháp sai (S+ =). Vì vậy, chỉ cho 0.5 điểm.
+
+--- PHẦN B (T13B) ---
+
+Bài làm học sinh:
+  int LN = c[0]; int t
+  for (int i = 0; i < n; i++) {
+    if (c[i] > LN) {
+      t = i;
+      LN = c[i];}
+
+Điểm: 0.3/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh có logic đúng để tìm vị trí phần tử lớn nhất đầu tiên bằng cách sử dụng so sánh `>`, nhưng thiếu dấu `;` sau `int t`, khiến code không biên dịch được, nên bị trừ điểm.
+
+--- PHẦN C (T13C) ---
+
+Bài làm học sinh:
+  cout << "Tong gia tri cua tat ca cac phan tu la so nguyen to << " " << tong(a,n);
+  cout << "Vi tri cua phan tu co GTLN dau tien trong mang la: " << GTLN(a,n);
+
+Điểm: 0.25/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh đã viết đúng lời gọi hàm tìm vị trí phần tử lớn nhất (GTLN(a,n)) và in kết quả ra màn hình, đạt 0.25 điểm. Tuy nhiên, dòng lệnh gọi hàm tính tổng số nguyên tố bị lỗi cú pháp nghiêm trọng (dấu nháy, dấu << trong chuỗi), không thể biên dịch, nên không được điểm.
+
+======================================================================
+

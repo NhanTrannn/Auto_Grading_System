@@ -1,0 +1,24 @@
+# Build context for this image is backend/ itself (see Dockerfile) — only
+# requirements.txt, app/, and pipeline.py actually get COPYed in, so keep
+# the daemon from having to read everything else that lives alongside them
+# (test fixtures, docs, generated output, etc.).
+.pytest_cache/
+__pycache__/
+*.pyc
+.venv/
+var/
+*.db
+
+output/
+output_*/
+docs/
+images/
+Diagram/
+scratch_smoke/
+tool/
+Mã đề 1 - Bản clean chưa làm/
+
+*.json
+!app/**/*.json
+*.log
+*.csv

@@ -1,0 +1,381 @@
+{
+  "ma_de": "1",
+  "subject": "IT001 - Nhập môn lập trình",
+  "teacher_barem": [
+    {
+      "sample_id": "cau_13",
+      "question_number": 13,
+      "question": {
+        "text": "Câu 13: (2.0 điểm) Cho một chương trình chưa hoàn thiện như sau:\n#include <iostream>\nusing namespace std;\nconst int MAX=50;\nvoid NhapMang(int a[], int &n)\n{   do{\n        cout<<\"Nhap so phan tu n=\";\n        cin>>n;\n    }while(n<1 || n>MAX);\n\n    for(int i=0; i<n; i++)\n      cin>>a[i];\n}",
+        "parts": [
+          {
+            "part_label": "a",
+            "text": "Hàm Tính tổng giá trị của tất cả các phần tử mà giá trị của phần tử đó là số nguyên tố (1.0 điểm).",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_13_001_a"
+              }
+            ]
+          },
+          {
+            "part_label": "b",
+            "text": "Hàm Tìm vị trí của phần tử có giá trị lớn nhất đầu tiên trong mảng (0.5 điểm).",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_13_001_b"
+              }
+            ]
+          },
+          {
+            "part_label": "c",
+            "text": "Hãy hoàn thiện hàm main sau bằng cách viết thêm các dòng lệnh để gọi các hàm trong câu a và b nhằm in các kết quả ra màn hình (0.5 điểm).\nint main()\n{   int a[MAX], n=0;\n    NhapMang(a,n);\n    // Sinh viên viết thêm các dòng lệnh ở đây\n}",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_13_001_c"
+              }
+            ]
+          }
+        ]
+      },
+      "score": 2.0,
+      "grading_rule": [
+        {
+          "criterion_id": "T13A",
+          "part_label": "a",
+          "content": "Hàm kiểm tra số nguyên tố và hàm tính tổng giá trị các phần tử là số nguyên tố trong mảng (1.0 điểm).",
+          "score": 1.0,
+          "expected_value": {
+            "keywords": [
+              "KiemtraSNT",
+              "TongSNT"
+            ],
+            "sample_solution": "int KiemtraSNT(int n){\n    if(n<2) return 0;\n    for(int i=2; i*i < n; i++)\n        if( n%i==0) return 0;\n    return 1;\n}\n\nint TongSNT(int a[], int n){\n    int S = 0;\n    for(int i=0; i < n; i++)\n        if(KiemtraSNT(a[i])) S = S + a[i];\n    return S;\n}"
+          },
+          "grader_note": "Nếu sinh viên viết chung 1 hàm có cả phần kiểm tra SNT lẫn tính tổng, chấm dựa trên 2 phần riêng biệt trong hàm đó.",
+          "question_type": "logical",
+          "slot_ids": [
+            "cau_13_001_a"
+          ]
+        },
+        {
+          "part_label": "b",
+          "criterion_id": "T13B",
+          "content": "Hàm tìm vị trí phần tử có giá trị lớn nhất ĐẦU TIÊN trong mảng (0.5đ).",
+          "score": 0.5,
+          "grader_note": "Vì yêu cầu tìm phần tử ĐẦU TIÊN nên trong lệnh if KHÔNG có so sánh bằng: phải dùng a[i] > a[m], không được dùng a[i] >= a[m]. Nếu dùng >= thì tìm phần tử cuối cùng => 0đ.",
+          "expected_value": {
+            "keywords": [
+              "TimMax"
+            ],
+            "sample_solution": "int TimMax(int a[], int n){\n    int m = 0;\n    for(int i=1; i < n; i++)\n        if(a[i]>a[m]) m=i;\n    return m;\n}"
+          },
+          "question_type": "logical",
+          "slot_ids": [
+            "cau_13_001_b"
+          ]
+        },
+        {
+          "part_label": "c",
+          "criterion_id": "T13C",
+          "question_type": "logical",
+          "content": "Hãy hoàn thiện hàm main sau bằng cách viết thêm các dòng lệnh để gọi hàm tính tổng SNT (định nghĩa ở câu a) và hàm tìm max (định nghĩa ở câu b), in cả 2 kết quả ra màn hình (0.5 điểm).",
+          "score": 0.5,
+          "expected_value": {
+            "keywords": [
+              "TongSNT",
+              "TimMax"
+            ],
+            "sample_solution": "cout<<\"Tong so SNT = \"<<TongSNT(a,n); \ncout<<\"Vi tri phan tu lon nhat dau tien\"<< TimMax(a,n);"
+          },
+          "grader_note": "Mỗi lời gọi hàm đúng (đúng tên + tham số) và có in kết quả thì được 0.25đ.\nChấp nhận bất kỳ tên hàm tính tổng SNT nào mà sinh viên đã định nghĩa ở 13A (VD: SumPrime, TongSNT, tinhTong, v.v.). Không yêu cầu đúng tên 'TongSNT'. Chỉ cần: (1) gọi đúng hàm tính tổng SNT của chính sinh viên đó với tham số mảng và n, (2) có in kết quả ra màn hình.\nChấp nhận bất kỳ tên hàm tìm max nào mà sinh viên đã định nghĩa ở 13B (VD: TimMax, findMax, findvtmax, v.v.). Không yêu cầu đúng tên 'TimMax'. Chỉ cần: (1) gọi đúng hàm tìm max của chính sinh viên đó với tham số mảng và n, (2) có in kết quả ra màn hình.",
+          "slot_ids": [
+            "cau_13_001_c"
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_14",
+      "question_number": 14,
+      "question": {
+        "text": "Câu 14: (1.0 điểm) Sinh viên thực hiện yêu cầu sau:",
+        "parts": [
+          {
+            "part_label": "a",
+            "text": "Khai báo kiểu dữ liệu cấu trúc (struct) Sinhvien gồm các thuộc tính (thành phần) sau (0.25 điểm):",
+            "tables": [
+              {
+                "table_id": "TB1",
+                "table_slot": [
+                  {
+                    "cell_id": "R1C1",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C1",
+                    "text": "Tên thuộc tính"
+                  },
+                  {
+                    "cell_id": "R1C2",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C2",
+                    "text": "Kiểu dữ liệu"
+                  },
+                  {
+                    "cell_id": "R1C3",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C3",
+                    "text": "Ý nghĩa"
+                  },
+                  {
+                    "cell_id": "R2C1",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C1",
+                    "text": "MaSV"
+                  },
+                  {
+                    "cell_id": "R2C2",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R2C3",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C3",
+                    "text": "Mã sinh viên"
+                  },
+                  {
+                    "cell_id": "R3C1",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C1",
+                    "text": "HoTen"
+                  },
+                  {
+                    "cell_id": "R3C2",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R3C3",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C3",
+                    "text": "Họ và tên sinh viên"
+                  },
+                  {
+                    "cell_id": "R4C1",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C1",
+                    "text": "NamSinh"
+                  },
+                  {
+                    "cell_id": "R4C2",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C2",
+                    "text": "Kiểu số nguyên"
+                  },
+                  {
+                    "cell_id": "R4C3",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C3",
+                    "text": "Năm sinh"
+                  },
+                  {
+                    "cell_id": "R5C1",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C1",
+                    "text": "NoiSinh"
+                  },
+                  {
+                    "cell_id": "R5C2",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R5C3",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C3",
+                    "text": "Nơi sinh"
+                  },
+                  {
+                    "cell_id": "R6C1",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C1",
+                    "text": "DTB"
+                  },
+                  {
+                    "cell_id": "R6C2",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C2",
+                    "text": "Số thực"
+                  },
+                  {
+                    "cell_id": "R6C3",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C3",
+                    "text": "Điểm trung bình"
+                  }
+                ]
+              }
+            ],
+            "answer_slots": [
+              {
+                "slot_id": "cau_14_001_a"
+              }
+            ]
+          },
+          {
+            "part_label": "b",
+            "text": "Hãy hoàn thiện hàm NhapSV để nhập thông tin của một sinh viên từ bàn phím (0.5 điểm).\nvoid NhapSV(......................)\n{ ......................\n}",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_14_001_b_S1"
+              },
+              {
+                "slot_id": "cau_14_001_b_S2"
+              }
+            ]
+          },
+          {
+            "part_label": "c",
+            "text": "Hãy hoàn thiện hàm InDSSV để in ra thông tin của các sinh viên có nơi sinh \"TPHCM\" (0.25 điểm).\nvoid InDSSV(Sinhvien a[ ], int n)\n{ ......................\n}",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_14_001_c"
+              }
+            ]
+          }
+        ]
+      },
+      "score": 1.0,
+      "grading_rule": [
+        {
+          "part_label": "a",
+          "criterion_id": "T14A",
+          "content": "Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính (0.25đ).",
+          "score": 0.25,
+          "grader_note": "Tên các thuộc tính phải đúng như đề (MaSV, HoTen, NamSinh, NoiSinh, DTB). Bắt buộc có dấu chấm phẩy (;) sau dấu } đóng struct, thiếu dấu này => 0đ. Cho phép dùng typedef struct.",
+          "expected_value": {
+            "keywords": [
+              "Sinhvien",
+              "MaSV",
+              "HoTen",
+              "NamSinh",
+              "NoiSinh",
+              "DTB"
+            ],
+            "sample_solution": "struct Sinhvien  // Hoac dung typedef\n{\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};"
+          },
+          "question_type": "logical",
+          "slot_ids": [
+            "cau_14_001_a"
+          ]
+        },
+        {
+          "part_label": "b",
+          "criterion_id": "T14B",
+          "content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+          "score": 0.5,
+          "expected_value": {
+            "keywords": [
+              "NhapSV",
+              "getline"
+            ],
+            "sample_solution": "void NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}"
+          },
+          "grader_note": "Hai tiêu chí độc lập, đúng phần nào tính điểm phần đó: (1) truyền đúng tham biến/tham chiếu; (2) nhập đúng kiểu chuỗi có khoảng trắng.\nTruyền tham trị (Sinhvien x) thì 0đ vì sửa không có tác dụng ngoài hàm.\nNếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng (dùng cin>> thay vì getline) thì tính zero điểm phần đó.",
+          "question_type": "logical",
+          "slot_ids": [
+            "cau_14_001_b_S1",
+            "cau_14_001_b_S2"
+          ]
+        },
+        {
+          "part_label": "c",
+          "criterion_id": "T14C",
+          "content": "Hàm InDSSV in thông tin sinh viên có NoiSinh là \"TPHCM\" (0.25đ).",
+          "score": 0.25,
+          "grader_note": "Kiểm tra điều kiện so sánh đúng theo kiểu dữ liệu: string dùng ==, mảng ký tự char[] dùng strcmp(...) == 0. Không cần in toàn bộ trường, chỉ cần in đủ là được điểm.",
+          "expected_value": {
+            "keywords": [
+              "InDSSV",
+              "TPHCM",
+              "NoiSinh"
+            ],
+            "sample_solution": "void InDSSV(Sinhvien a[ ], int n){\n    for (int i=0; i<n; i++)\n        if(a[i].NoiSinh == \"TPHCM\") // Kiem tra dieu kien\n        // In thong tin sinh vien, khong can in tat ca\n            cout<< a[i].MaSV <<\"- \"<<a[i].HoTen<<\"- \"\n            <<a[i].NoiSinh<<\"- \"<<a[i].NamSinh<<\"- \"<<a[i].DTB;\n}"
+          },
+          "question_type": "logical",
+          "slot_ids": [
+            "cau_14_001_c"
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_15",
+      "question_number": 15,
+      "question": {
+        "text": "Câu 15: (1 điểm) Trong chương trình Đường lên đỉnh Olympia năm 2025 có câu hỏi: \"Một đoàn vừa có người vừa có ngựa chạy ngang qua, người ta thấy có tổng cộng 6 cái đầu và 18 cái chân. Hỏi đoàn đó có bao nhiêu người và bao nhiêu ngựa?\"\nNăm nay đã là 2026 và bạn đã là sinh viên Đại học Công nghệ Thông tin, bạn hãy dùng kiến thức lập trình để giải quyết phiên bản nâng cao của câu hỏi đó như sau: \"Một đoàn vừa có người vừa có ngựa chạy ngang qua, người ta thấy có tổng cộng N cái đầu và M cái chân. Giả định là trong đoàn không có người nào hay con ngựa nào bị thiếu chân hay thiếu đầu thì đoàn có bao nhiêu người và bao nhiêu ngựa? Nếu giả định trên không thể thoả mãn hãy đưa ra kết luận: 'giả định sai'.\"",
+        "parts": [
+          {
+            "part_label": "a",
+            "text": "Đặt tên biến và mô tả kiểu dữ liệu cho input và output của bài toán trên. (0.25 điểm)",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_15_001_a"
+              }
+            ]
+          }
+        ]
+      },
+      "score": 0.25,
+      "grading_rule": [
+        {
+          "sub_label": "a",
+          "criterion_id": "T15A",
+          "content": "Đặt tên biến và mô tả kiểu dữ liệu cho input (N, M là hai số nguyên không âm) và output (chuỗi \"giả định sai\" hoặc hai số nguyên x, y) của bài toán (0.25đ).",
+          "score": 0.25,
+          "expected_value": {
+            "keywords": [
+              "N",
+              "M",
+              "không âm",
+              "giả định sai"
+            ],
+            "sample_solution": "int N, M; // N: so dau, M: so chan\n\nif (condition_for_invalid_case) {\n    cout << \"gia dinh sai\";\n} else {\n    cout << x << \" \" << y;\n}"
+          },
+          "grader_note": "Phải đúng CẢ input lẫn output mới được 0.25đ. Đúng một trong hai thì 0đ.\nInput phải chỉ rõ \"không âm\". Chỉ ghi \"số nguyên\" thì tính là sai.\nOutput phải nhất quán với câu c: chọn không âm => thuật toán cho phép x=0 hoặc y=0; chọn dương => thuật toán yêu cầu x>0 và y>0.\nOutput phải nhất quán với điều kiện giả định sai ở câu c.",
+          "question_type": "logical",
+          "slot_ids": [
+            "cau_15_001_a"
+          ]
+        }
+      ]
+    }
+  ],
+  "total_score": 3.25
+}

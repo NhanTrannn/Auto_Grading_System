@@ -1,0 +1,754 @@
+[
+  {
+    "sample_id": "cau_15_001__HS_2",
+    "ma_de": "1",
+    "question_number": 15,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T15A)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.25,
+    "max_score": 1.0,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 119611,
+    "token_usage": {
+      "prompt_tokens": 14299.999999999998,
+      "completion_tokens": 8975.999999999998,
+      "total_tokens": 23275.999999999996
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T15A",
+        "part_label": "a",
+        "score": 0,
+        "max_score": 0.25,
+        "feedback": "Thiếu mô tả kiểu dữ liệu và tính chất 'không âm' cho input N, M; thiếu mô tả trường hợp output là chuỗi 'giả định sai'.",
+        "suggestion": "Cần ghi rõ: int N, M; // N, M là số nguyên không âm. Output phải mô tả cả hai khả năng: in chuỗi \"giả định sai\" hoặc hai số nguyên x, y."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T15A",
+        "part_label": "a",
+        "criterion_content": "Đặt tên biến và mô tả kiểu dữ liệu cho input (N, M là hai số nguyên không âm) và output (chuỗi \"giả định sai\" hoặc hai số nguyên x, y) của bài toán (0.25đ).",
+        "score": 0,
+        "max_score": 0.25,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh chưa mô tả kiểu dữ liệu và điều kiện 'không âm' cho input, đồng thời bỏ qua trường hợp output 'giả định sai', vi phạm cả hai yêu cầu bắt buộc.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm cho phần này là:\n\n> **Đặt tên biến và mô tả kiểu dữ liệu cho input (N, M là hai số nguyên không âm) và output (chuỗi \"giả định sai\" hoặc hai số nguyên x, y) của bài toán. (0.25đ)**\n\n→ Đây là một phần **mô tả cấu trúc đầu vào/đầu ra**, **không phải viết code giải thuật**.\n\nYêu cầu cụ thể:\n- Phải xác định rõ **input**: N và M → **số nguyên không âm**\n- Phải xác định rõ **output**: hoặc là chuỗi `\"giả định sai\"` hoặc là hai số nguyên x, y (số người và số ngựa)\n- **Phải đúng cả input lẫn output mới được điểm đầy đủ (0.25đ). Nếu chỉ đúng một trong hai → 0đ.**\n\nGhi chú quan trọng từ giáo viên:\n> Input phải chỉ rõ \"**không âm**\". Chỉ ghi \"số nguyên\" thì tính là sai.\n> Output phải nhất quán với câu c (về điều kiện giả định sai và giá trị không âm/dương).\n\n→ Do đó, **phải có từ khóa \"không âm\" trong mô tả input**, và **phải nêu rõ output là một trong hai dạng: chuỗi \"giả định sai\" hoặc cặp số nguyên x, y**.\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án kỳ vọng (tham khảo):\n\n> `int N, M; // N: so dau, M: so chan`\n\n> Nếu điều kiện không thỏa → in `\"gia dinh sai\"`  \n> Ngược lại → in `x y` (hai số nguyên)\n\n→ Điều này cho thấy:\n- Input: N, M → kiểu `int`, **và phải có mô tả rằng chúng là số nguyên không âm** (dù chưa ghi trực tiếp trong mẫu, nhưng đề bài yêu cầu rõ ràng).\n- Output: **phải mô tả rõ hai khả năng**: \"giả định sai\" hoặc hai số nguyên.\n\nTuy nhiên, **đáp án mẫu chỉ là ví dụ tham khảo**, không bắt buộc học sinh phải viết giống hệt — nhưng **nội dung phải đầy đủ theo tiêu chí**.\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n> *Biến: int dau, chan, nguoi, ngua;  \n> Input: dau = 6  \n> chan = 18  \n> Output: nguoi = 3  \n> ngua = 3*\n\n→ Học sinh đã:\n- Đặt tên biến: `dau`, `chan`, `nguoi`, `ngua` → **tên biến hợp lý, dễ hiểu**.\n- Ghi rõ input: `dau = 6`, `chan = 18` → **nhưng KHÔNG nói đến kiểu dữ liệu hay tính chất \"không âm\"**.\n- Ghi rõ output: `nguoi = 3`, `ngua = 3` → **nhưng KHÔNG nêu trường hợp \"giả định sai\"**.\n\n→ **Sai nghiêm trọng ở 2 điểm chính**:\n\n1. **Input thiếu mô tả \"số nguyên không âm\"** → chỉ ghi giá trị cụ thể, không nói về kiểu dữ liệu hay điều kiện.\n2. **Output thiếu trường hợp \"giả định sai\"** → chỉ nêu một kết quả cụ thể (3 người, 3 ngựa), hoàn toàn bỏ qua khả năng không tồn tại nghiệm → **vi phạm yêu cầu đầu ra phải là một trong hai dạng**.\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n→ Có tương đương với đáp án kỳ vọng không?\n\n- Về **tên biến**: học sinh dùng `dau`, `chan`, `nguoi`, `ngua` thay vì `N`, `M`, `x`, `y`. Nhưng **tên biến không ảnh hưởng đến điểm** nếu mô tả rõ ràng. Tuy nhiên, **đây là phần mô tả input/output**, nên tên biến cần phản ánh đúng vai trò (mà học sinh đã làm tốt).\n\n- Về **kiểu dữ liệu và điều kiện**: học sinh **không mô tả kiểu dữ liệu (int)**, **không nói \"không âm\"** → **vi phạm yêu cầu bắt buộc**.\n\n- Về **output**: học sinh chỉ đưa ra kết quả cụ thể, **không nêu trường hợp \"giả định sai\"** → **vi phạm yêu cầu đầu ra phải bao gồm cả hai khả năng**.\n\n→ **Không tương đương**. Bài làm **thiếu các yếu tố bắt buộc** theo tiêu chí: “không âm” và “giả định sai”.\n\n---\n\n### **BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Học sinh có đáp ứng? | Ghi chú |\n|----------|-----------------------|---------|\n| Input: N, M là số nguyên **không âm** | ❌ Không | Chỉ ghi giá trị, không nói kiểu, không nói \"không âm\" |\n| Output: \"giả định sai\" hoặc hai số nguyên | ❌ Không | Chỉ ghi một kết quả cụ thể, bỏ qua trường hợp lỗi |\n| Đúng cả input lẫn output | ❌ Không | Thiếu cả hai |\n\n→ **Không đáp ứng bất kỳ tiêu chí nào bắt buộc**.\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\nTheo hướng dẫn:\n\n> **Phải đúng CẢ input lẫn output mới được 0.25đ. Đúng một trong hai thì 0đ.**\n\n→ Học sinh **sai cả hai phần**:\n- Input: thiếu mô tả kiểu và điều kiện \"không âm\"\n- Output: thiếu trường hợp \"giả định sai\"\n\n→ **Không đạt yêu cầu → 0 điểm**\n\n---\n\n### **SO SÁNH VỚI GỢI Ý CỦA HEURISTIC GRADER**\n\nHeuristic Grader nói:\n\n> Found: 0/4 expected keywords found: .  \n> [MISS] N  \n> [MISS] M  \n> [MISS] không âm  \n> [MISS] giả định sai\n\n→ Gợi ý này **hoàn toàn đúng** và **phân tích chính xác** những gì học sinh thiếu.\n\n→ Tôi **đồng ý hoàn toàn** với gợi ý này.\n\n---\n\n### ✅ **QUYẾT ĐỊNH CUỐI CÙNG**\n\n> **Điểm: 0.00**\n\n**Lý do chi tiết**:\n- Học sinh **chưa mô tả kiểu dữ liệu và điều kiện \"không âm\" cho input** → vi phạm yêu cầu bắt buộc.\n- Học sinh **chưa mô tả đầy đủ output** (bỏ qua trường hợp \"giả định sai\") → vi phạm yêu cầu đầu ra.\n- Theo nguyên tắc: **phải đúng cả input lẫn output mới được điểm** → học sinh sai cả hai → **0 điểm**.\n\n---\n\n✅ **Kết luận cuối cùng: 0.00 điểm**",
+        "feedback": "Thiếu mô tả kiểu dữ liệu và tính chất 'không âm' cho input N, M; thiếu mô tả trường hợp output là chuỗi 'giả định sai'.",
+        "suggestion": "Cần ghi rõ: int N, M; // N, M là số nguyên không âm. Output phải mô tả cả hai khả năng: in chuỗi \"giả định sai\" hoặc hai số nguyên x, y.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:0/4 expected keywords found: .",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 10043,
+          "completion_tokens": 5659,
+          "total_tokens": 15702
+        },
+        "evidence": {
+          "student_answer": "*Biến: int dau, chan, nguoi, ngua;\nInput: dau = 6\nchan = 18\nOutput: nguoi = 3\nngua = 3",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "a",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [],
+        "missing": [
+          {
+            "value": "N"
+          },
+          {
+            "value": "M"
+          },
+          {
+            "value": "không âm"
+          },
+          {
+            "value": "giả định sai"
+          }
+        ],
+        "latency_ms": 78417
+      },
+      {
+        "criterion_id": "T15B1",
+        "part_label": "b",
+        "criterion_content": "Ví dụ 1 (hàng R2) — ô Input: 6 18.",
+        "score": 0,
+        "max_score": 0,
+        "status": "correct",
+        "llm_used": true,
+        "grading_method": "llm_table_batch_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh nhập 'dau = 6 chan = 18' → giá trị số đúng (6 đầu, 18 chân). Output 'nguoi = 3 ngua = 3' khớp với input: 3 người + 3 ngựa = 6 đầu, 2×3 + 4×3 = 18 chân. Logic toán học chính xác, dù định dạng khác mẫu.",
+        "cot_reasoning": "Chúng ta sẽ lần lượt chấm từng **criterion_id** theo yêu cầu, dựa trên **toàn bộ bảng bài làm**, kiểm tra **logic toán học giữa các ô cùng hàng**, và **không bắt buộc khớp y hệt với đáp án gợi ý**.\n\n---\n\n### ✅ **criterion_id=\"T15B1\": Ví dụ 1 (hàng R2) — ô Input: 6 18**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R2C1  \n   - Đáp án gợi ý: `'6 18'` (chỉ là ví dụ tham khảo, không bắt buộc khớp y hệt)\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 6 chan = 18\"` → tuy có thêm chữ \"dau\", \"chan\", nhưng **giá trị số là 6 và 18**, đúng với đề bài (N=6, M=18).\n\n3. **Kiểm tra quan hệ với ô Output cùng hàng (R2C2)**:  \n   - Output: `\"nguoi = 3 ngua = 3\"` → tức là người = 3, ngựa = 3.\n   - Kiểm tra logic:\n     - Tổng đầu: 3 người + 3 ngựa = 6 đầu → ✓\n     - Tổng chân: 3×2 + 3×4 = 6 + 12 = 18 chân → ✓\n   - Vậy cặp (6,18) → (3,3) **là nghiệm đúng**.\n\n4. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Dù định dạng input không giống mẫu (\"dau = 6 chan = 18\" thay vì \"6 18\"), nhưng **giá trị số đúng**, và **tương ứng với output hợp lý, đúng logic**. Không cần phải in đúng định dạng mẫu nếu nội dung vẫn chính xác.\n\n---\n\n### ✅ **criterion_id=\"T15B2\": Ví dụ 1 (hàng R2) — ô Output: 3 3**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R2C2  \n   - Đáp án gợi ý: `'3 3'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"nguoi = 3 ngua = 3\"` → rõ ràng thể hiện người=3, ngựa=3.\n\n3. **Kiểm tra quan hệ với Input cùng hàng (R2C1)**:  \n   - Như đã kiểm tra ở T15B1: 3 người + 3 ngựa = 6 đầu, 6+12=18 chân → hoàn toàn khớp.\n\n4. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Định dạng khác một chút, nhưng **nội dung và giá trị số chính xác**, và **phù hợp với input**. Không trừ điểm vì định dạng nếu logic đúng.\n\n---\n\n### ❌ **criterion_id=\"T15B3\": Ví dụ 2 (hàng R3) — ô Input: 5 20**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R3C1  \n   - Đáp án gợi ý: `'5 20'` (ví dụ tham khảo)\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 12 chan = 30\"` → **sai so với đáp án gợi ý**, nhưng chúng ta không xét khớp chuỗi, mà xét **logic với Output cùng hàng**.\n\n3. **Kiểm tra quan hệ với Output cùng hàng (R3C2)**:  \n   - Output: `\"nguoi = 3 ngua = 9\"`  \n   - Kiểm tra:\n     - Tổng đầu: 3 + 9 = 12 → khớp với input \"dau = 12\"\n     - Tổng chân: 3×2 + 9×4 = 6 + 36 = 42 → **không khớp với \"chan = 30\" trong input!**\n     - → **Mâu thuẫn nghiêm trọng**: Nếu input là 12 đầu và 30 chân, thì output 3 người + 9 ngựa sẽ cho 42 chân → **không hợp lý**.\n\n4. **Phân tích sâu hơn**:  \n   - Giả sử học sinh muốn đưa ra ví dụ với N=12, M=30. Giải hệ phương trình:\n     - Gọi x = người, y = ngựa\n     - x + y = 12\n     - 2x + 4y = 30 → x + 2y = 15\n     - Từ 2 pt: (x + 2y) - (x + y) = 15 - 12 → y = 3 → x = 9\n     - Vậy nghiệm đúng là: **người = 9, ngựa = 3**\n     - Nhưng học sinh ghi **người = 3, ngựa = 9** → **sai nghiệm**.\n\n   → Do đó, **input và output không nhất quán về mặt toán học**.\n\n5. **Kết luận sơ bộ**:  \n   → **SAI**. Vì mặc dù học sinh có thể định nghĩa ví dụ riêng, nhưng **output không thỏa mãn input** → vi phạm yêu cầu của đề bài (giải bài toán theo dữ liệu input). Việc đổi chỗ người/ngựa là sai nếu không phù hợp với hệ phương trình.\n\n---\n\n### ❌ **criterion_id=\"T15B4\": Ví dụ 2 (hàng R3) — ô Output: 0 5**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R3C2  \n   - Đáp án gợi ý: `'0 5'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"nguoi = 3 ngua = 9\"`\n\n3. **Kiểm tra quan hệ với Input cùng hàng (R3C1)**:  \n   - Như đã phân tích ở T15B3: input là 12 đầu, 30 chân → nghiệm đúng là người=9, ngựa=3.\n   - Học sinh ghi người=3, ngựa=9 → dẫn đến 12 đầu (đúng), nhưng 6 + 36 = 42 chân ≠ 30 → **sai**.\n\n4. **So sánh với đáp án gợi ý '0 5'**:  \n   - Nếu giả sử input là 5 đầu, 20 chân (theo đáp án gợi ý):\n     - x + y = 5\n     - 2x + 4y = 20 → x + 2y = 10\n     - → y = 5, x = 0 → nghiệm đúng là người=0, ngựa=5 → khớp với đáp án gợi ý.\n   - Nhưng học sinh lại dùng input khác (12,30) và output sai → **vô hiệu hóa cả cặp ví dụ**.\n\n5. **Kết luận sơ bộ**:  \n   → **SAI**. Output không phù hợp với input, và không phản ánh bất kỳ ví dụ nào hợp lý. Ngay cả khi học sinh định nghĩa ví dụ mới, họ cũng phải đảm bảo tính nhất quán.\n\n---\n\n### ✅ **criterion_id=\"T15B5\": Ví dụ 3 (hàng R4) — ô Input: 9 10**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R4C1  \n   - Đáp án gợi ý: `'9 10'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 8 chan = 40\"`\n\n3. **Kiểm tra quan hệ với Output cùng hàng (R4C2)**:  \n   - Output: `'giả định sai'` (đã in sẵn, không phải do học sinh điền, nên không chấm riêng)\n   - Kiểm tra logic:  \n     - Với input: 8 đầu, 40 chân → giải hệ:\n       - x + y = 8\n       - 2x + 4y = 40 → x + 2y = 20\n       - Trừ: (x + 2y) - (x + y) = 20 - 8 → y = 12 → x = -4 → **không hợp lý** (số người âm).\n     - → Kết luận: **giả định sai** → khớp với output đã in sẵn.\n\n4. **So sánh với đáp án gợi ý '9 10'**:  \n   - Nếu input là 9 đầu, 10 chân:\n     - x + y = 9\n     - 2x + 4y = 10 → x + 2y = 5\n     - → y = -4, x = 13 → cũng không hợp lý → kết luận \"giả định sai\" vẫn đúng.\n   - Nhưng học sinh chọn 8 đầu, 40 chân → cũng đúng để kết luận \"giả định sai\".\n\n5. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Học sinh chọn ví dụ hợp lệ (8 đầu, 40 chân) → dẫn đến nghiệm âm → đúng khi kết luận \"giả định sai\". Dù khác với đáp án gợi ý, nhưng **logic đúng**, và **kết quả output phù hợp**.\n\n---\n\n## 📊 TỔNG KẾT ĐIỂM CHO CÁC CRITERION\n\n| criterion_id | Kết luận | Lý do |\n|--------------|----------|-------|\n| T15B1        | ĐÚNG     | Input 6,18 → Output 3,3: đúng logic |\n| T15B2        | ĐÚNG     | Output 3,3 phù hợp với input 6,18 |\n| T15B3        | SAI      | Input 12,30 → Output 3,9: không khớp (thiếu chân) |\n| T15B4        | SAI      | Output 3,9 không thỏa mãn input 12,30 |\n| T15B5        | ĐÚNG     | Input 8,40 → nghiệm âm → \"giả định sai\": đúng |\n\n---\n\n## 💡 GHI CHÚ CHUNG:\n\n- Đề bài yêu cầu **tìm 3 ví dụ**, mỗi ví dụ gồm 1 cặp (Input, Output).\n- Học sinh đã đưa ra 3 ví dụ, nhưng **ví dụ thứ 2 (hàng R3) bị lỗi logic** → không chấp nhận.\n- Tuy nhiên, **ví dụ 1 và 3 đều đúng**, và học sinh đã thể hiện được khả năng áp dụng lập trình (giải hệ phương trình) và xử lý trường hợp không có nghiệm.\n\n→ **Tổng điểm phần b (0.25 điểm)**: Có thể chấm **0.15/0.25** nếu giáo viên đánh giá theo tỷ lệ: 2/3 ví dụ đúng → 2/3 điểm.\n\nNhưng vì đề bài không nêu rõ cách chấm chi tiết từng ví dụ, chỉ nói \"tìm 3 ví dụ\", và học sinh đã cố gắng, nhưng 1 ví dụ sai → **có thể cho 0.15 hoặc 0.2 điểm tùy mức độ nghiêm khắc**.\n\nTuy nhiên, theo hướng dẫn chấm: **nếu học sinh chọn ví dụ khác nhưng vẫn đúng logic/quan hệ toán học → vẫn tính đúng**.\n\n→ Vì vậy, **chỉ có 1 ví dụ sai (hàng R3)**, nên **cho 2/3 điểm = ~0.17 điểm**.\n\n---\n\n## ✅ KẾT LUẬN CHẤM TOÀN BỘ PHẦN B:\n\n> **Tổng điểm phần b (T15B1–T15B5): 0.17/0.25 điểm**\n\n(Có thể làm tròn thành **0.2 điểm** nếu giáo viên cho phép linh hoạt, hoặc giữ nguyên **0.17** nếu chặt chẽ).\n\n---\n\n✅ **Lưu ý**: Nếu đề bài yêu cầu **mỗi ví dụ phải độc lập và hợp lệ**, thì việc học sinh dùng ví dụ sai ở hàng R3 khiến cả ví dụ đó bị loại → **chỉ còn 2 ví dụ đúng → 2/3 điểm**.\n\n→ **Điểm cuối cùng: 0.17 (hoặc 0.2 nếu làm tròn)**.",
+        "row_id": "R2",
+        "col_id": "C1",
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "correct",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [
+            {
+              "part_label": "b",
+              "cells": [
+                {
+                  "cell_id": "R1C1",
+                  "row_id": "R1",
+                  "col_id": "C1",
+                  "text": "input",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R1C2",
+                  "row_id": "R1",
+                  "col_id": "C2",
+                  "text": "output",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R2C1",
+                  "row_id": "R2",
+                  "col_id": "C1",
+                  "text": "dau = 6 chan = 18",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R2C2",
+                  "row_id": "R2",
+                  "col_id": "C2",
+                  "text": "nguoi = 3 ngua = 3",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R3C1",
+                  "row_id": "R3",
+                  "col_id": "C1",
+                  "text": "dau = 12 chan = 30",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R3C2",
+                  "row_id": "R3",
+                  "col_id": "C2",
+                  "text": "nguoi = 3 ngua = 9",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R4C1",
+                  "row_id": "R4",
+                  "col_id": "C1",
+                  "text": "dau = 8 chan = 40",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R4C2",
+                  "row_id": "R4",
+                  "col_id": "C2",
+                  "text": "giả định sai",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                }
+              ]
+            }
+          ],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "token_usage": {
+          "prompt_tokens": 851.4,
+          "completion_tokens": 663.4,
+          "total_tokens": 1514.8
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "latency_ms": 41194,
+        "group_id": "T15B",
+        "group_all_or_nothing": true,
+        "group_max_score": 0.25
+      },
+      {
+        "criterion_id": "T15B2",
+        "part_label": "b",
+        "criterion_content": "Ví dụ 1 (hàng R2) — ô Output: 3 3.",
+        "score": 0,
+        "max_score": 0,
+        "status": "correct",
+        "llm_used": true,
+        "grading_method": "llm_table_batch_cot",
+        "stage": "llm",
+        "llm_reasoning": "Output 'nguoi = 3 ngua = 3' phù hợp với input 6 đầu, 18 chân. Tính toán đúng: 3 người + 3 ngựa = 6 đầu, 6 + 12 = 18 chân. Định dạng không ảnh hưởng đến tính đúng đắn logic.",
+        "cot_reasoning": "Chúng ta sẽ lần lượt chấm từng **criterion_id** theo yêu cầu, dựa trên **toàn bộ bảng bài làm**, kiểm tra **logic toán học giữa các ô cùng hàng**, và **không bắt buộc khớp y hệt với đáp án gợi ý**.\n\n---\n\n### ✅ **criterion_id=\"T15B1\": Ví dụ 1 (hàng R2) — ô Input: 6 18**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R2C1  \n   - Đáp án gợi ý: `'6 18'` (chỉ là ví dụ tham khảo, không bắt buộc khớp y hệt)\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 6 chan = 18\"` → tuy có thêm chữ \"dau\", \"chan\", nhưng **giá trị số là 6 và 18**, đúng với đề bài (N=6, M=18).\n\n3. **Kiểm tra quan hệ với ô Output cùng hàng (R2C2)**:  \n   - Output: `\"nguoi = 3 ngua = 3\"` → tức là người = 3, ngựa = 3.\n   - Kiểm tra logic:\n     - Tổng đầu: 3 người + 3 ngựa = 6 đầu → ✓\n     - Tổng chân: 3×2 + 3×4 = 6 + 12 = 18 chân → ✓\n   - Vậy cặp (6,18) → (3,3) **là nghiệm đúng**.\n\n4. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Dù định dạng input không giống mẫu (\"dau = 6 chan = 18\" thay vì \"6 18\"), nhưng **giá trị số đúng**, và **tương ứng với output hợp lý, đúng logic**. Không cần phải in đúng định dạng mẫu nếu nội dung vẫn chính xác.\n\n---\n\n### ✅ **criterion_id=\"T15B2\": Ví dụ 1 (hàng R2) — ô Output: 3 3**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R2C2  \n   - Đáp án gợi ý: `'3 3'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"nguoi = 3 ngua = 3\"` → rõ ràng thể hiện người=3, ngựa=3.\n\n3. **Kiểm tra quan hệ với Input cùng hàng (R2C1)**:  \n   - Như đã kiểm tra ở T15B1: 3 người + 3 ngựa = 6 đầu, 6+12=18 chân → hoàn toàn khớp.\n\n4. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Định dạng khác một chút, nhưng **nội dung và giá trị số chính xác**, và **phù hợp với input**. Không trừ điểm vì định dạng nếu logic đúng.\n\n---\n\n### ❌ **criterion_id=\"T15B3\": Ví dụ 2 (hàng R3) — ô Input: 5 20**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R3C1  \n   - Đáp án gợi ý: `'5 20'` (ví dụ tham khảo)\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 12 chan = 30\"` → **sai so với đáp án gợi ý**, nhưng chúng ta không xét khớp chuỗi, mà xét **logic với Output cùng hàng**.\n\n3. **Kiểm tra quan hệ với Output cùng hàng (R3C2)**:  \n   - Output: `\"nguoi = 3 ngua = 9\"`  \n   - Kiểm tra:\n     - Tổng đầu: 3 + 9 = 12 → khớp với input \"dau = 12\"\n     - Tổng chân: 3×2 + 9×4 = 6 + 36 = 42 → **không khớp với \"chan = 30\" trong input!**\n     - → **Mâu thuẫn nghiêm trọng**: Nếu input là 12 đầu và 30 chân, thì output 3 người + 9 ngựa sẽ cho 42 chân → **không hợp lý**.\n\n4. **Phân tích sâu hơn**:  \n   - Giả sử học sinh muốn đưa ra ví dụ với N=12, M=30. Giải hệ phương trình:\n     - Gọi x = người, y = ngựa\n     - x + y = 12\n     - 2x + 4y = 30 → x + 2y = 15\n     - Từ 2 pt: (x + 2y) - (x + y) = 15 - 12 → y = 3 → x = 9\n     - Vậy nghiệm đúng là: **người = 9, ngựa = 3**\n     - Nhưng học sinh ghi **người = 3, ngựa = 9** → **sai nghiệm**.\n\n   → Do đó, **input và output không nhất quán về mặt toán học**.\n\n5. **Kết luận sơ bộ**:  \n   → **SAI**. Vì mặc dù học sinh có thể định nghĩa ví dụ riêng, nhưng **output không thỏa mãn input** → vi phạm yêu cầu của đề bài (giải bài toán theo dữ liệu input). Việc đổi chỗ người/ngựa là sai nếu không phù hợp với hệ phương trình.\n\n---\n\n### ❌ **criterion_id=\"T15B4\": Ví dụ 2 (hàng R3) — ô Output: 0 5**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R3C2  \n   - Đáp án gợi ý: `'0 5'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"nguoi = 3 ngua = 9\"`\n\n3. **Kiểm tra quan hệ với Input cùng hàng (R3C1)**:  \n   - Như đã phân tích ở T15B3: input là 12 đầu, 30 chân → nghiệm đúng là người=9, ngựa=3.\n   - Học sinh ghi người=3, ngựa=9 → dẫn đến 12 đầu (đúng), nhưng 6 + 36 = 42 chân ≠ 30 → **sai**.\n\n4. **So sánh với đáp án gợi ý '0 5'**:  \n   - Nếu giả sử input là 5 đầu, 20 chân (theo đáp án gợi ý):\n     - x + y = 5\n     - 2x + 4y = 20 → x + 2y = 10\n     - → y = 5, x = 0 → nghiệm đúng là người=0, ngựa=5 → khớp với đáp án gợi ý.\n   - Nhưng học sinh lại dùng input khác (12,30) và output sai → **vô hiệu hóa cả cặp ví dụ**.\n\n5. **Kết luận sơ bộ**:  \n   → **SAI**. Output không phù hợp với input, và không phản ánh bất kỳ ví dụ nào hợp lý. Ngay cả khi học sinh định nghĩa ví dụ mới, họ cũng phải đảm bảo tính nhất quán.\n\n---\n\n### ✅ **criterion_id=\"T15B5\": Ví dụ 3 (hàng R4) — ô Input: 9 10**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R4C1  \n   - Đáp án gợi ý: `'9 10'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 8 chan = 40\"`\n\n3. **Kiểm tra quan hệ với Output cùng hàng (R4C2)**:  \n   - Output: `'giả định sai'` (đã in sẵn, không phải do học sinh điền, nên không chấm riêng)\n   - Kiểm tra logic:  \n     - Với input: 8 đầu, 40 chân → giải hệ:\n       - x + y = 8\n       - 2x + 4y = 40 → x + 2y = 20\n       - Trừ: (x + 2y) - (x + y) = 20 - 8 → y = 12 → x = -4 → **không hợp lý** (số người âm).\n     - → Kết luận: **giả định sai** → khớp với output đã in sẵn.\n\n4. **So sánh với đáp án gợi ý '9 10'**:  \n   - Nếu input là 9 đầu, 10 chân:\n     - x + y = 9\n     - 2x + 4y = 10 → x + 2y = 5\n     - → y = -4, x = 13 → cũng không hợp lý → kết luận \"giả định sai\" vẫn đúng.\n   - Nhưng học sinh chọn 8 đầu, 40 chân → cũng đúng để kết luận \"giả định sai\".\n\n5. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Học sinh chọn ví dụ hợp lệ (8 đầu, 40 chân) → dẫn đến nghiệm âm → đúng khi kết luận \"giả định sai\". Dù khác với đáp án gợi ý, nhưng **logic đúng**, và **kết quả output phù hợp**.\n\n---\n\n## 📊 TỔNG KẾT ĐIỂM CHO CÁC CRITERION\n\n| criterion_id | Kết luận | Lý do |\n|--------------|----------|-------|\n| T15B1        | ĐÚNG     | Input 6,18 → Output 3,3: đúng logic |\n| T15B2        | ĐÚNG     | Output 3,3 phù hợp với input 6,18 |\n| T15B3        | SAI      | Input 12,30 → Output 3,9: không khớp (thiếu chân) |\n| T15B4        | SAI      | Output 3,9 không thỏa mãn input 12,30 |\n| T15B5        | ĐÚNG     | Input 8,40 → nghiệm âm → \"giả định sai\": đúng |\n\n---\n\n## 💡 GHI CHÚ CHUNG:\n\n- Đề bài yêu cầu **tìm 3 ví dụ**, mỗi ví dụ gồm 1 cặp (Input, Output).\n- Học sinh đã đưa ra 3 ví dụ, nhưng **ví dụ thứ 2 (hàng R3) bị lỗi logic** → không chấp nhận.\n- Tuy nhiên, **ví dụ 1 và 3 đều đúng**, và học sinh đã thể hiện được khả năng áp dụng lập trình (giải hệ phương trình) và xử lý trường hợp không có nghiệm.\n\n→ **Tổng điểm phần b (0.25 điểm)**: Có thể chấm **0.15/0.25** nếu giáo viên đánh giá theo tỷ lệ: 2/3 ví dụ đúng → 2/3 điểm.\n\nNhưng vì đề bài không nêu rõ cách chấm chi tiết từng ví dụ, chỉ nói \"tìm 3 ví dụ\", và học sinh đã cố gắng, nhưng 1 ví dụ sai → **có thể cho 0.15 hoặc 0.2 điểm tùy mức độ nghiêm khắc**.\n\nTuy nhiên, theo hướng dẫn chấm: **nếu học sinh chọn ví dụ khác nhưng vẫn đúng logic/quan hệ toán học → vẫn tính đúng**.\n\n→ Vì vậy, **chỉ có 1 ví dụ sai (hàng R3)**, nên **cho 2/3 điểm = ~0.17 điểm**.\n\n---\n\n## ✅ KẾT LUẬN CHẤM TOÀN BỘ PHẦN B:\n\n> **Tổng điểm phần b (T15B1–T15B5): 0.17/0.25 điểm**\n\n(Có thể làm tròn thành **0.2 điểm** nếu giáo viên cho phép linh hoạt, hoặc giữ nguyên **0.17** nếu chặt chẽ).\n\n---\n\n✅ **Lưu ý**: Nếu đề bài yêu cầu **mỗi ví dụ phải độc lập và hợp lệ**, thì việc học sinh dùng ví dụ sai ở hàng R3 khiến cả ví dụ đó bị loại → **chỉ còn 2 ví dụ đúng → 2/3 điểm**.\n\n→ **Điểm cuối cùng: 0.17 (hoặc 0.2 nếu làm tròn)**.",
+        "row_id": "R2",
+        "col_id": "C2",
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "correct",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [
+            {
+              "part_label": "b",
+              "cells": [
+                {
+                  "cell_id": "R1C1",
+                  "row_id": "R1",
+                  "col_id": "C1",
+                  "text": "input",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R1C2",
+                  "row_id": "R1",
+                  "col_id": "C2",
+                  "text": "output",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R2C1",
+                  "row_id": "R2",
+                  "col_id": "C1",
+                  "text": "dau = 6 chan = 18",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R2C2",
+                  "row_id": "R2",
+                  "col_id": "C2",
+                  "text": "nguoi = 3 ngua = 3",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R3C1",
+                  "row_id": "R3",
+                  "col_id": "C1",
+                  "text": "dau = 12 chan = 30",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R3C2",
+                  "row_id": "R3",
+                  "col_id": "C2",
+                  "text": "nguoi = 3 ngua = 9",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R4C1",
+                  "row_id": "R4",
+                  "col_id": "C1",
+                  "text": "dau = 8 chan = 40",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R4C2",
+                  "row_id": "R4",
+                  "col_id": "C2",
+                  "text": "giả định sai",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                }
+              ]
+            }
+          ],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "token_usage": {
+          "prompt_tokens": 851.4,
+          "completion_tokens": 663.4,
+          "total_tokens": 1514.8
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "latency_ms": 41194,
+        "group_id": "T15B",
+        "group_all_or_nothing": true,
+        "group_max_score": 0.25
+      },
+      {
+        "criterion_id": "T15B3",
+        "part_label": "b",
+        "criterion_content": "Ví dụ 2 (hàng R3) — ô Input: 5 20.",
+        "score": 0,
+        "max_score": 0,
+        "status": "correct",
+        "llm_used": true,
+        "grading_method": "llm_table_batch_cot",
+        "stage": "llm",
+        "llm_reasoning": "Input 'dau = 12 chan = 30' → nếu đúng thì nghiệm phải là người=9, ngựa=3. Nhưng học sinh ghi output 'nguoi = 3 ngua = 9', dẫn đến 2×3 + 4×9 = 42 chân ≠ 30. Mâu thuẫn nghiêm trọng về mặt toán học, không nhất quán giữa input và output.",
+        "cot_reasoning": "Chúng ta sẽ lần lượt chấm từng **criterion_id** theo yêu cầu, dựa trên **toàn bộ bảng bài làm**, kiểm tra **logic toán học giữa các ô cùng hàng**, và **không bắt buộc khớp y hệt với đáp án gợi ý**.\n\n---\n\n### ✅ **criterion_id=\"T15B1\": Ví dụ 1 (hàng R2) — ô Input: 6 18**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R2C1  \n   - Đáp án gợi ý: `'6 18'` (chỉ là ví dụ tham khảo, không bắt buộc khớp y hệt)\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 6 chan = 18\"` → tuy có thêm chữ \"dau\", \"chan\", nhưng **giá trị số là 6 và 18**, đúng với đề bài (N=6, M=18).\n\n3. **Kiểm tra quan hệ với ô Output cùng hàng (R2C2)**:  \n   - Output: `\"nguoi = 3 ngua = 3\"` → tức là người = 3, ngựa = 3.\n   - Kiểm tra logic:\n     - Tổng đầu: 3 người + 3 ngựa = 6 đầu → ✓\n     - Tổng chân: 3×2 + 3×4 = 6 + 12 = 18 chân → ✓\n   - Vậy cặp (6,18) → (3,3) **là nghiệm đúng**.\n\n4. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Dù định dạng input không giống mẫu (\"dau = 6 chan = 18\" thay vì \"6 18\"), nhưng **giá trị số đúng**, và **tương ứng với output hợp lý, đúng logic**. Không cần phải in đúng định dạng mẫu nếu nội dung vẫn chính xác.\n\n---\n\n### ✅ **criterion_id=\"T15B2\": Ví dụ 1 (hàng R2) — ô Output: 3 3**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R2C2  \n   - Đáp án gợi ý: `'3 3'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"nguoi = 3 ngua = 3\"` → rõ ràng thể hiện người=3, ngựa=3.\n\n3. **Kiểm tra quan hệ với Input cùng hàng (R2C1)**:  \n   - Như đã kiểm tra ở T15B1: 3 người + 3 ngựa = 6 đầu, 6+12=18 chân → hoàn toàn khớp.\n\n4. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Định dạng khác một chút, nhưng **nội dung và giá trị số chính xác**, và **phù hợp với input**. Không trừ điểm vì định dạng nếu logic đúng.\n\n---\n\n### ❌ **criterion_id=\"T15B3\": Ví dụ 2 (hàng R3) — ô Input: 5 20**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R3C1  \n   - Đáp án gợi ý: `'5 20'` (ví dụ tham khảo)\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 12 chan = 30\"` → **sai so với đáp án gợi ý**, nhưng chúng ta không xét khớp chuỗi, mà xét **logic với Output cùng hàng**.\n\n3. **Kiểm tra quan hệ với Output cùng hàng (R3C2)**:  \n   - Output: `\"nguoi = 3 ngua = 9\"`  \n   - Kiểm tra:\n     - Tổng đầu: 3 + 9 = 12 → khớp với input \"dau = 12\"\n     - Tổng chân: 3×2 + 9×4 = 6 + 36 = 42 → **không khớp với \"chan = 30\" trong input!**\n     - → **Mâu thuẫn nghiêm trọng**: Nếu input là 12 đầu và 30 chân, thì output 3 người + 9 ngựa sẽ cho 42 chân → **không hợp lý**.\n\n4. **Phân tích sâu hơn**:  \n   - Giả sử học sinh muốn đưa ra ví dụ với N=12, M=30. Giải hệ phương trình:\n     - Gọi x = người, y = ngựa\n     - x + y = 12\n     - 2x + 4y = 30 → x + 2y = 15\n     - Từ 2 pt: (x + 2y) - (x + y) = 15 - 12 → y = 3 → x = 9\n     - Vậy nghiệm đúng là: **người = 9, ngựa = 3**\n     - Nhưng học sinh ghi **người = 3, ngựa = 9** → **sai nghiệm**.\n\n   → Do đó, **input và output không nhất quán về mặt toán học**.\n\n5. **Kết luận sơ bộ**:  \n   → **SAI**. Vì mặc dù học sinh có thể định nghĩa ví dụ riêng, nhưng **output không thỏa mãn input** → vi phạm yêu cầu của đề bài (giải bài toán theo dữ liệu input). Việc đổi chỗ người/ngựa là sai nếu không phù hợp với hệ phương trình.\n\n---\n\n### ❌ **criterion_id=\"T15B4\": Ví dụ 2 (hàng R3) — ô Output: 0 5**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R3C2  \n   - Đáp án gợi ý: `'0 5'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"nguoi = 3 ngua = 9\"`\n\n3. **Kiểm tra quan hệ với Input cùng hàng (R3C1)**:  \n   - Như đã phân tích ở T15B3: input là 12 đầu, 30 chân → nghiệm đúng là người=9, ngựa=3.\n   - Học sinh ghi người=3, ngựa=9 → dẫn đến 12 đầu (đúng), nhưng 6 + 36 = 42 chân ≠ 30 → **sai**.\n\n4. **So sánh với đáp án gợi ý '0 5'**:  \n   - Nếu giả sử input là 5 đầu, 20 chân (theo đáp án gợi ý):\n     - x + y = 5\n     - 2x + 4y = 20 → x + 2y = 10\n     - → y = 5, x = 0 → nghiệm đúng là người=0, ngựa=5 → khớp với đáp án gợi ý.\n   - Nhưng học sinh lại dùng input khác (12,30) và output sai → **vô hiệu hóa cả cặp ví dụ**.\n\n5. **Kết luận sơ bộ**:  \n   → **SAI**. Output không phù hợp với input, và không phản ánh bất kỳ ví dụ nào hợp lý. Ngay cả khi học sinh định nghĩa ví dụ mới, họ cũng phải đảm bảo tính nhất quán.\n\n---\n\n### ✅ **criterion_id=\"T15B5\": Ví dụ 3 (hàng R4) — ô Input: 9 10**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R4C1  \n   - Đáp án gợi ý: `'9 10'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 8 chan = 40\"`\n\n3. **Kiểm tra quan hệ với Output cùng hàng (R4C2)**:  \n   - Output: `'giả định sai'` (đã in sẵn, không phải do học sinh điền, nên không chấm riêng)\n   - Kiểm tra logic:  \n     - Với input: 8 đầu, 40 chân → giải hệ:\n       - x + y = 8\n       - 2x + 4y = 40 → x + 2y = 20\n       - Trừ: (x + 2y) - (x + y) = 20 - 8 → y = 12 → x = -4 → **không hợp lý** (số người âm).\n     - → Kết luận: **giả định sai** → khớp với output đã in sẵn.\n\n4. **So sánh với đáp án gợi ý '9 10'**:  \n   - Nếu input là 9 đầu, 10 chân:\n     - x + y = 9\n     - 2x + 4y = 10 → x + 2y = 5\n     - → y = -4, x = 13 → cũng không hợp lý → kết luận \"giả định sai\" vẫn đúng.\n   - Nhưng học sinh chọn 8 đầu, 40 chân → cũng đúng để kết luận \"giả định sai\".\n\n5. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Học sinh chọn ví dụ hợp lệ (8 đầu, 40 chân) → dẫn đến nghiệm âm → đúng khi kết luận \"giả định sai\". Dù khác với đáp án gợi ý, nhưng **logic đúng**, và **kết quả output phù hợp**.\n\n---\n\n## 📊 TỔNG KẾT ĐIỂM CHO CÁC CRITERION\n\n| criterion_id | Kết luận | Lý do |\n|--------------|----------|-------|\n| T15B1        | ĐÚNG     | Input 6,18 → Output 3,3: đúng logic |\n| T15B2        | ĐÚNG     | Output 3,3 phù hợp với input 6,18 |\n| T15B3        | SAI      | Input 12,30 → Output 3,9: không khớp (thiếu chân) |\n| T15B4        | SAI      | Output 3,9 không thỏa mãn input 12,30 |\n| T15B5        | ĐÚNG     | Input 8,40 → nghiệm âm → \"giả định sai\": đúng |\n\n---\n\n## 💡 GHI CHÚ CHUNG:\n\n- Đề bài yêu cầu **tìm 3 ví dụ**, mỗi ví dụ gồm 1 cặp (Input, Output).\n- Học sinh đã đưa ra 3 ví dụ, nhưng **ví dụ thứ 2 (hàng R3) bị lỗi logic** → không chấp nhận.\n- Tuy nhiên, **ví dụ 1 và 3 đều đúng**, và học sinh đã thể hiện được khả năng áp dụng lập trình (giải hệ phương trình) và xử lý trường hợp không có nghiệm.\n\n→ **Tổng điểm phần b (0.25 điểm)**: Có thể chấm **0.15/0.25** nếu giáo viên đánh giá theo tỷ lệ: 2/3 ví dụ đúng → 2/3 điểm.\n\nNhưng vì đề bài không nêu rõ cách chấm chi tiết từng ví dụ, chỉ nói \"tìm 3 ví dụ\", và học sinh đã cố gắng, nhưng 1 ví dụ sai → **có thể cho 0.15 hoặc 0.2 điểm tùy mức độ nghiêm khắc**.\n\nTuy nhiên, theo hướng dẫn chấm: **nếu học sinh chọn ví dụ khác nhưng vẫn đúng logic/quan hệ toán học → vẫn tính đúng**.\n\n→ Vì vậy, **chỉ có 1 ví dụ sai (hàng R3)**, nên **cho 2/3 điểm = ~0.17 điểm**.\n\n---\n\n## ✅ KẾT LUẬN CHẤM TOÀN BỘ PHẦN B:\n\n> **Tổng điểm phần b (T15B1–T15B5): 0.17/0.25 điểm**\n\n(Có thể làm tròn thành **0.2 điểm** nếu giáo viên cho phép linh hoạt, hoặc giữ nguyên **0.17** nếu chặt chẽ).\n\n---\n\n✅ **Lưu ý**: Nếu đề bài yêu cầu **mỗi ví dụ phải độc lập và hợp lệ**, thì việc học sinh dùng ví dụ sai ở hàng R3 khiến cả ví dụ đó bị loại → **chỉ còn 2 ví dụ đúng → 2/3 điểm**.\n\n→ **Điểm cuối cùng: 0.17 (hoặc 0.2 nếu làm tròn)**.",
+        "row_id": "R3",
+        "col_id": "C1",
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [
+            {
+              "part_label": "b",
+              "cells": [
+                {
+                  "cell_id": "R1C1",
+                  "row_id": "R1",
+                  "col_id": "C1",
+                  "text": "input",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R1C2",
+                  "row_id": "R1",
+                  "col_id": "C2",
+                  "text": "output",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R2C1",
+                  "row_id": "R2",
+                  "col_id": "C1",
+                  "text": "dau = 6 chan = 18",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R2C2",
+                  "row_id": "R2",
+                  "col_id": "C2",
+                  "text": "nguoi = 3 ngua = 3",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R3C1",
+                  "row_id": "R3",
+                  "col_id": "C1",
+                  "text": "dau = 12 chan = 30",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R3C2",
+                  "row_id": "R3",
+                  "col_id": "C2",
+                  "text": "nguoi = 3 ngua = 9",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R4C1",
+                  "row_id": "R4",
+                  "col_id": "C1",
+                  "text": "dau = 8 chan = 40",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R4C2",
+                  "row_id": "R4",
+                  "col_id": "C2",
+                  "text": "giả định sai",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                }
+              ]
+            }
+          ],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "token_usage": {
+          "prompt_tokens": 851.4,
+          "completion_tokens": 663.4,
+          "total_tokens": 1514.8
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "latency_ms": 41194,
+        "group_id": "T15B",
+        "group_all_or_nothing": true,
+        "group_max_score": 0.25
+      },
+      {
+        "criterion_id": "T15B4",
+        "part_label": "b",
+        "criterion_content": "Ví dụ 2 (hàng R3) — ô Output: 0 5.",
+        "score": 0,
+        "max_score": 0,
+        "status": "correct",
+        "llm_used": true,
+        "grading_method": "llm_table_batch_cot",
+        "stage": "llm",
+        "llm_reasoning": "Output 'nguoi = 3 ngua = 9' không thỏa mãn input 'dau = 12 chan = 30'. Với input này, tổng chân thực tế là 42, nhưng input chỉ cho 30 → sai. Học sinh cũng không đưa ra ví dụ hợp lý nào khác, nên bị đánh giá sai.",
+        "cot_reasoning": "Chúng ta sẽ lần lượt chấm từng **criterion_id** theo yêu cầu, dựa trên **toàn bộ bảng bài làm**, kiểm tra **logic toán học giữa các ô cùng hàng**, và **không bắt buộc khớp y hệt với đáp án gợi ý**.\n\n---\n\n### ✅ **criterion_id=\"T15B1\": Ví dụ 1 (hàng R2) — ô Input: 6 18**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R2C1  \n   - Đáp án gợi ý: `'6 18'` (chỉ là ví dụ tham khảo, không bắt buộc khớp y hệt)\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 6 chan = 18\"` → tuy có thêm chữ \"dau\", \"chan\", nhưng **giá trị số là 6 và 18**, đúng với đề bài (N=6, M=18).\n\n3. **Kiểm tra quan hệ với ô Output cùng hàng (R2C2)**:  \n   - Output: `\"nguoi = 3 ngua = 3\"` → tức là người = 3, ngựa = 3.\n   - Kiểm tra logic:\n     - Tổng đầu: 3 người + 3 ngựa = 6 đầu → ✓\n     - Tổng chân: 3×2 + 3×4 = 6 + 12 = 18 chân → ✓\n   - Vậy cặp (6,18) → (3,3) **là nghiệm đúng**.\n\n4. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Dù định dạng input không giống mẫu (\"dau = 6 chan = 18\" thay vì \"6 18\"), nhưng **giá trị số đúng**, và **tương ứng với output hợp lý, đúng logic**. Không cần phải in đúng định dạng mẫu nếu nội dung vẫn chính xác.\n\n---\n\n### ✅ **criterion_id=\"T15B2\": Ví dụ 1 (hàng R2) — ô Output: 3 3**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R2C2  \n   - Đáp án gợi ý: `'3 3'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"nguoi = 3 ngua = 3\"` → rõ ràng thể hiện người=3, ngựa=3.\n\n3. **Kiểm tra quan hệ với Input cùng hàng (R2C1)**:  \n   - Như đã kiểm tra ở T15B1: 3 người + 3 ngựa = 6 đầu, 6+12=18 chân → hoàn toàn khớp.\n\n4. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Định dạng khác một chút, nhưng **nội dung và giá trị số chính xác**, và **phù hợp với input**. Không trừ điểm vì định dạng nếu logic đúng.\n\n---\n\n### ❌ **criterion_id=\"T15B3\": Ví dụ 2 (hàng R3) — ô Input: 5 20**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R3C1  \n   - Đáp án gợi ý: `'5 20'` (ví dụ tham khảo)\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 12 chan = 30\"` → **sai so với đáp án gợi ý**, nhưng chúng ta không xét khớp chuỗi, mà xét **logic với Output cùng hàng**.\n\n3. **Kiểm tra quan hệ với Output cùng hàng (R3C2)**:  \n   - Output: `\"nguoi = 3 ngua = 9\"`  \n   - Kiểm tra:\n     - Tổng đầu: 3 + 9 = 12 → khớp với input \"dau = 12\"\n     - Tổng chân: 3×2 + 9×4 = 6 + 36 = 42 → **không khớp với \"chan = 30\" trong input!**\n     - → **Mâu thuẫn nghiêm trọng**: Nếu input là 12 đầu và 30 chân, thì output 3 người + 9 ngựa sẽ cho 42 chân → **không hợp lý**.\n\n4. **Phân tích sâu hơn**:  \n   - Giả sử học sinh muốn đưa ra ví dụ với N=12, M=30. Giải hệ phương trình:\n     - Gọi x = người, y = ngựa\n     - x + y = 12\n     - 2x + 4y = 30 → x + 2y = 15\n     - Từ 2 pt: (x + 2y) - (x + y) = 15 - 12 → y = 3 → x = 9\n     - Vậy nghiệm đúng là: **người = 9, ngựa = 3**\n     - Nhưng học sinh ghi **người = 3, ngựa = 9** → **sai nghiệm**.\n\n   → Do đó, **input và output không nhất quán về mặt toán học**.\n\n5. **Kết luận sơ bộ**:  \n   → **SAI**. Vì mặc dù học sinh có thể định nghĩa ví dụ riêng, nhưng **output không thỏa mãn input** → vi phạm yêu cầu của đề bài (giải bài toán theo dữ liệu input). Việc đổi chỗ người/ngựa là sai nếu không phù hợp với hệ phương trình.\n\n---\n\n### ❌ **criterion_id=\"T15B4\": Ví dụ 2 (hàng R3) — ô Output: 0 5**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R3C2  \n   - Đáp án gợi ý: `'0 5'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"nguoi = 3 ngua = 9\"`\n\n3. **Kiểm tra quan hệ với Input cùng hàng (R3C1)**:  \n   - Như đã phân tích ở T15B3: input là 12 đầu, 30 chân → nghiệm đúng là người=9, ngựa=3.\n   - Học sinh ghi người=3, ngựa=9 → dẫn đến 12 đầu (đúng), nhưng 6 + 36 = 42 chân ≠ 30 → **sai**.\n\n4. **So sánh với đáp án gợi ý '0 5'**:  \n   - Nếu giả sử input là 5 đầu, 20 chân (theo đáp án gợi ý):\n     - x + y = 5\n     - 2x + 4y = 20 → x + 2y = 10\n     - → y = 5, x = 0 → nghiệm đúng là người=0, ngựa=5 → khớp với đáp án gợi ý.\n   - Nhưng học sinh lại dùng input khác (12,30) và output sai → **vô hiệu hóa cả cặp ví dụ**.\n\n5. **Kết luận sơ bộ**:  \n   → **SAI**. Output không phù hợp với input, và không phản ánh bất kỳ ví dụ nào hợp lý. Ngay cả khi học sinh định nghĩa ví dụ mới, họ cũng phải đảm bảo tính nhất quán.\n\n---\n\n### ✅ **criterion_id=\"T15B5\": Ví dụ 3 (hàng R4) — ô Input: 9 10**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R4C1  \n   - Đáp án gợi ý: `'9 10'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 8 chan = 40\"`\n\n3. **Kiểm tra quan hệ với Output cùng hàng (R4C2)**:  \n   - Output: `'giả định sai'` (đã in sẵn, không phải do học sinh điền, nên không chấm riêng)\n   - Kiểm tra logic:  \n     - Với input: 8 đầu, 40 chân → giải hệ:\n       - x + y = 8\n       - 2x + 4y = 40 → x + 2y = 20\n       - Trừ: (x + 2y) - (x + y) = 20 - 8 → y = 12 → x = -4 → **không hợp lý** (số người âm).\n     - → Kết luận: **giả định sai** → khớp với output đã in sẵn.\n\n4. **So sánh với đáp án gợi ý '9 10'**:  \n   - Nếu input là 9 đầu, 10 chân:\n     - x + y = 9\n     - 2x + 4y = 10 → x + 2y = 5\n     - → y = -4, x = 13 → cũng không hợp lý → kết luận \"giả định sai\" vẫn đúng.\n   - Nhưng học sinh chọn 8 đầu, 40 chân → cũng đúng để kết luận \"giả định sai\".\n\n5. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Học sinh chọn ví dụ hợp lệ (8 đầu, 40 chân) → dẫn đến nghiệm âm → đúng khi kết luận \"giả định sai\". Dù khác với đáp án gợi ý, nhưng **logic đúng**, và **kết quả output phù hợp**.\n\n---\n\n## 📊 TỔNG KẾT ĐIỂM CHO CÁC CRITERION\n\n| criterion_id | Kết luận | Lý do |\n|--------------|----------|-------|\n| T15B1        | ĐÚNG     | Input 6,18 → Output 3,3: đúng logic |\n| T15B2        | ĐÚNG     | Output 3,3 phù hợp với input 6,18 |\n| T15B3        | SAI      | Input 12,30 → Output 3,9: không khớp (thiếu chân) |\n| T15B4        | SAI      | Output 3,9 không thỏa mãn input 12,30 |\n| T15B5        | ĐÚNG     | Input 8,40 → nghiệm âm → \"giả định sai\": đúng |\n\n---\n\n## 💡 GHI CHÚ CHUNG:\n\n- Đề bài yêu cầu **tìm 3 ví dụ**, mỗi ví dụ gồm 1 cặp (Input, Output).\n- Học sinh đã đưa ra 3 ví dụ, nhưng **ví dụ thứ 2 (hàng R3) bị lỗi logic** → không chấp nhận.\n- Tuy nhiên, **ví dụ 1 và 3 đều đúng**, và học sinh đã thể hiện được khả năng áp dụng lập trình (giải hệ phương trình) và xử lý trường hợp không có nghiệm.\n\n→ **Tổng điểm phần b (0.25 điểm)**: Có thể chấm **0.15/0.25** nếu giáo viên đánh giá theo tỷ lệ: 2/3 ví dụ đúng → 2/3 điểm.\n\nNhưng vì đề bài không nêu rõ cách chấm chi tiết từng ví dụ, chỉ nói \"tìm 3 ví dụ\", và học sinh đã cố gắng, nhưng 1 ví dụ sai → **có thể cho 0.15 hoặc 0.2 điểm tùy mức độ nghiêm khắc**.\n\nTuy nhiên, theo hướng dẫn chấm: **nếu học sinh chọn ví dụ khác nhưng vẫn đúng logic/quan hệ toán học → vẫn tính đúng**.\n\n→ Vì vậy, **chỉ có 1 ví dụ sai (hàng R3)**, nên **cho 2/3 điểm = ~0.17 điểm**.\n\n---\n\n## ✅ KẾT LUẬN CHẤM TOÀN BỘ PHẦN B:\n\n> **Tổng điểm phần b (T15B1–T15B5): 0.17/0.25 điểm**\n\n(Có thể làm tròn thành **0.2 điểm** nếu giáo viên cho phép linh hoạt, hoặc giữ nguyên **0.17** nếu chặt chẽ).\n\n---\n\n✅ **Lưu ý**: Nếu đề bài yêu cầu **mỗi ví dụ phải độc lập và hợp lệ**, thì việc học sinh dùng ví dụ sai ở hàng R3 khiến cả ví dụ đó bị loại → **chỉ còn 2 ví dụ đúng → 2/3 điểm**.\n\n→ **Điểm cuối cùng: 0.17 (hoặc 0.2 nếu làm tròn)**.",
+        "row_id": "R3",
+        "col_id": "C2",
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [
+            {
+              "part_label": "b",
+              "cells": [
+                {
+                  "cell_id": "R1C1",
+                  "row_id": "R1",
+                  "col_id": "C1",
+                  "text": "input",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R1C2",
+                  "row_id": "R1",
+                  "col_id": "C2",
+                  "text": "output",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R2C1",
+                  "row_id": "R2",
+                  "col_id": "C1",
+                  "text": "dau = 6 chan = 18",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R2C2",
+                  "row_id": "R2",
+                  "col_id": "C2",
+                  "text": "nguoi = 3 ngua = 3",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R3C1",
+                  "row_id": "R3",
+                  "col_id": "C1",
+                  "text": "dau = 12 chan = 30",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R3C2",
+                  "row_id": "R3",
+                  "col_id": "C2",
+                  "text": "nguoi = 3 ngua = 9",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R4C1",
+                  "row_id": "R4",
+                  "col_id": "C1",
+                  "text": "dau = 8 chan = 40",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R4C2",
+                  "row_id": "R4",
+                  "col_id": "C2",
+                  "text": "giả định sai",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                }
+              ]
+            }
+          ],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "token_usage": {
+          "prompt_tokens": 851.4,
+          "completion_tokens": 663.4,
+          "total_tokens": 1514.8
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "latency_ms": 41194,
+        "group_id": "T15B",
+        "group_all_or_nothing": true,
+        "group_max_score": 0.25
+      },
+      {
+        "criterion_id": "T15B5",
+        "part_label": "b",
+        "criterion_content": "Ví dụ 3 (hàng R4) — ô Input: 9 10 (Output ở R4C2 đã in sẵn 'giả định sai', không phải chỗ sinh viên điền nên không chấm riêng).",
+        "score": 0,
+        "max_score": 0,
+        "status": "correct",
+        "llm_used": true,
+        "grading_method": "llm_table_batch_cot",
+        "stage": "llm",
+        "llm_reasoning": "Input 'dau = 8 chan = 40' → giải hệ: x+y=8, 2x+4y=40 → y=12, x=-4 → không hợp lý. Output đã in sẵn 'giả định sai' → khớp với kết luận. Dù khác đáp án gợi ý '9 10', nhưng vẫn đúng logic toán học.",
+        "cot_reasoning": "Chúng ta sẽ lần lượt chấm từng **criterion_id** theo yêu cầu, dựa trên **toàn bộ bảng bài làm**, kiểm tra **logic toán học giữa các ô cùng hàng**, và **không bắt buộc khớp y hệt với đáp án gợi ý**.\n\n---\n\n### ✅ **criterion_id=\"T15B1\": Ví dụ 1 (hàng R2) — ô Input: 6 18**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R2C1  \n   - Đáp án gợi ý: `'6 18'` (chỉ là ví dụ tham khảo, không bắt buộc khớp y hệt)\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 6 chan = 18\"` → tuy có thêm chữ \"dau\", \"chan\", nhưng **giá trị số là 6 và 18**, đúng với đề bài (N=6, M=18).\n\n3. **Kiểm tra quan hệ với ô Output cùng hàng (R2C2)**:  \n   - Output: `\"nguoi = 3 ngua = 3\"` → tức là người = 3, ngựa = 3.\n   - Kiểm tra logic:\n     - Tổng đầu: 3 người + 3 ngựa = 6 đầu → ✓\n     - Tổng chân: 3×2 + 3×4 = 6 + 12 = 18 chân → ✓\n   - Vậy cặp (6,18) → (3,3) **là nghiệm đúng**.\n\n4. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Dù định dạng input không giống mẫu (\"dau = 6 chan = 18\" thay vì \"6 18\"), nhưng **giá trị số đúng**, và **tương ứng với output hợp lý, đúng logic**. Không cần phải in đúng định dạng mẫu nếu nội dung vẫn chính xác.\n\n---\n\n### ✅ **criterion_id=\"T15B2\": Ví dụ 1 (hàng R2) — ô Output: 3 3**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R2C2  \n   - Đáp án gợi ý: `'3 3'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"nguoi = 3 ngua = 3\"` → rõ ràng thể hiện người=3, ngựa=3.\n\n3. **Kiểm tra quan hệ với Input cùng hàng (R2C1)**:  \n   - Như đã kiểm tra ở T15B1: 3 người + 3 ngựa = 6 đầu, 6+12=18 chân → hoàn toàn khớp.\n\n4. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Định dạng khác một chút, nhưng **nội dung và giá trị số chính xác**, và **phù hợp với input**. Không trừ điểm vì định dạng nếu logic đúng.\n\n---\n\n### ❌ **criterion_id=\"T15B3\": Ví dụ 2 (hàng R3) — ô Input: 5 20**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R3C1  \n   - Đáp án gợi ý: `'5 20'` (ví dụ tham khảo)\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 12 chan = 30\"` → **sai so với đáp án gợi ý**, nhưng chúng ta không xét khớp chuỗi, mà xét **logic với Output cùng hàng**.\n\n3. **Kiểm tra quan hệ với Output cùng hàng (R3C2)**:  \n   - Output: `\"nguoi = 3 ngua = 9\"`  \n   - Kiểm tra:\n     - Tổng đầu: 3 + 9 = 12 → khớp với input \"dau = 12\"\n     - Tổng chân: 3×2 + 9×4 = 6 + 36 = 42 → **không khớp với \"chan = 30\" trong input!**\n     - → **Mâu thuẫn nghiêm trọng**: Nếu input là 12 đầu và 30 chân, thì output 3 người + 9 ngựa sẽ cho 42 chân → **không hợp lý**.\n\n4. **Phân tích sâu hơn**:  \n   - Giả sử học sinh muốn đưa ra ví dụ với N=12, M=30. Giải hệ phương trình:\n     - Gọi x = người, y = ngựa\n     - x + y = 12\n     - 2x + 4y = 30 → x + 2y = 15\n     - Từ 2 pt: (x + 2y) - (x + y) = 15 - 12 → y = 3 → x = 9\n     - Vậy nghiệm đúng là: **người = 9, ngựa = 3**\n     - Nhưng học sinh ghi **người = 3, ngựa = 9** → **sai nghiệm**.\n\n   → Do đó, **input và output không nhất quán về mặt toán học**.\n\n5. **Kết luận sơ bộ**:  \n   → **SAI**. Vì mặc dù học sinh có thể định nghĩa ví dụ riêng, nhưng **output không thỏa mãn input** → vi phạm yêu cầu của đề bài (giải bài toán theo dữ liệu input). Việc đổi chỗ người/ngựa là sai nếu không phù hợp với hệ phương trình.\n\n---\n\n### ❌ **criterion_id=\"T15B4\": Ví dụ 2 (hàng R3) — ô Output: 0 5**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R3C2  \n   - Đáp án gợi ý: `'0 5'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"nguoi = 3 ngua = 9\"`\n\n3. **Kiểm tra quan hệ với Input cùng hàng (R3C1)**:  \n   - Như đã phân tích ở T15B3: input là 12 đầu, 30 chân → nghiệm đúng là người=9, ngựa=3.\n   - Học sinh ghi người=3, ngựa=9 → dẫn đến 12 đầu (đúng), nhưng 6 + 36 = 42 chân ≠ 30 → **sai**.\n\n4. **So sánh với đáp án gợi ý '0 5'**:  \n   - Nếu giả sử input là 5 đầu, 20 chân (theo đáp án gợi ý):\n     - x + y = 5\n     - 2x + 4y = 20 → x + 2y = 10\n     - → y = 5, x = 0 → nghiệm đúng là người=0, ngựa=5 → khớp với đáp án gợi ý.\n   - Nhưng học sinh lại dùng input khác (12,30) và output sai → **vô hiệu hóa cả cặp ví dụ**.\n\n5. **Kết luận sơ bộ**:  \n   → **SAI**. Output không phù hợp với input, và không phản ánh bất kỳ ví dụ nào hợp lý. Ngay cả khi học sinh định nghĩa ví dụ mới, họ cũng phải đảm bảo tính nhất quán.\n\n---\n\n### ✅ **criterion_id=\"T15B5\": Ví dụ 3 (hàng R4) — ô Input: 9 10**\n\n1. **Đọc vị trí và đáp án gợi ý**:  \n   - Vị trí: R4C1  \n   - Đáp án gợi ý: `'9 10'`\n\n2. **Giá trị học sinh viết**:  \n   - `\"dau = 8 chan = 40\"`\n\n3. **Kiểm tra quan hệ với Output cùng hàng (R4C2)**:  \n   - Output: `'giả định sai'` (đã in sẵn, không phải do học sinh điền, nên không chấm riêng)\n   - Kiểm tra logic:  \n     - Với input: 8 đầu, 40 chân → giải hệ:\n       - x + y = 8\n       - 2x + 4y = 40 → x + 2y = 20\n       - Trừ: (x + 2y) - (x + y) = 20 - 8 → y = 12 → x = -4 → **không hợp lý** (số người âm).\n     - → Kết luận: **giả định sai** → khớp với output đã in sẵn.\n\n4. **So sánh với đáp án gợi ý '9 10'**:  \n   - Nếu input là 9 đầu, 10 chân:\n     - x + y = 9\n     - 2x + 4y = 10 → x + 2y = 5\n     - → y = -4, x = 13 → cũng không hợp lý → kết luận \"giả định sai\" vẫn đúng.\n   - Nhưng học sinh chọn 8 đầu, 40 chân → cũng đúng để kết luận \"giả định sai\".\n\n5. **Kết luận sơ bộ**:  \n   → **ĐÚNG**. Học sinh chọn ví dụ hợp lệ (8 đầu, 40 chân) → dẫn đến nghiệm âm → đúng khi kết luận \"giả định sai\". Dù khác với đáp án gợi ý, nhưng **logic đúng**, và **kết quả output phù hợp**.\n\n---\n\n## 📊 TỔNG KẾT ĐIỂM CHO CÁC CRITERION\n\n| criterion_id | Kết luận | Lý do |\n|--------------|----------|-------|\n| T15B1        | ĐÚNG     | Input 6,18 → Output 3,3: đúng logic |\n| T15B2        | ĐÚNG     | Output 3,3 phù hợp với input 6,18 |\n| T15B3        | SAI      | Input 12,30 → Output 3,9: không khớp (thiếu chân) |\n| T15B4        | SAI      | Output 3,9 không thỏa mãn input 12,30 |\n| T15B5        | ĐÚNG     | Input 8,40 → nghiệm âm → \"giả định sai\": đúng |\n\n---\n\n## 💡 GHI CHÚ CHUNG:\n\n- Đề bài yêu cầu **tìm 3 ví dụ**, mỗi ví dụ gồm 1 cặp (Input, Output).\n- Học sinh đã đưa ra 3 ví dụ, nhưng **ví dụ thứ 2 (hàng R3) bị lỗi logic** → không chấp nhận.\n- Tuy nhiên, **ví dụ 1 và 3 đều đúng**, và học sinh đã thể hiện được khả năng áp dụng lập trình (giải hệ phương trình) và xử lý trường hợp không có nghiệm.\n\n→ **Tổng điểm phần b (0.25 điểm)**: Có thể chấm **0.15/0.25** nếu giáo viên đánh giá theo tỷ lệ: 2/3 ví dụ đúng → 2/3 điểm.\n\nNhưng vì đề bài không nêu rõ cách chấm chi tiết từng ví dụ, chỉ nói \"tìm 3 ví dụ\", và học sinh đã cố gắng, nhưng 1 ví dụ sai → **có thể cho 0.15 hoặc 0.2 điểm tùy mức độ nghiêm khắc**.\n\nTuy nhiên, theo hướng dẫn chấm: **nếu học sinh chọn ví dụ khác nhưng vẫn đúng logic/quan hệ toán học → vẫn tính đúng**.\n\n→ Vì vậy, **chỉ có 1 ví dụ sai (hàng R3)**, nên **cho 2/3 điểm = ~0.17 điểm**.\n\n---\n\n## ✅ KẾT LUẬN CHẤM TOÀN BỘ PHẦN B:\n\n> **Tổng điểm phần b (T15B1–T15B5): 0.17/0.25 điểm**\n\n(Có thể làm tròn thành **0.2 điểm** nếu giáo viên cho phép linh hoạt, hoặc giữ nguyên **0.17** nếu chặt chẽ).\n\n---\n\n✅ **Lưu ý**: Nếu đề bài yêu cầu **mỗi ví dụ phải độc lập và hợp lệ**, thì việc học sinh dùng ví dụ sai ở hàng R3 khiến cả ví dụ đó bị loại → **chỉ còn 2 ví dụ đúng → 2/3 điểm**.\n\n→ **Điểm cuối cùng: 0.17 (hoặc 0.2 nếu làm tròn)**.",
+        "row_id": "R4",
+        "col_id": "C1",
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "correct",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [
+            {
+              "part_label": "b",
+              "cells": [
+                {
+                  "cell_id": "R1C1",
+                  "row_id": "R1",
+                  "col_id": "C1",
+                  "text": "input",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R1C2",
+                  "row_id": "R1",
+                  "col_id": "C2",
+                  "text": "output",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R2C1",
+                  "row_id": "R2",
+                  "col_id": "C1",
+                  "text": "dau = 6 chan = 18",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R2C2",
+                  "row_id": "R2",
+                  "col_id": "C2",
+                  "text": "nguoi = 3 ngua = 3",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R3C1",
+                  "row_id": "R3",
+                  "col_id": "C1",
+                  "text": "dau = 12 chan = 30",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R3C2",
+                  "row_id": "R3",
+                  "col_id": "C2",
+                  "text": "nguoi = 3 ngua = 9",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R4C1",
+                  "row_id": "R4",
+                  "col_id": "C1",
+                  "text": "dau = 8 chan = 40",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                },
+                {
+                  "cell_id": "R4C2",
+                  "row_id": "R4",
+                  "col_id": "C2",
+                  "text": "giả định sai",
+                  "part_label": "b",
+                  "slot_id": "cau_15_001_b",
+                  "is_blank": false
+                }
+              ]
+            }
+          ],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "token_usage": {
+          "prompt_tokens": 851.4,
+          "completion_tokens": 663.4,
+          "total_tokens": 1514.8
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "latency_ms": 41194,
+        "group_id": "T15B",
+        "group_all_or_nothing": true,
+        "group_max_score": 0.25
+      },
+      {
+        "criterion_id": "T15C",
+        "part_label": "c",
+        "criterion_content": "Vẽ lưu đồ / mô tả thuật toán / mã giả giải quyết bài toán — gồm: trình bày ý tưởng/hệ phương trình X+Y=N, 2X+4Y=M (0.1đ); xác định đúng điều kiện \"giả định sai\" (0.2đ); tính đúng số người X = 2*N - M/2 (0.1đ); tính đúng số ngựa Y = M/2 - N (0.1đ) (0.5đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "needs_vision_teacher_review",
+        "is_correct": false,
+        "reason": "Vision LLM error: Image file not found: /kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg",
+        "visual_answers": [
+          {
+            "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg",
+            "part_label": "c",
+            "slot_id": "cau_15_001_c",
+            "type": "diagram",
+            "is_blank": false
+          }
+        ],
+        "teacher_review_required": true,
+        "detected_errors": [
+          {
+            "error_type": "vision_llm_error",
+            "message": "Image file not found: /kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg"
+          }
+        ],
+        "grading_method": "vision_llm",
+        "stage": "llm",
+        "token_usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "total_tokens": 0
+        },
+        "latency_ms": 0
+      }
+    ],
+    "group_overrides": [
+      {
+        "group_id": "T15B",
+        "members": [
+          "T15B1",
+          "T15B2",
+          "T15B3",
+          "T15B4",
+          "T15B5"
+        ],
+        "all_correct": true,
+        "group_score": 0.25,
+        "group_max_score": 0.25
+      }
+    ],
+    "detected_errors": [
+      {
+        "criterion_id": "T15C",
+        "part_label": "c",
+        "error_type": "vision_llm_error",
+        "message": "Image file not found: /kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg"
+      }
+    ],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": true,
+    "advisory_stats": {
+      "total_criteria": 7,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  }
+]

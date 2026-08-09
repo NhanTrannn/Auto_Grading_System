@@ -1,0 +1,197 @@
+[
+  {
+    "hs": "HS_2",
+    "score": 0.0,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_3",
+    "score": 0.25,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_7",
+    "score": 0.38,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_9",
+    "score": 0.75,
+    "max_score": 1.0,
+    "wrong": [
+      "14a"
+    ]
+  },
+  {
+    "hs": "HS_10",
+    "score": 0.15,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_12",
+    "score": 0.0,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_15",
+    "score": 0.0,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_17",
+    "score": 0.25,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b"
+    ]
+  },
+  {
+    "hs": "HS_18",
+    "score": 0.25,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_19",
+    "score": 0.0,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_21",
+    "score": 0.0,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_24",
+    "score": 0.5,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b"
+    ]
+  },
+  {
+    "hs": "HS_26",
+    "score": 0.25,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b"
+    ]
+  },
+  {
+    "hs": "HS_28",
+    "score": 0.0,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_29",
+    "score": 0.15,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_30",
+    "score": 0.25,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_32",
+    "score": 0.0,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_34",
+    "score": 0.25,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_36",
+    "score": 0.0,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  },
+  {
+    "hs": "HS_39",
+    "score": 0.0,
+    "max_score": 1.0,
+    "wrong": [
+      "14a",
+      "14b",
+      "14c"
+    ]
+  }
+]

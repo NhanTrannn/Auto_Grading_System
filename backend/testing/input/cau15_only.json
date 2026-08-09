@@ -1,0 +1,658 @@
+{
+  "ma_de": "1",
+  "HS_2": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "*Biến: int dau, chan, nguoi, ngua;",
+          "Input: dau = 6",
+          "chan = 18",
+          "Output: nguoi = 3",
+          "ngua = 3"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "dau = 6 chan = 18",
+            "col_2": "nguoi = 3 ngua = 3"
+          },
+          {
+            "col_1": "dau = 12 chan = 30",
+            "col_2": "nguoi = 3 ngua = 9"
+          },
+          {
+            "col_1": "dau = 8 chan = 40",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg",
+      "content": {
+        "nodes": [],
+        "edges": []
+      },
+      "pass1_content": {
+        "nodes": [],
+        "edges": []
+      },
+      "confidence": 1.0
+    }
+  },
+  "HS_3": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "input: N, M là số nguyên dương",
+          "output: Kết luận cuối sau tính toán để khẳng định / phủ định giả định trên"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "6 18",
+            "col_2": "giả định đúng"
+          },
+          {
+            "col_1": "20 45",
+            "col_2": "giả định sai"
+          },
+          {
+            "col_1": "10 18",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS3_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_7": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "int N; // biến N có kiểu int để mô tả số lượng đầu là m số nguyên",
+          "int M; // biến M có kiểu int để mô tả số lượng chân là một số nguyên",
+          "int nguoi; // biến nguoi kiểu int lưu kết quả cho số người tính đ từ dữ liệu đề bài",
+          "int ngua; // biến ngua kiểu int lưu kết quả cho số ngựa tính được từ đề bài"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "N=6, M=18",
+            "col_2": "nguoi=3, ngua=3"
+          },
+          {
+            "col_1": "N=220, M=680",
+            "col_2": "nguoi=100, ngua=120"
+          },
+          {
+            "col_1": "N=6, M=17",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS7_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_9": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "Biến n: N cái đầu, Biến nguoi: số người",
+          "Biến m: M cái chân, Biến ngua: số ngựa",
+          "Input: số nguyên n đầu, số nguyên m chân",
+          "Output: số nguyên người (biến nguoi), số nguyên ngựa hoặc \"giả định sai\""
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "6 18",
+            "col_2": "3 3"
+          },
+          {
+            "col_1": "8 28",
+            "col_2": "2 6"
+          },
+          {
+            "col_1": "2 27",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS9_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_10": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "Input: nhập vào 2 số nguyên N và M với N là số cái đầu và M là số cái chân nhìn thấy được",
+          "Output: Nếu giả định khong có người hay ngựa nào thiếu chân hoặc đầu là đúng thì in ra số người và số ngựa",
+          "Ngược lại, in ra \"giả định sai\""
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "8 32",
+            "col_2": "3 người 5 ngựa"
+          },
+          {
+            "col_1": "4 8",
+            "col_2": "2 người 1 ngựa"
+          },
+          {
+            "col_1": "8 23",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS10_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_12": {
+    "Cau_15a": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/ERROR_Trang_09_Original.jpg",
+      "content": null
+    }
+  },
+  "HS_15": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/ERROR_Trang_09_Original.jpg",
+      "content": null
+    }
+  },
+  "HS_17": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/ERROR_Trang_09_Original.jpg",
+      "content": null
+    }
+  },
+  "HS_18": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "int a là tổng số đầu",
+          "int b là tổng số chân",
+          "cout << là xuất ra số con ngựa",
+          "cout << là xuất ra số con người"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "4 12",
+            "col_2": "2 2"
+          },
+          {
+            "col_1": "2 6",
+            "col_2": "1 1"
+          },
+          {
+            "col_1": "",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS18_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_19": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "Input: số người: x; số ngựa: y",
+          "Kiểu số nguyên: x, y, M, N",
+          "int x, y, M, N"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS19_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_21": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS21_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_24": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": []
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": ""
+          },
+          {
+            "col_1": "",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS24_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_26": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "N: số cái đầu",
+          "M: số cái chân",
+          "n: số người",
+          "m: số ngựa",
+          "input: số cái đầu và số cái chân",
+          "output: số người và số ngựa (số nguyên) hoặc kết luận \"giả định sai\""
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "2 6",
+            "col_2": "1 1"
+          },
+          {
+            "col_1": "3 10",
+            "col_2": "1 2"
+          },
+          {
+            "col_1": "3 11",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS26_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_28": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/ERROR_Trang_09_Original.jpg",
+      "content": null
+    }
+  },
+  "HS_29": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/ERROR_Trang_09_Original.jpg",
+      "content": null
+    }
+  },
+  "HS_30": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/ERROR_Trang_09_Original.jpg",
+      "content": null
+    }
+  },
+  "HS_32": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/ERROR_Trang_09_Original.jpg",
+      "content": null
+    },
+    "Cau_15c": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/ERROR_Trang_09_Original.jpg",
+      "content": null
+    }
+  },
+  "HS_34": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "int N; // Tổng cộng số đầu",
+          "int M; // Tổng cộng số chân",
+          "input là 2 số nguyên với M > N > 2",
+          "output là 2 số nguyên là số người và số ng"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "3 8",
+            "col_2": "2 1"
+          },
+          {
+            "col_1": "5 16",
+            "col_2": "2 3"
+          },
+          {
+            "col_1": "5 8",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS34_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_36": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "input: n cái đầu, m cái chân (n, m ∈ N)",
+          "output: có a người, b ngựa"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "Số đầu: 1\nSố chân: 2",
+            "col_2": "1 người, 0 ngựa"
+          },
+          {
+            "col_1": "Số đầu: 2\nSố chân: 8",
+            "col_2": "2 người, 1 ngựa"
+          },
+          {
+            "col_1": "Số đầu: -1\nSố chân: 1.3",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS36_Cau_15c.jpg",
+      "content": {}
+    }
+  },
+  "HS_39": {
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "int daunguoi, daungua; int N;",
+          "int channguoi, channgua; int M;",
+          "Input: N phải là số nguyên",
+          "M phải là số nguyên (đặc biệt M là",
+          "Output: daunguoi // số người"
+        ]
+      }
+    }
+  }
+}

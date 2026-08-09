@@ -1,0 +1,50 @@
+{
+  "ma_de": "1",
+  "HS_2": {
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinhvien {",
+          "   char MaSV[20];",
+          "   char HoTen[50];",
+          "   int NamSinh;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien a)",
+          "cin>>a.MaSV;",
+          "cin.ignore();",
+          "fgets(a.HoTen, 50, stdin);",
+          "cin>>a.NamSinh; cin.ignore();",
+          "fgets(a.NoiSinh, 50, stdin);",
+          "cin>>a.DTB"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for (int i = 0; i < n; i++) {",
+          "        if (a[i].NoiSinh == TPHCM) {",
+          "            cout << a[i].MaSV << \" \" << a[i].HoTen << ",
+          "a[i].NamSinh<<\" \"<<a[i].NoiSinh",
+          "a[i].DTB<<endl;",
+          "        }",
+          "    }"
+        ]
+      }
+    }
+  }
+}

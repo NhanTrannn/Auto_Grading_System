@@ -1,0 +1,983 @@
+CÂU 14 - HỌC SINH HS_2
+======================================================================
+Tổng: 0.0/1.0 (wrong)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  Struct Sinhvien {
+     char MaSV[20];
+     char HoTen[50];
+     int NamSinh;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm sai cú pháp (viết 'Struct' thay vì 'struct'), thiếu 2 thuộc tính bắt buộc (NoiSinh, DTB), và chưa đóng cấu trúc bằng dấu '}' và ';' → không thể biên dịch.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(SinhVien a)
+  cin>>a.MaSV;
+  cin.ignore();
+  fgets(a.HoTen, 50, stdin);
+  cin>>a.NamSinh; cin.ignore();
+  fgets(a.NoiSinh, 50, stdin);
+  cin>>a.DTB
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Học sinh truyền tham số bằng tham trị (SinhVien a) thay vì tham chiếu, và không dùng getline để nhập chuỗi mà dùng cin>> và fgets — vi phạm cả hai tiêu chí độc lập.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+      for (int i = 0; i < n; i++) {
+          if (a[i].NoiSinh == TPHCM) {
+              cout << a[i].MaSV << " " << a[i].HoTen <<
+  a[i].NamSinh<<" "<<a[i].NoiSinh
+  a[i].DTB<<endl;
+          }
+      }
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng: thiếu dấu ngoặc kép trong so sánh chuỗi (TPHCM thay vì "TPHCM") và thiếu toán tử << trong câu lệnh cout, khiến code không thể biên dịch được.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_3
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  include <iostream>
+  Struct SinhVien{
+  string MaSV;
+  string HoTen;
+  int NamSinh;
+  string NoiSinh;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm thiếu thuộc tính DTB, sai tên struct (SinhVien thay vì Sinhvien), thiếu dấu chấm phẩy sau }, và có nhiều lỗi cú pháp như thiếu # trước include, viết Struct thay vì struct, chưa đóng ngoặc } – khiến code không thể biên dịch.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(SinhVien &ds)
+  cin << SinhVien.MaSV;
+  cin << SinhVien.HoTen;
+  cin << SinhVien.NamSinh;
+  cin << SinhVien.NoiSinh;
+  cin << SinhVien.DTB;
+  return;
+
+Điểm: 0.25/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh đã đúng về kiểu truyền tham số (tham chiếu), nhưng sai nghiêm trọng về cú pháp nhập dữ liệu (dùng cin << thay vì cin >>, truy cập biến sai) và không dùng getline cho chuỗi có khoảng trắng.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+      for(int i; i < n; i++){
+          if(Sinhvien.NoiSinh[a[i]] == 'TPHCM')
+              x = true;
+          else x = false;
+          }
+          switch(x) {
+              case 1: cout << SinhVien;
+              case 0: break;
+          }
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có nhiều lỗi nghiêm trọng về cú pháp và logic: thiếu khởi tạo biến i, truy cập sai thuộc tính (Sinhvien.NoiSinh[a[i]]), so sánh sai kiểu ('TPHCM' thay vì "TPHCM"), in sai đối tượng (cout << SinhVien). Không thể thực thi đúng chức năng yêu cầu.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_7
+======================================================================
+Tổng: 0.375/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  struct SinhVien
+  { char MaSV[30];
+  char HoTen[255];
+  int NamSinh;
+  char NoiSinh[255];
+  float DTB;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Sai tên struct (SinhVien thay vì Sinhvien) và thiếu dấu chấm phẩy (;) sau dấu } – cả hai đều là lỗi nghiêm trọng theo yêu cầu của giáo viên, dẫn đến không đạt tiêu chí.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(SinhVien &t)
+  cin >> t.MaSV;
+  cin.getline(t.HoTen, 50);
+  cin >> t.NamSinh; cin.ignore();
+  cin.getline(t.NoiSinh, 50);
+  cin >> DTB;
+
+Điểm: 0.375/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh đúng về truyền tham chiếu và dùng getline cho Họ tên, Nơi sinh, nhưng sai khi dùng cin >> cho MaSV (có thể bỏ sót ký tự) và lỗi cú pháp nghiêm trọng khi nhập DTB thiếu t. → không cập nhật đúng trường trong cấu trúc.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+      for (int i = 0; i < n; i++)
+          if (strcmp(a[i].NoiSinh, "TPHCM") == 0)
+              cout << a[i].MaSV << endl;
+              cout << a[i].HoTen << endl;
+              cout << a[i].NamSinh << endl;
+              cout << a[i].NoiSinh << endl;
+              cout << a[i].DTB << endl;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm thiếu dấu '{' sau if, dẫn đến các lệnh in luôn được thực hiện dù điều kiện không đúng, khiến chương trình in thông tin tất cả sinh viên thay vì chỉ sinh viên có nơi sinh là 'TPHCM'.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_9
+======================================================================
+Tổng: 0.75/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  struct SinhVien {
+      char MaSV[10];
+      char HoTen[50];
+      int NamSinh;
+      char NoiSinh[20];
+      float DTB; };
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Tên struct được khai báo là 'SinhVien' thay vì 'Sinhvien' như yêu cầu, dẫn đến sai chính tả và không khớp với tên cấu trúc được yêu cầu trong đề bài.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(Sinhvien &a)
+  { cin.getline(a.MaSV, 9);
+  cin.getline(a.HoTen, 49);
+  cin >> a.NamSinh;
+  cin.ignore();
+  cin.getline(a.NoiSinh);
+  cin >> a.DTB;
+
+Điểm: 0.5/0.5 (correct)
+
+Lý do chấm (LLM):
+Bài làm đúng hoàn toàn về truyền tham chiếu và sử dụng getline cho các chuỗi có khoảng trắng, đảm bảo không lỗi nhập dữ liệu. Cách viết cin.getline() được coi là tương đương với getline(cin, ...) và chấp nhận trong ngữ cảnh bài tập.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+      for(int i = 0; i < n; i++) {
+          if(strcmp(a[i].NoiSinh, "TPHCM") == 0) {
+              cout << a[i].MaSV << " " << a[i].HoTen
+                  << a[i].NamSinh << " " << a[i].NoiSinh
+                  << a[i].DTB << endl; }
+          }
+
+Điểm: 0.25/0.25 (correct)
+
+Lý do chấm (LLM):
+Bài làm đúng yêu cầu: duyệt mảng, kiểm tra điều kiện NoiSinh == "TPHCM" bằng strcmp (phù hợp với kiểu char[]), in đầy đủ thông tin sinh viên. Cách làm khác đáp án mẫu nhưng tương đương về logic và kết quả, được nguyên tắc chấm thi chấp nhận.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_10
+======================================================================
+Tổng: 0.15/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  Struct Sinh vien {
+  int NamSinh;
+  float DTB;
+  }
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm thiếu tên cấu trúc đúng (Sinhvien), thiếu 3 thuộc tính bắt buộc (MaSV, HoTen, NoiSinh), thiếu dấu ';' sau dấu '}', và có lỗi cú pháp với từ khóa 'Struct' viết hoa.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  cin >> a.MaSV;
+  cin >> a.HoTen;
+  cin >> a.NamSinh;
+  cin >> a.NoiSinh;
+  cin >> a.DTB;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Học sinh không viết định nghĩa hàm NhapSV và sử dụng cin >> để nhập chuỗi, dẫn đến lỗi khi xử lý tên có khoảng trắng và không đảm bảo truyền tham chiếu đúng cách.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+      for(int i = 0; i < n; i++)
+          if(a[i].NoiSinh == "TPHCM") {
+              cout << a[i].MaSV;
+              cout << a[i].HoTen;
+              cout << a[i].NamSinh;
+              cout << a[i].NoiSinh;
+              cout << a[i].DTB;
+          }
+      }
+
+Điểm: 0.15/0.25 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh đã viết đúng logic: duyệt mảng, kiểm tra điều kiện NoiSinh == "TPHCM", và in đầy đủ các trường thông tin sinh viên. Tuy nhiên, code có lỗi cú pháp nghiêm trọng (thiếu dấu '}' đóng cho if) khiến chương trình không biên dịch được, do đó không thể chấp nhận tương đương hoàn toàn.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_12
+======================================================================
+Tổng: 0.0/1.0 (wrong)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  struct SinhVien {
+  int NamSinh;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Tên struct sai (SinhVien ≠ Sinhvien), thiếu 4/5 thuộc tính, và thiếu dấu ; sau } — theo ghi chú giáo viên, thiếu dấu ; dẫn đến 0 điểm.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_15
+======================================================================
+Tổng: 0.0/1.0 (wrong)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  Struct SinhVien {
+  char MaSV[100];
+  char HoTen[100];
+  int NamSinh;
+  char NoiSinh[100];
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm sai tên struct (viết 'Struct' thay vì 'struct' và 'SinhVien' thay vì 'Sinhvien'), thiếu thuộc tính bắt buộc DTB, và cấu trúc chưa đóng (thiếu '}' và ';'). Không đáp ứng bất kỳ tiêu chí nào.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(SinhVien &a)
+  cin.getline(a.MaSV, 100);
+  cin.getline(a.HoTen, 100);
+  cin >> a.NamSinh;
+  cin.ignore(); cin.getline(a.NoiSinh, 100); cin>>a.DTB;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có logic đúng về truyền tham chiếu và sử dụng getline cho chuỗi, nhưng thiếu dấu mở hàm '{' và dấu chấm phẩy ';' → không thể biên dịch được → vi phạm nguyên tắc không chấp nhận code thiếu sót cấu trúc.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  for(int i=0; i<n; i++)
+  if (a[i].NoiSinh == "TPHCM") {
+  puts(a[i].MaSV);
+  puts(a[i].HoTen);
+  cout<<a[i]
+  puts(a[i].NoiSinh);
+  cout << a[i].DTB << endl;
+  }
+  }
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng: thiếu dấu chấm phẩy sau cout<<a[i], thiếu dấu đóng ngoặc } cho khối if, và thiếu dấu ; sau puts(a[i].NoiSinh). Do đó, code không thể biên dịch được, không đáp ứng yêu cầu kỹ thuật.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_17
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  struct Sinhvien {
+  string MaSV, HoTen, NoiSinh;
+  int Nam Sinh;
+  float DTB;
+  };
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm sai tên thuộc tính 'NamSinh' thành 'Nam Sinh' (có khoảng trắng), gây lỗi cú pháp trong C++. Do đó, không thể chấp nhận vì thiếu một thuộc tính hợp lệ và vi phạm nguyên tắc cấu trúc đúng.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  cin >> a.MaSV >> a.HoTen >> a.NamSinh >> a.NoiSinh >> a.DTB;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Học sinh không cung cấp thông tin tham số hàm, không thể xác định việc dùng tham chiếu; đồng thời sử dụng cin >> cho các trường chuỗi có khoảng trắng (Họ tên, Nơi sinh), vi phạm nghiêm trọng yêu cầu nhập dữ liệu.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+      for (int i = 0; i < n; i++)
+          if (a[i].NoiSinh == "TPHCM")
+              cout << a[i].MaSV << " " << a[i].HoTen << " " << a[i].NamSinh << " " << a[i].NoiSinh << " " << a[i].DTB << endl;
+
+Điểm: 0.25/0.25 (correct)
+
+Lý do chấm (LLM):
+Bài làm đúng yêu cầu: in thông tin sinh viên có NoiSinh là 'TPHCM', sử dụng đúng cú pháp và điều kiện so sánh cho kiểu string, in đầy đủ các trường cần thiết. Sự khác biệt về định dạng (dấu cách thay vì dấu gạch ngang, có endl) không ảnh hưởng đến tính đúng đắn.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_18
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  Struct Sinhvien
+  { string MaSV;
+  string HoTen;
+  int NamSinh;
+  string NoiSinh;
+  float DTB;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm thiếu dấu đóng '}' và dấu ';' sau '}', đồng thời viết sai từ khóa 'Struct' thay vì 'struct'. Mặc dù tên các thuộc tính và kiểu dữ liệu đúng, nhưng lỗi cấu trúc nghiêm trọng khiến code không biên dịch được và vi phạm ghi chú giáo viên về dấu ';'.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(Sinhvien &ao)
+  getline(a.MaSV);
+  getline(a.HoTen);
+  cin >> a.NamSinh;
+  cin.ignore(1, '\n');
+  getline(a.NoiSinh);
+  cin >> DTB;
+
+Điểm: 0.25/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh đúng về truyền tham chiếu (dùng &), nhưng sai nghiêm trọng về cú pháp getline (thiếu cin, biến a chưa khai báo) và gán sai DTB (không truy cập vào đối tượng).
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  for(int i=0; i<n; i++)
+  { if(a.NoiSinh == 'TPHCM')
+  { cout << a[i].MaSV;
+  cout << a[i].HoTen;
+  cout << a[i].NamSinh;
+  cout << a[i].NoiSinh;
+  count << a[i].DTB;
+  }
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có nhiều lỗi cú pháp nghiêm trọng: so sánh chuỗi bằng ký tự đơn, truy cập mảng sai (a.NoiSinh thay vì a[i].NoiSinh), và lệnh in sai (count thay vì cout). Những lỗi này khiến code không thể biên dịch hoặc chạy đúng, do đó không đạt yêu cầu.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_19
+======================================================================
+Tổng: 0.0/1.0 (wrong)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  #include <iostream>
+  #include <string>
+  using namespace std;
+  struct SinhVien {
+      string MaSV, HoTen, NoiSinh;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Sai tên struct (SinhVien thay vì Sinhvien), thiếu hai thuộc tính bắt buộc (NamSinh, DTB), và thiếu dấu ; sau } — tất cả đều là lỗi nghiêm trọng không chấp nhận được theo tiêu chí chấm điểm.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(Sinhvien &s)
+      getline(cin, s.MaSV);
+      getline(cin, s.HoTen);
+      cin >> s.NamSinh;
+      getline(cin, s.NoiSinh);
+      cin >> s.DTB;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Mặc dù học sinh đã sử dụng đúng tham chiếu và getline cho các chuỗi, nhưng bài làm thiếu dấu ngoặc nhọn mở và đóng hàm cũng như thiếu dấu chấm phẩy sau mỗi lệnh, khiến code không thể biên dịch được.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+      for (int i = 0; i < n; i++) {
+          if (s.NoiSinh == "TP HCM") {
+              cout << s.maSV << " " << s.HoTen << " " << s.NamSinh << " " << a[i].NoiSinh;
+          }
+  }
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm sử dụng biến s chưa khai báo và so sánh chuỗi sai ('TP HCM' thay vì 'TPHCM'), dẫn đến lỗi biên dịch và kết quả sai, không đáp ứng yêu cầu in thông tin sinh viên có nơi sinh là 'TPHCM'.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_21
+======================================================================
+Tổng: 0.0/1.0 (wrong)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  #include <iostream>
+  using namespace std;
+  struct SinhVien {
+      string MaSV, HoTen, NoiSinh;
+      int NamSinh;
+      float DTB;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Tên struct sai chính tả (SinhVien thay vì Sinhvien) và thiếu dấu chấm phẩy (;) sau dấu } đóng struct – vi phạm quy tắc bắt buộc dẫn đến 0 điểm.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(Sinhvien a[], int n)
+      cout << "Nhập số sinh viên: ";
+      cin >> n;
+      for (int i = 0; i < n; i++)
+          cin >> a[i].MaSV >> a[i].HoTen >> a[i].NamSinh >> a[i].NoiSinh>>;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Học sinh sử dụng truyền tham số sai (mảng thay vì tham chiếu) và dùng cin >> cho chuỗi có khoảng trắng, dẫn đến không đọc được đầy đủ dữ liệu. Cấu trúc code còn lỗi cú pháp.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+      for (int i = 0; i < n; i++) {
+          if (a[i].NoiSinh == "TP.HCM") {
+              cout << Sinhvien.a[i];
+          }
+      }
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh sử dụng chuỗi "TP.HCM" thay vì "TPHCM" trong điều kiện kiểm tra, dẫn đến không in được sinh viên thỏa mãn yêu cầu. Ngoài ra, cú pháp `Sinhvien.a[i]` sai, không thể truy cập đúng dữ liệu sinh viên.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_24
+======================================================================
+Tổng: 0.5/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  struct Sinhvien {
+  string MaSV;
+  string HoTen, NoiSinh
+  int NamSinh;
+  float DTB;
+  };
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm thiếu dấu chấm phẩy sau 'NoiSinh', gây lỗi cú pháp và làm struct không hợp lệ, không thể biên dịch được. Theo yêu cầu của giáo viên, cấu trúc phải đúng và có dấu ; ở các vị trí cần thiết.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(Sinhvien &x)
+  gets(x.MaSV);
+  gets(x.HoTen);
+  cin >> x.NamSinh;
+  gets(x.NoiSinh);
+  cin >> x.DTB;
+
+Điểm: 0.25/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh sử dụng đúng tham chiếu (Sinhvien &x) nhưng sai khi dùng gets() thay vì getline(cin, ...) để nhập chuỗi có khoảng trắng, vi phạm yêu cầu về phương pháp nhập.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+      for(int i=0; i<n; i++)
+          if(strcmp(a[i].NoiSinh, "TPHCM") == 0) {
+              puts(a[i].MaSV);
+              puts(a[i].HoTen);
+              cout << a[i].NamSinh; puts(a[i].NoiSinh);
+              cout << a[i].DTB;
+          }
+
+Điểm: 0.25/0.25 (correct)
+
+Lý do chấm (LLM):
+Học sinh đã viết đúng logic: duyệt mảng, kiểm tra điều kiện nơi sinh là "TPHCM" bằng strcmp (phù hợp nếu NoiSinh là char[]), và in đủ thông tin sinh viên cần thiết. Code không có lỗi cú pháp, đáp ứng đầy đủ yêu cầu đề bài.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_26
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  Struct Sinhvien {
+  char MaSV;
+  char HoTen;
+  int NamSinh;
+  char NoiSinh;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm thiếu thuộc tính bắt buộc DTB, sai cú pháp (viết 'Struct' thay vì 'struct'), và thiếu dấu đóng } cùng dấu ; sau struct – không thể biên dịch được.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(SinhVien a[])
+      cin >> MaSV;
+      cin.ignore();
+      cin >> a.HoTen;
+      cin >> NamSinh >> NoiSinh >> DTB;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có nhiều lỗi nghiêm trọng: thiếu dấu đóng ngoặc, truyền tham số sai kiểu (mảng thay vì tham chiếu), không dùng getline cho chuỗi có khoảng trắng, và truy cập sai thành viên. Không thể biên dịch và không đáp ứng bất kỳ tiêu chí nào.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  for(int i=0; i<n; i++){
+  if(a[i].NoiSinh == "TPHCM"){
+  cout << a[i].MaSV << endl;
+  cout << a[i].HoTen << endl;
+  cout << a[i].NamSinh << endl;
+  cout << a[i].NoiSinh << endl;
+  cout << a[i].DTB << endl;
+  }
+
+Điểm: 0.25/0.25 (correct)
+
+Lý do chấm (LLM):
+Bài làm đúng yêu cầu: duyệt mảng, kiểm tra điều kiện NoiSinh == "TPHCM", và in đầy đủ thông tin sinh viên thỏa mãn. Cú pháp chính xác, logic tương đương với đáp án mẫu dù định dạng in khác.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_28
+======================================================================
+Tổng: 0.0/1.0 (wrong)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_29
+======================================================================
+Tổng: 0.15/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  Struct Sinhvien {
+  char MaSV[MAX]
+  char HoTen[MAX]
+  int NamSinh
+  char NơiSinh[MAX]
+  float DTB};
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm thiếu dấu chấm phẩy sau dấu } đóng struct, vi phạm ghi chú giáo viên → 0 điểm. Ngoài ra, tên thuộc tính 'NơiSinh' sai so với yêu cầu 'NoiSinh' và có nhiều lỗi cú pháp nghiêm trọng.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(Sinhvien &x)
+  cin.getline(x.MaSV, MAX);
+  cin.getline(x.HoTen, MAX);
+  cin.getline(x.NoiSinh, MAX);
+  cin>>x.NamSinh;
+  cin>>x.DTB;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng (thiếu dấu '{', '}' và ';') khiến code không biên dịch được, dù logic truyền tham chiếu và nhập chuỗi đúng. Theo quy định, lỗi cấu trúc phải bị trừ điểm.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  for (int i=0; i<n; i++) {
+  if (a[i].NoiSinh == "TPHCM")
+  { cout << a[i].MaSV << "
+   ";
+  { cout << a[i].HoTen << "
+   ";
+  { cout << a[i].NoiSinh << "
+   ";
+  { cout << a[i].NamSinh << "
+   ";
+  { cout << a[i].DTB << "
+   ";
+
+Điểm: 0.15/0.25 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh đã triển khai đúng logic: duyệt mảng, lọc theo điều kiện NoiSinh == "TPHCM", và in đủ thông tin sinh viên. Tuy nhiên, thiếu dấu ';' sau mỗi lệnh cout khiến mã không biên dịch được – lỗi cú pháp nghiêm trọng nên không thể chấp nhận như code đúng hoàn toàn.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_30
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  Struct SinhVien {
+  char MaSV[];
+  char HoTen[];
+  int NamSinh;
+  char NoiSinh[];
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm sai tên struct (SinhVien thay vì Sinhvien), dùng từ khóa Struct viết hoa, thiếu trường DTB, thiếu kích thước mảng char và thiếu dấu ; sau } – tất cả đều là lỗi nghiêm trọng theo tiêu chí.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(Sinhvien &a)
+
+Điểm: 0.25/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh viết đúng kiểu truyền tham số (tham chiếu) nhưng thiếu toàn bộ thân hàm, nên không thể xác định việc nhập chuỗi có dùng getline hay không.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  for(int i=0;i<n;i++)
+  if(a.NoiSinh=="TPHCM")
+  cout<<a.MaSV<<a.HoTen<<a.NamSinh<<a.NoiSinh<<
+  a.DTB;
+  else
+  Continue;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có ý tưởng đúng nhưng không thể biên dịch do thiếu chỉ số mảng [i], viết sai từ khóa 'Continue', thiếu dấu chấm phẩy và dấu đóng ngoặc, dẫn đến lỗi cú pháp nghiêm trọng.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_32
+======================================================================
+Tổng: 0.0/1.0 (wrong)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  #include <iostream>
+  using namespace std;
+  int main() {
+      string MaSV;
+      string NoiSinh;
+      float DTB;
+      string HoTen;
+      int NamSinh;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Học sinh chưa khai báo struct Sinhvien mà chỉ khai báo các biến đơn lẻ trong hàm main(), vi phạm yêu cầu cốt lõi về cấu trúc dữ liệu.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(a[])
+  cin << a[i].MaSV;
+  cin << a[i].HoTen;
+  cin << a[i].NamSinh;
+  cin << a[i].Noisinh;
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có nhiều lỗi cú pháp nghiêm trọng như dùng `cin <<` thay vì `cin >>`, thiếu dấu chấm phẩy và dấu ngoặc nhọn, không khai báo tham số đúng định dạng, và không sử dụng `getline` cho chuỗi có khoảng trắng. Không thể biên dịch và không đạt bất kỳ tiêu chí nào.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_34
+======================================================================
+Tổng: 0.25/1.0 (partially_correct)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  struct Sinhvien {
+  char MaSV;
+  char HoTen;
+  int NamSinh;
+  char NoiSinh;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Thiếu thuộc tính bắt buộc DTB và thiếu dấu ; sau } – vi phạm ghi chú bắt buộc của giáo viên, dẫn đến không đạt yêu cầu.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(Sinhvien &x)
+  cin.getline(x.MaSV);
+  cin.getline(x.HoTen);
+  cin >> x.NamSinh;
+  cin.getline(x.NoiSinh);
+  cin >> x.DTB;
+
+Điểm: 0.25/0.5 (partially_correct)
+
+Lý do chấm (LLM):
+Học sinh sử dụng đúng tham chiếu (&x) nhưng sai cú pháp khi dùng cin.getline (thiếu dấu ngoặc, thiếu dấu chấm phẩy, thiếu kích thước buffer), dẫn đến không thể biên dịch và không đảm bảo nhập chuỗi đúng kiểu.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  if(x.NoiSinh == 'TPHCM')
+  Cout << x
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm thiếu vòng lặp duyệt mảng, biến x chưa khai báo, sử dụng dấu nháy đơn cho chuỗi và Cout thay vì cout, dẫn đến lỗi cú pháp và không thể thực hiện chức năng yêu cầu.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_36
+======================================================================
+Tổng: 0.0/1.0 (wrong)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  Struct SinhVien {
+  int NamSinh;
+  char MaSV, HoTen, NoiSinh;
+  float DTB;
+  };
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Bài làm sai tên struct (SinhVien thay vì Sinhvien), sai từ khóa (Struct thay vì struct), và dùng kiểu char cho các trường chuỗi (MaSV, HoTen, NoiSinh) – dẫn đến lỗi cú pháp và logic dữ liệu.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  void NhapSV(Sinhvien a[])
+  cin >> a.NamSinh;
+  cin >> a.DTB;
+  cin.ignore();
+  cin.getline(a.MaSV,100);
+  cin.getline(a.HoTen,100);
+  cin.getline(a.NoiSinh,100);
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Bài làm có lỗi cú pháp nghiêm trọng (thiếu ngoặc nhọn, thiếu dấu chấm phẩy, truy cập thành viên sai với con trỏ), không biên dịch được. Mặc dù sử dụng getline đúng cho chuỗi, nhưng do không chạy được nên không đạt tiêu chí.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+======================================================================
+
+
+CÂU 14 - HỌC SINH HS_39
+======================================================================
+Tổng: 0.0/1.0 (wrong)
+
+--- PHẦN A (T14A) ---
+
+Bài làm học sinh:
+  struct SinhVien {
+      string MaSV;
+      string HoTen;
+      int NamSinh;
+      string NoiSinh;
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Tên struct sai (SinhVien thay vì Sinhvien), thiếu thuộc tính DTB, và chưa đóng cấu trúc bằng dấu } và ;.
+
+--- PHẦN B (T14B) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.5 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+--- PHẦN C (T14C) ---
+
+Bài làm học sinh:
+  (để trống)
+
+Điểm: 0/0.25 (wrong)
+
+Lý do chấm (LLM):
+Student left this part blank.
+
+======================================================================
+

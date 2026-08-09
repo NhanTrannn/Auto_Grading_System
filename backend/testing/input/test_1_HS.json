@@ -1,0 +1,291 @@
+{
+  "ma_de": "1",
+  "HS_2": {
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_01_Cau_01.jpg",
+      "content": {
+        "lines": [
+          "3516"
+        ]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_01_Cau_02.jpg",
+      "content": {
+        "lines": [
+          "12"
+        ]
+      }
+    },
+    "Cau_03_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": [
+          "23"
+        ]
+      }
+    },
+    "Cau_03_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_03.jpg",
+      "content": {
+        "lines": [
+          "57918"
+        ]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_04.jpg",
+      "content": {
+        "lines": [
+          "41211"
+        ]
+      }
+    },
+    "Cau_05": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_05.jpg",
+      "content": {
+        "lines": [
+          "1055"
+        ]
+      }
+    },
+    "Cau_06": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_03_Cau_06.jpg",
+      "content": {
+        "lines": [
+          "4"
+        ]
+      }
+    },
+    "Cau_07": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_03_Cau_07.jpg",
+      "content": {
+        "lines": [
+          "20"
+        ]
+      }
+    },
+    "Cau_08_1": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_08_1.jpg",
+      "content": {
+        "lines": [
+          "23"
+        ]
+      }
+    },
+    "Cau_08_2": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_08_2.jpg",
+      "content": {
+        "lines": [
+          "0x505294 8 0 0"
+        ]
+      }
+    },
+    "Cau_09": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_09.jpg",
+      "content": {
+        "lines": [
+          "2"
+        ]
+      }
+    },
+    "Cau_10": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_05_Cau_10.jpg",
+      "content": {
+        "lines": [
+          "0 2 0 3 4 4 5 6 2 1"
+        ]
+      }
+    },
+    "Cau_11": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_05_Cau_11.jpg",
+      "content": {
+        "lines": [
+          ""
+        ]
+      }
+    },
+    "Cau_12": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_06_Cau_12.jpg",
+      "content": {
+        "lines": [
+          "1/1/2028"
+        ]
+      }
+    },
+    "Cau_13a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_06_Cau_13a.jpg",
+      "content": {
+        "lines": [
+          "bool isPrime(int n) {",
+          "    if (n<2) return 0;",
+          "    if (n!=2 && n%2==0) return 0;",
+          "    for(int i = 3; i*i<=n; i++) {",
+          "        if(n % i == 0) return 0;",
+          "    }",
+          "    return 1;",
+          "int SumPrime(int a[]",
+          "    int S = 0;",
+          "    for(int i = 0; i < n; i",
+          "        if(isPrime(a[",
+          "        {   S += a[i];",
+          "    return S;",
+          "}"
+        ]
+      }
+    },
+    "Cau_13b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_13b.jpg",
+      "content": {
+        "lines": [
+          "int findmax(int a[], int n) {",
+          "    int max=a[0];",
+          "    for(int i = 1; i<n; i++) {",
+          "int findvtmax (int a[], int",
+          "    for(int i = 0; i < n; i++) {",
+          "        if (a[i]==max)"
+        ]
+      }
+    },
+    "Cau_13c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_13c.jpg",
+      "content": {
+        "lines": [
+          "    cout << SumPrime(a,n) << endl;",
+          "    int max = findMax(a,n);",
+          "    cout << findvtmax(a,n,max) << endl;",
+          "    return 0;",
+          "}"
+        ]
+      }
+    },
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinhvien {",
+          "   char MaSV[20];",
+          "   char HoTen[50];",
+          "   int NamSinh;"
+        ]
+      }
+    },
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien a)",
+          "cin>>a.MaSV;",
+          "cin.ignore();",
+          "fgets(a.HoTen, 50, stdin);",
+          "cin>>a.NamSinh; cin.ignore();",
+          "fgets(a.NoiSinh, 50, stdin);",
+          "cin>>a.DTB"
+        ]
+      }
+    },
+    "Cau_14c": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_08_Cau_14c.jpg",
+      "content": {
+        "lines": [
+          "    for (int i = 0; i < n; i++) {",
+          "        if (a[i].NoiSinh == TPHCM) {",
+          "            cout << a[i].MaSV << \" \" << a[i].HoTen << ",
+          "a[i].NamSinh<<\" \"<<a[i].NoiSinh",
+          "a[i].DTB<<endl;",
+          "        }",
+          "    }"
+        ]
+      }
+    },
+    "Cau_15a": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15a.jpg",
+      "content": {
+        "lines": [
+          "*Biến: int dau, chan, nguoi, ngua;",
+          "Input: dau = 6",
+          "chan = 18",
+          "Output: nguoi = 3",
+          "ngua = 3"
+        ]
+      }
+    },
+    "Cau_15b": {
+      "type": "table",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15b.jpg",
+      "content": {
+        "table_extracted": [
+          {
+            "col_1": "dau = 6 chan = 18",
+            "col_2": "nguoi = 3 ngua = 3"
+          },
+          {
+            "col_1": "dau = 12 chan = 30",
+            "col_2": "nguoi = 3 ngua = 9"
+          },
+          {
+            "col_1": "dau = 8 chan = 40",
+            "col_2": "giả định sai"
+          }
+        ]
+      }
+    },
+    "Cau_15c": {
+      "type": "diagram",
+      "status": "pending_ocr",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg",
+      "content": {
+        "nodes": [],
+        "edges": []
+      },
+      "pass1_content": {
+        "nodes": [],
+        "edges": []
+      },
+      "confidence": 1.0
+    }
+  }
+}
