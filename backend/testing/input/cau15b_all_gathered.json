@@ -1,0 +1,2666 @@
+[
+  {
+    "sample_id": "cau_15_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "*Biến: int dau, chan, nguoi, ngua;\nInput: dau = 6\nchan = 18\nOutput: nguoi = 3\nngua = 3",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "*Biến: int dau, chan, nguoi, ngua;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Input: dau = 6",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "chan = 18",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Output: nguoi = 3",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "ngua = 3",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L7",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "dau = 6 chan = 18",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "nguoi = 3 ngua = 3",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "dau = 12 chan = 30",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "nguoi = 3 ngua = 9",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "dau = 8 chan = 40",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_09_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_3",
+    "student_index": 3,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "input: N, M là số nguyên dương\noutput: Kết luận cuối sau tính toán để khẳng định / phủ định giả định trên",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "input: N, M là số nguyên dương",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "output: Kết luận cuối sau tính toán để khẳng định / phủ định giả định trên",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L4",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "6 18",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "giả định đúng",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "20 45",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "10 18",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS3_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_7",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "int N; // biến N có kiểu int để mô tả số lượng đầu là m số nguyên\nint M; // biến M có kiểu int để mô tả số lượng chân là một số nguyên\nint nguoi; // biến nguoi kiểu int lưu kết quả cho số người tính đ từ dữ liệu đề bài\nint ngua; // biến ngua kiểu int lưu kết quả cho số ngựa tính được từ đề bài",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int N; // biến N có kiểu int để mô tả số lượng đầu là m số nguyên",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int M; // biến M có kiểu int để mô tả số lượng chân là một số nguyên",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int nguoi; // biến nguoi kiểu int lưu kết quả cho số người tính đ từ dữ liệu đề bài",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int ngua; // biến ngua kiểu int lưu kết quả cho số ngựa tính được từ đề bài",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L6",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "N=6, M=18",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "nguoi=3, ngua=3",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "N=220, M=680",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "nguoi=100, ngua=120",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "N=6, M=17",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS7_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_9",
+    "student_index": 9,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Biến n: N cái đầu, Biến nguoi: số người\nBiến m: M cái chân, Biến ngua: số ngựa\nInput: số nguyên n đầu, số nguyên m chân\nOutput: số nguyên người (biến nguoi), số nguyên ngựa hoặc \"giả định sai\"",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Biến n: N cái đầu, Biến nguoi: số người",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Biến m: M cái chân, Biến ngua: số ngựa",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Input: số nguyên n đầu, số nguyên m chân",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Output: số nguyên người (biến nguoi), số nguyên ngựa hoặc \"giả định sai\"",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L6",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "6 18",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "3 3",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "8 28",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "2 6",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "2 27",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS9_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_10",
+    "student_index": 10,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Input: nhập vào 2 số nguyên N và M với N là số cái đầu và M là số cái chân nhìn thấy được\nOutput: Nếu giả định khong có người hay ngựa nào thiếu chân hoặc đầu là đúng thì in ra số người và số ngựa\nNgược lại, in ra \"giả định sai\"",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Input: nhập vào 2 số nguyên N và M với N là số cái đầu và M là số cái chân nhìn thấy được",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Output: Nếu giả định khong có người hay ngựa nào thiếu chân hoặc đầu là đúng thì in ra số người và số ngựa",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Ngược lại, in ra \"giả định sai\"",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L5",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "8 32",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "3 người 5 ngựa",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "4 8",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "2 người 1 ngựa",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "8 23",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS10_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_12",
+    "student_index": 12,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_15",
+    "student_index": 15,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_17",
+    "student_index": 17,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_18",
+    "student_index": 18,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "int a là tổng số đầu\nint b là tổng số chân\ncout << là xuất ra số con ngựa\ncout << là xuất ra số con người",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int a là tổng số đầu",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int b là tổng số chân",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "cout << là xuất ra số con ngựa",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "cout << là xuất ra số con người",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L6",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "4 12",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "2 2",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "2 6",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "1 1",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS18_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_19",
+    "student_index": 19,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Input: số người: x; số ngựa: y\nKiểu số nguyên: x, y, M, N\nint x, y, M, N",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Input: số người: x; số ngựa: y",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Kiểu số nguyên: x, y, M, N",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int x, y, M, N",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L5",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS19_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_21",
+    "student_index": 21,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS21_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_24",
+    "student_index": 24,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS24_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_26",
+    "student_index": 26,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "N: số cái đầu\nM: số cái chân\nn: số người\nm: số ngựa\ninput: số cái đầu và số cái chân\noutput: số người và số ngựa (số nguyên) hoặc kết luận \"giả định sai\"",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "N: số cái đầu",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "M: số cái chân",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "n: số người",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "m: số ngựa",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "input: số cái đầu và số cái chân",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "output: số người và số ngựa (số nguyên) hoặc kết luận \"giả định sai\"",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L7",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L8",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "2 6",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "1 1",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "3 10",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "1 2",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "3 11",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS26_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_28",
+    "student_index": 28,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_29",
+    "student_index": 29,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_30",
+    "student_index": 30,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_32",
+    "student_index": 32,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L2",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L3",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_34",
+    "student_index": 34,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "int N; // Tổng cộng số đầu\nint M; // Tổng cộng số chân\ninput là 2 số nguyên với M > N > 2\noutput là 2 số nguyên là số người và số ng",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int N; // Tổng cộng số đầu",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int M; // Tổng cộng số chân",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "input là 2 số nguyên với M > N > 2",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "output là 2 số nguyên là số người và số ng",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L6",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "3 8",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "2 1",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "5 16",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "2 3",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "5 8",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS34_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_36",
+    "student_index": 36,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "input: n cái đầu, m cái chân (n, m ∈ N)\noutput: có a người, b ngựa",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "input: n cái đầu, m cái chân (n, m ∈ N)",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "output: có a người, b ngựa",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L4",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [
+        {
+          "part_label": "b",
+          "cells": [
+            {
+              "cell_id": "R1C1",
+              "row_id": "R1",
+              "col_id": "C1",
+              "text": "input",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R1C2",
+              "row_id": "R1",
+              "col_id": "C2",
+              "text": "output",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C1",
+              "row_id": "R2",
+              "col_id": "C1",
+              "text": "Số đầu: 1\nSố chân: 2",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R2C2",
+              "row_id": "R2",
+              "col_id": "C2",
+              "text": "1 người, 0 ngựa",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C1",
+              "row_id": "R3",
+              "col_id": "C1",
+              "text": "Số đầu: 2\nSố chân: 8",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "2 người, 1 ngựa",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "Số đầu: -1\nSố chân: 1.3",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            }
+          ]
+        }
+      ],
+      "visual_answers": [
+        {
+          "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS36_Cau_15c.jpg",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "type": "diagram",
+          "is_blank": false
+        }
+      ]
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  },
+  {
+    "sample_id": "cau_15_001__HS_39",
+    "student_index": 39,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 15.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "int daunguoi, daungua; int N;\nint channguoi, channgua; int M;\nInput: N phải là số nguyên\nM phải là số nguyên (đặc biệt M là\nOutput: daunguoi // số người",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int daunguoi, daungua; int N;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "int channguoi, channgua; int M;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Input: N phải là số nguyên",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "M phải là số nguyên (đặc biệt M là",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_15_001_a",
+          "text": "Output: daunguoi // số người",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "b",
+          "slot_id": "cau_15_001_b",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        },
+        {
+          "line_id": "L7",
+          "part_label": "c",
+          "slot_id": "cau_15_001_c",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 1.0,
+    "question_number": 15
+  }
+]

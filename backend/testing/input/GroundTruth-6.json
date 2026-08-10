@@ -468,6 +468,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "6 18",
             "col_2": "giả định đúng"
           },
@@ -711,6 +715,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "N=6, M=18",
             "col_2": "nguoi=3, ngua=3"
           },
@@ -952,6 +960,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "6 18",
             "col_2": "3 3"
           },
@@ -1189,6 +1201,10 @@
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_09_Cau_15b.jpg",
       "content": {
         "table_extracted": [
+          {
+            "col_1": "input",
+            "col_2": "output"
+          },
           {
             "col_1": "8 32",
             "col_2": "3 người 5 ngựa"
@@ -2057,6 +2073,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "4 12",
             "col_2": "2 2"
           },
@@ -2295,6 +2315,10 @@
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_09_Cau_15b.jpg",
       "content": {
         "table_extracted": [
+          {
+            "col_1":"input",
+            "col_2":"output"
+          },
           {
             "col_1": "",
             "col_2": ""
@@ -2535,6 +2559,10 @@
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_09_Cau_15b.jpg",
       "content": {
         "table_extracted": [
+          {
+            "col_1": "input",
+            "col_2": "output"
+          },
           {
             "col_1": "",
             "col_2": ""
@@ -2784,6 +2812,10 @@
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_09_Cau_15b.jpg",
       "content": {
         "table_extracted": [
+          {
+            "col_1": "input",
+            "col_2": "output"
+          },
           {
             "col_1": "",
             "col_2": ""
@@ -3039,6 +3071,10 @@
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_09_Cau_15b.jpg",
       "content": {
         "table_extracted": [
+          {
+            "col_1": "input",
+            "col_2": "output"
+          },
           {
             "col_1": "2 6",
             "col_2": "1 1"
@@ -4102,6 +4138,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1":"input",
+            "col_2":"output"
+          },
+          {
             "col_1": "3 8",
             "col_2": "2 1"
           },
@@ -4333,6 +4373,10 @@
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_09_Cau_15b.jpg",
       "content": {
         "table_extracted": [
+          {
+            "col_1":"input",
+            "col_2":"output"
+          },
           {
             "col_1": "Số đầu: 1\nSố chân: 2",
             "col_2": "1 người, 0 ngựa"

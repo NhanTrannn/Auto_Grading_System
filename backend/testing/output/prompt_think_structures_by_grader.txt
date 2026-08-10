@@ -1,0 +1,171 @@
+CÁC PHẦN CẤU THÀNH "THINK PROMPT" THEO TỪNG LOẠI GRADER
+=========================================================
+
+Có 3 KHUNG prompt hoàn toàn khác nhau — không phải 1 khung dùng chung cho
+tất cả 4 loại grader (Matching / Logical / Table / Visual).
+
+
+KHUNG 1 — _cot_single_pass (pipeline.py)
+Dùng bởi: Matching, Logical, Table (đường đơn-criterion, hiếm khi thực sự
+chạy trong luồng bình thường vì Table criteria được gom qua Khung 2).
+---------------------------------------------------------------------------
+
+{grader_intro} đang phân tích bài làm.
+Hãy SUY LUẬN CHI TIẾT từng bước trước khi đưa ra điểm số.
+{equivalence_note}                          <- khác nhau theo grader, xem bảng dưới
+
+=== TIÊU CHÍ CHẤM ===
+{criterion_content}
+
+=== ĐÁP ÁN KỲ VỌNG ===
+{expected_output}
+
+=== BÀI LÀM HỌC SINH ===
+{student_text}
+
+=== ĐIỂM TỐI ĐA ===
+{max_score}
+
+{question_context}
+    - question_context tự nó gồm nhiều khối con, xây trong
+      _grade_with_llm_advised_core:
+        ══ GỢI Ý TỪ HEURISTIC GRADER ══
+          Score gợi ý / Status gợi ý / Lý do + extra_prompt_text (khác theo grader)
+        ══ ĐỀ BÀI GỐC ══                (nếu có question_text)
+        ══ ĐÁP ÁN / LOGIC KỲ VỌNG ══     (nếu có expected_value)
+        ══ GHI CHÚ CỦA GIÁO VIÊN (BẮT BUỘC TUÂN THỦ) ══   (nếu có grader_note)
+        ══ QUY TẮC ĐIỂM BÁN PHẦN ══      (nếu có partial_credit_rule, kèm định
+                                          nghĩa "token" nếu type=count_correct_tokens)
+        ══ HƯỚNG DẪN CHAIN-OF-THOUGHT ══  (cố định, 5 điểm hướng dẫn suy luận)
+
+Hãy suy luận tuần tự theo các bước sau (viết rõ từng bước):
+1. Đọc và hiểu tiêu chí: tiêu chí này yêu cầu gì?
+2. Phân tích đáp án kỳ vọng (nếu có): cần khớp điều gì?
+3. Phân tích bài làm học sinh: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?
+4. Kiểm tra tương đương: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic
+   có tương đương không.
+5. So sánh: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?
+6. Kết luận sơ bộ: điểm dự kiến và lý do.
+
+
+Bảng so sánh 3 loại grader dùng chung Khung 1
+-----------------------------------------------
+
+| Grader                    | equivalence_note                                | extra_prompt_text riêng                            |
+|---------------------------|-------------------------------------------------|----------------------------------------------------|
+| Matching                  | "Đây là chấm KẾT QUẢ CHƯƠNG TRÌNH IN RA — chỉ   | _format_token_detail: liệt kê từng token           |
+| (accept_equivalent_       | có 1 chuỗi output CỐ ĐỊNH DUY NHẤT (byte-exact),| "[i] expected='x' student='y' > [OK/FAIL]"         |
+| solutions=False)          | không có khái niệm 'tương đương'... nếu KHÔNG   |                                                    |
+|                           | khớp 100% thì chấm theo QUY TẮC ĐIỂM BÁN PHẦN   |                                                    |
+|                           | (token), còn không có QUY TẮC ĐIỂM BÁN PHẦN thì |                                                    |
+|                           | 0 điểm. KHÔNG tự làm tròn lên."                 |                                                    |
+|---------------------------|-------------------------------------------------|----------------------------------------------------|
+| Logical                   | "Đây là dạng chấm CHẤP NHẬN NHIỀU CÁCH LÀM ĐÚNG | matched/missing keyword:                           |
+|                           | KHÁC NHAU (không phải 1 output cố định duy      |                                                    |
+| (mặc định True)           | nhất) — code/công thức/thuật toán khác hình     | "[OK] {keyword}" / "[MISS] {keyword}"              |
+|                           | thức nhưng đúng kết quả/logic đều được điểm     |                                                    |
+|                           | đầy đủ. KHÔNG áp dụng cho code THIẾU SÓT/       |                                                    |
+|                           | KHÔNG BIÊN DỊCH ĐƯỢC."                          |                                                    |
+|---------------------------|-------------------------------------------------|----------------------------------------------------|
+| Table (đơn-criterion,     | Y HỆT Logical — cùng 1 khối text dùng chung cho | Vị trí ô: "Vị trí cần kiểm tra: hàng {row_id},     |
+| hiếm dùng)                | cả 2 (mặc định True), viết trung lập KHÔNG      | cột {col_id}. Học sinh viết: '{text}' (expected_   |
+|                           | hardcode nhãn "LOGIC SUY LUẬN" để không gắn sai | value chỉ là ví dụ gợi ý, cần tự verify logic)."   |
+|                           | nhãn cho Table.                                 |                                                    |
+
+
+KHUNG 2 — call_llm_table_batch (pipeline.py)
+Dùng bởi: Table — đây là đường THẬT SỰ chạy trong run_part() bình thường
+(gom mọi criterion table cùng 1 part vào 1 lần gọi LLM duy nhất).
+KHÔNG đi qua _cot_single_pass / equivalence_note.
+---------------------------------------------------------------------------
+
+{grader_intro}. Dưới đây là TOÀN BỘ nội dung 1 bảng bài làm học sinh. Hãy SUY
+LUẬN CHI TIẾT từng bước trước khi đưa ra điểm số — dùng ngữ cảnh CẢ BẢNG (VD
+quan hệ giữa các ô cùng hàng) để chấm, KHÔNG chỉ so khớp chuỗi cứng với "đáp
+án gợi ý" (chỉ là 1 ví dụ tham khảo, KHÔNG phải đáp án bắt buộc) — nếu học
+sinh chọn ví dụ khác nhưng vẫn đúng logic/quan hệ toán học giữa các ô liên
+quan, vẫn tính đúng.
+
+{question_text_block}                       <- đề bài gốc, nếu có
+
+=== TOÀN BỘ NỘI DUNG BẢNG ===
+{table_text}
+    - Nếu criteria có table_slot: build từ đó — cell "source: printed"
+      (header/giá trị GV cố định) lấy text khai trong barem, cell
+      "source: student_text" lấy từ OCR thật của học sinh.
+    - Nếu không có table_slot: fallback dump evidence["tables"] (chỉ có cell
+      học sinh đã điền, thiếu cell header/printed).
+
+=== DANH SÁCH Ô CẦN CHẤM ===
+{criteria_text}
+    - Mỗi ô: criterion_id, content, "Vị trí cần kiểm tra: hàng X, cột Y",
+      "Đáp án gợi ý (ví dụ tham khảo, KHÔNG bắt buộc khớp y hệt): {expected_value!r}",
+      "Điểm tối đa: {max_score}",
+      + "Ghi chú giáo viên (BẮT BUỘC TUÂN THỦ): {grader_note}" nếu có.
+
+Hãy suy luận tuần tự theo các bước sau, LẦN LƯỢT QUA TỪNG criterion_id:
+1. Đọc vị trí và đáp án gợi ý của ô này (chỉ là ví dụ tham khảo, không bắt
+   buộc khớp y hệt).
+2. Đối chiếu với giá trị thật học sinh viết trong bảng ở đúng vị trí đó.
+3. Nếu ô này liên quan tới ô khác cùng hàng (VD Input<->Output), kiểm tra
+   quan hệ/logic toán học giữa 2 ô có nhất quán không — dù giá trị có khác
+   đáp án mẫu.
+4. Kết luận sơ bộ cho criterion_id này: đúng/sai/1 phần, vì sao.
+
+{group_instructions}                         <- CHỈ có nếu group_llm_decided (VD
+                                                 nhóm T15B1..T15B5): thêm khối
+                                                 "=== TỔNG ĐIỂM THEO NHÓM ==="
+                                                 yêu cầu LLM tự đọc grader_note
+                                                 của nhóm và tự quyết điểm tổng
+                                                 (không cộng máy móc từng ô).
+
+
+KHUNG 3 — _call_vision_llm_for_criterion (pipeline.py)
+Dùng bởi: Visual — gọi Vision LLM kèm ảnh, hoàn toàn tách biệt, không có
+student_text/expected_output dạng text, không đi qua
+_grade_with_llm_advised_core (Vision LLM quyết định luôn ở bước heuristic
+router, không có bước blend/re-review bằng text-LLM sau đó).
+---------------------------------------------------------------------------
+
+{grader_intro}. NGUYÊN TẮC CHẤM: Chấp nhận mọi cách làm tương đương —
+code/công thức khác nhau về hình thức nhưng đúng về kết quả/logic đều được
+điểm đầy đủ. Không yêu cầu giống hệt đáp án mẫu.
+    (LUÔN cố định — không có tham số accept_equivalent_solutions như Khung 1,
+    nên Visual hiện KHÔNG có phiên bản "cấm du di định dạng" như Matching,
+    dù về bản chất 1 câu Visual dạng "chấm kết quả cố định" cũng có thể cần.)
+
+=== TIÊU CHÍ ===
+{criterion_content}
+
+=== ĐỀ BÀI GỐC ===                          (nếu có question_text)
+{question_text}
+
+=== ĐÁP ÁN / CÔNG THỨC KỲ VỌNG ===          (nếu có expected_value)
+{expected_val_text}
+
+=== GHI CHÚ GIÁO VIÊN (BẮT BUỘC TUÂN THỦ) ===   (nếu có grader_note)
+{grader_note}
+
+=== ĐIỂM TỐI ĐA ===
+{max_score}
+
+Hãy xem ảnh bài làm và suy luận chi tiết theo các bước:
+1. Đọc và nhận dạng những gì sinh viên đã viết/vẽ trong ảnh.
+2. So sánh với tiêu chí và đáp án kỳ vọng — kiểm tra tương đương toán
+   học/logic nếu cần.
+3. Đánh giá mức độ đúng: hoàn toàn / một phần / sai.
+4. Kết luận sơ bộ: điểm dự kiến và lý do.
+
+(Ảnh được gửi kèm dưới dạng image_url base64 trong cùng message user, không
+phải text.)
+
+
+TÓM TẮT NHANH
+=============
+- Matching, Logical, Table-đơn-criterion  -> Khung 1 (_cot_single_pass),
+  khác nhau ở equivalence_note + extra_prompt_text.
+- Table (đường thật sự dùng)               -> Khung 2 (call_llm_table_batch),
+  hoàn toàn riêng, chấm cả bảng 1 lần, có thể có group_instructions.
+- Visual                                   -> Khung 3
+  (_call_vision_llm_for_criterion), có ảnh, luôn "chấp nhận tương đương",
+  không có bước blend heuristic/LLM sau đó.

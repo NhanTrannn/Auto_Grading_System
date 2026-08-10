@@ -983,7 +983,6 @@
           "criterion_id": "T15B",
           "content": "Tìm 3 ví dụ cho bài toán (0.25đ).",
           "score": 0.25,
-          "all_or_nothing": true,
           "grader_note": "Phải đúng TOÀN BỘ cả 3 ví dụ mới được 0.25đ. Đúng 1 hoặc 2 ví dụ thì 0đ.",
           "sub_criteria": [
             {

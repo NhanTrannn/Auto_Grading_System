@@ -26,10 +26,20 @@ def main() -> None:
         job.status = JobStatus.RUNNING
         db.commit()
 
-        wrapper.run_batch(input_path, barem_path, output_dir)
+        # run_batch's third argument is a FILE path (it opens it directly
+        # with open(..., "w")), not a directory — mirroring exactly what
+        # pipeline.py's own CLI does before calling run_batch. Passing the
+        # bare directory here previously created a plain file literally
+        # named "output" (no extension) instead of a real output/ directory
+        # containing grading_results.json, so downstream reads of
+        # "<output_dir>/grading_results.json" all failed with FileNotFoundError.
+        out_dir = Path(output_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        result_file = out_dir / "grading_results.json"
+        wrapper.run_batch(input_path, barem_path, str(result_file))
 
         job.status = JobStatus.DONE
-        job.result_path = str(Path(output_dir) / "grading_results.json")
+        job.result_path = str(result_file)
         db.commit()
     except Exception as exc:  # noqa: BLE001 - reported via job status, not raised
         job = db.get(GradingJob, job_id)

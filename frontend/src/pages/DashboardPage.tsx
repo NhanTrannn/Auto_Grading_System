@@ -1,8 +1,160 @@
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import Badge from "@/components/core/Badge";
+import Card from "@/components/core/Card";
+import EmptyState from "@/components/core/EmptyState";
+import {
+  IconChevronRight,
+  IconGrade,
+  IconHistory,
+  IconSparkles,
+} from "@/components/core/Icon";
+import PageHeader from "@/components/core/PageHeader";
+import StatCard from "@/components/core/StatCard";
+import UploadForm from "@/modules/grading/UploadForm";
+import { createGradingJob, listGradingJobs } from "@/services/api";
+import type { GradingJobStatus } from "@/types/grading";
+
+import styles from "./DashboardPage.module.css";
+
+const dateFormatter = new Intl.DateTimeFormat("vi-VN", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+const PIPELINE_STEPS = [
+  { title: "Ảnh bài làm", detail: "Quét / chụp bài thi giấy" },
+  { title: "Pipeline OCR", detail: "ROI → căn chỉnh → nhận dạng" },
+  { title: "Results JSON", detail: "Dữ liệu bài làm theo HS_N" },
+  { title: "Chấm bằng LLM", detail: "Heuristic + Chain-of-Thought" },
+];
+
 export default function DashboardPage() {
+  const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [jobs, setJobs] = useState<GradingJobStatus[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    listGradingJobs()
+      .then((data) => {
+        if (!cancelled) setJobs(data);
+      })
+      .catch(() => {
+        // Overview stats are best-effort; the sidebar shows connection state.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const stats = useMemo(() => {
+    const done = jobs.filter((j) => j.status === "done").length;
+    const running = jobs.filter((j) => j.status === "running" || j.status === "pending").length;
+    const failed = jobs.filter((j) => j.status === "failed").length;
+    return { total: jobs.length, done, running, failed };
+  }, [jobs]);
+
+  const recentJobs = jobs.slice(0, 5);
+
+  async function handleSubmit(inputFile: File, baremFile: File) {
+    setSubmitting(true);
+    setError(null);
+    try {
+      const job = await createGradingJob(inputFile, baremFile);
+      navigate(`/jobs/${job.job_id}`);
+    } catch (err) {
+      setError((err as Error).message);
+      setSubmitting(false);
+    }
+  }
+
   return (
-    <main>
-      <h1>Autograding2026</h1>
-      <p>Dashboard placeholder — upload input/barem and browse grading results here.</p>
-    </main>
+    <>
+      <PageHeader
+        eyebrow={
+          <>
+            <IconSparkles size={13} />
+            Bảng điều khiển
+          </>
+        }
+        title="Chấm điểm tự động IT001"
+        description="Tải lên bài làm đã OCR cùng barem, hệ thống sẽ chấm từng tiêu chí bằng heuristic kết hợp LLM Chain-of-Thought và trả về điểm chi tiết cho từng học sinh."
+      />
+
+      <div className={styles.stats}>
+        <StatCard
+          label="Tổng phiên chấm"
+          value={stats.total}
+          tone="accent"
+          icon={<IconHistory size={16} />}
+        />
+        <StatCard label="Hoàn tất" value={stats.done} tone="success" />
+        <StatCard label="Đang chạy" value={stats.running} tone="info" />
+        <StatCard label="Thất bại" value={stats.failed} tone="danger" />
+      </div>
+
+      <div className={styles.columns}>
+        <Card
+          title="Tạo phiên chấm mới"
+          subtitle="Cần đúng 2 file JSON: bài làm học sinh và barem"
+        >
+          <UploadForm disabled={submitting} error={error} onSubmit={handleSubmit} />
+        </Card>
+
+        <div className={styles.side}>
+          <Card title="Luồng xử lý" subtitle="Từ ảnh giấy tới điểm số">
+            <ol className={styles.pipeline}>
+              {PIPELINE_STEPS.map((step, index) => (
+                <li key={step.title} className={styles.pipelineStep}>
+                  <span className={styles.stepIndex}>{index + 1}</span>
+                  <span className={styles.stepText}>
+                    <span className={styles.stepTitle}>{step.title}</span>
+                    <span className={styles.stepDetail}>{step.detail}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </Card>
+
+          <Card title="Phiên gần đây" padded={false}>
+            {recentJobs.length === 0 ? (
+              <EmptyState
+                compact
+                icon={<IconGrade size={20} />}
+                title="Chưa có phiên chấm nào"
+                description="Phiên chấm đầu tiên của bạn sẽ hiện ở đây."
+              />
+            ) : (
+              <ul className={styles.recentList}>
+                {recentJobs.map((job) => (
+                  <li key={job.job_id}>
+                    <button
+                      type="button"
+                      className={styles.recentItem}
+                      onClick={() => navigate(`/jobs/${job.job_id}`)}
+                    >
+                      <span className={styles.recentMain}>
+                        <span className={styles.recentId}>{job.job_id.slice(0, 12)}</span>
+                        <span className={styles.recentTime}>
+                          {dateFormatter.format(new Date(job.created_at))}
+                        </span>
+                      </span>
+                      <Badge status={job.status} />
+                      <IconChevronRight size={15} />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+        </div>
+      </div>
+    </>
   );
 }

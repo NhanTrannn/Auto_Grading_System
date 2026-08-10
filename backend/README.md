@@ -65,6 +65,42 @@ own after the parent script/process has already moved on — confirming the
 two are not coupled. Not yet covered by an automated test (would need
 mocking `subprocess.Popen` or accepting a slow subprocess-based test).
 
+`GET /api/v1/grading/jobs/{job_id}/result` returns the job's
+`grading_results.json` + `student_summary.json` contents as JSON (404 if
+the job doesn't exist, 409 if it hasn't reached `status: done` yet) — this
+is what the frontend actually renders; `result_path` on the status endpoint
+is a server-side filesystem path, not fetchable directly from a browser.
+
+**Two real bugs found and fixed by running an actual job end-to-end through
+the HTTP API** (not just unit-level/mocked checks):
+1. `_spawn_worker` didn't set `PYTHONIOENCODING=utf-8` on the child
+   process's environment. `pipeline.py` prints Vietnamese text throughout
+   grading; on Windows the child inherits the parent's default console
+   encoding (cp1252), which can't encode Vietnamese diacritics — the worker
+   crashed with `UnicodeEncodeError` partway through a real grading run
+   (same root cause as the `--test` CLI note in the root `CLAUDE.md`, just
+   hit here via a spawned subprocess instead of an interactive terminal).
+   Fixed by passing `env={**os.environ, "PYTHONIOENCODING": "utf-8"}` to
+   `subprocess.Popen`.
+2. `app/worker.py` passed its `output_dir` argument straight through to
+   `pipeline.run_batch()` as-is. `run_batch`'s third argument is actually a
+   **file path** (it does `open(output_path, "w")` directly) — the CLI
+   (`pipeline.py`'s own `main()`) creates the directory itself and passes
+   `str(output_dir / "grading_results.json")`, never the bare directory.
+   Passing the bare directory instead created a plain file literally named
+   `output` (no extension, no real directory) in the job folder, so every
+   downstream read of `<output_dir>/grading_results.json` — including the
+   `/result` endpoint above — failed with `FileNotFoundError` even though
+   the job itself reported `status: done`. Fixed by having `worker.py`
+   create the directory and build the file path itself before calling
+   `run_batch`, mirroring exactly what the CLI does.
+
+Both were only caught by actually running a job through `POST
+/api/v1/grading/jobs` over real HTTP and polling it to completion — neither
+surfaced in `pytest` (which mocks around the worker subprocess) or in
+earlier manual `python -m app.worker` invocations run with
+`PYTHONIOENCODING=utf-8` already set by hand in the shell.
+
 ## Docker
 
 Build context is this `backend/` folder itself (`build: .` in both compose

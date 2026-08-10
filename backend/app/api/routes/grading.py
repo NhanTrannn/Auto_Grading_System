@@ -1,3 +1,5 @@
+import json
+import os
 import shutil
 import subprocess
 import sys
@@ -9,7 +11,7 @@ from sqlalchemy.orm import Session
 
 from app.api.deps import get_db
 from app.models.grading_job import GradingJob
-from app.schemas.grading import GradingJobCreated, GradingJobStatus, JobStatus
+from app.schemas.grading import GradingJobCreated, GradingJobResult, GradingJobStatus, JobStatus
 
 router = APIRouter()
 
@@ -30,6 +32,15 @@ def _spawn_worker(job_id: str, input_path: Path, barem_path: Path, output_dir: P
     else:
         kwargs["start_new_session"] = True
 
+    # pipeline.py prints Vietnamese text throughout grading — without this,
+    # the child inherits the parent's default stdout encoding, which on
+    # Windows is the system codepage (cp1252), not UTF-8. That can't encode
+    # Vietnamese diacritics, so the worker crashes with UnicodeEncodeError
+    # partway through grading (same root cause as the `--test` CLI note in
+    # the root CLAUDE.md, just hit here via a spawned subprocess instead of
+    # an interactive terminal).
+    env = {**os.environ, "PYTHONIOENCODING": "utf-8"}
+
     with log_path.open("wb") as log_file:
         subprocess.Popen(
             [sys.executable, "-m", "app.worker", job_id, str(input_path), str(barem_path), str(output_dir)],
@@ -37,6 +48,7 @@ def _spawn_worker(job_id: str, input_path: Path, barem_path: Path, output_dir: P
             stdout=log_file,
             stderr=subprocess.STDOUT,
             stdin=subprocess.DEVNULL,
+            env=env,
             **kwargs,
         )
 
@@ -67,9 +79,34 @@ async def create_grading_job(
     return GradingJobCreated(job_id=job_id, status=JobStatus.PENDING)
 
 
+@router.get("/jobs", response_model=list[GradingJobStatus])
+async def list_grading_jobs(db: Session = Depends(get_db)) -> list[GradingJob]:
+    return list(
+        db.query(GradingJob).order_by(GradingJob.created_at.desc()).limit(50).all()
+    )
+
+
 @router.get("/jobs/{job_id}", response_model=GradingJobStatus)
 async def get_grading_job(job_id: str, db: Session = Depends(get_db)) -> GradingJob:
     job = db.get(GradingJob, job_id)
     if job is None:
         raise HTTPException(status_code=404, detail="job not found")
     return job
+
+
+@router.get("/jobs/{job_id}/result", response_model=GradingJobResult)
+async def get_grading_job_result(job_id: str, db: Session = Depends(get_db)) -> GradingJobResult:
+    job = db.get(GradingJob, job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="job not found")
+    if job.status != JobStatus.DONE:
+        raise HTTPException(status_code=409, detail=f"job is not done yet (status: {job.status})")
+
+    output_dir = _JOBS_DIR / job_id / "output"
+    try:
+        grading_results = json.loads((output_dir / "grading_results.json").read_text(encoding="utf-8"))
+        student_summary = json.loads((output_dir / "student_summary.json").read_text(encoding="utf-8"))
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=500, detail=f"result files missing: {exc}") from exc
+
+    return GradingJobResult(grading_results=grading_results, student_summary=student_summary)

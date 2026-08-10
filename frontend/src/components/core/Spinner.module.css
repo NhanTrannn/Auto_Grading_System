@@ -1,0 +1,9 @@
+.spinner {
+  display: inline-block;
+  border-style: solid;
+  border-color: var(--color-border-strong);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}

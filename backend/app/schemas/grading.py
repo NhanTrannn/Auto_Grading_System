@@ -1,4 +1,6 @@
+import datetime
 from enum import Enum
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict
 
@@ -22,3 +24,12 @@ class GradingJobStatus(BaseModel):
     status: JobStatus
     error: str | None = None
     result_path: str | None = None
+    created_at: datetime.datetime
+
+
+class GradingJobResult(BaseModel):
+    # Passed through as-is from pipeline.run_batch's own output files
+    # (grading_results.json / student_summary.json) — shape is whatever
+    # pipeline.py produces, not re-validated field-by-field here.
+    grading_results: list[dict[str, Any]]
+    student_summary: list[dict[str, Any]]

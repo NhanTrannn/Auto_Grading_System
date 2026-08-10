@@ -1,0 +1,201 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.8fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-size: 12.5px;
+  font-weight: 650;
+}
+
+/* ── Task type picker ────────────────────────────────────── */
+.taskGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.taskOption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.taskOption:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+}
+
+.taskOption:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.taskActive {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.taskLabel {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.taskHint {
+  font-size: 11px;
+  color: var(--color-text-faint);
+  line-height: 1.4;
+}
+
+/* ── Table dimensions ────────────────────────────────────── */
+.dims {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.dimField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.numberInput {
+  padding: 8px var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+}
+
+.numberInput:focus {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-focus);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+  font-size: 12.5px;
+  font-weight: 550;
+}
+
+.note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.note strong {
+  color: var(--color-warning);
+  font-weight: 650;
+}
+
+/* ── Preview ─────────────────────────────────────────────── */
+.previewBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.previewImage {
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+/* ── Results ─────────────────────────────────────────────── */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-xs);
+}
+
+.confidence {
+  flex: 1;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+}
+
+.confidence strong {
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.warning {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.passes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (max-width: 1180px) {
+  .layout,
+  .passes {
+    grid-template-columns: 1fr;
+  }
+}

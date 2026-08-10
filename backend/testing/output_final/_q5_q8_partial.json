@@ -1,0 +1,242 @@
+{
+  "HS_2_5": [
+    0.5,
+    "{T5} Học sinh ghi đúng kết quả '1055', khớp hoàn toàn với đáp án kỳ vọng và khớp 3/3 token theo quy tắc bán phần, do đó đạt điểm tối đa.",
+    78395,
+    12199
+  ],
+  "HS_2_8": [
+    0.5,
+    "{T8_main_s1} Phần này không tính điểm theo tiêu chí, dù bài làm (23) không khớp với đáp án kỳ vọng (2), nhưng vì không chấm điểm nên không trừ điểm. | {T8_main_s2} Bài làm học sinh trùng khớp hoàn toàn với đáp án kỳ vọng đã được xác định rõ trong đề thi (0x505294 8 0 0). Theo tiêu chí chấm, đúng 4/4 số → đạt điểm tối đa 0.5.",
+    189065,
+    30030
+  ],
+  "HS_3_5": [
+    0.0,
+    "{T5} Học sinh ghi kết quả là 9113, không khớp với bất kỳ token nào trong danh sách ['10', '5', '5'] của đáp án kỳ vọng 1055. Theo tiêu chí, chỉ được 0.25 điểm nếu đúng 2 token, nhưng hiện tại đúng 0 token nên không đạt điểm.",
+    76469,
+    13786
+  ],
+  "HS_3_8": [
+    0.25,
+    "{T8_main_s1} Sinh viên đã ghi đúng số thứ tự là 3, phù hợp với yêu cầu (chỉ ghi con số, không cần định dạng). Tuy nhiên, phần này không tính điểm theo quy định. | {T8_main_s2} Học sinh ghi đúng 2/4 token (token 1: 8, token 2: 0), nhưng sai token 0 (địa chỉ bộ nhớ) và token 3 (tổng giá trị). Theo tiêu chí, đúng 2 trong 4 token được 0.25 điểm.",
+    187284,
+    31161
+  ],
+  "HS_7_5": [
+    0.5,
+    "{T5} Học sinh đã ghi đúng kết quả 1055, khớp hoàn toàn với đáp án kỳ vọng và các token được định nghĩa theo quy tắc chấm điểm. Thỏa mãn tiêu chí đạt điểm tối đa.",
+    96368,
+    14183
+  ],
+  "HS_7_8": [
+    0.5,
+    "{T8_main_s1} Phần này không tính điểm theo tiêu chí, dù sinh viên ghi sai số thứ tự (26 thay vì 7). Vì vậy, điểm cho phần này là 0, không có điểm để cộng hoặc trừ. | {T8_main_s2} Bài làm học sinh trùng khớp hoàn toàn với đáp án kỳ vọng: 0x505294 8 0 -2. Đúng 4/4 token, đạt điểm tối đa theo tiêu chí.",
+    177438,
+    31846
+  ],
+  "HS_9_5": [
+    0.5,
+    "{T5} Bài làm học sinh ghi đúng kết quả kỳ vọng là 1055, khớp hoàn toàn với đáp án được công bố. Theo tiêu chí chấm điểm, việc ghi đúng kết quả 1055 mang lại điểm tối đa 0.5.",
+    80661,
+    15405
+  ],
+  "HS_9_8": [
+    0.25,
+    "{T8_main_s1} Phần này không tính điểm theo yêu cầu đề bài, sinh viên đã ghi một con số (28) như yêu cầu, dù sai so với đáp án kỳ vọng (9), nhưng không ảnh hưởng đến điểm số vì không chấm điểm. | {T8_main_s2} Học sinh đúng 3/4 token (8, 0, -6) nhưng sai địa chỉ bộ nhớ (0x505288 thay vì 0x505294). Theo tiêu chí, đúng 2 hoặc 3 token → 0.25 điểm.",
+    138366,
+    28850
+  ],
+  "HS_10_5": [
+    0.25,
+    "{T5} Học sinh viết kết quả là '1051', so với đáp án kỳ vọng '1055'. Theo phân tích token ['10','5','5'], học sinh đúng 2/3 token (token 0 và 1), sai token 2 ('5' → '1'). Theo quy tắc điểm bán phần, đúng 2 con số → được 0.25 điểm.",
+    109859,
+    19190
+  ],
+  "HS_10_8": [
+    0.0,
+    "{T8_main_s1} Phần này không tính điểm theo yêu cầu đề bài, dù sinh viên ghi sai số thứ tự (5 thay vì 10). Vì điểm tối đa là 0, nên điểm cuối cùng vẫn là 0. | {T8_main_s2} Student left this part blank.",
+    68339,
+    13152
+  ],
+  "HS_12_5": [
+    0.0,
+    "{T5} Học sinh ghi kết quả là '10 3 1', chỉ khớp đúng 1 token ('10') trong tổng số 3 token so với đáp án '1055'. Theo tiêu chí, cần đúng ít nhất 2 token mới được 0.25 điểm, do đó không đạt điểm.",
+    73669,
+    15330
+  ],
+  "HS_12_8": [
+    0.25,
+    "{T8_main_s1} Sinh viên ghi số thứ tự là 7 thay vì 12, sai nội dung xác minh. Tuy phần này không tính điểm, nhưng việc nhập sai input có thể ảnh hưởng đến các phần tiếp theo nếu yêu cầu chạy chương trình với c=12. | {T8_main_s2} Học sinh đúng 2/4 giá trị được yêu cầu in ra màn hình (8 và 0), nhưng sai ở địa chỉ (in 0 thay vì 0x505294) và tổng (in 16 thay vì 0). Theo tiêu chí, đúng 2 hoặc 3 trong 4 số → được 0.25 điểm.",
+    176976,
+    33779
+  ],
+  "HS_15_5": [
+    0.5,
+    "{T5} Học sinh ghi đúng kết quả 1055, khớp hoàn toàn với đáp án kỳ vọng sau khi phân tích chương trình. Kết quả gồm 3 token đúng: '10', '5', '5', đạt điểm tối đa theo tiêu chí.",
+    65634,
+    13119
+  ],
+  "HS_15_8": [
+    0.5,
+    "{T8_main_s1} Bài làm ghi đúng số thứ tự (10) theo yêu cầu, định dạng đúng, và phần này không tính điểm theo hướng dẫn. Đáp án kỳ vọng 15 không liên quan trực tiếp đến phần này. | {T8_main_s2} Bài làm học sinh hoàn toàn trùng khớp với đáp án kỳ vọng 0x505294 8 0 -2, bao gồm cả địa chỉ cố định và các giá trị phụ thuộc (với giả định c=2 phù hợp với kết quả -2). Tuân thủ đầy đủ tiêu chí chấm điểm.",
+    144758,
+    29059
+  ],
+  "HS_17_5": [
+    0.25,
+    "{T5} Học sinh ghi kết quả 1053, đúng 3/4 chữ số nhưng theo tiêu chí chỉ được 0.25 điểm nếu đúng 2 con số. Theo cách token hóa ['10','5','5'], học sinh đúng 2/3 token, phù hợp với điều kiện 'đúng 2 con số' nên được 0.25 điểm.",
+    131408,
+    21520
+  ],
+  "HS_17_8": [
+    0.0,
+    "{T8_main_s1} Phần này không tính điểm theo yêu cầu đề bài, sinh viên đã ghi đúng định dạng (con số), dù không khớp với số thứ tự kỳ vọng (17). | {T8_main_s2} Bài làm học sinh không có token nào khớp với đáp án kỳ vọng '0x505294 8 0 -6'. Tất cả 4 token đều sai về giá trị hoặc định dạng, không đủ điều kiện để được 0.25 điểm theo tiêu chí.",
+    173627,
+    34474
+  ],
+  "HS_18_5": [
+    0.5,
+    "{T5} Học sinh đã ghi đúng kết quả kỳ vọng là 1055, khớp hoàn toàn với đáp án và thỏa mãn cả 3 token ['10', '5', '5'].",
+    49781,
+    10603
+  ],
+  "HS_18_8": [
+    0.25,
+    "{T8_main_s1} Học sinh trả lời 16, không khớp với đáp án kỳ vọng 18. Dù cả hai giá trị đều không hợp lý theo logic chương trình do lỗi đề bài, nhưng theo quy định chấm thi phải tuân thủ đáp án đã cho. | {T8_main_s2} Học sinh ghi đúng 2/4 token (token 2: 0 và token 3: -6), sai token 0 và token 1. Theo tiêu chí, đúng 2 hoặc 3 token được 0.25 điểm.",
+    241701,
+    43777
+  ],
+  "HS_19_5": [
+    0.0,
+    "{T5} Học sinh ghi kết quả là 2101, khác hoàn toàn với đáp án đúng 1055. Khi phân tích theo các token ['10', '5', '5'], không có token nào khớp → không đủ điều kiện cho điểm bán phần (0.25).",
+    100907,
+    17197
+  ],
+  "HS_19_8": [
+    0.25,
+    "{T8_main_s1} Sinh viên ghi số thứ tự là 17, nhưng đáp án kỳ vọng yêu cầu c = 19. Việc dùng sai input dẫn đến kết quả đầu ra sai, vi phạm yêu cầu cơ bản của bài tập. | {T8_main_s2} Học sinh đúng 2/4 token: địa chỉ 0x505294 và giá trị 8. Sai hai token còn lại (token 3 và 4). Theo tiêu chí, đúng 2 hoặc 3 token được 0.25 điểm.",
+    247302,
+    41078
+  ],
+  "HS_21_5": [
+    0.0,
+    "{T5} Bài làm học sinh là '1011', chỉ khớp 1 token ('10') so với đáp án kỳ vọng '1055'. Theo tiêu chí, cần đúng ít nhất 2 token để được 0.25 điểm, nên không đạt điểm.",
+    199380,
+    19846
+  ],
+  "HS_21_8": [
+    0.0,
+    "{T8_main_s1} Phần ghi số thứ tự không tính điểm theo tiêu chí, nhưng bài làm (19) không khớp với đáp án kỳ vọng (21), dẫn đến sai đầu vào và ảnh hưởng đến kết quả chương trình. Do đó, mặc dù không trừ điểm trực tiếp, vẫn đánh giá là sai vì không đúng với yêu cầu xác minh đầu vào. | {T8_main_s2} Học sinh chỉ đúng 1/4 token (token cuối cùng là 0), còn lại đều sai về địa chỉ, giá trị biến và hiệu con trỏ. Không đáp ứng điều kiện để được bán phần (cần đúng 2 hoặc 3 token).",
+    257421,
+    34854
+  ],
+  "HS_24_5": [
+    0.5,
+    "{T5} Học sinh đã ghi đúng kết quả kỳ vọng là '1055', khớp hoàn toàn với các token ['10', '5', '5'] và thỏa mãn tiêu chí chấm điểm.",
+    66330,
+    11826
+  ],
+  "HS_24_8": [
+    0.25,
+    "{T8_main_s1} Phần này không tính điểm theo yêu cầu đề bài, dù học sinh ghi 21 (không khớp với đáp án kỳ vọng 24), nhưng vì không có điểm nên không bị trừ. Đáp án kỳ vọng 24 không khả thi theo logic chương trình. | {T8_main_s2} Học sinh đúng 3/4 token trong kết quả in ra màn hình, chỉ sai ở token cuối (tổng (*pb)+(*pa)), có thể do chọn sai giá trị đầu vào c hoặc tính toán sai. Tiêu chí cho 0.25 điểm khi đúng 2 hoặc 3/4 token nên được áp dụng.",
+    196315,
+    33743
+  ],
+  "HS_26_5": [
+    0.25,
+    "{T5} Học sinh ghi kết quả '1052', so với đáp án kỳ vọng '1055' được chia thành 3 token: ['10','5','5']. Học sinh đúng 2/3 token ('10' và '5'), nên đạt 0.25 điểm theo quy tắc bán phần.",
+    112538,
+    19541
+  ],
+  "HS_26_8": [
+    0.0,
+    "{T8_main_s1} Sinh viên ghi kết quả là 30, trong khi đáp án kỳ vọng là 26. Phân tích chương trình cho thấy không tồn tại giá trị nào của c (số thứ tự) để đạt được kết quả 26 hoặc 30, do đó kết quả sinh viên không đúng. | {T8_main_s2} Bài làm học sinh không khớp với bất kỳ token nào trong đáp án kỳ vọng: địa chỉ sai, giá trị *(&a) sai, pb-pa sai, và (*pb)+(*pa) sai. Không đủ điều kiện để nhận 0.25 điểm theo tiêu chí bán phần.",
+    295990,
+    47628
+  ],
+  "HS_28_5": [
+    0.25,
+    "{T5} Bài làm '155' có 2/3 token khớp với đáp án kỳ vọng '1055' (token ['10', '5', '5']), cụ thể là hai token cuối cùng '5' và '5' đúng, nên được 0.25 điểm theo quy tắc bán phần.",
+    101999,
+    17954
+  ],
+  "HS_28_8": [
+    0.0,
+    "{T8_main_s1} Student left this part blank. | {T8_main_s2} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_29_5": [
+    0.0,
+    "{T5} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_29_8": [
+    0.25,
+    "{T8_main_s1} Bài làm học sinh là 32, không khớp với đáp án kỳ vọng 29. Phân tích chương trình cho thấy kết quả cuối cùng không thể đạt được 29 hay 32, do giới hạn của phép modulo và logic chương trình. | {T8_main_s2} Học sinh đúng 2/4 token (token 2 và 3) so với đáp án kỳ vọng, thỏa mãn điều kiện được 0.25 điểm theo tiêu chí chấm.",
+    243805,
+    43519
+  ],
+  "HS_30_5": [
+    0.25,
+    "{T5} Học sinh ghi kết quả là '105', đúng 2/3 token so với đáp án kỳ vọng '1055' (token '10' và '5' đúng, thiếu token '5' cuối cùng). Theo tiêu chí chấm, đúng 2 con số được 0.25 điểm.",
+    105028,
+    16118
+  ],
+  "HS_30_8": [
+    0.5,
+    "{T8_main_s1} Phần ghi số thứ tự không tính điểm theo tiêu chí đề bài. Bài làm sinh viên là 33, tuy không khớp với đáp án kỳ vọng 30, nhưng do không tính điểm nên không bị trừ điểm. | {T8_main_s2} Bài làm học sinh trùng khớp hoàn toàn với đáp án kỳ vọng: 0x505294 8 0 -4. Đúng 4/4 giá trị, đúng thứ tự và định dạng, nên đạt điểm tối đa theo tiêu chí.",
+    179592,
+    31979
+  ],
+  "HS_32_5": [
+    0.0,
+    "{T5} Học sinh ghi kết quả là '1022', chỉ đúng 1 token ('10') trong tổng số 3 token, không đủ điều kiện để được 0.25 điểm theo tiêu chí 'đúng 2 con số'.",
+    106151,
+    18426
+  ],
+  "HS_32_8": [
+    0.5,
+    "{T8_main_s1} Sinh viên ghi số thứ tự là 35, dẫn đến chương trình chạy với c=35 và cho kết quả cuối cùng là 0, không khớp với đáp án kỳ vọng 32. Do đó, kết quả chương trình sai. | {T8_main_s2} Bài làm học sinh hoàn toàn khớp với đáp án kỳ vọng: 0x505294 8 0 0. Tất cả 4 giá trị đều đúng theo logic chương trình khi giả định c % 4 == 3, điều kiện cần để kết quả cuối cùng là 0.",
+    263116,
+    44460
+  ],
+  "HS_34_5": [
+    0.5,
+    "{T5} Học sinh ghi đúng kết quả '1055' hoàn toàn khớp với đáp án kỳ vọng. Phân tích chương trình xác nhận kết quả chính xác và học sinh đúng cả 3 token theo quy tắc chấm điểm.",
+    83199,
+    14275
+  ],
+  "HS_34_8": [
+    0.0,
+    "{T8_main_s1} Sinh viên ghi sai số thứ tự (37 thay vì 34), và không cung cấp kết quả đầu ra nào. Mặc dù phần ghi số thứ tự không tính điểm, nhưng nó ảnh hưởng đến toàn bộ chương trình và kết quả đầu ra cần được chấm điểm. | {T8_main_s2} Student left this part blank.",
+    121716,
+    19286
+  ],
+  "HS_36_5": [
+    0.5,
+    "{T5} Bài làm học sinh ghi đúng hoàn toàn kết quả kỳ vọng '1055', khớp với cả tiêu chí chấm điểm tổng quát và quy tắc bán phần (đúng 3/3 token).",
+    82910,
+    15701
+  ],
+  "HS_36_8": [
+    0.5,
+    "{T8_main_s1} Student left this part blank. | {T8_main_s2} Bài làm học sinh ghi đúng 4 giá trị được yêu cầu: địa chỉ cố định hợp lý (0x505294), giá trị *(&a)=8, pb-pa=0 (luôn đúng sau pa=pb), và (*pb)+(*pa)=0 (đúng nếu c%4=3). Không có yêu cầu báo cáo giá trị c nên không bị trừ điểm. Tất cả các giá trị đều hợp lý với một đầu vào hợp lệ.",
+    170232,
+    21838
+  ],
+  "HS_39_5": [
+    0.5,
+    "{T5} Bài làm học sinh ghi đúng kết quả kỳ vọng là 1055, khớp hoàn toàn với đáp án được công bố. Theo quy tắc token ['10', '5', '5'], có 3/3 token khớp → đạt điểm tối đa 0.5.",
+    158568,
+    16909
+  ],
+  "HS_39_8": [
+    0.25,
+    "{T8_main_s1} Phần này không được chấm điểm theo yêu cầu đề bài. Sinh viên đã ghi số thứ tự (24) đúng định dạng (chỉ cần con số), phù hợp với tiêu chí xác minh input. | {T8_main_s2} Học sinh đúng 2/4 token: giá trị thứ hai (8) và thứ ba (0). Sai địa chỉ bộ nhớ đầu tiên và giá trị cuối cùng. Theo tiêu chí, đúng 2 hoặc 3 token được 0.25 điểm.",
+    355941,
+    45052
+  ]
+}

@@ -1136,7 +1136,7 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "dau = 6 chan = 18",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -1145,7 +1145,7 @@
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "nguoi = 3 ngua = 3",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -1154,7 +1154,7 @@
               "cell_id": "R2C1",
               "row_id": "R2",
               "col_id": "C1",
-              "text": "dau = 12 chan = 30",
+              "text": "dau = 6 chan = 18",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -1163,7 +1163,7 @@
               "cell_id": "R2C2",
               "row_id": "R2",
               "col_id": "C2",
-              "text": "nguoi = 3 ngua = 9",
+              "text": "nguoi = 3 ngua = 3",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -1172,7 +1172,7 @@
               "cell_id": "R3C1",
               "row_id": "R3",
               "col_id": "C1",
-              "text": "dau = 8 chan = 40",
+              "text": "dau = 12 chan = 30",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -1180,6 +1180,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "nguoi = 3 ngua = 9",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "dau = 8 chan = 40",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -2107,7 +2125,7 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "6 18",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -2116,7 +2134,7 @@
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "giả định đúng",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -2125,7 +2143,7 @@
               "cell_id": "R2C1",
               "row_id": "R2",
               "col_id": "C1",
-              "text": "20 45",
+              "text": "6 18",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -2134,7 +2152,7 @@
               "cell_id": "R2C2",
               "row_id": "R2",
               "col_id": "C2",
-              "text": "giả định sai",
+              "text": "giả định đúng",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -2143,7 +2161,7 @@
               "cell_id": "R3C1",
               "row_id": "R3",
               "col_id": "C1",
-              "text": "10 18",
+              "text": "20 45",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -2151,6 +2169,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "giả định sai",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "10 18",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -3244,7 +3280,7 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "N=6, M=18",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -3253,7 +3289,7 @@
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "nguoi=3, ngua=3",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -3262,7 +3298,7 @@
               "cell_id": "R2C1",
               "row_id": "R2",
               "col_id": "C1",
-              "text": "N=220, M=680",
+              "text": "N=6, M=18",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -3271,7 +3307,7 @@
               "cell_id": "R2C2",
               "row_id": "R2",
               "col_id": "C2",
-              "text": "nguoi=100, ngua=120",
+              "text": "nguoi=3, ngua=3",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -3280,7 +3316,7 @@
               "cell_id": "R3C1",
               "row_id": "R3",
               "col_id": "C1",
-              "text": "N=6, M=17",
+              "text": "N=220, M=680",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -3288,6 +3324,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "nguoi=100, ngua=120",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "N=6, M=17",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -4342,7 +4396,7 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "6 18",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -4351,7 +4405,7 @@
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "3 3",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -4360,7 +4414,7 @@
               "cell_id": "R2C1",
               "row_id": "R2",
               "col_id": "C1",
-              "text": "8 28",
+              "text": "6 18",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -4369,7 +4423,7 @@
               "cell_id": "R2C2",
               "row_id": "R2",
               "col_id": "C2",
-              "text": "2 6",
+              "text": "3 3",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -4378,7 +4432,7 @@
               "cell_id": "R3C1",
               "row_id": "R3",
               "col_id": "C1",
-              "text": "2 27",
+              "text": "8 28",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -4386,6 +4440,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "2 6",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "2 27",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -5430,7 +5502,7 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "8 32",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -5439,7 +5511,7 @@
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "3 người 5 ngựa",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -5448,7 +5520,7 @@
               "cell_id": "R2C1",
               "row_id": "R2",
               "col_id": "C1",
-              "text": "4 8",
+              "text": "8 32",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -5457,7 +5529,7 @@
               "cell_id": "R2C2",
               "row_id": "R2",
               "col_id": "C2",
-              "text": "2 người 1 ngựa",
+              "text": "3 người 5 ngựa",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -5466,7 +5538,7 @@
               "cell_id": "R3C1",
               "row_id": "R3",
               "col_id": "C1",
-              "text": "8 23",
+              "text": "4 8",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -5474,6 +5546,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "2 người 1 ngựa",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "8 23",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -9209,7 +9299,7 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "4 12",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -9218,7 +9308,7 @@
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "2 2",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -9227,7 +9317,7 @@
               "cell_id": "R2C1",
               "row_id": "R2",
               "col_id": "C1",
-              "text": "2 6",
+              "text": "4 12",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -9236,7 +9326,7 @@
               "cell_id": "R2C2",
               "row_id": "R2",
               "col_id": "C2",
-              "text": "1 1",
+              "text": "2 2",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -9245,14 +9335,32 @@
               "cell_id": "R3C1",
               "row_id": "R3",
               "col_id": "C1",
+              "text": "2 6",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R3C2",
+              "row_id": "R3",
+              "col_id": "C2",
+              "text": "1 1",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
               "text": "",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": true
             },
             {
-              "cell_id": "R3C2",
-              "row_id": "R3",
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -10243,19 +10351,19 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
-              "is_blank": true
+              "is_blank": false
             },
             {
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
-              "is_blank": true
+              "is_blank": false
             },
             {
               "cell_id": "R2C1",
@@ -10287,6 +10395,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -11317,19 +11443,19 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
-              "is_blank": true
+              "is_blank": false
             },
             {
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
-              "is_blank": true
+              "is_blank": false
             },
             {
               "cell_id": "R2C1",
@@ -11361,6 +11487,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -12507,19 +12651,19 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
-              "is_blank": true
+              "is_blank": false
             },
             {
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
-              "is_blank": true
+              "is_blank": false
             },
             {
               "cell_id": "R2C1",
@@ -12551,6 +12695,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": true
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -13748,7 +13910,7 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "2 6",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -13757,7 +13919,7 @@
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "1 1",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -13766,7 +13928,7 @@
               "cell_id": "R2C1",
               "row_id": "R2",
               "col_id": "C1",
-              "text": "3 10",
+              "text": "2 6",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -13775,7 +13937,7 @@
               "cell_id": "R2C2",
               "row_id": "R2",
               "col_id": "C2",
-              "text": "1 2",
+              "text": "1 1",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -13784,7 +13946,7 @@
               "cell_id": "R3C1",
               "row_id": "R3",
               "col_id": "C1",
-              "text": "3 11",
+              "text": "3 10",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -13792,6 +13954,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "1 2",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "3 11",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -18364,7 +18544,7 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "3 8",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -18373,7 +18553,7 @@
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "2 1",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -18382,7 +18562,7 @@
               "cell_id": "R2C1",
               "row_id": "R2",
               "col_id": "C1",
-              "text": "5 16",
+              "text": "3 8",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -18391,7 +18571,7 @@
               "cell_id": "R2C2",
               "row_id": "R2",
               "col_id": "C2",
-              "text": "2 3",
+              "text": "2 1",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -18400,7 +18580,7 @@
               "cell_id": "R3C1",
               "row_id": "R3",
               "col_id": "C1",
-              "text": "5 8",
+              "text": "5 16",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -18408,6 +18588,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "2 3",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "5 8",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",
@@ -19335,7 +19533,7 @@
               "cell_id": "R1C1",
               "row_id": "R1",
               "col_id": "C1",
-              "text": "Số đầu: 1\nSố chân: 2",
+              "text": "input",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -19344,7 +19542,7 @@
               "cell_id": "R1C2",
               "row_id": "R1",
               "col_id": "C2",
-              "text": "1 người, 0 ngựa",
+              "text": "output",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -19353,7 +19551,7 @@
               "cell_id": "R2C1",
               "row_id": "R2",
               "col_id": "C1",
-              "text": "Số đầu: 2\nSố chân: 8",
+              "text": "Số đầu: 1\nSố chân: 2",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -19362,7 +19560,7 @@
               "cell_id": "R2C2",
               "row_id": "R2",
               "col_id": "C2",
-              "text": "2 người, 1 ngựa",
+              "text": "1 người, 0 ngựa",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -19371,7 +19569,7 @@
               "cell_id": "R3C1",
               "row_id": "R3",
               "col_id": "C1",
-              "text": "Số đầu: -1\nSố chân: 1.3",
+              "text": "Số đầu: 2\nSố chân: 8",
               "part_label": "b",
               "slot_id": "cau_15_001_b",
               "is_blank": false
@@ -19379,6 +19577,24 @@
             {
               "cell_id": "R3C2",
               "row_id": "R3",
+              "col_id": "C2",
+              "text": "2 người, 1 ngựa",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C1",
+              "row_id": "R4",
+              "col_id": "C1",
+              "text": "Số đầu: -1\nSố chân: 1.3",
+              "part_label": "b",
+              "slot_id": "cau_15_001_b",
+              "is_blank": false
+            },
+            {
+              "cell_id": "R4C2",
+              "row_id": "R4",
               "col_id": "C2",
               "text": "giả định sai",
               "part_label": "b",

@@ -1,0 +1,62 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-xs);
+  margin-bottom: var(--space-5);
+}
+
+.busy {
+  border-color: color-mix(in srgb, var(--color-info) 45%, var(--color-border));
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 0%,
+    color-mix(in srgb, var(--color-info-bg) 55%, var(--color-surface)) 50%,
+    var(--color-surface) 100%
+  );
+  background-size: 320px 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+.hint {
+  flex: 1;
+  min-width: 200px;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+}
+
+.jobId {
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-subtle);
+  font-size: 11px;
+  color: var(--color-text-faint);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.errorText {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 200px;
+  overflow: auto;
+}
