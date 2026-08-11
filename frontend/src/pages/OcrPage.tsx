@@ -60,9 +60,9 @@ export default function OcrPage() {
         title="Xử lý ảnh bài làm"
         description={DESCRIPTION[active]}
         actions={
-          health.ocr === "down" ? (
-            <Badge tone="danger">Chưa chạy service OCR (cổng 8081)</Badge>
-          ) : health.ocr === "up" && health.ocrLlmConfigured === false ? (
+          health.api === "down" ? (
+            <Badge tone="danger">Chưa chạy backend (cổng 8000)</Badge>
+          ) : health.api === "up" && health.llmConfigured === false ? (
             <Badge tone="warning">Module 3 chưa cấu hình LLM</Badge>
           ) : null
         }

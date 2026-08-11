@@ -6,10 +6,11 @@ import sys
 import uuid
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, Form, HTTPException, UploadFile
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_db
+from app.models.barem_doc import BaremDoc
 from app.models.grading_job import GradingJob
 from app.schemas.grading import GradingJobCreated, GradingJobResult, GradingJobStatus, JobStatus
 
@@ -56,9 +57,20 @@ def _spawn_worker(job_id: str, input_path: Path, barem_path: Path, output_dir: P
 @router.post("/jobs", response_model=GradingJobCreated)
 async def create_grading_job(
     input_file: UploadFile,
-    barem_file: UploadFile,
+    barem_file: UploadFile | None = None,
+    barem_id: str | None = Form(None),
     db: Session = Depends(get_db),
 ) -> GradingJobCreated:
+    """Grade a Results-format JSON against a barem.
+
+    The barem comes either as an uploaded file or, more usually now, as the id
+    of one already in the library (`/api/v1/barems`) — the same rubric the
+    pipeline flow picks from, so a teacher who has saved one does not have to
+    keep a copy of the file around to grade with it.
+    """
+    if barem_file is None and not barem_id:
+        raise HTTPException(status_code=400, detail="Cần chọn barem từ thư viện (barem_id) hoặc tải lên barem_file.")
+
     job_id = uuid.uuid4().hex
     job_dir = _JOBS_DIR / job_id
     job_dir.mkdir(parents=True, exist_ok=True)
@@ -67,8 +79,17 @@ async def create_grading_job(
     barem_path = job_dir / "barem.json"
     with input_path.open("wb") as f:
         shutil.copyfileobj(input_file.file, f)
-    with barem_path.open("wb") as f:
-        shutil.copyfileobj(barem_file.file, f)
+
+    if barem_file is not None:
+        with barem_path.open("wb") as f:
+            shutil.copyfileobj(barem_file.file, f)
+    else:
+        doc = db.get(BaremDoc, barem_id)
+        if doc is None:
+            raise HTTPException(status_code=404, detail="Không tìm thấy barem trong thư viện.")
+        # `content` is the rubric stored verbatim, so this writes the same bytes
+        # an upload would have — the worker below sees no difference.
+        barem_path.write_text(doc.content, encoding="utf-8")
 
     job = GradingJob(job_id=job_id, status=JobStatus.PENDING)
     db.add(job)

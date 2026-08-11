@@ -27,3 +27,8 @@ backend/.pytest_cache/
 # frontend
 frontend/node_modules/
 frontend/dist/
+# Vite's dep-prebundle cache. Normally lives in node_modules/.vite, but Vite
+# falls back to <root>/.vite when it can't resolve the project root (which
+# happens after a self-restart on a vite.config.ts change) — either way it's
+# a rebuildable cache, never source.
+frontend/.vite/

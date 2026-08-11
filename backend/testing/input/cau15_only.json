@@ -22,6 +22,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "dau = 6 chan = 18",
             "col_2": "nguoi = 3 ngua = 3"
           },
@@ -70,6 +74,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "6 18",
             "col_2": "giả định đúng"
           },
@@ -87,7 +95,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS3_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS3_Cau_15c.jpg",
       "content": {}
     }
   },
@@ -112,6 +120,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "N=6, M=18",
             "col_2": "nguoi=3, ngua=3"
           },
@@ -129,7 +141,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS7_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS7_Cau_15c.jpg",
       "content": {}
     }
   },
@@ -154,6 +166,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "6 18",
             "col_2": "3 3"
           },
@@ -171,7 +187,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS9_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS9_Cau_15c.jpg",
       "content": {}
     }
   },
@@ -195,6 +211,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "8 32",
             "col_2": "3 người 5 ngựa"
           },
@@ -212,7 +232,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS10_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS10_Cau_15c.jpg",
       "content": {}
     }
   },
@@ -297,6 +317,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "4 12",
             "col_2": "2 2"
           },
@@ -314,7 +338,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS18_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS18_Cau_15c.jpg",
       "content": {}
     }
   },
@@ -338,6 +362,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "",
             "col_2": ""
           },
@@ -355,7 +383,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS19_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS19_Cau_15c.jpg",
       "content": {}
     }
   },
@@ -375,6 +403,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "",
             "col_2": ""
           },
@@ -392,7 +424,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS21_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS21_Cau_15c.jpg",
       "content": {}
     }
   },
@@ -412,6 +444,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "",
             "col_2": ""
           },
@@ -429,7 +465,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS24_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS24_Cau_15c.jpg",
       "content": {}
     }
   },
@@ -456,6 +492,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "2 6",
             "col_2": "1 1"
           },
@@ -473,7 +513,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS26_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS26_Cau_15c.jpg",
       "content": {}
     }
   },
@@ -578,6 +618,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "3 8",
             "col_2": "2 1"
           },
@@ -595,7 +639,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS34_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS34_Cau_15c.jpg",
       "content": {}
     }
   },
@@ -618,6 +662,10 @@
       "content": {
         "table_extracted": [
           {
+            "col_1": "input",
+            "col_2": "output"
+          },
+          {
             "col_1": "Số đầu: 1\nSố chân: 2",
             "col_2": "1 người, 0 ngựa"
           },
@@ -635,7 +683,7 @@
     "Cau_15c": {
       "type": "diagram",
       "status": "pending_ocr",
-      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\Diagram\\HS36_Cau_15c.jpg",
+      "image_path": "c:\\Users\\Nhan Tran\\Documents\\MMLAB\\Grading System\\backend\\testing\\Diagram\\HS36_Cau_15c.jpg",
       "content": {}
     }
   },

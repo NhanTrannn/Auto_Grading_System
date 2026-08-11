@@ -1,0 +1,198 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sourceBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-info-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.branches {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.branch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.branchHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.branchIndex {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--color-text-muted);
+}
+
+.removeBranch {
+  padding: 2px 8px;
+  font-size: 11.5px;
+  color: var(--color-text-faint);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.removeBranch:hover {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.explainer {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.stepLabel {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--color-text);
+}
+
+.branchesHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.sourceEcho {
+  font-size: 11.5px;
+  color: var(--color-text-faint);
+}
+
+.branchActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.iconButton:hover:not(:disabled) {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.iconButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.slotPicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.slotEmpty {
+  font-size: 11.5px;
+  color: var(--color-text-faint);
+}
+
+.slotChip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  font-size: 11.5px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.slotChip:hover {
+  border-color: var(--color-accent);
+}
+
+.slotChip input {
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.tester {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.testGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--space-1);
+}
+
+.testCell {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: 4px 8px;
+  font-size: 11.5px;
+  border-radius: var(--radius-sm);
+}
+
+.testHit {
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+}
+
+.testMiss {
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+  font-weight: 600;
+}
+
+.overlap {
+  font-style: normal;
+  color: var(--color-warning);
+}
+
+.warn {
+  margin: 0;
+  padding: var(--space-2);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--color-warning);
+  background: var(--color-warning-bg);
+  border-radius: var(--radius-sm);
+}

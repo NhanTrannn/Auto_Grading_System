@@ -289,17 +289,32 @@ nào dùng cho mode nào), nhưng field CHUNG cho mọi criterion:
                                         // không khớp gì trong dữ liệu học sinh.
 
   "content"       : "Ghi đúng kết quả..."
-                                        // Mô tả tiêu chí chấm điểm bằng tiếng
-                                        // Việt — đây là NGUỒN CHÍNH LLM dùng để
-                                        // hiểu tiêu chí (đưa nguyên văn vào
-                                        // prompt). Viết CÀNG CỤ THỂ càng tốt,
-                                        // đặc biệt nêu rõ trường hợp biên/ví dụ
-                                        // sai nếu muốn LLM áp dụng nhất quán
-                                        // (VD "'a=2' cũng tính SAI") — nếu để mơ
-                                        // hồ, LLM có xu hướng tự suy luận theo
-                                        // hướng dễ dãi hơn (nguyên tắc "chấp
-                                        // nhận cách làm tương đương" áp dụng mặc
-                                        // định cho hầu hết criterion, xem mục 11).
+                                        // QUY ƯỚC: content = TIÊU CHÍ CHẤM VÀ
+                                        // CÁCH CHO ĐIỂM — mô tả criterion CẦN GÌ
+                                        // VÀ quy tắc điểm bán phần bằng văn xuôi
+                                        // (VD "Nếu đúng 2 hoặc 3 con số thì được
+                                        // 0.25 điểm"). Đây là NGUỒN CHÍNH LLM
+                                        // dùng để hiểu tiêu chí (đưa nguyên văn
+                                        // vào prompt, mục === TIÊU CHÍ CHẤM ===).
+                                        // Viết CÀNG CỤ THỂ càng tốt, đặc biệt nêu
+                                        // rõ trường hợp biên/ví dụ sai nếu muốn
+                                        // LLM áp dụng nhất quán (VD "'a=2' cũng
+                                        // tính SAI") — nếu để mơ hồ, LLM có xu
+                                        // hướng tự suy luận theo hướng dễ dãi hơn
+                                        // (nguyên tắc "chấp nhận cách làm tương
+                                        // đương" áp dụng mặc định cho hầu hết
+                                        // criterion, xem mục 11).
+                                        //
+                                        // LƯU Ý DRIFT: với Matching, quy tắc bán
+                                        // phần trong content (văn xuôi) và
+                                        // partial_credit_rule (JSON, xem dưới)
+                                        // MÔ TẢ CÙNG 1 LUẬT ở 2 dạng khác nhau —
+                                        // 1 cho LLM đọc hiểu, 1 cho heuristic
+                                        // Python thực thi. Sửa 1 bên PHẢI sửa
+                                        // luôn bên kia, không thì LLM sẽ thấy 2
+                                        // luật mâu thuẫn ngay trong cùng 1 prompt
+                                        // (validate_barem() KHÔNG kiểm tra 2 field
+                                        // này có khớp nhau không).
 
   "score"         : 0.5                // Điểm tối đa của tiêu chí (float).
                                         // 0 hợp lệ cho tiêu chí "phụ trợ" chỉ
@@ -307,16 +322,19 @@ nào dùng cho mode nào), nhưng field CHUNG cho mọi criterion:
                                         // — sinh viên tự ghi STT để pipeline biết
                                         // input, không cộng điểm phần đó).
 
-  "grader_note"   : "..."              // (Tùy chọn) Ghi chú chấm điểm cho LLM —
-                                        // ngoại lệ, cách xử lý case đặc biệt,
-                                        // quy tắc trừ điểm chi tiết. Khác
-                                        // "content" ở chỗ: content mô tả tiêu
-                                        // chí CẦN GÌ, grader_note mô tả CÁCH
-                                        // CHẤM/ngoại lệ. Nếu criterion nằm trong
-                                        // sub_criteria của 1 entry có sub_label,
-                                        // grader_note của cha VÀ của chính nó
-                                        // (nếu có) được MERGE (nối bằng "\n"),
-                                        // không cái nào bị mất — xem mục 5.
+  "grader_note"   : "..."              // (Tùy chọn) QUY ƯỚC: grader_note = NHẮC
+                                        // NHỞ CỦA GIÁO VIÊN — ngoại lệ, cách xử
+                                        // lý case đặc biệt KHÔNG đã nêu trong
+                                        // content, KHÔNG phải nơi lặp lại tiêu
+                                        // chí/quy tắc điểm đã có trong content
+                                        // (đó là việc của content, xem trên) —
+                                        // nếu grader_note chỉ chép lại content
+                                        // thì đang dùng sai field, nên xoá bớt.
+                                        // Nếu criterion nằm trong sub_criteria
+                                        // của 1 entry có sub_label, grader_note
+                                        // của cha VÀ của chính nó (nếu có) được
+                                        // MERGE (nối bằng "\n"), không cái nào
+                                        // bị mất — xem mục 5.
 }
 
 
@@ -353,6 +371,24 @@ nào dùng cho mode nào), nhưng field CHUNG cho mọi criterion:
   "partial_credit_rule": {             // (Tùy chọn) Quy tắc tính điểm bán phần
                                         // khi KHÔNG khớp expected_outputs tuyệt
                                         // đối nhưng có expected_output_tokens.
+                                        //
+                                        // CHỈ DÙNG CHO "matching" — field này chỉ
+                                        // thực sự được heuristic tiêu thụ ở
+                                        // _grade_by_tokens (Matching). Logical
+                                        // (grade_expected_value_criterion)/Table
+                                        // (grade_table_criterion) KHÔNG đọc field
+                                        // này ở đâu cả. Nếu khai cho criterion
+                                        // Logical/Table, nó vẫn bị leak vào prompt
+                                        // (═ QUY TẮC ĐIỂM BÁN PHẦN ═, đọc chung
+                                        // mọi question_type ở
+                                        // _grade_with_llm_advised_core) nhưng chỉ
+                                        // là text vô nghĩa — correct_token_count/
+                                        // wrong_token_count là khái niệm token-
+                                        // matching, Logical/Table không có
+                                        // "token" nào để đếm. Muốn diễn đạt quy
+                                        // tắc điểm bán phần cho Logical/Table,
+                                        // viết thẳng vào content (xem quy ước ở
+                                        // trên) hoặc grader_note.
     "type"         : "count_correct_tokens",
                                         // Type hỗ trợ:
                                         //   "count_correct_tokens" — đếm số

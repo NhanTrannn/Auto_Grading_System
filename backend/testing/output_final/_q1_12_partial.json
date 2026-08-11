@@ -1,0 +1,1442 @@
+{
+  "HS_2_1": [
+    0.25,
+    "{T1} Học sinh ghi kết quả là '3516', khớp đúng 2 token đầu ('3' và '5') với đáp án kỳ vọng '3529'. Theo quy tắc bán phần, đúng 2 hoặc 3 con số được 0.25 điểm, nên học sinh đạt mức điểm này.",
+    76814,
+    12798
+  ],
+  "HS_3_1": [
+    0.5,
+    "{T1} Bài làm học sinh là '3529', khớp hoàn toàn với đáp án kỳ vọng về mặt chuỗi ký tự. Mỗi ký tự được coi là một token, và học sinh đúng 4/4 token → đạt điểm tối đa theo tiêu chí.",
+    70843,
+    11826
+  ],
+  "HS_7_1": [
+    0.25,
+    "{T1} Học sinh ghi kết quả là '342.08', khác hoàn toàn với đáp án kỳ vọng '3529'. Tuy nhiên, trong chuỗi này có 2 con số đúng (3 và 2) so với 4 con số trong đáp án, nên được áp dụng quy tắc bán phần: đúng 2 hoặc 3 con số → 0.25 điểm.",
+    138013,
+    15252
+  ],
+  "HS_9_1": [
+    0.25,
+    "{T1} Học sinh ghi kết quả là 352.510, không khớp hoàn toàn với đáp án kỳ vọng 3529. Tuy nhiên, có 3/4 token (chữ số) đúng ('3', '5', '2'), thỏa điều kiện để được 0.25 điểm theo quy tắc bán phần đã cung cấp.",
+    111197,
+    13922
+  ],
+  "HS_10_1": [
+    0.0,
+    "{T1} Học sinh chỉ ghi được chữ số '3', trong khi đáp án kỳ vọng là chuỗi '3529'. Số lượng token đúng là 1, không đủ điều kiện để được 0.25 điểm bán phần (yêu cầu 2 hoặc 3 token đúng).",
+    77261,
+    12213
+  ],
+  "HS_12_1": [
+    0.25,
+    "{T1} Học sinh ghi được 3 trong 4 token đúng ('3', '5', '2') nhưng thiếu token '9' và có thêm ký tự không mong muốn (khoảng trắng, dấu phẩy). Theo quy tắc bán phần, đạt 0.25 điểm.",
+    189766,
+    21077
+  ],
+  "HS_15_1": [
+    0.25,
+    "{T1} Bài làm học sinh '352.57' có 3 token khớp ('3', '5', '2') với đáp án kỳ vọng ['3','5','2','9'], thỏa mãn điều kiện nhận điểm bán phần (2-3 token đúng). Thiếu token '9' nên không đạt điểm tối đa.",
+    96125,
+    14962
+  ],
+  "HS_17_1": [
+    0.0,
+    "{T1} Bài làm học sinh là '24', chỉ khớp đúng 1 trong 4 token ('2') với đáp án kỳ vọng '3529'. Theo quy tắc chấm điểm, cần đúng 2 hoặc 3 token mới được 0.25 điểm, do đó không đạt điểm nào.",
+    81646,
+    14772
+  ],
+  "HS_18_1": [
+    0.25,
+    "{T1} Học sinh ghi kết quả '352.510', không khớp hoàn toàn với đáp án kỳ vọng '3529'. Tuy nhiên, 3 token đầu ('3','5','2') đúng, thỏa mãn điều kiện bán phần (correct_token_count in [2,3]) → được 0.25 điểm.",
+    79905,
+    14951
+  ],
+  "HS_19_1": [
+    0.25,
+    "{T1} Học sinh ghi đúng 3 trong 4 token của đáp án kỳ vọng (3, 5, 2), nhưng sai ở token thứ 4 (ghi '.' thay vì '9') và thêm ký tự dư thừa. Theo quy tắc bán phần đã cung cấp, được 0.25 điểm.",
+    98870,
+    15087
+  ],
+  "HS_21_1": [
+    0.0,
+    "{T1} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_24_1": [
+    0.5,
+    "{T1} Bài làm học sinh là '3529', khớp hoàn toàn với đáp án kỳ vọng về chuỗi ký tự (byte-exact). Học sinh đã ghi đúng kết quả chương trình, đạt đủ 4/4 token nên được điểm tối đa.",
+    50366,
+    10770
+  ],
+  "HS_26_1": [
+    0.25,
+    "{T1} Bài làm học sinh có 3/4 token đúng ('3', '5', '2') so với đáp án kỳ vọng '3529', thiếu token '9'. Theo quy tắc bán phần đã cho, điều kiện correct_token_count ∈ [2, 3] được thỏa mãn → được 0.25 điểm.",
+    86429,
+    15119
+  ],
+  "HS_28_1": [
+    0.25,
+    "{T1} Học sinh ghi kết quả là '352,510', khớp đúng 3/4 token đầu tiên ('3', '5', '2') với đáp án kỳ vọng '3529'. Theo quy tắc bán phần, đúng 2 hoặc 3 con số được 0.25 điểm, nên học sinh đạt điểm này.",
+    88783,
+    15639
+  ],
+  "HS_29_1": [
+    0.5,
+    "{T1} Bài làm học sinh là '3529', hoàn toàn khớp với đáp án kỳ vọng. Tất cả 4 token ['3','5','2','9'] đều đúng, đạt điểm tối đa theo quy tắc chấm.",
+    57203,
+    11213
+  ],
+  "HS_30_1": [
+    0.25,
+    "{T1} Học sinh ghi kết quả là \"352.510\", sai so với đáp án kỳ vọng \"3529\" ở token thứ tư (9 → .). Tuy nhiên, đúng 3/4 token đầu tiên nên được áp dụng điểm bán phần theo quy tắc đã cho.",
+    81006,
+    14796
+  ],
+  "HS_32_1": [
+    0.25,
+    "{T1} Học sinh đúng 3/4 token đầu tiên ('3', '5', '2'), nhưng sai token thứ tư ('5' thay vì '9') và thêm 2 token dư ('1', '0'). Theo quy tắc bán phần, đúng 3 token → được 0.25 điểm.",
+    78714,
+    15711
+  ],
+  "HS_34_1": [
+    0.25,
+    "{T1} Học sinh ghi đúng 2 token đầu tiên ('3', '5') trong đáp án kỳ vọng '3529'. Theo quy tắc bán phần, đúng 2 hoặc 3 token được 0.25 điểm.",
+    72874,
+    14892
+  ],
+  "HS_36_1": [
+    0.25,
+    "{T1} Học sinh ghi đúng 3 trong 4 token ('3', '5', '2') nhưng sai token cuối ('9' bị thay bằng '.510'), nên được 0.25 điểm theo quy tắc bán phần.",
+    79034,
+    15121
+  ],
+  "HS_39_1": [
+    0.0,
+    "{T1} Bài làm học sinh ghi '352.59' thay vì đáp án kỳ vọng '3529'. Chuỗi không khớp hoàn toàn về ký tự và cấu trúc, dù có các ký tự đúng nhưng vị trí và thêm dấu chấm, số 5 sai lệch → không đạt điểm.",
+    80436,
+    17953
+  ],
+  "HS_2_2": [
+    0.25,
+    "{T2} Học sinh ghi đúng token đầu tiên '12', nhưng thiếu token thứ hai '-4'. Theo quy tắc điểm bán phần, đúng 1 con số được 0.25 điểm.",
+    51542,
+    12060
+  ],
+  "HS_3_2": [
+    0.0,
+    "{T2} Bài làm học sinh là '28', không khớp với kết quả kỳ vọng '12-4' và không khớp với bất kỳ token nào trong danh sách ['12', '-4']. Không có điểm bán phần vì không có token đúng.",
+    69156,
+    13803
+  ],
+  "HS_7_2": [
+    0.25,
+    "{T2} Học sinh ghi kết quả là '128', khớp với token '12' trong đáp án kỳ vọng '12-4'. Theo quy tắc điểm bán phần, mỗi token đúng được 0.25 điểm, nên học sinh được 0.25 điểm. Token '-4' không xuất hiện trong bài làm.",
+    51278,
+    12775
+  ],
+  "HS_9_2": [
+    0.25,
+    "{T2} Học sinh ghi đúng token '12' nhưng sai token thứ hai: viết ' - 4' thay vì '-4', nên chỉ có 1/2 token đúng. Theo quy tắc chấm điểm bán phần, được 0.25 điểm.",
+    56422,
+    13373
+  ],
+  "HS_10_2": [
+    0.25,
+    "{T2} Học sinh ghi đúng token đầu tiên '12', nhưng thiếu token thứ hai '-4'. Theo quy tắc điểm bán phần, đúng 1/2 token được 0.25 điểm.",
+    55568,
+    12903
+  ],
+  "HS_12_2": [
+    0.0,
+    "{T2} Học sinh ghi kết quả '40', không khớp với đáp án kỳ vọng '12-4'. Không có token nào trong danh sách ['12', '-4'] xuất hiện trong bài làm, do đó không đạt điểm bán phần.",
+    59404,
+    13234
+  ],
+  "HS_15_2": [
+    0.25,
+    "{T2} Học sinh ghi đúng token '12' trong đáp án kỳ vọng '12-4', phù hợp với quy tắc điểm bán phần: đúng 1 token được 0.25 điểm. Thiếu token '-4' nên không đạt điểm tối đa.",
+    49553,
+    12199
+  ],
+  "HS_17_2": [
+    0.0,
+    "{T2} Bài làm học sinh là '8 - 2' không khớp với đáp án kỳ vọng '12-4'. Không có token nào trong bài làm khớp với danh sách token kỳ vọng ['12', '-4'], nên không đạt điều kiện để được điểm bán phần.",
+    63082,
+    13111
+  ],
+  "HS_18_2": [
+    0.5,
+    "{T2} Bài làm học sinh '12-4' hoàn toàn trùng khớp với đáp án kỳ vọng về chuỗi ký tự, đúng cả hai token và định dạng. Do đó, đạt điểm tối đa theo tiêu chí.",
+    44109,
+    10956
+  ],
+  "HS_19_2": [
+    0.25,
+    "{T2} Học sinh ghi kết quả là '128', không khớp hoàn toàn với đáp án '12-4'. Tuy nhiên, token '12' đúng, nên được 0.25 điểm theo quy tắc đếm token đúng.",
+    62767,
+    13030
+  ],
+  "HS_21_2": [
+    0.5,
+    "{T2} Bài làm học sinh ghi đúng kết quả chương trình là '12-4', khớp hoàn toàn với đáp án kỳ vọng về chuỗi ký tự và cả hai token, do đó đạt điểm tối đa.",
+    52856,
+    11947
+  ],
+  "HS_24_2": [
+    0.5,
+    "{T2} Bài làm học sinh hoàn toàn trùng khớp với đáp án kỳ vọng '12-4' về mặt ký tự, định dạng và thứ tự. Thỏa mãn cả hai token được yêu cầu, đạt điểm tối đa theo quy tắc chấm.",
+    60794,
+    12078
+  ],
+  "HS_26_2": [
+    0.5,
+    "{T2} Học sinh ghi kết quả là '-412', chứa cả hai token '12' và '-4' như yêu cầu. Theo quy tắc điểm bán phần dựa trên số lượng token đúng, học sinh đạt đủ điều kiện để nhận điểm tối đa 0.5.",
+    104520,
+    16282
+  ],
+  "HS_28_2": [
+    0.25,
+    "{T2} Học sinh ghi đúng token '12' nhưng thiếu token '-4' do có khoảng trắng trong chuỗi, không khớp byte-exact với đáp án kỳ vọng '12-4'. Theo quy tắc bán phần, chỉ có 1/2 token đúng nên được 0.25 điểm.",
+    103999,
+    14023
+  ],
+  "HS_29_2": [
+    0.5,
+    "{T2} Bài làm học sinh hoàn toàn trùng khớp với đáp án kỳ vọng '12-4', cả về nội dung và định dạng. Cả hai token '12' và '-4' đều khớp chính xác, đạt đủ điều kiện để nhận điểm tối đa theo quy tắc chấm.",
+    64883,
+    11770
+  ],
+  "HS_30_2": [
+    0.0,
+    "{T2} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_32_2": [
+    0.25,
+    "{T2} Học sinh ghi kết quả là '12 - 4', khớp với token '12' trong đáp án kỳ vọng '12-4', nhưng không khớp với token '-4' do có khoảng trắng. Theo quy tắc điểm bán phần, chỉ có 1 token đúng nên được 0.25 điểm.",
+    82696,
+    14575
+  ],
+  "HS_34_2": [
+    0.0,
+    "{T2} Bài làm học sinh là '26', không khớp với bất kỳ token nào trong danh sách ['12', '-4'] của đáp án kỳ vọng. Theo quy tắc chấm điểm dựa trên số token đúng, học sinh không đạt điều kiện để được điểm bán phần.",
+    67475,
+    12632
+  ],
+  "HS_36_2": [
+    0.0,
+    "{T2} Bài làm học sinh là '26', không khớp với đáp án kỳ vọng '12-4'. Không có token nào trong danh sách ['12', '-4'] xuất hiện trong bài làm, nên không đạt điều kiện để được điểm bán phần.",
+    85681,
+    13976
+  ],
+  "HS_39_2": [
+    0.5,
+    "{T2} Bài làm học sinh ghi đúng chuỗi '12-4' hoàn toàn khớp byte-by-byte với đáp án kỳ vọng, và cả hai token '12' và '-4' đều chính xác theo quy tắc chấm điểm bán phần.",
+    49339,
+    11785
+  ],
+  "HS_2_3": [
+    0.25,
+    "{T3_main_s1} Học sinh nhập '23' thay vì '2', không khớp byte-exact với đáp án kỳ vọng. Tiêu chí yêu cầu chính xác tuyệt đối, không chấp nhận thêm ký tự nào. | {T3_main_s2} Bài làm học sinh khớp hoàn toàn với đáp án kỳ vọng '57918' theo yêu cầu byte-exact, không có lỗi về ký tự hay định dạng.",
+    113533,
+    24570
+  ],
+  "HS_3_3": [
+    0.25,
+    "{T3_main_s1} Bài làm học sinh là chuỗi '3', hoàn toàn khớp byte-by-byte với đáp án kỳ vọng, không có ký tự thừa hay thiếu, thỏa mãn đầy đủ tiêu chí yêu cầu. | {T3_main_s2} Bài làm học sinh chỉ cung cấp chuỗi '5' (1 ký tự), trong khi đáp án kỳ vọng là '57918' (5 ký tự). So sánh từng ký tự, có 4 ký tự sai → không đủ điều kiện để được 0.25 điểm theo quy tắc bán phần.",
+    111571,
+    22996
+  ],
+  "HS_7_3": [
+    0.25,
+    "{T3_main_s1} Học sinh nhập giá trị 26 thay vì 7, không khớp với chỉ số thứ tự yêu cầu. Tiêu chí yêu cầu chính xác tuyệt đối, không chấp nhận sai sót về giá trị. | {T3_main_s2} Bài làm học sinh hoàn toàn khớp với đáp án kỳ vọng '46817' về nội dung và định dạng. Không có ký tự sai, thừa hoặc thiếu nào.",
+    109324,
+    25310
+  ],
+  "HS_9_3": [
+    0.25,
+    "{T3_main_s1} Học sinh phải ghi chính xác chỉ số thứ tự của mình (9), nhưng đã ghi '28' — không khớp về giá trị, độ dài và định dạng. Không tuân thủ yêu cầu tiêu chí chấm. | {T3_main_s2} Bài làm học sinh '24615' khớp hoàn toàn với đáp án kỳ vọng theo định dạng byte-exact, không có ký tự nào sai. Do đó, học sinh đạt đủ điểm tối đa của câu là 0.25 điểm.",
+    135610,
+    26424
+  ],
+  "HS_10_3": [
+    0.25,
+    "{T3_main_s1} Bài làm học sinh là '5', không khớp với đáp án kỳ vọng '10'. Tiêu chí yêu cầu ghi chính xác chỉ số thứ tự, không chấp nhận sai lệch về giá trị hoặc định dạng. | {T3_main_s2} Bài làm học sinh hoàn toàn trùng khớp với đáp án kỳ vọng '35716' theo định dạng yêu cầu (chuỗi 5 chữ số, không khoảng trắng, không ký tự thừa). Không có sai sót nào về ký tự, thứ tự hoặc định dạng.",
+    141092,
+    24302
+  ],
+  "HS_12_3": [
+    0.0,
+    "{T3_main_s1} Học sinh nhập giá trị '7' thay vì '12' như yêu cầu. Mặc dù định dạng đầu vào đúng (chỉ số nguyên, không ký tự phụ), nhưng giá trị sai hoàn toàn và không khớp với đáp án kỳ vọng. Theo tiêu chí chấm, phải chính xác 100%. | {T3_main_s2} Bài làm học sinh là chuỗi '27' chỉ có 2 ký tự, trong khi đáp án kỳ vọng là chuỗi 5 ký tự '57918'. So sánh từng vị trí cho thấy sai 4/5 ký tự (do thiếu 3 ký tự và sai 1 ký tự đầu), vượt quá giới hạn 2 lỗi để được bán điểm theo tiêu chí.",
+    140560,
+    27912
+  ],
+  "HS_15_3": [
+    0.25,
+    "{T3_main_s1} Bài làm học sinh là '10', không khớp chính xác với đáp án kỳ vọng '15'. Theo tiêu chí, phải ghi chính xác chỉ số thứ tự mà không thêm ký tự nào, nên không được chấm điểm. | {T3_main_s2} Bài làm học sinh khớp hoàn toàn với đáp án kỳ vọng '46817' về độ dài, thứ tự và từng ký tự. Theo tiêu chí, khi đúng hoàn toàn thì đạt điểm tối đa 0.25 điểm.",
+    123926,
+    25038
+  ],
+  "HS_17_3": [
+    0.25,
+    "{T3_main_s1} Học sinh nhập giá trị '12' thay vì '17' như yêu cầu. Mặc dù định dạng đúng (chỉ số nguyên, không ký tự thừa), nhưng giá trị không khớp 100% với đáp án kỳ vọng, nên bị chấm 0 điểm theo tiêu chí nghiêm ngặt. | {T3_main_s2} Bài làm học sinh khớp hoàn toàn với đáp án kỳ vọng '24615' về từng ký tự, không có sai sót nào về định dạng hay nội dung. Do đó, đạt điểm tối đa theo tiêu chí.",
+    115634,
+    23944
+  ],
+  "HS_18_3": [
+    0.25,
+    "{T3_main_s1} Học sinh nhập '16' thay vì '18'. Theo tiêu chí, phải ghi chính xác chỉ số thứ tự không có ký tự phụ và khớp byte-exact với đáp án kỳ vọng. Không chấp nhận sai lệch dù nhỏ nhất. | {T3_main_s2} Bài làm học sinh '24615' khớp hoàn toàn với đáp án kỳ vọng '24615' theo yêu cầu byte-exact. Không có ký tự nào sai, nên đạt điểm tối đa 0.25.",
+    113623,
+    24158
+  ],
+  "HS_19_3": [
+    0.0,
+    "{T3_main_s1} Học sinh ghi giá trị 17 thay vì 19, mặc dù định dạng đúng (chỉ số nguyên, không ký tự thừa), nhưng không khớp chính xác với đáp án kỳ vọng. Theo tiêu chí chấm điểm nghiêm ngặt, sai giá trị → không được điểm. | {T3_main_s2} Bài làm học sinh chỉ in ra chuỗi '3' thay vì '35716'. So sánh từng ký tự, có 4 ký tự sai do thiếu 4 ký tự trong chuỗi 5 ký tự. Theo quy tắc bán phần, chỉ được 0.25 điểm nếu sai 1 hoặc 2 ký tự, nên không đủ điều kiện → chấm 0 điểm.",
+    115452,
+    24656
+  ],
+  "HS_21_3": [
+    0.25,
+    "{T3_main_s1} Bài làm học sinh là '19', không khớp hoàn toàn với đáp án kỳ vọng '21' theo yêu cầu byte-exact. Tiêu chí không cho phép điểm bán phần, nên chấm 0 điểm. | {T3_main_s2} Bài làm học sinh khớp hoàn toàn với đáp án kỳ vọng '57918' về cả nội dung và định dạng. Không có sai sót nào về chữ số, vị trí hoặc ký tự, nên được trọn điểm tối đa 0.25.",
+    119997,
+    25010
+  ],
+  "HS_24_3": [
+    0.25,
+    "{T3_main_s1} Bài làm học sinh là '21', không khớp chính xác với đáp án kỳ vọng '24'. Theo tiêu chí, phải ghi CHÍNH XÁC chỉ số thứ tự, không chấp nhận sai sót ký tự nào, nên không đạt điểm. | {T3_main_s2} Bài làm học sinh '35716' hoàn toàn trùng khớp với đáp án kỳ vọng '35716' về giá trị, định dạng và độ dài. Không có sai sót nào nên đạt điểm tối đa.",
+    126463,
+    26849
+  ],
+  "HS_26_3": [
+    0.25,
+    "{T3_main_s1} Bài làm học sinh in ra chuỗi \"30\" trong khi đáp án kỳ vọng là \"26\". Theo yêu cầu byte-exact, không có sự khớp hoàn toàn nên không đạt điểm. | {T3_main_s2} Bài làm học sinh khớp hoàn toàn với đáp án kỳ vọng '46817'. Theo tiêu chí, chỉ sai 1 hoặc 2 chữ số mới được 0.25 điểm, nhưng học sinh đúng hoàn toàn → nên được điểm tối đa 0.25 (vì điểm tối đa của câu là 0.25).",
+    129039,
+    28979
+  ],
+  "HS_28_3": [
+    0.0,
+    "{T3_main_s1} Bài làm học sinh là '3', trong khi đáp án kỳ vọng là '28'. Theo tiêu chí, phải ghi chính xác chỉ số thứ tự không thêm ký tự nào, nên không có sự khớp nào về giá trị hay định dạng. | {T3_main_s2} Student left this part blank.",
+    80587,
+    13195
+  ],
+  "HS_29_3": [
+    0.25,
+    "{T3_main_s1} Học sinh ghi số 32 thay vì 29, không khớp chính xác với chỉ số thứ tự yêu cầu. Theo tiêu chí chấm, phải đúng hoàn toàn về giá trị và định dạng, không chấp nhận sai sót nào. | {T3_main_s2} Bài làm học sinh là '24615', khớp hoàn toàn với đáp án kỳ vọng. Theo tiêu chí, điểm tối đa của câu này là 0.25 và học sinh đã đạt đúng yêu cầu nên được trọn điểm.",
+    118785,
+    23597
+  ],
+  "HS_30_3": [
+    0.0,
+    "{T3_main_s1} Student left this part blank. | {T3_main_s2} Bài làm học sinh là chuỗi 5 chữ số hợp lệ, nhưng không có đáp án kỳ vọng cụ thể để so sánh. Không thể xác định số lượng chữ số sai → không thể áp dụng quy tắc bán phần. Theo nguyên tắc chấm thi, không khớp 100% với đáp án kỳ vọng → 0 điểm.",
+    120048,
+    18527
+  ],
+  "HS_32_3": [
+    0.25,
+    "{T3_main_s1} Học sinh ghi số 35 thay vì 32 như yêu cầu. Tiêu chí yêu cầu chính xác tuyệt đối, không chấp nhận sai lệch giá trị nào. | {T3_main_s2} Bài làm học sinh khớp hoàn toàn với đáp án kỳ vọng (57918), không có sai sót nào về chữ số. Theo tiêu chí, điểm tối đa cho câu này là 0.25, nên học sinh được trọn điểm.",
+    158024,
+    24565
+  ],
+  "HS_34_3": [
+    0.0,
+    "{T3_main_s1} Bài làm học sinh là '3', trong khi đáp án kỳ vọng là '34'. Theo tiêu chí, phải ghi chính xác chỉ số thứ tự mà không được thiếu hoặc thêm ký tự nào. Bài làm thiếu một chữ số nên bị chấm 0 điểm. | {T3_main_s2} Student left this part blank.",
+    83635,
+    12972
+  ],
+  "HS_36_3": [
+    0.25,
+    "{T3_main_s1} Student left this part blank. | {T3_main_s2} Bài làm học sinh là '57918', đây là đầu ra đúng khi a%4=3. Vì đáp án phụ thuộc số thứ tự sinh viên, và nếu sinh viên có a%4=3 thì bài làm đúng hoàn toàn → đạt 0.25 điểm (điểm tối đa). Mặc dù không biết a cụ thể, nhưng trong hệ thống chấm, nếu sinh viên có a%4=3 thì sẽ được 0.25 điểm.",
+    211790,
+    32687
+  ],
+  "HS_39_3": [
+    0.25,
+    "{T3_main_s1} Bài làm học sinh là '14', trong khi đáp án kỳ vọng là '39'. Tiêu chí chấm yêu cầu khớp chính xác byte-by-byte, không chấp nhận bất kỳ sự lệch lạc nào về giá trị hoặc ký tự. | {T3_main_s2} Bài làm học sinh '46817' hoàn toàn khớp với đáp án kỳ vọng về nội dung, độ dài và định dạng. Không có sai sót nào, do đó đạt điểm tối đa theo tiêu chí.",
+    135724,
+    24719
+  ],
+  "HS_2_4": [
+    0.25,
+    "{T4} Bài làm học sinh in ra chuỗi \"41211\", chỉ khớp với token đầu tiên '4' trong đáp án kỳ vọng \"40\". Theo quy tắc bán phần, khi có đúng 1 token khớp, được chấm 0.25 điểm.",
+    74044,
+    14236
+  ],
+  "HS_3_4": [
+    0.25,
+    "{T4} Học sinh in ra '4', khớp đúng với token đầu tiên '4' trong đáp án kỳ vọng '40', nhưng thiếu token thứ hai '0'. Theo quy tắc điểm bán phần, đúng 1/2 token nên được 0.25 điểm.",
+    54103,
+    11984
+  ],
+  "HS_7_4": [
+    0.5,
+    "{T4} Bài làm học sinh là '40', hoàn toàn trùng khớp với đáp án kỳ vọng về mặt ký tự và định dạng. Theo quy tắc bán phần, đúng cả hai token '4' và '0' nên đạt điểm tối đa 0.5.",
+    63686,
+    12245
+  ],
+  "HS_9_4": [
+    0.5,
+    "{T4} Bài làm học sinh là '40', khớp hoàn toàn với đáp án kỳ vọng '40'. Cả hai token '4' và '0' đều đúng, nên đạt điểm tối đa 0.5 theo tiêu chí chấm.",
+    58565,
+    11709
+  ],
+  "HS_10_4": [
+    0.5,
+    "{T4} Học sinh in ra chuỗi \"40\" hoàn toàn khớp với đáp án kỳ vọng. Đáp án kỳ vọng gồm hai token '4' và '0', học sinh cung cấp cả hai → đạt điểm tối đa 0.5.",
+    86069,
+    13875
+  ],
+  "HS_12_4": [
+    0.0,
+    "{T4} Bài làm học sinh là '1227', không khớp với đáp án kỳ vọng '40' về cả nội dung và định dạng. Không có token nào trong ['4', '0'] xuất hiện trong bài làm, do đó không đủ điều kiện để nhận điểm bán phần.",
+    60560,
+    12343
+  ],
+  "HS_15_4": [
+    0.5,
+    "{T4} Bài làm học sinh in ra đúng chuỗi \"40\" hoàn toàn khớp với đáp án kỳ vọng, đúng cả hai token '4' và '0', nên đạt điểm tối đa 0.5.",
+    58217,
+    11000
+  ],
+  "HS_17_4": [
+    0.25,
+    "{T4} Học sinh in ra chuỗi '41222', chỉ khớp đúng 1 trong 2 token của đáp án kỳ vọng '40' (ký tự '4'). Theo quy tắc chấm điểm, đúng 1 token được 0.25 điểm.",
+    61567,
+    13214
+  ],
+  "HS_18_4": [
+    0.25,
+    "{T4} Bài làm học sinh in ra chuỗi \"41218\", chỉ khớp với token đầu tiên '4' trong danh sách token kỳ vọng ['4','0']. Theo quy tắc điểm bán phần, khi đúng 1 token → được 0.25 điểm.",
+    113160,
+    13846
+  ],
+  "HS_19_4": [
+    0.25,
+    "{T4} Học sinh in ra chuỗi '41217', chỉ khớp đúng token đầu tiên '4' trong đáp án kỳ vọng '40'. Theo quy tắc bán phần, mỗi token được xét riêng, nên học sinh được 0.25 điểm vì đúng 1/2 token.",
+    75741,
+    13856
+  ],
+  "HS_21_4": [
+    0.5,
+    "{T4} Bài làm học sinh là \"40\", khớp chính xác với đáp án kỳ vọng và chứa đầy đủ cả hai token '4' và '0', do đó đạt điểm tối đa theo tiêu chí chấm.",
+    64256,
+    11757
+  ],
+  "HS_24_4": [
+    0.5,
+    "{T4} Bài làm học sinh in ra chuỗi \"40\" khớp hoàn toàn với đáp án kỳ vọng. Phân tích theo token cho thấy cả hai token '4' và '0' đều đúng, đạt đủ điều kiện để được 0.5 điểm theo quy tắc chấm.",
+    66941,
+    12280
+  ],
+  "HS_26_4": [
+    0.5,
+    "{T4} Bài làm học sinh in ra chuỗi '41204', chứa cả hai token '4' và '0' như yêu cầu trong đáp án kỳ vọng. Theo quy tắc chấm điểm token-based, học sinh đạt đúng 2/2 token khớp → được 0.5 điểm tối đa.",
+    70809,
+    13399
+  ],
+  "HS_28_4": [
+    0.25,
+    "{T4} Học sinh in ra chuỗi '41233', chỉ khớp đúng token đầu tiên '4' so với đáp án kỳ vọng '40'. Theo quy tắc điểm bán phần, mỗi token đúng được 0.25 điểm, nên đạt 0.25/0.5.",
+    56002,
+    13133
+  ],
+  "HS_29_4": [
+    0.5,
+    "{T4} Bài làm học sinh là '40', hoàn toàn khớp với đáp án kỳ vọng về byte-exact và bao gồm cả hai token '4' và '0'. Theo quy tắc điểm bán phần, đạt đủ 2 token nên được điểm tối đa 0.5.",
+    45411,
+    11032
+  ],
+  "HS_30_4": [
+    0.5,
+    "{T4} Bài làm học sinh in ra chuỗi '40' khớp hoàn toàn với đáp án kỳ vọng. Cả hai token '4' và '0' đều đúng, đạt điểm tối đa theo quy tắc bán phần (đúng 1 token được 0.25, đúng 2 token → 0.5).",
+    44583,
+    11500
+  ],
+  "HS_32_4": [
+    0.25,
+    "{T4} Học sinh in ra chuỗi '4', chỉ khớp với token đầu tiên '4' trong đáp án kỳ vọng '40'. Theo quy tắc điểm bán phần, đúng 1/2 token nên được 0.25 điểm.",
+    50315,
+    12325
+  ],
+  "HS_34_4": [
+    0.5,
+    "{T4} Bài làm học sinh in ra chuỗi '40' hoàn toàn khớp với đáp án kỳ vọng. Cả hai token '4' và '0' đều đúng, nên đạt điểm tối đa theo quy tắc chấm.",
+    44362,
+    11184
+  ],
+  "HS_36_4": [
+    0.5,
+    "{T4} Bài làm học sinh là \"40\", khớp hoàn toàn với đáp án kỳ vọng theo định dạng chuỗi ký tự, đúng cả hai token '4' và '0', thỏa mãn điều kiện đạt điểm tối đa.",
+    42797,
+    11633
+  ],
+  "HS_39_4": [
+    0.5,
+    "{T4} Bài làm học sinh in ra chuỗi '40' khớp hoàn toàn với đáp án kỳ vọng, đúng cả hai token ['4', '0'], nên đạt điểm tối đa 0.5.",
+    56112,
+    12698
+  ],
+  "HS_2_5": [
+    0.5,
+    "{T5} Bài làm học sinh in ra chuỗi '1055' khớp hoàn toàn với đáp án kỳ vọng về mặt ký tự (byte-exact). Theo quy tắc điểm bán phần, học sinh đúng 3/3 token ['10', '5', '5'] → đạt điểm tối đa 0.5.",
+    50941,
+    11395
+  ],
+  "HS_3_5": [
+    0.0,
+    "{T5} Bài làm '9113' không khớp với đáp án kỳ vọng '1055'. Không có token nào trong danh sách ['10', '5', '5'] xuất hiện đúng trong bài làm, do đó không đủ điều kiện để nhận 0.25 điểm bán phần.",
+    60437,
+    13858
+  ],
+  "HS_7_5": [
+    0.5,
+    "{T5} Bài làm học sinh là '1055', khớp hoàn toàn với đáp án kỳ vọng và đúng tất cả 3 token ('10', '5', '5'), do đó đạt điểm tối đa 0.5.",
+    45516,
+    11791
+  ],
+  "HS_9_5": [
+    0.5,
+    "{T5} Bài làm học sinh ghi đúng kết quả kỳ vọng là '1055' hoàn toàn khớp byte-by-byte và đúng 3/3 token theo tiêu chí chấm, nên đạt điểm tối đa 0.5.",
+    52461,
+    13023
+  ],
+  "HS_10_5": [
+    0.25,
+    "{T5} Bài làm học sinh '1051' khớp với 2/3 token của đáp án kỳ vọng '1055' (token '10' và '5'), do đó được áp dụng quy tắc bán phần và nhận 0.25 điểm theo tiêu chí đã cho.",
+    53393,
+    12777
+  ],
+  "HS_12_5": [
+    0.0,
+    "{T5} Học sinh ghi kết quả là \"10 3 1\", chỉ khớp 1/3 token với đáp án kỳ vọng [\"10\", \"5\", \"5\"], không đủ điều kiện để được 0.25 điểm theo quy tắc bán phần. Không khớp chuỗi byte-exact \"1055\" nên không được điểm đầy đủ.",
+    94344,
+    18371
+  ],
+  "HS_15_5": [
+    0.5,
+    "{T5} Bài làm học sinh ghi đúng kết quả '1055', khớp hoàn toàn với đáp án kỳ vọng và đúng 3/3 token theo quy tắc chấm điểm, nên đạt điểm tối đa.",
+    57322,
+    12631
+  ],
+  "HS_17_5": [
+    0.25,
+    "{T5} Học sinh ghi kết quả '1053', khớp với 2/3 token của đáp án kỳ vọng '1055' (token '10' và '5'), nên được 0.25 điểm theo quy tắc bán phần.",
+    66405,
+    13517
+  ],
+  "HS_18_5": [
+    0.5,
+    "{T5} Bài làm học sinh ghi đúng hoàn toàn kết quả '1055' như yêu cầu, khớp 100% về ký tự và định dạng. Đáp án đúng cả 3 token theo quy tắc bán phần, nên đạt điểm tối đa.",
+    58575,
+    11522
+  ],
+  "HS_19_5": [
+    0.0,
+    "{T5} Bài làm học sinh in ra chuỗi '2101' không khớp với đáp án kỳ vọng '1055'. Không có token nào trong bài làm khớp với các token ['10', '5', '5'] của đáp án, nên không đạt điều kiện bán phần (correct_token_count = 0).",
+    104130,
+    14477
+  ],
+  "HS_21_5": [
+    0.0,
+    "{T5} Bài làm học sinh là '1011', chỉ khớp với 1/3 token ('10') so với đáp án kỳ vọng '1055'. Theo quy tắc bán phần, cần đúng ít nhất 2 token mới được 0.25 điểm, nên không đạt điều kiện.",
+    71904,
+    13599
+  ],
+  "HS_24_5": [
+    0.5,
+    "{T5} Học sinh đã ghi đúng kết quả kỳ vọng \"1055\" hoàn toàn khớp về chuỗi ký tự và đúng cả 3 token được định nghĩa trong tiêu chí chấm điểm, nên đạt điểm tối đa.",
+    72311,
+    12345
+  ],
+  "HS_26_5": [
+    0.25,
+    "{T5} Học sinh ghi kết quả 1052, sai ở token cuối (5 thay vì 2). Theo phân tích token ['10','5','5'], học sinh đúng 2/3 token → được 0.25 điểm theo quy tắc bán phần.",
+    58012,
+    11984
+  ],
+  "HS_28_5": [
+    0.25,
+    "{T5} Học sinh ghi kết quả '155', không khớp hoàn toàn với đáp án '1055'. Theo quy tắc bán phần, đáp án được chia thành các token ['10', '5', '5'], học sinh đúng 2/3 token ('5' và '5'), nên được 0.25 điểm.",
+    78648,
+    14810
+  ],
+  "HS_29_5": [
+    0.0,
+    "{T5} Student left this part blank.",
+    1,
+    0
+  ],
+  "HS_30_5": [
+    0.25,
+    "{T5} Học sinh ghi kết quả '105', khớp với 2/3 token trong đáp án kỳ vọng ['10', '5', '5'], nên được 0.25 điểm theo quy tắc bán phần đã cho.",
+    76386,
+    13505
+  ],
+  "HS_32_5": [
+    0.0,
+    "{T5} Bài làm học sinh là '1022', không khớp với đáp án kỳ vọng '1055'. Theo quy tắc bán phần, học sinh chỉ đúng 1 token ('10') trong tổng 3 token, chưa đủ điều kiện đúng 2 token để được 0.25 điểm.",
+    72756,
+    14301
+  ],
+  "HS_34_5": [
+    0.5,
+    "{T5} Bài làm học sinh là '1055', hoàn toàn khớp với đáp án kỳ vọng và đúng cả 3 token ['10','5','5'], nên đạt điểm tối đa 0.5.",
+    63714,
+    13488
+  ],
+  "HS_36_5": [
+    0.5,
+    "{T5} Bài làm học sinh ghi đúng kết quả kỳ vọng '1055', khớp hoàn toàn với danh sách token ['10','5','5'] theo quy tắc điểm bán phần, nên đạt điểm tối đa 0.5.",
+    98109,
+    13711
+  ],
+  "HS_39_5": [
+    0.5,
+    "{T5} Học sinh đã ghi đúng kết quả '1055' hoàn toàn khớp với đáp án kỳ vọng và đúng cả 3 token ['10', '5', '5'], nên được điểm tối đa 0.5.",
+    79150,
+    12194
+  ],
+  "HS_2_6": [
+    0.5,
+    "{T6} Bài làm học sinh là '4', khớp hoàn toàn với đáp án kỳ vọng về mặt văn bản (byte-exact). Học sinh đã đưa ra kết quả đúng mà chương trình sẽ in ra, tuân thủ nghiêm ngặt tiêu chí chấm điểm.",
+    58241,
+    11652
+  ],
+  "HS_3_6": [
+    0.0,
+    "{T6} Học sinh nộp kết quả là '9' thay vì '4' như yêu cầu. Theo tiêu chí chấm, đáp án phải chính xác byte-by-byte và không chấp nhận bất kỳ sai lệch nào.",
+    71985,
+    11281
+  ],
+  "HS_7_6": [
+    0.5,
+    "{T6} Bài làm học sinh là chuỗi \"4\" khớp hoàn toàn với đáp án kỳ vọng theo yêu cầu giáo viên, không có lỗi định dạng hay ký tự thừa.",
+    47651,
+    9945
+  ],
+  "HS_9_6": [
+    0.5,
+    "{T6} Bài làm học sinh là chuỗi \"4\" khớp hoàn toàn với đáp án kỳ vọng theo nguyên tắc byte-exact, và kết quả logic của chương trình cũng dẫn đến giá trị đúng, dù có lỗi thiết kế trong hàm input.",
+    43422,
+    11098
+  ],
+  "HS_10_6": [
+    0.5,
+    "{T6} Bài làm học sinh in ra chính xác chuỗi \"4\", hoàn toàn khớp với đáp án kỳ vọng theo tiêu chí chấm. Không có sai sót về định dạng, ký tự hoặc khoảng trắng.",
+    39863,
+    10528
+  ],
+  "HS_12_6": [
+    0.0,
+    "{T6} Bài làm học sinh in ra chuỗi '4532' thay vì '4' như yêu cầu. Tiêu chí chấm yêu cầu byte-exact match và không có quy tắc điểm bán phần, nên không được trao điểm.",
+    54902,
+    12944
+  ],
+  "HS_15_6": [
+    0.0,
+    "{T6} Bài làm học sinh in ra '1' thay vì '4' như yêu cầu. Theo tiêu chí chấm, đáp án phải luôn là '4' và không chấp nhận bất kỳ giá trị nào khác, do đó kết quả không khớp byte-exact → chấm 0 điểm.",
+    48144,
+    11311
+  ],
+  "HS_17_6": [
+    0.0,
+    "{T6} Học sinh trả lời '1' thay vì '4', không khớp với đáp án kỳ vọng. Hàm function thực tế trả về 4 khi đầu vào là 45321, và hàm input không ảnh hưởng đến biến a do truyền tham trị.",
+    50418,
+    11297
+  ],
+  "HS_18_6": [
+    0.5,
+    "{T6} Bài làm học sinh in ra chuỗi '4' hoàn toàn khớp byte-by-byte với đáp án kỳ vọng, thỏa mãn tiêu chí 'đáp án luôn là 4, bất chấp số thứ tự'. Không có lỗi định dạng hay ký tự thừa.",
+    56006,
+    11260
+  ],
+  "HS_19_6": [
+    0.5,
+    "{T6} Bài làm học sinh in ra chuỗi \"4\" khớp hoàn toàn với đáp án kỳ vọng theo yêu cầu byte-exact. Không có sai lệch về ký tự, khoảng trắng hoặc định dạng.",
+    41658,
+    9886
+  ],
+  "HS_21_6": [
+    0.5,
+    "{T6} Bài làm học sinh là chuỗi '4', khớp hoàn toàn với đáp án kỳ vọng theo nguyên tắc byte-exact, không có sai sót về định dạng hay ký tự.",
+    42928,
+    10210
+  ],
+  "HS_24_6": [
+    0.5,
+    "{T6} Bài làm học sinh là '4', hoàn toàn khớp byte-by-byte với đáp án kỳ vọng, tuân thủ nghiêm ngặt yêu cầu 'đáp án luôn là 4, bất chấp số thứ tự'. Không có lỗi định dạng hay nội dung.",
+    35754,
+    9463
+  ],
+  "HS_26_6": [
+    0.0,
+    "{T6} Học sinh in ra '2' thay vì '4' như yêu cầu cứng nhắc của giáo viên. Không có sự khớp 100% về byte-by-byte với đáp án kỳ vọng.",
+    60690,
+    11829
+  ],
+  "HS_28_6": [
+    0.5,
+    "{T6} Bài làm học sinh là '4', khớp hoàn toàn với đáp án kỳ vọng theo yêu cầu byte-exact, không có sai sót về định dạng hay nội dung.",
+    44859,
+    10491
+  ],
+  "HS_29_6": [
+    0.5,
+    "{T6} Bài làm học sinh xuất ra chuỗi '4', khớp hoàn toàn byte-exact với đáp án kỳ vọng '4'. Thỏa mãn đầy đủ tiêu chí chấm và nguyên tắc chấm kết quả chương trình.",
+    61564,
+    11257
+  ],
+  "HS_30_6": [
+    0.5,
+    "{T6} Bài làm học sinh là '4', khớp hoàn toàn với đáp án kỳ vọng theo yêu cầu byte-exact. Dù có phần 'bẫy' về việc nhập số thứ tự, nhưng do hàm input không thay đổi biến a, nên kết quả luôn là 4 – đúng như tiêu chí.",
+    58743,
+    11302
+  ],
+  "HS_32_6": [
+    0.0,
+    "{T6} Bài làm học sinh xuất ra '2' trong khi đáp án kỳ vọng là '4'. Theo tiêu chí chấm, kết quả phải luôn là 4 bất chấp đầu vào, do đó không khớp 100% và không được chấm điểm.",
+    50194,
+    11991
+  ],
+  "HS_34_6": [
+    0.5,
+    "{T6} Bài làm học sinh là '4', khớp hoàn toàn với đáp án kỳ vọng theo tiêu chí chấm (byte-exact). Dù có mâu thuẫn tiềm tàng với logic chương trình, nhưng tiêu chí chấm yêu cầu kết quả luôn là 4, nên học sinh đã tuân thủ đúng.",
+    43771,
+    10844
+  ],
+  "HS_36_6": [
+    0.5,
+    "{T6} Bài làm học sinh là chuỗi \"4\" khớp hoàn toàn byte-exact với đáp án kỳ vọng theo tiêu chí chấm được đưa ra. Không có lỗi định dạng, ký tự thừa hoặc thiếu.",
+    48978,
+    10570
+  ],
+  "HS_39_6": [
+    0.5,
+    "{T6} Bài làm học sinh xuất ra chuỗi '4' hoàn toàn khớp byte-exact với đáp án kỳ vọng, tuân thủ nghiêm ngặt tiêu chí chấm điểm đã đưa ra.",
+    58144,
+    11230
+  ],
+  "HS_2_7": [
+    0.0,
+    "{T7} Bài làm học sinh in ra \"20\" thay vì đáp án kỳ vọng \"8\". Theo yêu cầu, chỉ chấp nhận chuỗi output byte-exact, không có điểm bán phần nên không được điểm.",
+    65645,
+    11811
+  ],
+  "HS_3_7": [
+    0.0,
+    "{T7} Học sinh đưa ra kết quả \"9\" thay vì \"8\" – giá trị đúng của funcS(5). Yêu cầu chấm điểm là khớp byte-exact, không chấp nhận sai số hoặc định dạng khác. Không có quy tắc điểm bán phần nên chấm 0 điểm.",
+    79470,
+    13497
+  ],
+  "HS_7_7": [
+    0.0,
+    "{T7} Học sinh đưa ra kết quả '35' trong khi đáp án kỳ vọng là '8'. Không có sự khớp byte-exact nào giữa bài làm và đáp án, và không có quy tắc bán phần được cung cấp.",
+    74849,
+    13029
+  ],
+  "HS_9_7": [
+    0.0,
+    "{T7} Bài làm học sinh in ra \"10\" thay vì \"8\", không khớp 100% với đáp án kỳ vọng theo yêu cầu byte-exact match. Không có quy tắc điểm bán phần nên chấm 0 điểm.",
+    60498,
+    12474
+  ],
+  "HS_10_7": [
+    0.0,
+    "{T7} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_12_7": [
+    0.0,
+    "{T7} Bài làm học sinh in ra \"6\" trong khi đáp án kỳ vọng là \"8\". Theo tiêu chí chấm, kết quả phải khớp 100% về byte, không chấp nhận điểm bán phần.",
+    66022,
+    13067
+  ],
+  "HS_15_7": [
+    0.5,
+    "{T7} Bài làm học sinh là \"8\", hoàn toàn trùng khớp với đáp án kỳ vọng và kết quả thực tế của chương trình. Không có lỗi định dạng hay giá trị nào.",
+    56066,
+    11967
+  ],
+  "HS_17_7": [
+    0.5,
+    "{T7} Bài làm học sinh là \"8\", hoàn toàn trùng khớp với đáp án kỳ vọng về giá trị và định dạng, không có ký tự thừa hoặc thiếu. Học sinh đã dự đoán đúng kết quả của funcS(5) theo logic đệ quy được cung cấp.",
+    51133,
+    10802
+  ],
+  "HS_18_7": [
+    0.5,
+    "{T7} Bài làm học sinh là chuỗi \"8\" hoàn toàn trùng khớp với đáp án kỳ vọng, không có ký tự thừa hoặc thiếu. Kết quả tính toán của hàm funcS(5) cũng đúng và được in ra màn hình chính xác.",
+    58868,
+    11549
+  ],
+  "HS_19_7": [
+    0.5,
+    "{T7} Bài làm học sinh là chuỗi \"8\", khớp hoàn toàn với đáp án kỳ vọng theo yêu cầu byte-exact. Học sinh đã tính toán đúng giá trị của funcS(5) và đưa ra kết quả chính xác, không có sai sót về định dạng hay nội dung.",
+    61854,
+    11695
+  ],
+  "HS_21_7": [
+    0.0,
+    "{T7} Bài làm học sinh in ra \"9\" thay vì \"8\" — không khớp 100% với đáp án kỳ vọng theo nguyên tắc chấm byte-exact. Không có quy tắc điểm bán phần nên không được cộng điểm dù giá trị số bên trong có thể gần đúng.",
+    103573,
+    13896
+  ],
+  "HS_24_7": [
+    0.0,
+    "{T7} Bài làm học sinh in ra \"10\" thay vì đáp án kỳ vọng \"8\", không khớp byte-exact. Không có quy tắc điểm bán phần nên không được điểm.",
+    66513,
+    11604
+  ],
+  "HS_26_7": [
+    0.0,
+    "{T7} Bài làm học sinh đưa ra kết quả '4' thay vì '8', không khớp 100% với đáp án kỳ vọng. Không có quy tắc điểm bán phần nên không được chấm điểm dù có thể học sinh đã hiểu một phần logic.",
+    87637,
+    13640
+  ],
+  "HS_28_7": [
+    0.0,
+    "{T7} Bài làm học sinh in ra \"0\" thay vì đáp án kỳ vọng \"8\". Theo tiêu chí, phải khớp chính xác 100% về chuỗi output, không có điểm bán phần nên chấm 0 điểm.",
+    70163,
+    12788
+  ],
+  "HS_29_7": [
+    0.5,
+    "{T7} Bài làm học sinh là \"8\" hoàn toàn khớp với đáp án kỳ vọng về mặt chuỗi ký tự (byte-exact). Không có ký tự thừa hoặc thiếu, và giá trị tính toán cũng đúng.",
+    48725,
+    10538
+  ],
+  "HS_30_7": [
+    0.5,
+    "{T7} Bài làm học sinh là \"8\", hoàn toàn khớp với đáp án kỳ vọng về giá trị và định dạng. Không có lỗi về logic, định dạng hay ký tự thừa.",
+    43694,
+    10676
+  ],
+  "HS_32_7": [
+    0.0,
+    "{T7} Bài làm học sinh đưa ra kết quả là \"7\" trong khi đáp án kỳ vọng là \"8\", không khớp 100% theo nguyên tắc chấm byte-exact. Không có quy tắc bán phần nên không thể cộng điểm.",
+    55310,
+    11474
+  ],
+  "HS_34_7": [
+    0.5,
+    "{T7} Bài làm học sinh là \"8\", hoàn toàn khớp với đáp án kỳ vọng theo yêu cầu byte-exact. Không có sai sót về định dạng, ký tự hoặc giá trị.",
+    54384,
+    10905
+  ],
+  "HS_36_7": [
+    0.5,
+    "{T7} Bài làm học sinh là \"8\" hoàn toàn khớp với đáp án kỳ vọng được cung cấp. Dù phân tích logic chương trình cho kết quả 12, nhưng theo nguyên tắc chấm thi, phải tuân thủ đáp án kỳ vọng do giáo viên xác định.",
+    62261,
+    12401
+  ],
+  "HS_39_7": [
+    0.5,
+    "{T7} Bài làm học sinh là \"8\", hoàn toàn khớp với đáp án kỳ vọng theo yêu cầu byte-exact. Không có sai sót về định dạng, ký tự hoặc nội dung.",
+    55898,
+    11641
+  ],
+  "HS_2_8": [
+    0.5,
+    "{T8_main_s1} Bài làm học sinh là '23', không khớp 100% với đáp án kỳ vọng '2' về mặt byte-exact. Không có quy tắc bán phần nên không được cộng điểm. | {T8_main_s2} Bài làm học sinh hoàn toàn trùng khớp với đáp án kỳ vọng về mặt ký tự, bao gồm cả khoảng trắng và thứ tự. Đúng 4/4 số nên đạt điểm tối đa theo tiêu chí.",
+    158499,
+    31746
+  ],
+  "HS_3_8": [
+    0.0,
+    "{T8_main_s1} Bài làm học sinh là '3' và đáp án kỳ vọng cũng là '3', khớp hoàn toàn về byte. Tuy nhiên, điểm tối đa cho câu này là 0, do đó điểm nhận được là 0. | {T8_main_s2} Bài làm học sinh sai về định dạng (dùng newline thay vì space) và sai về giá trị (địa chỉ và số cuối). Theo tiêu chí, phải khớp byte-exact, không chấp nhận định dạng sai dù có 2 token đúng.",
+    185435,
+    38045
+  ],
+  "HS_7_8": [
+    0.5,
+    "{T8_main_s1} Học sinh nhập sai giá trị c (26 thay vì 7), dẫn đến kết quả chương trình sai. Bài làm '26' không khớp với đáp án kỳ vọng '7', và không có quy tắc điểm bán phần nên chấm 0 điểm. | {T8_main_s2} Bài làm học sinh hoàn toàn khớp với đáp án kỳ vọng về chuỗi output: '0x505294 8 0 -2', không có lỗi định dạng hay sai sót nào. Đạt đủ 4 số đúng, nên được điểm tối đa theo tiêu chí.",
+    134397,
+    30981
+  ],
+  "HS_9_8": [
+    0.25,
+    "{T8_main_s1} Sinh viên ghi số thứ tự 28, dẫn đến giá trị đầu vào c=28. Khi chạy chương trình với c=28, kết quả cuối cùng là -6, không khớp với đáp án kỳ vọng là 9. Không có điểm bán phần và không chấp nhận tương đương → chấm 0 điểm. | {T8_main_s2} Học sinh đúng 3/4 token trong output (8, 0, -6), chỉ sai địa chỉ bộ nhớ đầu tiên (0x505294 → 0x505288). Theo tiêu chí chấm, đúng 2 hoặc 3 trong 4 số được 0.25 điểm.",
+    185511,
+    35245
+  ],
+  "HS_10_8": [
+    0.0,
+    "{T8_main_s1} Bài làm học sinh là '5', không khớp với đáp án kỳ vọng '10' theo yêu cầu byte-exact. Mặc dù tiêu chí nói không chấm điểm, nhưng hệ thống đã thiết lập điểm tối đa = 0 và yêu cầu khớp chính xác, nên chấm 0 điểm là phù hợp. | {T8_main_s2} Student left this part blank.",
+    91480,
+    17323
+  ],
+  "HS_12_8": [
+    0.0,
+    "{T8_main_s1} Bài làm học sinh ghi '7' nhưng đáp án kỳ vọng là '12'. Không khớp 100% về byte, không có quy tắc điểm bán phần nên chấm 0 điểm. | {T8_main_s2} Bài làm sai định dạng đầu ra (4 dòng thay vì 1 dòng với khoảng trắng) và sai giá trị ở token 1 và 4, dù có 2 token đúng về giá trị. Theo tiêu chí, không được áp dụng quy tắc bán phần do không khớp đầy đủ về định dạng và nội dung.",
+    193454,
+    39866
+  ],
+  "HS_15_8": [
+    0.5,
+    "{T8_main_s1} Phần này không tính điểm theo tiêu chí, nhưng bài làm không khớp với đáp án kỳ vọng (10 ≠ 15). Vì điểm tối đa là 0 và không có quy tắc bán phần, nên chấm 0 điểm. | {T8_main_s2} Bài làm học sinh khớp hoàn toàn với đáp án kỳ vọng về giá trị và định dạng: '0x505294 8 0 -2'. Đúng 4/4 số, nên đạt điểm tối đa theo tiêu chí.",
+    149316,
+    33916
+  ],
+  "HS_17_8": [
+    0.0,
+    "{T8_main_s1} Bài làm học sinh là '12', không khớp 100% với đáp án kỳ vọng '17'. Theo nguyên tắc chấm điểm byte-exact, không có điểm nào được trích. | {T8_main_s2} Bài làm không khớp với đáp án kỳ vọng về cả giá trị, định dạng và cấu trúc output. Không có token nào khớp byte-exact, và học sinh in ra 2 dòng thay vì 1 dòng duy nhất gồm 4 số.",
+    185335,
+    35081
+  ],
+  "HS_18_8": [
+    0.25,
+    "{T8_main_s1} Bài làm học sinh in ra '16' không khớp 100% với đáp án kỳ vọng '18'. Theo nguyên tắc chấm điểm byte-exact, kết quả sai hoàn toàn nên chấm 0 điểm. | {T8_main_s2} Học sinh có 2 trong 4 token khớp chính xác với đáp án kỳ vọng (token 3 và 4), thỏa mãn điều kiện quy tắc bán phần được nêu rõ: đúng 2 hoặc 3 trong 4 số thì được 0.25 điểm. Token 1 và 2 sai về giá trị, không chấp nhận tương đương do yêu cầu byte-exact.",
+    166184,
+    30878
+  ],
+  "HS_19_8": [
+    0.25,
+    "{T8_main_s1} Tiêu chí chấm không tính điểm (điểm tối đa = 0), do đó dù bài làm học sinh là 17 và đáp án kỳ vọng là 19, thì điểm vẫn là 0. Không có cơ sở để cộng điểm nào. | {T8_main_s2} Học sinh đúng 2/4 token trong output (0x505294 và 8), sai 2 token còn lại (token 3: -4 thay vì 0, token 4: 6 thay vì -4). Theo quy tắc bán phần, đúng 2 hoặc 3 số được 0.25 điểm.",
+    158766,
+    31616
+  ],
+  "HS_21_8": [
+    0.0,
+    "{T8_main_s1} Bài làm học sinh ghi '19' thay vì đáp án kỳ vọng '21', không khớp 100% về ký tự. Tiêu chí không tính điểm và không có quy tắc điểm bán phần nên không thể chấm điểm trung gian. | {T8_main_s2} Học sinh chỉ khớp đúng 1/4 số trong chuỗi kết quả yêu cầu (chỉ số cuối cùng là '0'). Theo tiêu chí chấm, cần đúng 2 hoặc 3 trong 4 số mới được 0.25 điểm; do đó không đủ điều kiện để nhận điểm bán phần.",
+    182297,
+    31801
+  ],
+  "HS_24_8": [
+    0.25,
+    "{T8_main_s1} Bài làm học sinh ghi '21', đáp án kỳ vọng là '24', không khớp byte-exact. Điểm tối đa là 0, nhưng theo nguyên tắc chấm điểm, không khớp → chấm 0 điểm. | {T8_main_s2} Học sinh in đúng 3/4 token trong chuỗi output kỳ vọng (0x505294, 8, 0), nhưng sai token cuối (0 thay vì -4). Theo quy tắc chấm điểm, đúng 2 hoặc 3 token được 0.25 điểm.",
+    174566,
+    36712
+  ],
+  "HS_26_8": [
+    0.0,
+    "{T8_main_s1} Bài làm học sinh cho kết quả đầu ra là 30, không khớp với đáp án kỳ vọng 26. Theo yêu cầu byte-exact và không có điểm bán phần, kết quả sai hoàn toàn nên chấm 0 điểm. | {T8_main_s2} Bài làm học sinh in ra chuỗi '0x505298 -1 8 6' hoàn toàn không khớp với đáp án kỳ vọng '0x505294 8 0 -2' về cả giá trị và thứ tự. Không có token nào đúng, do đó không đủ điều kiện bán phần (đúng 2 hoặc 3 số) để được 0.25 điểm.",
+    154281,
+    33940
+  ],
+  "HS_28_8": [
+    0.0,
+    "{T8_main_s1} Student left this part blank. | {T8_main_s2} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_29_8": [
+    0.25,
+    "{T8_main_s1} Bài làm học sinh là '32', không khớp 100% với đáp án kỳ vọng '29'. Không có quy tắc điểm bán phần nên không được điểm. Học sinh có thể đã ghi đầu vào thay vì kết quả đầu ra của chương trình. | {T8_main_s2} Học sinh đúng 2/4 token (token 3 và 4), sai token 1 (địa chỉ) và token 2 (*(&a) = 8 nhưng học sinh ghi -3). Theo tiêu chí, đúng 2 hoặc 3/4 số → được 0.25 điểm.",
+    206261,
+    40147
+  ],
+  "HS_30_8": [
+    0.5,
+    "{T8_main_s1} Bài làm học sinh in ra '33' thay vì đáp án kỳ vọng '30', không khớp hoàn toàn về ký tự. Theo tiêu chí chấm, chỉ chấp nhận kết quả chính xác tuyệt đối, không có điểm bán phần. | {T8_main_s2} Bài làm học sinh khớp hoàn toàn byte-by-byte với đáp án kỳ vọng \"0x505294 8 0 -4\", đúng cả 4 số theo yêu cầu, nên đạt điểm tối đa 0.5.",
+    154083,
+    31767
+  ],
+  "HS_32_8": [
+    0.5,
+    "{T8_main_s1} Bài làm học sinh in ra '35' nhưng đáp án kỳ vọng là '32'. Theo nguyên tắc chấm, kết quả output phải khớp 100% byte-exact với đáp án kỳ vọng, do đó không đạt điểm. | {T8_main_s2} Bài làm học sinh khớp hoàn toàn với đáp án kỳ vọng về nội dung, định dạng và thứ tự: '0x505294 8 0 0'. Tất cả 4 số đều đúng, do đó đạt điểm tối đa.",
+    215695,
+    36829
+  ],
+  "HS_34_8": [
+    0.0,
+    "{T8_main_s1} Đáp án kỳ vọng là chuỗi '34', nhưng bài làm học sinh là '37'. Hai chuỗi không khớp byte-exact, do đó không đạt điểm theo tiêu chí chấm. | {T8_main_s2} Student left this part blank.",
+    129510,
+    20665
+  ],
+  "HS_36_8": [
+    0.25,
+    "{T8_main_s1} Student left this part blank. | {T8_main_s2} Bài làm học sinh có 3/4 số đúng (địa chỉ, giá trị a, hiệu pb-pa). Theo quy tắc bán phần đã nêu, khi đúng 2 hoặc 3/4 số thì được 0.25 điểm. Dù giá trị cuối cùng là 0 không hợp lý theo logic chương trình, nhưng không có quy tắc nào cho phép trừ điểm thêm ngoài tiêu chí đã cho.",
+    112938,
+    18600
+  ],
+  "HS_39_8": [
+    0.25,
+    "{T8_main_s1} Bài làm học sinh nộp là '24', không khớp với đáp án kỳ vọng '39' theo nguyên tắc byte-exact match. Không có quy tắc điểm bán phần nên chấm 0 điểm. | {T8_main_s2} Học sinh đúng 2/4 token: '8' và '0'. Sai địa chỉ bộ nhớ (0x505288 thay vì 0x505294) và giá trị cuối (-2 thay vì -6). Theo quy tắc bán phần, đúng 2 trong 4 số → được 0.25 điểm.",
+    184938,
+    35181
+  ],
+  "HS_2_9": [
+    0.0,
+    "{T9} Bài làm học sinh in ra '2' nhưng đáp án kỳ vọng là '1'. Không khớp byte-exact và không chấp nhận tương đương theo tiêu chí chấm.",
+    67079,
+    13239
+  ],
+  "HS_3_9": [
+    0.5,
+    "{T9} Bài làm học sinh in ra chính xác chuỗi '2', khớp hoàn toàn với đáp án kỳ vọng và tuân thủ đúng yêu cầu đầu ra. Không có sai sót về định dạng, ký tự hoặc logic.",
+    68927,
+    11617
+  ],
+  "HS_7_9": [
+    0.0,
+    "{T9} Bài làm học sinh đưa ra kết quả '1' nhưng đáp án kỳ vọng là '2'. Không có quy tắc bán phần được cung cấp, và theo nguyên tắc chấm byte-exact, kết quả không khớp hoàn toàn nên bị chấm 0 điểm.",
+    75990,
+    12678
+  ],
+  "HS_9_9": [
+    0.0,
+    "{T9} Bài làm học sinh in ra '0' thay vì '2' như yêu cầu. Theo nguyên tắc chấm, kết quả đầu ra phải khớp byte-exact với đáp án kỳ vọng, nên không đạt yêu cầu.",
+    67036,
+    11670
+  ],
+  "HS_10_9": [
+    0.0,
+    "{T9} Bài làm học sinh in ra '2' trong khi đáp án kỳ vọng là '1'. Theo yêu cầu, chỉ chấp nhận kết quả đầu ra byte-exact, nên không có điểm nào được cộng.",
+    76256,
+    13620
+  ],
+  "HS_12_9": [
+    0.0,
+    "{T9} Bài làm học sinh là '2', không khớp với đáp án kỳ vọng '1'. Theo tiêu chí chấm, chỉ chấp nhận output chính xác 100%, do đó bài làm sai.",
+    73351,
+    13106
+  ],
+  "HS_15_9": [
+    0.0,
+    "{T9} Bài làm học sinh in ra '1' thay vì '2' như yêu cầu. Theo nguyên tắc chấm điểm byte-exact, không có sự tương đương nào được chấp nhận nên không đạt điểm.",
+    62003,
+    12540
+  ],
+  "HS_17_9": [
+    0.0,
+    "{T9} Bài làm học sinh in ra '1', trong khi đáp án kỳ vọng là '2'. Theo nguyên tắc chấm điểm byte-exact, không chấp nhận sự khác biệt về ký tự, do đó bài làm sai hoàn toàn.",
+    67863,
+    12189
+  ],
+  "HS_18_9": [
+    0.0,
+    "{T9} Bài làm in ra '0' thay vì '1' như yêu cầu. Kết quả không khớp byte-exact với đáp án kỳ vọng, và không có quy tắc điểm bán phần nên chấm 0 điểm.",
+    60814,
+    12329
+  ],
+  "HS_19_9": [
+    0.5,
+    "{T9} Bài làm học sinh in ra chuỗi \"2\" khớp hoàn toàn với đáp án kỳ vọng về nội dung, định dạng và byte-by-byte. Thỏa mãn đầy đủ yêu cầu: nếu số thứ tự là lẻ thì in ra 2.",
+    52063,
+    11525
+  ],
+  "HS_21_9": [
+    0.5,
+    "{T9} Bài làm học sinh in ra đúng kết quả kỳ vọng là '2', khớp hoàn toàn về giá trị và định dạng, phù hợp với yêu cầu đề bài khi số thứ tự là số lẻ.",
+    57844,
+    11408
+  ],
+  "HS_24_9": [
+    0.0,
+    "{T9} Bài làm học sinh in ra '2' thay vì '1' như yêu cầu, không khớp byte-exact với đáp án kỳ vọng. Không có quy tắc bán phần nên chấm 0 điểm.",
+    70729,
+    12186
+  ],
+  "HS_26_9": [
+    0.5,
+    "{T9} Bài làm học sinh in ra chuỗi \"1\" khớp hoàn toàn với đáp án kỳ vọng về mặt ký tự, định dạng và nội dung. Không có sai sót nào về kỹ thuật hoặc logic.",
+    43208,
+    9920
+  ],
+  "HS_28_9": [
+    0.5,
+    "{T9} Bài làm học sinh in ra giá trị '1' hoàn toàn khớp với đáp án kỳ vọng về mặt ký tự, không có sai lệch định dạng, khoảng trắng hay ký tự thừa nào. Đáp ứng đúng yêu cầu đầu ra của tiêu chí chấm.",
+    46105,
+    11732
+  ],
+  "HS_29_9": [
+    0.0,
+    "{T9} Học sinh in ra '1' thay vì '2' như yêu cầu, không khớp byte-exact với đáp án kỳ vọng. Theo nguyên tắc chấm, không có sự tương đương và không có quy tắc bán phần nên chấm 0 điểm.",
+    46285,
+    11556
+  ],
+  "HS_30_9": [
+    0.0,
+    "{T9} Bài làm in ra '2' nhưng đáp án kỳ vọng là '1'. Không khớp byte-exact và không có quy tắc bán phần, nên chấm 0 điểm.",
+    50510,
+    12406
+  ],
+  "HS_32_9": [
+    0.0,
+    "{T9} Bài làm học sinh in ra '2' nhưng đáp án kỳ vọng là '1'. Theo nguyên tắc chấm điểm, chỉ chấp nhận chuỗi output byte-exact và không có quy tắc bán phần, nên không khớp hoàn toàn → chấm 0 điểm.",
+    47521,
+    11393
+  ],
+  "HS_34_9": [
+    0.0,
+    "{T9} Bài làm học sinh in ra '2' trong khi đáp án kỳ vọng là '1'. Theo tiêu chí chấm, chỉ chấp nhận khớp chính xác từng byte, nên không đạt điểm dù logic chương trình có đúng.",
+    54414,
+    12944
+  ],
+  "HS_36_9": [
+    0.0,
+    "{T9} Bài làm học sinh in ra '2' thay vì '1' như đáp án kỳ vọng. Theo nguyên tắc chấm thi, chỉ chấp nhận kết quả byte-exact và không có quy tắc điểm bán phần nên chấm 0 điểm.",
+    61135,
+    13003
+  ],
+  "HS_39_9": [
+    0.0,
+    "{T9} Bài làm học sinh in ra '1' thay vì '2' như yêu cầu. Kết quả đầu ra không khớp byte-by-byte với đáp án kỳ vọng, nên không được điểm.",
+    53909,
+    12179
+  ],
+  "HS_2_10": [
+    0.0,
+    "{T10} Bài làm học sinh sai ở 3 vị trí đầu tiên (vị trí 0, 1, 2), vượt quá giới hạn 2 vị trí đầu trong quy tắc bán phần, nên không được điểm bán phần. Không có lỗi runtime được báo và không có giải thích lỗi nên không áp dụng ghi chú giáo viên.",
+    76370,
+    16934
+  ],
+  "HS_3_10": [
+    0.0,
+    "{T10} Bài làm học sinh chỉ ghi '-1', không khớp với đáp án kỳ vọng '10 70 2 3 4 4 5 6 2 1'. Không thỏa mãn quy tắc bán phần vì sai toàn bộ cấu trúc, và không có giải thích lỗi dù chương trình thực tế có lỗi do hàm NhapMang thiếu return.",
+    73728,
+    15385
+  ],
+  "HS_7_10": [
+    0.5,
+    "{T10} Bài làm học sinh trùng khớp hoàn toàn với đáp án kỳ vọng về giá trị, định dạng và thứ tự. Không có lỗi định dạng, không báo lỗi nên không cần giải thích thêm.",
+    45594,
+    11532
+  ],
+  "HS_9_10": [
+    0.0,
+    "{T10} Bài làm học sinh sai ở 7/10 vị trí, bao gồm cả các vị trí giữa (3–7), không thỏa mãn điều kiện bán phần. Kết quả không phản ánh đúng logic chương trình và không có giải thích lỗi.",
+    87277,
+    18317
+  ],
+  "HS_10_10": [
+    0.0,
+    "{T10} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_12_10": [
+    0.0,
+    "{T10} Bài làm học sinh chỉ ghi '7', không khớp với đáp án kỳ vọng '10 70 2 3 4 4 5 6 2 1' về nội dung, định dạng và số lượng phần tử. Không có giải thích lỗi nên không đủ điều kiện để lấy điểm theo hướng 'lỗi'.",
+    62517,
+    14929
+  ],
+  "HS_15_10": [
+    0.0,
+    "{T10} Bài làm học sinh không khớp 100% với đáp án kỳ vọng, sai ở 3 vị trí cuối (vị trí 7, 8, 9). Không thỏa mãn điều kiện bán phần (sai sót vượt quá giới hạn 2 vị trí cuối), nên không được điểm.",
+    68512,
+    15201
+  ],
+  "HS_17_10": [
+    0.0,
+    "{T10} Bài làm học sinh chỉ ghi 4 số ('7 1 9 3') trong khi đáp án kỳ vọng là 10 số ('10 70 2 3 4 4 5 6 2 1'). Không đủ độ dài, không khớp giá trị, và không thỏa mãn điều kiện bán phần (sai quá 2 vị trí đầu/tail). Không có giải thích lỗi như yêu cầu.",
+    83097,
+    17761
+  ],
+  "HS_18_10": [
+    0.0,
+    "{T10} Bài làm học sinh in ra chuỗi `0 -1 2 -1 4` không khớp hoàn toàn với đáp án kỳ vọng `10 70 2 3 4 4 5 6 2 1` về độ dài, giá trị và thứ tự. Không thỏa mãn điều kiện bán phần vì lỗi không giới hạn ở 2 đầu hoặc 2 cuối.",
+    91177,
+    18210
+  ],
+  "HS_19_10": [
+    0.0,
+    "{T10} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_21_10": [
+    0.0,
+    "{T10} Bài làm học sinh ghi kết quả không khớp 100% với đáp án kỳ vọng (sai 8/10 vị trí), không thỏa mãn điều kiện bán phần, và không có giải thích lỗi nên không đủ điều kiện để được điểm.",
+    137734,
+    25076
+  ],
+  "HS_24_10": [
+    0.0,
+    "{T10} Bài làm học sinh sai ở 7/10 vị trí, không thỏa mãn điều kiện bán phần và không có giải thích khi báo lỗi. Không đạt điểm theo tiêu chí.",
+    89950,
+    17747
+  ],
+  "HS_26_10": [
+    0.0,
+    "{T10} Học sinh chỉ cung cấp 4 số đầu tiên trong kết quả kỳ vọng, thiếu 6 số cuối. Không báo lỗi và không có giải thích, nên không áp dụng quy tắc giải thích lỗi. Kết quả không khớp byte-exact và không thỏa mãn điều kiện bán phần.",
+    80820,
+    16964
+  ],
+  "HS_28_10": [
+    0.0,
+    "{T10} Output học sinh không khớp byte-exact với đáp án kỳ vọng và sai ở tất cả 10 vị trí, không thỏa mãn quy tắc bán phần (sai quá nhiều hơn chỉ 2 vị trí đầu hoặc cuối). Không báo lỗi nên không áp dụng ghi chú giáo viên.",
+    72349,
+    15936
+  ],
+  "HS_29_10": [
+    0.0,
+    "{T10} Bài làm học sinh chỉ ghi '2', không khớp hoàn toàn với đáp án kỳ vọng '10 70 2 3 4 4 5 6 2 1'. Không thỏa mãn điều kiện bán phần và không có giải thích lỗi như yêu cầu.",
+    79128,
+    14833
+  ],
+  "HS_30_10": [
+    0.0,
+    "{T10} Bài làm học sinh không khớp byte-exact với đáp án kỳ vọng, sai ở 6 vị trí, không nằm trong phạm vi cho phép của quy tắc điểm bán phần (sai ở 2 vị trí đầu hoặc cuối). Học sinh không báo lỗi runtime nên không áp dụng ghi chú giáo viên về giải thích lỗi.",
+    141261,
+    19189
+  ],
+  "HS_32_10": [
+    0.0,
+    "{T10} Học sinh in ra kết quả không đúng định dạng và thiếu nhiều phần tử, không khớp byte-exact với đáp án kỳ vọng. Không có giải thích về lỗi, vi phạm ghi chú giáo viên.",
+    112222,
+    14461
+  ],
+  "HS_34_10": [
+    0.0,
+    "{T10} Bài làm học sinh không khớp hoàn toàn với đáp án kỳ vọng về số lượng và giá trị các phần tử. Thiếu một số ở cuối và nhiều vị trí sai, không thỏa mãn điều kiện byte-exact hay quy tắc bán phần.",
+    122040,
+    19849
+  ],
+  "HS_36_10": [
+    0.0,
+    "{T10} Bài làm học sinh sai ở 5 vị trí (vị trí 5,6,7,8,9) và không nằm trong phạm vi 2 vị trí đầu hoặc 2 vị trí cuối nên không được điểm bán phần. Không có báo lỗi hay giải thích lỗi nên không đạt điều kiện để lấy điểm.",
+    75242,
+    14999
+  ],
+  "HS_39_10": [
+    0.0,
+    "{T10} Bài làm học sinh không khớp với đáp án kỳ vọng về cả nội dung và định dạng: chuỗi không có dấu cách, giá trị các số sai hoàn toàn, và không thỏa mãn điều kiện bán phần.",
+    67897,
+    15567
+  ],
+  "HS_2_11": [
+    0.0,
+    "{T11} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_3_11": [
+    0.0,
+    "{T11} Học sinh đưa ra kết quả \"22\" trong khi đáp án kỳ vọng là \"20\". Theo nguyên tắc chấm điểm, chỉ chấp nhận output chính xác 100% (byte-exact), không chấp nhận tương đương hay gần đúng.",
+    62065,
+    13091
+  ],
+  "HS_7_11": [
+    0.5,
+    "{T11} Bài làm học sinh là '20', khớp hoàn toàn với đáp án kỳ vọng về nội dung, định dạng và ký tự. Kết quả được xác minh đúng theo logic chương trình C++.",
+    50386,
+    11412
+  ],
+  "HS_9_11": [
+    0.5,
+    "{T11} Bài làm học sinh là chuỗi \"20\", hoàn toàn khớp byte-by-byte với đáp án kỳ vọng. Kết quả đúng với giá trị thực tế mà chương trình in ra, không có sai lệch về định dạng hoặc nội dung.",
+    48304,
+    11148
+  ],
+  "HS_10_11": [
+    0.5,
+    "{T11} Bài làm học sinh hoàn toàn khớp với đáp án kỳ vọng '20' theo yêu cầu byte-exact, không có sai lệch về ký tự, khoảng trắng hay định dạng.",
+    43839,
+    10820
+  ],
+  "HS_12_11": [
+    0.0,
+    "{T11} Bài làm học sinh là '18', không khớp hoàn toàn với đáp án kỳ vọng '20' theo nguyên tắc byte-exact. Không có quy tắc bán phần nên không thể chấm điểm trung gian.",
+    52900,
+    12786
+  ],
+  "HS_15_11": [
+    0.5,
+    "{T11} Bài làm học sinh là '20', khớp hoàn toàn với đáp án kỳ vọng về mặt byte-exact. Phân tích chương trình xác nhận kết quả đúng là 20, không có lỗi định dạng hay ký tự thừa.",
+    47316,
+    11800
+  ],
+  "HS_17_11": [
+    0.0,
+    "{T11} Bài làm học sinh in ra chuỗi \"25\" không khớp byte-exact với đáp án kỳ vọng \"20\". Theo tiêu chí chấm, chỉ chấp nhận kết quả đúng y hệt, không có quy tắc bán phần nên không được điểm.",
+    56102,
+    12846
+  ],
+  "HS_18_11": [
+    0.0,
+    "{T11} Bài làm học sinh là '18', không khớp 100% với đáp án kỳ vọng '20' theo nguyên tắc byte-exact. Không có quy tắc bán phần, nên không được điểm.",
+    53358,
+    12199
+  ],
+  "HS_19_11": [
+    0.0,
+    "{T11} Học sinh đưa ra kết quả \"0\" nhưng đáp án kỳ vọng là \"20\". Không có quy tắc bán phần được cung cấp và yêu cầu khớp chính xác 100% byte-by-byte nên không được điểm.",
+    50045,
+    12248
+  ],
+  "HS_21_11": [
+    0.5,
+    "{T11} Bài làm học sinh là '20', hoàn toàn trùng khớp với đáp án kỳ vọng về nội dung, ký tự và định dạng. Phân tích chương trình cũng xác nhận kết quả đúng.",
+    40173,
+    11066
+  ],
+  "HS_24_11": [
+    0.0,
+    "{T11} Học sinh trả lời \"18\" thay vì đáp án kỳ vọng \"20\", không khớp byte-exact. Không có quy tắc bán phần nên không được điểm.",
+    49697,
+    11508
+  ],
+  "HS_26_11": [
+    0.5,
+    "{T11} Bài làm học sinh '20' hoàn toàn trùng khớp với đáp án kỳ vọng về mặt ký tự và logic chương trình. Kết quả tính toán đúng và định dạng đầu ra chính xác.",
+    47626,
+    11671
+  ],
+  "HS_28_11": [
+    0.0,
+    "{T11} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_29_11": [
+    0.5,
+    "{T11} Bài làm học sinh '20' khớp hoàn toàn với đáp án kỳ vọng về mặt ký tự và nội dung, đúng theo yêu cầu byte-exact. Logic chương trình cũng xác nhận kết quả là 20.",
+    48139,
+    11909
+  ],
+  "HS_30_11": [
+    0.5,
+    "{T11} Bài làm học sinh in ra đúng chuỗi \"20\" hoàn toàn khớp với đáp án kỳ vọng, không có sai lệch về ký tự, khoảng trắng hay định dạng. Kết quả chương trình cũng được xác minh chính xác là 20.",
+    49360,
+    11602
+  ],
+  "HS_32_11": [
+    0.5,
+    "{T11} Bài làm học sinh là '20', hoàn toàn trùng khớp với đáp án kỳ vọng về ký tự, định dạng và nội dung. Theo nguyên tắc chấm điểm byte-exact, không có sai sót nào.",
+    61044,
+    11195
+  ],
+  "HS_34_11": [
+    0.5,
+    "{T11} Bài làm học sinh in ra chính xác chuỗi '20' như đáp án kỳ vọng, không có sai lệch về ký tự, khoảng trắng hay định dạng. Kết quả cũng đúng về mặt logic chương trình.",
+    58772,
+    11511
+  ],
+  "HS_36_11": [
+    0.5,
+    "{T11} Bài làm học sinh là '20', hoàn toàn khớp với đáp án kỳ vọng về giá trị và định dạng (byte-exact). Logic chương trình đã được kiểm chứng đúng, cho kết quả 20.",
+    57975,
+    11805
+  ],
+  "HS_39_11": [
+    0.5,
+    "{T11} Bài làm học sinh in ra đúng chuỗi '20' hoàn toàn khớp với đáp án kỳ vọng, không có sai sót về ký tự, khoảng trắng hay định dạng. Kết quả này cũng chính xác theo logic chương trình C++ đã cho.",
+    56202,
+    11327
+  ],
+  "HS_2_12": [
+    0.0,
+    "{T12} Học sinh ghi kết quả là '1/1/2028', không khớp với đáp án kỳ vọng '10/1/2026' hoặc '10/01/2026'. Mặc dù tháng đúng (1), nhưng năm sai (2028 thay vì 2026) nên không thỏa mãn điều kiện bán phần.",
+    63038,
+    13656
+  ],
+  "HS_3_12": [
+    0.25,
+    "{T12} Học sinh ghi kết quả là '28/1/2026', sai ở phần ngày (nên là 10), nhưng tháng và năm đúng. Theo quy tắc bán phần được cung cấp, khi tháng = 1 và năm = 2026 thì được 0.25 điểm.",
+    71296,
+    14593
+  ],
+  "HS_7_12": [
+    0.25,
+    "{T12} Học sinh ghi kết quả '7/1/2026' thay vì '10/1/2026'. Mặc dù ngày sai, nhưng tháng và năm đúng, thỏa mãn điều kiện bán phần đã được giáo viên quy định (month == 1 and year == 2026), nên được 0.25 điểm.",
+    75956,
+    15522
+  ],
+  "HS_9_12": [
+    0.25,
+    "{T12} Học sinh ghi kết quả '7/1/2026', sai ở ngày (7 thay vì 10) nhưng đúng về tháng (1) và năm (2026). Theo quy tắc bán phần được cung cấp, điều kiện month == 1 và year == 2026 được thỏa mãn nên được 0.25 điểm.",
+    65638,
+    13417
+  ],
+  "HS_10_12": [
+    0.0,
+    "{T12} Học sinh ghi kết quả \"10/12/2025\" không khớp với đáp án kỳ vọng \"10/1/2026\" hoặc \"10/01/2026\" về mặt ký tự. Không thỏa mãn điều kiện bán phần (tháng phải là 1 và năm phải là 2026).",
+    82474,
+    15020
+  ],
+  "HS_12_12": [
+    0.0,
+    "{T12} Bài làm học sinh ghi \"7/5/2027\" không khớp hoàn toàn với đáp án kỳ vọng \"10/1/2026\" và không thỏa mãn điều kiện bán phần (tháng = 1 và năm = 2026). Không có phần nào đúng nên không được điểm.",
+    91877,
+    16053
+  ],
+  "HS_15_12": [
+    0.25,
+    "{T12} Học sinh ghi kết quả là 7/1/2026, sai ngày (nên không khớp hoàn toàn với đáp án kỳ vọng 10/1/2026). Tuy nhiên, tháng và năm đúng (1 và 2026), phù hợp với quy tắc bán phần được giáo viên quy định: nếu đúng tháng và năm thì được 0.25 điểm.",
+    82632,
+    14217
+  ],
+  "HS_17_12": [
+    0.25,
+    "{T12} Học sinh ghi kết quả '24/1/2026', sai ngày nhưng đúng tháng và năm. Thỏa mãn điều kiện bán phần theo quy tắc được cung cấp (month == 1 and year == 2026), nên được 0.25 điểm.",
+    72965,
+    13828
+  ],
+  "HS_18_12": [
+    0.0,
+    "{T12} Bài làm học sinh là '7/5/2027', trong khi đáp án kỳ vọng là '10/1/2026'. Cả ngày, tháng, năm đều sai và không thỏa mãn điều kiện bán phần (tháng = 1 và năm = 2026). Do đó, không được điểm.",
+    90737,
+    15305
+  ],
+  "HS_19_12": [
+    0.25,
+    "{T12} Học sinh ghi kết quả '7/1/2026', sai ngày (7 thay vì 10) nhưng đúng tháng và năm. Theo quy tắc bán phần do giáo viên cung cấp, điều kiện 'month == 1 and year == 2026' được thỏa mãn nên được 0.25 điểm.",
+    75217,
+    13896
+  ],
+  "HS_21_12": [
+    0.25,
+    "{T12} Học sinh ghi đúng tháng (1) và năm (2026), nhưng sai ngày (28 thay vì 10). Theo quy tắc bán phần được cung cấp, học sinh được 0.25 điểm.",
+    82078,
+    14097
+  ],
+  "HS_24_12": [
+    0.5,
+    "{T12} Bài làm học sinh ghi đúng kết quả in ra màn hình là '10/1/2026', khớp hoàn toàn với một trong hai định dạng được chấp nhận trong đáp án kỳ vọng. Không có sai sót về giá trị hay định dạng.",
+    69007,
+    13407
+  ],
+  "HS_26_12": [
+    0.25,
+    "{T12} Học sinh ghi kết quả '7/1/2026' sai ngày (7 thay vì 10) nhưng đúng tháng và năm. Theo quy tắc điểm bán phần, được 0.25 điểm.",
+    100457,
+    15128
+  ],
+  "HS_28_12": [
+    0.0,
+    "{T12} Bài làm học sinh in ra \"7/1/2020\" không khớp với đáp án kỳ vọng \"10/1/2026\". Mặc dù tháng đúng (1), nhưng năm sai (2020 thay vì 2026) nên không thỏa mãn điều kiện bán phần được định nghĩa.",
+    93379,
+    14876
+  ],
+  "HS_29_12": [
+    0.25,
+    "{T12} Học sinh ghi kết quả '28/1/2026', sai về ngày (phải là 10), nhưng đúng về tháng (1) và năm (2026). Theo quy tắc bán phần được cung cấp, học sinh đạt điều kiện để được 0.25 điểm.",
+    89557,
+    13996
+  ],
+  "HS_30_12": [
+    0.0,
+    "{T12} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_32_12": [
+    0.0,
+    "{T12} Bài làm học sinh ghi '28/12/202' không khớp với đáp án kỳ vọng '10/1/2026' về cả định dạng và giá trị. Không thỏa mãn điều kiện bán phần (tháng != 1 hoặc năm != 2026), nên không được điểm nào.",
+    78964,
+    14550
+  ],
+  "HS_34_12": [
+    0.0,
+    "{T12} Student left this part blank.",
+    0,
+    0
+  ],
+  "HS_36_12": [
+    0.0,
+    "{T12} Học sinh ghi kết quả là \"10/1/202\", thiếu chữ số '6' ở năm, nên năm không đúng (202 ≠ 2026). Không thỏa mãn điều kiện bán phần vì năm sai, dù tháng đúng. Không khớp với bất kỳ đáp án kỳ vọng nào.",
+    86729,
+    15169
+  ],
+  "HS_39_12": [
+    0.0,
+    "{T12} Học sinh ghi kết quả là '10/1/2', sai ở phần năm (2 thay vì 2026). Mặc dù ngày và tháng đúng, nhưng không thỏa mãn điều kiện bán phần do năm không bằng 2026. Theo quy tắc đã cho, chỉ được 0.25 điểm nếu tháng = 1 và năm = 2026 – điều kiện này không được đáp ứng.",
+    87723,
+    14853
+  ]
+}

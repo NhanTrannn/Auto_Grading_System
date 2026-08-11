@@ -3,47 +3,54 @@ import { useState, type FormEvent } from "react";
 import Button from "@/components/core/Button";
 import FileDrop from "@/components/core/FileDrop";
 import { IconAlert, IconUpload } from "@/components/core/Icon";
+import BaremPicker from "@/modules/barem/BaremPicker";
 
 import styles from "./UploadForm.module.css";
 
 interface UploadFormProps {
   disabled: boolean;
   error?: string | null;
-  onSubmit: (inputFile: File, baremFile: File) => void;
+  onSubmit: (inputFile: File, baremId: string) => void;
 }
 
+/**
+ * Start a grading run from a Results JSON that has already been OCR'd.
+ *
+ * The barem is chosen from the library rather than uploaded alongside: it is
+ * the same rubric the pipeline flow uses, saved once from the builder, so
+ * asking for the file again every run only invites grading against a stale
+ * copy. The picker can still take a new `.json`, which adds it to the library
+ * on the way in.
+ */
 export default function UploadForm({ disabled, error, onSubmit }: UploadFormProps) {
   const [inputFiles, setInputFiles] = useState<File[]>([]);
-  const [baremFiles, setBaremFiles] = useState<File[]>([]);
+  const [baremId, setBaremId] = useState<string | null>(null);
 
   const inputFile = inputFiles[0] ?? null;
-  const baremFile = baremFiles[0] ?? null;
-  const canSubmit = inputFile !== null && baremFile !== null && !disabled;
+  const canSubmit = inputFile !== null && baremId !== null && !disabled;
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (inputFile && baremFile) onSubmit(inputFile, baremFile);
+    if (inputFile && baremId) onSubmit(inputFile, baremId);
   }
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.grid}>
+      <div className={styles.step}>
+        <span className={styles.stepLabel}>1 · Bài làm học sinh</span>
         <FileDrop
-          label="Bài làm học sinh — Results JSON"
-          hint="File .json xuất từ OCR (khoá HS_1, HS_2, …)"
+          label="Results JSON đã OCR"
+          hint="File .json có khoá HS_1, HS_2, … — xuất từ luồng OCR hoặc từ phiên chấm cả lớp"
           accept=".json,application/json"
           disabled={disabled}
           files={inputFiles}
           onChange={setInputFiles}
         />
-        <FileDrop
-          label="Barem chấm điểm — JSON"
-          hint="File barem/rubric .json (vd: sample_parem.json)"
-          accept=".json,application/json"
-          disabled={disabled}
-          files={baremFiles}
-          onChange={setBaremFiles}
-        />
+      </div>
+
+      <div className={styles.step}>
+        <span className={styles.stepLabel}>2 · Barem</span>
+        <BaremPicker value={baremId} onChange={(id) => setBaremId(id)} />
       </div>
 
       {error && (

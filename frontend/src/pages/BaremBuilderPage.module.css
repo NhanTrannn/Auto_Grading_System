@@ -1,0 +1,101 @@
+.headerActions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.importError {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  padding: var(--space-3);
+  font-size: 13px;
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+  border-radius: var(--radius-md);
+}
+
+.saveMessage {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  padding: var(--space-3);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-success);
+  background: var(--color-success-bg);
+  border-radius: var(--radius-md);
+}
+
+.metaBar {
+  margin-bottom: var(--space-4);
+}
+
+.notes {
+  margin-bottom: var(--space-4);
+}
+
+.noteList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.noteList li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--color-text);
+}
+
+.noteWhere {
+  flex: none;
+  padding: 1px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--color-text-muted);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-pill);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.rail {
+  position: sticky;
+  top: 0;
+  min-width: 0;
+}
+
+.editor {
+  min-width: 0;
+}
+
+.emptyWrap {
+  padding: var(--space-7) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rail {
+    position: static;
+  }
+}

@@ -1,7 +1,11 @@
 # Build context for this image is backend/ itself (see Dockerfile) — only
-# requirements.txt, app/, and pipeline.py actually get COPYed in, so keep
+# requirements.txt, app/, pipeline.py and ocr/ actually get COPYed in, so keep
 # the daemon from having to read everything else that lives alongside them
 # (test fixtures, docs, generated output, etc.).
+ocr/docs/
+ocr/README.md
+# Runs a real (paid) module 3 request at import time — never ship it.
+ocr/debug_module3.py
 .pytest_cache/
 __pycache__/
 *.pyc

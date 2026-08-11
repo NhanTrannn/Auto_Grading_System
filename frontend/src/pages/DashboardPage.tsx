@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Badge from "@/components/core/Badge";
 import Card from "@/components/core/Card";
@@ -26,11 +26,15 @@ const dateFormatter = new Intl.DateTimeFormat("vi-VN", {
   minute: "2-digit",
 });
 
-const PIPELINE_STEPS = [
-  { title: "Ảnh bài làm", detail: "Quét / chụp bài thi giấy" },
-  { title: "Pipeline OCR", detail: "ROI → căn chỉnh → nhận dạng" },
-  { title: "Results JSON", detail: "Dữ liệu bài làm theo HS_N" },
-  { title: "Chấm bằng LLM", detail: "Heuristic + Chain-of-Thought" },
+// What this page actually does — it starts from a Results JSON that already
+// exists. The card used to open with "Ảnh bài làm → Pipeline OCR", which
+// belongs to /pipeline: no image is read here and no ROI is declared, so a
+// teacher landing here was told to expect a step that never runs.
+const GRADING_STEPS = [
+  { title: "Results JSON", detail: "Bài làm đã OCR, khoá theo HS_N" },
+  { title: "Chọn barem", detail: "Lấy từ thư viện đã lưu" },
+  { title: "Chấm từng tiêu chí", detail: "Heuristic + LLM Chain-of-Thought" },
+  { title: "Bảng điểm", detail: "Điểm và lý do cho từng học sinh" },
 ];
 
 export default function DashboardPage() {
@@ -62,11 +66,11 @@ export default function DashboardPage() {
 
   const recentJobs = jobs.slice(0, 5);
 
-  async function handleSubmit(inputFile: File, baremFile: File) {
+  async function handleSubmit(inputFile: File, baremId: string) {
     setSubmitting(true);
     setError(null);
     try {
-      const job = await createGradingJob(inputFile, baremFile);
+      const job = await createGradingJob(inputFile, baremId);
       navigate(`/jobs/${job.job_id}`);
     } catch (err) {
       setError((err as Error).message);
@@ -108,9 +112,9 @@ export default function DashboardPage() {
         </Card>
 
         <div className={styles.side}>
-          <Card title="Luồng xử lý" subtitle="Từ ảnh giấy tới điểm số">
+          <Card title="Luồng xử lý" subtitle="Chấm từ file JSON đã có sẵn">
             <ol className={styles.pipeline}>
-              {PIPELINE_STEPS.map((step, index) => (
+              {GRADING_STEPS.map((step, index) => (
                 <li key={step.title} className={styles.pipelineStep}>
                   <span className={styles.stepIndex}>{index + 1}</span>
                   <span className={styles.stepText}>
@@ -120,6 +124,13 @@ export default function DashboardPage() {
                 </li>
               ))}
             </ol>
+            <p className={styles.pipelineNote}>
+              Chưa có file JSON? Bắt đầu từ ảnh bài làm ở{" "}
+              <Link to="/pipeline" className={styles.pipelineLink}>
+                Chấm cả lớp từ ảnh
+              </Link>{" "}
+              — nơi đó mới chạy OCR (khai vùng, căn trang, nhận dạng chữ) rồi chấm luôn.
+            </p>
           </Card>
 
           <Card title="Phiên gần đây" padded={false}>

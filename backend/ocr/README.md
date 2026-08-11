@@ -1,25 +1,39 @@
-# Backend — mmlab-auto-grading (OCR service, vendored)
+# OCR modules (vendored)
 
 > Vendored from https://github.com/camtran3506/mmlab-auto-grading (`backend/`
 > subfolder of that repo) on 2026-08-10, copied as a snapshot (no git history,
-> no submodule/subtree link). This is a **separate, standalone FastAPI
-> service** — it does not import from or get imported by `pipeline.py`
-> anywhere in this repo yet. Its `src/lib/roi`, `src/lib/ocr` frontend
+> no submodule/subtree link). Its `src/lib/roi`, `src/lib/ocr` frontend
 > (React/TanStack) and the `qwenver15update-*.ipynb` notebooks referenced
-> below were not copied — only the Python backend (`app/module1.py` = ROI
-> detection, `app/module2.py` = template alignment, `app/module3.py` = Qwen3-VL
-> handwriting OCR) and the two notebooks it directly ports (module1, module2).
-> Run it as its own service (`uvicorn app.main:app --port 8081` from inside
-> `backend/ocr/`, own venv per `requirements.txt`) — it is not wired into
-> `backend/app/` (the grading API), but [`ocr_main.py`](ocr_main.py) (added
-> separately from the vendored code) now assembles module1/2/3's output into
-> the exact "Results" (`HS_N`-keyed) JSON `pipeline.py`'s
-> `load_input()`/`convert_results_to_samples()` expects — see its module
-> docstring for `roi_config.json`'s shape and usage. It imports
-> `module1`/`module2`/`module3` in-process (no HTTP server needed). ROI-to-
-> question mapping (`cau_key`/`task_type`) in `roi_config.json` is authored
-> by hand — module1's auto-detection only gives generic geometry, not which
-> barem question/part a region belongs to.
+> below were not copied — only the Python backend (`ocr_modules/module1.py` =
+> ROI detection, `ocr_modules/module2.py` = template alignment,
+> `ocr_modules/module3.py` = Qwen3-VL handwriting OCR) and the two notebooks it
+> directly ports (module1, module2).
+>
+> **This is no longer a standalone service.** It arrived as its own FastAPI app
+> on port 8081, with the three modules in a package named `app` — which
+> collided with `backend/app` and made the OCR code impossible to import from
+> the grading API. That package is now `ocr_modules/`, the vendored
+> `app/main.py` is gone, and its three endpoints live in
+> `backend/app/api/routes/ocr.py` under `/api/v1/ocr/*`, served by the one
+> backend on port 8000. Dependencies come from `backend/requirements.txt`;
+> there is no separate venv or requirements file here anymore.
+>
+> Two extra scripts (added separately from the vendored code, not part of the
+> original repo) bridge these modules to `pipeline.py`:
+> - [`ocr_main.py`](ocr_main.py) — pure OCR connector. Imports
+>   `module1`/`module2`/`module3` in-process (no HTTP server needed): aligns
+>   each student page to a template (module2), crops every ROI, OCRs it
+>   (module3), and assembles the exact "Results" (`HS_N`-keyed) JSON
+>   `pipeline.py`'s `load_input()`/`convert_results_to_samples()` expects —
+>   see its module docstring for `roi_config.json`'s shape. ROI-to-question
+>   mapping (`cau_key`/`task_type`) in `roi_config.json` is authored by hand —
+>   module1's auto-detection only gives generic geometry, not which barem
+>   question/part a region belongs to.
+> - [`main.py`](main.py) — OCR-to-grading bridge. Calls `ocr_main.py`'s
+>   `build_results_json()` to produce the Results JSON, then shells out to
+>   `../pipeline.py` (subprocess, same interpreter) to grade it, so 1 command
+>   goes from student page images all the way to `grading_results.json`/
+>   `student_summary.json`.
 >
 > **`module3.py` was also modified from the vendored original** (also on
 > 2026-08-10): the original loaded `Qwen/Qwen3-VL-8B-Instruct` locally via
@@ -29,58 +43,94 @@
 > `LLM_MODEL_NAME` from the same `.env` `backend/pipeline.py` already uses —
 > no GPU/CUDA/torch/transformers/bitsandbytes/qwen_vl_utils needed anymore.
 > The 2-pass extraction+self-reflection prompts/JSON-repair logic are
-> unchanged from the vendored version. This has **not been run against the
-> real API yet** — only syntax-checked, no live request made.
+> unchanged from the vendored version. It **has** been run against the real API
+> since (2026-08-10, one handwriting crop): the call path works end to end, and
+> the two things worth knowing are that pass 2 frequently returns pass 1
+> unchanged, and that the model silently "corrects" what a student wrote — it
+> read a required literal `'giả định sai'` as `'gia tri sai'`. Check OCR text
+> against the crop on the review screen before trusting a grade.
 
-FastAPI service chạy `opencv-python` y hệt logic trong các notebook gốc
+Ba module chạy `opencv-python` y hệt logic trong các notebook gốc
 (`mmlab-module1-roi-detection.ipynb`, ...), thay cho các bản port TS thủ công
 trong `src/lib/roi/*.ts`.
 
-## Cài đặt (1 lần)
+## Cách chạy
+
+Không có server riêng ở đây. Cài đặt và chạy đúng như backend chính:
 
 ```bash
 cd backend
-python3 -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
 ```
 
-## Chạy dev server
+- Swagger UI: http://localhost:8000/docs
+- Health check: http://localhost:8000/api/v1/health — field `llm_configured`
+  báo `.env` đã có đủ `LLM_API_KEY`/`LLM_MODEL_API`/`LLM_MODEL_NAME` chưa
 
-Frontend (`src/lib/roi/api.ts`, `api2.ts`, `src/lib/ocr/api3.ts`) gọi thẳng
-backend bằng URL tuyệt đối tại **port 8081** (biến `VITE_BACKEND_PORT` nếu
-bạn muốn đổi), KHÔNG qua Vite dev proxy — vì app dùng TanStack Start có
-router riêng, dễ nuốt mất request `/api/...` trước khi tới được Vite proxy.
-Nhớ chạy backend đúng port 8081 (hoặc set `VITE_BACKEND_PORT` khớp port bạn
-chọn):
+Dùng trực tiếp bằng dòng lệnh, không qua HTTP:
 
 ```bash
-cd backend
-source .venv/bin/activate
-uvicorn app.main:app --reload --port 8081
+cd backend/ocr
+python ocr_main.py --config roi_config.json --output results.json   # chỉ OCR
+python main.py --config roi_config.json --output results.json \
+    --barem ../sample_parem.json --grade-output-dir ../testing/output   # OCR + chấm
 ```
 
-- Swagger UI để test thử bằng tay: http://localhost:8081/docs
-- Health check: http://localhost:8081/health (có thêm field
-  `module3_llm_configured` báo `.env` đã có đủ `LLM_API_KEY`/`LLM_MODEL_API`/
-  `LLM_MODEL_NAME` chưa)
+## Module 1 khoanh cái gì — và cần ảnh cỡ nào
 
-## Chạy song song với frontend
+Module 1 chạy trên **trang đề trắng** và tìm **chỗ để học sinh làm bài**, không
+phải tìm chữ. Cụ thể là hai thứ: dòng chấm `………` và bảng rỗng. Chữ in sẵn bị
+cố tình bỏ qua — `filter_and_pad_tables` loại mọi bảng có mật độ chữ cao (đó là
+bảng đề bài) và chỉ giữ bảng trống (bảng cho học sinh điền). Vùng được nới rộng
+hơn chính dòng chấm vì học sinh viết đè lên và phía trên nó.
 
-Cần **2 terminal**:
+Toạ độ khai một lần trên đề trắng rồi dùng cho mọi học sinh: module 2 kéo từng
+trang bài làm về khớp khung đề, nên cùng một toạ độ cắt trúng chỗ với tất cả,
+kể cả khi đặt giấy lệch lúc scan.
 
-```bash
-# Terminal 1 — backend
-cd backend && source .venv/bin/activate && uvicorn app.main:app --reload --port 8081
+**Độ phân giải là điều kiện tiên quyết, không phải chuyện tinh chỉnh tham số.**
+Đo trên repo này: crop *một câu* của bài làm thật là `1795x1357`, trong khi cả
+*một trang* đề mẫu (`testing/Mã đề 1 - Bản clean chưa làm/`) chỉ có `595x816` —
+bản render ~72 DPI. Ở cỡ đó, dòng chấm in sẵn chỉ còn vệt 1–2px, phần lớn dẹt
+nên bị bộ lọc "chấm phải vuông" loại; cả dòng còn chưa tới 4 chấm hợp lệ, dưới
+mức tối thiểu để thành một chuỗi. Thông tin mất khỏi pixel, không ngưỡng nào
+lấy lại được. Cùng thuật toán ấy chạy trên ảnh `1795x1357` thì khoanh chính xác
+từng dòng kẻ.
 
-# Terminal 2 — frontend (Vite dev server, port 5173 mặc định)
-npm run dev   # hoặc bun run dev
-```
+Vậy nên: **xuất ảnh đề mẫu ở 200–300 DPI**. Nó không chỉ ảnh hưởng Module 1 —
+module 2 căn trang bằng đặc trưng ORB (template nét hơn thì căn chuẩn hơn), và
+crop đưa vào module 3 cắt theo toạ độ trên template (template mờ thì crop lệch,
+chữ càng dễ đọc sai).
 
-Nếu chạy backend ở port khác 8081, set `VITE_BACKEND_PORT=<port>` trước khi
-chạy `npm run dev`.
+### Những chỗ đã sửa trong `module1.py`
+
+Bốn ngưỡng vốn là số pixel tuyệt đối, chỉ đúng ở đúng một độ phân giải:
+
+| | Trước | Sau |
+|---|---|---|
+| Padding vùng | `60/20/50/100` px cứng | bội số của `avg_h` (đơn vị sẵn có của file) |
+| Lọc kích thước chấm | `≤ 10px` cứng | theo tỉ lệ chiều cao trang |
+| Padding bảng | `50px` cứng | theo tỉ lệ trang |
+| Khoảng cách chấm tối đa | `2.5 × avg_h` | `4.5` — đo thực tế khoảng cách ~3× |
+
+Thêm hai bộ lọc mới ở mức đoạn: rộng ≥4% trang, và **dài/cao ≥18**. Cái thứ hai
+là thứ tách được dòng chấm thật khỏi chuỗi ghép nhầm từ dấu thanh tiếng Việt —
+dòng chấm in sẵn phẳng tuyệt đối và cao đúng một chấm (đo được ≥24.5), còn chuỗi
+sinh từ chữ thì ngắn và cao hơn vì dấu nặng/dấu chấm nằm lệch nhau (≤12.5).
+Trang nhỏ hơn `MIN_WORKING_HEIGHT` được nội suy lên trước khi dò, toạ độ chia
+ngược về hệ ảnh gốc.
+
+Đo trên ảnh độ phân giải thật, số vùng thừa giảm một nửa: `HS10` 52→26 vùng,
+`HS21` 61→38, khung cũng gọn hơn (cao trung bình 7.1%→5.8% ảnh).
+
+**Còn lỗi chưa sửa**: với `HS18_Cau_15c.jpg` và `HS19_Cau_15c.jpg`, cả bản cũ
+lẫn bản mới đều gộp tất cả thành **một khung phủ ~97% ảnh**. Chưa rõ nguyên nhân.
 
 ## Endpoints hiện có
+
+Đường dẫn đầy đủ có tiền tố `/api/v1/ocr` (vd
+`POST /api/v1/ocr/module1/roi`).
 
 ### `POST /module1/roi`
 
@@ -115,7 +165,7 @@ và `student` (ảnh bài làm học sinh cùng trang). Chạy đúng pipeline
 với file `.ipynb` gốc) bằng opencv-python thật (`cv2.ORB_create` +
 `cv2.DescriptorMatcher` Hamming + `cv2.findHomography` RANSAC mặc định +
 `cv2.warpPerspective` với `borderValue=(255,255,255)`) — xem
-`backend/app/module2.py`.
+`ocr_modules/module2.py`.
 
 ```json
 {
@@ -149,7 +199,7 @@ nếu `task_type=table`). Chạy pipeline 2-pass self-reflection (prompt/JSON-re
 logic port y hệt 3 notebook gốc — `qwenver15update-shorttext.ipynb`,
 `ocr-longtext.ipynb`, `qwenver15update-table.ipynb`) nhưng gọi **Qwen3-VL-32B
 qua API** (OpenAI-compatible chat completions, vd OpenRouter) thay vì load
-model local — xem `_call_qwen_vl()` trong `backend/ocr/app/module3.py`.
+model local — xem `_call_qwen_vl()` trong `ocr_modules/module3.py`.
 
 ```json
 {
@@ -163,7 +213,7 @@ model local — xem `_call_qwen_vl()` trong `backend/ocr/app/module3.py`.
 
 Cần `LLM_API_KEY`/`LLM_MODEL_API`/`LLM_MODEL_NAME` trong `.env` (cùng file
 `.env` mà `backend/pipeline.py` dùng) — không cần GPU/CUDA nữa. Kiểm tra qua
-field `module3_llm_configured` ở `/health`. Nếu `.env` thiếu cấu hình,
+field `llm_configured` ở `/api/v1/health`. Nếu `.env` thiếu cấu hình,
 endpoint trả về HTTP 503 kèm lý do thay vì lỗi mù mờ.
 
 Frontend gọi qua `src/lib/ocr/api3.ts` → `src/routes/module-3.tsx`, cùng
@@ -184,7 +234,7 @@ pattern gọi thẳng backend như Module 1/2 (không qua Vite proxy).
 - Chưa port prompt "diagram" (có trong cả 3 notebook nhưng không được dùng ở
   pipeline chính, và frontend hiện không có `TaskType="diagram"`) — nếu sau
   này cần, prompt đã có sẵn trong notebook, chỉ cần thêm vào
-  `backend/app/module3.py#get_ocr_prompt` và `src/lib/ocr/prompts.ts`.
+  `ocr_modules/module3.py#get_ocr_prompt` và `src/lib/ocr/prompts.ts`.
 - `ocr-longtext.ipynb` có 1 bug nhỏ ở Pass 1 của `run_qwen_inference()`: biến
   `prompt_type` bị gán cứng `"code"` thay vì dùng `task["type"]` (`"long_text"`).
   Bản port này **không** tái tạo bug đó — dùng đúng prompt `"long_text"` cho

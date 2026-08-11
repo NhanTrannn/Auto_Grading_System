@@ -1,4 +1,4 @@
-/** Types mirroring backend/ocr/app/main.py's response shapes. */
+/** Types mirroring backend/app/api/routes/ocr.py's response shapes. */
 
 export type OcrTaskType = "short_text" | "long_text" | "code" | "table";
 
@@ -52,9 +52,4 @@ export interface OcrResult {
   pass1_content: unknown;
   content: unknown;
   structure_warning: string | null;
-}
-
-export interface OcrHealth {
-  status: string;
-  module3_llm_configured: boolean;
 }

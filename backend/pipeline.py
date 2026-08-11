@@ -21,10 +21,6 @@ load_dotenv()
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple, Union
 
-import pandas as pd
-
-pd.set_option("display.max_colwidth", 200)
-
 # ============================================================================
 # FIX #10: API key từ env var, không hardcode
 # ============================================================================
@@ -1443,7 +1439,17 @@ def grade_expected_output_criterion(
 
 
 # ==========================================================================================================
-# Grader 2: Dùng cho Mode: Logical Reasoning - self_reported_index, conditional_outputs, partial_credit_rule
+# Grader 2: Dùng cho Mode: Logical Reasoning - self_reported_index, conditional_outputs
+# LƯU Ý: KHÔNG dùng partial_credit_rule ở đây (đã bỏ khỏi comment header cũ ghi
+# nhầm) — field này chỉ thực sự được heuristic tiêu thụ ở Matching
+# (_grade_by_tokens, xem Grader 1 bên trên). grade_expected_value_criterion
+# (Logical)/grade_table_criterion (Table) không đọc field này ở đâu cả; nếu
+# khai partial_credit_rule cho criterion Logical/Table, nó vẫn bị leak vào
+# prompt qua _grade_with_llm_advised_core (đọc field này chung mọi
+# question_type) nhưng chỉ là text vô nghĩa (correct_token_count/
+# wrong_token_count là khái niệm token-matching, không áp dụng cho Logical/
+# Table) — trùng lặp chức năng với content/grader_note. Muốn diễn đạt quy tắc
+# điểm bán phần cho Logical/Table, viết thẳng vào content hoặc grader_note.
 # ==========================================================================================================
 
 
@@ -4483,7 +4489,12 @@ def run_batch(
     # Summary
     total_sc = sum(r.get("score", 0) for r in results)
     total_mx = sum(r.get("max_score", 0) for r in results)
-    print(f"\n  TOTAL: {total_sc:.2f}/{total_mx:.2f} ({total_sc/total_mx*100:.1f}%)")
+    # Guarded like the per-sample print above: total_mx is legitimately 0 when
+    # none of the graded questions exist in the barem (e.g. a roi_config whose
+    # cau_key doesn't match any barem question). Dividing unguarded crashed the
+    # whole run *after* grading had already finished, throwing the results away.
+    total_pct = total_sc / total_mx * 100 if total_mx else 0
+    print(f"\n  TOTAL: {total_sc:.2f}/{total_mx:.2f} ({total_pct:.1f}%)")
 
     summary = summarize_by_student(results)
     print_student_summary(summary)

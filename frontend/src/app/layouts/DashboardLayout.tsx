@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 import Button from "@/components/core/Button";
 import {
+  IconFile,
   IconGrade,
   IconHistory,
   IconLayers,
@@ -18,7 +19,16 @@ import styles from "./DashboardLayout.module.css";
 const NAV_SECTIONS = [
   {
     title: "Chấm điểm",
-    items: [{ to: "/", label: "Phiên chấm mới", icon: <IconGrade size={16} />, end: true }],
+    items: [
+      { to: "/pipeline", label: "Chấm cả lớp từ ảnh", icon: <IconLayers size={16} />, end: true },
+      { to: "/", label: "Chấm từ file JSON", icon: <IconGrade size={16} />, end: true },
+    ],
+  },
+  {
+    title: "Chuẩn bị",
+    items: [
+      { to: "/barem", label: "Soạn barem", icon: <IconFile size={16} />, end: true },
+    ],
   },
   {
     title: "Pipeline OCR",
@@ -61,7 +71,7 @@ export default function DashboardLayout() {
         </div>
 
         <div className={styles.cta}>
-          <Button to="/" block icon={<IconPlus size={15} />}>
+          <Button to="/pipeline" block icon={<IconPlus size={15} />}>
             Phiên chấm mới
           </Button>
         </div>
@@ -97,10 +107,9 @@ export default function DashboardLayout() {
 
         <footer className={styles.footer}>
           <div className={styles.services}>
-            <ServiceRow name="API chấm điểm" port={8000} state={health.grading} />
-            <ServiceRow name="API OCR" port={8081} state={health.ocr} />
-            {health.ocr === "up" && health.ocrLlmConfigured === false && (
-              <div className={styles.warning}>Module 3 chưa cấu hình LLM (.env)</div>
+            <ServiceRow name="Backend" port={8000} state={health.api} />
+            {health.api === "up" && health.llmConfigured === false && (
+              <div className={styles.warning}>Chưa cấu hình LLM trong .env — OCR và chấm điểm đều không chạy được</div>
             )}
           </div>
           <ThemeToggle />

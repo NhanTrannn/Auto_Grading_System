@@ -1,13 +1,7 @@
-import type {
-  AlignResult,
-  OcrHealth,
-  OcrResult,
-  OcrTaskType,
-  RoiPageResult,
-} from "@/types/ocr";
+import type { AlignResult, OcrResult, OcrTaskType, RoiPageResult } from "@/types/ocr";
 
-/** Proxied by vite.config.ts to the standalone OCR service on port 8081. */
-const OCR_BASE = "/ocr";
+/** The OCR modules are part of the one backend now (they had their own service on 8081). */
+const OCR_BASE = "/api/v1/ocr";
 
 async function readError(res: Response): Promise<string> {
   try {
@@ -17,12 +11,6 @@ async function readError(res: Response): Promise<string> {
   } catch {
     return `HTTP ${res.status}`;
   }
-}
-
-export async function getOcrHealth(): Promise<OcrHealth> {
-  const res = await fetch(`${OCR_BASE}/health`);
-  if (!res.ok) throw new Error(await readError(res));
-  return res.json();
 }
 
 export async function detectRois(files: File[]): Promise<RoiPageResult[]> {

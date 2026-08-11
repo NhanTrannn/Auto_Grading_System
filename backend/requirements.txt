@@ -1,3 +1,7 @@
+# One backend: the grading API, the end-to-end pipeline worker, and the three
+# OCR modules all run in this one service (uvicorn app.main:app --port 8000).
+# backend/ocr/ used to be a second service with its own requirements file.
+
 fastapi
 uvicorn[standard]
 sqlalchemy
@@ -5,8 +9,12 @@ alembic
 pydantic-settings
 python-dotenv
 requests
-pandas
 python-multipart
+
+# OCR (backend/ocr/ocr_modules) — module 1 and 2 are pure OpenCV; module 3
+# calls Qwen3-VL over HTTP, so there is no torch/CUDA here.
+opencv-python-headless>=4.10
+numpy>=1.26
 
 # dev/test only
 pytest

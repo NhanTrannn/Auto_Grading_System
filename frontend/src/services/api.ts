@@ -2,13 +2,14 @@ import type { GradingJobCreated, GradingJobResult, GradingJobStatus } from "@/ty
 
 const API_BASE = "/api/v1";
 
+/** The barem comes from the library by id; the backend writes its stored content out for the worker. */
 export async function createGradingJob(
   inputFile: File,
-  baremFile: File,
+  baremId: string,
 ): Promise<GradingJobCreated> {
   const formData = new FormData();
   formData.append("input_file", inputFile);
-  formData.append("barem_file", baremFile);
+  formData.append("barem_id", baremId);
 
   const res = await fetch(`${API_BASE}/grading/jobs`, {
     method: "POST",

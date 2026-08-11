@@ -6,7 +6,7 @@ TEST_IMAGE = "test.jpg"
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from app.module3 import is_configured, run_ocr_single
+from ocr_modules.module3 import is_configured, run_ocr_single
 
 print("LLM configured (.env LLM_API_KEY/LLM_MODEL_API/LLM_MODEL_NAME):", is_configured())
 

@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 
-import { getOcrHealth } from "@/services/ocrApi";
-
 export type HealthState = "checking" | "up" | "down";
 
 export interface ServiceHealth {
-  grading: HealthState;
-  ocr: HealthState;
-  /** null while unknown; true/false once the OCR service has answered. */
-  ocrLlmConfigured: boolean | null;
+  api: HealthState;
+  /** null while unknown; true/false once the backend has answered. */
+  llmConfigured: boolean | null;
 }
 
 const POLL_MS = 20000;
 
-/** Polls both backends so the sidebar can show which services are reachable. */
+/**
+ * Polls the backend so the sidebar can show whether it is reachable.
+ *
+ * One request, one status: OCR used to be a second service on its own port,
+ * so this polled two endpoints and reported them separately.
+ */
 export function useServiceHealth(): ServiceHealth {
-  const [grading, setGrading] = useState<HealthState>("checking");
-  const [ocr, setOcr] = useState<HealthState>("checking");
-  const [ocrLlmConfigured, setOcrLlmConfigured] = useState<boolean | null>(null);
+  const [api, setApi] = useState<HealthState>("checking");
+  const [llmConfigured, setLlmConfigured] = useState<boolean | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -25,21 +26,16 @@ export function useServiceHealth(): ServiceHealth {
     async function check() {
       try {
         const res = await fetch("/api/v1/health");
-        if (!cancelled) setGrading(res.ok ? "up" : "down");
-      } catch {
-        if (!cancelled) setGrading("down");
-      }
-
-      try {
-        const health = await getOcrHealth();
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const body = await res.json();
         if (!cancelled) {
-          setOcr("up");
-          setOcrLlmConfigured(health.module3_llm_configured);
+          setApi("up");
+          setLlmConfigured(body?.llm_configured ?? null);
         }
       } catch {
         if (!cancelled) {
-          setOcr("down");
-          setOcrLlmConfigured(null);
+          setApi("down");
+          setLlmConfigured(null);
         }
       }
     }
@@ -52,5 +48,5 @@ export function useServiceHealth(): ServiceHealth {
     };
   }, []);
 
-  return { grading, ocr, ocrLlmConfigured };
+  return { api, llmConfigured };
 }

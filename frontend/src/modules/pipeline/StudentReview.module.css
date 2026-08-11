@@ -1,0 +1,248 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ── Navigation bar ──────────────────────────────────────── */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.identity {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 200px;
+  flex-wrap: wrap;
+}
+
+.hsKey {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.position {
+  font-size: 11.5px;
+  color: var(--color-text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.score {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.jump {
+  padding: 6px var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 12.5px;
+  max-width: 200px;
+}
+
+.tip {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ── One question ────────────────────────────────────────── */
+.question {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.questionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-sunken);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.questionTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  font-size: 13.5px;
+  font-weight: 680;
+}
+
+.questionScore {
+  font-size: 13px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
+/* ── Answer regions (crop + OCR text) ────────────────────── */
+.regions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.region {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.regionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 6px var(--space-3);
+  background: var(--color-surface-sunken);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cauKey {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 650;
+  color: var(--color-accent);
+}
+
+.regionBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+.cropBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  overflow: hidden;
+}
+
+.crop {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 340px;
+  object-fit: contain;
+}
+
+.cropMissing {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-4);
+  font-size: 11.5px;
+  color: var(--color-text-faint);
+}
+
+.readBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.readLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.readText {
+  margin: 0;
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-sunken);
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 340px;
+  overflow: auto;
+}
+
+/* ── Criteria ────────────────────────────────────────────── */
+.criteria {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+}
+
+.criterion {
+  padding: var(--space-3) var(--space-4);
+}
+
+.criterion + .criterion {
+  border-top: 1px solid var(--color-border);
+}
+
+.criterionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.criterionId {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--color-accent);
+}
+
+.criterionScore {
+  font-size: 12.5px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.criterionReason {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-left: 2.5px solid var(--color-accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--color-surface-sunken);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .regionBody {
+    grid-template-columns: 1fr;
+  }
+}

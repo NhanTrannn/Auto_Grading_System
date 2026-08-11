@@ -5,4 +5,18 @@ services:
       - "8000:8000"
     env_file:
       - ../.env
+    environment:
+      # Keep the database on the volume below. The default
+      # (sqlite:///./autograding.db, app/core/config.py) writes into the
+      # container's own filesystem, so every `docker compose up --build` would
+      # start from an empty job history.
+      DATABASE_URL: sqlite:////app/var/autograding.db
+    volumes:
+      # var/ holds uploaded archives, per-job working dirs, cropped answer
+      # regions and graded output — all of it referenced by URL from the UI
+      # long after the run finishes, so it has to outlive the container.
+      - backend_var:/app/var
     restart: unless-stopped
+
+volumes:
+  backend_var:

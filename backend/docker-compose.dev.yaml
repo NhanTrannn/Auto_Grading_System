@@ -7,6 +7,17 @@ services:
       # live-edit without rebuilding the image
       - ./app:/app/app
       - ./pipeline.py:/app/pipeline.py:ro
+      - ./ocr:/app/ocr:ro
+      # Share the host's data, so switching between `uvicorn` on the host and
+      # this container shows the same barem library, job history and crops.
+      # Without these the container keeps its own database inside its
+      # filesystem and everything looks empty — and a rebuild silently discards
+      # whatever was created in the previous one.
+      # autograding.db must already exist on the host, or Docker creates a
+      # DIRECTORY with that name and SQLAlchemy fails to open it; `touch` it
+      # first if you ever start from a clean checkout.
+      - ./autograding.db:/app/autograding.db
+      - ./var:/app/var
     env_file:
       - ../.env
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload

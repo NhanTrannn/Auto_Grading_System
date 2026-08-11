@@ -135,3 +135,22 @@
     grid-template-columns: 1fr;
   }
 }
+
+.pipelineNote {
+  margin: var(--space-3) 0 0;
+  padding-top: var(--space-3);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--color-text-faint);
+  border-top: 1px solid var(--color-border);
+}
+
+.pipelineLink {
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.pipelineLink:hover {
+  text-decoration: underline;
+}

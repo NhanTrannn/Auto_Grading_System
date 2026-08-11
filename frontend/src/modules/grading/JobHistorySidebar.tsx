@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 
 import Badge from "@/components/core/Badge";
 import { listGradingJobs } from "@/services/api";
-import type { GradingJobStatus } from "@/types/grading";
+import { listPipelineJobs } from "@/services/pipelineApi";
+import type { JobStatus } from "@/types/grading";
 
 import styles from "./JobHistorySidebar.module.css";
 
@@ -16,24 +17,57 @@ const timeFormatter = new Intl.DateTimeFormat("vi-VN", {
   minute: "2-digit",
 });
 
+/** Both job kinds share one list, distinguished by the badge and their link. */
+interface HistoryEntry {
+  jobId: string;
+  status: JobStatus;
+  createdAt: string;
+  kind: "pipeline" | "grading";
+  to: string;
+}
+
 export default function JobHistorySidebar() {
-  const [jobs, setJobs] = useState<GradingJobStatus[]>([]);
+  const [entries, setEntries] = useState<HistoryEntry[]>([]);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
 
     async function refresh() {
-      try {
-        const data = await listGradingJobs();
-        if (!cancelled) {
-          setJobs(data);
-          setLoaded(true);
-        }
-      } catch {
-        // Sidebar refresh failing silently is fine — the main content area
-        // surfaces real errors for whatever job is actually being viewed.
+      // allSettled: one backend list failing must not blank out the other.
+      const [gradingRes, pipelineRes] = await Promise.allSettled([
+        listGradingJobs(),
+        listPipelineJobs(),
+      ]);
+      if (cancelled) return;
+
+      const merged: HistoryEntry[] = [];
+      if (gradingRes.status === "fulfilled") {
+        gradingRes.value.forEach((job) =>
+          merged.push({
+            jobId: job.job_id,
+            status: job.status,
+            createdAt: job.created_at,
+            kind: "grading",
+            to: `/jobs/${job.job_id}`,
+          }),
+        );
       }
+      if (pipelineRes.status === "fulfilled") {
+        pipelineRes.value.forEach((job) =>
+          merged.push({
+            jobId: job.job_id,
+            status: job.status,
+            createdAt: job.created_at,
+            kind: "pipeline",
+            to: `/pipeline/${job.job_id}`,
+          }),
+        );
+      }
+
+      merged.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+      setEntries(merged);
+      setLoaded(true);
     }
 
     refresh();
@@ -44,27 +78,28 @@ export default function JobHistorySidebar() {
     };
   }, []);
 
-  if (jobs.length === 0) {
+  if (entries.length === 0) {
     return (
-      <div className={styles.empty}>
-        {loaded ? "Chưa có lần chấm nào." : "Đang tải lịch sử…"}
-      </div>
+      <div className={styles.empty}>{loaded ? "Chưa có lần chấm nào." : "Đang tải lịch sử…"}</div>
     );
   }
 
   return (
     <div className={styles.list}>
-      {jobs.map((job) => (
+      {entries.map((entry) => (
         <NavLink
-          key={job.job_id}
-          to={`/jobs/${job.job_id}`}
+          key={`${entry.kind}-${entry.jobId}`}
+          to={entry.to}
           className={({ isActive }) => `${styles.item} ${isActive ? styles.itemActive : ""}`}
         >
           <div className={styles.itemTop}>
-            <span className={styles.jobId}>{job.job_id.slice(0, 8)}</span>
-            <span className={styles.time}>{timeFormatter.format(new Date(job.created_at))}</span>
+            <span className={styles.jobId}>{entry.jobId.slice(0, 8)}</span>
+            <span className={styles.time}>{timeFormatter.format(new Date(entry.createdAt))}</span>
           </div>
-          <Badge status={job.status} />
+          <div className={styles.itemBottom}>
+            <Badge status={entry.status} />
+            <span className={styles.kind}>{entry.kind === "pipeline" ? "Từ ảnh" : "Từ JSON"}</span>
+          </div>
         </NavLink>
       ))}
     </div>
