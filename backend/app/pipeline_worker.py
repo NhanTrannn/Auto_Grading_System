@@ -37,9 +37,9 @@ def main() -> None:
     job_id, job_dir_arg = sys.argv[1:3]
     job_dir = Path(job_dir_arg)
 
-    config_path = job_dir / "roi_config.json"
+    configs_path = job_dir / "roi_configs.json"
     results_path = job_dir / "results.json"
-    barem_path = job_dir / "barem.json"
+    barem_dir = job_dir / "barems"
     graded_dir = job_dir / "graded"
 
     db = SessionLocal()
@@ -60,30 +60,58 @@ def main() -> None:
         db.commit()
         set_progress("ocr", 0, 0, "Đang khởi động OCR")
 
-        with config_path.open("r", encoding="utf-8") as f:
-            config = json.load(f)
+        with configs_path.open("r", encoding="utf-8") as f:
+            configs = json.load(f)
 
-        # Web runs keep every crop: the review screen shows each cropped answer
-        # region next to what the OCR read from it, which is the main way a
-        # teacher spots a misread.
-        result = ocr_engine.ocr_main.build_results_json(
-            config,
-            save_crops=(job_dir / "save_crops").exists(),
-            on_progress=lambda done, total, message: set_progress("ocr", done, total, message),
-        )
+        save_crops = (job_dir / "save_crops").exists()
+
+        # One OCR pass per exam code, because each code has its own blank pages
+        # and its own regions. The results merge into a single Results JSON:
+        # every student carries their own `ma_de`, so pipeline.py can pick the
+        # right rubric per student from the barems directory afterwards.
+        #
+        # Progress is accumulated across codes rather than restarting at each
+        # one, so the bar reflects the whole run.
+        merged: dict = {}
+        done_before = 0
+        grand_total = sum(len(c["students"]) * len(c["rois"]) for c in configs)
+
+        for config in configs:
+            ma_de = config.get("ma_de")
+            print(f"[worker] OCR mã đề {ma_de}: {len(config['students'])} học sinh", flush=True)
+
+            offset = done_before
+
+            def report(done: int, total: int, message: str, _offset: int = offset) -> None:
+                set_progress("ocr", _offset + done, grand_total, f"[mã đề {ma_de}] {message}")
+
+            result = ocr_engine.ocr_main.build_results_json(
+                config, save_crops=save_crops, on_progress=report
+            )
+            # No collision handling needed: the route already numbered every
+            # student uniquely across codes (_claim_hs_key), precisely so the
+            # merge, the crop filenames and `student_index` all stay distinct.
+            merged.update(result)
+            done_before += len(config["students"]) * len(config["rois"])
 
         with results_path.open("w", encoding="utf-8") as f:
-            json.dump(result, f, ensure_ascii=False, indent=2)
+            json.dump(merged, f, ensure_ascii=False, indent=2)
 
-        n_students = sum(1 for k in result if k.startswith("HS_"))
-        print(f"[worker] OCR xong: {results_path} ({n_students} học sinh)", flush=True)
+        n_students = sum(1 for k in merged if k.startswith("HS_"))
+        print(
+            f"[worker] OCR xong: {results_path} ({n_students} học sinh, "
+            f"{len(configs)} mã đề)",
+            flush=True,
+        )
 
         set_progress("grading", 0, 1, "Đang chấm điểm bằng pipeline.py")
         graded_dir.mkdir(parents=True, exist_ok=True)
         result_file = graded_dir / "grading_results.json"
-        # run_batch's third argument is a FILE path, not a directory — it opens
-        # it directly (see app/worker.py for the same note).
-        wrapper.run_batch(str(results_path), str(barem_path), str(result_file))
+        # `barem_dir` holds one rubric per exam code; run_batch resolves the
+        # directory and matches each student by their own `ma_de`. Its third
+        # argument, though, is the OUTPUT FILE path, not a directory — it opens
+        # that path directly (see app/worker.py for the same note).
+        wrapper.run_batch(str(results_path), str(barem_dir), str(result_file))
 
         if not result_file.exists():
             raise FileNotFoundError(f"Không thấy file kết quả chấm: {result_file}")

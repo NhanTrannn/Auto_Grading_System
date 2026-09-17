@@ -1,12 +1,14 @@
 {
-  "ma_de": "1",
   "HS_2": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["3516"]
+        "lines": [
+          "3516"
+        ]
       }
     },
     "Cau_02": {
@@ -14,7 +16,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12"]
+        "lines": [
+          "12"
+        ]
       }
     },
     "Cau_03_1": {
@@ -22,7 +26,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["23"]
+        "lines": [
+          "23"
+        ]
       }
     },
     "Cau_03_2": {
@@ -30,7 +36,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["57918"]
+        "lines": [
+          "57918"
+        ]
       }
     },
     "Cau_04": {
@@ -38,7 +46,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["41211"]
+        "lines": [
+          "41211"
+        ]
       }
     },
     "Cau_05": {
@@ -46,7 +56,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1055"]
+        "lines": [
+          "1055"
+        ]
       }
     },
     "Cau_06": {
@@ -54,7 +66,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -62,7 +76,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_08_1": {
@@ -70,7 +86,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["23"]
+        "lines": [
+          "23"
+        ]
       }
     },
     "Cau_08_2": {
@@ -78,7 +96,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505294 8 0 0"]
+        "lines": [
+          "0x505294 8 0 0"
+        ]
       }
     },
     "Cau_09": {
@@ -86,7 +106,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -94,7 +116,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["0 2 0 3 4 4 5 6 2 1"]
+        "lines": [
+          "0 2 0 3 4 4 5 6 2 1"
+        ]
       }
     },
     "Cau_11": {
@@ -102,7 +126,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_12": {
@@ -110,7 +136,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["1/1/2028"]
+        "lines": [
+          "1/1/2028"
+        ]
       }
     },
     "Cau_13a": {
@@ -232,7 +260,7 @@
         "table_extracted": [
           {
             "col_1": "input",
-            "col_2":"output"
+            "col_2": "output"
           },
           {
             "col_1": "dau = 6 chan = 18",
@@ -265,12 +293,15 @@
     }
   },
   "HS_3": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["3529"]
+        "lines": [
+          "3529"
+        ]
       }
     },
     "Cau_02": {
@@ -278,7 +309,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["28"]
+        "lines": [
+          "28"
+        ]
       }
     },
     "Cau_03_1": {
@@ -286,7 +319,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["3"]
+        "lines": [
+          "3"
+        ]
       }
     },
     "Cau_03_2": {
@@ -294,7 +329,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["5"]
+        "lines": [
+          "5"
+        ]
       }
     },
     "Cau_04": {
@@ -302,7 +339,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_05": {
@@ -310,7 +349,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["9113"]
+        "lines": [
+          "9113"
+        ]
       }
     },
     "Cau_06": {
@@ -318,7 +359,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["9"]
+        "lines": [
+          "9"
+        ]
       }
     },
     "Cau_07": {
@@ -326,7 +369,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["9"]
+        "lines": [
+          "9"
+        ]
       }
     },
     "Cau_08_1": {
@@ -334,7 +379,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["3"]
+        "lines": [
+          "3"
+        ]
       }
     },
     "Cau_08_2": {
@@ -342,7 +389,12 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x50528c", "8", "0", "8"]
+        "lines": [
+          "0x50528c",
+          "8",
+          "0",
+          "8"
+        ]
       }
     },
     "Cau_09": {
@@ -350,7 +402,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -358,7 +412,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["-1"]
+        "lines": [
+          "-1"
+        ]
       }
     },
     "Cau_11": {
@@ -366,7 +422,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["22"]
+        "lines": [
+          "22"
+        ]
       }
     },
     "Cau_12": {
@@ -374,7 +432,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["28/1/2026"]
+        "lines": [
+          "28/1/2026"
+        ]
       }
     },
     "Cau_13a": {
@@ -494,12 +554,15 @@
     }
   },
   "HS_7": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["342.08"]
+        "lines": [
+          "342.08"
+        ]
       }
     },
     "Cau_02": {
@@ -507,7 +570,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["128"]
+        "lines": [
+          "128"
+        ]
       }
     },
     "Cau_03_1": {
@@ -515,7 +580,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["26"]
+        "lines": [
+          "26"
+        ]
       }
     },
     "Cau_03_2": {
@@ -523,7 +590,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["46817"]
+        "lines": [
+          "46817"
+        ]
       }
     },
     "Cau_04": {
@@ -531,7 +600,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -539,7 +610,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1055"]
+        "lines": [
+          "1055"
+        ]
       }
     },
     "Cau_06": {
@@ -547,7 +620,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -555,7 +630,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["35"]
+        "lines": [
+          "35"
+        ]
       }
     },
     "Cau_08_1": {
@@ -563,7 +640,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["26"]
+        "lines": [
+          "26"
+        ]
       }
     },
     "Cau_08_2": {
@@ -571,7 +650,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505294 8 0 -2"]
+        "lines": [
+          "0x505294 8 0 -2"
+        ]
       }
     },
     "Cau_09": {
@@ -579,7 +660,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["1"]
+        "lines": [
+          "1"
+        ]
       }
     },
     "Cau_10": {
@@ -587,7 +670,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["10 70 2 3 4 4 5 6 2 1"]
+        "lines": [
+          "10 70 2 3 4 4 5 6 2 1"
+        ]
       }
     },
     "Cau_11": {
@@ -595,7 +680,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -603,7 +690,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["7/1/2026"]
+        "lines": [
+          "7/1/2026"
+        ]
       }
     },
     "Cau_13a": {
@@ -646,7 +735,11 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_07_Cau_13c.jpg",
       "content": {
-        "lines": ["    cout<<tong(a,n)<<endl;", "    cout<<vitri(a,n);", "}"]
+        "lines": [
+          "    cout<<tong(a,n)<<endl;",
+          "    cout<<vitri(a,n);",
+          "}"
+        ]
       }
     },
     "Cau_14a": {
@@ -741,12 +834,15 @@
     }
   },
   "HS_9": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["352.510"]
+        "lines": [
+          "352.510"
+        ]
       }
     },
     "Cau_02": {
@@ -754,7 +850,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12 - 4"]
+        "lines": [
+          "12 - 4"
+        ]
       }
     },
     "Cau_03_1": {
@@ -762,7 +860,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["28"]
+        "lines": [
+          "28"
+        ]
       }
     },
     "Cau_03_2": {
@@ -770,7 +870,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["24615"]
+        "lines": [
+          "24615"
+        ]
       }
     },
     "Cau_04": {
@@ -778,7 +880,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -786,7 +890,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1055"]
+        "lines": [
+          "1055"
+        ]
       }
     },
     "Cau_06": {
@@ -794,7 +900,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -802,7 +910,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["10"]
+        "lines": [
+          "10"
+        ]
       }
     },
     "Cau_08_1": {
@@ -810,7 +920,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["28"]
+        "lines": [
+          "28"
+        ]
       }
     },
     "Cau_08_2": {
@@ -818,7 +930,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505288 8 0 -6"]
+        "lines": [
+          "0x505288 8 0 -6"
+        ]
       }
     },
     "Cau_09": {
@@ -826,7 +940,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["0"]
+        "lines": [
+          "0"
+        ]
       }
     },
     "Cau_10": {
@@ -834,7 +950,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["10 9 8 7 6 5 4 3 2 1"]
+        "lines": [
+          "10 9 8 7 6 5 4 3 2 1"
+        ]
       }
     },
     "Cau_11": {
@@ -842,7 +960,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -850,7 +970,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["7/1/2026"]
+        "lines": [
+          "7/1/2026"
+        ]
       }
     },
     "Cau_13a": {
@@ -891,7 +1013,10 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_07_Cau_13c.jpg",
       "content": {
-        "lines": ["cout << tongsnt(a,n) << endl;", "cout << timmax(a,n);"]
+        "lines": [
+          "cout << tongsnt(a,n) << endl;",
+          "cout << timmax(a,n);"
+        ]
       }
     },
     "Cau_14a": {
@@ -986,12 +1111,15 @@
     }
   },
   "HS_10": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["3"]
+        "lines": [
+          "3"
+        ]
       }
     },
     "Cau_02": {
@@ -999,7 +1127,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12"]
+        "lines": [
+          "12"
+        ]
       }
     },
     "Cau_03_1": {
@@ -1007,7 +1137,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["5"]
+        "lines": [
+          "5"
+        ]
       }
     },
     "Cau_03_2": {
@@ -1015,7 +1147,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["35716"]
+        "lines": [
+          "35716"
+        ]
       }
     },
     "Cau_04": {
@@ -1023,7 +1157,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -1031,7 +1167,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1051"]
+        "lines": [
+          "1051"
+        ]
       }
     },
     "Cau_06": {
@@ -1039,7 +1177,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -1047,7 +1187,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_08_1": {
@@ -1055,7 +1197,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["5"]
+        "lines": [
+          "5"
+        ]
       }
     },
     "Cau_08_2": {
@@ -1063,7 +1207,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_09": {
@@ -1071,7 +1217,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -1079,7 +1227,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_11": {
@@ -1087,7 +1237,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -1095,7 +1247,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["10/12/2025"]
+        "lines": [
+          "10/12/2025"
+        ]
       }
     },
     "Cau_13a": {
@@ -1148,7 +1302,12 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_07_Cau_14a.jpg",
       "content": {
-        "lines": ["Struct Sinh vien {", "int NamSinh;", "float DTB;", "}"]
+        "lines": [
+          "Struct Sinh vien {",
+          "int NamSinh;",
+          "float DTB;",
+          "}"
+        ]
       }
     },
     "Cau_14b": {
@@ -1228,6 +1387,7 @@
     }
   },
   "HS_12": {
+    "ma_de": "1",
     "Cau_15a": {
       "type": "error",
       "status": "failed_at_cropping",
@@ -1251,7 +1411,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["3 4 2,5"]
+        "lines": [
+          "3 4 2,5"
+        ]
       }
     },
     "Cau_02": {
@@ -1259,7 +1421,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_03_1": {
@@ -1267,7 +1431,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["7"]
+        "lines": [
+          "7"
+        ]
       }
     },
     "Cau_03_2": {
@@ -1275,7 +1441,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["27"]
+        "lines": [
+          "27"
+        ]
       }
     },
     "Cau_04": {
@@ -1283,7 +1451,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["1227"]
+        "lines": [
+          "1227"
+        ]
       }
     },
     "Cau_05": {
@@ -1291,7 +1461,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["10 3 1"]
+        "lines": [
+          "10 3 1"
+        ]
       }
     },
     "Cau_06": {
@@ -1299,7 +1471,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4532"]
+        "lines": [
+          "4532"
+        ]
       }
     },
     "Cau_07": {
@@ -1307,7 +1481,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["6"]
+        "lines": [
+          "6"
+        ]
       }
     },
     "Cau_08_1": {
@@ -1315,7 +1491,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["7"]
+        "lines": [
+          "7"
+        ]
       }
     },
     "Cau_08_2": {
@@ -1323,7 +1501,12 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0", "8", "0", "16"]
+        "lines": [
+          "0",
+          "8",
+          "0",
+          "16"
+        ]
       }
     },
     "Cau_09": {
@@ -1331,7 +1514,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -1339,7 +1524,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["7"]
+        "lines": [
+          "7"
+        ]
       }
     },
     "Cau_11": {
@@ -1347,7 +1534,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["18"]
+        "lines": [
+          "18"
+        ]
       }
     },
     "Cau_12": {
@@ -1355,7 +1544,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["7/5/2027"]
+        "lines": [
+          "7/5/2027"
+        ]
       }
     },
     "Cau_13a": {
@@ -1363,7 +1554,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_06_Cau_13a.jpg",
       "content": {
-        "lines": ["void Tinhtong(int a[], int n) {"]
+        "lines": [
+          "void Tinhtong(int a[], int n) {"
+        ]
       }
     },
     "Cau_13b": {
@@ -1387,7 +1580,10 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_07_Cau_14a.jpg",
       "content": {
-        "lines": ["struct SinhVien {", "int NamSinh;"]
+        "lines": [
+          "struct SinhVien {",
+          "int NamSinh;"
+        ]
       }
     },
     "Cau_14b": {
@@ -1408,6 +1604,7 @@
     }
   },
   "HS_15": {
+    "ma_de": "1",
     "Cau_15a": {
       "type": "long_text",
       "status": "failed_at_cropping",
@@ -1431,7 +1628,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["352.57"]
+        "lines": [
+          "352.57"
+        ]
       }
     },
     "Cau_02": {
@@ -1439,7 +1638,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12"]
+        "lines": [
+          "12"
+        ]
       }
     },
     "Cau_03_1": {
@@ -1447,7 +1648,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["10"]
+        "lines": [
+          "10"
+        ]
       }
     },
     "Cau_03_2": {
@@ -1455,7 +1658,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["46817"]
+        "lines": [
+          "46817"
+        ]
       }
     },
     "Cau_04": {
@@ -1463,7 +1668,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -1471,7 +1678,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1055"]
+        "lines": [
+          "1055"
+        ]
       }
     },
     "Cau_06": {
@@ -1479,7 +1688,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["1"]
+        "lines": [
+          "1"
+        ]
       }
     },
     "Cau_07": {
@@ -1487,7 +1698,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["8"]
+        "lines": [
+          "8"
+        ]
       }
     },
     "Cau_08_1": {
@@ -1495,7 +1708,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["10"]
+        "lines": [
+          "10"
+        ]
       }
     },
     "Cau_08_2": {
@@ -1503,7 +1718,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505294 8 0 -2"]
+        "lines": [
+          "0x505294 8 0 -2"
+        ]
       }
     },
     "Cau_09": {
@@ -1511,7 +1728,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["1"]
+        "lines": [
+          "1"
+        ]
       }
     },
     "Cau_10": {
@@ -1519,7 +1738,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["10 70 2 3 4 4 5 2 1 7"]
+        "lines": [
+          "10 70 2 3 4 4 5 2 1 7"
+        ]
       }
     },
     "Cau_11": {
@@ -1527,7 +1748,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -1535,7 +1758,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["7/1/2026"]
+        "lines": [
+          "7/1/2026"
+        ]
       }
     },
     "Cau_13a": {
@@ -1639,6 +1864,7 @@
     }
   },
   "HS_17": {
+    "ma_de": "1",
     "Cau_15a": {
       "type": "long_text",
       "status": "failed_at_cropping",
@@ -1662,7 +1888,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["24"]
+        "lines": [
+          "24"
+        ]
       }
     },
     "Cau_02": {
@@ -1670,7 +1898,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["8 - 2"]
+        "lines": [
+          "8 - 2"
+        ]
       }
     },
     "Cau_03_1": {
@@ -1678,7 +1908,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["12"]
+        "lines": [
+          "12"
+        ]
       }
     },
     "Cau_03_2": {
@@ -1686,7 +1918,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["24615"]
+        "lines": [
+          "24615"
+        ]
       }
     },
     "Cau_04": {
@@ -1694,7 +1928,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["41222"]
+        "lines": [
+          "41222"
+        ]
       }
     },
     "Cau_05": {
@@ -1702,7 +1938,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1053"]
+        "lines": [
+          "1053"
+        ]
       }
     },
     "Cau_06": {
@@ -1710,7 +1948,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["1"]
+        "lines": [
+          "1"
+        ]
       }
     },
     "Cau_07": {
@@ -1718,7 +1958,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["8"]
+        "lines": [
+          "8"
+        ]
       }
     },
     "Cau_08_1": {
@@ -1726,7 +1968,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["12"]
+        "lines": [
+          "12"
+        ]
       }
     },
     "Cau_08_2": {
@@ -1734,7 +1978,10 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505288 -3 0x000000", "2"]
+        "lines": [
+          "0x505288 -3 0x000000",
+          "2"
+        ]
       }
     },
     "Cau_09": {
@@ -1742,7 +1989,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["1"]
+        "lines": [
+          "1"
+        ]
       }
     },
     "Cau_10": {
@@ -1750,7 +1999,10 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["7 1 9 3", "4 5 6 9 2 1 0"]
+        "lines": [
+          "7 1 9 3",
+          "4 5 6 9 2 1 0"
+        ]
       }
     },
     "Cau_11": {
@@ -1758,7 +2010,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["25"]
+        "lines": [
+          "25"
+        ]
       }
     },
     "Cau_12": {
@@ -1766,7 +2020,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["24/1/2026"]
+        "lines": [
+          "24/1/2026"
+        ]
       }
     },
     "Cau_13a": {
@@ -1806,7 +2062,10 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_07_Cau_13c.jpg",
       "content": {
-        "lines": ["cout << tong(a,n) << \" \" << find(a,n);", "return 0;"]
+        "lines": [
+          "cout << tong(a,n) << \" \" << find(a,n);",
+          "return 0;"
+        ]
       }
     },
     "Cau_14a": {
@@ -1847,12 +2106,15 @@
     }
   },
   "HS_18": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["352.510"]
+        "lines": [
+          "352.510"
+        ]
       }
     },
     "Cau_02": {
@@ -1860,7 +2122,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12-4"]
+        "lines": [
+          "12-4"
+        ]
       }
     },
     "Cau_03_1": {
@@ -1868,7 +2132,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["16"]
+        "lines": [
+          "16"
+        ]
       }
     },
     "Cau_03_2": {
@@ -1876,7 +2142,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["24615"]
+        "lines": [
+          "24615"
+        ]
       }
     },
     "Cau_04": {
@@ -1884,7 +2152,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["41218"]
+        "lines": [
+          "41218"
+        ]
       }
     },
     "Cau_05": {
@@ -1892,7 +2162,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1055"]
+        "lines": [
+          "1055"
+        ]
       }
     },
     "Cau_06": {
@@ -1900,7 +2172,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -1908,7 +2182,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["8"]
+        "lines": [
+          "8"
+        ]
       }
     },
     "Cau_08_1": {
@@ -1916,7 +2192,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["16"]
+        "lines": [
+          "16"
+        ]
       }
     },
     "Cau_08_2": {
@@ -1924,7 +2202,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x50528c 5 0 -6"]
+        "lines": [
+          "0x50528c 5 0 -6"
+        ]
       }
     },
     "Cau_09": {
@@ -1932,7 +2212,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["0"]
+        "lines": [
+          "0"
+        ]
       }
     },
     "Cau_10": {
@@ -1940,7 +2222,10 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["0 -1 2 -1 4", "-1"]
+        "lines": [
+          "0 -1 2 -1 4",
+          "-1"
+        ]
       }
     },
     "Cau_11": {
@@ -1948,7 +2233,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["18"]
+        "lines": [
+          "18"
+        ]
       }
     },
     "Cau_12": {
@@ -1956,7 +2243,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["7/5/2027"]
+        "lines": [
+          "7/5/2027"
+        ]
       }
     },
     "Cau_13a": {
@@ -2099,12 +2388,15 @@
     }
   },
   "HS_19": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["352.510"]
+        "lines": [
+          "352.510"
+        ]
       }
     },
     "Cau_02": {
@@ -2112,7 +2404,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["128"]
+        "lines": [
+          "128"
+        ]
       }
     },
     "Cau_03_1": {
@@ -2120,7 +2414,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["17"]
+        "lines": [
+          "17"
+        ]
       }
     },
     "Cau_03_2": {
@@ -2128,7 +2424,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["3"]
+        "lines": [
+          "3"
+        ]
       }
     },
     "Cau_04": {
@@ -2136,7 +2434,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["41217"]
+        "lines": [
+          "41217"
+        ]
       }
     },
     "Cau_05": {
@@ -2144,7 +2444,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["2101"]
+        "lines": [
+          "2101"
+        ]
       }
     },
     "Cau_06": {
@@ -2152,7 +2454,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -2160,7 +2464,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["8"]
+        "lines": [
+          "8"
+        ]
       }
     },
     "Cau_08_1": {
@@ -2168,7 +2474,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["17"]
+        "lines": [
+          "17"
+        ]
       }
     },
     "Cau_08_2": {
@@ -2176,7 +2484,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505294 8 -4 6"]
+        "lines": [
+          "0x505294 8 -4 6"
+        ]
       }
     },
     "Cau_09": {
@@ -2184,7 +2494,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -2192,7 +2504,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_11": {
@@ -2200,7 +2514,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["0"]
+        "lines": [
+          "0"
+        ]
       }
     },
     "Cau_12": {
@@ -2208,7 +2524,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["7/1/2026"]
+        "lines": [
+          "7/1/2026"
+        ]
       }
     },
     "Cau_13a": {
@@ -2316,8 +2634,8 @@
       "content": {
         "table_extracted": [
           {
-            "col_1":"input",
-            "col_2":"output"
+            "col_1": "input",
+            "col_2": "output"
           },
           {
             "col_1": "",
@@ -2342,12 +2660,15 @@
     }
   },
   "HS_21": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_02": {
@@ -2355,7 +2676,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12-4"]
+        "lines": [
+          "12-4"
+        ]
       }
     },
     "Cau_03_1": {
@@ -2363,7 +2686,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["19"]
+        "lines": [
+          "19"
+        ]
       }
     },
     "Cau_03_2": {
@@ -2371,7 +2696,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["57918"]
+        "lines": [
+          "57918"
+        ]
       }
     },
     "Cau_04": {
@@ -2379,7 +2706,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -2387,7 +2716,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1011"]
+        "lines": [
+          "1011"
+        ]
       }
     },
     "Cau_06": {
@@ -2395,7 +2726,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -2403,7 +2736,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["9"]
+        "lines": [
+          "9"
+        ]
       }
     },
     "Cau_08_1": {
@@ -2411,7 +2746,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["19"]
+        "lines": [
+          "19"
+        ]
       }
     },
     "Cau_08_2": {
@@ -2419,7 +2756,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505288 5 -3 0"]
+        "lines": [
+          "0x505288 5 -3 0"
+        ]
       }
     },
     "Cau_09": {
@@ -2427,7 +2766,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -2435,7 +2776,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["4 2 10 4 5 6 70 3 2 1"]
+        "lines": [
+          "4 2 10 4 5 6 70 3 2 1"
+        ]
       }
     },
     "Cau_11": {
@@ -2443,7 +2786,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -2451,7 +2796,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["28/1/2026"]
+        "lines": [
+          "28/1/2026"
+        ]
       }
     },
     "Cau_13a": {
@@ -2586,12 +2933,15 @@
     }
   },
   "HS_24": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["3529"]
+        "lines": [
+          "3529"
+        ]
       }
     },
     "Cau_02": {
@@ -2599,7 +2949,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12-4"]
+        "lines": [
+          "12-4"
+        ]
       }
     },
     "Cau_03_1": {
@@ -2607,7 +2959,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["21"]
+        "lines": [
+          "21"
+        ]
       }
     },
     "Cau_03_2": {
@@ -2615,7 +2969,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["35716"]
+        "lines": [
+          "35716"
+        ]
       }
     },
     "Cau_04": {
@@ -2623,7 +2979,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -2631,7 +2989,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1055"]
+        "lines": [
+          "1055"
+        ]
       }
     },
     "Cau_06": {
@@ -2639,7 +2999,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -2647,7 +3009,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["10"]
+        "lines": [
+          "10"
+        ]
       }
     },
     "Cau_08_1": {
@@ -2655,7 +3019,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["21"]
+        "lines": [
+          "21"
+        ]
       }
     },
     "Cau_08_2": {
@@ -2663,7 +3029,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505294 8 0 0"]
+        "lines": [
+          "0x505294 8 0 0"
+        ]
       }
     },
     "Cau_09": {
@@ -2671,7 +3039,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -2679,7 +3049,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["10 -1 2 -1 4 -1 -1 -1 -1 -1"]
+        "lines": [
+          "10 -1 2 -1 4 -1 -1 -1 -1 -1"
+        ]
       }
     },
     "Cau_11": {
@@ -2687,7 +3059,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["18"]
+        "lines": [
+          "18"
+        ]
       }
     },
     "Cau_12": {
@@ -2695,7 +3069,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["10/1/2026"]
+        "lines": [
+          "10/1/2026"
+        ]
       }
     },
     "Cau_13a": {
@@ -2839,12 +3215,15 @@
     }
   },
   "HS_26": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["352.510"]
+        "lines": [
+          "352.510"
+        ]
       }
     },
     "Cau_02": {
@@ -2852,7 +3231,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["-412"]
+        "lines": [
+          "-412"
+        ]
       }
     },
     "Cau_03_1": {
@@ -2860,7 +3241,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["30"]
+        "lines": [
+          "30"
+        ]
       }
     },
     "Cau_03_2": {
@@ -2868,7 +3251,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["46817"]
+        "lines": [
+          "46817"
+        ]
       }
     },
     "Cau_04": {
@@ -2876,7 +3261,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["41204"]
+        "lines": [
+          "41204"
+        ]
       }
     },
     "Cau_05": {
@@ -2884,7 +3271,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1052"]
+        "lines": [
+          "1052"
+        ]
       }
     },
     "Cau_06": {
@@ -2892,7 +3281,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_07": {
@@ -2900,7 +3291,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_08_1": {
@@ -2908,7 +3301,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["30"]
+        "lines": [
+          "30"
+        ]
       }
     },
     "Cau_08_2": {
@@ -2916,7 +3311,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505298 -1 8 6"]
+        "lines": [
+          "0x505298 -1 8 6"
+        ]
       }
     },
     "Cau_09": {
@@ -2924,7 +3321,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["1"]
+        "lines": [
+          "1"
+        ]
       }
     },
     "Cau_10": {
@@ -2932,7 +3331,10 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["10 70 2 3", "4 4 5 6 8 9"]
+        "lines": [
+          "10 70 2 3",
+          "4 4 5 6 8 9"
+        ]
       }
     },
     "Cau_11": {
@@ -2940,7 +3342,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -2948,7 +3352,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["7/1/2026"]
+        "lines": [
+          "7/1/2026"
+        ]
       }
     },
     "Cau_13a": {
@@ -3098,6 +3504,7 @@
     }
   },
   "HS_28": {
+    "ma_de": "1",
     "Cau_14b": {
       "type": "error",
       "status": "failed_at_cropping",
@@ -3133,7 +3540,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["352,510"]
+        "lines": [
+          "352,510"
+        ]
       }
     },
     "Cau_02": {
@@ -3141,7 +3550,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12 - 4"]
+        "lines": [
+          "12 - 4"
+        ]
       }
     },
     "Cau_03_1": {
@@ -3149,7 +3560,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["3"]
+        "lines": [
+          "3"
+        ]
       }
     },
     "Cau_03_2": {
@@ -3157,7 +3570,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_04": {
@@ -3165,7 +3580,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["41233"]
+        "lines": [
+          "41233"
+        ]
       }
     },
     "Cau_05": {
@@ -3173,7 +3590,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["155"]
+        "lines": [
+          "155"
+        ]
       }
     },
     "Cau_06": {
@@ -3181,7 +3600,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -3189,7 +3610,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["0"]
+        "lines": [
+          "0"
+        ]
       }
     },
     "Cau_08_1": {
@@ -3197,7 +3620,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_08_2": {
@@ -3205,7 +3630,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_09": {
@@ -3213,7 +3640,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["1"]
+        "lines": [
+          "1"
+        ]
       }
     },
     "Cau_10": {
@@ -3221,7 +3650,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["9 7 0 1 2 3 4 5 6 7"]
+        "lines": [
+          "9 7 0 1 2 3 4 5 6 7"
+        ]
       }
     },
     "Cau_11": {
@@ -3229,7 +3660,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_12": {
@@ -3237,7 +3670,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["7/1/2020"]
+        "lines": [
+          "7/1/2020"
+        ]
       }
     },
     "Cau_13a": {
@@ -3245,7 +3680,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_06_Cau_13a.jpg",
       "content": {
-        "lines": ["void TinhTong(int a[], int &n)"]
+        "lines": [
+          "void TinhTong(int a[], int &n)"
+        ]
       }
     },
     "Cau_13b": {
@@ -3274,6 +3711,7 @@
     }
   },
   "HS_29": {
+    "ma_de": "1",
     "Cau_15a": {
       "type": "long_text",
       "status": "failed_at_cropping",
@@ -3297,7 +3735,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["3529"]
+        "lines": [
+          "3529"
+        ]
       }
     },
     "Cau_02": {
@@ -3305,7 +3745,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12-4"]
+        "lines": [
+          "12-4"
+        ]
       }
     },
     "Cau_03_1": {
@@ -3313,7 +3755,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["32"]
+        "lines": [
+          "32"
+        ]
       }
     },
     "Cau_03_2": {
@@ -3321,7 +3765,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["24615"]
+        "lines": [
+          "24615"
+        ]
       }
     },
     "Cau_04": {
@@ -3329,7 +3775,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -3337,7 +3785,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_06": {
@@ -3345,7 +3795,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -3353,7 +3805,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["8"]
+        "lines": [
+          "8"
+        ]
       }
     },
     "Cau_08_1": {
@@ -3361,7 +3815,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["32"]
+        "lines": [
+          "32"
+        ]
       }
     },
     "Cau_08_2": {
@@ -3369,7 +3825,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505288 -3 0 -6"]
+        "lines": [
+          "0x505288 -3 0 -6"
+        ]
       }
     },
     "Cau_09": {
@@ -3377,7 +3835,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["1"]
+        "lines": [
+          "1"
+        ]
       }
     },
     "Cau_10": {
@@ -3385,7 +3845,10 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["2", "10 -1 2 -1 4 -1 -1 -1 -1 -1"]
+        "lines": [
+          "2",
+          "10 -1 2 -1 4 -1 -1 -1 -1 -1"
+        ]
       }
     },
     "Cau_11": {
@@ -3393,7 +3856,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -3401,7 +3866,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["28/1/2026"]
+        "lines": [
+          "28/1/2026"
+        ]
       }
     },
     "Cau_13a": {
@@ -3503,6 +3970,7 @@
     }
   },
   "HS_30": {
+    "ma_de": "1",
     "Cau_15a": {
       "type": "long_text",
       "status": "failed_at_cropping",
@@ -3526,7 +3994,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["352.510"]
+        "lines": [
+          "352.510"
+        ]
       }
     },
     "Cau_02": {
@@ -3534,7 +4004,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_03_1": {
@@ -3542,7 +4014,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_03_2": {
@@ -3550,7 +4024,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["35716"]
+        "lines": [
+          "35716"
+        ]
       }
     },
     "Cau_04": {
@@ -3558,7 +4034,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -3566,7 +4044,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["105"]
+        "lines": [
+          "105"
+        ]
       }
     },
     "Cau_06": {
@@ -3574,7 +4054,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -3582,7 +4064,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["8"]
+        "lines": [
+          "8"
+        ]
       }
     },
     "Cau_08_1": {
@@ -3590,7 +4074,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["33"]
+        "lines": [
+          "33"
+        ]
       }
     },
     "Cau_08_2": {
@@ -3598,7 +4084,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505294 8 0 -4"]
+        "lines": [
+          "0x505294 8 0 -4"
+        ]
       }
     },
     "Cau_09": {
@@ -3606,7 +4094,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -3614,7 +4104,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["0 70 1 2 3 4 5 6 7 8"]
+        "lines": [
+          "0 70 1 2 3 4 5 6 7 8"
+        ]
       }
     },
     "Cau_11": {
@@ -3622,7 +4114,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -3630,7 +4124,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_13a": {
@@ -3701,7 +4197,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_08_Cau_14b.jpg",
       "content": {
-        "lines": ["void NhapSV(Sinhvien &a)"]
+        "lines": [
+          "void NhapSV(Sinhvien &a)"
+        ]
       }
     },
     "Cau_14c": {
@@ -3721,6 +4219,7 @@
     }
   },
   "HS_32": {
+    "ma_de": "1",
     "Cau_15a": {
       "type": "long_text",
       "status": "failed_at_cropping",
@@ -3744,7 +4243,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["352510"]
+        "lines": [
+          "352510"
+        ]
       }
     },
     "Cau_02": {
@@ -3752,7 +4253,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12 - 4"]
+        "lines": [
+          "12 - 4"
+        ]
       }
     },
     "Cau_03_1": {
@@ -3760,7 +4263,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["35"]
+        "lines": [
+          "35"
+        ]
       }
     },
     "Cau_03_2": {
@@ -3768,7 +4273,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["57918"]
+        "lines": [
+          "57918"
+        ]
       }
     },
     "Cau_04": {
@@ -3776,7 +4283,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_05": {
@@ -3784,7 +4293,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1022"]
+        "lines": [
+          "1022"
+        ]
       }
     },
     "Cau_06": {
@@ -3792,7 +4303,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_07": {
@@ -3800,7 +4313,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["7"]
+        "lines": [
+          "7"
+        ]
       }
     },
     "Cau_08_1": {
@@ -3808,7 +4323,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["35"]
+        "lines": [
+          "35"
+        ]
       }
     },
     "Cau_08_2": {
@@ -3816,7 +4333,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505294 8 0 0"]
+        "lines": [
+          "0x505294 8 0 0"
+        ]
       }
     },
     "Cau_09": {
@@ -3824,7 +4343,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -3832,7 +4353,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["1070"]
+        "lines": [
+          "1070"
+        ]
       }
     },
     "Cau_11": {
@@ -3840,7 +4363,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -3848,7 +4373,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["28/12/202"]
+        "lines": [
+          "28/12/202"
+        ]
       }
     },
     "Cau_13a": {
@@ -3927,12 +4454,15 @@
     }
   },
   "HS_34": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["35"]
+        "lines": [
+          "35"
+        ]
       }
     },
     "Cau_02": {
@@ -3940,7 +4470,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["26"]
+        "lines": [
+          "26"
+        ]
       }
     },
     "Cau_03_1": {
@@ -3948,7 +4480,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["3"]
+        "lines": [
+          "3"
+        ]
       }
     },
     "Cau_03_2": {
@@ -3956,7 +4490,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_04": {
@@ -3964,7 +4500,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -3972,7 +4510,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1055"]
+        "lines": [
+          "1055"
+        ]
       }
     },
     "Cau_06": {
@@ -3980,7 +4520,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -3988,7 +4530,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["8"]
+        "lines": [
+          "8"
+        ]
       }
     },
     "Cau_08_1": {
@@ -3996,7 +4540,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["37"]
+        "lines": [
+          "37"
+        ]
       }
     },
     "Cau_08_2": {
@@ -4004,7 +4550,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_09": {
@@ -4012,7 +4560,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -4020,7 +4570,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["10 1 2 2 3 4 5 6 7"]
+        "lines": [
+          "10 1 2 2 3 4 5 6 7"
+        ]
       }
     },
     "Cau_11": {
@@ -4028,7 +4580,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -4036,7 +4590,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_13a": {
@@ -4078,7 +4634,11 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_07_Cau_13c.jpg",
       "content": {
-        "lines": ["cout << Tinh(a,n);", "cout << Tim(a,n);", "return 0;"]
+        "lines": [
+          "cout << Tinh(a,n);",
+          "cout << Tim(a,n);",
+          "return 0;"
+        ]
       }
     },
     "Cau_14a": {
@@ -4115,7 +4675,10 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_08_Cau_14c.jpg",
       "content": {
-        "lines": ["if(x.NoiSinh == 'TPHCM')", "Cout << x"]
+        "lines": [
+          "if(x.NoiSinh == 'TPHCM')",
+          "Cout << x"
+        ]
       }
     },
     "Cau_15a": {
@@ -4138,8 +4701,8 @@
       "content": {
         "table_extracted": [
           {
-            "col_1":"input",
-            "col_2":"output"
+            "col_1": "input",
+            "col_2": "output"
           },
           {
             "col_1": "3 8",
@@ -4164,12 +4727,15 @@
     }
   },
   "HS_36": {
+    "ma_de": "1",
     "Cau_01": {
       "type": "short_text",
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["352.510"]
+        "lines": [
+          "352.510"
+        ]
       }
     },
     "Cau_02": {
@@ -4177,7 +4743,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["26"]
+        "lines": [
+          "26"
+        ]
       }
     },
     "Cau_03_1": {
@@ -4185,7 +4753,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_03_2": {
@@ -4193,7 +4763,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["57918"]
+        "lines": [
+          "57918"
+        ]
       }
     },
     "Cau_04": {
@@ -4201,7 +4773,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -4209,7 +4783,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1055"]
+        "lines": [
+          "1055"
+        ]
       }
     },
     "Cau_06": {
@@ -4217,7 +4793,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -4225,7 +4803,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["8"]
+        "lines": [
+          "8"
+        ]
       }
     },
     "Cau_08_1": {
@@ -4233,7 +4813,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": [""]
+        "lines": [
+          ""
+        ]
       }
     },
     "Cau_08_2": {
@@ -4241,7 +4823,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505294 8 0 0"]
+        "lines": [
+          "0x505294 8 0 0"
+        ]
       }
     },
     "Cau_09": {
@@ -4249,7 +4833,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["2"]
+        "lines": [
+          "2"
+        ]
       }
     },
     "Cau_10": {
@@ -4257,7 +4843,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["10 70 2 3 4 5 6 7 8 9"]
+        "lines": [
+          "10 70 2 3 4 5 6 7 8 9"
+        ]
       }
     },
     "Cau_11": {
@@ -4265,7 +4853,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -4273,7 +4863,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["10/1/202"]
+        "lines": [
+          "10/1/202"
+        ]
       }
     },
     "Cau_13a": {
@@ -4374,8 +4966,8 @@
       "content": {
         "table_extracted": [
           {
-            "col_1":"input",
-            "col_2":"output"
+            "col_1": "input",
+            "col_2": "output"
           },
           {
             "col_1": "Số đầu: 1\nSố chân: 2",
@@ -4400,6 +4992,7 @@
     }
   },
   "HS_39": {
+    "ma_de": "1",
     "Cau_14b": {
       "type": "error",
       "status": "failed_at_cropping",
@@ -4417,7 +5010,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_01_Cau_01.jpg",
       "content": {
-        "lines": ["352.59"]
+        "lines": [
+          "352.59"
+        ]
       }
     },
     "Cau_02": {
@@ -4425,7 +5020,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_01_Cau_02.jpg",
       "content": {
-        "lines": ["12-4"]
+        "lines": [
+          "12-4"
+        ]
       }
     },
     "Cau_03_1": {
@@ -4433,7 +5030,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["14"]
+        "lines": [
+          "14"
+        ]
       }
     },
     "Cau_03_2": {
@@ -4441,7 +5040,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_02_Cau_03.jpg",
       "content": {
-        "lines": ["46817"]
+        "lines": [
+          "46817"
+        ]
       }
     },
     "Cau_04": {
@@ -4449,7 +5050,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_02_Cau_04.jpg",
       "content": {
-        "lines": ["40"]
+        "lines": [
+          "40"
+        ]
       }
     },
     "Cau_05": {
@@ -4457,7 +5060,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_02_Cau_05.jpg",
       "content": {
-        "lines": ["1055"]
+        "lines": [
+          "1055"
+        ]
       }
     },
     "Cau_06": {
@@ -4465,7 +5070,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_03_Cau_06.jpg",
       "content": {
-        "lines": ["4"]
+        "lines": [
+          "4"
+        ]
       }
     },
     "Cau_07": {
@@ -4473,7 +5080,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_03_Cau_07.jpg",
       "content": {
-        "lines": ["8"]
+        "lines": [
+          "8"
+        ]
       }
     },
     "Cau_08_1": {
@@ -4481,7 +5090,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_04_Cau_08_1.jpg",
       "content": {
-        "lines": ["24"]
+        "lines": [
+          "24"
+        ]
       }
     },
     "Cau_08_2": {
@@ -4489,7 +5100,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_04_Cau_08_2.jpg",
       "content": {
-        "lines": ["0x505288 8 0 -2"]
+        "lines": [
+          "0x505288 8 0 -2"
+        ]
       }
     },
     "Cau_09": {
@@ -4497,7 +5110,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_04_Cau_09.jpg",
       "content": {
-        "lines": ["1"]
+        "lines": [
+          "1"
+        ]
       }
     },
     "Cau_10": {
@@ -4505,7 +5120,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_05_Cau_10.jpg",
       "content": {
-        "lines": ["97012345678"]
+        "lines": [
+          "97012345678"
+        ]
       }
     },
     "Cau_11": {
@@ -4513,7 +5130,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_05_Cau_11.jpg",
       "content": {
-        "lines": ["20"]
+        "lines": [
+          "20"
+        ]
       }
     },
     "Cau_12": {
@@ -4521,7 +5140,9 @@
       "status": "completed",
       "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_06_Cau_12.jpg",
       "content": {
-        "lines": ["10/1/2"]
+        "lines": [
+          "10/1/2"
+        ]
       }
     },
     "Cau_13a": {

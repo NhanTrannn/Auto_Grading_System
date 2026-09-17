@@ -1,0 +1,108 @@
+.wrapper {
+  margin-top: 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-sunken);
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  flex: 1;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.badOk,
+.badError,
+.badWaiting {
+  padding: 1px 7px;
+  border-radius: var(--radius-sm);
+  font-size: 10.5px;
+  font-weight: 650;
+}
+
+.badOk {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.badError {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.badWaiting {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.body {
+  padding: var(--space-3);
+  font-size: 13px;
+  line-height: 1.7;
+  /* The source keeps the author's own line breaks and indentation, and the
+     preview has to keep them too — a formula indented under its bullet reads
+     as belonging to that bullet, and collapsing the whitespace would move it. */
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+
+.text {
+  color: var(--color-text-muted);
+}
+
+.inline {
+  color: var(--color-text);
+}
+
+/* KaTeX emits its own block element for display math; this only supplies the
+   surrounding space so consecutive formulas don't collide. */
+.display {
+  display: block;
+  margin: var(--space-2) 0;
+  color: var(--color-text);
+}
+
+.broken {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  padding: 1px 6px;
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  background: var(--color-danger-bg);
+  /* The wrapper is pre-wrap; the error chip itself should read as normal prose. */
+  white-space: normal;
+}
+
+.brokenSource {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--color-danger);
+}
+
+.brokenMessage {
+  font-size: 11px;
+  color: var(--color-danger);
+  opacity: 0.85;
+}
+
+.note {
+  padding: 0 var(--space-3) var(--space-2);
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: var(--color-text-faint);
+}

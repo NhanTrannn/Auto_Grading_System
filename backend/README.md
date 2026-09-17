@@ -25,6 +25,9 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
+Defaults to port 8000; see the root `README.md`'s "Chạy nhanh" section if
+that's already taken on your machine.
+
 The pipeline's own CLI/smoke tests still work unchanged from this same
 folder — see `CLAUDE.md`'s Commands section (e.g. `python pipeline.py
 --test`).
@@ -41,13 +44,16 @@ pytest
 
 ## Grading jobs
 
-`POST /api/v1/grading/jobs` accepts an `input_file` (raw OCR "Results" JSON)
-plus **either** a `barem_id` from the library (what the UI sends — the stored
-rubric is written out to `barem.json`, so the worker cannot tell the
-difference) **or** an uploaded `barem_file`. Neither present is a 400, an
-unknown id a 404. The id path exists because the rubric a teacher already
-saved from the builder is the one they want to grade with; asking for the file
-again each run mostly produced runs against a stale copy on disk.
+`POST /api/v1/grading/jobs` accepts just an `input_file` (raw OCR "Results"
+JSON). **No barem is chosen**: every student in that file declares their own
+`ma_de`, so the route reads the set of codes present, finds one rubric per code
+in the library, and writes them into the job's `barems/` directory. A student
+with no `ma_de` is a 400 naming them; a code with no rubric in the library is a
+404 listing which codes are missing — both before any LLM is called.
+
+That also means one file grades several exam codes at once, which is why
+picking a single barem by hand went away: for a mixed-code batch there is no
+single right answer to pick.
 
 It writes them to `var/jobs/{job_id}/`, inserts a
 `pending` row, then spawns grading as a **separate OS subprocess**
@@ -120,15 +126,26 @@ guess which cohort to grade:
 
 1. `POST /api/v1/pipeline/uploads` — multipart `template_zip` + `students_zip`.
    Unpacks both under `var/pipeline_uploads/{upload_id}/` and answers with an
-   inventory: the exam's page images in order, plus every exam code found and
-   its students. `GET .../uploads/{id}/template/{page}` then serves one blank
+   inventory: every exam code found, its students, and **its own** blank pages.
+   A template archive split into `Made_1/`, `Made_2/` gives each code its own
+   pages; a flat archive marks them `template_shared`, meaning that one set
+   serves every code (exam codes usually differ in answers, not layout). `GET .../uploads/{id}/template/{page}` then serves one blank
    page image, which is what the browser's ROI editor draws its boxes on (and
    re-posts to `/api/v1/ocr/module1/roi`).
-2. `POST /api/v1/pipeline/jobs` — JSON `{upload_id, ma_de, barem_id,
-   roi_config}`. Runs exactly one exam code, against a barem from the library
-   (`/api/v1/barems`, see below) and a region list assembled in the browser.
-   It materialises a `roi_config.json` pointing at the unpacked files and
-   spawns `app/pipeline_worker.py`.
+2. `POST /api/v1/pipeline/jobs` — JSON `{upload_id, groups: [{ma_de,
+   roi_config}]}`. A run covers **one or more** exam codes; each carries its own
+   region list, because two codes rarely place their answers in the same spot.
+   Rubrics are matched from the library by `ma_de` (no `barem_id`). The route
+   writes `roi_configs.json` (one entry per code) plus `barems/ma_de_*.json`,
+   then spawns `app/pipeline_worker.py`, which runs the OCR connector once per
+   code and merges the results into a single Results JSON.
+
+   **Students are renumbered across the whole run** (`_claim_hs_key`): two codes
+   routinely both contain an `HS_1` folder, and three things key off that
+   string — the Results JSON's top-level key, the crop filename
+   `{hs_key}_{cau_key}.png`, and `student_index`, which pipeline.py parses as
+   `int(hs_key.split("_")[-1])`. Suffixing instead (`HS_1_2`) still parses, just
+   wrongly: it would turn student 1 of code 2 into student 2.
 
 Other endpoints: `GET .../jobs` (list), `GET .../jobs/{id}` (status **with
 progress**), `GET .../jobs/{id}/result` (graded output, same shape as the
@@ -252,6 +269,11 @@ crops via `cv2.imencode` + `ndarray.tofile` (`_write_image`) — both use the
 wide-char API and work on every platform.
 
 ## Docker
+
+Commands to actually launch it, and what to do if port 8000 is already taken
+on the host, live in the **root `README.md`**'s "Chạy nhanh" section (single
+place for both backend + frontend run instructions, dev and production) —
+this section only covers how the Docker setup itself is built.
 
 Build context is this `backend/` folder itself (`build: .` in both compose
 files) — now that `pipeline.py` lives directly inside `backend/` as a

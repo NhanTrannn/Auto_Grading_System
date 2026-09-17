@@ -82,3 +82,14 @@
   color: var(--color-text);
   line-height: 1.35;
 }
+
+.fieldName {
+  margin-left: 4px;
+  padding: 0 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--color-text-faint);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-sm);
+}

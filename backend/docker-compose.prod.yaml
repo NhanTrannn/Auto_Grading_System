@@ -2,7 +2,14 @@ services:
   backend:
     build: .
     ports:
-      - "8000:8000"
+      # Host 8000 was already occupied by an unrelated pre-existing service on
+      # this machine (a separate "AIC 2026" project's native process) — Docker
+      # Desktop's WSL2 port-forwarding proxy still bound "successfully" and
+      # container-internal requests worked fine, but host-side curl/browser
+      # traffic to localhost:8000 got silently answered by that OTHER service
+      # instead of this container. Moved to 8001 on the host side only; the
+      # container's own internal port (uvicorn --port 8000) is untouched.
+      - "8001:8000"
     env_file:
       - ../.env
     environment:

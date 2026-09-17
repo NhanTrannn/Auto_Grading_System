@@ -15,7 +15,8 @@
  * (tables, nested criteria, conditional branches), so it gets the width, while
  * validation lives in a sticky strip that stays visible however far you scroll.
  */
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import Button from "@/components/core/Button";
 import Card from "@/components/core/Card";
@@ -29,18 +30,36 @@ import QuestionEditor from "@/modules/barem/QuestionEditor";
 import QuestionRail from "@/modules/barem/QuestionRail";
 import StatusBar from "@/modules/barem/StatusBar";
 import { useBaremDraft } from "@/modules/barem/useBaremDraft";
-import { createBarem } from "@/services/baremApi";
-import type { QuestionPreset } from "@/types/barem";
+import { createBarem, updateBarem } from "@/services/baremApi";
+import type { ExamRubric, QuestionPreset } from "@/types/barem";
 
 import styles from "./BaremBuilderPage.module.css";
 
 export default function BaremBuilderPage() {
   const draft = useBaremDraft();
+  const location = useLocation();
   const [migrationNotes, setMigrationNotes] = useState<MigrationNote[] | null>(null);
   const [importError, setImportError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [openedBarem, setOpenedBarem] = useState<{ baremId: string; name: string } | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+
+  // The library hands a rubric over through router state rather than by writing
+  // the autosave key behind this page's back, so the draft is replaced through
+  // the normal path — which means "Hoàn tác" restores it. Only within the
+  // session, though: the autosave overwrites storage moments later, so the
+  // library asks for confirmation before navigating here at all.
+  const incoming = location.state as { exam?: ExamRubric; baremId?: string; name?: string } | null;
+  useEffect(() => {
+    if (!incoming?.exam || !incoming.baremId) return;
+    draft.replaceExam(incoming.exam);
+    setOpenedBarem({ baremId: incoming.baremId, name: incoming.name ?? "" });
+    setSaveMessage(null);
+    window.history.replaceState({}, "");
+    // Runs once per navigation carrying a rubric; draft is stable for the page.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [incoming?.baremId]);
 
   const { exam, report } = draft;
 
@@ -81,22 +100,63 @@ export default function BaremBuilderPage() {
    * pick it without exporting a file first. Saved even when validation has
    * warnings — the library is a working shelf, and `load_barem()` reports the
    * same problems again at grading time anyway.
+   *
+   * Saves back over the opened rubric, or creates a new one when editing a draft.
+   *
+   * Always creating would turn "open from the library, fix a typo, save" into a
+   * second copy with the same name — and the pickers list every copy, so the
+   * next run is a coin flip over which one gets graded against.
+   *
+   * A successful save then clears the editor. Saving used to leave the rubric
+   * sitting in the editor and in the autosave key, so the next barem started
+   * as a copy of the previous one — with no "new barem" action anywhere in the
+   * UI (`useBaremDraft`'s `reset` existed but nothing called it), the only way
+   * out was deleting every question by hand. Clearing is safe because the
+   * content is on the server by this point — reopening it from the library is
+   * the recovery path.
    */
   async function handleSaveToLibrary() {
     setSaving(true);
     setSaveMessage(null);
     try {
+      if (openedBarem) {
+        const saved = await updateBarem(openedBarem.baremId, { content: exam });
+        clearAfterSave(`Đã cập nhật “${saved.name}” trong kho (${saved.question_count} câu)`);
+        return;
+      }
       const name =
         window.prompt("Tên barem để lưu vào thư viện:", `Mã đề ${exam.ma_de} — ${exam.subject}`) ??
         "";
       if (!name.trim()) return;
       const saved = await createBarem(name.trim(), exam);
-      setSaveMessage(`Đã lưu “${saved.name}” vào thư viện (${saved.question_count} câu).`);
+      clearAfterSave(`Đã lưu “${saved.name}” vào kho (${saved.question_count} câu)`);
     } catch (err) {
       setSaveMessage(`Lưu thất bại: ${(err as Error).message}`);
     } finally {
       setSaving(false);
     }
+  }
+
+  /**
+   * Reset to a blank rubric after the content is safely in the library.
+   *
+   * `setOpenedBarem(null)` is the load-bearing line: leaving it set would point
+   * the next save at the rubric just stored, so the blank one that replaced it
+   * here would overwrite it on the next click — silently destroying the thing
+   * this function just finished saving.
+   *
+   * `reset` goes through `setExam`, so "Hoàn tác" can still pull the rubric
+   * back into the editor — but it cannot restore `openedBarem`, so saving after
+   * an undo creates a *second* library entry under the same name rather than
+   * updating the first. The message therefore points at the library, not at
+   * undo; reopening from there restores the content and the link together.
+   */
+  function clearAfterSave(message: string) {
+    draft.reset();
+    setOpenedBarem(null);
+    setMigrationNotes(null);
+    setImportError(null);
+    setSaveMessage(`${message} — trình soạn đã dọn trống để soạn đề mới. Mở lại từ Kho barem nếu cần sửa tiếp.`);
   }
 
   return (
@@ -145,7 +205,7 @@ export default function BaremBuilderPage() {
               loading={saving}
               onClick={handleSaveToLibrary}
             >
-              Lưu vào thư viện
+              {openedBarem ? "Lưu thay đổi" : "Lưu vào kho"}
             </Button>
           </div>
         }

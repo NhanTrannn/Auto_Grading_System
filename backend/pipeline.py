@@ -39,7 +39,15 @@ CFG = {
     # luôn luôn chạy bất kể giá trị. Đã nối flag vào grade_with_llm_advised();
     # default = True vì đây là hành vi đã verify đạt 9.5/10 trên test_input_perfect.
     "use_chain_of_thought": True,
-    "cot_max_tokens_think": 600,
+    # FIX: 600 để cắt cụt bước THINK ở MỌI tiêu chí đã đo (7/7 trong 1 phiên
+    # thật). Model tiêu hết quota cho bước 1-2 của dàn ý (chép lại tiêu chí +
+    # đáp án mẫu) rồi bị chặn ngay khi bắt đầu bước 3 "phân tích bài làm học
+    # sinh" — tiêu chí nào có sample_solution dài thì reasoning không bao giờ
+    # chạm tới bài làm. Kết hợp với việc decide_prompt trước đây KHÔNG chép
+    # lại bài làm, bước DECIDE chấm hoàn toàn bằng phỏng đoán: quan sát thật ở
+    # T6_2 (hàm NhapSV viết gần như trùng đáp án mẫu) bị chấm 0/2 kèm lý do
+    # "Không có mã nguồn hợp lệ nào được cung cấp để đánh giá".
+    "cot_max_tokens_think": 1500,
     "cot_max_tokens_decide": 500,
     # FIX: model nhỏ (SaoLa-Llama3.1-planner) flaky giữa các lần gọi giống nhau
     # (vd: câu 11 đáp án "20" cố định ra lúc đúng lúc sai qua 4 lần chạy liên tiếp).
@@ -563,6 +571,33 @@ def get_student_evidence_for_slot(
 # ============================================================================
 
 
+def _was_truncated(resp_json: Dict[str, Any]) -> bool:
+    """Bước THINK có bị `max_tokens` chặt ngang giữa chừng không?
+
+    OpenAI-compatible API trả `finish_reason: "length"` khi output chạm trần,
+    còn `"stop"` khi model tự kết thúc. Trước đây không chỗ nào đọc field này:
+    reasoning cụt vẫn được coi là hợp lệ (chỉ chuỗi RỖNG mới raise), rồi
+    truyền thẳng sang bước DECIDE như một phân tích hoàn chỉnh. Vì DECIDE
+    không nhìn thấy bài làm gốc, nó không có cách nào biết phần phân tích đã
+    dừng trước khi đọc tới bài làm — nên nó tự bịa ra các lỗi giả định và
+    chấm 0. Đọc field này để (a) chép lại bài làm kèm cảnh báo tường minh
+    trong prompt DECIDE, (b) ghi nhận được khi trần token vẫn còn quá thấp.
+    """
+    try:
+        return resp_json.get("choices", [{}])[0].get("finish_reason") == "length"
+    except (AttributeError, IndexError, TypeError):
+        return False
+
+
+_TRUNCATED_THINK_WARNING = (
+    "\n⚠ CẢNH BÁO: phần phân tích trên BỊ CẮT NGANG do chạm giới hạn độ dài, "
+    "nhiều khả năng chưa xem xét tới bài làm của học sinh. TUYỆT ĐỐI KHÔNG suy "
+    "đoán nội dung bài làm từ phần phân tích dở dang đó, và KHÔNG kết luận là "
+    "'học sinh không làm' chỉ vì phân tích chưa nhắc tới. Hãy đọc bản gốc bên "
+    "dưới rồi tự hoàn tất phần còn thiếu trước khi chấm.\n"
+)
+
+
 def _extract_json_from_text(text: str) -> Optional[Dict]:
     """
     FIX #9: Extract JSON object từ LLM response một cách an toàn.
@@ -665,17 +700,21 @@ def validate_sample_schema(
     return {"valid": len(errors) == 0, "errors": errors, "warnings": warnings}
 
 def validate_input(
-    samples: List[Dict[str, Any]], barem_dict: Dict[int, List[Dict]] = None
+    samples: List[Dict[str, Any]], barems: Dict[str, Dict[int, List[Dict]]] = None
 ) -> Dict[str, Any]:
     """
     Validate toàn bộ input samples trước khi chấm.
-    1)
+
+    `barems` là bảng tra {ma_de: barem_dict} — mỗi sample được đối chiếu với
+    barem của đúng mã đề nó khai, vì một batch có thể trộn nhiều mã đề.
     """
     errors: List[str] = []
     warnings: List[str] = []
+    barems = barems or {}
 
     for i, sample in enumerate(samples):
         sid = sample.get("sample_id", f"sample_{i}")
+        barem_dict = barems.get(str(sample.get("ma_de")))
         v = validate_sample_schema(sample, after_routing=False, barem_dict=barem_dict)
         errors.extend(f"{sid}: {e}" for e in v["errors"])
         for w in v["warnings"]:
@@ -1911,13 +1950,19 @@ def _call_vision_llm_for_criterion(
                 .get("content", "")
             ).strip()
             think_usage = resp_think_json.get("usage", {})
+            think_truncated = _was_truncated(resp_think_json)
 
             if not cot_reasoning:
                 raise ValueError("Empty CoT reasoning from Vision LLM.")
 
             # --- DECIDE ---
+            # Bản gốc ở đây là ẢNH chứ không phải text, nên không chép lại
+            # được cho rẻ như hai đường kia — chỉ đính kèm LẠI ảnh khi bước
+            # THINK thật sự bị cắt, để trường hợp thường không phải trả thêm
+            # token ảnh. Xem `_cot_single_pass` cho bối cảnh đầy đủ.
             decide_prompt = (
                 f"Dựa trên phân tích sau:\n\n{cot_reasoning}\n\n"
+                f"{_TRUNCATED_THINK_WARNING if think_truncated else ''}"
                 f"Điểm tối đa: {max_score}\n"
                 f"Trả về JSON (chỉ JSON):\n"
                 f'{{"score": <0 đến {max_score}>, "status": "correct"|"partially_correct"|"wrong", '
@@ -1930,7 +1975,14 @@ def _call_vision_llm_for_criterion(
                     "model": model_name,
                     "messages": [
                         {"role": "system", "content": decide_system},
-                        {"role": "user", "content": decide_prompt},
+                        {
+                            "role": "user",
+                            "content": (
+                                [image_content, {"type": "text", "text": decide_prompt}]
+                                if think_truncated
+                                else decide_prompt
+                            ),
+                        },
                     ],
                     "temperature": 0,
                     "max_tokens": CFG.get("cot_max_tokens_decide", 300),
@@ -2400,6 +2452,7 @@ Hãy suy luận tuần tự theo các bước sau (viết rõ từng bước):
                 .get("content", "")
             ).strip()
             think_usage = resp_think_json.get("usage", {})
+            think_truncated = _was_truncated(resp_think_json)
 
             if not cot_reasoning:
                 raise ValueError("Empty CoT reasoning from LLM.")
@@ -2420,11 +2473,21 @@ trong "reasoning" bạn đồng ý hay không đồng ý với gợi ý này và
                 if heuristic_advisory
                 else ""
             )
+            # FIX: chép LẠI bài làm gốc vào prompt DECIDE. Trước đây bước
+            # này chỉ nhận `cot_reasoning` — nếu bước THINK bị `max_tokens`
+            # cắt trước khi kịp đọc bài làm (đo được ở 7/7 tiêu chí của 1
+            # phiên thật), DECIDE không còn nguồn nào khác để biết học sinh
+            # viết gì, nên nó liệt kê các lỗi GIẢ ĐỊNH rồi chấm 0. Bài làm là
+            # dữ liệu bắt buộc để chấm, không phải thứ chỉ cần thấy một lần ở
+            # bước suy luận.
             decide_prompt = f"""Dựa trên phân tích sau đây:
 
 --- BẮT ĐẦU PHÂN TÍCH ---
 {cot_reasoning}
 --- KẾT THÚC PHÂN TÍCH ---
+{_TRUNCATED_THINK_WARNING if think_truncated else ""}
+=== BÀI LÀM HỌC SINH (bản gốc) ===
+{student_text if student_text else "(trống — học sinh không trả lời)"}
 {heuristic_reveal}
 
 Hãy đưa ra quyết định chấm điểm chính thức.
@@ -2769,16 +2832,24 @@ Hãy suy luận tuần tự theo các bước sau, LẦN LƯỢT QUA TỪNG crit
                 resp_think_json.get("choices", [{}])[0].get("message", {}).get("content", "")
             ).strip()
             think_usage = resp_think_json.get("usage", {})
+            think_truncated = _was_truncated(resp_think_json)
 
             if not cot_reasoning:
                 raise ValueError("Empty CoT reasoning from LLM.")
 
             # ── Bước 2: DECIDE ──────────────────────────────────────────
+            # Chép lại nội dung bảng, cùng lý do như đường đơn-criterion
+            # (xem `_cot_single_pass`): trần token ở đây là
+            # cot_max_tokens_think * số criterion, nên với bảng nhiều ô nó
+            # cũng cụt được, và DECIDE thì không thấy bảng.
             decide_prompt = f"""Dựa trên phân tích sau đây:
 
 --- BẮT ĐẦU PHÂN TÍCH ---
 {cot_reasoning}
 --- KẾT THÚC PHÂN TÍCH ---
+{_TRUNCATED_THINK_WARNING if think_truncated else ""}
+=== NỘI DUNG BẢNG CỦA HỌC SINH (bản gốc) ===
+{table_text if table_text else "(trống — học sinh không điền ô nào)"}
 
 Hãy đưa ra quyết định chấm điểm chính thức cho TỪNG criterion_id.
 {group_instructions}
@@ -3066,7 +3137,22 @@ def _grade_with_llm_advised_core(
         # số riêng lẻ) — gắn định nghĩa ngay tại đây để nó là quy tắc bắt
         # buộc tuân thủ, không phải một gợi ý có thể bỏ qua.
         expected_output_tokens_for_rule = criterion.get("expected_output_tokens")
-        if partial_credit_rule.get("type") == "count_correct_tokens" and expected_output_tokens_for_rule:
+        # `partial_credit_rule` là 1 dict HOẶC 1 list nhiều mức (schema cho
+        # phép cả hai, `_grade_by_tokens` xử lý cả hai). Trước đây dòng dưới
+        # gọi thẳng .get() nên gặp list là ném AttributeError — mà lỗi này
+        # không chỉ hỏng 1 tiêu chí: nó thoát ra tận grade_sample_advised, làm
+        # CẢ CÂU thành status="error", điểm 0, không có criterion_results nào.
+        # sample_parem.json chỉ dùng dạng dict đơn nên chưa bao giờ lộ; barem
+        # nào khai nhiều mức (VD đúng 1 token 0.25đ, 2-3 token 0.75đ, đủ 4
+        # token 1đ) là sập ngay câu đó.
+        rules_for_prompt = (
+            partial_credit_rule if isinstance(partial_credit_rule, list) else [partial_credit_rule]
+        )
+        uses_token_count = any(
+            isinstance(rule, dict) and rule.get("type") == "count_correct_tokens"
+            for rule in rules_for_prompt
+        )
+        if uses_token_count and expected_output_tokens_for_rule:
             teacher_rule_text += (
                 f"\nĐáp án đúng được chia thành các \"token\" như sau: "
                 f"{expected_output_tokens_for_rule} — \"token\" trong quy tắc trên nghĩa là "
@@ -3904,10 +3990,10 @@ def grade_sample_advised(
 
 
 def convert_results_to_samples(
-    data: Dict, barem_dict: Dict[int, List[Dict]]
+    data: Dict, barems: Dict[str, Dict[int, List[Dict]]]
 ) -> List[Dict[str, Any]]:
     """
-    Chuyển Results_Ma_de_1.json format sang pipeline sample list.
+    Chuyển Results format sang pipeline sample list.
 
     Nguyên tắc mapping:
       - Mỗi HS_N  → student_index = N
@@ -3916,14 +4002,18 @@ def convert_results_to_samples(
       - Cau_XXa   → sub-part "a" của câu XX (vd Cau_13a, Cau_14b)
       - Mỗi line  → 1 slot: lấy đúng N lines đầu theo số slot parem định nghĩa,
                     thiếu → rỗng, thừa → bỏ
+
+    `ma_de` nằm ở TỪNG HỌC SINH, không phải ở cấp file:
+
+        {"HS_2": {"ma_de": "1", "Cau_01": {...}}, "HS_3": {"ma_de": "2", ...}}
+
+    Một phiên chấm vì thế trộn được nhiều mã đề, và bài của mỗi em được ánh
+    xạ bằng đúng barem của mã đề em đó — `barems` là bảng tra {ma_de: barem}
+    do load_barems() dựng. Việc chọn barem xảy ra NGAY Ở ĐÂY chứ không để
+    lúc chấm, vì bản thân bước chuyển đổi đã cần barem rồi: nó chia các dòng
+    OCR cho từng part theo đúng danh sách part_label mà barem khai.
     """
     samples = []
-
-    try:
-        ma_de = str(data.get("ma_de"))
-    except (ValueError, TypeError):
-        print("[ERROR] Invalid 'ma_de' value in input data")
-        return samples
 
     for hs_key, questions in data.items():
         if not hs_key.startswith("HS_") or not isinstance(questions, dict):
@@ -3932,6 +4022,20 @@ def convert_results_to_samples(
             student_index = int(hs_key.split("_")[-1])
         except ValueError:
             student_index = -1  # Invalid student index
+
+        raw_ma_de = questions.get("ma_de")
+        if raw_ma_de is None:
+            print(f"[ERROR] {hs_key}: thiếu 'ma_de' — bỏ qua học sinh này.")
+            continue
+        ma_de = str(raw_ma_de)
+
+        barem_dict = barems.get(ma_de)
+        if barem_dict is None:
+            print(
+                f"[ERROR] {hs_key}: ma_de={ma_de!r} không có barem tương ứng "
+                f"(đang có: {sorted(barems)}) — bỏ qua học sinh này."
+            )
+            continue
 
         # Gom các Cau entries theo question_number
         q_data: Dict[int, Dict[str, Any]] = {}
@@ -4005,10 +4109,34 @@ def convert_results_to_samples(
             part_multi_slot_text: Dict[str, Dict[int, str]] = {}
 
             if "main" in q_entries:
-                # Cau_XX đơn: line[i] → part_labels[i]
                 all_lines = q_entries["main"]
-                for i, pl in enumerate(part_labels):
-                    part_text[pl] = all_lines[i] if i < len(all_lines) else ""
+                if len(part_labels) <= 1:
+                    # FIX: 1 khung = 1 slot, và 1 slot có bao nhiêu dòng cũng
+                    # được. Trước đây nhánh này LUÔN chia "dòng i → part i",
+                    # nên câu chỉ có 1 part chỉ giữ all_lines[0] — mọi dòng sau
+                    # bị bỏ âm thầm. Đo trên phiên thật e2910623 (đề CS414):
+                    # 14 vùng câu 4/5 bị cắt còn 1 dòng, VD bài ResidualBlock
+                    # đúng đủ 4 bước chỉ còn dòng Step 1 và bị chấm 0.5/1.5.
+                    # Giờ toàn bộ dòng của khung thuộc về part duy nhất đó.
+                    only = part_labels[0] if part_labels else "main"
+                    part_text[only] = "\n".join(all_lines) if all_lines else ""
+                else:
+                    # Quy ước cũ cho khung dùng chung của nhiều part (đề
+                    # IT001 cũ: một ô, mỗi chỗ trống một dòng): dòng i → part i.
+                    for i, pl in enumerate(part_labels):
+                        part_text[pl] = all_lines[i] if i < len(all_lines) else ""
+                    # Dòng thừa không có part nào nhận — trước đây mất không
+                    # một tiếng động. Chưa đổi cách chia (dữ liệu cũ dựa vào
+                    # nó) nhưng phải báo ra để người chạy biết.
+                    if len(all_lines) > len(part_labels):
+                        print(
+                            f"[WARN] {hs_key} câu {q_num}: khung Cau_{q_num:02d} có "
+                            f"{len(all_lines)} dòng nhưng chỉ {len(part_labels)} part "
+                            f"({', '.join(part_labels)}) — bỏ {len(all_lines) - len(part_labels)} "
+                            f"dòng cuối. Đặt tên vùng Cau_{q_num:02d}a/b… hoặc "
+                            f"Cau_{q_num:02d}_1/_2… để mỗi part có khung riêng.",
+                            flush=True,
+                        )
 
             elif any(k.startswith("slot_") for k in q_entries):
                 # FIX: Cau_XX_1, Cau_XX_2 — mỗi slot đã LÀ 1 part_label riêng
@@ -4235,11 +4363,11 @@ def convert_results_to_samples(
 # ============================================================================
 
 def load_input(
-    test_input_path: str, barem_dict: Dict[int, List[Dict]] = None
+    test_input_path: str, barems: Dict[str, Dict[int, List[Dict]]] = None
 ) -> List[Dict[str, Any]]:
     """
     Load test_input.json → list of samples. Pipeline chỉ chấp nhận input
-    Results format gốc (dict {"HS_N": {...}})
+    Results format gốc (dict {"HS_N": {...}}), mỗi học sinh tự khai `ma_de`.
     """
     with open(test_input_path, "r", encoding="utf-8") as f:
         raw_data = json.load(f)
@@ -4259,8 +4387,19 @@ def load_input(
     print("[INFO] Correcting format — converting to pipeline format...")
 
     # Chuyển Results format sang pipeline sample list (mỗi sample = 1 câu của 1 học sinh)
-    samples = convert_results_to_samples(raw_data, barem_dict or {})
+    samples = convert_results_to_samples(raw_data, barems or {})
     print(f"[INFO] Converted {len(samples)} samples from Results format")
+
+    students_in = sum(1 for k in raw_data if k.startswith("HS_"))
+    students_out = len({s.get("student_index") for s in samples})
+    if students_out < students_in:
+        # convert_results_to_samples() bỏ qua học sinh thiếu ma_de hoặc có
+        # ma_de không khớp barem nào, và chỉ in ra một dòng cho mỗi em. Ở quy
+        # mô cả lớp những dòng đó trôi mất giữa log, nên tổng kết lại tại đây.
+        print(
+            f"  [WARN] {students_in - students_out}/{students_in} học sinh bị bỏ qua "
+            f"(thiếu ma_de hoặc ma_de không có barem) — xem các dòng [ERROR] phía trên."
+        )
 
 
     # Save converted samples for inspection for debugging (optional)
@@ -4271,7 +4410,7 @@ def load_input(
 
     print(f"[OK] Loaded input: {len(samples)} samples")
 
-    validation = validate_input(samples, barem_dict)
+    validation = validate_input(samples, barems)
 
     if validation["warnings"]:
         print(f"  [WARN] validate_input: {len(validation['warnings'])} cảnh báo")
@@ -4311,6 +4450,63 @@ def _attach_table_slots(entry: Dict[str, Any], flat_criteria: List[Dict[str, Any
             criterion["table_slot"] = slot
 
 
+def _render_printed_table(
+    tables: List[Dict[str, Any]], part_label: Optional[str] = None
+) -> str:
+    """Dựng lại bảng IN SẴN của đề thành text để nhét vào prompt.
+
+    Chỉ lấy ô `source == "printed"` — đó là phần đề bài in ra giấy (header,
+    tên thuộc tính, giá trị cho sẵn). Ô `student_text` là chỗ để trống cho
+    học sinh viết, nội dung thật nằm ở bài làm chứ không nằm trong barem, nên
+    ở đây chỉ đánh dấu `___` để LLM thấy bảng có bao nhiêu ô trống và ở đâu.
+
+    FIX: `table_slot` vốn được `_attach_table_slots()` gắn vào MỌI criterion
+    cùng part, nhưng chỉ `grade_table_group_with_llm()` đọc tới — tức chỉ
+    criterion `question_type="table"`. Với criterion `logical`/`matching`/
+    `visual` thì bảng nằm sẵn trong bộ nhớ mà không ai đưa vào prompt: câu
+    14a bảo LLM chấm "khai báo đủ struct Sinhvien" trong khi danh sách thuộc
+    tính (MaSV/HoTen/NamSinh/NoiSinh/DTB) chỉ tồn tại trong bảng đó. Barem cũ
+    lách được vì tác giả chép tay danh sách sang `sample_solution`; barem nào
+    quên chép thì LLM chấm mà không biết yêu cầu là gì.
+    """
+    blocks: List[str] = []
+
+    for table in tables or []:
+        slots = table.get("table_slot") or []
+        if not slots:
+            continue
+
+        by_row: Dict[str, Dict[str, str]] = {}
+        for cell in slots:
+            row_id = str(cell.get("row_id") or "")
+            col_id = str(cell.get("col_id") or "")
+            if not row_id or not col_id:
+                continue
+            if cell.get("source") == "printed":
+                by_row.setdefault(row_id, {})[col_id] = str(cell.get("text") or "")
+            else:
+                by_row.setdefault(row_id, {})[col_id] = "___"
+
+        if not by_row:
+            continue
+
+        col_ids = sorted({col for row in by_row.values() for col in row})
+        lines = [
+            " | ".join(by_row[row_id].get(col_id, "") for col_id in col_ids)
+            for row_id in sorted(by_row)
+        ]
+        label = table.get("table_id") or "bảng"
+        # `part_label` chỉ được truyền khi bảng thuộc phần KHÁC với
+        # criterion đang chấm (xem `_attach_question_text`) — nói rõ nguồn
+        # để LLM không tưởng đây là bảng của chính phần nó đang chấm.
+        origin = f", thuộc phần {part_label}" if part_label else ""
+        blocks.append(
+            f"[Bảng in sẵn trong đề{origin} — {label}]\n" + "\n".join(lines)
+        )
+
+    return "\n\n".join(blocks)
+
+
 def _attach_question_text(entry: Dict[str, Any], flat_criteria: List[Dict[str, Any]]) -> None:
     """Gắn `question["text"]` (đề bài GỐC của cả câu — VD toàn bộ code chương
     trình cần trace ở câu 1-12, hay đề bài toán ở câu 15) vào từng criterion
@@ -4323,7 +4519,10 @@ def _attach_question_text(entry: Dict[str, Any], flat_criteria: List[Dict[str, A
     Với câu có nhiều part (a/b/c...), còn nối thêm text RIÊNG của đúng part
     đó (`question["parts"][].text`, VD "Hãy tìm 3 ví dụ cho bài toán trên"
     cho phần b câu 15) — khớp theo `part_label`, không chỉ dùng mỗi text
-    chung của cả câu (thiếu yêu cầu cụ thể của từng phần)."""
+    chung của cả câu (thiếu yêu cầu cụ thể của từng phần).
+
+    Bảng in sẵn thì ngược lại: gắn bảng của MỌI part, không chỉ part khớp —
+    xem comment tại vòng lặp bên dưới."""
     question = entry.get("question") or {}
     question_text = question.get("text") or ""
     part_text_by_label = {
@@ -4331,19 +4530,106 @@ def _attach_question_text(entry: Dict[str, Any], flat_criteria: List[Dict[str, A
         for part in question.get("parts") or []
         if part.get("text")
     }
-    if not question_text and not part_text_by_label:
+    # Hai bản render của cùng một bảng: bản "own" (không ghi nguồn) dùng khi
+    # bảng thuộc đúng part của criterion, bản "foreign" (có ghi "thuộc phần X")
+    # dùng khi nó thuộc part khác.
+    printed_table_by_label = {
+        part.get("part_label"): _render_printed_table(part.get("tables") or [])
+        for part in question.get("parts") or []
+    }
+    printed_table_by_label = {k: v for k, v in printed_table_by_label.items() if v}
+    foreign_table_by_label = {
+        part.get("part_label"): _render_printed_table(
+            part.get("tables") or [], part_label=part.get("part_label")
+        )
+        for part in question.get("parts") or []
+    }
+    foreign_table_by_label = {k: v for k, v in foreign_table_by_label.items() if v}
+
+    if not question_text and not part_text_by_label and not printed_table_by_label:
         return
 
     for criterion in flat_criteria:
-        part_text = part_text_by_label.get(criterion.get("part_label"))
-        if question_text and part_text:
-            criterion["question_text"] = (
-                f"{question_text}\n\n[Yêu cầu riêng phần {criterion.get('part_label')}] {part_text}"
+        label = criterion.get("part_label")
+        part_text = part_text_by_label.get(label)
+
+        pieces: List[str] = []
+        if question_text:
+            pieces.append(question_text)
+        if part_text:
+            pieces.append(f"[Yêu cầu riêng phần {label}] {part_text}")
+
+        # Criterion `table` đã nhận bảng ĐẦY ĐỦ (kèm chính câu trả lời của học
+        # sinh trong từng ô) qua grade_table_group_with_llm; thêm bản in sẵn ở
+        # đây nữa chỉ làm prompt có hai bảng na ná nhau, dễ khiến LLM lẫn đâu
+        # là đề, đâu là bài làm.
+        if criterion.get("question_type") != "table":
+            printed_table = printed_table_by_label.get(label)
+            if printed_table:
+                pieces.append(printed_table)
+
+        # FIX: bảng in sẵn của các part KHÁC cũng là đề bài của cả câu, không
+        # phải tài sản riêng của part khai nó. Trước đây chỉ bảng cùng
+        # part_label được gắn, nên một part hoàn toàn hợp lệ như câu 6b ("viết
+        # hàm NhapSV — thông tin từ bảng part a") chấm mà không hề thấy danh
+        # sách thuộc tính, vì bảng nằm ở parts[a].tables. Đúng lại đúng cái bẫy
+        # câu 14a: barem chỉ thoát nạn khi tác giả nhớ chép tay danh sách sang
+        # `sample_solution`. Trên giấy thi học sinh nhìn thấy cả tờ đề, nên LLM
+        # cũng phải thấy. Bản render này có ghi rõ bảng thuộc phần nào để không
+        # lẫn với bảng của chính part đang chấm ở trên; criterion `table` cũng
+        # nhận (nó chỉ bị loại bảng của CHÍNH nó, vốn đã tới qua
+        # grade_table_group_with_llm kèm câu trả lời thật của học sinh).
+        for other_label, rendered in foreign_table_by_label.items():
+            if other_label != label:
+                pieces.append(rendered)
+
+        if pieces:
+            criterion["question_text"] = "\n\n".join(pieces)
+
+
+def read_barem_ma_de(barem_path: str) -> str:
+    """Đọc riêng `ma_de` của một file barem, không flatten gì cả.
+
+    Dùng để dựng bảng tra {ma_de: barem} mà không phải nạp toàn bộ criteria
+    của mọi barem chỉ để biết nó thuộc mã đề nào.
+    """
+    with open(barem_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    ma_de = data.get("ma_de")
+    if ma_de is None:
+        raise ValueError(f"[ERROR] Barem file {barem_path} missing 'ma_de' field")
+    return str(ma_de)
+
+
+def load_barems(barem_paths: List[str]) -> Dict[str, Dict[int, List[Dict[str, Any]]]]:
+    """Nạp nhiều barem, trả về bảng tra {ma_de: barem_dict}.
+
+    Một phiên chấm có thể gồm học sinh của nhiều mã đề khác nhau — mỗi em
+    khai `ma_de` của mình trong file bài làm, và bài của em nào được chấm
+    bằng đúng barem của mã đề đó.
+
+    Hai barem cùng `ma_de` là lỗi cấu hình chứ không phải chuyện để đoán:
+    nếu lặng lẽ lấy cái sau đè cái trước thì cả một mã đề bị chấm bằng
+    barem sai mà không ai biết, nên ném lỗi ngay.
+    """
+    barems: Dict[str, Dict[int, List[Dict[str, Any]]]] = {}
+    source_of: Dict[str, str] = {}
+
+    for path in barem_paths:
+        ma_de = read_barem_ma_de(path)
+        if ma_de in barems:
+            raise ValueError(
+                f"[ERROR] Hai barem cùng ma_de={ma_de!r}: {source_of[ma_de]} và {path}. "
+                f"Mỗi mã đề chỉ được có đúng một barem."
             )
-        elif part_text:
-            criterion["question_text"] = part_text
-        elif question_text:
-            criterion["question_text"] = question_text
+        print(f"\n[BAREM] ma_de={ma_de} ← {path}")
+        barems[ma_de] = load_barem(path)
+        source_of[ma_de] = str(path)
+
+    if not barems:
+        raise ValueError("[ERROR] Không nạp được barem nào.")
+    print(f"\n[OK] Đã nạp {len(barems)} barem: mã đề {sorted(barems)}")
+    return barems
 
 
 def load_barem(barem_path: str) -> Dict[int, List[Dict[str, Any]]]:
@@ -4407,16 +4693,20 @@ def load_barem(barem_path: str) -> Dict[int, List[Dict[str, Any]]]:
 #===========================================================================
 
 def run_student(
-    student_samples: List[Dict[str, Any]], barem_dict: Dict[int, List[Dict]]
+    student_samples: List[Dict[str, Any]], barems: Dict[str, Dict[int, List[Dict]]]
 ) -> List[Dict[str, Any]]:
     """
-    Hàm chạy chấm tất cả samples của 1 học sinh (student_index) theo thứ tự
+    Hàm chạy chấm tất cả samples của 1 học sinh (student_index) theo thứ tự.
+
+    `barems` là bảng tra {ma_de: barem_dict}; barem dùng để chấm được chọn
+    theo `ma_de` của chính sample đó.
     """
     results = []
     ordered_samples = sorted(student_samples, key=lambda s: s.get("question_number") or 0)
     total = len(ordered_samples)
     for idx, sample in enumerate(ordered_samples, start=1):
         sid = sample.get("sample_id", "?")
+        barem_dict = barems.get(str(sample.get("ma_de"))) or {}
         # In NGAY TRƯỚC khi chấm (không đợi grade_sample_advised xong mới in)
         # — để thấy tiến độ thật khi đang gọi LLM (có thể mất vài giây/câu do
         # self-consistency vote), tránh nhìn như bị treo khi chạy batch lớn.
@@ -4436,15 +4726,39 @@ def run_student(
     return results
 
 
+def resolve_barem_paths(barem_source: Union[str, List[str]]) -> List[str]:
+    """Nhận 1 file, 1 thư mục, hoặc 1 danh sách đường dẫn → list file barem.
+
+    Thư mục thì lấy mọi `*.json` trực tiếp bên trong (không đệ quy — thư mục
+    con thường là bản nháp/backup, gom vào dễ dính hai barem trùng mã đề).
+    """
+    if isinstance(barem_source, (list, tuple)):
+        return [str(p) for p in barem_source]
+
+    path = Path(barem_source)
+    if path.is_dir():
+        found = sorted(str(p) for p in path.glob("*.json"))
+        if not found:
+            raise ValueError(f"[ERROR] Thư mục barem {barem_source} không có file .json nào.")
+        return found
+    return [str(path)]
+
+
 def run_batch(
-    test_input_path: str, barem_path: str, output_path: str = None
+    test_input_path: str,
+    barem_source: Union[str, List[str]],
+    output_path: str = None,
 ) -> List[Dict[str, Any]]:
     """
-    Hàm chạy chấm chính quy mô batch
+    Hàm chạy chấm chính quy mô batch.
+
+    `barem_source` là 1 file barem, 1 THƯ MỤC chứa nhiều barem, hoặc 1 danh
+    sách đường dẫn. Nhiều barem thì mỗi học sinh được chấm bằng barem khớp
+    `ma_de` của em đó — xem convert_results_to_samples().
     """
 
-    barem_dict = load_barem(barem_path)
-    samples = load_input(test_input_path, barem_dict)
+    barems = load_barems(resolve_barem_paths(barem_source))
+    samples = load_input(test_input_path, barems)
 
     print(f"\n{'='*80}")
     print(f"System 4 (LLM+Advisory) — {len(samples)} samples")
@@ -4468,6 +4782,27 @@ def run_batch(
     for sample in samples:
         students.setdefault(_student_key(sample), []).append(sample)
 
+    def _write_results(rows: List[Dict[str, Any]]) -> None:
+        """Dump the results collected so far, replacing the file each time.
+
+        Called after every student, not just once at the end. `results` used to
+        live only in memory until the final line of this function, so a run cut
+        short — a killed container, a machine going down — left nothing on disk
+        at all and every LLM call it had already paid for was wasted. Rewriting
+        the whole list per student is cheap next to one student's worth of LLM
+        round-trips, and keeps the file a valid complete JSON array at all
+        times (an append-per-line format would not be readable by the API,
+        which json.load()s this path).
+
+        The summary is deliberately NOT written here: `summarize_by_student`
+        reports class-wide figures, and a half-finished class average invites
+        being read as the real one.
+        """
+        if not output_path:
+            return
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(rows, f, ensure_ascii=False, indent=2)
+
     results = []
     i = 0
     student_keys = sorted(students.keys(), key=_hs_sort_key)
@@ -4476,7 +4811,7 @@ def run_batch(
             f"\n  === Học sinh {hs_key} ({hs_idx}/{len(student_keys)}, {len(students[hs_key])} câu) ===",
             flush=True,
         )
-        for res in run_student(students[hs_key], barem_dict):
+        for res in run_student(students[hs_key], barems):
             i += 1
             sc, mx = res.get("score", 0), res.get("max_score", 0)
             pct = sc / mx * 100 if mx else 0
@@ -4485,6 +4820,8 @@ def run_batch(
                 flush=True,
             )
             results.append(res)
+
+        _write_results(results)
 
     # Summary
     total_sc = sum(r.get("score", 0) for r in results)
@@ -4500,8 +4837,7 @@ def run_batch(
     print_student_summary(summary)
 
     if output_path:
-        with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(results, f, ensure_ascii=False, indent=2)
+        _write_results(results)
         print(f"  Saved to: {output_path}")
 
         summary_path = str(Path(output_path).with_name("student_summary.json"))
@@ -5005,6 +5341,37 @@ def smoke_test():
         ), f"FIX #9 FAIL on: {resp[:50]}"
     print("✅ FIX #9: _extract_json_from_text xử lý các dạng LLM response")
 
+    # FIX: khung Cau_XX của câu CHỈ CÓ 1 PART phải giữ đủ mọi dòng. Trước đây
+    # chỉ còn dòng đầu (chia "dòng i → part i") — bài code nhiều dòng bị chấm
+    # trên đúng dòng đầu tiên.
+    code_lines = ["s1 = self.relu(self.bn1(self.conv1(x)))", "    s2 = self.bn2(self.conv2(s1))", "", "return s2 + x"]
+    one_part_barems = {
+        "1": {
+            5: [{"criterion_id": "T5", "part_label": "main", "question_type": "logical", "score": 1.5}],
+            # Câu nhiều part dùng chung 1 khung: giữ quy ước cũ dòng i → part i.
+            8: [
+                {"criterion_id": "T8a", "part_label": "main_S1", "question_type": "matching", "score": 1},
+                {"criterion_id": "T8b", "part_label": "main_S2", "question_type": "matching", "score": 1},
+            ],
+        }
+    }
+    converted = convert_results_to_samples(
+        {"HS_1": {
+            "ma_de": "1",
+            "Cau_05": {"status": "completed", "content": {"lines": code_lines}},
+            "Cau_08": {"status": "completed", "content": {"lines": ["12", "34"]}},
+        }},
+        one_part_barems,
+    )
+    by_q = {s["question_number"]: s for s in converted}
+    got = [l["text"] for l in by_q[5]["student_answer"]["lines"]]
+    assert got == code_lines, f"FIX 1-part multi-line FAIL: {got}"
+    assert {l["slot_id"] for l in by_q[5]["student_answer"]["lines"]} == {"cau_5_001_main"}, \
+        "FIX 1-part multi-line FAIL: mọi dòng phải cùng một slot"
+    got8 = {l["part_label"]: l["text"] for l in by_q[8]["student_answer"]["lines"]}
+    assert got8 == {"main_S1": "12", "main_S2": "34"}, f"multi-part split FAIL: {got8}"
+    print("✅ FIX Cau_XX 1 part: giữ đủ mọi dòng (kể cả thụt lề, dòng trống); nhiều part vẫn chia theo dòng")
+
     print()
     print("✅ Tất cả smoke tests PASS")
     print("=" * 60)
@@ -5020,10 +5387,20 @@ if __name__ == "__main__":
 Vi du:
   python pipeline.py --test
   python pipeline.py --input testing/input/test_1_HS.json --barem sample_parem.json
+  python pipeline.py --input bailam.json --barem testing/barem/
         """,
     )
     parser.add_argument("--input", "-i", default="testing/input/test_1_HS.json")
-    parser.add_argument("--barem", "-b", default="sample_parem.json")
+    parser.add_argument(
+        "--barem",
+        "-b",
+        default="sample_parem.json",
+        help=(
+            "File barem, hoặc THƯ MỤC chứa nhiều barem. Với thư mục, mỗi học "
+            "sinh được chấm bằng barem khớp 'ma_de' mà em đó khai trong file "
+            "bài làm."
+        ),
+    )
     parser.add_argument("--output-dir", "-o", default="testing/output")
     parser.add_argument("--test", action="store_true")
 
@@ -5050,12 +5427,13 @@ Vi du:
     print(f"\n{'='*60}")
     print("  System 4 (LLM_Advisory)")
     print(f"  Input : {args.input}")
-    print(f"  Barem : {args.barem}")
+    barem_label = args.barem + ("  (thư mục)" if Path(args.barem).is_dir() else "")
+    print(f"  Barem : {barem_label}")
     print(f"  Output: {out}")
     print(f"{'='*60}")
     run_batch(
         test_input_path=args.input,
-        barem_path=args.barem,
+        barem_source=args.barem,
         output_path=out,
     )
     print(f"\n==> Saved: {out}")

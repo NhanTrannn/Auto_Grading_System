@@ -7,34 +7,30 @@ properties khai trong [`src/styles/global.css`](src/styles/global.css) — có s
 
 ## Backend phía sau
 
-`vite.config.ts` proxy `/api` tới `http://localhost:8000` — **một** service
-duy nhất (`backend/app`), phục vụ chấm điểm, luồng pipeline, thư viện barem và
-cả 3 module OCR (`/api/v1/ocr/*`). Trước đây OCR là service riêng ở port 8081
-với prefix proxy `/ocr`.
+`vite.config.ts` proxy `/api` tới `http://localhost:${VITE_BACKEND_PORT ?? 8000}`
+— **một** service duy nhất (`backend/app`), phục vụ chấm điểm, luồng pipeline,
+thư viện barem và cả 3 module OCR (`/api/v1/ocr/*`). Trước đây OCR là service
+riêng ở port 8081 với prefix proxy `/ocr`.
+
+`vite.config.ts` (cả dev lẫn `preview` proxy) và `DashboardLayout.tsx` (nhãn
+"Backend :port" ở sidebar) đều đọc chung `VITE_BACKEND_PORT` từ `.env` —
+lệnh chạy cụ thể (dev/production) và cách đổi cổng khi 8000 đã bị chiếm sẵn:
+xem root `README.md`'s "Chạy nhanh" section (một chỗ duy nhất cho cả
+backend + frontend).
 
 Sidebar hiển thị trạng thái kết nối (poll 20s một lần qua
 `src/hooks/useServiceHealth.ts`), nên nếu quên bật backend sẽ thấy ngay chấm
 đỏ thay vì lỗi mù mờ khi bấm nút. Cùng request đó trả về `llm_configured` —
 thiếu `.env` thì sidebar cảnh báo trước khi bạn tốn thời gian upload.
 
-## Chạy local
-
-```bash
-# Terminal 1 — backend
-cd backend && pip install -r requirements.txt && uvicorn app.main:app --reload --port 8000
-
-# Terminal 2 — frontend
-cd frontend && npm install && npm run dev
-```
-
 ## Các màn hình
 
 | Route | Nội dung |
 | --- | --- |
-| `/pipeline` | **Chấm cả lớp từ ảnh** — wizard 4 bước: (1) 2 file zip → (2) chọn mã đề, xem bảng gán `HS_N ← thư mục` → (3) chọn barem từ thư viện → (4) khai vùng bằng trình gán ROI hoặc `roi_config.json`. Có ước tính số lượt OCR trước khi chạy |
+| `/pipeline` | **Chấm cả lớp từ ảnh** — wizard 3 bước: (1) 2 file zip → (2) tick **nhiều mã đề** cùng lúc, xem bảng gán `HS_N ← thư mục` và barem khớp từng mã → (3) khai vùng **riêng cho từng mã đề** (hoặc tick dùng chung khi các mã đề chung một bộ ảnh đề). Có ước tính số lượt OCR trước khi chạy |
 | `/pipeline/:jobId` | Tiến độ 2 giai đoạn (OCR → chấm điểm), nhật ký chạy trực tiếp, rồi 2 tab: **Bảng điểm** (cả lớp) và **Soát bài** (từng học sinh: ảnh cắt cạnh chữ OCR đọc được, lướt bằng phím ← →) |
 | `/barem` | Trình soạn barem — xem mục riêng bên dưới. Nút **Lưu vào thư viện** đẩy rubric lên server để dùng ở `/pipeline` và `/` |
-| `/` | Dashboard: thống kê phiên chấm, chấm từ Results JSON đã có (chọn barem **từ thư viện**, không phải upload lại), danh sách phiên gần đây |
+| `/` | Dashboard: thống kê phiên chấm, chấm từ Results JSON đã có — **không chọn barem**, mỗi học sinh khai `ma_de` và server tự tra kho; danh sách phiên gần đây |
 | `/jobs/:jobId` | Kết quả một phiên chấm: stat card, phổ điểm, bảng điểm có tìm kiếm/lọc/sắp xếp, panel chi tiết từng tiêu chí + lý do LLM, tải CSV/JSON |
 | `/ocr/roi` | Module 1 — phát hiện ROI, vẽ khung trực tiếp lên ảnh, xuất `roi_config.json` nháp |
 | `/ocr/align` | Module 2 — căn chỉnh ảnh, thanh trượt chồng ảnh template ↔ ảnh đã căn, tải ảnh kết quả |
@@ -55,8 +51,8 @@ src/
                      (soát bài), usePipelineJob, roiConfigUtils +
                      cauKeySuggestions
   modules/barem/     trình soạn barem (editor, validate, migrate, factory,
-                     rescore, conditionEval, MatchingPreview) + BaremPicker
-                     — picker nằm ở đây vì cả /pipeline lẫn / đều dùng
+                     rescore, renamePart, criterionTree, conditionEval,
+                     codeTextArea, MatchingPreview)
   modules/ocr/       RoiDetectView, AlignView, OcrView, OcrContent
   services/          api.ts (chấm điểm), pipelineApi.ts (luồng ảnh→điểm),
                      baremApi.ts (thư viện barem), ocrApi.ts (3 module OCR lẻ,
@@ -80,6 +76,16 @@ Ba field dễ khai sai nhất được làm rõ ngay trong giao diện, vì lu�
   Khoảng trắng gõ trong một ô là một phần của token đó.
 - **`conditional_outputs`** — chia 3 bước (lấy `value` từ đâu → các nhánh → thử).
   Nhánh xét từ trên xuống, **dừng ở nhánh đầu tiên đúng**, nên có nút đổi thứ tự.
+
+Ô nào chứa văn xuôi của đề (`question.text`, `part.text`, `content`,
+`grader_note`, `sample_solution`) đều có **xem trước công thức**: gõ LaTeX giữa
+`$…$` hoặc `$$…$$` thì ngay dưới ô hiện bản đã dựng bằng KaTeX, sai cú pháp thì
+báo đỏ kèm vị trí (`Undefined control sequence: \mathb at position 9`). Panel chỉ
+xuất hiện khi trong ô thật sự có công thức, và KaTeX được `lazy()` nên bundle
+chính không đổi (412 KB, tách riêng 260 KB chỉ tải khi cần). Đây thuần tuý là
+công cụ soát lỗi cho người soạn — `pipeline.py` **không** phân tích LaTeX, nó
+gửi nguyên văn ký tự bạn gõ cho LLM (đã đo: prompt khớp byte-for-byte với ô
+nhập), và LLM tự hiểu ký hiệu.
 
 Kèm hai công cụ thử tại chỗ:
 

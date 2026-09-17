@@ -35,6 +35,7 @@ from app.schemas.pipeline import (
     JobLog,
     PipelineJobCreate,
     PipelineJobCreated,
+    PipelineJobGroup,
     PipelineJobStatus,
     TemplatePage,
     UploadInventory,
@@ -78,6 +79,7 @@ async def create_upload(
         shutil.rmtree(root, ignore_errors=True)
         raise HTTPException(status_code=400, detail=f"Không giải nén được file zip: {exc}") from exc
 
+    templates = zip_intake.group_template_pages(template_root)
     template_pages = zip_intake.list_template_pages(template_root)
     if not template_pages:
         shutil.rmtree(root, ignore_errors=True)
@@ -110,6 +112,13 @@ async def create_upload(
                     )
                     for index, student in enumerate(group.students, start=1)
                 ],
+                template_pages=[
+                    TemplatePage(page=index, filename=path.relative_to(template_root).as_posix())
+                    for index, path in enumerate(
+                        zip_intake.template_pages_for(templates, group.ma_de), start=1
+                    )
+                ],
+                template_shared=group.ma_de not in templates,
             )
             for group in groups
         ],
@@ -117,15 +126,25 @@ async def create_upload(
 
 
 @router.get("/uploads/{upload_id}/template/{page}")
-async def get_template_page(upload_id: str, page: int) -> FileResponse:
-    """Serve one blank exam page — the ROI editor draws its boxes on top of this."""
+async def get_template_page(upload_id: str, page: int, ma_de: str | None = None) -> FileResponse:
+    """Serve one blank exam page — the ROI editor draws its boxes on top of this.
+
+    `ma_de` picks that code's own pages when the template archive is split by
+    code; without it (or when the archive is flat) the whole set is used, which
+    is also the shared-template case.
+    """
     template_root = _UPLOADS_DIR / upload_id / "template"
     if not template_root.is_dir():
         raise HTTPException(status_code=404, detail="upload not found")
 
-    pages = zip_intake.list_template_pages(template_root)
+    if ma_de:
+        pages = zip_intake.template_pages_for(zip_intake.group_template_pages(template_root), ma_de)
+    else:
+        pages = zip_intake.list_template_pages(template_root)
+
     if page < 1 or page > len(pages):
-        raise HTTPException(status_code=404, detail=f"Đề mẫu chỉ có {len(pages)} trang.")
+        where = f" của mã đề {ma_de}" if ma_de else ""
+        raise HTTPException(status_code=404, detail=f"Đề mẫu{where} chỉ có {len(pages)} trang.")
     return FileResponse(pages[page - 1])
 
 
@@ -173,7 +192,7 @@ def _validate_rois(rois: object, page_count: int) -> list[dict]:
     return rois
 
 
-def _spawn_worker(job_id: str, job_dir: Path) -> None:
+def _spawn_worker(job_id: str, job_dir: Path) -> int:
     # Same detached-subprocess rationale as app/api/routes/grading.py: the run
     # must survive a uvicorn restart, and PYTHONIOENCODING is required because
     # both the OCR connector and pipeline.py print Vietnamese. `-u` keeps that
@@ -188,7 +207,10 @@ def _spawn_worker(job_id: str, job_dir: Path) -> None:
     env = {**os.environ, "PYTHONIOENCODING": "utf-8"}
 
     with (job_dir / "worker.log").open("wb") as log_file:
-        subprocess.Popen(
+        # The PID goes onto the job row so a later API restart can tell a
+        # still-detached worker from one that was killed — see
+        # app/services/job_recovery.py.
+        process = subprocess.Popen(
             [sys.executable, "-u", "-m", "app.pipeline_worker", job_id, str(job_dir)],
             cwd=str(_BACKEND_ROOT),
             stdout=log_file,
@@ -197,6 +219,70 @@ def _spawn_worker(job_id: str, job_dir: Path) -> None:
             env=env,
             **kwargs,
         )
+    return process.pid
+
+
+def _claim_hs_key(preferred: str, used: set[int]) -> str:
+    """Give every student in the run a distinct `HS_<n>`, across exam codes.
+
+    Two codes routinely both contain an `HS_1` folder, and three separate
+    things key off that string: the Results JSON's top-level key, the crop
+    filename (`{hs_key}_{cau_key}.png`), and `student_index`, which pipeline.py
+    reads as `int(hs_key.split("_")[-1])`. Letting them collide would overwrite
+    one student's crops with another's and merge their rows.
+
+    Renumbering rather than suffixing (`HS_1_2`) is deliberate: a suffix still
+    parses, just wrongly — `int("2")` — quietly turning student 1 of code 2
+    into student 2.
+    """
+    try:
+        number = int(preferred.split("_")[-1])
+    except ValueError:
+        number = len(used) + 1
+    while number in used:
+        number += 1
+    used.add(number)
+    return f"HS_{number}"
+
+
+def _find_barem_for(db: Session, ma_de: str) -> BaremDoc:
+    """The library's rubric for one exam code, newest first.
+
+    Matched automatically rather than picked in the UI: a run can now cover
+    several codes, and making the teacher pair each one with a rubric by hand
+    is both tedious and easy to get wrong. Skipped entirely when the group
+    sets its own `barem_id` — see `_resolve_barem`.
+    """
+    doc = (
+        db.query(BaremDoc)
+        .filter(BaremDoc.ma_de == str(ma_de))
+        .order_by(BaremDoc.updated_at.desc())
+        .first()
+    )
+    if doc is None:
+        raise HTTPException(
+            status_code=404,
+            detail=(
+                f"Kho barem không có mã đề '{ma_de}'. Soạn hoặc tải barem cho mã đề đó "
+                f"lên kho rồi tạo lại phiên chấm, hoặc chọn thẳng 1 barem có sẵn thay vì "
+                f"khớp theo mã đề."
+            ),
+        )
+    return doc
+
+
+def _resolve_barem(db: Session, group: PipelineJobGroup) -> BaremDoc:
+    """The rubric for one group: picked directly by `barem_id` when the
+    teacher set one (bypassing ma_de matching entirely), else looked up by
+    `ma_de` as before."""
+    if group.barem_id:
+        doc = db.get(BaremDoc, group.barem_id)
+        if doc is None:
+            raise HTTPException(
+                status_code=404, detail=f"Không tìm thấy barem '{group.barem_id}' trong kho."
+            )
+        return doc
+    return _find_barem_for(db, group.ma_de)
 
 
 @router.post("/jobs", response_model=PipelineJobCreated)
@@ -209,43 +295,94 @@ async def create_pipeline_job(
     if not template_root.is_dir() or not students_root.is_dir():
         raise HTTPException(status_code=404, detail="upload không tồn tại (hoặc đã bị dọn).")
 
-    barem = db.get(BaremDoc, payload.barem_id)
-    if barem is None:
-        raise HTTPException(status_code=404, detail="Không tìm thấy barem đã chọn.")
+    if not payload.groups:
+        raise HTTPException(status_code=400, detail="Chưa chọn mã đề nào để chấm.")
 
-    template_pages = zip_intake.list_template_pages(template_root)
-    rois = _validate_rois(payload.roi_config.get("rois"), len(template_pages))
+    seen_codes = [g.ma_de for g in payload.groups]
+    duplicates = {code for code in seen_codes if seen_codes.count(code) > 1}
+    if duplicates:
+        raise HTTPException(
+            status_code=400, detail=f"Mã đề bị khai trùng trong cùng một phiên: {', '.join(sorted(duplicates))}."
+        )
 
-    group = next(
-        (g for g in zip_intake.group_students(students_root) if g.ma_de == payload.ma_de), None
-    )
-    if group is None:
-        raise HTTPException(status_code=404, detail=f"Không thấy mã đề '{payload.ma_de}' trong zip.")
+    templates = zip_intake.group_template_pages(template_root)
+    students_by_code = {g.ma_de: g for g in zip_intake.group_students(students_root)}
 
     job_id = uuid.uuid4().hex
     job_dir = _JOBS_DIR / job_id
     job_dir.mkdir(parents=True, exist_ok=True)
+    barem_dir = job_dir / "barems"
+    barem_dir.mkdir(parents=True, exist_ok=True)
 
-    (job_dir / "barem.json").write_text(barem.content, encoding="utf-8")
-
-    students = []
+    configs: list[dict] = []
     student_map: dict[str, str] = {}
-    for index, student in enumerate(group.students, start=1):
-        hs_key = zip_intake.normalise_hs_key(student.folder, index)
-        students.append({"hs_key": hs_key, "pages": [str(p) for p in student.pages]})
-        student_map[hs_key] = student.folder
+    used_numbers: set[int] = set()
+    barem_names: list[str] = []
+    total_students = 0
+    total_rois = 0
+    total_steps = 0
 
-    resolved = {
-        # The Results JSON's ma_de must match the barem's for load_barem() to
-        # line up, so the barem wins over the folder name here.
-        "ma_de": barem.ma_de or payload.ma_de,
-        "template_pages": [str(p) for p in template_pages],
-        "crop_dir": str(job_dir / "crops"),
-        "students": students,
-        "rois": rois,
-    }
-    (job_dir / "roi_config.json").write_text(
-        json.dumps(resolved, ensure_ascii=False, indent=2), encoding="utf-8"
+    for group in payload.groups:
+        ma_de = group.ma_de
+        entry = students_by_code.get(ma_de)
+        if entry is None:
+            raise HTTPException(status_code=404, detail=f"Không thấy mã đề '{ma_de}' trong zip bài làm.")
+
+        pages = zip_intake.template_pages_for(templates, ma_de)
+        if not pages:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    f"Mã đề '{ma_de}' không có ảnh đề mẫu. Zip đề mẫu cần thư mục "
+                    f"'Made_{ma_de}' riêng, hoặc để ảnh phẳng ở gốc thì bộ ảnh đó dùng chung cho mọi mã đề."
+                ),
+            )
+
+        rois = _validate_rois(group.roi_config.get("rois"), len(pages))
+
+        barem = _resolve_barem(db, group)
+        # Force the barem's OWN "ma_de" field to match this group's ma_de
+        # before writing it out — pipeline.py's load_barems() indexes barems
+        # by the code each one declares INSIDE its content, not by filename,
+        # then matches each student to a barem by their own tagged ma_de
+        # (see CLAUDE.md's "Input format" section). The auto-matched path
+        # (_find_barem_for) already guarantees these agree by construction,
+        # but a directly-picked barem_id can point at a barem written for a
+        # totally different code (that's the point — bypass the ma_de check)
+        # so it needs to be re-tagged here, or pipeline.py would silently
+        # skip every student in this group with "thiếu ma_de/mã đề không có
+        # barem" despite a barem file visibly sitting right next to them.
+        barem_content = json.loads(barem.content)
+        barem_content["ma_de"] = ma_de
+        (barem_dir / f"ma_de_{ma_de}.json").write_text(
+            json.dumps(barem_content, ensure_ascii=False), encoding="utf-8"
+        )
+        barem_names.append(barem.name)
+
+        students = []
+        for index, student in enumerate(entry.students, start=1):
+            hs_key = _claim_hs_key(zip_intake.normalise_hs_key(student.folder, index), used_numbers)
+            students.append({"hs_key": hs_key, "ma_de": ma_de, "pages": [str(p) for p in student.pages]})
+            student_map[hs_key] = f"[{ma_de}] {student.folder}" if len(payload.groups) > 1 else student.folder
+
+        configs.append(
+            {
+                "ma_de": ma_de,
+                "template_pages": [str(p) for p in pages],
+                "crop_dir": str(job_dir / "crops"),
+                "students": students,
+                "rois": rois,
+            }
+        )
+        total_students += len(students)
+        total_rois += len(rois)
+        total_steps += len(students) * len(rois)
+
+    # One file per exam code; the worker runs the OCR connector once per file
+    # and merges the results, which works because every student now carries
+    # their own ma_de.
+    (job_dir / "roi_configs.json").write_text(
+        json.dumps(configs, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     if payload.save_crops:
         (job_dir / "save_crops").touch()
@@ -253,22 +390,24 @@ async def create_pipeline_job(
     job = PipelineJob(
         job_id=job_id,
         status=JobStatus.PENDING,
-        student_count=len(students),
-        roi_count=len(rois),
-        progress_total=len(students) * len(rois),
-        ma_de=payload.ma_de,
-        barem_name=barem.name,
+        student_count=total_students,
+        roi_count=total_rois,
+        progress_total=total_steps,
+        ma_de=", ".join(seen_codes),
+        barem_name=", ".join(barem_names),
     )
     db.add(job)
     db.commit()
 
-    _spawn_worker(job_id, job_dir)
+    job.worker_pid = _spawn_worker(job_id, job_dir)
+    db.commit()
 
     return PipelineJobCreated(
         job_id=job_id,
         status=JobStatus.PENDING,
-        student_count=len(students),
-        roi_count=len(rois),
+        student_count=total_students,
+        roi_count=total_rois,
+        ma_de_list=seen_codes,
         student_map=student_map,
     )
 

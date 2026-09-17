@@ -39,6 +39,10 @@ export interface UploadMaDe {
   ma_de: string;
   student_count: number;
   students: UploadStudent[];
+  /** Blank-exam pages for this code. */
+  template_pages: TemplatePage[];
+  /** True when the template archive had no per-code folders, so one set serves every code. */
+  template_shared: boolean;
 }
 
 export interface UploadInventory {
@@ -57,6 +61,7 @@ export interface PipelineJobCreated {
   status: JobStatus;
   student_count: number;
   roi_count: number;
+  ma_de_list: string[];
   student_map: Record<string, string>;
 }
 

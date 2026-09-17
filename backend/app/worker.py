@@ -18,7 +18,7 @@ from app.services.grading_engine import wrapper
 
 
 def main() -> None:
-    job_id, input_path, barem_path, output_dir = sys.argv[1:5]
+    job_id, input_path, barem_source, output_dir = sys.argv[1:5]
 
     db = SessionLocal()
     try:
@@ -36,7 +36,9 @@ def main() -> None:
         out_dir = Path(output_dir)
         out_dir.mkdir(parents=True, exist_ok=True)
         result_file = out_dir / "grading_results.json"
-        wrapper.run_batch(input_path, barem_path, str(result_file))
+        # barem_source is a DIRECTORY of rubrics, one per ma_de — the route
+        # writes only the codes this input actually uses.
+        wrapper.run_batch(input_path, barem_source, str(result_file))
 
         job.status = JobStatus.DONE
         job.result_path = str(result_file)

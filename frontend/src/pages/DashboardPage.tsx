@@ -32,7 +32,7 @@ const dateFormatter = new Intl.DateTimeFormat("vi-VN", {
 // teacher landing here was told to expect a step that never runs.
 const GRADING_STEPS = [
   { title: "Results JSON", detail: "Bài làm đã OCR, khoá theo HS_N" },
-  { title: "Chọn barem", detail: "Lấy từ thư viện đã lưu" },
+  { title: "Tự chọn barem", detail: "Khớp ma_de của từng học sinh" },
   { title: "Chấm từng tiêu chí", detail: "Heuristic + LLM Chain-of-Thought" },
   { title: "Bảng điểm", detail: "Điểm và lý do cho từng học sinh" },
 ];
@@ -66,11 +66,11 @@ export default function DashboardPage() {
 
   const recentJobs = jobs.slice(0, 5);
 
-  async function handleSubmit(inputFile: File, baremId: string) {
+  async function handleSubmit(inputFile: File) {
     setSubmitting(true);
     setError(null);
     try {
-      const job = await createGradingJob(inputFile, baremId);
+      const job = await createGradingJob(inputFile);
       navigate(`/jobs/${job.job_id}`);
     } catch (err) {
       setError((err as Error).message);
@@ -88,7 +88,7 @@ export default function DashboardPage() {
           </>
         }
         title="Chấm điểm tự động IT001"
-        description="Tải lên bài làm đã OCR cùng barem, hệ thống sẽ chấm từng tiêu chí bằng heuristic kết hợp LLM Chain-of-Thought và trả về điểm chi tiết cho từng học sinh."
+        description="Tải lên file bài làm đã OCR — mỗi học sinh khai mã đề của mình, hệ thống tự lấy barem khớp từ kho rồi chấm từng tiêu chí bằng heuristic kết hợp LLM Chain-of-Thought."
       />
 
       <div className={styles.stats}>
@@ -106,7 +106,7 @@ export default function DashboardPage() {
       <div className={styles.columns}>
         <Card
           title="Tạo phiên chấm mới"
-          subtitle="Cần đúng 2 file JSON: bài làm học sinh và barem"
+          subtitle="Chỉ cần 1 file bài làm — barem lấy tự động theo mã đề"
         >
           <UploadForm disabled={submitting} error={error} onSubmit={handleSubmit} />
         </Card>

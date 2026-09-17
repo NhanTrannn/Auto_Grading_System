@@ -17,21 +17,66 @@ Pipeline chấm điểm tự động bài thi/bài tập tự luận tiếng Vi�
 
 ## Chạy nhanh
 
+Pipeline CLI (không cần web server):
+
 ```bash
-# Backend (pipeline CLI, không cần web server)
 cd backend
 pip install -r requirements.txt
 python pipeline.py --test
+```
 
-# Backend (web API)
+### Dev (hot-reload)
+
+```bash
+# Terminal 1 — backend
 cd backend
-uvicorn app.main:app --reload
+pip install -r requirements.txt
+uvicorn app.main:app --reload   # mặc định port 8000
 
-# Frontend
+# Terminal 2 — frontend
 cd frontend
 npm install
-npm run dev
+npm run dev   # http://localhost:5173, proxy /api -> backend
 ```
+
+### Production (backend Docker, frontend build tĩnh)
+
+```bash
+# Backend — cần Docker Desktop đang chạy (docker info phải thành công)
+cd backend
+docker compose -f docker-compose.prod.yaml up --build -d
+curl http://localhost:8000/api/v1/health   # {"status":"ok","llm_configured":true}
+
+# Frontend — build production rồi phục vụ dist/
+cd frontend
+npm install
+npm run build
+npm run preview -- --host   # http://localhost:4173, --host để máy cùng LAN vào được
+```
+
+Dừng backend: `docker compose -f docker-compose.prod.yaml down` (thêm `-v` để
+xoá luôn volume — mất toàn bộ lịch sử job/barem). Dừng frontend: Ctrl+C ở
+terminal đang chạy `vite preview`, hoặc kill tiến trình `node` tương ứng.
+
+Cả 2 chế độ đều cần `.env` (mục Cấu hình bên dưới) ở **repo root**.
+
+### Cổng 8000 đã bị chiếm sẵn trên máy?
+
+Có thể xảy ra thật (đã gặp: 1 project khác không liên quan trên cùng máy dev
+đã bind sẵn port 8000) — triệu chứng là `docker compose up` báo thành công,
+`docker ps` hiện cổng đã map, nhưng `curl localhost:8000/...` lại không trả
+đúng response app này (hoặc không phản hồi gì), vì có tiến trình khác trên
+host đang trả lời thay. Kiểm tra bằng `netstat -ano | grep ":8000"` (Windows)
+— nếu thấy nhiều hơn 1 tiến trình, đổi sang cổng khác:
+
+1. `backend/docker-compose.prod.yaml` (hoặc lệnh `uvicorn --port` nếu chạy
+   dev không qua Docker): đổi **phía host** của port mapping, VD `"8001:8000"`
+   — phía container/uvicorn giữ nguyên 8000, không cần đụng gì trong code.
+2. Tạo `frontend/.env` (không commit) với `VITE_BACKEND_PORT=8001` (đổi đúng
+   số vừa chọn ở bước 1) — cả `vite.config.ts` (proxy dev lẫn `preview`) và
+   sidebar frontend (nhãn "Backend :port") đều đọc chung biến này, chỉ cần
+   sửa 1 chỗ.
+3. Chạy lại `npm run dev` hoặc `npm run build && npm run preview -- --host`.
 
 ## Mục lục (chi tiết pipeline chấm điểm)
 
@@ -211,7 +256,7 @@ Tài liệu thiết kế chi tiết hơn về luồng prompt, kỹ thuật promp
 ## Web app (FastAPI + React)
 
 - `backend/app/` — FastAPI, gọi thẳng `pipeline.run_batch`/`grade_sample_advised` trong cùng tiến trình (`backend/app/services/grading_engine/wrapper.py`). Chấm điểm chạy trong một **subprocess riêng** (`python -m app.worker`), không dùng `BackgroundTasks`, để không bị cắt ngang nếu server API bị restart/kill giữa chừng. Trạng thái job lưu trong bảng `grading_jobs` (SQLite qua SQLAlchemy) — sống sót qua restart. Xem `backend/README.md` để biết chi tiết + endpoint.
-- `frontend/` — React + TypeScript + Vite, khung sườn (scaffold), hiện mới có trang dashboard placeholder. Xem `FE_ARCHITECTURE_OVERVIEW.md`.
+- `frontend/` — React + TypeScript + Vite, nối vào API thật (không còn placeholder) — xem các route ở `frontend/README.md`: chấm cả lớp từ ảnh (`/pipeline`), chấm từ file JSON (`/`), soạn/quản lý barem (`/barem`, `/barem-library`), 3 module OCR riêng lẻ (`/ocr/*`). Xem `FE_ARCHITECTURE_OVERVIEW.md` cho cấu trúc thư mục `src/`.
 - `FE_BE_INTEGRATION_GUIDE.md` — danh sách endpoint hiện có và cách frontend gọi backend.
 
-**Trạng thái**: khung sườn đã dựng xong và verify bằng `docker build`/`docker run` thật (2026-08-09) — health check + luồng tạo/theo dõi grading job hoạt động end-to-end, nhưng chưa có auth, frontend chưa nối vào API thật (mới có placeholder UI).
+**Trạng thái**: đã verify bằng `docker build`/`docker run` thật (2026-08-11) — health check, luồng tạo/theo dõi grading/pipeline job, và chấm 1 batch thật end-to-end (OCR + LLM) đều chạy được trong container. Chưa có auth.

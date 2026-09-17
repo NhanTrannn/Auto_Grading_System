@@ -125,7 +125,7 @@ export default function ConditionalEditor({
 
       <div className={styles.sourceBox}>
         <Field
-          label="Bước 1 · Lấy 'value' từ đâu"
+          label="Bước 1 · Lấy 'value' từ đâu" name="condition_source"
           required
           hint="Bắt buộc khi có conditional_outputs. Thiếu field này pipeline sẽ bỏ qua hoàn toàn việc chọn nhánh và chấm sai toàn bộ."
         >
@@ -142,7 +142,7 @@ export default function ConditionalEditor({
 
         {conditionSource?.type === "sample_field" && (
           <Field
-            label="field"
+            label="Đọc từ trường nào" name="field"
             hint="Chấm theo STT thật trong danh sách. Học sinh nhớ nhầm số của mình rồi tính nhất quán theo số nhầm đó vẫn bị tính sai."
           >
             <Select
@@ -155,7 +155,7 @@ export default function ConditionalEditor({
 
         {conditionSource?.type === "self_reported" && (
           <Field
-            label="slot_ids"
+            label="Chấm dựa trên ô nào" name="slot_ids"
             required
             hint="Chấm theo con số học sinh THỰC SỰ dùng để tính, nên không phạt oan khi họ nhớ nhầm STT nhưng làm nhất quán. Chọn nhiều slot thì nội dung các slot được nối lại. Học sinh bỏ trống slot ⇒ chấm sai luôn, không qua LLM."
           >
@@ -218,7 +218,7 @@ export default function ConditionalEditor({
             </div>
 
             <Field
-              label="Nếu…"
+              label="Nếu…" name="condition"
               hint="Biến duy nhất dùng được là 'value'. Cho phép: + - * / %, so sánh, in [..], and/or/not, .isdigit()."
             >
               <TextInput
@@ -230,7 +230,7 @@ export default function ConditionalEditor({
             </Field>
 
             <Field
-              label="…thì đáp án đúng là"
+              label="…thì đáp án đúng là" name="expected_outputs"
               hint="Thay cho expected_outputs của tiêu chí. Đáp án nhiều dòng gõ ngay trong một ô."
             >
               <EntryListInput
@@ -243,7 +243,7 @@ export default function ConditionalEditor({
               />
             </Field>
 
-            <Field label="…và token cho điểm bán phần" hint="Mỗi ô một token, tìm theo đúng thứ tự này.">
+            <Field label="…và token cho điểm bán phần" name="expected_output_tokens" hint="Mỗi ô một token, tìm theo đúng thứ tự này.">
               <EntryListInput
                 ordered
                 value={branch.expected_output_tokens ?? []}

@@ -27,7 +27,7 @@ import json
 import re
 from typing import Any, Optional
 
-TaskType = str  # "short_text" | "long_text" | "code" | "table"
+TaskType = str  # "short_text" | "long_text" | "code" | "table" | "printed"
 
 # ---------------------------------------------------------------------------
 # Prompt builders — port 1:1 từ get_ocr_prompt() trong notebook.
@@ -52,6 +52,27 @@ CHỈ trả về một đối tượng JSON thô khớp với cấu trúc sau:
     "dòng chữ viết tay thứ nhất (đã dọn sạch dấu chấm nền)",
     "dòng chữ viết tay thứ hai (đã dọn sạch dấu chấm nền)"
   ]
+}""".strip()
+
+# The exam code, unlike every other region, is PRINTED by the exam author —
+# which the four prompts above all explicitly refuse to read ("[LOẠI TRỪ] Chữ
+# in sẵn đề bài"). Sending the code box through them returns `{"lines": []}`
+# every time, exactly as instructed. Never offered as a user-facing task_type:
+# ocr_main.py selects it for the reserved MA_DE region only, so nothing else
+# can be pointed at the printed exam paper by accident.
+_PRINTED = """[VAI TRÒ] Đọc chữ IN SẴN trên đề thi (không phải chữ viết tay).
+[NHIỆM VỤ] Đọc chính xác toàn bộ chữ in trong ảnh, giữ nguyên thứ tự dòng.
+[LƯU Ý]
+- Đây là chữ in của đề bài — KHÔNG loại trừ nó, đó chính là thứ cần đọc.
+- Giữ nguyên chữ hoa/thường và dấu tiếng Việt đúng như in.
+- Bỏ qua chữ viết tay, mực đỏ, và khung viền.
+[TRỐNG] Nếu không có chữ in nào, trả về mảng rỗng: {"lines": []}
+[VÍ DỤ]
+Ảnh in "MÃ ĐỀ: 1" → {"lines": ["MÃ ĐỀ: 1"]}
+[ĐỊNH DẠNG ĐẦU RA]
+CHỈ trả về một đối tượng JSON thô khớp với cấu trúc sau:
+{
+  "lines": ["dòng chữ in thứ nhất", "dòng chữ in thứ hai"]
 }""".strip()
 
 _LONG_TEXT = """[VAI TRÒ] OCR chữ viết tay môn lập trình C++ của học sinh Việt Nam.
@@ -176,6 +197,8 @@ def get_ocr_prompt(
     n_cols: Optional[int] = None,
     skeleton_content: Optional[dict] = None,
 ) -> str:
+    if task_type == "printed":
+        return _PRINTED
     if task_type == "short_text":
         return _SHORT_TEXT
     if task_type == "long_text":

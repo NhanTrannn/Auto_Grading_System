@@ -1,0 +1,35 @@
+[
+  {
+    "sample_id": "cau_3_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "matching",
+    "question": {
+      "text": "Câu 3.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "0x6ffdec 12 0 27",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "main",
+          "slot_id": "cau_3_001_main",
+          "text": "0x6ffdec 12 0 27",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 2.0,
+    "question_number": 3
+  }
+]

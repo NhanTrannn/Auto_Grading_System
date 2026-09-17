@@ -1,0 +1,50 @@
+{
+  "ma_de": "1",
+  "subject": "IT001 - Nhập môn lập trình",
+  "total_score": 0.5,
+  "teacher_barem": [
+    {
+      "sample_id": "cau_14",
+      "question_number": 14,
+      "question": {
+        "text": "Câu 14: (1.0 điểm) Sinh viên thực hiện yêu cầu sau:",
+        "parts": [
+          {
+            "part_label": "b",
+            "text": "Hãy hoàn thiện hàm NhapSV để nhập thông tin của một sinh viên từ bàn phím (0.5 điểm).\nvoid NhapSV(......................)\n{ ......................\n}",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_14_001_b_S1"
+              },
+              {
+                "slot_id": "cau_14_001_b_S2"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "part_label": "b",
+          "criterion_id": "T14B",
+          "content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+          "score": 0.5,
+          "expected_value": {
+            "keywords": [
+              "NhapSV",
+              "getline"
+            ],
+            "sample_solution": "void NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}"
+          },
+          "grader_note": "Hai tiêu chí độc lập, đúng phần nào tính điểm phần đó: (1) truyền đúng tham biến/tham chiếu; (2) nhập đúng kiểu chuỗi có khoảng trắng.\nTruyền tham trị (Sinhvien x) thì 0đ vì sửa không có tác dụng ngoài hàm.\nNếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng (dùng cin>> thay vì getline) thì tính zero điểm phần đó.",
+          "question_type": "logical",
+          "slot_ids": [
+            "cau_14_001_b_S1",
+            "cau_14_001_b_S2"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -27,7 +27,17 @@ _BAI_LAM_RE = re.compile(r"^bai[_\-\s]?lam$", re.IGNORECASE)
 
 
 def _strip_accents(text: str) -> str:
-    return "".join(c for c in unicodedata.normalize("NFD", text) if not unicodedata.combining(c))
+    """Fold Vietnamese diacritics so a label can be matched case/accent-blind.
+
+    `đ`/`Đ` (U+0111/U+0110) must be handled separately: unlike every other
+    Vietnamese letter they are single codepoints with a stroke, not a base
+    letter plus a combining mark, so NFD leaves them untouched and "MÃ ĐỀ"
+    folds to "MA ĐE" — which no ASCII pattern for "ma de" can match.
+    """
+    folded = text.replace("đ", "d").replace("Đ", "D")
+    return "".join(
+        c for c in unicodedata.normalize("NFD", folded) if not unicodedata.combining(c)
+    )
 
 
 def _natural_key(name: str) -> tuple:
@@ -100,16 +110,58 @@ def list_template_pages(root: Path) -> list[Path]:
     return sorted(pages, key=lambda p: _natural_key(str(p.relative_to(root))))
 
 
+# Sentinel key of `group_template_pages`: pages that belong to no particular
+# exam code and therefore serve every one of them.
+SHARED_TEMPLATE = "*"
+
+
+def group_template_pages(root: Path) -> dict[str, list[Path]]:
+    """Group the blank exam's pages by exam code, mirroring group_students().
+
+    A template archive laid out `Made_1/*.png`, `Made_2/*.png` grades several
+    codes in one session, each against its own pages. An archive with no such
+    folders returns everything under `SHARED_TEMPLATE`: exam codes usually
+    differ in their answers, not their layout, so one set of pages covering
+    every code is the common case and should not need extra folders.
+    """
+    pages = [p for p in root.rglob("*") if p.is_file() and p.suffix.lower() in IMAGE_SUFFIXES]
+
+    groups: dict[str, list[Path]] = {}
+    for page in pages:
+        parts = page.relative_to(root).parts
+        ma_de = _ma_de_of(parts[:-1]) or SHARED_TEMPLATE
+        groups.setdefault(ma_de, []).append(page)
+
+    for found in groups.values():
+        found.sort(key=lambda p: _natural_key(str(p.relative_to(root))))
+    return groups
+
+
+def template_pages_for(grouped: dict[str, list[Path]], ma_de: str) -> list[Path]:
+    """Pages for one exam code, falling back to the shared set."""
+    return grouped.get(ma_de) or grouped.get(SHARED_TEMPLATE) or []
+
+
 def _ma_de_of(relative_parts: tuple[str, ...]) -> str | None:
-    """Find the exam-code component in a path, if the tree has one."""
+    """Find the exam code in a path, as the code itself — not the folder name.
+
+    `Made_1/` yields `"1"`, not `"Made_1"`. The code is now the join key
+    against the barem library, where rubrics are written `"ma_de": "1"`, so
+    returning the decorated folder name would match nothing and every run
+    would fail with "kho barem không có mã đề Made_1". Folders that carry no
+    recognisable prefix (the `…/<something>/Bai_lam/…` shape) are returned
+    as-is, since there is nothing to strip.
+    """
     for index, part in enumerate(relative_parts):
         match = _MA_DE_RE.match(_strip_accents(part).strip())
         if match:
-            return part
+            return match.group(1).strip()
         # "…/<ma_de>/Bai_lam/<hs>/…" — accept the folder just above Bai_lam
         # even when it isn't named in the Made_N style.
         if _BAI_LAM_RE.match(_strip_accents(part).strip()) and index > 0:
-            return relative_parts[index - 1]
+            parent = relative_parts[index - 1]
+            parent_match = _MA_DE_RE.match(_strip_accents(parent).strip())
+            return parent_match.group(1).strip() if parent_match else parent
     return None
 
 

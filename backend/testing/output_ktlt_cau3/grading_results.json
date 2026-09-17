@@ -1,0 +1,111 @@
+[
+  {
+    "sample_id": "cau_3_001__HS_2",
+    "ma_de": "1",
+    "question_number": 3,
+    "question_type": "matching",
+    "routing": {
+      "question_type": "matching",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T3)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.75,
+    "max_score": 2.0,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 60925,
+    "token_usage": {
+      "prompt_tokens": 9885,
+      "completion_tokens": 4713,
+      "total_tokens": 14598
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T3",
+        "part_label": "main",
+        "score": 0.75,
+        "max_score": 2,
+        "feedback": "Token thứ 4 sai: mong đợi '28', học sinh in '27'.",
+        "suggestion": "Kiểm tra lại phép tính hoặc giá trị biến liên quan đến token cuối cùng để đảm bảo in đúng giá trị 28."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T3",
+        "part_label": "main",
+        "criterion_content": "Ghi đúng dòng in ra màn hình (2 điểm)",
+        "score": 0.75,
+        "max_score": 2,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh in đúng 3/4 token trong chuỗi output, chỉ sai token cuối cùng (27 thay vì 28). Theo quy tắc bán phần được cung cấp, 3 token đúng tương ứng với 0.75 điểm.",
+        "cot_reasoning": "---\n\n### **1. Đọc và hiểu tiêu chí: tiêu chí này yêu cầu gì?**\n\nTiêu chí chấm là:  \n> **Ghi đúng dòng in ra màn hình (2 điểm)**\n\n→ Yêu cầu học sinh phải ghi chính xác **chuỗi output** mà chương trình in ra sau khi thực thi các lệnh `cout` ở cuối hàm `main`.\n\nKhông có khái niệm “tương đương”, không chấp nhận sai lệch về định dạng, khoảng trắng, thứ tự, hay giá trị số — **phải khớp 100% byte-by-byte với đáp án kỳ vọng**.\n\n---\n\n### **2. Phân tích đáp án kỳ vọng (nếu có): cần khớp điều gì?**\n\nĐáp án kỳ vọng:  \n> **`0x6ffdec 12 0 28`**\n\n→ Đây là một chuỗi duy nhất gồm 4 token (theo quy tắc bán phần), ngăn cách bởi dấu cách.\n\nCác token được phân tách rõ ràng theo danh sách:  \n- `'0x6ffdec'`  \n- `'12'`  \n- `'0'`  \n- `'28'`\n\n→ Học sinh phải in đúng **đúng chuỗi này**, không thêm, không bớt, không thay đổi thứ tự, không thay đổi định dạng (ví dụ: không thiếu ký tự `0x`, không đổi thành thập phân, v.v.).\n\n---\n\n### **3. Phân tích bài làm học sinh: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh:  \n> **`0x6ffdec 12 0 27`**\n\n→ So sánh trực tiếp với đáp án kỳ vọng:\n\n| Vị trí | Token mong đợi | Token học sinh | Khớp? |\n|--------|----------------|----------------|-------|\n| 1      | `0x6ffdec`     | `0x6ffdec`     | ✅    |\n| 2      | `12`           | `12`           | ✅    |\n| 3      | `0`            | `0`            | ✅    |\n| 4      | `28`           | `27`           | ❌    |\n\n→ **Chỉ có 3/4 token khớp chính xác.**\n\n→ Sai sót nằm ở token cuối cùng: **`28` → `27`**\n\n---\n\n### **4. Kiểm tra tương đương: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.**\n\n→ **Không chấp nhận \"tương đương\"** theo nguyên tắc chấm đề bài.\n\nNguyên tắc rõ ràng:  \n> **“Nếu bài làm học sinh KHÔNG khớp 100% với đáp án kỳ vọng... thì đó KHÔNG phải là 'đúng'”**\n\n→ Tuy nhiên, để đảm bảo tính công bằng, ta cần kiểm tra xem lỗi có phải do **sai logic** hay chỉ là **sai đánh máy**?\n\n---\n\n### **5. So sánh: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n→ Bài làm học sinh **không khớp 100%** với đáp án kỳ vọng vì token cuối sai (`27` thay vì `28`).\n\n→ Nhưng có **quy tắc điểm bán phần** được cung cấp:\n\n> **[{\"type\": \"count_correct_tokens\", \"partial_score\": 0.25, \"condition\": \"correct_token_count == 1\"}, {\"type\": \"count_correct_tokens\", \"partial_score\": 0.75, \"condition\": \"correct_token_count in [2,3]\"}, {\"type\": \"count_correct_tokens\", \"partial_score\": 1, \"condition\": \"correct_token_count == 4\"}]**\n\n→ Số lượng token đúng = **3**\n\n→ Áp dụng quy tắc:  \n> `correct_token_count in [2,3]` → **được 0.75 điểm**\n\n→ Vì đây là tiêu chí 2 điểm, nên cần nhân hệ số phù hợp.\n\n→ Tuy nhiên, **quy tắc bán phần được cung cấp là cho toàn bộ tiêu chí (2 điểm)**, và nó chỉ định **0.75 điểm** cho 2 hoặc 3 token đúng.\n\n→ Vậy điểm tối đa trong tiêu chí này là 2 điểm, và học sinh đạt 0.75 điểm theo quy tắc bán phần.\n\n→ **Do đó, điểm số dự kiến = 0.75**\n\n---\n\n### **6. Kết luận sơ bộ: điểm dự kiến và lý do.**\n\n✅ **Điểm dự kiến: 0.75**\n\n🔹 **Lý do chi tiết:**\n\n- Học sinh đã in đúng 3/4 token trong chuỗi output.\n- Token đầu tiên: `0x6ffdec` — đúng (địa chỉ của `b`).\n- Token thứ hai: `12` — đúng (*(&a) = a = 12*).\n- Token thứ ba: `0` — đúng (pb - pa = 0 vì cả hai đều trỏ đến cùng địa chỉ sau khi `pa = pb`).\n- Token thứ tư: `27` — **sai**, phải là `28`.\n\n→ Theo quy tắc bán phần được cung cấp, **3 token đúng → 0.75 điểm**.\n\n→ Không có quy tắc nào cho phép làm tròn lên hay tự sáng tạo điểm trung gian.\n\n→ Tuân thủ nghiêm ngặt nguyên tắc: **không chấp nhận tương đương**, nhưng **có quy tắc bán phần rõ ràng**.\n\n→ Do đó, **chấm 0.75 điểm** là chính xác và hợp lý.\n\n---\n\n✅ **KẾT LUẬN CHỐT: Điểm số cho tiêu chí này là 0.75**",
+        "feedback": "Token thứ 4 sai: mong đợi '28', học sinh in '27'.",
+        "suggestion": "Kiểm tra lại phép tính hoặc giá trị biến liên quan đến token cuối cùng để đảm bảo in đúng giá trị 28.",
+        "agreed_with_heuristic": true,
+        "confidence": 1.0,
+        "heuristic_score": 0.75,
+        "heuristic_status": "partially_correct",
+        "heuristic_reason": "3/4 tokens correct (partial credit applied). And wrong tokens are:\nToken 3: expected='28', student='None'.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.75,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 9885,
+          "completion_tokens": 4713,
+          "total_tokens": 14598
+        },
+        "evidence": {
+          "student_answer": "0x6ffdec 12 0 27",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "main",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "conditioning": {
+          "has_conditional": false,
+          "conditional_type": null,
+          "heuristic_conditional_define": null
+        },
+        "expected_output_tokens": [
+          "0x6ffdec",
+          "12",
+          "0",
+          "28"
+        ],
+        "student_tokens": [
+          "0x6ffdec",
+          "12",
+          "0",
+          null
+        ],
+        "latency_ms": 60925
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 1,
+      "overridden_count": 0,
+      "blank_skipped": 0
+    }
+  }
+]

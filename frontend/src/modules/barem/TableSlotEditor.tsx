@@ -104,7 +104,7 @@ export default function TableSlotEditor({
   return (
     <div className={styles.wrapper}>
       <Row>
-        <Field label="table_id">
+        <Field label="Mã bảng" name="table_id">
           <TextInput value={table.table_id} onChange={(value) => onChange({ ...table, table_id: value })} mono />
         </Field>
         <Field label="Số hàng" hint="Tính cả hàng tiêu đề">

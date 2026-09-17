@@ -5,24 +5,67 @@
  * rest of the app is read-only dashboards and upload forms, so these are the
  * only dense data-entry controls in the codebase and have no second caller yet.
  */
-import type { ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
 
+import { autoGrow, handleCodeKeyDown } from "./codeTextArea";
+import { hasOpenMath } from "./mathText";
 import styles from "./Field.module.css";
 
+type MathPreviewComponent = ComponentType<{ source: string }>;
+
+/**
+ * KaTeX and its stylesheet are ~290KB, which every route would otherwise carry
+ * for a panel that only appears once a teacher types `$` in the barem editor.
+ * So it loads on demand — but deliberately NOT through `lazy()`/`<Suspense>`.
+ *
+ * React 18 discards a synchronous update whose tree suspends, and typing *is*
+ * a synchronous update. With `lazy()`, the keystroke that first completed a
+ * `$…$` pair mounted the preview, the preview suspended on its chunk, and
+ * every character typed during the fetch was thrown away — observed live as
+ * `$x_t \in \mathbb{R}^{100}$` collapsing to `$x_t \in \$`. Resolving the
+ * module into state instead keeps the textarea out of any suspending tree, so
+ * a slow chunk can never eat input; the preview simply appears a moment later.
+ */
+let mathPreview: MathPreviewComponent | null = null;
+let mathPreviewLoad: Promise<void> | null = null;
+
+function loadMathPreview(): Promise<void> {
+  if (mathPreview) return Promise.resolve();
+  if (!mathPreviewLoad) {
+    mathPreviewLoad = import("./MathPreview").then((module) => {
+      mathPreview = module.default;
+    });
+  }
+  return mathPreviewLoad;
+}
+
 interface FieldProps {
+  /** What the teacher reads. Write it in Vietnamese, not as a JSON key. */
   label: ReactNode;
+  /**
+   * The JSON key this control writes, shown small and greyed beside the label.
+   *
+   * Kept visible on purpose: the barem is a file people also read, diff and
+   * paste error messages about, and every validation message names the key
+   * rather than the label. Dropping it would leave "Điểm cả câu" with no way to
+   * connect to a `score` mentioned in a warning. Leading with the key instead —
+   * which is what this form used to do — made the whole page read like a schema
+   * dump.
+   */
+  name?: string;
   hint?: ReactNode;
   /** Marks a field the backend requires — not HTML validation, just a cue. */
   required?: boolean;
   children: ReactNode;
 }
 
-export function Field({ label, hint, required, children }: FieldProps) {
+export function Field({ label, name, hint, required, children }: FieldProps) {
   return (
     <label className={styles.field}>
       <span className={styles.label}>
         {label}
         {required && <span className={styles.required}>*</span>}
+        {name && <code className={styles.fieldName}>{name}</code>}
       </span>
       {children}
       {hint && <span className={styles.hint}>{hint}</span>}
@@ -88,17 +131,72 @@ interface TextAreaProps {
   rows?: number;
   placeholder?: string;
   mono?: boolean;
+  /** Grow with the content and let Tab indent — for fields holding C++ listings. */
+  code?: boolean;
+  /**
+   * Render a KaTeX preview under the box when the text contains `$…$`/`$$…$$`.
+   *
+   * Opt-in per field, and silent until a `$` actually appears: most barems are
+   * C++ questions with no maths at all, and a permanent empty preview panel
+   * under every textarea would be pure noise. Nothing downstream reads LaTeX —
+   * see MathPreview's docstring for why this is only a proofreading aid.
+   */
+  math?: boolean;
 }
 
-export function TextArea({ value, onChange, rows = 3, placeholder, mono }: TextAreaProps) {
-  return (
+export function TextArea({ value, onChange, rows = 3, placeholder, mono, code, math }: TextAreaProps) {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  // Both the initial value and the setter must wrap the component in a
+  // function. React reads a bare function as "compute the state" — passing the
+  // component itself makes React *call* `MathPreview()` with no props, which
+  // crashes the whole page on `Cannot destructure property 'source' of
+  // 'undefined'`. The initial value only hits this once the module is already
+  // cached and a second field mounts, so it survives a first page load and
+  // fails later, which is what makes it easy to miss.
+  const [Preview, setPreview] = useState<MathPreviewComponent | null>(() => mathPreview);
+
+  // Fetch starts when the field mounts, not when a `$` first appears: by the
+  // time anyone finishes typing a formula the module is already in memory, so
+  // the preview shows up instantly instead of after a visible pause.
+  useEffect(() => {
+    if (!math || Preview) return;
+    let alive = true;
+    void loadMathPreview().then(() => {
+      if (alive) setPreview(() => mathPreview);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [math, Preview]);
+
+  // Every textarea grows, not just the code ones — a long grader_note was just
+  // as annoying to drag open. CSS caps the height and scrolls past that.
+  // Layout effect, not effect: resizing after paint makes the box visibly jump
+  // on every keystroke.
+  useLayoutEffect(() => {
+    autoGrow(ref.current);
+  }, [value]);
+
+  const box = (
     <textarea
+      ref={ref}
       className={`${styles.input} ${styles.textarea} ${mono ? styles.mono : ""}`}
       rows={rows}
       value={value}
       placeholder={placeholder}
+      spellCheck={code ? false : undefined}
+      onKeyDown={code ? (event) => handleCodeKeyDown(event, onChange) : undefined}
       onChange={(event) => onChange(event.target.value)}
     />
+  );
+
+  if (!math || !Preview || !hasOpenMath(value)) return box;
+
+  return (
+    <>
+      {box}
+      <Preview source={value} />
+    </>
   );
 }
 
@@ -285,15 +383,20 @@ interface CheckboxProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
   label: ReactNode;
+  /** JSON key, shown beside the label — same rationale as Field's. */
+  name?: string;
   hint?: ReactNode;
 }
 
-export function Checkbox({ checked, onChange, label, hint }: CheckboxProps) {
+export function Checkbox({ checked, onChange, label, name, hint }: CheckboxProps) {
   return (
     <label className={styles.checkbox}>
       <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />
       <span>
-        <span className={styles.checkboxLabel}>{label}</span>
+        <span className={styles.checkboxLabel}>
+          {label}
+          {name && <code className={styles.fieldName}>{name}</code>}
+        </span>
         {hint && <span className={styles.hint}>{hint}</span>}
       </span>
     </label>

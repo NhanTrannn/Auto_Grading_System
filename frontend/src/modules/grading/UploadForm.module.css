@@ -50,3 +50,20 @@
   color: var(--color-warning);
   font-weight: 650;
 }
+
+.baremNote {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.baremLink {
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.baremLink:hover {
+  text-decoration: underline;
+}

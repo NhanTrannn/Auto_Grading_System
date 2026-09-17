@@ -63,7 +63,7 @@ progress straight to the database.
 |--------|-------------------------------------|--------------------------------------------|
 | GET    | `/api/v1/health`                    | liveness check                             |
 | GET    | `/api/v1/grading/jobs`              | list recent jobs (newest first, max 50) — powers the sidebar history |
-| POST   | `/api/v1/grading/jobs`              | multipart `input_file` + **either** `barem_id` (from the library — what the UI sends) **or** `barem_file`; starts a background grading job. Neither → 400, unknown id → 404 |
+| POST   | `/api/v1/grading/jobs`              | multipart `input_file` only. Barems are matched from the library per student's `ma_de`; missing `ma_de` → 400, exam code with no rubric → 404 |
 | GET    | `/api/v1/grading/jobs/{id}`         | poll job status (`result_path` here is a server-side path, not fetchable) |
 | GET    | `/api/v1/grading/jobs/{id}/result`  | fetch `{grading_results, student_summary}` JSON once `status: done` (409 otherwise) |
 
@@ -89,15 +89,16 @@ reference implementation of this poll-then-fetch flow.
 
 ### End-to-end pipeline — port 8000 (page images -> OCR -> grading)
 
-Two steps: unpack and inspect the archives first, then run **one exam code**
-from that upload. A teacher's archive holds a whole semester, so the cohort to
-grade is an explicit choice, never a guess.
+Two steps: unpack and inspect the archives first, then run **one or more exam
+codes** from that upload. A teacher's archive holds a whole semester, so which
+cohorts to grade is an explicit choice, never a guess — but several can go in
+one run, each with its own template pages, regions and rubric.
 
 | Method | Path                                        | Purpose                                              |
 |--------|---------------------------------------------|------------------------------------------------------|
 | POST   | `/api/v1/pipeline/uploads`                  | multipart `template_zip` + `students_zip` → `{upload_id, template_pages, ma_de_list}` |
-| GET    | `/api/v1/pipeline/uploads/{id}/template/{page}` | one blank exam page image (the ROI editor's canvas) |
-| POST   | `/api/v1/pipeline/jobs`                     | JSON `{upload_id, ma_de, barem_id, roi_config}` → starts a run |
+| GET    | `/api/v1/pipeline/uploads/{id}/template/{page}?ma_de=` | one blank exam page (the ROI editor's canvas); `ma_de` picks that code's own pages |
+| POST   | `/api/v1/pipeline/jobs`                     | JSON `{upload_id, groups: [{ma_de, roi_config}]}` → one run covering several exam codes; barem per code from the library |
 | GET    | `/api/v1/pipeline/jobs`                     | list recent pipeline runs (newest first, max 50)      |
 | GET    | `/api/v1/pipeline/jobs/{id}`                | poll status **with progress**: `stage` (`ocr`/`grading`/`done`), `progress_done`/`progress_total`, `progress_message` |
 | GET    | `/api/v1/pipeline/jobs/{id}/result`         | graded `{grading_results, student_summary}` once done (409 otherwise) — same shape as the grading API's |

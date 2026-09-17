@@ -212,9 +212,20 @@ _attach_table_slots() gắn table_slot này vào MỌI criterion đã flatten c�
 part_label với table đó — nên mọi criterion table trong cùng 1 part đều thấy
 được khung bảng đầy đủ, không cần khai riêng lẻ.
 
-table_slot chỉ dùng để CHẤM (grade_table_group_with_llm dùng nó dựng
-table_text đầy đủ gồm cả header cho LLM xem) — KHÔNG bị validate_barem()
-kiểm tra nội dung/tính nhất quán.
+table_slot chỉ dùng để CHẤM — KHÔNG bị validate_barem() kiểm tra nội dung /
+tính nhất quán. Nó tới tay LLM theo HAI đường, tuỳ question_type:
+
+  - criterion "table"  -> grade_table_group_with_llm dựng table_text ĐẦY ĐỦ:
+                          ô printed lấy text khai ở đây, ô student_text lấy
+                          nội dung THẬT từ bài làm.
+  - các type còn lại   -> _attach_question_text nối thêm bản in sẵn (chỉ ô
+                          "printed", ô student_text hiện là "___") vào cuối
+                          question_text, qua _render_printed_table().
+
+Đường thứ hai mới có. Trước đó bảng được gắn vào criterion logical/matching/
+visual rồi KHÔNG ai đọc: câu 14a bảo LLM kiểm tra struct Sinhvien có đủ thuộc
+tính không, trong khi danh sách thuộc tính chỉ nằm trong bảng — chấm đúng
+được chỉ vì tác giả đã chép tay danh sách đó sang sample_solution.
 
 Ví dụ thật (câu 15 phần b — 3 ví dụ Input/Output, R1 là header, R4C2 là giá
 trị in sẵn "giả định sai"):

@@ -98,8 +98,6 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  text-align: left;
-  cursor: pointer;
   transition:
     background var(--transition-fast),
     border-color var(--transition-fast);
@@ -112,6 +110,43 @@
 .maDeActive {
   border-color: var(--color-accent);
   background: var(--color-accent-soft);
+}
+
+/* The old .maDeCard used to be a <button> itself; now it's a wrapper div (a
+   picked-barem <select> can't live inside a <button>) and .maDeToggle carries
+   the same clickable-header look and behavior. */
+.maDeToggle {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.baremPicker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}
+
+.baremSelect {
+  flex: 1;
+  min-width: 0;
+  padding: 3px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 11.5px;
 }
 
 .maDeName {
@@ -343,4 +378,77 @@
   min-height: 0;
   overflow-y: auto;
   padding: var(--space-4);
+}
+
+.maDeBarem {
+  font-size: 11px;
+  color: var(--color-success);
+}
+
+.maDeBaremMissing {
+  font-size: 11px;
+  color: var(--color-danger);
+}
+
+.renumberNote {
+  margin: var(--space-2) 0 0;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--color-text-faint);
+}
+
+.shareToggle {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.shareToggle input {
+  margin-top: 2px;
+  accent-color: var(--color-accent);
+}
+
+.shareToggle > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+}
+
+.codeRois {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.codeRoiRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.codeRoiHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.codeRoiName {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.codeRoiMeta {
+  font-size: 11.5px;
+  color: var(--color-text-faint);
 }

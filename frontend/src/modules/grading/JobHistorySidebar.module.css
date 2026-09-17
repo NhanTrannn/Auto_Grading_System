@@ -19,6 +19,9 @@
 .item {
   display: flex;
   flex-direction: column;
+  /* `.list` scrolls as a column flex container -- see StudentDetailPanel's
+     `.sample`. Rows squash instead of scrolling without this. */
+  flex-shrink: 0;
   gap: 5px;
   padding: 8px var(--space-3);
   border: 1px solid transparent;
