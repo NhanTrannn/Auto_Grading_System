@@ -73,7 +73,7 @@ from typing import Any, Callable, Dict, List, Optional
 import cv2
 import numpy as np
 
-from ocr_modules.module2 import align_images
+from ocr_modules.module1 import detect_answer_regions
 
 # on_progress(done, total, message) — called once per ROI processed. Optional:
 # the CLI passes a writer that appends to --progress-file, the web worker
@@ -81,6 +81,10 @@ from ocr_modules.module2 import align_images
 # A whole-class run is len(students) * len(rois) LLM calls and can take a long
 # time, so "no feedback until it finishes" is not a usable mode.
 ProgressFn = Callable[[int, int, str], None]
+
+
+class DetectionMismatchError(ValueError):
+    """The student's page cannot be safely mapped to configured questions."""
 
 
 def write_progress(path: Optional[str], stage: str, done: int, total: int, message: str) -> None:
@@ -193,6 +197,30 @@ def _cau_entry_for_roi(
     return {"status": status, "content": ocr_result.get("content", {})}
 
 
+def _detected_roi_config(
+    configured_rois: List[Dict[str, Any]], detected_regions: List[Dict[str, Any]], page: int
+) -> List[Dict[str, Any]]:
+    """Pair detected regions with question metadata in reading order."""
+    expected = sorted(
+        (roi for roi in configured_rois if _roi_page(roi) == page),
+        key=lambda roi: (roi.get("y", 0), roi.get("x", 0)),
+    )
+    if len(detected_regions) != len(expected):
+        raise DetectionMismatchError(
+            f"trang {page} detect được {len(detected_regions)} vùng, "
+            f"nhưng cấu hình có {len(expected)} vùng"
+        )
+
+    return [
+        {**region, "cau_key": metadata["cau_key"], "task_type": metadata["task_type"],
+         **{key: metadata[key] for key in ("n_rows", "n_cols") if key in metadata}}
+        for region, metadata in zip(
+            sorted(detected_regions, key=lambda item: (item.get("y", 0), item.get("x", 0))),
+            expected,
+        )
+    ]
+
+
 def _page_list(container: Dict[str, Any], plural_key: str, singular_key: str) -> List[str]:
     """Read a page-path list, accepting the old single-image key as one page."""
     pages = container.get(plural_key)
@@ -217,23 +245,13 @@ def build_results_json(
     save_crops: bool = False,
     on_progress: Optional[ProgressFn] = None,
 ) -> Dict[str, Any]:
-    template_paths = _page_list(config, "template_pages", "template_image")
     crop_dir = Path(config.get("crop_dir", "crops"))
     crop_dir.mkdir(parents=True, exist_ok=True)
 
     rois: List[Dict[str, Any]] = config["rois"]
     students: List[Dict[str, Any]] = config["students"]
 
-    # Only pages that actually carry an ROI are ever loaded/aligned — alignment
-    # is the expensive CV step and a 9-page exam usually has answers on a few.
     pages_in_use = sorted({_roi_page(roi) for roi in rois})
-    template_pages: Dict[int, np.ndarray] = {}
-    for page in pages_in_use:
-        if page > len(template_paths):
-            raise ValueError(
-                f"ROI trỏ tới trang {page} nhưng đề mẫu chỉ có {len(template_paths)} trang."
-            )
-        template_pages[page] = _read_image(template_paths[page - 1])
 
     total = len(students) * len(rois)
     done = 0
@@ -249,42 +267,47 @@ def build_results_json(
     for student in students:
         hs_key = student["hs_key"]
         student_paths = _page_list(student, "pages", "image")
-
-        # Align page-by-page: a student whose page 3 is a bad photo should only
-        # lose page 3's answers, not the whole submission.
-        aligned_pages: Dict[int, Optional[np.ndarray]] = {}
+        page_images: Dict[int, np.ndarray] = {}
+        detected_pages: Dict[int, List[Dict[str, Any]]] = {}
         page_error: Dict[int, str] = {}
+        detection_error: Dict[int, str] = {}
         for page in pages_in_use:
             if page > len(student_paths):
-                aligned_pages[page] = None
                 page_error[page] = f"thiếu trang {page}"
                 continue
             try:
-                align = align_images(template_pages[page], _read_image(student_paths[page - 1]))
+                student_img = _read_image(student_paths[page - 1])
+                page_images[page] = student_img
+                detected_regions = detect_answer_regions(student_img)
+                detected_pages[page] = _detected_roi_config(rois, detected_regions, page)
+            except DetectionMismatchError as exc:
+                detection_error[page] = str(exc)
             except Exception as exc:  # noqa: BLE001 - one bad page must not abort the class
-                aligned_pages[page] = None
                 page_error[page] = str(exc)
-                continue
-            if align["error"] is not None:
-                aligned_pages[page] = None
-                page_error[page] = align["error"].get("error_type", "ALIGN_ERROR")
-            else:
-                aligned_pages[page] = align["image"]
 
         entries: Dict[str, Any] = {}
         for roi in rois:
             page = _roi_page(roi)
-            aligned_img = aligned_pages.get(page)
-            if aligned_img is None:
+            detected_roi = next(
+                (item for item in detected_pages.get(page, []) if item["cau_key"] == roi["cau_key"]),
+                None,
+            )
+            if page in detection_error:
+                entries[roi["cau_key"]] = {
+                    "status": "detection_mismatch",
+                    "content": {"lines": [], "error": detection_error[page]},
+                }
+            elif detected_roi is None:
                 entries[roi["cau_key"]] = {"status": "failed_at_cropping", "content": {"lines": []}}
             else:
                 entries[roi["cau_key"]] = _cau_entry_for_roi(
-                    roi, aligned_img, crop_dir, hs_key, save_crops
+                    detected_roi, page_images[page], crop_dir, hs_key, save_crops
                 )
             done += 1
             # Reported even on the failed path so a class where one page fails
             # to align doesn't look like the run stalled.
-            suffix = f" (trang {page}: {page_error[page]})" if page in page_error else ""
+            error = detection_error.get(page) or page_error.get(page)
+            suffix = f" (trang {page}: {error})" if error else ""
             report(f"{hs_key} · {roi['cau_key']}{suffix}")
 
         output[hs_key] = entries

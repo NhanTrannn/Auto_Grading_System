@@ -1,15 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
 
 import Badge from "@/components/core/Badge";
-import { IconLayers, IconScan, IconText } from "@/components/core/Icon";
+import { IconScan, IconText } from "@/components/core/Icon";
 import PageHeader from "@/components/core/PageHeader";
 import Tabs, { type TabItem } from "@/components/core/Tabs";
 import { useServiceHealth } from "@/hooks/useServiceHealth";
-import AlignView from "@/modules/ocr/AlignView";
 import OcrView from "@/modules/ocr/OcrView";
 import RoiDetectView from "@/modules/ocr/RoiDetectView";
 
-type ModuleId = "roi" | "align" | "text";
+type ModuleId = "roi" | "text";
 
 const TABS: TabItem<ModuleId>[] = [
   {
@@ -17,12 +16,6 @@ const TABS: TabItem<ModuleId>[] = [
     label: "Module 1 · Phát hiện vùng",
     hint: "OpenCV — tìm ROI trên trang",
     icon: <IconScan size={16} />,
-  },
-  {
-    id: "align",
-    label: "Module 2 · Căn chỉnh ảnh",
-    hint: "ORB + RANSAC homography",
-    icon: <IconLayers size={16} />,
   },
   {
     id: "text",
@@ -34,12 +27,11 @@ const TABS: TabItem<ModuleId>[] = [
 
 const DESCRIPTION: Record<ModuleId, string> = {
   roi: "Chạy bộ phát hiện vùng trả lời của Module 1 trên ảnh đề/bài làm và xem trực tiếp các ROI được khoanh trên ảnh — dùng để dựng roi_config.json cho bridge.py.",
-  align: "Đưa ảnh bài làm của học sinh về đúng khung của ảnh đề mẫu, để toạ độ ROI dùng chung được cho mọi bài.",
   text: "Nhận dạng chữ viết tay trên một vùng đã cắt, trả về JSON dùng thẳng cho pipeline chấm điểm.",
 };
 
 function isModuleId(value: string | undefined): value is ModuleId {
-  return value === "roi" || value === "align" || value === "text";
+  return value === "roi" || value === "text";
 }
 
 export default function OcrPage() {
@@ -73,7 +65,6 @@ export default function OcrPage() {
       </div>
 
       {active === "roi" && <RoiDetectView />}
-      {active === "align" && <AlignView />}
       {active === "text" && <OcrView />}
     </>
   );

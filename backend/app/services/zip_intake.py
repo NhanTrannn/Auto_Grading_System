@@ -141,7 +141,7 @@ def group_students(root: Path) -> list[MaDeEntry]:
     return sorted(groups.values(), key=lambda g: _natural_key(g.ma_de))
 
 
-def normalise_hs_key(folder: str, index: int) -> str:
+def normalise_hs_key(folder: str, index: int, used: set[str] | None = None) -> str:
     """Turn a student folder name into pipeline.py's `HS_<n>` convention.
 
     `convert_results_to_samples()` keys students by `HS_<number>` and
@@ -150,6 +150,14 @@ def normalise_hs_key(folder: str, index: int) -> str:
     *some* number, which is where the positional index comes in.
     """
     digits = re.findall(r"\d+", folder)
-    if digits:
-        return f"HS_{int(digits[-1])}"
-    return f"HS_{index}"
+    base = f"HS_{int(digits[-1])}" if digits else f"HS_{index}"
+    if used is None:
+        return base
+
+    candidate = base
+    next_number = max(index, int(digits[-1]) + 1 if digits else index)
+    while candidate in used:
+        candidate = f"HS_{next_number}"
+        next_number += 1
+    used.add(candidate)
+    return candidate

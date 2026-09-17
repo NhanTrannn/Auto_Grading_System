@@ -2,8 +2,8 @@
 
 Two steps on purpose:
 
-1. `POST /uploads` takes the two ZIPs, unpacks them and answers with an
-   inventory (template pages, exam codes, students per code). The teacher's
+1. `POST /uploads` takes the student ZIP, unpacks it and answers with an
+    inventory (exam codes, students per code). The teacher's
    archive holds a whole semester, so the UI has to show what was found and
    let them pick which exam code to run — guessing would silently grade the
    wrong cohort.
@@ -36,7 +36,6 @@ from app.schemas.pipeline import (
     PipelineJobCreate,
     PipelineJobCreated,
     PipelineJobStatus,
-    TemplatePage,
     UploadInventory,
     UploadMaDe,
     UploadStudent,
@@ -58,32 +57,28 @@ _VALID_TASK_TYPES = {"short_text", "long_text", "code", "table", "diagram"}
 
 @router.post("/uploads", response_model=UploadInventory)
 async def create_upload(
-    template_zip: UploadFile = File(...),
+    template_zip: UploadFile | None = File(None),
     students_zip: UploadFile = File(...),
 ) -> UploadInventory:
     upload_id = uuid.uuid4().hex
     root = _UPLOADS_DIR / upload_id
-    template_root = root / "template"
     students_root = root / "students"
     root.mkdir(parents=True, exist_ok=True)
 
-    for upload, dest in ((template_zip, "template.zip"), (students_zip, "students.zip")):
+    uploads = [(students_zip, "students.zip")]
+    if template_zip is not None:
+        uploads.append((template_zip, "template.zip"))
+    for upload, dest in uploads:
         with (root / dest).open("wb") as f:
             shutil.copyfileobj(upload.file, f)
 
     try:
-        zip_intake.extract_zip(root / "template.zip", template_root)
         zip_intake.extract_zip(root / "students.zip", students_root)
+        if template_zip is not None:
+            zip_intake.extract_zip(root / "template.zip", root / "template")
     except Exception as exc:  # noqa: BLE001 - bad archive is user input, not a crash
         shutil.rmtree(root, ignore_errors=True)
         raise HTTPException(status_code=400, detail=f"Không giải nén được file zip: {exc}") from exc
-
-    template_pages = zip_intake.list_template_pages(template_root)
-    if not template_pages:
-        shutil.rmtree(root, ignore_errors=True)
-        raise HTTPException(
-            status_code=400, detail="File zip đề mẫu không chứa ảnh .png/.jpg nào."
-        )
 
     groups = zip_intake.group_students(students_root)
     if not groups:
@@ -92,28 +87,41 @@ async def create_upload(
             status_code=400, detail="File zip bài làm không chứa ảnh .png/.jpg nào."
         )
 
-    return UploadInventory(
-        upload_id=upload_id,
-        template_pages=[
-            TemplatePage(page=index, filename=path.relative_to(template_root).as_posix())
-            for index, path in enumerate(template_pages, start=1)
-        ],
-        ma_de_list=[
+    inventory_groups = []
+    for group in groups:
+        used_hs_keys: set[str] = set()
+        inventory_students = []
+        for index, student in enumerate(group.students, start=1):
+            inventory_students.append(
+                UploadStudent(
+                    hs_key=zip_intake.normalise_hs_key(student.folder, index, used_hs_keys),
+                    folder=student.folder,
+                    page_count=len(student.pages),
+                )
+            )
+        inventory_groups.append(
             UploadMaDe(
                 ma_de=group.ma_de,
                 student_count=len(group.students),
-                students=[
-                    UploadStudent(
-                        hs_key=zip_intake.normalise_hs_key(student.folder, index),
-                        folder=student.folder,
-                        page_count=len(student.pages),
-                    )
-                    for index, student in enumerate(group.students, start=1)
-                ],
+                students=inventory_students,
             )
-            for group in groups
-        ],
-    )
+        )
+
+    return UploadInventory(upload_id=upload_id, ma_de_list=inventory_groups)
+
+
+@router.get("/uploads/{upload_id}/sample/{ma_de}/{page}")
+async def get_sample_student_page(upload_id: str, ma_de: str, page: int) -> FileResponse:
+    """Serve a representative student page for direct ROI detection/editing."""
+    students_root = _UPLOADS_DIR / upload_id / "students"
+    groups = zip_intake.group_students(students_root) if students_root.is_dir() else []
+    group = next((item for item in groups if item.ma_de == ma_de), None)
+    if group is None or not group.students or page < 1:
+        raise HTTPException(status_code=404, detail="Không tìm thấy trang bài làm mẫu.")
+    pages = group.students[0].pages
+    if page > len(pages):
+        raise HTTPException(status_code=404, detail=f"Bài làm mẫu chỉ có {len(pages)} trang.")
+    return FileResponse(pages[page - 1])
 
 
 @router.get("/uploads/{upload_id}/template/{page}")
@@ -204,23 +212,21 @@ async def create_pipeline_job(
     payload: PipelineJobCreate, db: Session = Depends(get_db)
 ) -> PipelineJobCreated:
     upload_root = _UPLOADS_DIR / payload.upload_id
-    template_root = upload_root / "template"
     students_root = upload_root / "students"
-    if not template_root.is_dir() or not students_root.is_dir():
+    if not students_root.is_dir():
         raise HTTPException(status_code=404, detail="upload không tồn tại (hoặc đã bị dọn).")
 
     barem = db.get(BaremDoc, payload.barem_id)
     if barem is None:
         raise HTTPException(status_code=404, detail="Không tìm thấy barem đã chọn.")
 
-    template_pages = zip_intake.list_template_pages(template_root)
-    rois = _validate_rois(payload.roi_config.get("rois"), len(template_pages))
-
     group = next(
         (g for g in zip_intake.group_students(students_root) if g.ma_de == payload.ma_de), None
     )
     if group is None:
         raise HTTPException(status_code=404, detail=f"Không thấy mã đề '{payload.ma_de}' trong zip.")
+
+    rois = _validate_rois(payload.roi_config.get("rois"), max((len(s.pages) for s in group.students), default=0))
 
     job_id = uuid.uuid4().hex
     job_dir = _JOBS_DIR / job_id
@@ -230,8 +236,9 @@ async def create_pipeline_job(
 
     students = []
     student_map: dict[str, str] = {}
+    used_hs_keys: set[str] = set()
     for index, student in enumerate(group.students, start=1):
-        hs_key = zip_intake.normalise_hs_key(student.folder, index)
+        hs_key = zip_intake.normalise_hs_key(student.folder, index, used_hs_keys)
         students.append({"hs_key": hs_key, "pages": [str(p) for p in student.pages]})
         student_map[hs_key] = student.folder
 
@@ -239,7 +246,6 @@ async def create_pipeline_job(
         # The Results JSON's ma_de must match the barem's for load_barem() to
         # line up, so the barem wins over the folder name here.
         "ma_de": barem.ma_de or payload.ma_de,
-        "template_pages": [str(p) for p in template_pages],
         "crop_dir": str(job_dir / "crops"),
         "students": students,
         "rois": rois,

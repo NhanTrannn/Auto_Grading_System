@@ -24,7 +24,7 @@ export interface RoiConfig {
 
 /* ── Upload inventory ─────────────────────────────────────────────────── */
 
-export interface TemplatePage {
+export interface ImagePage {
   page: number;
   filename: string;
 }
@@ -43,7 +43,6 @@ export interface UploadMaDe {
 
 export interface UploadInventory {
   upload_id: string;
-  template_pages: TemplatePage[];
   ma_de_list: UploadMaDe[];
 }
 

@@ -5,8 +5,8 @@ import Button from "@/components/core/Button";
 import { IconAlert, IconCheck, IconClose, IconScan } from "@/components/core/Icon";
 import Spinner from "@/components/core/Spinner";
 import { detectRois } from "@/services/ocrApi";
-import { templatePageUrl } from "@/services/pipelineApi";
-import type { RoiConfigEntry, RoiTaskType, TemplatePage } from "@/types/pipeline";
+import { sampleStudentPageUrl } from "@/services/pipelineApi";
+import type { ImagePage, RoiConfigEntry, RoiTaskType } from "@/types/pipeline";
 
 import type { CauKeySuggestion } from "./cauKeySuggestions";
 import styles from "./RoiMapper.module.css";
@@ -14,7 +14,8 @@ import { TASK_TYPE_LABEL } from "./roiConfigUtils";
 
 interface RoiMapperProps {
   uploadId: string;
-  pages: TemplatePage[];
+  maDe: string;
+  pages: ImagePage[];
   suggestions: CauKeySuggestion[];
   rois: RoiConfigEntry[];
   onChange: (rois: RoiConfigEntry[]) => void;
@@ -34,6 +35,7 @@ interface DragState {
 
 export default function RoiMapper({
   uploadId,
+  maDe,
   pages,
   suggestions,
   rois,
@@ -74,7 +76,7 @@ export default function RoiMapper({
     [rois, onChange],
   );
 
-  /** Pointer position in template-image pixel space. */
+  /** Pointer position in the representative student image's pixel space. */
   function toImagePoint(clientX: number, clientY: number) {
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect || !natural) return null;
@@ -92,7 +94,7 @@ export default function RoiMapper({
     try {
       // Module 1 takes an uploaded image, so fetch the page the server already
       // holds and post it straight back to the OCR service.
-      const response = await fetch(templatePageUrl(uploadId, page));
+      const response = await fetch(sampleStudentPageUrl(uploadId, maDe, page));
       if (!response.ok) throw new Error(`Không tải được ảnh trang ${page}`);
       const blob = await response.blob();
       const file = new File([blob], `page_${page}.png`, { type: blob.type || "image/png" });
@@ -200,7 +202,7 @@ export default function RoiMapper({
         >
           <img
             className={styles.image}
-            src={templatePageUrl(uploadId, page)}
+              src={sampleStudentPageUrl(uploadId, maDe, page)}
             alt={`Trang ${page}`}
             draggable={false}
             onLoad={(e) =>

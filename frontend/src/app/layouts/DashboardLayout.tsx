@@ -34,7 +34,6 @@ const NAV_SECTIONS = [
     title: "Pipeline OCR",
     items: [
       { to: "/ocr/roi", label: "Module 1 · Phát hiện vùng", icon: <IconScan size={16} />, end: false },
-      { to: "/ocr/align", label: "Module 2 · Căn chỉnh ảnh", icon: <IconLayers size={16} />, end: false },
       { to: "/ocr/text", label: "Module 3 · Nhận dạng chữ", icon: <IconText size={16} />, end: false },
     ],
   },

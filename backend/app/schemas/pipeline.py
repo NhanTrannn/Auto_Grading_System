@@ -24,10 +24,9 @@ class UploadMaDe(BaseModel):
 
 
 class UploadInventory(BaseModel):
-    """What the two ZIPs turned out to contain — shown before anything runs."""
+    """What the student ZIP contains — shown before anything runs."""
 
     upload_id: str
-    template_pages: list[TemplatePage]
     ma_de_list: list[UploadMaDe]
 
 

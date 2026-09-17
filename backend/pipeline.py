@@ -3941,7 +3941,7 @@ def convert_results_to_samples(
                 continue
             ocr_status = cau_val.get("status", "")
             table_extracted: List[Dict] = []
-            if ocr_status in ("failed_at_cropping", "skipped"):
+            if ocr_status in ("failed_at_cropping", "detection_mismatch", "skipped"):
                 lines: List[str] = []
             else:
                 content = cau_val.get("content") or {}

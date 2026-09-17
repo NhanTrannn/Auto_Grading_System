@@ -72,7 +72,6 @@ export default function PipelineUploadForm({
   error,
   onSubmit,
 }: PipelineUploadFormProps) {
-  const [templateZip, setTemplateZip] = useState<File[]>([]);
   const [studentsZip, setStudentsZip] = useState<File[]>([]);
   const [reading, setReading] = useState(false);
   const [readError, setReadError] = useState<string | null>(null);
@@ -111,7 +110,11 @@ export default function PipelineUploadForm({
 
   const selectedMaDe: UploadMaDe | null =
     inventory?.ma_de_list.find((g) => g.ma_de === maDe) ?? null;
-  const pageCount = inventory?.template_pages.length ?? 0;
+  const pageCount = selectedMaDe?.students[0]?.page_count ?? 0;
+  const samplePages = Array.from({ length: pageCount }, (_, index) => ({
+    page: index + 1,
+    filename: `Bài làm mẫu - trang ${index + 1}`,
+  }));
   const issues = useMemo(
     () => (rois.length ? validateRois(rois, pageCount) : []),
     [rois, pageCount],
@@ -120,11 +123,11 @@ export default function PipelineUploadForm({
   const ocrCalls = estimateOcrCalls(rois, selectedMaDe?.student_count ?? 0);
 
   async function handleRead() {
-    if (!templateZip[0] || !studentsZip[0]) return;
+    if (!studentsZip[0]) return;
     setReading(true);
     setReadError(null);
     try {
-      const result = await createUpload(templateZip[0], studentsZip[0]);
+      const result = await createUpload(studentsZip[0]);
       setInventory(result);
       setMaDe(result.ma_de_list[0]?.ma_de ?? null);
     } catch (err) {
@@ -162,21 +165,10 @@ export default function PipelineUploadForm({
       <Step
         index={1}
         title="Tải dữ liệu"
-        subtitle="Hai file .zip: ảnh đề mẫu và ảnh bài làm cả lớp"
+        subtitle="Một file .zip chứa ảnh bài làm của cả lớp"
         done={inventory !== null}
       >
         <div className={styles.grid}>
-          <FileDrop
-            label="Zip ảnh đề mẫu (bản chưa làm)"
-            hint="Mỗi ảnh là một trang đề, sắp theo tên file"
-            accept=".zip,application/zip"
-            disabled={disabled || reading}
-            files={templateZip}
-            onChange={(next) => {
-              setTemplateZip(next);
-              setInventory(null);
-            }}
-          />
           <FileDrop
             label="Zip ảnh bài làm học sinh"
             hint="Cấu trúc .../Made_N/Bai_lam/HS_N/*.png"
@@ -200,14 +192,14 @@ export default function PipelineUploadForm({
         <div className={styles.stepFooter}>
           <Button
             onClick={handleRead}
-            disabled={!templateZip[0] || !studentsZip[0] || disabled}
+            disabled={!studentsZip[0] || disabled}
             loading={reading}
           >
             {inventory ? "Đọc lại file zip" : "Đọc file zip"}
           </Button>
           {inventory && (
             <span className={styles.readSummary}>
-              {inventory.template_pages.length} trang đề · {inventory.ma_de_list.length} mã đề
+              {inventory.ma_de_list.length} mã đề · ROI detect trực tiếp trên bài làm
             </span>
           )}
         </div>
@@ -279,7 +271,7 @@ export default function PipelineUploadForm({
         <Step
           index={4}
           title="Khai vùng trả lời"
-          subtitle="Toạ độ các vùng cần OCR trên từng trang đề"
+          subtitle="Gán câu trên ảnh bài làm mẫu; khi chạy, mỗi bài sẽ tự detect và crop riêng"
           done={rois.length > 0 && issues.length === 0}
         >
           <div className={styles.sourceToggle}>
@@ -342,7 +334,7 @@ export default function PipelineUploadForm({
                 {rois.length > 0 ? "Mở lại trình gán vùng" : "Mở trình gán vùng"}
               </Button>
               <span className={styles.editorHint}>
-                Module 1 chỉ tìm ra hình dạng vùng, không biết vùng nào ứng với câu nào — nên
+                  Module 1 tìm vùng trực tiếp trên bài làm mẫu, không biết vùng nào ứng với câu nào — nên
                 bước gán câu là thủ công, có gợi ý sẵn từ barem đã chọn.
               </span>
             </div>
@@ -434,7 +426,7 @@ export default function PipelineUploadForm({
               <div>
                 <h2 className={styles.modalTitle}>Gán vùng trả lời</h2>
                 <p className={styles.modalSubtitle}>
-                  {inventory.template_pages.length} trang đề · barem {barem?.name}
+                  {pageCount} trang bài làm · barem {barem?.name}
                 </p>
               </div>
               <Button variant="ghost" size="sm" icon={<IconClose size={15} />} onClick={() => setMapperOpen(false)}>
@@ -444,7 +436,8 @@ export default function PipelineUploadForm({
             <div className={styles.modalBody}>
               <RoiMapper
                 uploadId={inventory.upload_id}
-                pages={inventory.template_pages}
+                maDe={maDe!}
+                pages={samplePages}
                 suggestions={suggestions}
                 rois={rois}
                 onChange={setRois}

@@ -35,6 +35,7 @@ const STATUS_LABEL: Record<string, string> = {
   ungraded: "Chưa chấm",
   completed: "OCR xong",
   failed_at_cropping: "Không cắt/căn được",
+  detection_mismatch: "Detect ROI không khớp — cần xem lại",
 };
 
 function label(status: string): string {

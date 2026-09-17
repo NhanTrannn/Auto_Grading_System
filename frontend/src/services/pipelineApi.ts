@@ -23,11 +23,9 @@ async function readError(res: Response): Promise<string> {
 
 /** Step 1: unpack both archives and report what's inside them. */
 export async function createUpload(
-  templateZip: File,
   studentsZip: File,
 ): Promise<UploadInventory> {
   const formData = new FormData();
-  formData.append("template_zip", templateZip);
   formData.append("students_zip", studentsZip);
 
   const res = await fetch(`${API_BASE}/uploads`, { method: "POST", body: formData });
@@ -35,9 +33,9 @@ export async function createUpload(
   return res.json();
 }
 
-/** URL of one blank exam page — the ROI editor draws its boxes over this. */
-export function templatePageUrl(uploadId: string, page: number): string {
-  return `${API_BASE}/uploads/${uploadId}/template/${page}`;
+/** URL of a representative student page used by the direct ROI editor. */
+export function sampleStudentPageUrl(uploadId: string, maDe: string, page: number): string {
+  return `${API_BASE}/uploads/${uploadId}/sample/${encodeURIComponent(maDe)}/${page}`;
 }
 
 /** Step 2: run exactly one exam code from a previous upload. */

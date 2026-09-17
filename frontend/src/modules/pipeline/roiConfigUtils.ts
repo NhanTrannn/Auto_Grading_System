@@ -42,7 +42,7 @@ export function validateRois(rois: RoiConfigEntry[], pageCount: number): string[
 
     const page = roi.page ?? 1;
     if (page < 1 || page > pageCount) {
-      issues.push(`${label} trỏ tới trang ${page} nhưng đề mẫu chỉ có ${pageCount} trang.`);
+      issues.push(`${label} trỏ tới trang ${page} nhưng bài làm mẫu chỉ có ${pageCount} trang.`);
     }
 
     if (roi.cau_key) {
