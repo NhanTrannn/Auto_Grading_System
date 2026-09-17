@@ -25,7 +25,7 @@ import asyncio
 import base64
 import json
 import re
-from typing import Any, Optional
+from typing import Any, List, Optional
 
 TaskType = str  # "short_text" | "long_text" | "code" | "table" | "printed"
 
@@ -243,8 +243,56 @@ def get_review_prompt(
         f"2. DỌN RÁC: Xóa sạch các ký tự đệm dưới chữ (ví dụ: '.....', '_____').\n"
         f"3. SỬA LỖI: Nếu phần chữ viết tay bị nhận diện sai (chính tả, đọc nhầm số/chữ), hãy sửa lại cho chính xác tuyệt đối với hình ảnh.\n"
         f"4. CHỐT KẾT QUẢ: Nếu JSON đã sạch (chỉ chứa nội dung học sinh tự điền, hoặc rỗng hợp lệ) và chính xác, hãy giữ nguyên.\n"
+        # Nhánh bảng ở trên đã có câu "Giữ nguyên cấu trúc JSON, chỉ được sửa
+        # value"; nhánh chữ này trước đây chỉ nói "trả về 1 block JSON" mà
+        # không ràng buộc hình dạng, nên model thỉnh thoảng tự đổi mỗi dòng
+        # thành {"text": "..."} — dạng mà pipeline.py coi là ô trống.
+        f"5. GIỮ NGUYÊN CẤU TRÚC: bắt buộc đúng dạng {{\"lines\": [\"dòng 1\", \"dòng 2\"]}} — "
+        f"mỗi phần tử của \"lines\" là MỘT CHUỖI thuần. TUYỆT ĐỐI không bọc thành object "
+        f"(không dùng {{\"text\": ...}}), không thêm khoá nào khác, không lồng mảng.\n"
         f"Yêu cầu bắt buộc: CHỈ trả về đúng 1 block mã JSON, không kèm bất kỳ văn bản giải thích nào khác."
     )
+
+
+def normalize_lines(content: Any) -> Any:
+    """Ép `content["lines"]` về đúng kiểu đã khai: một danh sách CHUỖI.
+
+    Prompt yêu cầu `{"lines": ["dòng 1", "dòng 2"]}`, nhưng model thỉnh thoảng
+    tự gói mỗi dòng lại thành `{"text": "dòng 1"}` — đo trên dữ liệu thật là 3
+    trong 205 dòng (~1.5%), và chỉ ở lượt 2. Trước đây không ai soát kiểu ở
+    đây (`validate_table_structure` chỉ soát nhánh bảng), nên dữ liệu sai kiểu
+    trôi thẳng sang pipeline.py, nơi bộ lọc `isinstance(l, str)` vứt sạch —
+    ô có chữ biến thành ô trống và học sinh bị chấm "không làm bài".
+
+    Sửa ở đây thay vì nới lỏng bộ lọc bên pipeline.py: bộ lọc đó vẫn phải chặn
+    rác thật, còn việc trả đúng kiểu là trách nhiệm của module sinh ra dữ liệu.
+    Mọi nơi dùng kết quả OCR (kể cả màn hình Module 3 lẻ) nhờ đó đều nhận đúng
+    kiểu, không phải tự xử lý lại.
+    """
+    if not isinstance(content, dict) or "lines" not in content:
+        return content
+    raw = content.get("lines")
+    if not isinstance(raw, list):
+        # Không phải danh sách thì không cứu được — trả danh sách rỗng, vì để
+        # nguyên sẽ làm pipeline.py nhận một kiểu nó không lường trước.
+        return {**content, "lines": []}
+
+    fixed: List[str] = []
+    for item in raw:
+        if isinstance(item, str):
+            fixed.append(item)
+        elif isinstance(item, dict):
+            # {"text": "..."} là dạng model hay chế ra nhất; chấp nhận vài tên
+            # khoá đồng nghĩa để khỏi phải vá lại khi nó đổi cách gọi.
+            for key in ("text", "line", "content", "value"):
+                if isinstance(item.get(key), (str, int, float)):
+                    fixed.append(str(item[key]))
+                    break
+        elif isinstance(item, (int, float)):
+            fixed.append(str(item))
+        # Còn lại (None, list lồng nhau, object không có khoá nào nhận ra) là
+        # rác thật — bỏ, giống hành vi cũ của pipeline.py.
+    return {**content, "lines": fixed}
 
 
 # ---------------------------------------------------------------------------
@@ -443,6 +491,7 @@ async def run_ocr_single(
         "status": "completed",
         "confidence": 1.0,
         "pass1_content": pass1,
-        "content": final,
+        # Ép về đúng kiểu đã khai trước khi ra khỏi module — xem normalize_lines.
+        "content": normalize_lines(final),
         "structure_warning": structure_warning,
     }
