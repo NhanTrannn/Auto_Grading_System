@@ -390,12 +390,26 @@ function validateCriterionShape(
     }
 
     case "logical": {
-      const ev = criterion.expected_value;
+      // Missing and `{}` behave identically when grading, so they are folded
+      // together here and reported by the same "chưa có keywords" warning
+      // further down.
+      //
+      // Neither is an error. `grade_expected_value_criterion` returns early
+      // with `needs_teacher_review` and score 0 — which is what it returns
+      // *anyway*, keywords or not, because the logical heuristic never scores.
+      // The criterion is still graded, by the LLM, from `content` and
+      // `grader_note`; all that is lost is the matched/missing hint. A weaker
+      // prompt, not a broken criterion.
+      const ev = criterion.expected_value ?? {};
+
+      // A non-object is a different matter: the grader calls `.get("keywords")`
+      // on it, so a string or a number raises AttributeError, and nothing in
+      // run_part catches it — the exception takes the whole sample down.
       if (!isPlainObject(ev)) {
         issues.push({
           level: "error",
           ...at,
-          message: `${cid}: question_type='logical' cần expected_value dạng object {keywords, sample_solution}.`,
+          message: `${cid}: expected_value đang là ${typeof ev === "string" ? "một chuỗi" : `kiểu ${typeof ev}`}, phải là object {keywords, sample_solution}. Khi chấm, hàm chấm gọi .get() trên nó và sẽ ném AttributeError, làm hỏng cả bài của học sinh đó.`,
         });
         break;
       }
@@ -419,6 +433,17 @@ function validateCriterionShape(
           level: "warning",
           ...at,
           message: `${cid}: chưa có keywords nào — heuristic sẽ không đưa được gợi ý matched/missing cho LLM.`,
+        });
+      }
+      // The other half of what the LLM is given to compare against. Without it
+      // the "ĐÁP ÁN / LOGIC KỲ VỌNG" block in the prompt carries only the
+      // keyword list, so the model has to infer the intended solution from
+      // `content` alone and tends to invent requirements the barem never set.
+      if (typeof ev.sample_solution !== "string" || !ev.sample_solution.trim()) {
+        issues.push({
+          level: "warning",
+          ...at,
+          message: `${cid}: chưa có đáp án mẫu (sample_solution) — LLM phải tự đoán lời giải đúng từ mô tả tiêu chí, dễ tự đặt thêm yêu cầu không có trong barem.`,
         });
       }
       break;
@@ -515,6 +540,46 @@ function validateTables(question: RubricQuestion, issues: ValidationIssue[]): Ma
   }
 
   return partTableCells;
+}
+
+/**
+ * Warn when a group's children do not add up to the group's own score.
+ *
+ * Outside an all_or_nothing group `flatten_criteria` emits only the leaves, so
+ * a parent's `score` is never counted — it is documentation, and nothing
+ * enforces it. Give a parent 0.5 and children summing to 3.0 and the question
+ * quietly becomes worth 3.0. Nothing catches that today except the exam-level
+ * "tổng điểm khác total_score" error, which points at the whole paper rather
+ * than the group, and vanishes the moment someone raises total_score to match.
+ *
+ * Only checked when the children carry their own `score`. Children scored by
+ * `weight` are derived *from* the parent, so they always add up by definition.
+ */
+function validateGroupSums(questions: RubricQuestion[], issues: ValidationIssue[]): void {
+  const visit = (criteria: Criterion[], qNum: number) => {
+    for (const parent of criteria) {
+      const children = parent.sub_criteria ?? [];
+      if (!children.length) continue;
+      visit(children, qNum);
+
+      if (parent.all_or_nothing) continue;
+      if (typeof parent.score !== "number") continue;
+      const scored = children.filter((child) => typeof child.score === "number");
+      if (scored.length !== children.length) continue;
+
+      const sum = Math.round(scored.reduce((total, child) => total + (child.score ?? 0), 0) * 10000) / 10000;
+      if (sum !== parent.score) {
+        issues.push({
+          level: "warning",
+          questionNumber: qNum,
+          criterionId: parent.criterion_id,
+          message: `${parent.criterion_id}: các tiêu chí con cộng lại ${sum} điểm, khác với score ${parent.score} khai ở tiêu chí cha. Nhóm không phải all_or_nothing nên điểm của cha bị BỎ QUA hoàn toàn — câu này thực tế tính ${sum} điểm cho nhóm.`,
+        });
+      }
+    }
+  };
+
+  for (const question of questions) visit(question.grading_rule, question.question_number);
 }
 
 function validateStructure(questions: RubricQuestion[], issues: ValidationIssue[]): void {
@@ -630,6 +695,7 @@ export function validateExam(exam: ExamRubric): ValidationReport {
   }
 
   validateStructure(exam.teacher_barem, issues);
+  validateGroupSums(exam.teacher_barem, issues);
   const computedTotal = validateScoring(exam.teacher_barem, exam.total_score, issues);
 
   const errors = issues.filter((issue) => issue.level === "error");

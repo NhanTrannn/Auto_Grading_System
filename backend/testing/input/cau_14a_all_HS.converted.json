@@ -1,0 +1,1716 @@
+[
+  {
+    "sample_id": "cau_14_001__HS_2",
+    "student_index": 2,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Struct Sinhvien {\n   char MaSV[20];\n   char HoTen[50];\n   int NamSinh;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "Struct Sinhvien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "   char MaSV[20];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "   char HoTen[50];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "   int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_3",
+    "student_index": 3,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "include <iostream>\nStruct SinhVien{\nstring MaSV;\nstring HoTen;\nint NamSinh;\nstring NoiSinh;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "include <iostream>",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "Struct SinhVien{",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "string MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "string HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "string NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_7",
+    "student_index": 7,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "struct SinhVien\n{ char MaSV[30];\nchar HoTen[255];\nint NamSinh;\nchar NoiSinh[255];\nfloat DTB;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct SinhVien",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "{ char MaSV[30];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char HoTen[255];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char NoiSinh[255];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "float DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_9",
+    "student_index": 9,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "struct SinhVien {\n    char MaSV[10];\n    char HoTen[50];\n    int NamSinh;\n    char NoiSinh[20];\n    float DTB; };",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct SinhVien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    char MaSV[10];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    char HoTen[50];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    char NoiSinh[20];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    float DTB; };",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_10",
+    "student_index": 10,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Struct Sinh vien {\nint NamSinh;\nfloat DTB;\n}",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "Struct Sinh vien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "float DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "}",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_12",
+    "student_index": 12,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "struct SinhVien {\nint NamSinh;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct SinhVien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_15",
+    "student_index": 15,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Struct SinhVien {\nchar MaSV[100];\nchar HoTen[100];\nint NamSinh;\nchar NoiSinh[100];",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "Struct SinhVien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char MaSV[100];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char HoTen[100];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char NoiSinh[100];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_17",
+    "student_index": 17,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "struct Sinhvien {\nstring MaSV, HoTen, NoiSinh;\nint Nam Sinh;\nfloat DTB;\n};",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct Sinhvien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "string MaSV, HoTen, NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int Nam Sinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "float DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "};",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_18",
+    "student_index": 18,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Struct Sinhvien\n{ string MaSV;\nstring HoTen;\nint NamSinh;\nstring NoiSinh;\nfloat DTB;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "Struct Sinhvien",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "{ string MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "string HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "string NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "float DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_19",
+    "student_index": 19,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "#include <iostream>\n#include <string>\nusing namespace std;\nstruct SinhVien {\n    string MaSV, HoTen, NoiSinh;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "#include <iostream>",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "#include <string>",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "using namespace std;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct SinhVien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string MaSV, HoTen, NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_21",
+    "student_index": 21,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "#include <iostream>\nusing namespace std;\nstruct SinhVien {\n    string MaSV, HoTen, NoiSinh;\n    int NamSinh;\n    float DTB;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "#include <iostream>",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "using namespace std;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct SinhVien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string MaSV, HoTen, NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    float DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_24",
+    "student_index": 24,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "struct Sinhvien {\nstring MaSV;\nstring HoTen, NoiSinh\nint NamSinh;\nfloat DTB;\n};",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct Sinhvien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "string MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "string HoTen, NoiSinh",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "float DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "};",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_26",
+    "student_index": 26,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Struct Sinhvien {\nchar MaSV;\nchar HoTen;\nint NamSinh;\nchar NoiSinh;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "Struct Sinhvien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_28",
+    "student_index": 28,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.0,
+          "is_blank": true
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_29",
+    "student_index": 29,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Struct Sinhvien {\nchar MaSV[MAX]\nchar HoTen[MAX]\nint NamSinh\nchar NơiSinh[MAX]\nfloat DTB};",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "Struct Sinhvien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char MaSV[MAX]",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char HoTen[MAX]",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char NơiSinh[MAX]",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "float DTB};",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_30",
+    "student_index": 30,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Struct SinhVien {\nchar MaSV[];\nchar HoTen[];\nint NamSinh;\nchar NoiSinh[];",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "Struct SinhVien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char MaSV[];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char HoTen[];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char NoiSinh[];",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_32",
+    "student_index": 32,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "#include <iostream>\nusing namespace std;\nint main() {\n    string MaSV;\n    string NoiSinh;\n    float DTB;\n    string HoTen;\n    int NamSinh;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "#include <iostream>",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "using namespace std;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int main() {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L6",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    float DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L7",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L8",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_34",
+    "student_index": 34,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "struct Sinhvien {\nchar MaSV;\nchar HoTen;\nint NamSinh;\nchar NoiSinh;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct Sinhvien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_36",
+    "student_index": 36,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "Struct SinhVien {\nint NamSinh;\nchar MaSV, HoTen, NoiSinh;\nfloat DTB;\n};",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "Struct SinhVien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "char MaSV, HoTen, NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "float DTB;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "};",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  },
+  {
+    "sample_id": "cau_14_001__HS_39",
+    "student_index": 39,
+    "ma_de": "1",
+    "question_type": "logical",
+    "question": {
+      "text": "Câu 14.",
+      "parts": []
+    },
+    "student_answer": {
+      "full_text": "struct SinhVien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;",
+      "lines": [
+        {
+          "line_id": "L1",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "struct SinhVien {",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L2",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string MaSV;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L3",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string HoTen;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L4",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    int NamSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        {
+          "line_id": "L5",
+          "part_label": "a",
+          "slot_id": "cau_14_001_a",
+          "text": "    string NoiSinh;",
+          "bbox": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        }
+      ],
+      "tokens": [],
+      "tables": [],
+      "visual_answers": []
+    },
+    "max_score": 0.25,
+    "question_number": 14
+  }
+]

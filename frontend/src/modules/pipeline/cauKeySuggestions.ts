@@ -40,9 +40,24 @@ function guessTaskType(questionTypes: Set<string>): RoiTaskType {
  * field stays free-text because a barem can name parts in ways this doesn't
  * anticipate.
  */
+/**
+ * Reserved key for the box where the exam code is printed.
+ *
+ * Not a question, so it is offered regardless of what the barem contains, and
+ * ocr_main.py parses its OCR text into that student's `ma_de` instead of
+ * treating it as an answer. Listing it here is what stops the code box —
+ * which Module 1 detects like any other rectangle — from sitting permanently
+ * in the "chưa gán" count with nothing valid to assign to it.
+ */
+export const MA_DE_SUGGESTION: CauKeySuggestion = {
+  cau_key: "MA_DE",
+  label: "Mã đề in trên giấy — đọc để chọn barem",
+  task_type: "short_text",
+};
+
 export function suggestCauKeys(exam: ExamRubric | null): CauKeySuggestion[] {
-  if (!exam) return [];
-  const out: CauKeySuggestion[] = [];
+  if (!exam) return [MA_DE_SUGGESTION];
+  const out: CauKeySuggestion[] = [MA_DE_SUGGESTION];
 
   exam.teacher_barem.forEach((question) => {
     const number = pad2(question.question_number);

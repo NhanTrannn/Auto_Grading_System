@@ -1,0 +1,341 @@
+{
+  "HS_2": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinhvien {",
+          "   char MaSV[20];",
+          "   char HoTen[50];",
+          "   int NamSinh;"
+        ]
+      }
+    }
+  },
+  "HS_3": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "include <iostream>",
+          "Struct SinhVien{",
+          "string MaSV;",
+          "string HoTen;",
+          "int NamSinh;",
+          "string NoiSinh;"
+        ]
+      }
+    }
+  },
+  "HS_7": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct SinhVien",
+          "{ char MaSV[30];",
+          "char HoTen[255];",
+          "int NamSinh;",
+          "char NoiSinh[255];",
+          "float DTB;"
+        ]
+      }
+    }
+  },
+  "HS_9": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct SinhVien {",
+          "    char MaSV[10];",
+          "    char HoTen[50];",
+          "    int NamSinh;",
+          "    char NoiSinh[20];",
+          "    float DTB; };"
+        ]
+      }
+    }
+  },
+  "HS_10": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinh vien {",
+          "int NamSinh;",
+          "float DTB;",
+          "}"
+        ]
+      }
+    }
+  },
+  "HS_12": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct SinhVien {",
+          "int NamSinh;"
+        ]
+      }
+    }
+  },
+  "HS_15": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct SinhVien {",
+          "char MaSV[100];",
+          "char HoTen[100];",
+          "int NamSinh;",
+          "char NoiSinh[100];"
+        ]
+      }
+    }
+  },
+  "HS_17": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct Sinhvien {",
+          "string MaSV, HoTen, NoiSinh;",
+          "int Nam Sinh;",
+          "float DTB;",
+          "};"
+        ]
+      }
+    }
+  },
+  "HS_18": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinhvien",
+          "{ string MaSV;",
+          "string HoTen;",
+          "int NamSinh;",
+          "string NoiSinh;",
+          "float DTB;"
+        ]
+      }
+    }
+  },
+  "HS_19": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "#include <iostream>",
+          "#include <string>",
+          "using namespace std;",
+          "struct SinhVien {",
+          "    string MaSV, HoTen, NoiSinh;"
+        ]
+      }
+    }
+  },
+  "HS_21": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "#include <iostream>",
+          "using namespace std;",
+          "struct SinhVien {",
+          "    string MaSV, HoTen, NoiSinh;",
+          "    int NamSinh;",
+          "    float DTB;"
+        ]
+      }
+    }
+  },
+  "HS_24": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct Sinhvien {",
+          "string MaSV;",
+          "string HoTen, NoiSinh",
+          "int NamSinh;",
+          "float DTB;",
+          "};"
+        ]
+      }
+    }
+  },
+  "HS_26": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinhvien {",
+          "char MaSV;",
+          "char HoTen;",
+          "int NamSinh;",
+          "char NoiSinh;"
+        ]
+      }
+    }
+  },
+  "HS_28": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": []
+      }
+    }
+  },
+  "HS_29": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct Sinhvien {",
+          "char MaSV[MAX]",
+          "char HoTen[MAX]",
+          "int NamSinh",
+          "char NơiSinh[MAX]",
+          "float DTB};"
+        ]
+      }
+    }
+  },
+  "HS_30": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct SinhVien {",
+          "char MaSV[];",
+          "char HoTen[];",
+          "int NamSinh;",
+          "char NoiSinh[];"
+        ]
+      }
+    }
+  },
+  "HS_32": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "#include <iostream>",
+          "using namespace std;",
+          "int main() {",
+          "    string MaSV;",
+          "    string NoiSinh;",
+          "    float DTB;",
+          "    string HoTen;",
+          "    int NamSinh;"
+        ]
+      }
+    }
+  },
+  "HS_34": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct Sinhvien {",
+          "char MaSV;",
+          "char HoTen;",
+          "int NamSinh;",
+          "char NoiSinh;"
+        ]
+      }
+    }
+  },
+  "HS_36": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "Struct SinhVien {",
+          "int NamSinh;",
+          "char MaSV, HoTen, NoiSinh;",
+          "float DTB;",
+          "};"
+        ]
+      }
+    }
+  },
+  "HS_39": {
+    "ma_de": "1",
+    "Cau_14a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/Trang_07_Cau_14a.jpg",
+      "content": {
+        "lines": [
+          "struct SinhVien {",
+          "    string MaSV;",
+          "    string HoTen;",
+          "    int NamSinh;",
+          "    string NoiSinh;"
+        ]
+      }
+    }
+  }
+}

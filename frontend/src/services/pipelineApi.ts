@@ -36,25 +36,36 @@ export async function createUpload(
 }
 
 /** URL of one blank exam page — the ROI editor draws its boxes over this. */
-export function templatePageUrl(uploadId: string, page: number): string {
-  return `${API_BASE}/uploads/${uploadId}/template/${page}`;
+/** `maDe` picks that code's own blank pages when the archive is split by code. */
+export function templatePageUrl(uploadId: string, page: number, maDe?: string): string {
+  const query = maDe ? `?ma_de=${encodeURIComponent(maDe)}` : "";
+  return `${API_BASE}/uploads/${uploadId}/template/${page}${query}`;
 }
 
-/** Step 2: run exactly one exam code from a previous upload. */
+/**
+ * Step 2: run one or more exam codes from a previous upload.
+ *
+ * By default no barem is passed — the server looks one up per code in the
+ * library by `ma_de`. A group can instead set `baremId` to pick a specific
+ * library barem directly, skipping that ma_de lookup entirely (the barem
+ * doesn't need to declare a matching, or any, `ma_de` of its own — the server
+ * re-tags it under the hood). Each code carries its own regions, because two
+ * codes rarely put their answers in the same place on the page.
+ */
 export async function createPipelineJob(input: {
   uploadId: string;
-  maDe: string;
-  baremId: string;
-  rois: RoiConfigEntry[];
+  groups: { maDe: string; rois: RoiConfigEntry[]; baremId?: string }[];
 }): Promise<PipelineJobCreated> {
   const res = await fetch(`${API_BASE}/jobs`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       upload_id: input.uploadId,
-      ma_de: input.maDe,
-      barem_id: input.baremId,
-      roi_config: { rois: input.rois },
+      groups: input.groups.map((g) => ({
+        ma_de: g.maDe,
+        roi_config: { rois: g.rois },
+        ...(g.baremId ? { barem_id: g.baremId } : {}),
+      })),
       save_crops: true,
     }),
   });

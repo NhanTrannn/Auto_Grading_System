@@ -1,0 +1,327 @@
+{
+  "HS_2": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_2/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien a)",
+          "cin>>a.MaSV;",
+          "cin.ignore();",
+          "fgets(a.HoTen, 50, stdin);",
+          "cin>>a.NamSinh; cin.ignore();",
+          "fgets(a.NoiSinh, 50, stdin);",
+          "cin>>a.DTB"
+        ]
+      }
+    }
+  },
+  "HS_3": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_3/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien &ds)",
+          "cin << SinhVien.MaSV;",
+          "cin << SinhVien.HoTen;",
+          "cin << SinhVien.NamSinh;",
+          "cin << SinhVien.NoiSinh;",
+          "cin << SinhVien.DTB;",
+          "return;"
+        ]
+      }
+    }
+  },
+  "HS_7": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_7/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien &t)",
+          "cin >> t.MaSV;",
+          "cin.getline(t.HoTen, 50);",
+          "cin >> t.NamSinh; cin.ignore();",
+          "cin.getline(t.NoiSinh, 50);",
+          "cin >> DTB;"
+        ]
+      }
+    }
+  },
+  "HS_9": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_9/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &a)",
+          "{ cin.getline(a.MaSV, 9);",
+          "cin.getline(a.HoTen, 49);",
+          "cin >> a.NamSinh;",
+          "cin.ignore();",
+          "cin.getline(a.NoiSinh);",
+          "cin >> a.DTB;"
+        ]
+      }
+    }
+  },
+  "HS_10": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_10/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "cin >> a.MaSV;",
+          "cin >> a.HoTen;",
+          "cin >> a.NamSinh;",
+          "cin >> a.NoiSinh;",
+          "cin >> a.DTB;"
+        ]
+      }
+    }
+  },
+  "HS_12": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_12/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": []
+      }
+    }
+  },
+  "HS_15": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_15/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien &a)",
+          "cin.getline(a.MaSV, 100);",
+          "cin.getline(a.HoTen, 100);",
+          "cin >> a.NamSinh;",
+          "cin.ignore(); cin.getline(a.NoiSinh, 100); cin>>a.DTB;"
+        ]
+      }
+    }
+  },
+  "HS_17": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_17/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "cin >> a.MaSV >> a.HoTen >> a.NamSinh >> a.NoiSinh >> a.DTB;"
+        ]
+      }
+    }
+  },
+  "HS_18": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_18/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &ao)",
+          "getline(a.MaSV);",
+          "getline(a.HoTen);",
+          "cin >> a.NamSinh;",
+          "cin.ignore(1, '\\n');",
+          "getline(a.NoiSinh);",
+          "cin >> DTB;"
+        ]
+      }
+    }
+  },
+  "HS_19": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_19/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &s)",
+          "    getline(cin, s.MaSV);",
+          "    getline(cin, s.HoTen);",
+          "    cin >> s.NamSinh;",
+          "    getline(cin, s.NoiSinh);",
+          "    cin >> s.DTB;"
+        ]
+      }
+    }
+  },
+  "HS_21": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_21/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien a[], int n)",
+          "    cout << \"Nhập số sinh viên: \";",
+          "    cin >> n;",
+          "    for (int i = 0; i < n; i++)",
+          "        cin >> a[i].MaSV >> a[i].HoTen >> a[i].NamSinh >> a[i].NoiSinh>>;"
+        ]
+      }
+    }
+  },
+  "HS_24": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_24/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &x)",
+          "gets(x.MaSV);",
+          "gets(x.HoTen);",
+          "cin >> x.NamSinh;",
+          "gets(x.NoiSinh);",
+          "cin >> x.DTB;"
+        ]
+      }
+    }
+  },
+  "HS_26": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_26/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(SinhVien a[])",
+          "    cin >> MaSV;",
+          "    cin.ignore();",
+          "    cin >> a.HoTen;",
+          "    cin >> NamSinh >> NoiSinh >> DTB;"
+        ]
+      }
+    }
+  },
+  "HS_28": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_28/ERROR_Trang_08_Original.jpg",
+      "content": null
+    }
+  },
+  "HS_29": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_29/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &x)",
+          "cin.getline(x.MaSV, MAX);",
+          "cin.getline(x.HoTen, MAX);",
+          "cin.getline(x.NoiSinh, MAX);",
+          "cin>>x.NamSinh;",
+          "cin>>x.DTB;"
+        ]
+      }
+    }
+  },
+  "HS_30": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_30/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &a)"
+        ]
+      }
+    }
+  },
+  "HS_32": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_32/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(a[])",
+          "cin << a[i].MaSV;",
+          "cin << a[i].HoTen;",
+          "cin << a[i].NamSinh;",
+          "cin << a[i].Noisinh;"
+        ]
+      }
+    }
+  },
+  "HS_34": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_34/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien &x)",
+          "cin.getline(x.MaSV);",
+          "cin.getline(x.HoTen);",
+          "cin >> x.NamSinh;",
+          "cin.getline(x.NoiSinh);",
+          "cin >> x.DTB;"
+        ]
+      }
+    }
+  },
+  "HS_36": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_36/Trang_08_Cau_14b.jpg",
+      "content": {
+        "lines": [
+          "void NhapSV(Sinhvien a[])",
+          "cin >> a.NamSinh;",
+          "cin >> a.DTB;",
+          "cin.ignore();",
+          "cin.getline(a.MaSV,100);",
+          "cin.getline(a.HoTen,100);",
+          "cin.getline(a.NoiSinh,100);"
+        ]
+      }
+    }
+  },
+  "HS_39": {
+    "ma_de": "1",
+    "Cau_14b": {
+      "type": "error",
+      "status": "failed_at_cropping",
+      "image_path": "/kaggle/input/datasets/anartt/output-module2/Output_Ma_de_1/HS_39/ERROR_Trang_08_Original.jpg",
+      "content": null
+    }
+  }
+}

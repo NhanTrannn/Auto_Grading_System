@@ -1,0 +1,518 @@
+[
+  {
+    "sample_id": "cau_1_001__HS_2",
+    "ma_de": "1",
+    "question_number": 1,
+    "question_type": "matching",
+    "routing": {
+      "question_type": "matching",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T1)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 1.0,
+    "max_score": 1.0,
+    "status": "correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 49248,
+    "token_usage": {
+      "prompt_tokens": 7496,
+      "completion_tokens": 3594,
+      "total_tokens": 11090
+    },
+    "llm_feedbacks": [],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T1",
+        "part_label": "main",
+        "criterion_content": "Ghi đúng kết quả chương trình. Nêu rõ đáp án đúng và mức điểm bán phần nếu có.",
+        "score": 1.0,
+        "max_score": 1,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Bài làm học sinh ghi đúng kết quả chương trình là '2', khớp hoàn toàn với đáp án kỳ vọng về mặt ký tự và định dạng. Logic chương trình cũng dẫn đến kết quả này do phép chia nguyên giữa hai số nguyên, sau đó ép kiểu sang float nhưng không thay đổi giá trị phần nguyên.",
+        "cot_reasoning": "**Suy luận chi tiết từng bước:**\n\n---\n\n**1. Đọc và hiểu tiêu chí: tiêu chí này yêu cầu gì?**\n\n- Tiêu chí chấm: **\"Ghi đúng kết quả chương trình.\"**\n- Yêu cầu học sinh phải ghi ra **kết quả in ra màn hình** sau khi thực thi đoạn mã C++ được cung cấp.\n- Đây là một bài kiểm tra **kết quả thực tế của chương trình**, không phải phân tích mã nguồn hay giải thích logic — chỉ cần **output chính xác**.\n- Đặc biệt nhấn mạnh: **chỉ có 1 chuỗi output cố định duy nhất**, và phải khớp **byte-exact** (tức là hoàn toàn giống về ký tự, khoảng trắng, dấu cách, thứ tự...). Không chấp nhận “tương đương” nếu định dạng khác.\n\n---\n\n**2. Phân tích đáp án kỳ vọng (nếu có): cần khớp điều gì?**\n\n- Đáp án kỳ vọng: **`2`**\n- Đây là một chuỗi ký tự đơn giản, chỉ gồm chữ số `2`, không có khoảng trắng trước/sau, không có dấu chấm thập phân, không có chữ cái, không có bất kỳ ký tự nào khác.\n- Do đó, để đạt điểm, bài làm học sinh **phải in ra chính xác chuỗi \"2\"** — không thừa, không thiếu, không thay đổi ký tự.\n\n---\n\n**3. Phân tích bài làm học sinh: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\n- Bài làm học sinh: **`2`**\n- So sánh trực tiếp với đáp án kỳ vọng: **hoàn toàn trùng khớp**.\n- Không có khoảng trắng, không có dấu cách, không có dấu phẩy, không có chữ cái, không có dấu chấm thập phân.\n- Về mặt kỹ thuật, đây là **chuỗi byte-exact** giống hệt đáp án kỳ vọng.\n\n---\n\n**4. Kiểm tra tương đương: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.**\n\n- Trong trường hợp này, **bài làm KHÔNG khác đáp án mẫu**, nên bước này không cần thiết.\n- Tuy nhiên, nếu xét đến **logic chương trình**:\n  - `int a = 7; int b = 3;`\n  - `float c = a / b;`\n    → Vì cả `a` và `b` đều là kiểu `int`, phép chia `a / b` sẽ là **chia nguyên**, kết quả là `2` (vì 7/3 = 2 dư 1).\n    → Sau đó gán vào biến `float c`, nhưng giá trị vẫn là `2.0` (do ép kiểu từ int sang float), tuy nhiên...\n  - Khi in ra bằng `cout << c;`, mặc định **C++ sẽ in số thực theo định dạng mặc định** — thường là **không in phần thập phân nếu nó bằng 0**.\n    → Ví dụ: `cout << 2.0;` sẽ in ra `\"2\"` (không có dấu chấm).\n\n→ Vậy **kết quả thực tế của chương trình là \"2\"** — khớp với đáp án kỳ vọng.\n\n> 💡 Lưu ý: Có thể có tranh cãi rằng nếu dùng `setprecision` hoặc format cụ thể, có thể in ra \"2.0\", nhưng trong đề bài **không có lệnh định dạng**, và theo chuẩn C++ mặc định, `cout << 2.0;` sẽ in ra `\"2\"` (không có phần thập phân).\n\n→ Do đó, **đáp án kỳ vọng \"2\" là đúng theo logic thực thi chương trình**.\n\n---\n\n**5. So sánh: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n- Bài làm học sinh: `\"2\"`\n- Đáp án kỳ vọng: `\"2\"`\n- Mức độ khớp: **100%** (byte-exact)\n- Không có sai sót về ký tự, khoảng trắng, định dạng, thứ tự...\n\n---\n\n**6. Kết luận sơ bộ: điểm dự kiến và lý do.**\n\n- Bài làm học sinh **hoàn toàn khớp với đáp án kỳ vọng** theo yêu cầu \"byte-exact\".\n- Tiêu chí chấm không có quy tắc bán phần được nêu (dù có thể suy ra từ ngữ cảnh, nhưng theo nguyên tắc, nếu không có quy tắc bán phần thì không được tự tạo).\n- Điểm tối đa cho câu này là **1.00 điểm**.\n- Học sinh đã trả lời đúng, đầy đủ, chính xác theo yêu cầu.\n\n✅ **Điểm dự kiến: 1.00**\n\n---\n\n📌 **TỔNG KẾT:**\n- Bài làm học sinh: **2**\n- Đáp án kỳ vọng: **2**\n- Khớp hoàn toàn → Đạt điểm tối đa.\n- Không có lỗi về định dạng, ký tự, khoảng trắng.\n- Logic chương trình cũng dẫn đến kết quả đúng.\n\n➡️ **ĐIỂM CHẤM: 1.00**",
+        "feedback": "",
+        "suggestion": "",
+        "agreed_with_heuristic": true,
+        "confidence": 1.0,
+        "heuristic_score": 1,
+        "heuristic_status": "correct",
+        "heuristic_reason": "Student answer matches exactly accepted output.",
+        "heuristic_weight": 0.0,
+        "llm_score": 1.0,
+        "llm_status": "correct",
+        "token_usage": {
+          "prompt_tokens": 7496,
+          "completion_tokens": 3594,
+          "total_tokens": 11090
+        },
+        "evidence": {
+          "student_answer": "2",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "main",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "conditioning": {
+          "has_conditional": false,
+          "conditional_type": null,
+          "heuristic_conditional_define": null
+        },
+        "expected_output_tokens": null,
+        "student_tokens": null,
+        "latency_ms": 49248
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đạt đầy đủ tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 1,
+      "overridden_count": 0,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_2_001__HS_2",
+    "ma_de": "1",
+    "question_number": 2,
+    "question_type": "matching",
+    "routing": {
+      "question_type": "matching",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T2)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 1.0,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 45127,
+    "token_usage": {
+      "prompt_tokens": 6802,
+      "completion_tokens": 3120,
+      "total_tokens": 9922
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T2",
+        "part_label": "main",
+        "score": 0,
+        "max_score": 1,
+        "feedback": "Sai ở việc viết chữ cái đầu là chữ hoa ('B') thay vì chữ thường ('b') như trong đáp án kỳ vọng.",
+        "suggestion": "Viết lại từ khóa đúng chuẩn: 'break' (chữ thường toàn bộ), không có dấu cách hay ký tự thừa."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T2",
+        "part_label": "main",
+        "criterion_content": "Ghi đúng câu lệnh đáp án",
+        "score": 0,
+        "max_score": 1,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh ghi 'Break' thay vì 'break'. Theo tiêu chí 'ghi đúng câu lệnh đáp án', yêu cầu khớp chính xác từng ký tự, bao gồm chữ hoa/chữ thường. Sai ở ký tự đầu tiên nên không đạt điểm.",
+        "cot_reasoning": "**BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\n- Tiêu chí chấm: **\"Ghi đúng câu lệnh đáp án\"**\n- Đây là một tiêu chí rất rõ ràng, yêu cầu học sinh phải **ghi chính xác** câu lệnh được yêu cầu — không chấp nhận sai sót về từ khóa, dấu cách, chữ hoa/chữ thường, hoặc bất kỳ ký tự nào.\n- Không có quy tắc điểm bán phần nào được cung cấp → **không có điểm trung gian**, chỉ có 0 hoặc 1 điểm.\n\n---\n\n**BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\n- Đáp án kỳ vọng: **`break`**\n- Đây là từ khóa trong C++ dùng để thoát khỏi vòng lặp (for, while, do-while) ngay lập tức.\n- **Yêu cầu chính xác về chữ viết**: tất cả các ký tự phải khớp **byte-exact**.\n- Chữ cái đầu tiên là chữ thường **'b'**, không có dấu cách, không có ký tự đặc biệt, không có chữ hoa.\n\n---\n\n**BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\n- Bài làm học sinh: **`Break`**\n- So sánh với đáp án kỳ vọng `break`:\n  - Chữ cái đầu tiên: **'B'** (chữ hoa) → khác với `'b'` (chữ thường)\n  - Các ký tự còn lại: 'r', 'e', 'a', 'k' → khớp hoàn toàn.\n  - Không có dấu cách, không có ký tự thừa.\n\n→ **Sai ở ký tự đầu tiên: chữ hoa thay vì chữ thường.**\n\n---\n\n**BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- Trong ngữ cảnh **lập trình C++**, từ khóa `break` phải được viết đúng dạng **chữ thường** để được biên dịch viên nhận diện.\n- `Break` (với chữ B hoa) **không phải là từ khóa hợp lệ** trong C++. Nếu học sinh viết như vậy trong mã nguồn, sẽ gây lỗi biên dịch.\n- Tuy nhiên, đề bài không yêu cầu viết code thực thi mà chỉ yêu cầu **ghi câu lệnh đáp án** — tức là ghi chính xác từ khóa.\n\n→ **Không có sự tương đương về mặt kỹ thuật hay ngữ nghĩa** giữa `Break` và `break` trong ngữ cảnh này.\n\n---\n\n**BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n- Yêu cầu: **byte-exact match**\n- Bài làm: `Break`\n- Đáp án: `break`\n- So sánh ký tự theo từng vị trí:\n\n| Vị trí | Đáp án kỳ vọng | Bài làm học sinh | Khớp? |\n|--------|----------------|------------------|-------|\n| 0      | 'b'            | 'B'              | ❌    |\n| 1      | 'r'            | 'r'              | ✅    |\n| 2      | 'e'            | 'e'              | ✅    |\n| 3      | 'a'            | 'a'              | ✅    |\n| 4      | 'k'            | 'k'              | ✅    |\n\n→ **Chỉ khớp 4/5 ký tự**, nhưng **sai ở ký tự đầu tiên**, dẫn đến **không khớp 100%**.\n\n---\n\n**BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n- Tiêu chí: **Ghi đúng câu lệnh đáp án**\n- Không có quy tắc điểm bán phần → **phải khớp 100% mới được điểm**\n- Bài làm sai về **viết hoa chữ cái đầu** → **không thỏa mãn tiêu chí**\n- Dù giá trị logic (từ khóa thoát vòng lặp) đúng, nhưng **đề bài yêu cầu ghi đúng câu lệnh** — tức là chính xác về hình thức.\n\n✅ **KẾT LUẬN: Điểm = 0**\n\n---\n\n**LÝ DO CHẤM 0 ĐIỂM:**\n\n- Bài làm học sinh ghi `Break` thay vì `break`.\n- Theo nguyên tắc chấm **byte-exact**, sự khác biệt về chữ hoa/chữ thường ở ký tự đầu tiên khiến kết quả **không khớp 100%** với đáp án kỳ vọng.\n- Không có quy tắc điểm bán phần → không thể cho điểm dù nội dung ý nghĩa đúng.\n\n---\n\n📌 **ĐIỂM CUỐI CÙNG: 0/1**",
+        "feedback": "Sai ở việc viết chữ cái đầu là chữ hoa ('B') thay vì chữ thường ('b') như trong đáp án kỳ vọng.",
+        "suggestion": "Viết lại từ khóa đúng chuẩn: 'break' (chữ thường toàn bộ), không có dấu cách hay ký tự thừa.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "No exact match and no expected_output_tokens to grade — requires LLM or teacher review.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 6802,
+          "completion_tokens": 3120,
+          "total_tokens": 9922
+        },
+        "evidence": {
+          "student_answer": "Break",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "main",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "conditioning": {
+          "has_conditional": false,
+          "conditional_type": null,
+          "heuristic_conditional_define": null
+        },
+        "expected_output_tokens": null,
+        "student_tokens": null,
+        "latency_ms": 45127
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_3_001__HS_2",
+    "question_number": 3,
+    "score": 0,
+    "max_score": 2.0,
+    "status": "error",
+    "error": "'list' object has no attribute 'get'"
+  },
+  {
+    "sample_id": "cau_4_001__HS_2",
+    "ma_de": "1",
+    "question_number": 4,
+    "question_type": "matching",
+    "routing": {
+      "question_type": "matching",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T4)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 2.0,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 64381,
+    "token_usage": {
+      "prompt_tokens": 8226,
+      "completion_tokens": 4330,
+      "total_tokens": 12556
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T4",
+        "part_label": "main",
+        "score": 0,
+        "max_score": 2,
+        "feedback": "Bài làm sai ở định dạng: thiếu khoảng trắng giữa 'int' và '&'. Mặc dù cú pháp vẫn đúng về mặt logic, nhưng không được chấp nhận vì không khớp byte-exact với đáp án kỳ vọng.",
+        "suggestion": "Viết lại khai báo tham số đúng định dạng: 'int &x' (có khoảng trắng giữa 'int' và '&')."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T4",
+        "part_label": "main",
+        "criterion_content": "Ghi đúng đáp án ô (1) để ra kết quả mong muốn",
+        "score": 0,
+        "max_score": 2,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh đã viết đúng cú pháp tham chiếu về mặt chức năng, nhưng không khớp chính xác với đáp án kỳ vọng về định dạng văn bản (byte-exact). Đáp án kỳ vọng là 'int &x' (có khoảng trắng), trong khi bài làm là 'int& x' (không có khoảng trắng). Theo nguyên tắc chấm điểm, chỉ chấp nhận khớp 100%.",
+        "cot_reasoning": "**Suy luận chi tiết từng bước:**\n\n---\n\n### **1. Đọc và hiểu tiêu chí: tiêu chí này yêu cầu gì?**\n\nTiêu chí chấm:  \n> **Ghi đúng đáp án ô (1) để ra kết quả mong muốn**\n\n→ Điều này có nghĩa là học sinh phải điền vào ô (1) một **khai báo tham số hàm** sao cho chương trình thực thi đúng như mong muốn: **in ra 10**.\n\nTrong đề bài, hàm `NhanDoi` được gọi với tham số `n`, và sau khi thực thi, giá trị của `n` trong `main` phải bị thay đổi thành 10 → tức là **tham số truyền vào phải là tham chiếu**, không phải giá trị.\n\nVì vậy, tiêu chí yêu cầu học sinh điền đúng **cú pháp khai báo tham số kiểu tham chiếu** trong C++ để hàm có thể thay đổi biến gốc.\n\n---\n\n### **2. Phân tích đáp án kỳ vọng (nếu có): cần khớp điều gì?**\n\nĐáp án kỳ vọng:  \n> **int &x**\n\n→ Đây là cú pháp chuẩn trong C++ để khai báo một tham số kiểu **tham chiếu đến biến int**, tên là `x`.\n\nChú ý:  \n- Ký tự `&` nằm **sau** từ khóa `int`, trước tên biến → `int &x`\n- Không có khoảng trắng giữa `int` và `&` → `int& x` là **không đúng theo định dạng yêu cầu**\n- Trong C++, cả `int& x` và `int &x` đều **đúng về mặt ngữ pháp** (tương đương), nhưng **về mặt định dạng văn bản**, chúng là **khác nhau**.\n\n→ Theo nguyên tắc chấm điểm đã nêu rõ:  \n> **“chỉ có 1 chuỗi output CỐ ĐỊNH DUY NHẤT (byte-exact), không có khái niệm 'tương đương' hay 'đúng giá trị nhưng sai định dạng vẫn được coi là đúng’”**\n\n→ Do đó, **phải khớp chính xác từng ký tự**, kể cả vị trí dấu `&`.\n\n---\n\n### **3. Phân tích bài làm học sinh: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh:  \n> **int& x**\n\n→ So sánh với đáp án kỳ vọng: **int &x**\n\n→ Sự khác biệt:\n- Bài làm: `int& x` → `&` liền kề với `int`, không có khoảng trắng.\n- Đáp án: `int &x` → có khoảng trắng giữa `int` và `&`.\n\n→ Về **mặt chức năng**: cả hai đều đúng, vì trong C++, `int& x` và `int &x` đều tạo ra tham chiếu đến biến int.\n\n→ Nhưng về **mặt định dạng văn bản (byte-exact)**: chúng **khác nhau**.\n\n→ Học sinh đã **viết đúng cú pháp**, nhưng **sai định dạng** theo yêu cầu “byte-exact”.\n\n---\n\n### **4. Kiểm tra tương đương: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.**\n\n→ Như đã phân tích ở trên:  \n- **Logic và chức năng**: Tương đương hoàn toàn → nếu dùng `int& x` thì hàm vẫn hoạt động đúng, in ra 10.\n- **Tuy nhiên**, theo nguyên tắc chấm điểm:  \n> **“Nếu bài làm học sinh KHÔNG khớp 100% với đáp án kỳ vọng (kể cả chỉ lệch khoảng trắng, dấu cách, thứ tự, hay bất kỳ ký tự nào) thì đó KHÔNG phải là 'đúng'”**\n\n→ Vì vậy, **dù logic đúng, nhưng định dạng sai → không được chấp nhận**.\n\n---\n\n### **5. So sánh: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n- Bài làm: `\"int& x\"`\n- Đáp án kỳ vọng: `\"int &x\"`\n\n→ Số ký tự khác nhau: 1 ký tự (khoảng trắng).\n\n→ **Không khớp byte-exact → không đạt tiêu chí**.\n\n→ Tiêu chí không cung cấp \"quy tắc điểm bán phần\" → **không có điểm bán phần**.\n\n→ Vì vậy, nếu không khớp 100%, **chấm 0 điểm**.\n\n---\n\n### **6. Kết luận sơ bộ: điểm dự kiến và lý do.**\n\n✅ **Điểm dự kiến: 0/2**\n\n📌 **Lý do:**  \n- Học sinh đã viết đúng cú pháp tham chiếu (`int& x`) về mặt chức năng, nhưng **không khớp chính xác với đáp án kỳ vọng** về định dạng văn bản (byte-exact).\n- Đáp án kỳ vọng là `\"int &x\"` — có khoảng trắng giữa `int` và `&`.\n- Bài làm học sinh là `\"int& x\"` — không có khoảng trắng → **khác biệt về ký tự**.\n- Theo nguyên tắc chấm điểm: **không chấp nhận tương đương, chỉ chấp nhận khớp 100%**.\n- Không có quy tắc điểm bán phần được cung cấp → **không được cộng điểm dù logic đúng**.\n\n---\n\n✅ **KẾT LUẬN CHỐT: 0 điểm**",
+        "feedback": "Bài làm sai ở định dạng: thiếu khoảng trắng giữa 'int' và '&'. Mặc dù cú pháp vẫn đúng về mặt logic, nhưng không được chấp nhận vì không khớp byte-exact với đáp án kỳ vọng.",
+        "suggestion": "Viết lại khai báo tham số đúng định dạng: 'int &x' (có khoảng trắng giữa 'int' và '&').",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "No exact match and no expected_output_tokens to grade — requires LLM or teacher review.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 8226,
+          "completion_tokens": 4330,
+          "total_tokens": 12556
+        },
+        "evidence": {
+          "student_answer": "int& x",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "main",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "conditioning": {
+          "has_conditional": false,
+          "conditional_type": null,
+          "heuristic_conditional_define": null
+        },
+        "expected_output_tokens": null,
+        "student_tokens": null,
+        "latency_ms": 64381
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_5_001__HS_2",
+    "ma_de": "1",
+    "question_number": 5,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T5)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 1.0,
+    "max_score": 1.0,
+    "status": "correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 49678,
+    "token_usage": {
+      "prompt_tokens": 8004,
+      "completion_tokens": 3649,
+      "total_tokens": 11653
+    },
+    "llm_feedbacks": [],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T5",
+        "part_label": "main",
+        "criterion_content": "Chấm theo logic trả lời được ý đúng là dùng phép gán thay vì phép so sánh là được tròn điểm khác thì 0 điểm",
+        "score": 1.0,
+        "max_score": 1,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh đã nhận diện chính xác lỗi là dùng phép gán = thay vì phép so sánh == trong điều kiện if, đáp ứng đầy đủ yêu cầu của tiêu chí chấm. Dù có lỗi chính tả và ngữ pháp nhẹ, nhưng ý chính được truyền đạt rõ ràng và đúng trọng tâm.",
+        "cot_reasoning": "**Suy luận chi tiết từng bước:**\n\n---\n\n### **1. Đọc và hiểu tiêu chí: tiêu chí này yêu cầu gì?**\n\n- Tiêu chí chấm rõ ràng:  \n  > “Chấm theo logic trả lời được ý đúng là dùng phép gán thay vì phép so sánh là được tròn điểm khác thì 0 điểm”\n\n→ Điều này có nghĩa là:  \n✅ Học sinh chỉ cần **nhận ra lỗi là dùng phép gán (=) thay vì phép so sánh (==)** trong điều kiện `if`.  \n✅ Chỉ cần nêu được **ý chính đó**, dù không dùng từ ngữ hoàn toàn giống đáp án mẫu, vẫn được **điểm tối đa 1.00**.  \n❌ Nếu học sinh nói sai nguyên nhân (ví dụ: lỗi ở biến n, hoặc lỗi cú pháp khác), hoặc không nêu được lỗi về phép gán vs phép so sánh → **0 điểm**.\n\n→ Đây là bài kiểm tra **hiểu biết về cú pháp C++ cơ bản**, cụ thể là sự khác biệt giữa `=` (gán) và `==` (so sánh).\n\n---\n\n### **2. Phân tích đáp án kỳ vọng (nếu có): cần khớp điều gì?**\n\n- Đáp án kỳ vọng (tham khảo):  \n  > “Chương trình có lỗi vì dùng phép gán = thay cho phép so sánh == trong điều kiện, phải viết n % 2 == 0.”\n\n→ Tuy nhiên, **không yêu cầu học sinh phải viết y hệt câu này**.  \n→ Chỉ cần học sinh **trả lời đúng ý**: *lỗi nằm ở việc dùng `=` thay vì `==` trong điều kiện if* → đủ để đạt điểm đầy đủ.\n\n→ Không yêu cầu thêm giải thích sâu, không yêu cầu ví dụ sửa, chỉ cần **nêu rõ lỗi và nguyên nhân** bằng một câu.\n\n---\n\n### **3. Phân tích bài làm học sinh: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh:  \n> **\"Chuong trinh bi loi. Trong if dung dau = la phep gan,\"**\n\n→ Dù có lỗi chính tả (viết \"Chuong trinh\", \"dung dau =\", \"phep gan\"), nhưng **ý chính rất rõ ràng**:\n\n- Nhận ra chương trình bị lỗi.\n- Chỉ ra lỗi nằm ở **dấu \"=\" trong if**.\n- Giải thích rằng dấu \"=\" là **phép gán**, chứ không phải phép so sánh.\n\n→ Đây là **đúng hoàn toàn với yêu cầu của tiêu chí**.\n\n→ Không có thông tin sai lệch, không nói đến lỗi cú pháp khác (ví dụ: thiếu dấu chấm phẩy, tên biến sai...).  \n→ Học sinh **không cần sửa lại code**, chỉ cần **nêu rõ lỗi và nguyên nhân** — điều mà đề bài yêu cầu.\n\n→ Ngôn ngữ tuy chưa chuẩn (có lỗi chính tả, thiếu dấu chấm cuối câu), nhưng **ý tưởng và nội dung chính xác**.\n\n---\n\n### **4. Kiểm tra tương đương: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.**\n\n- Bài làm học sinh **khác dạng** so với đáp án mẫu (về cách diễn đạt, cấu trúc câu, chính tả), nhưng:\n  - Cùng **ý chính**: lỗi do dùng `=` thay vì `==`.\n  - Cùng **logic đúng**: nhận diện được lỗi cú pháp trong điều kiện if.\n  - Không sai lệch về kiến thức.\n\n→ Do đó, **tương đương hoàn toàn** với đáp án kỳ vọng về mặt nội dung và mục đích đánh giá.\n\n→ Nguyên tắc “CHẤP NHẬN NHIỀU CÁCH LÀM ĐÚNG KHÁC NHAU” ÁP DỤNG ĐƯỢC tại đây.\n\n---\n\n### **5. So sánh: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n- **100% khớp về nội dung và ý nghĩa**.\n- Học sinh đã **trả lời đúng ý** mà tiêu chí yêu cầu: chỉ ra lỗi là dùng phép gán thay vì phép so sánh.\n- Không có sai sót về kiến thức kỹ thuật.\n- Dù có lỗi chính tả, nhưng **không ảnh hưởng đến việc truyền đạt ý chính**.\n\n→ Theo nguyên tắc chấm: **“trả lời được ý đúng... là được tròn điểm”** → **phải cho điểm đầy đủ**.\n\n---\n\n### **6. Kết luận sơ bộ: điểm dự kiến và lý do.**\n\n✅ **Điểm: 1.00**\n\n📌 **Lý do**:  \nHọc sinh đã nhận diện chính xác lỗi trong chương trình: sử dụng phép gán `=` thay vì phép so sánh `==` trong điều kiện `if`. Mặc dù bài làm có lỗi chính tả và chưa hoàn chỉnh về ngữ pháp câu (thiếu dấu chấm, viết tắt), nhưng **ý chính được truyền đạt rõ ràng, đúng trọng tâm**. Theo tiêu chí chấm, chỉ cần “trả lời được ý đúng” là đủ để đạt điểm tối đa. Không có sai lệch về kiến thức, không có nhầm lẫn về nguyên nhân lỗi.\n\n---\n\n✅ **KẾT LUẬN CHỐT: 1.00 điểm**",
+        "feedback": "",
+        "suggestion": "",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:0/0 expected keywords found: .",
+        "heuristic_weight": 0.0,
+        "llm_score": 1.0,
+        "llm_status": "correct",
+        "token_usage": {
+          "prompt_tokens": 8004,
+          "completion_tokens": 3649,
+          "total_tokens": 11653
+        },
+        "evidence": {
+          "student_answer": "Chuong trinh bi loi. Trong if dung dau = la phep gan,",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "main",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [],
+        "missing": [],
+        "latency_ms": 49678
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đạt đầy đủ tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_6_001__HS_2",
+    "ma_de": "1",
+    "question_number": 6,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T6)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.5,
+    "max_score": 3.0,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 73249,
+    "token_usage": {
+      "prompt_tokens": 8294,
+      "completion_tokens": 4278,
+      "total_tokens": 12572
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T6",
+        "part_label": "a",
+        "score": 0.5,
+        "max_score": 1,
+        "feedback": "Thiếu hai thuộc tính bắt buộc: NoiSinh (kiểu chuỗi ký tự) và DTB (số thực).",
+        "suggestion": "Cần bổ sung hai thành phần còn thiếu vào struct: string NoiSinh; float DTB; hoặc double DTB tùy yêu cầu cụ thể về số thực."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T6",
+        "part_label": "a",
+        "criterion_content": "Khai báo đúng đầy đủ kiểu dữ liệu cấu trúc (struct) Sinhvien thiếu một ý trừ 0,25 điểm",
+        "score": 0.5,
+        "max_score": 1,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh khai báo đúng struct Sinhvien với 3/5 thuộc tính (MaSV, HoTen, NamSinh) đúng tên và kiểu dữ liệu. Thiếu 2 thuộc tính bắt buộc: NoiSinh và DTB, mỗi thiếu trừ 0.25 điểm theo tiêu chí.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT TỪNG BƯỚC:**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: tiêu chí này yêu cầu gì?**\n\n- Tiêu chí chấm:  \n  > *Khai báo đúng đầy đủ kiểu dữ liệu cấu trúc (struct) Sinhvien thiếu một ý trừ 0,25 điểm*\n\n- Điều này có nghĩa là:\n  - Học sinh phải khai báo một `struct` tên là `Sinhvien`.\n  - Trong struct đó, **phải có đầy đủ các thành phần (thuộc tính)** được liệt kê trong đề bài.\n  - Mỗi thuộc tính phải có **tên đúng** và **kiểu dữ liệu phù hợp** với yêu cầu đề bài.\n  - Nếu **thiếu một thuộc tính**, thì **trừ 0,25 điểm**.\n  - Vì tổng điểm tối đa cho phần này là **1 điểm**, nên có thể suy ra: **có 4 thành phần bị thiếu sẽ trừ hết 1 điểm**, tức là cần có ít nhất 4/5 thành phần để đạt điểm tối đa.\n\n> 💡 Lưu ý: Đề bài yêu cầu **5 thuộc tính**: MaSV, HoTen, NamSinh, NoiSinh, DTB.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (nếu có): cần khớp điều gì?**\n\n- Đề bài cung cấp bảng yêu cầu:\n\n| Tên thuộc tính | Kiểu dữ liệu       | Ý nghĩa             |\n|----------------|--------------------|--------------------|\n| MaSV           | Kiểu chuỗi ký tự   | Mã sinh viên       |\n| HoTen          | Kiểu chuỗi ký tự   | Họ và tên sinh viên|\n| NamSinh        | Kiểu số nguyên     | Năm sinh           |\n| NoiSinh        | Kiểu chuỗi ký tự   | Nơi sinh           |\n| DTB            | Số thực            | Điểm trung bình    |\n\n→ Do đó, đáp án kỳ vọng là một struct `Sinhvien` chứa **đầy đủ 5 thành phần** với tên và kiểu dữ liệu như trên.\n\n- Dù không có \"đáp án mẫu cố định\", nhưng **logic kỳ vọng rõ ràng**: phải có 5 thành phần, mỗi thành phần đúng tên và kiểu.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh:\n\n```cpp\nstruct Sinhvien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n};\n```\n\n→ Học sinh đã:\n- Khai báo đúng từ khóa `struct` và tên `Sinhvien`.\n- Có 3 thành phần: `MaSV`, `HoTen`, `NamSinh`.\n- Kiểu dữ liệu:\n  - `string` → tương đương “kiểu chuỗi ký tự” → đúng.\n  - `int` → tương đương “kiểu số nguyên” → đúng.\n\n→ Nhưng **thiếu 2 thuộc tính**:  \n- `NoiSinh` (kiểu chuỗi ký tự)  \n- `DTB` (số thực)\n\n→ Như vậy, học sinh **chỉ khai báo đúng 3/5 thuộc tính**.\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không?**\n\n- Bài làm **không giống đáp án mẫu** vì thiếu 2 thành phần.\n- Tuy nhiên, theo nguyên tắc: *\"code/công thức/thuật toán khác nhau về hình thức nhưng đúng về kết quả và logic đều được điểm đầy đủ\"* — **KHÔNG ÁP DỤNG** ở đây.\n\n→ Vì **bài làm THIẾU THÀNH PHẦN**, không phải chỉ khác cách viết mà vẫn đầy đủ nội dung.\n\n→ **Thiếu thành phần là lỗi cơ bản**, không thể coi là “tương đương”.\n\n---\n\n### **5. SO SÁNH: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n- Yêu cầu: 5 thuộc tính → học sinh chỉ có 3 → thiếu 2.\n- Theo tiêu chí: **thiếu một ý trừ 0,25 điểm** → thiếu 2 ý → trừ 0,5 điểm.\n\n→ Vậy điểm dự kiến = 1 - 0,5 = **0,5 điểm**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: điểm dự kiến và lý do**\n\n✅ **Điểm: 0,5/1**\n\n📌 **Lý do chi tiết:**\n- Học sinh đã khai báo đúng cấu trúc `struct Sinhvien` và đúng kiểu dữ liệu cho 3 thuộc tính: `MaSV`, `HoTen`, `NamSinh`.\n- Tuy nhiên, **thiếu hai thuộc tính bắt buộc**: `NoiSinh` (kiểu chuỗi) và `DTB` (số thực).\n- Theo tiêu chí: *“thiếu một ý trừ 0,25 điểm”* → thiếu 2 ý → trừ 0,5 điểm.\n- Không có sai sót về cú pháp hoặc cấu trúc (như thiếu dấu chấm phẩy, đóng ngoặc, v.v.) → nên không trừ thêm điểm.\n- Bài làm **không đầy đủ** theo yêu cầu đề bài → không đạt điểm tối đa.\n\n---\n\n✅ **TỔNG KẾT:**\n> **Điểm: 0,5 / 1**  \n> **Lý do:** Thiếu 2 thuộc tính bắt buộc (`NoiSinh`, `DTB`) trong cấu trúc `Sinhvien`. Mỗi thiếu trừ 0,25 điểm → tổng trừ 0,5 điểm. Cấu trúc còn lại đúng.",
+        "feedback": "Thiếu hai thuộc tính bắt buộc: NoiSinh (kiểu chuỗi ký tự) và DTB (số thực).",
+        "suggestion": "Cần bổ sung hai thành phần còn thiếu vào struct: string NoiSinh; float DTB; hoặc double DTB tùy yêu cầu cụ thể về số thực.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:0/0 expected keywords found: .",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.5,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 8294,
+          "completion_tokens": 4278,
+          "total_tokens": 12572
+        },
+        "evidence": {
+          "student_answer": "struct Sinhvien {\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n};",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "a",
+          "type": "slot_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [],
+        "missing": [],
+        "latency_ms": 73249
+      },
+      {
+        "criterion_id": "T6_2",
+        "part_label": "b",
+        "criterion_content": "Viết đúng hàm NhapSV để nhập thông tin của một sinh viên từ bàn phím",
+        "score": 0,
+        "max_score": 2,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": false,
+        "grading_method": "blank_skip",
+        "stage": "heuristic",
+        "llm_reasoning": "Student left this part blank.",
+        "cot_reasoning": "",
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "blank",
+          "found": false,
+          "is_blank": true
+        },
+        "detected_errors": [
+          {
+            "error_type": "blank_answer",
+            "message": "Sinh viên không làm phần này."
+          }
+        ],
+        "latency_ms": 0
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [
+      {
+        "criterion_id": "T6_2",
+        "part_label": "b",
+        "error_type": "blank_answer",
+        "message": "Sinh viên không làm phần này."
+      }
+    ],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 2,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 1
+    }
+  }
+]

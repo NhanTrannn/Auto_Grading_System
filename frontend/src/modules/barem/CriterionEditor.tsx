@@ -75,10 +75,32 @@ function asLogicalValue(value: Criterion["expected_value"]): LogicalExpectedValu
   return {};
 }
 
-function firstRule(rule: Criterion["partial_credit_rule"]): PartialCreditRule | null {
-  if (!rule) return null;
-  return Array.isArray(rule) ? (rule[0] ?? null) : rule;
+/**
+ * `partial_credit_rule` is a single rule OR a list of tiers, and the editor has
+ * to hold both without changing the file more than the author asked.
+ *
+ * Reading always yields a list. Writing collapses a one-element list back to a
+ * bare object, because that is how every criterion in `sample_parem.json` is
+ * written — emitting a list there would rewrite eight criteria the author never
+ * touched. This used to read `rule[0]` and write a bare object unconditionally,
+ * so opening a criterion with tiered rules and editing anything silently threw
+ * the other tiers away.
+ */
+function rulesOf(rule: Criterion["partial_credit_rule"]): PartialCreditRule[] {
+  if (!rule) return [];
+  return Array.isArray(rule) ? rule : [rule];
 }
+
+const CONDITION_HINT: Record<string, string> = {
+  count_correct_tokens: "Biến dùng được: correct_token_count. VD: correct_token_count in [2, 3]",
+  count_wrong_tokens: "Biến dùng được: wrong_token_count. VD: wrong_token_count in [1, 2]",
+  custom_condition: "Dùng được cả correct_token_count và wrong_token_count.",
+  date_partial_match:
+    "Không đọc condition — luật cứng trong code: đúng cả tháng và năm thì được điểm. Ô này chỉ để ghi chú.",
+  position_tolerance:
+    "Không đọc condition — luật cứng trong code: chỉ sai ở 2 vị trí đầu hoặc 2 vị trí cuối thì được điểm.",
+  default: "Biến dùng được tuỳ type.",
+};
 
 export default function CriterionEditor({
   criterion,
@@ -99,6 +121,10 @@ export default function CriterionEditor({
 
   const rows = [...new Set(availableCells.map((cell) => cell.split("C")[0]))].sort();
   const cols = [...new Set(availableCells.map((cell) => `C${cell.split("C")[1]}`))].sort();
+
+  const rules = rulesOf(criterion.partial_credit_rule);
+  const writeRules = (next: PartialCreditRule[]) =>
+    patch({ partial_credit_rule: next.length === 0 ? undefined : next.length === 1 ? next[0] : next });
 
   return (
     <div className={styles.criterion} data-depth={depth}>
@@ -128,7 +154,7 @@ export default function CriterionEditor({
       <div className={styles.body}>
         <Row>
           {!isWrapper && (
-            <Field label="question_type" required hint="Quyết định trực tiếp hàm chấm nào chạy.">
+            <Field label="Kiểu chấm" name="question_type" required hint="Quyết định trực tiếp hàm chấm nào chạy.">
               <Select
                 value={(criterion.question_type as string) ?? ""}
                 onChange={(value) => patch({ question_type: value })}
@@ -139,7 +165,7 @@ export default function CriterionEditor({
               />
             </Field>
           )}
-          <Field label="part_label" hint="Phần của câu mà tiêu chí này chấm.">
+          <Field label="Thuộc phần nào của câu" name="part_label" hint="Phần của câu mà tiêu chí này chấm.">
             <Select
               value={criterion.part_label ?? ""}
               onChange={(value) => patch({ part_label: value })}
@@ -151,14 +177,14 @@ export default function CriterionEditor({
           </Field>
           {inAllOrNothingGroup ? (
             <Field
-              label="weight"
+              label="Tỷ trọng trong nhóm" name="weight"
               hint="Nhóm all_or_nothing: điểm thật nằm ở tiêu chí cha, weight chỉ là tỷ trọng nội bộ."
             >
               <NumberInput value={criterion.weight ?? null} step={0.05} onChange={(weight) => patch({ weight: weight ?? undefined })} />
             </Field>
           ) : derivedScore !== undefined ? (
             <Field
-              label="weight"
+              label="Tỷ trọng trong nhóm" name="weight"
               hint={`Tiêu chí này chia theo tỷ trọng từ điểm của tiêu chí cha ⇒ đang là ${derivedScore.toFixed(2)} điểm. Muốn ghi điểm tuyệt đối thì xoá weight rồi nhập score.`}
             >
               <NumberInput
@@ -168,33 +194,34 @@ export default function CriterionEditor({
               />
             </Field>
           ) : (
-            <Field label="score" required hint="Điểm tối đa của tiêu chí này.">
+            <Field label="Điểm tối đa" name="score" required hint="Điểm tối đa của tiêu chí này.">
               <NumberInput value={criterion.score ?? null} onChange={(score) => patch({ score })} nullable />
             </Field>
           )}
         </Row>
 
         <Field
-          label="content"
+          label="Mô tả tiêu chí" name="content"
           required
           hint="Nguồn chính LLM dùng để hiểu tiêu chí. Viết càng cụ thể càng tốt — nêu rõ cả ví dụ SAI nếu muốn chấm chặt, vì mặc định LLM được dặn 'chấp nhận cách làm tương đương'."
         >
-          <TextArea value={criterion.content ?? ""} onChange={(content) => patch({ content })} rows={3} />
+          <TextArea value={criterion.content ?? ""} onChange={(content) => patch({ content })} rows={3} math />
         </Field>
 
         <Field
-          label="grader_note"
+          label="Ghi chú cho người chấm" name="grader_note"
           hint="Ngoại lệ / cách xử lý case đặc biệt. Ghi ở tiêu chí cha sẽ được GỘP (không ghi đè) vào mọi tiêu chí con."
         >
           <TextArea
             value={criterion.grader_note ?? ""}
             onChange={(grader_note) => patch({ grader_note: grader_note || undefined })}
             rows={2}
+            math
           />
         </Field>
 
         {!isWrapper && (
-          <Field label="slot_ids" hint="Chọn đúng slot giúp lấy bài làm chính xác hơn là lọc theo part_label.">
+          <Field label="Chấm dựa trên ô nào" name="slot_ids" hint="Chọn đúng slot giúp lấy bài làm chính xác hơn là lọc theo part_label.">
             <div className={styles.slotPicker}>
               {availableSlots.length === 0 && <span className={styles.emptyHint}>Câu này chưa có answer_slot nào.</span>}
               {availableSlots.map((slot) => {
@@ -226,7 +253,7 @@ export default function CriterionEditor({
             <Checkbox
               checked={Boolean(criterion.all_or_nothing)}
               onChange={(all_or_nothing) => patch(toggleAllOrNothing(criterion, all_or_nothing))}
-              label="all_or_nothing"
+              label="Đúng hết mới được điểm" name="all_or_nothing"
               hint="Chỉ cho điểm khi TẤT CẢ tiêu chí con đúng; điểm cộng 1 lần cho cả nhóm bằng 'score' của tiêu chí cha. Tắt đi thì mỗi tiêu chí con phải tự có điểm — chỗ nào chưa có sẽ được gán weight để chia đều từ điểm của tiêu chí cha."
             />
             {!criterion.all_or_nothing && criterion.grader_note && (
@@ -242,7 +269,7 @@ export default function CriterionEditor({
         {!isWrapper && type === "matching" && (
           <>
             <Field
-              label="expected_outputs — các cách viết được chấp nhận"
+              label="Các cách viết được chấp nhận" name="expected_outputs"
               required
               hint={
                 <>
@@ -265,7 +292,7 @@ export default function CriterionEditor({
             </Field>
 
             <Field
-              label="expected_output_tokens — mảnh nhỏ để chấm điểm bán phần"
+              label="Mảnh nhỏ để chấm điểm bán phần" name="expected_output_tokens"
               hint={
                 <>
                   Dùng khi bài không khớp tuyệt đối nhưng vẫn đáng được một phần điểm.{" "}
@@ -296,64 +323,70 @@ export default function CriterionEditor({
             />
 
             <fieldset className={styles.subsection}>
-              <legend>partial_credit_rule</legend>
-              {(() => {
-                const rule = firstRule(criterion.partial_credit_rule);
-                if (!rule) {
-                  return (
-                    <Button
-                      size="sm"
-                      variant="secondary"
-                      onClick={() =>
-                        patch({
-                          partial_credit_rule: {
-                            type: "count_correct_tokens",
-                            partial_score: 0.25,
-                            condition: "correct_token_count in [2, 3]",
-                          },
-                        })
-                      }
-                    >
-                      Thêm quy tắc điểm bán phần
-                    </Button>
-                  );
-                }
+              <legend>Các mức điểm bán phần <code className={styles.legendName}>partial_credit_rule</code></legend>
+              <p className={styles.sectionNote}>
+                Khai được <strong>nhiều mức</strong>. Khi chấm, hệ thống thử <em>tất cả</em> rồi lấy mức có{" "}
+                <strong>partial_score cao nhất</strong> trong số các mức khớp — nên thứ tự khai không quan trọng.
+                Chỉ cần có một mức bất kỳ ở đây là điểm theo tỉ lệ token bị <strong>thay thế hoàn toàn</strong>:
+                không mức nào khớp thì về 0, kể cả khi đúng gần hết token.
+              </p>
+              {rules.length === 0 && <p className={styles.sectionNote}>Chưa có mức nào — sai khớp tuyệt đối là mất trọn điểm.</p>}
+
+              {rules.map((rule, index) => {
                 const update = (updates: Partial<PartialCreditRule>) =>
-                  patch({ partial_credit_rule: { ...rule, ...updates } });
+                  writeRules(rules.map((r, i) => (i === index ? { ...r, ...updates } : r)));
                 return (
-                  <>
+                  <div key={index} className={styles.ruleCard}>
+                    <div className={styles.ruleHead}>
+                      <span className={styles.ruleIndex}>Mức {index + 1}</span>
+                      <button
+                        type="button"
+                        className={styles.ruleRemove}
+                        onClick={() => writeRules(rules.filter((_, i) => i !== index))}
+                      >
+                        Xoá mức
+                      </button>
+                    </div>
                     <Row>
-                      <Field label="type">
+                      <Field label="Cách xét" name="type">
                         <Select
                           value={rule.type}
                           onChange={(value) => update({ type: value })}
                           options={[
                             { value: "count_correct_tokens", label: "count_correct_tokens" },
                             { value: "count_wrong_tokens", label: "count_wrong_tokens" },
+                            { value: "custom_condition", label: "custom_condition" },
                             { value: "date_partial_match", label: "date_partial_match" },
                             { value: "position_tolerance", label: "position_tolerance" },
                           ]}
                         />
                       </Field>
-                      <Field label="partial_score">
+                      <Field label="Điểm được hưởng" name="partial_score">
                         <NumberInput
                           value={rule.partial_score}
                           onChange={(partial_score) => update({ partial_score: partial_score ?? 0 })}
                         />
                       </Field>
                     </Row>
-                    <Field
-                      label="condition"
-                      hint="Biến dùng được tuỳ type: correct_token_count, wrong_token_count, month, year."
-                    >
+                    <Field label="Điều kiện" name="condition" hint={CONDITION_HINT[rule.type] ?? CONDITION_HINT.default}>
                       <TextInput value={rule.condition} onChange={(condition) => update({ condition })} mono />
                     </Field>
-                    <Button size="sm" variant="ghost" onClick={() => patch({ partial_credit_rule: undefined })}>
-                      Bỏ quy tắc
-                    </Button>
-                  </>
+                  </div>
                 );
-              })()}
+              })}
+
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() =>
+                  writeRules([
+                    ...rules,
+                    { type: "count_correct_tokens", partial_score: 0.25, condition: "correct_token_count in [2, 3]" },
+                  ])
+                }
+              >
+                Thêm mức điểm bán phần
+              </Button>
             </fieldset>
 
             <fieldset className={styles.subsection}>
@@ -394,7 +427,7 @@ export default function CriterionEditor({
         {!isWrapper && type === "logical" && (
           <Row>
             <Field
-              label="keywords"
+              label="Từ khoá bắt buộc có" name="keywords"
               hint="Mỗi dòng một từ khoá. CHỈ liệt kê thứ sinh viên THỰC SỰ phải tự gõ — tên hàm đề đã in sẵn sẽ luôn báo 'missing' và đẩy tín hiệu sai vào prompt LLM."
             >
               <ListInput
@@ -406,7 +439,11 @@ export default function CriterionEditor({
                 rows={4}
               />
             </Field>
-            <Field label="sample_solution" hint="Code mẫu tham khảo — chỉ hiện cho LLM đối chiếu, không bị quét từ khoá.">
+            <Field
+              label="Đáp án mẫu"
+              name="sample_solution"
+              hint="Đưa nguyên văn cho LLM dưới mục “ĐÁP ÁN / LOGIC KỲ VỌNG” để đối chiếu — kèm sẵn câu dặn bài học sinh KHÔNG cần giống hệt, chỉ cần đúng logic. Không bị quét từ khoá, nên viết được cả lời giải thích lẫn code. Tab để thụt lề, Esc để rời ô."
+            >
               <TextArea
                 value={asLogicalValue(criterion.expected_value).sample_solution ?? ""}
                 onChange={(sample_solution) =>
@@ -414,6 +451,8 @@ export default function CriterionEditor({
                 }
                 rows={6}
                 mono
+                code
+                math
               />
             </Field>
           </Row>
@@ -421,14 +460,14 @@ export default function CriterionEditor({
 
         {!isWrapper && type === "table" && (
           <Row>
-            <Field label="row_id" required>
+            <Field label="Hàng" name="row_id" required>
               <Select
                 value={criterion.row_id ?? ""}
                 onChange={(row_id) => patch({ row_id })}
                 options={[{ value: "", label: "—" }, ...rows.map((r) => ({ value: r, label: r }))]}
               />
             </Field>
-            <Field label="col_id" required>
+            <Field label="Cột" name="col_id" required>
               <Select
                 value={criterion.col_id ?? ""}
                 onChange={(col_id) => patch({ col_id })}
@@ -436,7 +475,7 @@ export default function CriterionEditor({
               />
             </Field>
             <Field
-              label="expected_value.sample_solution"
+              label="Ví dụ gợi ý cho ô này" name="expected_value.sample_solution"
               hint="CHỈ là ví dụ gợi ý cho LLM — không dùng so khớp cứng, vì đề dạng 'cho 3 ví dụ' chấp nhận mọi cặp hợp lệ."
             >
               <TextInput

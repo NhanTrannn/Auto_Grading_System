@@ -1,0 +1,78 @@
+{
+  "HS_2": {
+    "ma_de": "1",
+    "Cau_01": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/testing/fake/HS_2.jpg",
+      "content": {
+        "lines": [
+          "2"
+        ]
+      }
+    },
+    "Cau_02": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/testing/fake/HS_2.jpg",
+      "content": {
+        "lines": [
+          "Break"
+        ]
+      }
+    },
+    "Cau_03": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/testing/fake/HS_2.jpg",
+      "content": {
+        "lines": [
+          "0x6ffdec 12 0 27"
+        ]
+      }
+    },
+    "Cau_04": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/testing/fake/HS_2.jpg",
+      "content": {
+        "lines": [
+          "int& x"
+        ]
+      }
+    },
+    "Cau_05": {
+      "type": "long_text",
+      "status": "completed",
+      "image_path": "/testing/fake/HS_2.jpg",
+      "content": {
+        "lines": [
+          "Chuong trinh bi loi. Trong if dung dau = la phep gan,",
+          "phai dung == de so sanh. Sua thanh n % 2 == 0."
+        ]
+      }
+    },
+    "Cau_06a": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/testing/fake/HS_2.jpg",
+      "content": {
+        "lines": [
+          "struct Sinhvien {",
+          "    string MaSV;",
+          "    string HoTen;",
+          "    int NamSinh;",
+          "};"
+        ]
+      }
+    },
+    "Cau_06b": {
+      "type": "code",
+      "status": "completed",
+      "image_path": "/testing/fake/HS_2.jpg",
+      "content": {
+        "lines": []
+      }
+    }
+  }
+}

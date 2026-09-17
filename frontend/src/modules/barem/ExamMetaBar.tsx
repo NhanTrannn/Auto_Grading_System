@@ -29,7 +29,7 @@ export default function ExamMetaBar({
   return (
     <div className={styles.bar}>
       <label className={styles.field} style={{ flex: "0 0 92px" }}>
-        <span className={styles.label}>ma_de</span>
+        <span className={styles.label}>Mã đề <code className={styles.fieldName}>ma_de</code></span>
         <input
           className={`${styles.input} ${styles.mono}`}
           value={maDe}
@@ -38,7 +38,7 @@ export default function ExamMetaBar({
       </label>
 
       <label className={`${styles.field} ${styles.grow}`}>
-        <span className={styles.label}>subject</span>
+        <span className={styles.label}>Môn học <code className={styles.fieldName}>subject</code></span>
         <input
           className={styles.input}
           value={subject}
@@ -48,7 +48,7 @@ export default function ExamMetaBar({
       </label>
 
       <label className={styles.field} style={{ flex: "0 0 108px" }}>
-        <span className={styles.label}>total_score</span>
+        <span className={styles.label}>Tổng điểm đề <code className={styles.fieldName}>total_score</code></span>
         <input
           className={`${styles.input} ${styles.mono}`}
           type="number"

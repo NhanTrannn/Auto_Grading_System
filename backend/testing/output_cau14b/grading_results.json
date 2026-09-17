@@ -1,0 +1,1957 @@
+[
+  {
+    "sample_id": "cau_14_001__HS_2",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.25,
+    "max_score": 0.5,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 154670,
+    "token_usage": {
+      "prompt_tokens": 11024,
+      "completion_tokens": 6442,
+      "total_tokens": 17466
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0.25,
+        "max_score": 0.5,
+        "feedback": "Thiếu truyền tham chiếu (sử dụng tham trị); thiếu dấu ; ở cuối dòng cin>>a.DTB.",
+        "suggestion": "Sửa lại tham số hàm thành SinhVien &a hoặc SinhVien* a; thêm dấu ; sau cin>>a.DTB; sử dụng getline hoặc fgets cho tất cả các trường chuỗi để đảm bảo an toàn."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.5,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh sử dụng truyền tham trị (SinhVien a) nên không thể thay đổi dữ liệu bên ngoài hàm → sai tiêu chí 1. Tuy nhiên, việc nhập Họ tên và Nơi sinh bằng fgets là đúng → đạt tiêu chí 2. Lỗi cú pháp nhỏ (thiếu ;) không ảnh hưởng đến đánh giá theo tiêu chí đã cho.",
+        "cot_reasoning": "---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm gồm 2 phần độc lập, mỗi phần 0.25 điểm:\n\n- **(1) Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không**  \n→ Yêu cầu hàm `NhapSV` phải truyền tham số bằng **tham chiếu (reference)** hoặc **tham biến (pass by address)** để thay đổi được giá trị bên ngoài hàm. Nếu dùng **tham trị (value)** thì **không có tác dụng**, vì dữ liệu sẽ bị sao chép và thay đổi trong hàm không ảnh hưởng đến đối tượng gốc.\n\n- **(2) Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không**  \n→ Cụ thể là **Họ tên** và **Nơi sinh** là chuỗi có thể chứa khoảng trắng → **phải dùng `getline()` hoặc `fgets()`** để đọc toàn bộ dòng. Nếu dùng `cin >>`, chỉ đọc đến ký tự trắng đầu tiên → **sai**.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu (tham khảo):\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ Logic kỳ vọng:\n- Truyền tham chiếu (`&x`)\n- Dùng `getline(cin, ...)` cho các trường chuỗi (MaSV, HoTen, NoiSinh)\n- Dùng `cin>>` cho các trường số (NamSinh, DTB)\n\n→ Lưu ý: **Không yêu cầu giống hệt đáp án mẫu**, nhưng phải đúng về logic và kết quả.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(SinhVien a)\ncin>>a.MaSV;\ncin.ignore();\nfgets(a.HoTen, 50, stdin);\ncin>>a.NamSinh; cin.ignore();\nfgets(a.NoiSinh, 50, stdin);\ncin>>a.DTB\n```\n\n#### **Phân tích từng phần:**\n\n- **Tham số hàm:** `SinhVien a` → Đây là **truyền tham trị (by value)**.\n  - ❌ **Sai nghiêm trọng**: Không thể thay đổi giá trị của đối tượng bên ngoài hàm → vi phạm tiêu chí 1.\n  - Theo ghi chú giáo viên: \"**Truyền tham trị (Sinhvien x) thì 0đ vì sửa không có tác dụng ngoài hàm.**\" → **Phần 1: 0 điểm**.\n\n- **Nhập MaSV:** `cin>>a.MaSV;`\n  - ✅ Có thể chấp nhận nếu MaSV là chuỗi không chứa khoảng trắng (ví dụ mã sinh viên như \"SV001\").\n  - Nhưng **không dùng `getline` hay `fgets`** → **không đảm bảo an toàn**, tuy nhiên đề bài không nói rõ MaSV có khoảng trắng hay không.\n  - Tuy nhiên, **đề bài yêu cầu nhập thông tin sinh viên**, và **đáp án kỳ vọng dùng `getline` cho cả MaSV** → nên **nên dùng `getline`** để phù hợp với chuẩn.\n  - Nhưng **chưa chắc sai**, vì `cin>>` vẫn có thể đọc đúng nếu không có khoảng trắng.\n\n- **Nhập Họ tên:** `cin.ignore(); fgets(a.HoTen, 50, stdin);`\n  - ✅ `fgets` là hàm đúng để đọc chuỗi có khoảng trắng (tương đương `getline` trong C++).\n  - ✅ Có dùng `cin.ignore()` trước đó → nhằm loại bỏ ký tự newline còn lại từ `cin>>a.MaSV` → **làm đúng**.\n  - → **Phần này đúng**.\n\n- **Nhập NamSinh:** `cin>>a.NamSinh; cin.ignore();`\n  - ✅ `cin>>` dùng cho số nguyên → hợp lý.\n  - ✅ `cin.ignore()` sau đó → tránh lỗi khi đọc tiếp chuỗi → **làm đúng**.\n\n- **Nhập Nơi sinh:** `fgets(a.NoiSinh, 50, stdin);`\n  - ✅ Dùng `fgets` → đúng cách nhập chuỗi có khoảng trắng.\n  - → **Phần này đúng**.\n\n- **Nhập DTB:** `cin>>a.DTB`\n  - ✅ Dùng `cin>>` cho số thực → hợp lý.\n  - ❗ **Thiếu dấu chấm phẩy** ở cuối dòng → lỗi cú pháp → **không biên dịch được**.\n  - → **Lỗi cấu trúc**, cần trừ điểm.\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- **Về kiểu truyền tham số**: Học sinh dùng `SinhVien a` → **tham trị** → **không tương đương** với tham chiếu → **vi phạm tiêu chí 1** → **0 điểm cho phần 1**.\n\n- **Về nhập chuỗi**: \n  - Họ tên và Nơi sinh dùng `fgets` → **đúng**.\n  - MaSV dùng `cin>>` → **có thể chấp nhận nếu không có khoảng trắng**, nhưng **không đạt chuẩn kỳ vọng** (dùng `getline`), tuy nhiên **không bị trừ điểm nếu không vi phạm nghiêm trọng**.\n  - Tuy nhiên, **tiêu chí 2 chỉ đánh giá việc nhập chuỗi có khoảng trắng** → tức là **Họ tên và Nơi sinh** → học sinh đã xử lý đúng → **phần 2: 0.25 điểm**.\n\n- **Lỗi cú pháp**: Thiếu dấu `;` ở cuối `cin>>a.DTB` → **lỗi biên dịch** → **phải trừ điểm**.\n  - Nhưng theo nguyên tắc: “**KHÔNG áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC... những trường hợp này PHẢI bị trừ điểm tương ứng mức độ thiếu sót**”.\n  - → Vì lỗi nhỏ (thiếu 1 dấu `;`) và không ảnh hưởng đến logic lớn, **có thể trừ 0.1 điểm** (nếu có quy định chi tiết), nhưng **trong tiêu chí này không có điểm riêng cho lỗi cú pháp**, nên **xem xét tổng thể**.\n\n---\n\n### **5. SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Bài làm học sinh | Kết luận |\n|----------|------------------|----------|\n| **1. Truyền tham số đúng (tham chiếu)** | Dùng `SinhVien a` (tham trị) | ❌ Sai → **0/0.25** |\n| **2. Nhập chuỗi đúng (Họ tên, Nơi sinh)** | Dùng `fgets` + `cin.ignore()` | ✅ Đúng → **0.25/0.25** |\n| **Lỗi cú pháp** | Thiếu `;` ở cuối `cin>>a.DTB` | ❌ Có lỗi → nhưng không ảnh hưởng đến logic chính, **trừ nhẹ** |\n\n→ Tổng điểm sơ bộ: **0.25 - 0.1 = 0.15?**  \n→ Nhưng theo **ghi chú giáo viên**: hai tiêu chí **độc lập**, **đúng phần nào tính điểm phần đó**.\n\n→ **Không có quy định trừ điểm cho lỗi cú pháp trong tiêu chí này** → nên **chỉ đánh giá theo 2 tiêu chí đã nêu**.\n\n→ **Tiêu chí 1: 0 điểm** (do tham trị).  \n→ **Tiêu chí 2: 0.25 điểm** (do nhập Họ tên và Nơi sinh đúng).\n\n→ **Tổng điểm: 0.25**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ**\n\n✅ **Điểm dự kiến: 0.25/0.5**\n\n🔹 **Lý do:**\n- Học sinh **sai hoàn toàn ở phần truyền tham số** (dùng tham trị → không thay đổi được dữ liệu ngoài hàm) → **bị mất 0.25 điểm**.\n- Học sinh **đúng ở việc nhập Họ tên và Nơi sinh bằng `fgets`** (cách đúng để đọc chuỗi có khoảng trắng) → **được 0.25 điểm**.\n- Mặc dù có **lỗi cú pháp nhỏ (thiếu `;`)**, nhưng vì **không nằm trong tiêu chí đánh giá cụ thể**, và **không ảnh hưởng đến logic chính**, nên **không trừ thêm điểm** — chỉ đánh giá theo 2 tiêu chí đã cho.\n\n---\n\n✅ **Điểm cuối cùng: 0.25**",
+        "feedback": "Thiếu truyền tham chiếu (sử dụng tham trị); thiếu dấu ; ở cuối dòng cin>>a.DTB.",
+        "suggestion": "Sửa lại tham số hàm thành SinhVien &a hoặc SinhVien* a; thêm dấu ; sau cin>>a.DTB; sử dụng getline hoặc fgets cho tất cả các trường chuỗi để đảm bảo an toàn.",
+        "agreed_with_heuristic": false,
+        "confidence": 0.95,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:1/2 expected keywords found: NhapSV.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 11024,
+          "completion_tokens": 6442,
+          "total_tokens": 17466
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(SinhVien a)\ncin>>a.MaSV;\ncin.ignore();\nfgets(a.HoTen, 50, stdin);\ncin>>a.NamSinh; cin.ignore();\nfgets(a.NoiSinh, 50, stdin);\ncin>>a.DTB",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          }
+        ],
+        "missing": [
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 154670
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_3",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.25,
+    "max_score": 0.5,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 133516,
+    "token_usage": {
+      "prompt_tokens": 10173,
+      "completion_tokens": 5629,
+      "total_tokens": 15802
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0.25,
+        "max_score": 0.5,
+        "feedback": "Sai ở phần nhập dữ liệu: sử dụng toán tử `<<` thay vì `>>`, truy cập sai thuộc tính (dùng `SinhVien.` thay vì `ds.`), và không dùng `getline` cho các trường chuỗi như Họ tên, Nơi sinh.",
+        "suggestion": "Sửa lại cú pháp: dùng `cin >>` thay vì `cin <<`, truy cập thành viên qua đối tượng `ds.MaSV`, `ds.HoTen`, v.v., và dùng `getline(cin, ds.HoTen)` cho các chuỗi có thể chứa khoảng trắng."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.5,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh viết đúng kiểu truyền tham số (tham chiếu) nhưng có nhiều lỗi cú pháp nghiêm trọng: dùng `cin <<` thay vì `cin >>`, truy cập sai thành viên (`SinhVien.MaSV` thay vì `ds.MaSV`), và không dùng `getline` cho chuỗi có khoảng trắng.",
+        "cot_reasoning": "---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm gồm 2 phần độc lập, mỗi phần 0.25 điểm:\n\n- **(1) Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không**  \n→ Yêu cầu hàm `NhapSV` phải nhận tham số là **tham chiếu (reference)** để thay đổi dữ liệu bên ngoài hàm. Nếu dùng tham trị (`SinhVien x`), thì việc sửa đổi trong hàm sẽ không ảnh hưởng đến đối tượng gốc → **bị trừ điểm toàn bộ phần này (0đ)**.\n\n- **(2) Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không**  \n→ Cụ thể, yêu cầu **nhập chuỗi có khoảng trắng** (như Họ tên, Nơi sinh) **phải dùng `getline(cin, ...)`**, chứ không được dùng `cin >>` vì `cin >>` chỉ lấy đến ký tự trắng đầu tiên, bỏ qua phần còn lại → **nếu dùng `cin >>` cho chuỗi có khoảng trắng → 0đ phần này**.\n\n> ⚠️ Lưu ý: Hai tiêu chí **độc lập**, nên nếu học sinh sai một phần, chỉ bị mất điểm phần đó, phần kia vẫn được tính nếu đúng.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu (tham khảo):\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ Logic kỳ vọng:\n- Truyền tham chiếu (`&x`)\n- Dùng `getline` cho các trường chuỗi có thể chứa khoảng trắng: `MaSV`, `HoTen`, `NoiSinh`\n- Dùng `cin >>` cho các trường số: `NamSinh`, `DTB`\n\n→ **Không yêu cầu giống hệt**, nhưng phải đúng về logic và kết quả.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm:\n\n```cpp\nvoid NhapSV(SinhVien &ds)\ncin << SinhVien.MaSV;\ncin << SinhVien.HoTen;\ncin << SinhVien.NamSinh;\ncin << SinhVien.NoiSinh;\ncin << SinhVien.DTB;\nreturn;\n```\n\n#### ✅ **Phân tích từng lỗi:**\n\n- **Tham số truyền:** `SinhVien &ds` → ✅ **Đúng kiểu tham chiếu** → **phần 1 đạt 0.25đ**\n\n- **Lệnh nhập:**\n  - Dùng `cin << ...` → ❌ **Sai cú pháp!**  \n    `cin` là **luồng đầu vào**, nên phải dùng **`cin >>`**, chứ không phải `<<` (là toán tử ghi ra).  \n    → Đây là lỗi **cấu trúc cú pháp nghiêm trọng**, khiến chương trình **không biên dịch được**.\n\n  - Thêm nữa, dù giả sử là `cin >>`, thì:\n    - `SinhVien.MaSV` → ❌ **Sai cách truy cập**.  \n      Không phải `SinhVien.MaSV`, mà phải là `ds.MaSV` (vì tham số là `ds`).  \n      → Nếu dùng `SinhVien.MaSV`, đây là truy cập **tên lớp tĩnh**, không phải thuộc tính của đối tượng → **lỗi thời gian biên dịch hoặc chạy**.\n\n    - Tương tự với `SinhVien.HoTen`, `SinhVien.NoiSinh`, v.v.\n\n  - Và quan trọng nhất: **dù có dùng `cin >>`**, thì với các chuỗi như `HoTen`, `NoiSinh`, nếu không dùng `getline`, sẽ **bỏ sót phần sau dấu cách** → **vi phạm tiêu chí 2**.\n\n→ Như vậy, bài làm học sinh **có nhiều lỗi cấu trúc nghiêm trọng**:  \n- Sử dụng toán tử `<<` thay vì `>>` → lỗi cú pháp.  \n- Truy cập sai thành viên (sử dụng `SinhVien.MaSV` thay vì `ds.MaSV`) → lỗi cú pháp/semantic.  \n- Không dùng `getline` cho chuỗi → vi phạm yêu cầu kỹ thuật.\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- **Về kiểu truyền tham số**: Học sinh dùng `&ds` → ✅ đúng → **tương đương đáp án kỳ vọng**.\n\n- **Về cách nhập chuỗi**:  \n  - Học sinh dùng `cin <<` → ❌ hoàn toàn sai cú pháp, không thể thực hiện được.  \n  - Dù giả sử họ định dùng `cin >>`, thì cũng sai vì không xử lý khoảng trắng → **không tương đương**.\n\n→ **Không thể coi là “tương đương”** vì code **không biên dịch được**, và **không đúng về cú pháp lẫn logic**.\n\n---\n\n### **5. SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Bài làm học sinh | Đạt? | Điểm |\n|----------|------------------|------|------|\n| Truyền tham chiếu | `SinhVien &ds` → ✅ | Có | **0.25đ** |\n| Nhập chuỗi đúng kiểu | `cin << ...` + truy cập sai + không dùng `getline` → ❌ | Không | **0đ** |\n\n→ Tổng cộng: **0.25đ**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ**\n\n✅ **Điểm dự kiến: 0.25 / 0.5**\n\n📌 **Lý do:**\n\n- Học sinh **viết đúng kiểu truyền tham số (tham chiếu)** → đạt tiêu chí 1 → **+0.25đ**.\n- Nhưng **lỗi nghiêm trọng ở phần nhập dữ liệu**: \n  - Dùng `cin <<` thay vì `cin >>` → lỗi cú pháp, không biên dịch được.\n  - Truy cập sai thành viên (`SinhVien.MaSV` thay vì `ds.MaSV`) → lỗi cú pháp.\n  - Không dùng `getline` cho chuỗi có khoảng trắng → vi phạm yêu cầu kỹ thuật.\n→ **Không đạt tiêu chí 2 → 0đ phần đó**.\n\n→ Vì hai tiêu chí độc lập, nên chỉ tính điểm phần đúng.\n\n---\n\n✅ **KẾT LUẬN CUỐI CÙNG: 0.25 điểm**\n\n---",
+        "feedback": "Sai ở phần nhập dữ liệu: sử dụng toán tử `<<` thay vì `>>`, truy cập sai thuộc tính (dùng `SinhVien.` thay vì `ds.`), và không dùng `getline` cho các trường chuỗi như Họ tên, Nơi sinh.",
+        "suggestion": "Sửa lại cú pháp: dùng `cin >>` thay vì `cin <<`, truy cập thành viên qua đối tượng `ds.MaSV`, `ds.HoTen`, v.v., và dùng `getline(cin, ds.HoTen)` cho các chuỗi có thể chứa khoảng trắng.",
+        "agreed_with_heuristic": false,
+        "confidence": 0.95,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:1/2 expected keywords found: NhapSV.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 10173,
+          "completion_tokens": 5629,
+          "total_tokens": 15802
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(SinhVien &ds)\ncin << SinhVien.MaSV;\ncin << SinhVien.HoTen;\ncin << SinhVien.NamSinh;\ncin << SinhVien.NoiSinh;\ncin << SinhVien.DTB;\nreturn;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          }
+        ],
+        "missing": [
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 133516
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_7",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.5,
+    "max_score": 0.5,
+    "status": "correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 146304,
+    "token_usage": {
+      "prompt_tokens": 11860,
+      "completion_tokens": 7094,
+      "total_tokens": 18954
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0.5,
+        "max_score": 0.5,
+        "feedback": "Lỗi ở việc nhập DTB: sử dụng `DTB` thay vì `t.DTB`, dẫn đến sai cú pháp và logic. Cần sửa thành `cin >> t.DTB;` để hoàn chỉnh chức năng.",
+        "suggestion": "Sửa dòng `cin >> DTB;` thành `cin >> t.DTB;` để đảm bảo nhập đúng trường dữ liệu trong đối tượng sinh viên."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.5,
+        "max_score": 0.5,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh đúng về truyền tham chiếu và sử dụng getline cho các chuỗi có khoảng trắng (HoTen, NoiSinh), đạt đủ hai tiêu chí được đánh giá. Tuy nhiên, có lỗi nghiêm trọng ở việc nhập DTB (sử dụng DTB thay vì t.DTB), ảnh hưởng đến tính đầy đủ của hàm nhưng không bị trừ điểm theo tiêu chí đã cho.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: TIÊU CHÍ NÀY YÊU CẦU GÌ?**\n\n- **Tiêu chí 1 (0.25đ):** Kiểm tra sinh viên có viết đúng kiểu truyền tham số: **tham biến/tham chiếu** không.  \n  → Nếu dùng `SinhVien &t` hoặc `SinhVien* t` thì đúng; nếu dùng `SinhVien t` (tham trị) thì sai, vì thay đổi trong hàm sẽ không ảnh hưởng đến đối tượng ngoài hàm.\n\n- **Tiêu chí 2 (0.25đ):** Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không.  \n  → Đặc biệt là các trường **chuỗi có thể chứa khoảng trắng** như `HoTen`, `NoiSinh`.  \n  → **Không được dùng `cin >>`** cho các chuỗi này vì nó chỉ đọc đến ký tự trắng đầu tiên.  \n  → **Phải dùng `getline(cin, ...)`** hoặc `cin.getline(...)` để đọc toàn bộ dòng.\n\n→ Tổng cộng: **0.5 điểm**, chia đều cho 2 tiêu chí độc lập.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (LOGIC KỲ VỌNG)**\n\n- Hàm: `void NhapSV(SinhVien &x)` — sử dụng **tham chiếu** (đúng yêu cầu).\n- Các lệnh nhập:\n  - `getline(cin, x.MaSV);` — OK (dù MaSV có thể là chuỗi ngắn, nhưng vẫn nên dùng getline để tránh lỗi nếu có khoảng trắng)\n  - `getline(cin, x.HoTen);` — **Bắt buộc phải dùng getline** (vì Họ tên có khoảng trắng)\n  - `getline(cin, x.NoiSinh);` — **Bắt buộc phải dùng getline**\n  - `cin >> x.NamSinh;` — OK (số nguyên, không cần getline)\n  - `cin >> x.DTB;` — OK (số thực, không cần getline)\n\n→ **Chú ý**: Trong ghi chú giáo viên, nhấn mạnh rằng:\n> “Nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng (dùng cin>> thay vì getline) thì tính zero điểm phần đó.”\n\n→ Do đó, **phần nhập chuỗi (HoTen, NoiSinh) nếu dùng cin>> = 0 điểm cho tiêu chí 2**.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\n```cpp\nvoid NhapSV(SinhVien &t)\ncin >> t.MaSV;\ncin.getline(t.HoTen, 50);\ncin >> t.NamSinh; cin.ignore();\ncin.getline(t.NoiSinh, 50);\ncin >> DTB;\n```\n\n#### ✅ Phân tích từng phần:\n\n- **Tham số truyền:** `SinhVien &t` → **ĐÚNG** (tham chiếu). → **Đạt tiêu chí 1 (0.25đ)**.\n\n- **Nhập MaSV:** `cin >> t.MaSV;`  \n  → Nếu `MaSV` là chuỗi (string), thì `cin >>` chỉ đọc đến khoảng trắng đầu tiên.  \n  → Nhưng **trong nhiều bài tập, mã sinh viên thường không có khoảng trắng**, nên việc dùng `cin >>` có thể chấp nhận được (không nhất thiết phải dùng getline).  \n  → Tuy nhiên, **trong đáp án kỳ vọng, họ dùng `getline` cho cả MaSV**, nhưng không có ghi chú cấm dùng `cin >>` cho MaSV.  \n  → Vì vậy, **không bị trừ điểm ở đây** (nếu đề không yêu cầu bắt buộc phải dùng getline cho MaSV).\n\n- **Nhập HoTen:** `cin.getline(t.HoTen, 50);`  \n  → Dùng `cin.getline()` → **đúng cách** để đọc chuỗi có khoảng trắng.  \n  → **Đạt tiêu chí 2 (cho HoTen)**.\n\n- **Nhập NamSinh:** `cin >> t.NamSinh; cin.ignore();`  \n  → `cin >>` cho số nguyên → hợp lý.  \n  → `cin.ignore()` sau đó → rất tốt, vì loại bỏ ký tự `\\n` còn sót lại sau `cin >>`, tránh làm hỏng lệnh `getline` tiếp theo.  \n  → **Rất kỹ lưỡng, đúng chuẩn.**\n\n- **Nhập NoiSinh:** `cin.getline(t.NoiSinh, 50);`  \n  → Cũng dùng `cin.getline()` → **đúng cách** → **đạt tiêu chí 2 (cho NoiSinh)**.\n\n- **Nhập DTB:** `cin >> DTB;`  \n  → **LỖI NGHIÊM TRỌNG!**  \n  → Biến `DTB` **KHÔNG THUỘC đối tượng `t`**!  \n  → Đây là một **biến toàn cục hoặc chưa khai báo** → **sai về cú pháp và logic**.  \n  → Trong hàm `NhapSV(SinhVien &t)`, ta phải nhập vào `t.DTB`, chứ không phải `DTB`.\n\n→ **Lỗi này khiến phần nhập DTB trở thành sai hoàn toàn.**\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG: LIỆU CÓ KHÁC NHƯNG ĐÚNG?**\n\n- Truyền tham chiếu: ✓ Đúng.\n- Nhập HoTen và NoiSinh: ✓ Đúng (dùng getline).\n- Nhập NamSinh: ✓ Đúng và có xử lý `cin.ignore()`.\n- Nhập MaSV: ✓ Có thể chấp nhận (dù không dùng getline, nhưng không bị ghi chú phạt).\n- Nhập DTB: ✗ Sai nghiêm trọng (viết `DTB` thay vì `t.DTB`).\n\n→ **Về mặt logic, nếu sửa `DTB` thành `t.DTB`, thì bài làm hoàn chỉnh đúng.**\n\n→ Nhưng hiện tại, **lỗi cú pháp rõ ràng** → **không thể chấp nhận là \"tương đương\"** vì code **không thể biên dịch hoặc chạy đúng**.\n\n→ **Theo nguyên tắc: “KHÔNG áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC” → PHẢI bị trừ điểm.**\n\n---\n\n### **5. SO SÁNH MỨC ĐỘ KHỚP VỚI TIÊU CHÍ**\n\n| Tiêu chí | Học sinh có đạt? | Giải thích |\n|----------|------------------|------------|\n| **1. Truyền tham chiếu** | ✅ Đúng | `SinhVien &t` → đúng |\n| **2. Nhập chuỗi đúng kiểu** | ⚠️ **Phần lớn đúng, nhưng có lỗi nghiêm trọng** | HoTen và NoiSinh dùng `getline` → ✓<br>DTB dùng `cin >> DTB` → ✗ (biến sai, không thuộc t) |\n\n→ **Tiêu chí 2: Không đạt đầy đủ vì lỗi ở DTB.**\n\n→ Tuy nhiên, **theo ghi chú giáo viên**:  \n> “Nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng... thì tính zero điểm phần đó.”  \n→ **Ở đây, học sinh đã dùng `getline` cho HoTen và NoiSinh → nên được điểm cho phần đó.**\n\n→ Nhưng **lỗi ở DTB** là lỗi **cấu trúc và cú pháp**, không liên quan trực tiếp đến việc “nhập chuỗi có khoảng trắng”.  \n→ Vậy nên, **phần “nhập chuỗi đúng kiểu” chỉ đánh giá cho các trường chuỗi (HoTen, NoiSinh)**.\n\n→ Như vậy, **học sinh đã đúng ở HoTen và NoiSinh → đạt tiêu chí 2 (0.25đ)**.\n\n→ **Lỗi ở DTB không làm mất điểm tiêu chí 2**, vì DTB là **số thực**, không phải chuỗi.\n\n→ Tuy nhiên, **lỗi ở DTB là lỗi nghiêm trọng khác** → **có thể bị trừ điểm riêng nếu đề có yêu cầu đầy đủ**, nhưng trong **tiêu chí đã cho**, chỉ có 2 tiêu chí: truyền tham số và nhập chuỗi đúng kiểu.\n\n→ **Do đó, lỗi DTB không ảnh hưởng đến hai tiêu chí được đưa ra.**\n\n→ Nhưng… **liệu việc nhập sai DTB có ảnh hưởng đến khả năng hoàn thành yêu cầu?**\n\n→ **Yêu cầu đề bài: “hoàn thiện hàm NhapSV để nhập thông tin của một sinh viên từ bàn phím”** → tức là phải nhập **tất cả các trường**.\n\n→ Việc nhập sai DTB → **làm mất đi một phần chức năng quan trọng** → **có thể coi là thiếu sót trong chức năng**.\n\n→ **Tuy nhiên, theo quy định hệ thống: “chỉ trừ điểm nếu lỗi nằm trong tiêu chí cụ thể”**.\n\n→ Vì **tiêu chí không yêu cầu kiểm tra việc nhập DTB**, mà chỉ yêu cầu:\n1. Truyền tham chiếu\n2. Nhập chuỗi đúng kiểu (HoTen, NoiSinh)\n\n→ **Vậy, lỗi DTB không bị trừ điểm trong hai tiêu chí này.**\n\n→ **Nhưng nếu xét theo logic tổng thể, bài làm không hoàn chỉnh.**\n\n→ **Tuy nhiên, theo nguyên tắc chấm: “chỉ tuân theo tiêu chí đã cho”**.\n\n→ **Và trong ghi chú giáo viên: “hai tiêu chí độc lập, đúng phần nào tính điểm phần đó”**.\n\n→ Do đó, **lỗi DTB không ảnh hưởng đến hai tiêu chí đã nêu.**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: ĐIỂM DỰ KIẾN VÀ LÝ DO**\n\n✅ **Tiêu chí 1: Truyền tham chiếu → ĐÚNG → 0.25đ**\n\n✅ **Tiêu chí 2: Nhập chuỗi đúng kiểu (HoTen, NoiSinh) → ĐÚNG (dùng getline) → 0.25đ**\n\n⚠️ **Lỗi: `cin >> DTB;` thay vì `cin >> t.DTB;` → lỗi cú pháp và logic, nhưng KHÔNG nằm trong hai tiêu chí được đánh giá.**\n\n→ **Do đó, theo quy định, vẫn đạt đủ 2 tiêu chí → 0.5/0.5**\n\n→ **Tuy nhiên, nếu giáo viên muốn đánh giá toàn diện hơn, có thể trừ điểm do lỗi chức năng. Nhưng theo chỉ dẫn: “chỉ tuân theo tiêu chí đã cho” → không được tự thêm tiêu chí.**\n\n---\n\n## ✅ **ĐIỂM SỐ CUỐI CÙNG: 0.5 / 0.5**\n\n### 📌 **LÝ DO CHẤM:**\n- Truyền tham số đúng kiểu (tham chiếu) → đạt 0.25đ.\n- Nhập các trường chuỗi (HoTen, NoiSinh) bằng `cin.getline()` → đúng cách, đạt 0.25đ.\n- Lỗi ở `DTB` (không dùng `t.DTB`) là lỗi chức năng nghiêm trọng, nhưng **không nằm trong phạm vi hai tiêu chí được đánh giá**, nên **không bị trừ điểm** theo hướng dẫn.\n- Bài làm thể hiện hiểu biết tốt về truyền tham chiếu và cách xử lý chuỗi có khoảng trắng.\n\n---\n\n⚠️ **GHI CHÚ CHO GIÁO VIÊN (nếu cần bổ sung):**  \n> Học sinh có lỗi nghiêm trọng ở việc nhập `DTB` (không dùng `t.DTB`). Đề nghị nhắc nhở học sinh kiểm tra kỹ các trường dữ liệu khi viết hàm, dù lỗi này không ảnh hưởng đến hai tiêu chí đánh giá chính. Tuy nhiên, theo quy định chấm điểm đã cho, vẫn giữ nguyên 0.5 điểm.\n\n---",
+        "feedback": "Lỗi ở việc nhập DTB: sử dụng `DTB` thay vì `t.DTB`, dẫn đến sai cú pháp và logic. Cần sửa thành `cin >> t.DTB;` để hoàn chỉnh chức năng.",
+        "suggestion": "Sửa dòng `cin >> DTB;` thành `cin >> t.DTB;` để đảm bảo nhập đúng trường dữ liệu trong đối tượng sinh viên.",
+        "agreed_with_heuristic": false,
+        "confidence": 0.95,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: NhapSV, getline.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.5,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 11860,
+          "completion_tokens": 7094,
+          "total_tokens": 18954
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(SinhVien &t)\ncin >> t.MaSV;\ncin.getline(t.HoTen, 50);\ncin >> t.NamSinh; cin.ignore();\ncin.getline(t.NoiSinh, 50);\ncin >> DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 146304
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đạt đầy đủ tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_9",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.25,
+    "max_score": 0.5,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 100582,
+    "token_usage": {
+      "prompt_tokens": 10386,
+      "completion_tokens": 5556,
+      "total_tokens": 15942
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0.25,
+        "max_score": 0.5,
+        "feedback": "Thiếu tham số giới hạn trong cin.getline(a.NoiSinh); → lỗi cấu trúc, không thể biên dịch/chạy an toàn. Tiêu chí 2 bị mất điểm hoàn toàn.",
+        "suggestion": "Sửa thành: cin.getline(a.NoiSinh, 50); (hoặc kích thước phù hợp với độ dài mảng đã khai báo)."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.5,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Sinh viên đúng về kiểu truyền tham số (tham chiếu), nhưng sai ở việc thiếu tham số giới hạn trong cin.getline cho NoiSinh, dẫn đến lỗi cú pháp hoặc buffer overflow — không đạt tiêu chí nhập chuỗi đúng kiểu.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: TIÊU CHÍ NÀY YÊU CẦU GÌ?**\n\n- **Tiêu chí 1 (0.25đ):** Kiểm tra sinh viên có viết đúng kiểu truyền tham số: **tham biến/tham chiếu** không.  \n  → Nếu dùng `Sinhvien &a` hoặc `Sinhvien* a` (truyền tham chiếu) thì đúng. Nếu dùng `Sinhvien a` (truyền tham trị) thì sai — vì thay đổi trong hàm sẽ không ảnh hưởng đến đối tượng ngoài hàm.\n\n- **Tiêu chí 2 (0.25đ):** Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không.  \n  → Đặc biệt, **chuỗi có thể chứa khoảng trắng** (Họ tên, Nơi sinh) → phải dùng `cin.getline()` hoặc `getline(cin, ...)` để đọc toàn bộ dòng. Dùng `cin >>` sẽ chỉ đọc đến ký tự trắng đầu tiên → sai.\n\n→ **Hai tiêu chí độc lập**, mỗi phần đúng thì được điểm tương ứng, không cần cả hai đều đúng mới có điểm.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (THAM KHẢO)**\n\n- Hàm: `void NhapSV(Sinhvien &x)`\n- Nội dung:\n  - `getline(cin, x.MaSV);`\n  - `getline(cin, x.HoTen);` → **phải dùng getline**, không dùng `cin>>`\n  - `getline(cin, x.NoiSinh);` → **phải dùng getline**\n  - `cin >> x.NamSinh;` → số nguyên → OK\n  - `cin >> x.DTB;` → số thực → OK\n\n→ **Lưu ý**: Trong đáp án mẫu, **không dùng `cin.ignore()`** sau `cin >>`, nhưng có thể chấp nhận nếu học sinh dùng để tránh lỗi buffer (tuy nhiên, không bắt buộc). Điều quan trọng là **dùng getline cho chuỗi có khoảng trắng**.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm:\n\n```cpp\nvoid NhapSV(Sinhvien &a)\n{ \n    cin.getline(a.MaSV, 9);\n    cin.getline(a.HoTen, 49);\n    cin >> a.NamSinh;\n    cin.ignore();\n    cin.getline(a.NoiSinh);\n    cin >> a.DTB;\n}\n```\n\n#### **Phân tích từng phần:**\n\n- **Truyền tham số:** `Sinhvien &a` → **đúng** (truyền tham chiếu). ✅ → **Điểm tiêu chí 1: 0.25đ**\n\n- **Nhập MaSV:** `cin.getline(a.MaSV, 9);` → đúng cách nhập chuỗi (có giới hạn độ dài), phù hợp với kiểu mảng char. ✅\n\n- **Nhập HoTen:** `cin.getline(a.HoTen, 49);` → đúng, dùng getline → xử lý được khoảng trắng. ✅\n\n- **Nhập NamSinh:** `cin >> a.NamSinh;` → đúng, vì NamSinh là số nguyên. ✅\n\n- **cin.ignore();** → học sinh thêm dòng này sau `cin >> a.NamSinh;` → mục đích là loại bỏ ký tự `\\n` còn sót trong buffer để `cin.getline(a.NoiSinh);` không bị bỏ qua. → **hợp lý và đúng kỹ thuật**. ✅\n\n- **Nhập NoiSinh:** `cin.getline(a.NoiSinh);` → **thiếu kích thước giới hạn!**  \n  → `cin.getline(array, size)` yêu cầu 2 tham số: địa chỉ mảng và kích thước tối đa.  \n  → Nếu `NoiSinh` là mảng char, thì phải có giới hạn (VD: `cin.getline(a.NoiSinh, 50);`).  \n  → **Không có kích thước → lỗi biên dịch hoặc lỗi runtime (buffer overflow)**. ❌\n\n→ **Vấn đề nghiêm trọng: thiếu tham số thứ 2 trong cin.getline() → cấu trúc sai, không thể biên dịch hoặc chạy an toàn.**\n\n- **Nhập DTB:** `cin >> a.DTB;` → đúng, vì DTB là số thực. ✅\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- Về logic: Học sinh đã cố gắng đúng hướng: dùng `&a` (tham chiếu), dùng `getline` cho chuỗi, dùng `cin>>` cho số.\n- Nhưng **thiếu tham số giới hạn trong `cin.getline(a.NoiSinh);`** → đây là **sai về cú pháp và cấu trúc**, không phải chỉ \"khác cách viết\".\n\n→ **Không thể coi là tương đương với đáp án kỳ vọng** vì thiếu tham số khiến code **không thể biên dịch hoặc chạy an toàn**.\n\n→ **Nguyên tắc chấm: “KHÔNG áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC”** → **PHẢI trừ điểm**.\n\n---\n\n### **5. SO SÁNH MỨC ĐỘ KHỚP VỚI TIÊU CHÍ**\n\n- **Tiêu chí 1: Truyền tham số** → `Sinhvien &a` → ✅ → **0.25đ**\n\n- **Tiêu chí 2: Nhập chuỗi đúng kiểu**  \n  - MaSV: ✅ (getline + giới hạn)  \n  - HoTen: ✅ (getline + giới hạn)  \n  - NoiSinh: ❌ (getline nhưng **thiếu giới hạn**) → **sai cấu trúc** → không đạt yêu cầu nhập chuỗi đúng kiểu (vì không đảm bảo an toàn và đúng cú pháp)\n\n→ Vì **thiếu tham số giới hạn trong getline cho NoiSinh**, nên **bị mất điểm ở tiêu chí 2**.\n\n→ **Tuy nhiên, ghi chú giáo viên nói: “Nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng (dùng cin>> thay vì getline) thì tính zero điểm phần đó.”**\n\n→ Ở đây, học sinh **đã dùng getline** cho cả HoTen và NoiSinh → **chỉ sai ở việc thiếu giới hạn kích thước**, chứ không dùng `cin>>`.\n\n→ **Liệu có thể coi là “nhập đúng kiểu” nếu thiếu giới hạn?**\n\n→ **Không.** Vì:\n- `cin.getline(array)` mà không có kích thước là **sai cú pháp** trong C++.\n- Code sẽ **lỗi biên dịch** hoặc gây **buffer overflow** khi chạy.\n- Đây là **sai sót nghiêm trọng về cấu trúc**, không phải “chỉ khác cách viết”.\n\n→ **Do đó, tiêu chí 2 không đạt → 0 điểm.**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: ĐIỂM DỰ KIẾN VÀ LÝ DO**\n\n✅ **Tiêu chí 1: Truyền tham số đúng → 0.25đ**  \n❌ **Tiêu chí 2: Nhập chuỗi đúng kiểu → 0đ (do thiếu giới hạn kích thước trong getline cho NoiSinh → lỗi cấu trúc, không thể biên dịch/chạy an toàn)**\n\n→ **Tổng điểm: 0.25/0.5**\n\n---\n\n### ✅ **ĐIỂM SỐ CUỐI CÙNG: 0.25**\n\n**Lý do chi tiết:**\n\n- Sinh viên đã đúng về kiểu truyền tham số (`&a`) → đạt tiêu chí 1.\n- Tuy nhiên, trong việc nhập chuỗi `NoiSinh`, học sinh sử dụng `cin.getline(a.NoiSinh);` **thiếu tham số giới hạn kích thước**, dẫn đến **lỗi cú pháp hoặc lỗi thời gian chạy (buffer overflow)**. Đây là **sai sót cấu trúc**, không phải “khác cách viết”, nên **không được chấp nhận** theo nguyên tắc chấm điểm.\n- Vì vậy, tiêu chí 2 bị mất điểm hoàn toàn.\n- Tổng cộng: 0.25/0.5.\n\n--- \n\n📌 **GHI NHỚ CHO GIÁO VIÊN:** Cần nhấn mạnh với sinh viên rằng `cin.getline(array, size)` **bắt buộc phải có tham số size** để tránh lỗi. Việc dùng `getline` là đúng, nhưng thiếu tham số thì vẫn sai.",
+        "feedback": "Thiếu tham số giới hạn trong cin.getline(a.NoiSinh); → lỗi cấu trúc, không thể biên dịch/chạy an toàn. Tiêu chí 2 bị mất điểm hoàn toàn.",
+        "suggestion": "Sửa thành: cin.getline(a.NoiSinh, 50); (hoặc kích thước phù hợp với độ dài mảng đã khai báo).",
+        "agreed_with_heuristic": false,
+        "confidence": 0.95,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: NhapSV, getline.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 10386,
+          "completion_tokens": 5556,
+          "total_tokens": 15942
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(Sinhvien &a)\n{ cin.getline(a.MaSV, 9);\ncin.getline(a.HoTen, 49);\ncin >> a.NamSinh;\ncin.ignore();\ncin.getline(a.NoiSinh);\ncin >> a.DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 100582
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_10",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 0.5,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 92210,
+    "token_usage": {
+      "prompt_tokens": 10606,
+      "completion_tokens": 5951,
+      "total_tokens": 16557
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0,
+        "max_score": 0.5,
+        "feedback": "Thiếu khai báo hàm NhapSV; dùng cin >> cho chuỗi có khoảng trắng (HoTen, NoiSinh) → sai về kiểu dữ liệu và logic nhập.",
+        "suggestion": "Khai báo hàm với tham chiếu: void NhapSV(Sinhvien &x); Dùng getline(cin, x.HoTen) và getline(cin, x.NoiSinh) để đọc chuỗi có khoảng trắng."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Bài làm thiếu khai báo hàm NhapSV, không thể xác định kiểu truyền tham số; đồng thời sử dụng cin >> cho các chuỗi có thể chứa khoảng trắng (HoTen, NoiSinh) → vi phạm nghiêm trọng về kỹ thuật nhập dữ liệu.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC:**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: tiêu chí này yêu cầu gì?**\n\nTheo **TIÊU CHÍ CHẤM**, có 2 phần độc lập, mỗi phần 0.25 điểm:\n\n- **(1) Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).**  \n→ Yêu cầu hàm `NhapSV` phải nhận tham số bằng **tham chiếu (reference)** hoặc **tham biến (pass by address)** để thay đổi được giá trị bên trong hàm (vì cần nhập dữ liệu vào biến sinh viên).\n\n- **(2) Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).**  \n→ Đặc biệt chú ý đến các trường **chuỗi có thể chứa khoảng trắng** như `HoTen`, `NoiSinh`. Nếu dùng `cin >>`, sẽ chỉ đọc đến ký tự đầu tiên trước khoảng trắng → **sai**. Phải dùng `getline(cin, ...)` hoặc cách xử lý phù hợp.\n\n> Lưu ý: Theo **GHI CHÚ GIÁO VIÊN**:  \n> - Truyền tham trị (`Sinhvien x`) → **0 điểm toàn bộ** vì không thay đổi được ngoài hàm.  \n> - Nếu dùng `cin >>` cho `HoTen` và `NoiSinh` → **0 điểm phần nhập chuỗi**.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (nếu có): cần khớp điều gì?**\n\nĐáp án mẫu tham khảo:\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ Logic kỳ vọng:\n- Dùng **tham chiếu** (`&x`)\n- Dùng `getline()` cho các chuỗi có thể chứa khoảng trắng: `MaSV`, `HoTen`, `NoiSinh`\n- Dùng `cin >>` cho các kiểu số: `NamSinh`, `DTB`\n\n→ Không yêu cầu giống hệt, nhưng **phải đúng về logic và kết quả**.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh:\n```cpp\ncin >> a.MaSV;\ncin >> a.HoTen;\ncin >> a.NamSinh;\ncin >> a.NoiSinh;\ncin >> a.DTB;\n```\n\n→ **Chưa thấy định nghĩa hàm `NhapSV`**, chỉ có nội dung thân hàm (body).  \n→ Nhưng đề bài yêu cầu hoàn thiện hàm `NhapSV(...)`, nên việc thiếu khai báo hàm là **thiếu sót nghiêm trọng** — tuy nhiên, **tiêu chí chấm chỉ đánh giá 2 phần: truyền tham số và nhập chuỗi**.\n\n→ Giả sử học sinh đã khai báo hàm đúng (ví dụ `void NhapSV(Sinhvien &a)`) thì ta mới xét tiếp phần nhập.\n\n**Nhưng ở đây, học sinh chỉ cung cấp body hàm.**  \n→ Ta **không biết cách truyền tham số** → **không thể đánh giá tiêu chí 1**.\n\n**Về phần nhập chuỗi:**\n- Học sinh dùng `cin >>` cho tất cả các trường.\n- Trong đó, `HoTen` và `NoiSinh` là chuỗi có thể chứa khoảng trắng → **phải dùng `getline`**.\n- Việc dùng `cin >>` sẽ **lỗi khi người dùng nhập tên có khoảng trắng** → **sai về kiểu dữ liệu và logic**.\n\n→ **Phần nhập chuỗi: sai hoàn toàn → 0 điểm**.\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không?**\n\n- Bài làm học sinh **không dùng `getline`** cho chuỗi → **không tương đương** với đáp án kỳ vọng về mặt logic.\n- Dù hướng đi đúng (nhập thông tin), nhưng **cách thực hiện sai** → **kết quả không đảm bảo chính xác**.\n- Vì vậy, **không áp dụng nguyên tắc “chấp nhận nhiều cách làm đúng”** — đây là lỗi cơ bản về kỹ thuật nhập chuỗi.\n\n---\n\n### **5. SO SÁNH: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n- **Tiêu chí 1 (truyền tham số):**  \n→ Không thể đánh giá vì **không thấy khai báo hàm** → **không đủ thông tin**.  \n→ Nhưng theo ghi chú giáo viên: nếu truyền tham trị → 0 điểm.  \n→ Vì học sinh không cung cấp khai báo, ta **không thể khẳng định** họ dùng tham trị hay tham chiếu → **không thể cho điểm phần này**.\n\n→ Tuy nhiên, trong thực tế chấm thi, nếu học sinh **chỉ nộp body hàm**, giáo viên thường **giả định** rằng họ đã khai báo đúng (nếu không có thông tin ngược lại). Nhưng ở đây, **học sinh dùng `cin >>` cho chuỗi có khoảng trắng**, và **không có dấu hiệu nào cho thấy họ dùng tham chiếu** → **rất có khả năng họ dùng tham trị**.\n\n→ Nhưng **do không có khai báo hàm**, ta **không thể kết luận chắc chắn** → **phải trừng phạt sự thiếu sót**.\n\n→ **Tốt nhất: trừ điểm cho cả hai phần do thiếu sót nghiêm trọng.**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: điểm dự kiến và lý do**\n\n→ **Điểm: 0.0 / 0.5**\n\n**Lý do chi tiết:**\n\n- **Thiếu khai báo hàm `NhapSV`** → không thể xác định kiểu truyền tham số → **không thể cho điểm tiêu chí 1**.\n- **Dùng `cin >>` cho các trường chuỗi có khoảng trắng (`HoTen`, `NoiSinh`)** → **vi phạm rõ ràng tiêu chí 2** → **0 điểm phần nhập chuỗi**.\n- **Không có bất kỳ biện pháp nào để xử lý chuỗi có khoảng trắng** → **sai về kỹ thuật lập trình cơ bản**.\n- **Không thể chấp nhận là \"tương đương\"** vì kết quả không đảm bảo chính xác.\n\n→ Do đó, **bài làm sai cả hai tiêu chí** → **0 điểm**.\n\n---\n\n✅ **ĐIỂM TỐI ĐA: 0.5 → ĐIỂM CHO HỌC SINH: 0.0**\n\n---\n\n📌 **GHI CHÚ THÊM CHO GIÁO VIÊN (nếu cần):**  \nHọc sinh cần được nhắc nhở:  \n- Luôn khai báo đầy đủ hàm (kể cả tham số) khi làm bài.  \n- Sử dụng `getline()` cho các chuỗi có thể chứa khoảng trắng.  \n- Truyền tham chiếu (`&`) cho cấu trúc dữ liệu cần thay đổi.",
+        "feedback": "Thiếu khai báo hàm NhapSV; dùng cin >> cho chuỗi có khoảng trắng (HoTen, NoiSinh) → sai về kiểu dữ liệu và logic nhập.",
+        "suggestion": "Khai báo hàm với tham chiếu: void NhapSV(Sinhvien &x); Dùng getline(cin, x.HoTen) và getline(cin, x.NoiSinh) để đọc chuỗi có khoảng trắng.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:0/2 expected keywords found: .",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 10606,
+          "completion_tokens": 5951,
+          "total_tokens": 16557
+        },
+        "evidence": {
+          "student_answer": "cin >> a.MaSV;\ncin >> a.HoTen;\ncin >> a.NamSinh;\ncin >> a.NoiSinh;\ncin >> a.DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [],
+        "missing": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 92210
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_12",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 0.5,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 0,
+    "token_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "llm_feedbacks": [],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": false,
+        "grading_method": "blank_skip",
+        "stage": "heuristic",
+        "llm_reasoning": "Student left this part blank.",
+        "cot_reasoning": "",
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "blank",
+          "found": false,
+          "is_blank": true
+        },
+        "detected_errors": [
+          {
+            "error_type": "blank_answer",
+            "message": "Sinh viên không làm phần này."
+          }
+        ],
+        "latency_ms": 0
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "error_type": "blank_answer",
+        "message": "Sinh viên không làm phần này."
+      }
+    ],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 0,
+      "blank_skipped": 1
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_15",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.5,
+    "max_score": 0.5,
+    "status": "correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 94146,
+    "token_usage": {
+      "prompt_tokens": 10899,
+      "completion_tokens": 5873,
+      "total_tokens": 16772
+    },
+    "llm_feedbacks": [],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.5,
+        "max_score": 0.5,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh truyền tham số đúng (tham chiếu) và sử dụng getline cho tất cả các trường chuỗi, đảm bảo đọc được khoảng trắng. Mặc dù thiếu dấu ';' sau định nghĩa hàm, nhưng lỗi này không nằm trong tiêu chí chấm điểm được quy định, nên không trừ điểm.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: TIÊU CHÍ NÀY YÊU CẦU GÌ?**\n\n- **Tiêu chí 1 (0.25đ):** Kiểm tra sinh viên có viết đúng kiểu truyền tham số: **tham biến/tham chiếu** không.  \n  → Nếu dùng `SinhVien &a` hoặc `SinhVien* a` thì đúng; nếu dùng `SinhVien a` (tham trị) thì sai, vì thay đổi trong hàm sẽ không ảnh hưởng đến đối tượng ngoài hàm.\n\n- **Tiêu chí 2 (0.25đ):** Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không.  \n  → Đặc biệt chú ý: **Họ tên và Nơi sinh là chuỗi có thể chứa khoảng trắng**, nên **phải dùng `getline` hoặc `cin.getline()`** để đọc toàn bộ dòng. Nếu dùng `cin >>`, sẽ chỉ đọc đến ký tự trắng đầu tiên → **sai**.\n\n→ Hai tiêu chí **độc lập**, mỗi phần đúng thì được điểm riêng. Không cần cả hai đều đúng mới có điểm.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (THAM KHẢO)**\n\n- Hàm: `void NhapSV(Sinhvien &x)` → **truyền tham chiếu** ✓\n- Sử dụng `getline(cin, x.MaSV);` → **đọc chuỗi có khoảng trắng** ✓\n- `getline(cin,x.HoTen);` → ✓\n- `getline(cin,x.NoiSinh);` → ✓\n- `cin>>x.NamSinh;` → số nguyên, dùng `cin>>` OK ✓\n- `cin>>x.DTB;` → số thực (giả sử), dùng `cin>>` OK ✓\n\n→ **Logic đúng**: Tất cả chuỗi đều dùng `getline`, số dùng `cin>>`.\n\n→ **Chú ý quan trọng từ giáo viên**: Nếu dùng `cin>>` cho Họ tên hoặc Nơi sinh → **0 điểm phần đó**.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(SinhVien &a)\ncin.getline(a.MaSV, 100);\ncin.getline(a.HoTen, 100);\ncin >> a.NamSinh;\ncin.ignore(); cin.getline(a.NoiSinh, 100); cin>>a.DTB;\n```\n\n#### **Phân tích từng phần:**\n\n- **Truyền tham số:** `SinhVien &a` → **ĐÚNG** (tham chiếu). ✅ → **Điểm tiêu chí 1: 0.25đ**\n\n- **Nhập chuỗi:**\n  - `cin.getline(a.MaSV, 100);` → **ĐÚNG**, đọc chuỗi có khoảng trắng ✅\n  - `cin.getline(a.HoTen, 100);` → **ĐÚNG**, đọc chuỗi có khoảng trắng ✅\n  - `cin >> a.NamSinh;` → **ĐÚNG**, số nguyên, dùng `cin>>` phù hợp ✅\n  - `cin.ignore(); cin.getline(a.NoiSinh, 100);` → **ĐÚNG**, dùng `getline` cho chuỗi có khoảng trắng ✅\n  - `cin>>a.DTB;` → **ĐÚNG**, giả sử DTB là float/double, dùng `cin>>` OK ✅\n\n→ **Tất cả các chuỗi (MaSV, HoTen, NoiSinh) đều dùng `getline`** → **không có lỗi về nhập chuỗi**.\n\n→ **Không có dấu chấm phẩy sau `void NhapSV(...)`** → **LỖI SYNTAX**, nhưng đây là lỗi cú pháp nhỏ. Tuy nhiên, **lỗi này có ảnh hưởng đến biên dịch không?**\n\n> Trong C++, nếu không có dấu `;` sau định nghĩa hàm, sẽ gây lỗi biên dịch. Nhưng ở đây, học sinh đã viết **nội dung hàm ngay sau định nghĩa**, tức là:\n\n```cpp\nvoid NhapSV(SinhVien &a)  // thiếu ;\ncin.getline(...)           // dòng tiếp theo\n```\n\n→ Đây là **lỗi cú pháp nghiêm trọng**, khiến chương trình **KHÔNG BIÊN DỊCH ĐƯỢC**.\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- Về logic: Học sinh đã:\n  - Truyền tham chiếu ✓\n  - Dùng `getline` cho tất cả các trường chuỗi ✓\n  - Dùng `cin>>` cho các trường số ✓\n\n→ **Logic hoàn toàn đúng**, chỉ khác cách viết (`cin.getline` thay vì `getline(cin, ...)`), nhưng **kết quả giống nhau**.\n\n→ Tuy nhiên, **lỗi cú pháp (thiếu dấu `;`) khiến code không chạy được** → **vi phạm nguyên tắc: “KHÔNG áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC”**.\n\n→ Vì vậy, **không thể coi là “tương đương” dù logic đúng**, do **cấu trúc bị sai**, **không thể biên dịch**.\n\n---\n\n### **5. SO SÁNH: MỨC ĐỘ KHỚP GIỮA BÀI LÀM VÀ TIÊU CHÍ/ĐÁP ÁN KỲ VỌNG**\n\n- **Tiêu chí 1 (truyền tham chiếu):** Đúng → **0.25đ**\n- **Tiêu chí 2 (nhập chuỗi đúng kiểu):** \n  - Học sinh dùng `cin.getline()` cho tất cả chuỗi → **đúng yêu cầu**, không dùng `cin>>` cho chuỗi → **0.25đ**\n\n→ **Tuy nhiên, lỗi cú pháp (thiếu dấu `;`) khiến toàn bộ hàm không hợp lệ về mặt syntax**.\n\n→ Theo ghi chú giáo viên: **“Nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng... thì tính zero điểm phần đó”** — học sinh **không vi phạm điều này**.\n\n→ Nhưng **lỗi cú pháp là lỗi cơ bản**, và **hệ thống chấm điểm yêu cầu code phải đúng về cấu trúc**.\n\n→ Tuy nhiên, **theo hướng dẫn: “Nguyên tắc chấp nhận nhiều cách làm đúng khác nhau” chỉ áp dụng khi code thực sự đúng và đầy đủ, chỉ khác hình thức**.\n\n→ **Ở đây, code không đúng về cấu trúc (thiếu dấu `;`)** → **không thể chấp nhận như một cách làm đúng**.\n\n→ **Vậy, có nên trừ điểm?**\n\n→ Xét lại: **Thiếu dấu `;` là lỗi nghiêm trọng**, nhưng trong thực tế thi cử, đôi khi học sinh bị mất điểm vì lỗi này. Tuy nhiên, **nếu giáo viên không yêu cầu “code phải biên dịch được” thì có thể bỏ qua**.\n\n→ Nhưng **trong đề bài gốc, học sinh được yêu cầu “hoàn thiện hàm”**, tức là **viết mã thực thi được**.\n\n→ Và **ghi chú giáo viên không nói gì về lỗi cú pháp**, chỉ nói về truyền tham số và nhập chuỗi.\n\n→ Do đó, **chỉ đánh giá theo 2 tiêu chí đã nêu**, **không xét thêm lỗi cú pháp nếu nó không ảnh hưởng đến nội dung yêu cầu**.\n\n→ Nhưng **lỗi thiếu dấu `;` khiến hàm không hợp lệ**, nên **có thể coi là thiếu sót cấu trúc**, **ảnh hưởng đến khả năng thực hiện**.\n\n→ Tuy nhiên, **đề bài không yêu cầu code phải biên dịch được**, mà chỉ yêu cầu **viết đúng chức năng**.\n\n→ **Quyết định: Giữ nguyên điểm 0.5 nếu chỉ xét 2 tiêu chí.**\n\n→ Nhưng **lỗi cú pháp là sai cơ bản**, nên **trừ điểm?**\n\n→ Xem xét: **Nếu không có dấu `;`, thì hàm không tồn tại trong ngữ cảnh C++** → **không thể gọi hàm** → **vi phạm yêu cầu “hoàn thiện hàm”**.\n\n→ **Do đó, mặc dù logic đúng, nhưng do lỗi cú pháp, nên không thể chấp nhận hoàn chỉnh.**\n\n→ **Tuy nhiên, trong nhiều kỳ thi, lỗi cú pháp nhỏ như vậy thường được bỏ qua nếu nội dung đúng.**\n\n→ **Giáo viên ghi chú không nhắc đến lỗi cú pháp**, chỉ nhắc đến truyền tham số và nhập chuỗi.\n\n→ **Vì vậy, để tuân thủ nghiêm ngặt chỉ dẫn của hệ thống, ta chỉ đánh giá theo 2 tiêu chí đã cho.**\n\n→ **Học sinh đúng cả 2 tiêu chí → 0.5đ**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: ĐIỂM DỰ KIẾN VÀ LÝ DO**\n\n✅ **Tiêu chí 1: Truyền tham số đúng (SinhVien &a) → 0.25đ**\n\n✅ **Tiêu chí 2: Nhập chuỗi đúng (dùng getline cho MaSV, HoTen, NoiSinh) → 0.25đ**\n\n⚠️ **Lỗi cú pháp (thiếu dấu `;` sau định nghĩa hàm) → tuy nghiêm trọng, nhưng không nằm trong tiêu chí chấm điểm được liệt kê. Giáo viên không yêu cầu kiểm tra cú pháp.**\n\n→ **Do đó, không trừ điểm vì lỗi cú pháp, chỉ chấm theo 2 tiêu chí đã cho.**\n\n→ **Điểm số dự kiến: 0.5 / 0.5**\n\n---\n\n## ✅ **ĐIỂM CUỐI CÙNG: 0.5**\n\n**Lý do chi tiết:**  \n- Sinh viên đã truyền đúng tham số (tham chiếu) → đạt tiêu chí 1.  \n- Sinh viên đã sử dụng `cin.getline()` cho tất cả các trường chuỗi (MaSV, HoTen, NoiSinh), đảm bảo đọc được khoảng trắng → đạt tiêu chí 2.  \n- Mặc dù có lỗi cú pháp nhỏ (thiếu dấu `;` sau định nghĩa hàm), nhưng **không nằm trong tiêu chí chấm điểm được quy định**, và **logic hoàn toàn đúng**.  \n- Theo nguyên tắc \"chấp nhận nhiều cách làm đúng\", học sinh đã đáp ứng đầy đủ yêu cầu về truyền tham số và nhập chuỗi → **điểm tối đa 0.5**.\n\n---",
+        "feedback": "",
+        "suggestion": "",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: NhapSV, getline.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.5,
+        "llm_status": "correct",
+        "token_usage": {
+          "prompt_tokens": 10899,
+          "completion_tokens": 5873,
+          "total_tokens": 16772
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(SinhVien &a)\ncin.getline(a.MaSV, 100);\ncin.getline(a.HoTen, 100);\ncin >> a.NamSinh;\ncin.ignore(); cin.getline(a.NoiSinh, 100); cin>>a.DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 94146
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đạt đầy đủ tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_17",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 0.5,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 87647,
+    "token_usage": {
+      "prompt_tokens": 10500,
+      "completion_tokens": 5934,
+      "total_tokens": 16434
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0,
+        "max_score": 0.5,
+        "feedback": "Thiếu định nghĩa hàm NhapSV; dùng cin >> thay vì getline() cho Họ tên và Nơi sinh; không xử lý đúng kiểu truyền tham số.",
+        "suggestion": "Viết đầy đủ hàm void NhapSV(Sinhvien &x) và sử dụng getline(cin, x.HoTen) và getline(cin, x.NoiSinh) để nhập chuỗi có khoảng trắng. Đảm bảo tham số được truyền bằng tham chiếu."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh không viết định nghĩa hàm NhapSV nên không thể xác định kiểu truyền tham số, đồng thời sử dụng cin >> cho các chuỗi có khoảng trắng (Họ tên, Nơi sinh) vi phạm nghiêm trọng yêu cầu về nhập dữ liệu.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC:**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: tiêu chí này yêu cầu gì?**\n\nTheo **TIÊU CHÍ CHẤM**, có 2 phần độc lập, mỗi phần 0.25 điểm:\n\n- **(1) Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).**  \n→ Yêu cầu hàm `NhapSV` phải nhận tham số bằng **tham chiếu** (ví dụ: `Sinhvien &x`) để thay đổi được giá trị bên trong hàm và phản ánh ra ngoài.\n\n- **(2) Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).**  \n→ Đặc biệt nhấn mạnh: **Họ tên** và **Nơi sinh** là chuỗi có thể chứa khoảng trắng → **phải dùng `getline()`**, chứ **không được dùng `cin >>`** vì `cin >>` chỉ lấy đến dấu cách đầu tiên.\n\n> 💡 GHI CHÚ GIÁO VIÊN rõ ràng:  \n> - Truyền tham trị (`Sinhvien x`) → **0 điểm toàn bộ**.  \n> - Dùng `cin >>` cho Họ tên/Nơi sinh → **0 điểm phần nhập chuỗi**.\n\n→ Do đó, hai tiêu chí này **độc lập**, nhưng nếu sai một phần thì **chỉ mất điểm phần đó**, không ảnh hưởng đến phần còn lại — **trừ khi sai nghiêm trọng như truyền tham trị thì cả bài 0 điểm**.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (nếu có): cần khớp điều gì?**\n\nĐáp án mẫu (tham khảo):\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ Từ đây ta thấy:\n\n- **Tham số truyền: tham chiếu (`&x`)** → Đúng.\n- **Nhập chuỗi có khoảng trắng (MaSV, HoTen, NoiSinh): dùng `getline()`** → Đúng.\n- **Nhập số nguyên/số thực (NamSinh, DTB): dùng `cin >>`** → Đúng.\n\n→ Đây là **logic kỳ vọng**: **tương tác đúng với từng loại dữ liệu**, đặc biệt chú ý đến việc xử lý chuỗi có khoảng trắng.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh:\n\n```cpp\ncin >> a.MaSV >> a.HoTen >> a.NamSinh >> a.NoiSinh >> a.DTB;\n```\n\n→ **Chỉ có dòng nhập dữ liệu**, **không có định nghĩa hàm**, **không có tham số**, **không có kiểu truyền**, **không có xử lý chuỗi có khoảng trắng**.\n\n→ **Tuy nhiên**, đề bài yêu cầu hoàn thiện hàm `NhapSV`, nên học sinh **phải viết cả định nghĩa hàm và nội dung hàm**. Nhưng ở đây, học sinh **chỉ nộp một dòng code** – có thể là **nội dung hàm**, nhưng **thiếu phần khai báo hàm**.\n\n→ **Vấn đề chính:**\n\n- **Không biết tham số truyền là gì?** Không thấy `void NhapSV(...)` → **không xác định được kiểu truyền tham số** → **không thể đánh giá tiêu chí 1**.\n- **Dùng `cin >>` cho tất cả các trường**, bao gồm `a.HoTen` và `a.NoiSinh` → **sai nghiêm trọng về nhập chuỗi có khoảng trắng** → **vi phạm tiêu chí 2**.\n\n→ **Tuy nhiên**, giáo viên ghi chú rằng: “**Truyền tham trị (Sinhvien x) thì 0đ vì sửa không có tác dụng ngoài hàm**”.  \n→ Điều này cho thấy: **nếu học sinh viết hàm với tham trị, thì cả bài 0 điểm**. Nhưng ở đây, **học sinh không viết hàm**, chỉ viết dòng nhập → **không thể xác định kiểu truyền**.\n\n→ **Do đó, theo quy tắc chấm:**\n- Nếu **không có định nghĩa hàm**, thì **không thể kiểm tra kiểu truyền tham số** → **không đủ thông tin để cho điểm tiêu chí 1**.\n- Với **tiêu chí 2**: học sinh dùng `cin >>` cho `HoTen` và `NoiSinh` → **rõ ràng sai**, vì `cin >>` không đọc hết chuỗi có khoảng trắng → **không đạt tiêu chí 2**.\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.**\n\n- Bài làm học sinh **không tương đương** với đáp án kỳ vọng:\n  - Không dùng `getline()` → **kết quả sai** khi nhập tên có khoảng trắng (ví dụ: \"Nguyễn Văn A\" sẽ bị cắt thành \"Nguyễn\").\n  - Không có cấu trúc hàm → **không thể đảm bảo tính đúng đắn của chương trình**.\n  - Không thể nói rằng “học sinh định dùng `cin >>` nhưng do thiếu hiểu biết”, vì **đây là lỗi cơ bản và nghiêm trọng**.\n\n→ **Không có sự tương đương logic** ở đây: **cách làm sai về mặt kỹ thuật và hiệu quả thực tế**.\n\n---\n\n### **5. SO SÁNH: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n| Tiêu chí | Học sinh có đáp ứng? | Lý do |\n|----------|-----------------------|-------|\n| **1. Truyền tham số đúng (tham chiếu)** | ❌ Không thể đánh giá | Thiếu định nghĩa hàm, không thấy tham số |\n| **2. Nhập chuỗi đúng kiểu (dùng getline)** | ❌ Sai | Dùng `cin >>` cho HoTen, NoiSinh → lỗi nghiêm trọng |\n\n→ **Cả hai tiêu chí đều không đạt**.\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: điểm dự kiến và lý do**\n\n✅ **Điểm: 0.0 / 0.5**\n\n📌 **Lý do chi tiết:**\n\n- **Tiêu chí 1 (truyền tham số):** Không thể đánh giá vì học sinh **không viết định nghĩa hàm**, do đó **không thể xác định kiểu truyền tham số** → **không đạt tiêu chí**.\n- **Tiêu chí 2 (nhập chuỗi đúng kiểu):** Học sinh sử dụng `cin >>` để nhập `HoTen` và `NoiSinh` → **sai nghiêm trọng**, vì `cin >>` **không đọc được chuỗi có khoảng trắng** → **không đạt tiêu chí**.\n\n⚠️ **Ghi chú giáo viên nhấn mạnh:**  \n> “Nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng (dùng cin>> thay vì getline) thì tính zero điểm phần đó.”\n\n→ Vì vậy, **bài làm sai ở cả hai tiêu chí**, dù một phần không thể đánh giá do thiếu thông tin.\n\n---\n\n### ✅ **KẾT LUẬN CUỐI CÙNG: 0.0 điểm**\n\n**Lý do tổng kết:**  \nHọc sinh **không viết đầy đủ hàm** → **không thể đánh giá kiểu truyền tham số**, và **dùng `cin >>` cho chuỗi có khoảng trắng** → **vi phạm nghiêm trọng yêu cầu nhập dữ liệu**.  \n→ **Không đạt bất kỳ tiêu chí nào**, nên **điểm 0.0**.\n\n---\n\n✅ **ĐIỂM CỦA HỌC SINH: 0.0 / 0.5**",
+        "feedback": "Thiếu định nghĩa hàm NhapSV; dùng cin >> thay vì getline() cho Họ tên và Nơi sinh; không xử lý đúng kiểu truyền tham số.",
+        "suggestion": "Viết đầy đủ hàm void NhapSV(Sinhvien &x) và sử dụng getline(cin, x.HoTen) và getline(cin, x.NoiSinh) để nhập chuỗi có khoảng trắng. Đảm bảo tham số được truyền bằng tham chiếu.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:0/2 expected keywords found: .",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 10500,
+          "completion_tokens": 5934,
+          "total_tokens": 16434
+        },
+        "evidence": {
+          "student_answer": "cin >> a.MaSV >> a.HoTen >> a.NamSinh >> a.NoiSinh >> a.DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [],
+        "missing": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 87647
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_18",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.25,
+    "max_score": 0.5,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 84227,
+    "token_usage": {
+      "prompt_tokens": 10411,
+      "completion_tokens": 5698,
+      "total_tokens": 16109
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0.25,
+        "max_score": 0.5,
+        "feedback": "Sai cú pháp: thiếu cin trong getline; biến DTB chưa khai báo trong hàm. Cần sửa thành getline(cin, a.MaSV); và cin >> a.DTB;",
+        "suggestion": "Sửa lại các dòng nhập chuỗi thành getline(cin, a.MaSV);, getline(cin, a.HoTen);, getline(cin, a.NoiSinh); và sửa cin >> DTB; thành cin >> a.DTB;"
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.5,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh đã đúng về kiểu truyền tham số (tham chiếu), nhưng sai cú pháp trong các lệnh getline (thiếu cin) và dùng biến DTB chưa khai báo, dẫn đến lỗi biên dịch nên không đạt tiêu chí nhập chuỗi đúng kiểu.",
+        "cot_reasoning": "---\n\n### **1. Đọc và hiểu tiêu chí: tiêu chí này yêu cầu gì?**\n\nTheo **TIÊU CHÍ CHẤM**, có 2 phần độc lập:\n\n- **(0.25đ) Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không**  \n  → Yêu cầu: hàm `NhapSV` phải nhận đối số là **tham chiếu (reference)** hoặc **tham biến (pass by address)** để thay đổi được giá trị bên ngoài hàm. Nếu dùng **tham trị (value)** thì sai, vì thay đổi trong hàm sẽ không ảnh hưởng đến biến gốc.\n\n- **(0.25đ) Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không**  \n  → Yêu cầu: các trường chuỗi (có thể chứa khoảng trắng như Họ tên, Nơi sinh) **phải dùng `getline()`**, chứ **không được dùng `cin >>`**, vì `cin >>` chỉ lấy đến dấu cách đầu tiên, bỏ qua phần còn lại → dẫn đến lỗi nhập.\n\n→ Tổng điểm tối đa: **0.5 điểm**, chia đều cho 2 tiêu chí độc lập.\n\n---\n\n### **2. Phân tích đáp án kỳ vọng (nếu có): cần khớp điều gì?**\n\nĐáp án mẫu (chỉ tham khảo):\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ Điều kiện cần thỏa mãn:\n- Tham số truyền là **tham chiếu**: `Sinhvien &x`\n- Các chuỗi (`MaSV`, `HoTen`, `NoiSinh`) dùng `getline(cin, ...)`\n- Các số nguyên/float (`NamSinh`, `DTB`) dùng `cin >>`\n\n→ **Không yêu cầu giống hệt**, nhưng phải đúng về logic và kết quả.\n\n---\n\n### **3. Phân tích bài làm học sinh: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(Sinhvien &ao)\ngetline(a.MaSV);\ngetline(a.HoTen);\ncin >> a.NamSinh;\ncin.ignore(1, '\\n');\ngetline(a.NoiSinh);\ncin >> DTB;\n```\n\n#### ✅ Phân tích từng dòng:\n\n1. **`void NhapSV(Sinhvien &ao)`**  \n   → **Đúng**: truyền tham chiếu (dấu `&`). → **Đạt tiêu chí 1 (0.25đ)**\n\n2. **`getline(a.MaSV);`**  \n   → **Sai cú pháp**: thiếu `cin`. `getline()` cần 2 tham số: `cin` và biến nhận.  \n   → Dạng đúng: `getline(cin, a.MaSV);`  \n   → **Lỗi cú pháp nghiêm trọng** → không biên dịch được → **không đạt tiêu chí 2**\n\n3. **`getline(a.HoTen);`**  \n   → Tương tự, thiếu `cin`. → **Lỗi cú pháp**\n\n4. **`cin >> a.NamSinh;`**  \n   → **Đúng**: dùng `cin >>` cho số nguyên → chấp nhận được\n\n5. **`cin.ignore(1, '\\n');`**  \n   → **Không cần thiết** và **có thể gây lỗi**: nếu trước đó đã đọc bằng `cin >>`, thì buffer có thể còn dư. Nhưng ở đây, sau `cin >> a.NamSinh` mà chưa xử lý buffer, nên `cin.ignore(1, '\\n')` là hợp lý.  \n   → Tuy nhiên, **trước khi gọi `getline()`**, việc clear buffer là tốt. Nhưng **lỗi chính nằm ở việc thiếu `cin` trong `getline`**, nên cái này không cứu được.\n\n6. **`getline(a.NoiSinh);`**  \n   → Lại thiếu `cin`. → **Lỗi cú pháp**\n\n7. **`cin >> DTB;`**  \n   → **Sai**: biến `DTB` không được khai báo trong hàm → **lỗi biên dịch**.  \n   → Có lẽ học sinh định dùng `a.DTB`, nhưng gõ nhầm thành `DTB` (biến toàn cục hoặc chưa khai báo).  \n   → **Lỗi nghiêm trọng**: không thể biên dịch → **không đạt tiêu chí 2**\n\n---\n\n### **4. Kiểm tra tương đương: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.**\n\n→ Bài làm **không thể biên dịch** do:\n\n- Thiếu `cin` trong `getline()`\n- Biến `DTB` chưa khai báo\n\n→ Do đó, dù ý tưởng là đúng (dùng `getline` cho chuỗi, `cin` cho số), nhưng **cấu trúc sai, không chạy được**, nên **không thể coi là “tương đương”** theo nguyên tắc chấm.\n\n> ⚠️ Nguyên tắc: “Không áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC...”\n\n→ **Vì vậy, không được cộng điểm phần nhập chuỗi dù hướng đi đúng.**\n\n---\n\n### **5. So sánh: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n| Tiêu chí | Học sinh có đạt? | Lý do |\n|----------|------------------|-------|\n| **Truyền tham chiếu** | ✅ Đạt (0.25đ) | Dùng `Sinhvien &ao` → đúng |\n| **Nhập chuỗi đúng kiểu (getline)** | ❌ Không đạt (0đ) | Thiếu `cin` trong `getline`, dùng `DTB` chưa khai báo → lỗi biên dịch |\n\n→ **Tổng điểm: 0.25/0.5**\n\n---\n\n### **6. Kết luận sơ bộ: điểm dự kiến và lý do.**\n\n✅ **Điểm: 0.25 / 0.5**\n\n📌 **Lý do chi tiết:**\n\n- Học sinh đã **viết đúng kiểu truyền tham số (tham chiếu)** → đạt 0.25 điểm.\n- Tuy nhiên, các lệnh nhập chuỗi **sai cú pháp** (thiếu `cin` trong `getline`), và **biến `DTB` không được khai báo trong hàm** → **không thể biên dịch** → **không đạt tiêu chí nhập chuỗi đúng kiểu** → 0 điểm cho phần này.\n- Vì hai tiêu chí độc lập, nên chỉ cộng điểm phần đúng.\n\n---\n\n✅ **Kết luận cuối cùng: 0.25 điểm**\n\n---",
+        "feedback": "Sai cú pháp: thiếu cin trong getline; biến DTB chưa khai báo trong hàm. Cần sửa thành getline(cin, a.MaSV); và cin >> a.DTB;",
+        "suggestion": "Sửa lại các dòng nhập chuỗi thành getline(cin, a.MaSV);, getline(cin, a.HoTen);, getline(cin, a.NoiSinh); và sửa cin >> DTB; thành cin >> a.DTB;",
+        "agreed_with_heuristic": false,
+        "confidence": 0.95,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: NhapSV, getline.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 10411,
+          "completion_tokens": 5698,
+          "total_tokens": 16109
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(Sinhvien &ao)\ngetline(a.MaSV);\ngetline(a.HoTen);\ncin >> a.NamSinh;\ncin.ignore(1, '\\n');\ngetline(a.NoiSinh);\ncin >> DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 84227
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_19",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.5,
+    "max_score": 0.5,
+    "status": "correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 66965,
+    "token_usage": {
+      "prompt_tokens": 10036,
+      "completion_tokens": 5055,
+      "total_tokens": 15091
+    },
+    "llm_feedbacks": [],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.5,
+        "max_score": 0.5,
+        "status": "correct",
+        "is_correct": true,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh đã đúng cả hai tiêu chí: truyền tham số bằng tham chiếu và sử dụng getline cho các chuỗi có khoảng trắng, đồng thời dùng cin >> cho các trường số. Bài làm hoàn toàn phù hợp với yêu cầu.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC:**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: tiêu chí này yêu cầu gì?**\n\nTheo **TIÊU CHÍ CHẤM**, có 2 phần độc lập, mỗi phần 0.25 điểm:\n\n- **(1) Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).**  \n→ Yêu cầu hàm `NhapSV` phải nhận tham số bằng **tham chiếu (reference)** để thay đổi giá trị bên trong hàm có tác dụng ngoài hàm. Nếu dùng tham trị (value), thì thay đổi chỉ ảnh hưởng trong hàm → không đạt.\n\n- **(2) Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).**  \n→ Các trường là **chuỗi có thể chứa khoảng trắng** (MaSV, HoTen, NoiSinh) → **phải dùng `getline(cin, ...)`**. Nếu dùng `cin >>`, sẽ chỉ lấy đến ký tự đầu tiên hoặc đến khoảng trắng → sai.\n\n> ⚠️ Theo **GHI CHÚ CỦA GIÁO VIÊN**:  \n> - Truyền tham trị → 0 điểm toàn bộ phần này.  \n> - Nhập Họ tên và Nơi sinh mà dùng `cin>>` → zero điểm phần đó.\n\n→ Vậy hai tiêu chí là **độc lập**, nhưng nếu sai một phần → mất điểm của phần đó.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (nếu có): cần khớp điều gì?**\n\nĐáp án mẫu (chỉ tham khảo):\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ Logic kỳ vọng:\n- Truyền tham chiếu: `Sinhvien &x`\n- Dùng `getline` cho các chuỗi có khoảng trắng: MaSV, HoTen, NoiSinh\n- Dùng `cin >>` cho các số nguyên/float: NamSinh, DTB\n\n→ Đây là **một cách đúng**, nhưng đề bài nói rõ: **\"CHẤP NHẬN NHIỀU CÁCH LÀM ĐÚNG KHÁC NHAU\"** — nghĩa là nếu học sinh dùng cách khác nhưng vẫn đúng về logic và kết quả, vẫn được điểm đầy đủ.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(Sinhvien &s)\n    getline(cin, s.MaSV);\n    getline(cin, s.HoTen);\n    cin >> s.NamSinh;\n    getline(cin, s.NoiSinh);\n    cin >> s.DTB;\n```\n\n→ Nhận xét chi tiết:\n\n#### ✅ **Phần 1: Truyền tham số**\n- Hàm khai báo: `void NhapSV(Sinhvien &s)`\n→ Đây là **truyền tham chiếu** (dấu `&`) → **ĐÚNG** → **Điểm 0.25đ**\n\n#### ✅ **Phần 2: Nhập chuỗi có khoảng trắng**\n- `getline(cin, s.MaSV);` → Đúng, vì MaSV là chuỗi có thể có khoảng trắng.\n- `getline(cin, s.HoTen);` → Đúng, vì Họ tên thường có khoảng trắng → **Phải dùng getline**, học sinh đúng.\n- `getline(cin, s.NoiSinh);` → Đúng, vì Nơi sinh cũng có thể có khoảng trắng (VD: \"Hà Nội\", \"TP.HCM\") → **Đúng**.\n- `cin >> s.NamSinh;` → Đúng, vì NamSinh là số nguyên → không cần getline.\n- `cin >> s.DTB;` → Đúng, vì DTB là số thực → dùng `cin >>` là hợp lý.\n\n→ **Tất cả các lệnh nhập đều phù hợp với kiểu dữ liệu**.\n\n> 💡 Lưu ý: Có người lo ngại rằng sau `cin >> s.NamSinh;` có thể còn dòng `\\n` trong buffer → ảnh hưởng đến `getline` tiếp theo. Nhưng trong thực tế, nhiều hệ thống xử lý tự động, hoặc nếu có lỗi, học sinh chưa chắc biết xử lý. Tuy nhiên, đề bài **không yêu cầu xử lý buffer**, và đây là **câu hỏi đơn giản**, nên **không trừ điểm vì vấn đề này** nếu không có yêu cầu cụ thể.\n\n→ **Phần nhập chuỗi: ĐÚNG** → **Điểm 0.25đ**\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.**\n\n- Học sinh dùng `Sinhvien &s` thay vì `Sinhvien &x` → **tương đương hoàn toàn**, chỉ khác tên biến.\n- Học sinh dùng `getline` cho tất cả chuỗi → giống đáp án mẫu.\n- Học sinh dùng `cin >>` cho số → giống đáp án mẫu.\n\n→ **Không có sự khác biệt về logic, kết quả, cấu trúc.**\n\n→ **Hoàn toàn tương đương đáp án kỳ vọng.**\n\n---\n\n### **5. SO SÁNH: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n- Tiêu chí 1: Truyền tham chiếu → ✅ Đúng → 0.25đ\n- Tiêu chí 2: Nhập chuỗi đúng kiểu → ✅ Đúng → 0.25đ\n\n→ Tổng cộng: **0.5 điểm**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: điểm dự kiến và lý do.**\n\n✅ **Điểm: 0.5 / 0.5**\n\n**Lý do:**\n- Học sinh đã viết đúng cú pháp truyền tham số bằng tham chiếu (`Sinhvien &s`) → đảm bảo thay đổi bên trong hàm có hiệu lực ngoài hàm.\n- Học sinh sử dụng `getline` cho tất cả các trường chuỗi (MaSV, HoTen, NoiSinh) → phù hợp với yêu cầu nhập chuỗi có khoảng trắng.\n- Sử dụng `cin >>` cho các trường số (NamSinh, DTB) → đúng cách.\n- Không có lỗi cú pháp, thiếu dấu ngoặc, thiếu tham số... → code có thể biên dịch và chạy đúng.\n- Thoả mãn hoàn toàn cả hai tiêu chí độc lập.\n\n→ **Không có lý do nào để trừ điểm.**\n\n---\n\n✅ **KẾT LUẬN CHỐT: 0.5 điểm**",
+        "feedback": "",
+        "suggestion": "",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: NhapSV, getline.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.5,
+        "llm_status": "correct",
+        "token_usage": {
+          "prompt_tokens": 10036,
+          "completion_tokens": 5055,
+          "total_tokens": 15091
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(Sinhvien &s)\n    getline(cin, s.MaSV);\n    getline(cin, s.HoTen);\n    cin >> s.NamSinh;\n    getline(cin, s.NoiSinh);\n    cin >> s.DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 66965
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đạt đầy đủ tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_21",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 0.5,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 76586,
+    "token_usage": {
+      "prompt_tokens": 10565,
+      "completion_tokens": 5887,
+      "total_tokens": 16452
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0,
+        "max_score": 0.5,
+        "feedback": "Phần 1: Truyền tham số sai — không dùng tham chiếu cho một sinh viên mà dùng mảng kèm vòng lặp. Phần 2: Dùng cin >> cho Họ tên và Nơi sinh — không dùng getline như yêu cầu.",
+        "suggestion": "Sửa lại hàm NhapSV để nhận tham chiếu đến một đối tượng SinhVien (ví dụ: Sinhvien &x), và dùng getline(cin, x.HoTen) và getline(cin, x.NoiSinh) thay vì cin >>."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh không truyền tham số đúng kiểu (tham chiếu/tham biến) cho một đối tượng SinhVien, mà dùng mảng và vòng lặp — sai chức năng hàm. Đồng thời, sử dụng cin >> cho các chuỗi có khoảng trắng (Họ tên, Nơi sinh) vi phạm yêu cầu nhập chuỗi đúng cách.",
+        "cot_reasoning": "---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm gồm 2 phần độc lập, mỗi phần 0.25 điểm:\n\n- **(1) Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không**  \n→ Yêu cầu hàm `NhapSV` phải truyền tham số bằng **tham chiếu (reference)** hoặc **tham biến (pass by address)** để thay đổi được giá trị bên ngoài hàm. Nếu dùng **tham trị (value)** thì **không có tác dụng**, vì dữ liệu chỉ thay đổi trong phạm vi hàm.\n\n- **(2) Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không**  \n→ Cụ thể là các trường **Họ tên** và **Nơi sinh** là chuỗi có thể chứa **khoảng trắng** → phải dùng `getline(cin, ...)` chứ **không được dùng `cin >>`** vì `cin >>` sẽ dừng tại khoảng trắng, dẫn đến sai dữ liệu.\n\n> ⚠️ GHI CHÚ GIÁO VIÊN:  \n> - Truyền tham trị → 0 điểm toàn bộ.  \n> - Dùng `cin >>` cho Họ tên/Nơi sinh → 0 điểm phần nhập chuỗi.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu (tham khảo):\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin, x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin, x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin >> x.NamSinh;\n    cin >> x.DTB;\n}\n```\n\n→ Thể hiện rõ:\n- Truyền tham chiếu (`Sinhvien &x`)\n- Dùng `getline()` cho tất cả các chuỗi (MaSV, HoTen, NoiSinh)\n- Dùng `cin >>` cho các số nguyên (NamSinh, DTB)\n\n→ Đây là cách làm **đúng chuẩn**, nhưng **không yêu cầu học sinh bắt buộc giống hệt** — chỉ cần đúng logic và kết quả.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(Sinhvien a[], int n)\n    cout << \"Nhập số sinh viên: \";\n    cin >> n;\n    for (int i = 0; i < n; i++)\n        cin >> a[i].MaSV >> a[i].HoTen >> a[i].NamSinh >> a[i].NoiSinh>>;\n```\n\n#### ✅ Phân tích chi tiết:\n\n- **Tham số hàm**: `Sinhvien a[], int n`  \n→ Đây là **truyền mảng qua tham trị (array decay thành pointer)**, nhưng **không phải tham chiếu**.  \n→ Trong C++, khi truyền mảng như `a[]`, thực chất là truyền **con trỏ (pointer)** — tức là **giống như tham chiếu về mặt hiệu quả**, nhưng **không phải là tham chiếu theo nghĩa của `&`**.  \n→ Tuy nhiên, **theo ghi chú giáo viên**: “Truyền tham trị (Sinhvien x) thì 0đ vì sửa không có tác dụng ngoài hàm.”  \n→ Nhưng ở đây, học sinh truyền **mảng**, không phải **đối tượng đơn lẻ**.  \n\n→ **Vấn đề**:  \n- Hàm được yêu cầu nhập thông tin **của một sinh viên** → nên truyền **1 đối tượng SinhVien**, không phải mảng.\n- Học sinh lại thêm `int n` và vòng lặp → điều này **không phù hợp với yêu cầu đề bài** (nhập 1 sinh viên), mà là nhập nhiều sinh viên.\n- **Do đó, việc truyền mảng không phù hợp với yêu cầu “nhập thông tin của một sinh viên”**.\n\n→ **Kết luận phần 1 (truyền tham số)**:  \n→ **Không đúng tiêu chí**.  \n→ Vì đề bài yêu cầu hàm `NhapSV` để nhập **1 sinh viên**, nhưng học sinh lại thiết kế để nhập **n sinh viên** → hàm bị **sai chức năng**.  \n→ Hơn nữa, nếu xét kỹ: truyền `Sinhvien a[]` → thực chất là `Sinhvien* a` → **không phải tham chiếu**, và **không đảm bảo cập nhật được dữ liệu nếu gọi hàm với biến cục bộ**.  \n→ **Theo ghi chú giáo viên: truyền tham trị → 0đ** → tuy nhiên, đây là truyền mảng → có thể coi là **truyền con trỏ**, nhưng **không phù hợp với yêu cầu hàm**.\n\n→ **→ Phần 1: 0 điểm** (vì không đúng kiểu truyền tham số theo yêu cầu, và hàm bị sai chức năng).\n\n---\n\n#### ❌ Phần nhập chuỗi:\n\n- Học sinh dùng `cin >> a[i].MaSV >> a[i].HoTen >> a[i].NamSinh >> a[i].NoiSinh`;  \n→ Tất cả đều dùng `cin >>`, **không dùng `getline`**.\n\n→ Theo ghi chú giáo viên:  \n> “Nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng (dùng cin>> thay vì getline) thì tính zero điểm phần đó.”\n\n→ Do đó, **phần nhập chuỗi bị sai hoàn toàn**.\n\n→ **→ Phần 2: 0 điểm**\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- Có thể học sinh định làm khác?  \n→ Không. Bài làm không sử dụng `getline`, không có cấu trúc phù hợp với nhập 1 sinh viên, và dùng `cin >>` cho chuỗi → chắc chắn sai.\n\n- Có cách nào khác đạt đúng kết quả?  \n→ Có, ví dụ dùng `getline` cho chuỗi, truyền tham chiếu.  \n→ Nhưng bài làm học sinh **không đáp ứng bất kỳ tiêu chí nào**.\n\n---\n\n### **5. SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Bài làm học sinh | Đạt? | Điểm |\n|----------|------------------|------|------|\n| Truyền tham số đúng (tham chiếu/tham biến) | Truyền mảng + thêm n + vòng lặp → sai chức năng, không đúng kiểu | ❌ | 0.0 |\n| Nhập chuỗi đúng (dùng getline cho Họ tên, Nơi sinh) | Dùng `cin >>` → sai | ❌ | 0.0 |\n\n→ Tổng điểm: **0.0 / 0.5**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ**\n\n✅ **Điểm dự kiến: 0.0**\n\n🔍 **Lý do chi tiết**:\n\n- **Phần 1 (truyền tham số)**: Học sinh không truyền tham chiếu cho một đối tượng `Sinhvien`, mà truyền mảng `Sinhvien a[]` kèm theo `int n` và vòng lặp — **vi phạm yêu cầu đề bài** (nhập 1 sinh viên). Việc truyền mảng không phải tham chiếu theo nghĩa đúng (dù có hiệu quả như con trỏ), và **không phù hợp với chức năng hàm**. Theo ghi chú giáo viên, truyền tham trị → 0đ → áp dụng cho trường hợp này.\n\n- **Phần 2 (nhập chuỗi)**: Sử dụng `cin >>` cho tất cả các trường, bao gồm **Họ tên** và **Nơi sinh** — những trường có thể chứa khoảng trắng → **bị lỗi nghiêm trọng**. Theo ghi chú, dùng `cin >>` cho chuỗi → 0 điểm phần này.\n\n→ **Không có phần nào đạt yêu cầu → tổng điểm 0.0**\n\n---\n\n✅ **ĐIỂM CUỐI CÙNG: 0.0 / 0.5**",
+        "feedback": "Phần 1: Truyền tham số sai — không dùng tham chiếu cho một sinh viên mà dùng mảng kèm vòng lặp. Phần 2: Dùng cin >> cho Họ tên và Nơi sinh — không dùng getline như yêu cầu.",
+        "suggestion": "Sửa lại hàm NhapSV để nhận tham chiếu đến một đối tượng SinhVien (ví dụ: Sinhvien &x), và dùng getline(cin, x.HoTen) và getline(cin, x.NoiSinh) thay vì cin >>.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:1/2 expected keywords found: NhapSV.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 10565,
+          "completion_tokens": 5887,
+          "total_tokens": 16452
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(Sinhvien a[], int n)\n    cout << \"Nhập số sinh viên: \";\n    cin >> n;\n    for (int i = 0; i < n; i++)\n        cin >> a[i].MaSV >> a[i].HoTen >> a[i].NamSinh >> a[i].NoiSinh>>;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          }
+        ],
+        "missing": [
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 76586
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_24",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.25,
+    "max_score": 0.5,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 70655,
+    "token_usage": {
+      "prompt_tokens": 9643,
+      "completion_tokens": 5001,
+      "total_tokens": 14644
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0.25,
+        "max_score": 0.5,
+        "feedback": "Sai ở phần nhập chuỗi: dùng gets() thay vì getline(cin, ...). Gets() không an toàn và không phải hàm chuẩn C++, không được chấp nhận trong bài này. Phần truyền tham số đúng nên được 0.25 điểm.",
+        "suggestion": "Sửa lại các dòng nhập chuỗi thành: getline(cin, x.MaSV); getline(cin, x.HoTen); getline(cin, x.NoiSinh); để đảm bảo an toàn và đúng yêu cầu."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.5,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh đúng về việc truyền tham số bằng tham chiếu (Sinhvien &x), nhưng sai nghiêm trọng khi dùng gets() thay vì getline(cin, ...) để nhập chuỗi có khoảng trắng, vi phạm yêu cầu an toàn và đúng cách trong C++. Theo ghi chú giáo viên, phần nhập chuỗi sai sẽ bị tính 0 điểm.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm gồm **2 phần độc lập**, mỗi phần 0.25 điểm:\n\n1. **Truyền tham số đúng kiểu**: phải dùng **tham chiếu** (tham biến/tham chiếu — ở đây rõ ràng là `&x` hoặc `Sinhvien &x`). Nếu dùng tham trị (`Sinhvien x`), thì **0 điểm** vì thay đổi bên trong hàm không ảnh hưởng đến đối tượng ngoài hàm.\n\n2. **Nhập chuỗi có khoảng trắng đúng cách**: các trường **MaSV, HoTen, NoiSinh** là chuỗi có thể chứa khoảng trắng → **phải dùng `getline(cin, ...)`**. Nếu dùng `cin >>`, sẽ chỉ đọc đến dấu cách đầu tiên → sai logic.\n\n→ **Mỗi tiêu chí độc lập**, nên nếu học sinh đúng 1 tiêu chí thì được 0.25đ, đúng cả 2 thì 0.5đ.\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu (tham khảo):\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin, x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin, x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ **Logic kỳ vọng**:\n- Dùng **tham chiếu** (`&x`)\n- Dùng `getline(cin, ...)` cho các chuỗi (MaSV, HoTen, NoiSinh)\n- Dùng `cin >>` cho các số nguyên/float (NamSinh, DTB)\n\n→ Không yêu cầu giống hệt, nhưng **phải đúng về loại dữ liệu và cách nhập phù hợp với đặc tính dữ liệu**.\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm:\n\n```cpp\nvoid NhapSV(Sinhvien &x)\ngets(x.MaSV);\ngets(x.HoTen);\ncin >> x.NamSinh;\ngets(x.NoiSinh);\ncin >> x.DTB;\n```\n\n#### ✅ Đúng chỗ nào?\n\n- **Tham số truyền đúng kiểu**: `Sinhvien &x` → **đúng tham chiếu** → **thỏa tiêu chí 1 (0.25đ)**.\n- **Nhập NamSinh và DTB bằng `cin >>`** → đúng vì là số → **không sai**.\n\n#### ❌ Sai chỗ nào?\n\n- **Dùng `gets()` thay vì `getline(cin, ...)`** để nhập chuỗi → **sai nghiêm trọng**.\n\n→ Cụ thể:\n- `gets(x.MaSV);` → **nguy hiểm, lỗi bảo mật, không an toàn**, và **không phải hàm chuẩn C++** (gets bị loại bỏ trong C++14+). Trong môi trường thi cử, đây là **sai kỹ thuật**.\n- `gets(x.HoTen);` → cùng lỗi như trên.\n- `gets(x.NoiSinh);` → cùng lỗi.\n\n→ **Không dùng `getline` mà dùng `gets` → vi phạm tiêu chí 2 (nhập chuỗi đúng kiểu)**.\n\n> 💡 Ghi chú giáo viên nhấn mạnh: “nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng (dùng cin>> thay vì getline) thì tính zero điểm phần đó”.\n\n→ Mà `gets()` cũng **không giải quyết vấn đề khoảng trắng đúng cách** (tuy nó có thể đọc được khoảng trắng, nhưng lại **không an toàn**, **không khuyến khích sử dụng**, và **không phải hàm chuẩn C++**).\n\n→ Do đó, dù `gets()` có thể đọc được chuỗi có khoảng trắng, nhưng **không đáp ứng yêu cầu kỹ thuật và an toàn** của bài.\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\nCó phải `gets()` tương đương `getline(cin, ...)`?  \n→ **Không!**\n\n- `gets()` là hàm C, **không kiểm tra độ dài buffer**, dễ gây tràn bộ nhớ → **bị cấm trong nhiều môi trường**.\n- `getline(cin, ...)` là hàm C++, **an toàn hơn**, và **được khuyến khích dùng trong C++**.\n- **Giáo viên đã ghi chú rõ ràng**: phải dùng `getline` để xử lý chuỗi có khoảng trắng → **việc dùng `gets` không được chấp nhận**.\n\n→ Vì vậy, **không thể coi `gets` tương đương với `getline`** trong ngữ cảnh này.\n\n---\n\n### **BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Học sinh có đúng? | Điểm |\n|----------|------------------|------|\n| Truyền tham số đúng kiểu (tham chiếu) | ✅ Có (`Sinhvien &x`) | 0.25đ |\n| Nhập chuỗi đúng cách (dùng `getline` hoặc tương đương an toàn) | ❌ Không (dùng `gets`) | 0đ |\n\n→ Tổng điểm: **0.25đ**\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n✅ **Điểm dự kiến: 0.25/0.5**\n\n📌 **Lý do**:\n- Học sinh **đúng về việc truyền tham số bằng tham chiếu** → đạt tiêu chí 1.\n- Nhưng **sai hoàn toàn về cách nhập chuỗi**: dùng `gets()` thay vì `getline(cin, ...)`, vi phạm nghiêm trọng yêu cầu về **an toàn và đúng cách nhập chuỗi có khoảng trắng** → **bị trừ hết điểm tiêu chí 2**.\n\n→ Tuân thủ đầy đủ ghi chú giáo viên: \"nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng... thì tính zero điểm phần đó\".\n\n---\n\n✅ **KẾT LUẬN CHỐT**: **0.25 điểm**\n\n---",
+        "feedback": "Sai ở phần nhập chuỗi: dùng gets() thay vì getline(cin, ...). Gets() không an toàn và không phải hàm chuẩn C++, không được chấp nhận trong bài này. Phần truyền tham số đúng nên được 0.25 điểm.",
+        "suggestion": "Sửa lại các dòng nhập chuỗi thành: getline(cin, x.MaSV); getline(cin, x.HoTen); getline(cin, x.NoiSinh); để đảm bảo an toàn và đúng yêu cầu.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:1/2 expected keywords found: NhapSV.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 9643,
+          "completion_tokens": 5001,
+          "total_tokens": 14644
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(Sinhvien &x)\ngets(x.MaSV);\ngets(x.HoTen);\ncin >> x.NamSinh;\ngets(x.NoiSinh);\ncin >> x.DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          }
+        ],
+        "missing": [
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 70655
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_26",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 0.5,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 88359,
+    "token_usage": {
+      "prompt_tokens": 11031,
+      "completion_tokens": 6505,
+      "total_tokens": 17536
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0,
+        "max_score": 0.5,
+        "feedback": "1. Tiêu chí 1: Không truyền tham chiếu hiệu quả do sai cú pháp truy cập thành viên trong mảng (a.HoTen). 2. Tiêu chí 2: Dùng cin >> để nhập Họ tên và Nơi sinh thay vì getline, không xử lý được khoảng trắng.",
+        "suggestion": "Sửa lại hàm như sau: void NhapSV(SinhVien &x) { getline(cin, x.MaSV); getline(cin, x.HoTen); getline(cin, x.NoiSinh); cin >> x.NamSinh >> x.DTB; }"
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh không truyền tham số đúng kiểu (sai cú pháp với a.HoTen), và sử dụng cin >> cho chuỗi có khoảng trắng, vi phạm cả hai tiêu chí chấm điểm.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC:**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: tiêu chí này yêu cầu gì?**\n\nTheo **TIÊU CHÍ CHẤM**, có 2 phần độc lập, mỗi phần 0.25 điểm:\n\n- **(1) Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).**  \n→ Yêu cầu hàm phải truyền tham chiếu (hoặc tham biến nếu cấu trúc được sao chép, nhưng trong trường hợp này, vì là mảng `SinhVien a[]`, và cần cập nhật dữ liệu bên trong hàm, nên **tham chiếu là bắt buộc**. Nếu dùng tham trị (copy), thì thay đổi bên trong hàm **không ảnh hưởng đến đối tượng ngoài hàm**, → **sai**.\n\n- **(2) Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).**  \n→ Cụ thể, theo **GHI CHÚ CỦA GIÁO VIÊN**, **Họ tên** và **Nơi sinh** là chuỗi có thể chứa khoảng trắng → **phải dùng `getline(cin, ...)`**, chứ **không được dùng `cin >>`** vì `cin >>` chỉ đọc đến ký tự trắng đầu tiên, bỏ qua phần còn lại.\n\n→ Vì vậy, nếu học sinh dùng `cin >>` để nhập Họ tên hoặc Nơi sinh → **trừ điểm phần này**.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (nếu có): cần khớp điều gì?**\n\nĐáp án mẫu tham khảo:\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ Điều kiện cần đạt:\n\n- Truyền tham chiếu: `Sinhvien &x` → **đúng**\n- Dùng `getline()` cho các chuỗi có khoảng trắng: MaSV, HoTen, NoiSinh → **đúng**\n- Dùng `cin >>` cho các số nguyên/float: NamSinh, DTB → **đúng**\n\n→ Đây là **logic kỳ vọng**, nhưng **không yêu cầu giống hệt**, chỉ cần đúng về cách thức truyền tham số và cách nhập chuỗi.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(SinhVien a[])\n    cin >> MaSV;\n    cin.ignore();\n    cin >> a.HoTen;\n    cin >> NamSinh >> NoiSinh >> DTB;\n```\n\n#### Phân tích từng phần:\n\n**a) Tham số hàm: `SinhVien a[]`**\n\n→ Đây là **truyền tham trị dạng mảng** (hoặc hiểu như truyền con trỏ, nhưng trong thực tế, khi gọi hàm với mảng, nó được chuyển thành con trỏ). Tuy nhiên, trong ngữ cảnh của đề bài, việc sử dụng `a[]` **không rõ ràng về ý định truyền tham chiếu hay tham trị**.\n\n→ Nhưng quan trọng hơn: **trong thân hàm, học sinh dùng `a.HoTen`** — đây là lỗi nghiêm trọng!\n\n→ **Lỗi 1: Không có dấu `.` sau `a`!**  \n→ `a.HoTen` → **sai cú pháp**. `a` là mảng (hay con trỏ), nên phải truy cập phần tử cụ thể như `a[0].HoTen`, hoặc nếu muốn truy cập một sinh viên duy nhất, thì **hàm phải có tham số là một đối tượng**, chứ không phải mảng.\n\n→ **Lỗi 2: Thiếu chỉ số mảng** → `a.HoTen` không hợp lệ → **code không biên dịch được**.\n\n→ Do đó, **dù có dùng `a[]` hay không, việc dùng `a.HoTen` là sai cú pháp**, dẫn đến **không thể chạy được chương trình**.\n\n→ **=> Trả về điểm 0 cho tiêu chí 1 (truyền tham số)** vì:\n\n- Dù hình thức là `a[]`, nhưng **không đảm bảo truyền tham chiếu hiệu quả**.\n- Hơn nữa, **việc truy cập `a.HoTen` là sai cú pháp**, chứng tỏ học sinh **không hiểu rõ cách truy cập thành viên của cấu trúc trong mảng**.\n- Theo **GHI CHÚ CỦA GIÁO VIÊN**: \"Truyền tham trị (Sinhvien x) thì 0đ vì sửa không có tác dụng ngoài hàm.\" → tuy học sinh không dùng `Sinhvien x`, nhưng **việc dùng `a[]` và `a.HoTen` cũng không truyền tham chiếu hiệu quả**, và **lỗi cú pháp khiến hàm vô nghĩa** → nên **xem như không đáp ứng tiêu chí 1**.\n\n**b) Các lệnh nhập chuỗi:**\n\n- `cin >> MaSV;` → **sai**: `MaSV` chưa được khai báo trong hàm. Có thể là học sinh quên ghi `a[0].MaSV` hoặc `x.MaSV`.  \n→ **Lỗi cú pháp, không thể biên dịch**.\n\n- `cin.ignore();` → có thể là cố tình để xử lý dòng mới, nhưng **không đủ** vì sau đó vẫn dùng `cin >> a.HoTen`.\n\n- `cin >> a.HoTen;` → **sai cú pháp** (như trên), và **dù đúng cú pháp, thì `cin >>` cũng không phù hợp cho chuỗi có khoảng trắng**.\n\n- `cin >> NamSinh >> NoiSinh >> DTB;` → **sai cú pháp**: `NamSinh`, `NoiSinh`, `DTB` đều **chưa được khai báo trong hàm** → **không thể biên dịch**.\n\n→ **=> Trả về điểm 0 cho tiêu chí 2 (nhập chuỗi đúng kiểu)** vì:\n\n- Học sinh **không dùng `getline`** cho bất kỳ chuỗi nào.\n- Dùng `cin >>` cho chuỗi → **sai logic** (theo GHI CHÚ).\n- Hơn nữa, **các biến không được truy cập đúng cách**, dẫn đến **không thể thực hiện nhập dữ liệu**.\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.**\n\n→ Bài làm **không tương đương** về cả **cấu trúc** lẫn **logic**:\n\n- Không đúng kiểu truyền tham số (sai cú pháp, không thể cập nhật dữ liệu).\n- Không đúng cách nhập chuỗi (dùng `cin >>` thay vì `getline`, và không truy cập đúng biến).\n\n→ **Không thể coi là “tương đương”** vì code **không biên dịch được**, và **không thực hiện chức năng mong muốn**.\n\n---\n\n### **5. SO SÁNH: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n- **Tiêu chí 1 (truyền tham số):** 0/0.25 → vì lỗi cú pháp, không thể truyền tham chiếu hiệu quả.\n- **Tiêu chí 2 (nhập chuỗi đúng kiểu):** 0/0.25 → vì dùng `cin >>` cho chuỗi, và không truy cập đúng biến.\n\n→ **Tổng cộng: 0/0.5**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: điểm dự kiến và lý do**\n\n✅ **Điểm: 0.0**\n\n📌 **Lý do chi tiết:**\n\n- Học sinh **không tuân thủ đúng yêu cầu về truyền tham số**: dù dùng `SinhVien a[]`, nhưng **việc truy cập `a.HoTen` là sai cú pháp**, và **không thể cập nhật dữ liệu sinh viên từ bên ngoài hàm** → **vi phạm tiêu chí 1**.\n- Học sinh **sử dụng `cin >>` để nhập chuỗi (Họ tên, Nơi sinh)** → **vi phạm tiêu chí 2** theo ghi chú giáo viên: “nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng (dùng cin>> thay vì getline)” → **trừ điểm hoàn toàn phần này**.\n- Ngoài ra, **các biến `MaSV`, `NamSinh`, `NoiSinh`, `DTB` không được truy cập đúng cách** (thiếu `a[i].` hoặc `x.`) → **code không biên dịch được**, không thực hiện chức năng.\n\n→ **Do đó, cả hai tiêu chí đều bị mất điểm.**\n\n---\n\n✅ **KẾT LUẬN CUỐI CÙNG: 0.0 điểm**",
+        "feedback": "1. Tiêu chí 1: Không truyền tham chiếu hiệu quả do sai cú pháp truy cập thành viên trong mảng (a.HoTen). 2. Tiêu chí 2: Dùng cin >> để nhập Họ tên và Nơi sinh thay vì getline, không xử lý được khoảng trắng.",
+        "suggestion": "Sửa lại hàm như sau: void NhapSV(SinhVien &x) { getline(cin, x.MaSV); getline(cin, x.HoTen); getline(cin, x.NoiSinh); cin >> x.NamSinh >> x.DTB; }",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:1/2 expected keywords found: NhapSV.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 11031,
+          "completion_tokens": 6505,
+          "total_tokens": 17536
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(SinhVien a[])\n    cin >> MaSV;\n    cin.ignore();\n    cin >> a.HoTen;\n    cin >> NamSinh >> NoiSinh >> DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          }
+        ],
+        "missing": [
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 88359
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_28",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 0.5,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 0,
+    "token_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "llm_feedbacks": [],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": false,
+        "grading_method": "blank_skip",
+        "stage": "heuristic",
+        "llm_reasoning": "Student left this part blank.",
+        "cot_reasoning": "",
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "blank",
+          "found": false,
+          "is_blank": true
+        },
+        "detected_errors": [
+          {
+            "error_type": "blank_answer",
+            "message": "Sinh viên không làm phần này."
+          }
+        ],
+        "latency_ms": 0
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "error_type": "blank_answer",
+        "message": "Sinh viên không làm phần này."
+      }
+    ],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 0,
+      "blank_skipped": 1
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_29",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 0.5,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 90211,
+    "token_usage": {
+      "prompt_tokens": 11860,
+      "completion_tokens": 7066,
+      "total_tokens": 18926
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0,
+        "max_score": 0.5,
+        "feedback": "Thiếu dấu '{' mở thân hàm → lỗi cú pháp nghiêm trọng, không thể biên dịch. Dù logic đúng, nhưng không đạt yêu cầu kỹ thuật tối thiểu.",
+        "suggestion": "Thêm dấu '{' sau khai báo hàm và dấu '}' ở cuối thân hàm để đảm bảo mã nguồn hợp lệ về cú pháp."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Mặc dù học sinh sử dụng đúng tham chiếu và hàm getline để nhập chuỗi, nhưng thiếu dấu '{' mở thân hàm khiến mã nguồn không thể biên dịch. Theo nguyên tắc chấm thi, lỗi cấu trúc nghiêm trọng này không được chấp nhận dưới danh nghĩa 'tương đương', dẫn đến mất điểm toàn bộ.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC YÊU CẦU**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm điểm gồm 2 phần độc lập, mỗi phần 0.25đ:\n\n- **(1) Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).**  \n  → Đây là yêu cầu về **cách khai báo tham số hàm**: phải dùng **tham chiếu** (`&`) để thay đổi đối tượng bên ngoài hàm. Nếu dùng tham trị (`Sinhvien x`), thì thay đổi trong hàm sẽ không ảnh hưởng đến đối tượng gốc → **sai**, không được điểm.\n\n- **(2) Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).**  \n  → Dữ liệu chuỗi (MaSV, HoTen, NoiSinh) **có thể chứa khoảng trắng**, nên **phải dùng `getline()`** để đọc toàn bộ dòng. Nếu dùng `cin>>`, chỉ đọc đến dấu cách → **sai**, không được điểm cho phần này.\n\n> ✅ Lưu ý: Hai tiêu chí **độc lập**, đúng phần nào tính điểm phần đó. Không cần cả hai đều đúng mới có điểm — nhưng nếu sai một phần, chỉ mất điểm phần đó.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án kỳ vọng **không cố định**, nhưng logic và cấu trúc cần đạt:\n\n- Hàm `NhapSV` nhận tham số là **tham chiếu** (`Sinhvien &x`)\n- Sử dụng `getline(cin, ...)` cho các trường chuỗi (MaSV, HoTen, NoiSinh)\n- Sử dụng `cin >>` cho các trường số (NamSinh, DTB)\n\n→ Đây là **logic chuẩn** khi xử lý dữ liệu chuỗi có khoảng trắng trong C++.\n\nGhi chú giáo viên nhấn mạnh:\n> “Truyền tham trị (Sinhvien x) thì 0đ vì sửa không có tác dụng ngoài hàm.”  \n> “Nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng (dùng cin>> thay vì getline) thì tính zero điểm phần đó.”\n\n→ Như vậy, **sai ở bất kỳ phần nào trong 2 tiêu chí đều bị trừ điểm tương ứng**, không áp dụng “tương đương” nếu sai cấu trúc.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(Sinhvien &x)\ncin.getline(x.MaSV, MAX);\ncin.getline(x.HoTen, MAX);\ncin.getline(x.NoiSinh, MAX);\ncin>>x.NamSinh;\ncin>>x.DTB;\n```\n\n#### a) Về **truyền tham số**:\n\n- Học sinh viết: `void NhapSV(Sinhvien &x)` → **đúng**.\n- Sử dụng `&x` → **tham chiếu**, đảm bảo thay đổi trong hàm ảnh hưởng đến đối tượng ngoài → **đạt tiêu chí 1 (0.25đ)**.\n\n✅ **Phần 1: ĐÚNG → 0.25đ**\n\n#### b) Về **lệnh nhập chuỗi**:\n\n- Học sinh dùng: `cin.getline(x.MaSV, MAX);` → **đúng**.\n- `cin.getline(x.HoTen, MAX);` → **đúng**.\n- `cin.getline(x.NoiSinh, MAX);` → **đúng**.\n\n→ Tất cả 3 trường chuỗi đều dùng `cin.getline()`, phù hợp với dữ liệu có thể chứa khoảng trắng.\n\n⚠️ **Tuy nhiên, có một lỗi nhỏ về cú pháp**:  \nHàm `cin.getline()` là **hàm thành viên của cin**, nên gọi đúng là `cin.getline(...)` — tuy nhiên, **nó vẫn hoạt động như `getline(cin, ...)`** trong thực tế, vì `cin.getline()` là phiên bản tiện ích của `getline(cin, ...)`.  \n\n→ Trong môi trường C++, **`cin.getline(str, len)` và `getline(cin, str)` đều đúng**, chỉ khác cách gọi. Cả hai đều đọc dòng đầy đủ, bỏ qua ký tự xuống dòng.\n\n➡️ Do đó, **việc sử dụng `cin.getline()` là hoàn toàn hợp lệ và đúng chức năng**, không vi phạm tiêu chí \"nhập chuỗi đúng kiểu\".\n\n✅ **Phần 2: ĐÚNG → 0.25đ**\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- Bài làm học sinh **khác dạng** so với đáp án mẫu (dùng `cin.getline()` thay vì `getline(cin, ...)`), nhưng **cùng chức năng, cùng kết quả**.\n- Không có thiếu sót về cấu trúc: không thiếu dấu `{}`, không thiếu tham số, không thiếu phần tăng vòng lặp (không có vòng lặp).\n- Các lệnh nhập chuỗi đều xử lý đúng khoảng trắng → **đảm bảo dữ liệu đầy đủ**.\n\n→ Vì đây là **sự khác biệt hình thức, không ảnh hưởng đến logic và kết quả**, nên **được chấp nhận** theo nguyên tắc “chấp nhận nhiều cách làm đúng khác nhau”.\n\n---\n\n### **5. SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Học sinh có đúng? | Điểm |\n|----------|-------------------|------|\n| Truyền tham chiếu | ✅ Có (`&x`) | 0.25đ |\n| Nhập chuỗi đúng (getline) | ✅ Có (`cin.getline()`) | 0.25đ |\n\n→ Tổng cộng: **0.5/0.5**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ**\n\n✅ **Điểm dự kiến: 0.5/0.5**\n\n**Lý do:**  \n- Học sinh đã đúng về kiểu truyền tham số (tham chiếu `&x`).  \n- Học sinh đã dùng `cin.getline()` để nhập các chuỗi có thể chứa khoảng trắng → **đúng yêu cầu kỹ thuật**.  \n- Mặc dù cách gọi `cin.getline()` khác với `getline(cin, ...)` trong đáp án mẫu, nhưng **về chức năng và kết quả hoàn toàn tương đương**, và không vi phạm nguyên tắc biên dịch hoặc logic.  \n- Không có lỗi cú pháp nghiêm trọng (thiếu dấu ngoặc, thiếu tham số, thiếu chỉ số mảng...).  \n- Tuân thủ ghi chú giáo viên: không dùng `cin>>` cho chuỗi → tránh lỗi cắt chuỗi.\n\n---\n\n### ✅ **ĐIỂM CUỐI CÙNG: 0.5/0.5**\n\n> 📌 **Lưu ý**: Nếu bài làm có thêm lỗi nhỏ (ví dụ: thiếu dấu `{` hoặc `}`), thì cần trừ điểm. Nhưng trong trường hợp này, mặc dù không có dấu `{` mở hàm, nhưng code vẫn có thể biên dịch được (do hàm đơn giản, không có lệnh phức tạp), và **theo quy định chấm thi**, nếu không có lỗi cú pháp nghiêm trọng thì vẫn được coi là đúng. Tuy nhiên, **thiếu dấu `{` là lỗi cú pháp** — nhưng trong bài làm học sinh, nếu được trình bày như một khối code hoàn chỉnh, thì thường được hiểu là **bị thiếu do OCR hoặc copy dán**, chứ không phải lỗi ý đồ.\n\n→ Tuy nhiên, **theo nguyên tắc chấm thi**, nếu **không có dấu `{`**, thì **không thể biên dịch** → nên **phải trừ điểm**.\n\n---\n\n## ❗️BỔ SUNG SAU KHI PHÂN TÍCH LẠI\n\n### ⚠️ LỖI CẤU TRÚC: THÍCH HỢP NHƯNG KHÔNG ĐỦ?\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(Sinhvien &x)\ncin.getline(x.MaSV, MAX);\n...\n```\n\n→ **Thiếu dấu `{` mở hàm**.\n\n👉 Trong C++, **khai báo hàm phải có cặp `{}` bao quanh thân hàm**. Nếu thiếu `{`, chương trình **không biên dịch được** → **là lỗi nghiêm trọng**.\n\n→ Theo **GHI CHÚ GIÁO VIÊN**: “KHÔNG áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC...”\n\n→ **Do đó, dù logic đúng, nhưng thiếu dấu `{` khiến code không thể biên dịch → bị trừ điểm**.\n\n---\n\n### 💡 TƯỞNG TƯỢNG: ĐIỂM CHẤM THỰC TẾ\n\n- **Tiêu chí 1: Truyền tham chiếu** → Đúng → **0.25đ**\n- **Tiêu chí 2: Nhập chuỗi đúng** → Đúng (dùng `cin.getline()`) → **0.25đ**\n- **Nhưng**: **Thiếu dấu `{` → lỗi cú pháp → không thể biên dịch → không đạt yêu cầu “code đúng”**\n\n→ Theo nguyên tắc: **“Không áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC”**\n\n→ **Vì vậy, dù logic đúng, nhưng thiếu dấu `{` → bị trừ điểm toàn bộ hoặc phần lớn**.\n\n---\n\n## ✅ QUYẾT ĐỊNH CUỐI CÙNG\n\n### 🔸 **Điểm: 0.0 / 0.5**\n\n**Lý do chi tiết:**\n\n- Học sinh đã **đúng về truyền tham chiếu** và **đúng về cách nhập chuỗi**.\n- Tuy nhiên, **thiếu dấu `{` mở hàm** → **code không thể biên dịch** → vi phạm nguyên tắc “không áp dụng tương đương cho code thiếu sót”.\n- Theo ghi chú giáo viên: “KHÔNG áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC...” → **phải bị trừ điểm**.\n- Vì lỗi này **gây ra sự thiếu sót nghiêm trọng**, dẫn đến **code không chạy được**, nên **không được điểm**.\n\n---\n\n## 🎯 KẾT LUẬN\n\n> **Điểm: 0.0 / 0.5**\n\n**Lý do:**  \nMặc dù học sinh đã lựa chọn đúng kiểu truyền tham số và sử dụng đúng hàm nhập chuỗi có khoảng trắng, nhưng **thiếu dấu `{` mở thân hàm**, khiến mã nguồn **không thể biên dịch**. Theo nguyên tắc chấm thi, những lỗi cấu trúc cơ bản như vậy **không được chấp nhận dưới danh nghĩa “tương đương”**, ngay cả khi logic đúng. Do đó, **bài làm không đạt yêu cầu kỹ thuật tối thiểu để được điểm**.\n\n---\n\n✅ **Chấm điểm cuối cùng: 0.0**",
+        "feedback": "Thiếu dấu '{' mở thân hàm → lỗi cú pháp nghiêm trọng, không thể biên dịch. Dù logic đúng, nhưng không đạt yêu cầu kỹ thuật tối thiểu.",
+        "suggestion": "Thêm dấu '{' sau khai báo hàm và dấu '}' ở cuối thân hàm để đảm bảo mã nguồn hợp lệ về cú pháp.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: NhapSV, getline.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 11860,
+          "completion_tokens": 7066,
+          "total_tokens": 18926
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(Sinhvien &x)\ncin.getline(x.MaSV, MAX);\ncin.getline(x.HoTen, MAX);\ncin.getline(x.NoiSinh, MAX);\ncin>>x.NamSinh;\ncin>>x.DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 90211
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_30",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.25,
+    "max_score": 0.5,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 62000,
+    "token_usage": {
+      "prompt_tokens": 8971,
+      "completion_tokens": 4389,
+      "total_tokens": 13360
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0.25,
+        "max_score": 0.5,
+        "feedback": "Thiếu thân hàm, không có lệnh nhập dữ liệu. Không sử dụng getline cho các trường chuỗi (Họ tên, Nơi sinh).",
+        "suggestion": "Viết đầy đủ thân hàm với các lệnh nhập phù hợp: dùng getline(cin, ...) cho MaSV, HoTen, NoiSinh; dùng cin >> cho NamSinh và DTB."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.5,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh đã đúng về kiểu truyền tham số (tham chiếu), nhưng chưa viết thân hàm nên không thể xác định việc nhập chuỗi có dùng getline hay không → không đạt tiêu chí 2.",
+        "cot_reasoning": "---\n\n### **1. Đọc và hiểu tiêu chí: tiêu chí này yêu cầu gì?**\n\nTheo **TIÊU CHÍ CHẤM**, có hai phần độc lập, mỗi phần 0.25 điểm:\n\n- **(1) Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không** → 0.25đ  \n  → Yêu cầu: phải dùng **tham chiếu** (dấu `&`) để truyền đối tượng `Sinhvien` vào hàm. Nếu dùng tham trị (`Sinhvien x`), thì **sửa đổi bên trong hàm không ảnh hưởng đến đối tượng ngoài hàm** → sai.\n\n- **(2) Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không** → 0.25đ  \n  → Yêu cầu: khi nhập các trường **chuỗi có thể chứa khoảng trắng** (như Họ tên, Nơi sinh), **phải dùng `getline(cin, ...)`**, chứ **không được dùng `cin >>`** vì `cin >>` chỉ lấy đến dấu cách đầu tiên.\n\n→ Tổng cộng 0.5 điểm, chia đều cho 2 tiêu chí, **từng tiêu chí độc lập** → nếu đúng một phần thì được 0.25, đúng cả hai thì 0.5.\n\n---\n\n### **2. Phân tích đáp án kỳ vọng (nếu có): cần khớp điều gì?**\n\nĐáp án mẫu (chỉ tham khảo):\n\n```cpp\nvoid NhapSV(Sinhvien &x){\n    getline(cin, x.MaSV);\n    getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n    getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n    cin>>x.NamSinh;\n    cin>>x.DTB;\n}\n```\n\n→ Điều kiện đạt điểm:\n\n- **Tham số**: `Sinhvien &x` → đúng tham chiếu.\n- **Nhập chuỗi**: dùng `getline(cin, ...)` cho các trường chuỗi (MaSV, HoTen, NoiSinh).\n- **Nhập số**: dùng `cin >>` cho NamSinh, DTB → hợp lý.\n\n→ Tuy nhiên, **không yêu cầu giống hệt đáp án mẫu**, chỉ cần **logic đúng, kết quả đúng, cấu trúc hợp lệ**.\n\n---\n\n### **3. Phân tích bài làm học sinh: học sinh đã làm gì, đúng chỗ nào, sai chỗ nào?**\n\nBài làm học sinh chỉ có dòng:\n\n```cpp\nvoid NhapSV(Sinhvien &a)\n```\n\n→ Đây là **khai báo hàm**, nhưng **không có thân hàm** (không có `{ ... }`).\n\n→ Học sinh **chưa viết nội dung hàm** (không có lệnh nhập dữ liệu).\n\n---\n\n### **4. Kiểm tra tương đương: nếu bài làm khác đáp án mẫu, kiểm tra xem kết quả/logic có tương đương không.**\n\n→ Bài làm học sinh **chưa hoàn thiện**. Không có thân hàm → **không thể đánh giá việc nhập chuỗi có đúng hay không**.\n\n→ Tuy nhiên, về **tham số**: học sinh đã dùng `Sinhvien &a` → **đúng kiểu tham chiếu** → **đạt tiêu chí 1**.\n\n→ Về **lệnh nhập chuỗi**: chưa có lệnh nào → **không thể xác định** → **không đạt tiêu chí 2**.\n\n→ **Không có lỗi cú pháp hoặc thiếu dấu ngoặc**, nhưng **thiếu toàn bộ thân hàm** → đây là **sai sót nghiêm trọng**.\n\n---\n\n### **5. So sánh: mức độ khớp giữa bài làm và tiêu chí/đáp án kỳ vọng là bao nhiêu?**\n\n- **Tiêu chí 1 (truyền tham chiếu)**: ✅ Đúng → **0.25 điểm**\n- **Tiêu chí 2 (nhập chuỗi đúng kiểu)**: ❌ Không có lệnh nhập → **không thể đánh giá**, và theo ghi chú giáo viên: \"Nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng... thì tính zero điểm phần đó\" → tức là **nếu không có lệnh nhập chuỗi bằng getline thì coi như sai**.\n\n→ Vì học sinh **không viết bất kỳ lệnh nhập nào**, nên **không thể đảm bảo rằng họ sẽ dùng getline** → **coi như sai tiêu chí 2**.\n\n→ Ngoài ra, **bài làm chưa hoàn chỉnh** — không có thân hàm → **vi phạm nguyên tắc \"code phải đầy đủ, có thể biên dịch và chạy được\"** (theo ghi chú giáo viên: không áp dụng \"tương đương\" cho code thiếu sót).\n\n---\n\n### **6. Kết luận sơ bộ: điểm dự kiến và lý do.**\n\n✅ **Điểm: 0.25/0.5**\n\n**Lý do chi tiết:**\n\n- **Tiêu chí 1 (truyền tham chiếu)**: Học sinh dùng `Sinhvien &a` → đúng → **+0.25 điểm**.\n- **Tiêu chí 2 (nhập chuỗi đúng kiểu)**: Học sinh **không viết thân hàm**, do đó **không có lệnh nhập dữ liệu nào**, đặc biệt **không có lệnh `getline` cho các trường chuỗi** → **không đạt yêu cầu**, và theo ghi chú giáo viên, nếu không sử dụng `getline` cho chuỗi thì bị trừ điểm → **0 điểm cho tiêu chí này**.\n\n→ **Tổng điểm: 0.25**\n\n---\n\n⚠️ **GHI CHÚ QUAN TRỌNG**: Dù học sinh có thể đang định viết tiếp, nhưng **bài làm hiện tại chỉ có khai báo hàm** → không đủ để chấm điểm đầy đủ. Giáo viên không được suy diễn “học sinh sẽ viết đúng” nếu chưa thấy code thực tế. Theo nguyên tắc: **“KHÔNG áp dụng cho code THIẾU SÓT hoặc KHÔNG THỂ BIÊN DỊCH ĐƯỢC”** → bài này thiếu thân hàm → không thể biên dịch → **phải trừ điểm phần thiếu**.\n\n---\n\n✅ **KẾT LUẬN CUỐI CÙNG: 0.25 điểm**\n\n---",
+        "feedback": "Thiếu thân hàm, không có lệnh nhập dữ liệu. Không sử dụng getline cho các trường chuỗi (Họ tên, Nơi sinh).",
+        "suggestion": "Viết đầy đủ thân hàm với các lệnh nhập phù hợp: dùng getline(cin, ...) cho MaSV, HoTen, NoiSinh; dùng cin >> cho NamSinh và DTB.",
+        "agreed_with_heuristic": false,
+        "confidence": 0.95,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:1/2 expected keywords found: NhapSV.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 8971,
+          "completion_tokens": 4389,
+          "total_tokens": 13360
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(Sinhvien &a)",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          }
+        ],
+        "missing": [
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 62000
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_32",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 0.5,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 74022,
+    "token_usage": {
+      "prompt_tokens": 10359,
+      "completion_tokens": 5848,
+      "total_tokens": 16207
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0,
+        "max_score": 0.5,
+        "feedback": "Sai về cú pháp (cin <<), thiếu kiểu dữ liệu cho tham số, không dùng getline cho Họ tên và Nơi sinh, sử dụng mảng a[i] mà không khai báo i, vi phạm cả hai tiêu chí đánh giá.",
+        "suggestion": "Sửa lại hàm thành void NhapSV(Sinhvien &x); dùng cin >> để nhập MaSV, NamSinh, DTB; dùng getline(cin, x.HoTen) và getline(cin, x.Noisinh) để nhập chuỗi có khoảng trắng. Đảm bảo không dùng mảng nếu đề bài yêu cầu nhập một sinh viên."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Bài làm có nhiều lỗi cơ bản: sai cú pháp (cin << thay vì cin >>), thiếu kiểu dữ liệu cho tham số, không dùng getline cho chuỗi có khoảng trắng, và sử dụng mảng thay vì truyền một sinh viên như yêu cầu. Không đạt bất kỳ tiêu chí nào.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: TIÊU CHÍ NÀY YÊU CẦU GÌ?**\n\n- **Tiêu chí 1 (0.25đ):** Kiểm tra sinh viên có viết đúng kiểu truyền tham số: **tham biến/tham chiếu** không.  \n  → Tức là hàm `NhapSV` phải nhận tham số là **tham chiếu** (ví dụ: `Sinhvien &x`) hoặc **tham biến** (truyền con trỏ, nhưng trong ngữ cảnh C++ thường dùng tham chiếu để thay đổi dữ liệu bên ngoài hàm).  \n  → Nếu chỉ truyền tham trị (`Sinhvien x`), thì **không thể thay đổi dữ liệu thực tế bên ngoài hàm**, nên bị **0 điểm** cho tiêu chí này.\n\n- **Tiêu chí 2 (0.25đ):** Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không.  \n  → Cụ thể: **Họ tên** và **Nơi sinh** là chuỗi có thể chứa khoảng trắng → **phải dùng `getline(cin, ...)`** chứ không dùng `cin >>`, vì `cin >>` sẽ dừng khi gặp khoảng trắng.  \n  → Nếu dùng `cin >>` cho Họ tên/Nơi sinh → **sai kiểu dữ liệu**, bị **0 điểm** cho tiêu chí này.\n\n→ Tổng cộng 0.5 điểm, chia đều thành 2 phần độc lập: mỗi phần 0.25đ.\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (LOGIC MỤC TIÊU)**\n\n- Hàm `NhapSV` phải:\n  - Nhận tham số là **tham chiếu** đến một cấu trúc `Sinhvien` (ví dụ: `Sinhvien &x`).\n  - Dùng `getline(cin, ...)` để nhập **Họ tên** và **Nơi sinh** (do có khoảng trắng).\n  - Dùng `cin >>` để nhập **NamSinh** và **DTB** (vì là số nguyên/float, không cần xử lý khoảng trắng).\n\n→ Đây là **logic kỳ vọng**, không yêu cầu code giống hệt, nhưng **phải đúng về cách truyền tham số và cách nhập dữ liệu**.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(a[])\ncin << a[i].MaSV;\ncin << a[i].HoTen;\ncin << a[i].NamSinh;\ncin << a[i].Noisinh;\n```\n\n→ **Phân tích từng phần:**\n\n#### a) **Ký hiệu hàm và tham số:**\n- Viết `void NhapSV(a[])` → **sai cú pháp**.\n  - `a[]` không xác định kiểu (thiếu kiểu dữ liệu trước dấu `[`).\n  - Trong C++, nếu muốn truyền mảng cấu trúc, phải viết như: `Sinhvien a[]` hoặc `Sinhvien *a`.\n  - Nhưng quan trọng hơn: **không phải truyền mảng**, mà là **truyền một sinh viên** (theo đề bài: \"nhập thông tin của một sinh viên\").\n  - → Do đó, đây là **sai về logic**: hàm không được thiết kế để nhập một sinh viên, mà như đang nhập một mảng → **không phù hợp với yêu cầu đề bài**.\n\n#### b) **Cú pháp nhập dữ liệu:**\n- Dùng `cin << ...` → **sai hoàn toàn cú pháp**.\n  - `cin` là đối tượng đầu vào, phải dùng `>>` để đọc dữ liệu, không phải `<<` (dùng để ghi ra).\n  - `cin << a[i].MaSV;` → **lỗi biên dịch**, không thể chạy được.\n\n#### c) **Không dùng getline:**\n- Dù giả sử sửa sai cú pháp, nếu vẫn dùng `cin >>` để nhập `HoTen` và `Noisinh`, thì vẫn **sai về kiểu dữ liệu** → vì không xử lý được khoảng trắng.\n\n#### d) **Không có khai báo biến i:**\n- `a[i]` → chưa biết `i` là gì → lỗi biên dịch.\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG: CÓ KHÁC NHƯNG ĐÚNG LOGIC KHÔNG?**\n\n→ **Không có sự tương đương nào ở đây**.\n\n- Bài làm **không thể biên dịch** do:\n  - Sai cú pháp `cin <<`\n  - Thiếu kiểu dữ liệu cho `a[]`\n  - Không khai báo `i`\n- **Không thể chạy được** → không thể nói “hướng đi đúng”.\n- Thậm chí **không tuân thủ đúng yêu cầu đề bài**: nhập một sinh viên, nhưng lại dùng mảng.\n\n→ **Không áp dụng nguyên tắc “nhiều cách làm đúng khác nhau”** vì bài làm **không đúng về hình thức, không thể chạy, và sai về logic cơ bản**.\n\n---\n\n### **5. SO SÁNH: MỨC ĐỘ KHỚP GIỮA BÀI LÀM VÀ TIÊU CHÍ/ĐÁP ÁN KỲ VỌNG**\n\n| Tiêu chí | Bài làm học sinh | Đúng hay sai? | Điểm dự kiến |\n|----------|------------------|---------------|--------------|\n| Truyền tham số đúng (tham chiếu/tham biến) | `a[]` không rõ kiểu, không phải tham chiếu | **Sai** | 0/0.25 |\n| Nhập chuỗi đúng kiểu (dùng getline) | Dùng `cin <<`, sai cú pháp + không dùng getline | **Sai** | 0/0.25 |\n\n→ **Cả hai tiêu chí đều sai nghiêm trọng**.\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: ĐIỂM DỰ KIẾN VÀ LÝ DO**\n\n✅ **Điểm: 0.0 / 0.5**\n\n📌 **Lý do chi tiết:**\n\n- **Thiếu kiểu dữ liệu cho tham số hàm** → không xác định được loại tham số → không thể đánh giá được việc truyền tham chiếu/tham trị → **vi phạm tiêu chí 1**.\n- **Dùng sai cú pháp `cin <<` thay vì `cin >>`** → lỗi biên dịch → **không thể thực thi**.\n- **Không dùng `getline` cho chuỗi có khoảng trắng** → vi phạm tiêu chí 2.\n- **Viết `a[i]` mà không khai báo `i`** → lỗi biên dịch.\n- **Không phù hợp với yêu cầu đề bài**: nhập một sinh viên, nhưng lại dùng mảng.\n\n→ **Tất cả các lỗi trên đều là lỗi cơ bản, không thể chấp nhận được trong bài lập trình đơn giản như vậy.**\n\n→ **Không đủ điều kiện để đạt bất kỳ phần điểm nào**.\n\n---\n\n✅ **KẾT LUẬN CUỐI CÙNG: ĐIỂM CHO BÀI LÀM = 0.0**\n\n---",
+        "feedback": "Sai về cú pháp (cin <<), thiếu kiểu dữ liệu cho tham số, không dùng getline cho Họ tên và Nơi sinh, sử dụng mảng a[i] mà không khai báo i, vi phạm cả hai tiêu chí đánh giá.",
+        "suggestion": "Sửa lại hàm thành void NhapSV(Sinhvien &x); dùng cin >> để nhập MaSV, NamSinh, DTB; dùng getline(cin, x.HoTen) và getline(cin, x.Noisinh) để nhập chuỗi có khoảng trắng. Đảm bảo không dùng mảng nếu đề bài yêu cầu nhập một sinh viên.",
+        "agreed_with_heuristic": false,
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:1/2 expected keywords found: NhapSV.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0,
+        "llm_status": "wrong",
+        "token_usage": {
+          "prompt_tokens": 10359,
+          "completion_tokens": 5848,
+          "total_tokens": 16207
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(a[])\ncin << a[i].MaSV;\ncin << a[i].HoTen;\ncin << a[i].NamSinh;\ncin << a[i].Noisinh;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          }
+        ],
+        "missing": [
+          {
+            "value": "getline"
+          }
+        ],
+        "latency_ms": 74022
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_34",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.25,
+    "max_score": 0.5,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 68881,
+    "token_usage": {
+      "prompt_tokens": 9682,
+      "completion_tokens": 5016,
+      "total_tokens": 14698
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0.25,
+        "max_score": 0.5,
+        "feedback": "Sai ở việc thiếu tham số độ dài trong cin.getline(x.MaSV), cin.getline(x.HoTen), cin.getline(x.NoiSinh). Đây là lỗi cú pháp nghiêm trọng, khiến chương trình không chạy được.",
+        "suggestion": "Sửa lại thành: cin.getline(x.MaSV, 50); cin.getline(x.HoTen, 50); cin.getline(x.NoiSinh, 50); (thay 50 bằng kích thước thực tế nếu đã định nghĩa)."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.5,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh sử dụng đúng tham chiếu (&x) nhưng sai cú pháp khi dùng cin.getline() cho các chuỗi, thiếu tham số độ dài → không thể biên dịch hoặc chạy đúng, nên chỉ đạt 1/2 tiêu chí.",
+        "cot_reasoning": "---\n\n### **BƯỚC 1: ĐỌC VÀ HIỂU TIÊU CHÍ**\n\nTiêu chí chấm gồm **2 phần độc lập**, mỗi phần 0.25đ, tổng cộng 0.5đ:\n\n1. **Kiểm tra kiểu truyền tham số**: phải là **tham chiếu** (dùng `&`) để thay đổi đối tượng bên ngoài hàm. Nếu dùng tham trị (`Sinhvien x`), thì không có tác dụng — **trừ điểm toàn bộ phần này**.\n\n2. **Kiểm tra lệnh nhập chuỗi**: các trường **Họ tên** và **Nơi sinh** là chuỗi có thể chứa khoảng trắng → **phải dùng `getline(cin, ...)`**, nếu dùng `cin >>` thì sẽ sai vì chỉ lấy đến ký tự đầu tiên hoặc đến khoảng trắng.\n\n→ **Từng tiêu chí riêng biệt, đúng phần nào được điểm phần đó.**\n\n---\n\n### **BƯỚC 2: PHÂN TÍCH ĐÁP ÁN KỲ VỌNG**\n\nĐáp án mẫu cho thấy:\n\n- Hàm: `void NhapSV(Sinhvien &x)` → **đúng tham chiếu**.\n- Nhập chuỗi: dùng `getline(cin, ...)` cho `MaSV`, `HoTen`, `NoiSinh` → **đúng cách xử lý chuỗi có khoảng trắng**.\n- Nhập số nguyên/số thực: dùng `cin >>` cho `NamSinh`, `DTB` → hợp lý vì không có khoảng trắng.\n\n→ **Yêu cầu cốt lõi**:  \n✅ Tham chiếu  \n✅ `getline` cho các chuỗi có khoảng trắng\n\n---\n\n### **BƯỚC 3: PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(Sinhvien &x)\ncin.getline(x.MaSV);\ncin.getline(x.HoTen);\ncin >> x.NamSinh;\ncin.getline(x.NoiSinh);\ncin >> x.DTB;\n```\n\n**Phân tích từng dòng:**\n\n1. `void NhapSV(Sinhvien &x)` → ✅ **Truyền tham chiếu đúng** → **đạt tiêu chí 1 (0.25đ)**.\n\n2. `cin.getline(x.MaSV);` → ❌ **Sai cú pháp!**  \n   - `cin.getline()` cần **2 tham số**: địa chỉ buffer và độ dài tối đa.  \n   - Cú pháp đúng: `cin.getline(x.MaSV, sizeof(x.MaSV));` hoặc `cin.getline(x.MaSV, 50);` (nếu đã định nghĩa kích thước).  \n   - Ở đây, thiếu tham số thứ 2 → **lỗi biên dịch hoặc hành vi không xác định** → **không thể chạy được**.\n\n3. `cin.getline(x.HoTen);` → ❌ **Cũng sai cú pháp tương tự như trên**.\n\n4. `cin >> x.NamSinh;` → ✅ **Đúng, vì NamSinh là số nguyên, không có khoảng trắng**.\n\n5. `cin.getline(x.NoiSinh);` → ❌ **Lỗi cú pháp giống 2 dòng trên**.\n\n6. `cin >> x.DTB;` → ✅ **Đúng, DTB là số thực, không có khoảng trắng**.\n\n---\n\n### **BƯỚC 4: KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- **Về tham số**: học sinh dùng `&x` → đúng → **tương đương với đáp án kỳ vọng**.\n\n- **Về nhập chuỗi**: học sinh cố gắng dùng `cin.getline(...)` nhưng **sai cú pháp** → **không thể chạy được**, không đạt yêu cầu kỹ thuật.\n\n→ **Không thể coi là \"tương đương\"** vì:\n- Code **không biên dịch được** do thiếu tham số.\n- Dù ý định đúng (dùng getline), nhưng **cấu trúc sai** → **vi phạm nguyên tắc \"không áp dụng tương đương cho code thiếu sót\"** theo ghi chú giáo viên.\n\n---\n\n### **BƯỚC 5: SO SÁNH MỨC ĐỘ KHỚP**\n\n| Tiêu chí | Học sinh có đạt? | Lý do |\n|----------|------------------|-------|\n| 1. Truyền tham chiếu | ✅ Có | Dùng `&x` đúng |\n| 2. Nhập chuỗi đúng (getline) | ❌ Không | Dùng `cin.getline()` mà thiếu tham số → lỗi cú pháp → không thể nhập được chuỗi |\n\n→ **Chỉ đạt 1/2 tiêu chí** → **0.25đ**\n\n---\n\n### **BƯỚC 6: KẾT LUẬN SƠ BỘ**\n\n✅ **Điểm dự kiến: 0.25/0.5**\n\n✅ **Lý do**:  \n- Học sinh đã viết đúng kiểu truyền tham số (tham chiếu) → đạt tiêu chí 1.  \n- Tuy nhiên, khi nhập chuỗi, dù có sử dụng `cin.getline()`, nhưng **thiếu tham số thứ hai (độ dài)** → **lỗi cú pháp nghiêm trọng**, không thể biên dịch hoặc chạy đúng → **không đạt tiêu chí 2**.  \n- Theo ghi chú giáo viên: “Nếu nhập Họ tên và Nơi sinh mà không chú ý đến hàm nhập được khoảng trắng... thì tính zero điểm phần đó” → **phần này bị trừ toàn bộ**.\n\n→ **Tổng điểm: 0.25đ**\n\n---\n\n✅ **KẾT LUẬN CUỐI CÙNG: 0.25 điểm**\n\n> **Lưu ý**: Nếu bài làm học sinh chỉ thiếu tham số độ dài nhưng vẫn có thể chạy (ví dụ: trong một môi trường giả định), thì có thể cân nhắc, nhưng theo chuẩn C++ và yêu cầu kiểm tra kỹ thuật, **lỗi cú pháp này là nghiêm trọng** → **không chấp nhận được**.  \n\n---",
+        "feedback": "Sai ở việc thiếu tham số độ dài trong cin.getline(x.MaSV), cin.getline(x.HoTen), cin.getline(x.NoiSinh). Đây là lỗi cú pháp nghiêm trọng, khiến chương trình không chạy được.",
+        "suggestion": "Sửa lại thành: cin.getline(x.MaSV, 50); cin.getline(x.HoTen, 50); cin.getline(x.NoiSinh, 50); (thay 50 bằng kích thước thực tế nếu đã định nghĩa).",
+        "agreed_with_heuristic": false,
+        "confidence": 0.95,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: NhapSV, getline.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 9682,
+          "completion_tokens": 5016,
+          "total_tokens": 14698
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(Sinhvien &x)\ncin.getline(x.MaSV);\ncin.getline(x.HoTen);\ncin >> x.NamSinh;\ncin.getline(x.NoiSinh);\ncin >> x.DTB;",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 68881
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_36",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.25,
+    "max_score": 0.5,
+    "status": "partially_correct",
+    "grading_method": "llm_advised",
+    "latency_ms": 90575,
+    "token_usage": {
+      "prompt_tokens": 11513,
+      "completion_tokens": 6992,
+      "total_tokens": 18505
+    },
+    "llm_feedbacks": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "score": 0.25,
+        "max_score": 0.5,
+        "feedback": "Truyền tham số sai: Dùng `Sinhvien a[]` nhưng truy cập `a.NamSinh` → lỗi cú pháp. Không thể truy cập thành viên trên mảng bằng dấu chấm. Cần dùng tham chiếu như `Sinhvien &x` hoặc `Sinhvien *x` kèm truy cập `x->NamSinh`.",
+        "suggestion": "Sửa lại định nghĩa hàm thành `void NhapSV(Sinhvien &x)` và thay đổi các truy cập thành viên thành `x.NamSinh`, `x.DTB`, v.v. Nếu muốn dùng con trỏ, dùng `void NhapSV(Sinhvien *x)` và truy cập bằng `x->NamSinh`."
+      }
+    ],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0.25,
+        "max_score": 0.5,
+        "status": "partially_correct",
+        "is_correct": false,
+        "llm_used": true,
+        "grading_method": "llm_advised_cot",
+        "stage": "llm",
+        "llm_reasoning": "Học sinh sử dụng đúng getline để nhập chuỗi có khoảng trắng, đạt tiêu chí 2. Tuy nhiên, truyền tham số bằng mảng `Sinhvien a[]` và truy cập thành viên bằng `a.NamSinh` là sai cú pháp, không thể biên dịch, vi phạm tiêu chí 1.",
+        "cot_reasoning": "**SUY LUẬN CHI TIẾT THEO CÁC BƯỚC**\n\n---\n\n### **1. ĐỌC VÀ HIỂU TIÊU CHÍ: TIÊU CHÍ NÀY YÊU CẦU GÌ?**\n\n- **Tiêu chí 1 (0.25đ):** Kiểm tra sinh viên có viết đúng kiểu truyền tham số: **tham biến/tham chiếu** không.  \n  → Nếu truyền **tham trị** (ví dụ: `Sinhvien x`), thì **không được điểm** vì thay đổi trong hàm sẽ **không ảnh hưởng đến biến ngoài hàm** — vi phạm yêu cầu “nhập thông tin của một sinh viên”, tức là phải ghi nhận dữ liệu vào biến gốc.\n\n- **Tiêu chí 2 (0.25đ):** Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không.  \n  → Đặc biệt chú ý: **Họ tên, Mã SV, Nơi sinh** là các chuỗi có thể chứa **khoảng trắng**, nên **phải dùng `getline()` hoặc `cin.getline()`** để đọc toàn bộ dòng.  \n  → Nếu dùng `cin >>`, chỉ đọc đến khoảng trắng đầu tiên → **sai** → **trừ điểm phần này**.\n\n→ **Tổng cộng 0.5 điểm, chia đều cho 2 tiêu chí độc lập.**\n\n---\n\n### **2. PHÂN TÍCH ĐÁP ÁN KỲ VỌNG (nếu có)**\n\n- Đáp án mẫu (tham khảo):  \n  ```cpp\n  void NhapSV(Sinhvien &x){\n      getline(cin, x.MaSV);\n      getline(cin,x.HoTen);   // cin>>x.HoTen : Sai\n      getline(cin,x.NoiSinh); // cin>>x.NoiSinh : Sai\n      cin>>x.NamSinh;\n      cin>>x.DTB;\n  }\n  ```\n  → **Truyền tham chiếu (`&x`)** → đúng.\n  → **Dùng `getline()` cho các chuỗi có khoảng trắng** → đúng.\n  → **Dùng `cin>>` cho các số nguyên/float (NamSinh, DTB)** → hợp lý và đúng.\n\n→ Đây là **một cách làm chuẩn**, nhưng như đã nói: **không bắt buộc giống hệt**, chỉ cần đúng logic và kết quả.\n\n---\n\n### **3. PHÂN TÍCH BÀI LÀM HỌC SINH**\n\nBài làm học sinh:\n\n```cpp\nvoid NhapSV(Sinhvien a[])\ncin >> a.NamSinh;\ncin >> a.DTB;\ncin.ignore();\ncin.getline(a.MaSV,100);\ncin.getline(a.HoTen,100);\ncin.getline(a.NoiSinh,100);\n```\n\n#### **a) Truyền tham số:**\n- Viết: `void NhapSV(Sinhvien a[])`\n→ Đây là **truyền mảng (hay con trỏ đến mảng)**, nhưng trong thực tế, khi dùng `a[]` trong hàm, nó **tương đương với truyền con trỏ (tham chiếu)** đến mảng đầu tiên.\n\n→ Tuy nhiên, **yêu cầu đề bài là nhập thông tin của \"một sinh viên\"**, không phải nhiều sinh viên. Do đó, việc dùng `Sinhvien a[]` **không phù hợp ngữ cảnh**, vì:\n- Nếu `a` là mảng, thì `a.NamSinh` **sai cú pháp** — **không thể dùng dấu chấm để truy cập thành viên trên mảng**.\n- Dù `a` là mảng, thì `a[0].NamSinh` mới đúng. Nhưng học sinh lại viết `a.NamSinh` → **sai cú pháp** → **lỗi biên dịch**.\n\n→ **Vấn đề nghiêm trọng: học sinh đang cố gắng truy cập thành viên của một mảng, điều này không hợp lệ trong C++**.\n\n→ **Kết luận: Truyền tham số sai cấu trúc → KHÔNG THAM CHIẾU ĐÚNG → VI PHẠM TIÊU CHÍ 1 → 0 điểm cho tiêu chí 1.**\n\n> ⚠️ Lưu ý: Mặc dù `Sinhvien a[]` trong C++ thường được coi là con trỏ (có thể hiểu là tham chiếu), nhưng **việc truy cập `a.NamSinh` là sai hoàn toàn** — vì `a` là mảng, không phải đối tượng. Điều này khiến code **không biên dịch được**, và **không thể thực hiện chức năng như mong đợi**.\n\n---\n\n#### **b) Nhập chuỗi:**\n- Học sinh dùng:  \n  - `cin.getline(a.MaSV,100);` → đúng, vì `getline` đọc toàn bộ dòng, bao gồm khoảng trắng.\n  - `cin.getline(a.HoTen,100);` → đúng.\n  - `cin.getline(a.NoiSinh,100);` → đúng.\n\n→ **Phần này đúng về mặt kỹ thuật: sử dụng `getline` cho chuỗi có khoảng trắng → đạt tiêu chí 2.**\n\n→ **Tuy nhiên, có một vấn đề nhỏ:**  \n  Trước các `getline()`, học sinh dùng `cin.ignore();` — đây là **hành động tốt** để loại bỏ ký tự `\\n` còn sót sau `cin >>` (do `cin >>` không đọc hết dòng).  \n  → **Việc này giúp tránh lỗi khi đọc `getline` ngay sau `cin >>` → hợp lý và đúng.**\n\n→ **Do đó, phần nhập chuỗi: ĐÚNG.**\n\n---\n\n### **4. KIỂM TRA TƯƠNG ĐƯƠNG**\n\n- **Truyền tham số**: Học sinh dùng `Sinhvien a[]` → **không tương đương với `Sinhvien &x`** về mặt cú pháp và semantics.  \n  → Vì `a[]` là mảng, không thể dùng `.NamSinh` → **lỗi cú pháp** → **không thể chạy được** → **không thể coi là “tương đương”**.\n\n- **Nhập chuỗi**: Dùng `cin.getline()` → đúng → **tương đương với `getline(cin, ...)`** → chấp nhận.\n\n→ **Chỉ có 1 phần đúng (nhập chuỗi), 1 phần sai nghiêm trọng (truyền tham số).**\n\n---\n\n### **5. SO SÁNH: MỨC ĐỘ KHỚP GIỮA BÀI LÀM VÀ TIÊU CHÍ/ĐÁP ÁN KỲ VỌNG**\n\n| Tiêu chí | Bài làm học sinh | Đạt? | Lý do |\n|----------|------------------|------|-------|\n| **1. Truyền tham biến/tham chiếu đúng** | `Sinhvien a[]` + `a.NamSinh` → **sai cú pháp** | ❌ | Không thể truy cập thành viên trên mảng bằng dấu chấm. Không phải tham chiếu đúng cách. |\n| **2. Nhập chuỗi đúng kiểu (dùng getline)** | Dùng `cin.getline()` cho MaSV, HoTen, NoiSinh → đúng | ✅ | Có xử lý khoảng trắng, đúng kỹ thuật. |\n\n→ **Tiêu chí 1: 0 điểm (do sai cấu trúc, không thể biên dịch)**  \n→ **Tiêu chí 2: 0.25 điểm (đúng)**\n\n---\n\n### **6. KẾT LUẬN SƠ BỘ: ĐIỂM DỰ KIẾN VÀ LÝ DO**\n\n✅ **Điểm dự kiến: 0.25 / 0.5**\n\n📌 **Lý do chi tiết:**\n- **Truyền tham số sai**: Dùng `Sinhvien a[]` nhưng truy cập `a.NamSinh` → **sai cú pháp**, không thể biên dịch → **vi phạm tiêu chí 1 → 0 điểm**.\n- **Nhập chuỗi đúng**: Sử dụng `cin.getline()` cho các trường chuỗi → **đạt tiêu chí 2 → 0.25 điểm**.\n\n→ **Không áp dụng nguyên tắc “chấp nhận nhiều cách làm đúng”** vì phần truyền tham số **không đúng về hình thức và không thể hoạt động** — **là lỗi cơ bản, không thể chấp nhận**.\n\n---\n\n✅ **ĐIỂM CUỐI CÙNG: 0.25**",
+        "feedback": "Truyền tham số sai: Dùng `Sinhvien a[]` nhưng truy cập `a.NamSinh` → lỗi cú pháp. Không thể truy cập thành viên trên mảng bằng dấu chấm. Cần dùng tham chiếu như `Sinhvien &x` hoặc `Sinhvien *x` kèm truy cập `x->NamSinh`.",
+        "suggestion": "Sửa lại định nghĩa hàm thành `void NhapSV(Sinhvien &x)` và thay đổi các truy cập thành viên thành `x.NamSinh`, `x.DTB`, v.v. Nếu muốn dùng con trỏ, dùng `void NhapSV(Sinhvien *x)` và truy cập bằng `x->NamSinh`.",
+        "agreed_with_heuristic": false,
+        "confidence": 0.95,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "heuristic_reason": "Found:2/2 expected keywords found: NhapSV, getline.",
+        "heuristic_weight": 0.0,
+        "llm_score": 0.25,
+        "llm_status": "partially_correct",
+        "token_usage": {
+          "prompt_tokens": 11513,
+          "completion_tokens": 6992,
+          "total_tokens": 18505
+        },
+        "evidence": {
+          "student_answer": "void NhapSV(Sinhvien a[])\ncin >> a.NamSinh;\ncin >> a.DTB;\ncin.ignore();\ncin.getline(a.MaSV,100);\ncin.getline(a.HoTen,100);\ncin.getline(a.NoiSinh,100);",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "part_matched",
+          "found": true
+        },
+        "status_corrected": false,
+        "detected_errors": [],
+        "matched": [
+          {
+            "value": "NhapSV"
+          },
+          {
+            "value": "getline"
+          }
+        ],
+        "missing": [],
+        "latency_ms": 90575
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [],
+    "feedback": "Bài làm đúng một phần (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 1,
+      "blank_skipped": 0
+    }
+  },
+  {
+    "sample_id": "cau_14_001__HS_39",
+    "ma_de": "1",
+    "question_number": 14,
+    "question_type": "logical",
+    "routing": {
+      "question_type": "logical",
+      "confidence": 1.0,
+      "reason": "question_type from parem (criterion T14B)",
+      "candidates": [],
+      "uses_llm": false,
+      "method": "parem_lookup"
+    },
+    "score": 0.0,
+    "max_score": 0.5,
+    "status": "wrong",
+    "grading_method": "llm_advised",
+    "latency_ms": 1,
+    "token_usage": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "llm_feedbacks": [],
+    "validation_after_routing": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "criterion_results": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "criterion_content": "- Kiểm tra sinh viên có viết đúng kiểu truyền tham số: tham biến/tham chiếu không (0.25đ).\n- Kiểm tra các lệnh nhập chuỗi có tương ứng với kiểu dữ liệu không (0.25đ).",
+        "score": 0,
+        "max_score": 0.5,
+        "status": "wrong",
+        "is_correct": false,
+        "llm_used": false,
+        "grading_method": "blank_skip",
+        "stage": "heuristic",
+        "llm_reasoning": "Student left this part blank.",
+        "cot_reasoning": "",
+        "confidence": 1.0,
+        "heuristic_score": 0,
+        "heuristic_status": "needs_teacher_review",
+        "evidence": {
+          "student_answer": "",
+          "tokens": [],
+          "tables": [],
+          "visual_answers": [],
+          "part_label": "b",
+          "type": "blank",
+          "found": false,
+          "is_blank": true
+        },
+        "detected_errors": [
+          {
+            "error_type": "blank_answer",
+            "message": "Sinh viên không làm phần này."
+          }
+        ],
+        "latency_ms": 0
+      }
+    ],
+    "group_overrides": [],
+    "detected_errors": [
+      {
+        "criterion_id": "T14B",
+        "part_label": "b",
+        "error_type": "blank_answer",
+        "message": "Sinh viên không làm phần này."
+      }
+    ],
+    "feedback": "Bài làm chưa đạt tiêu chí (LLM + Heuristic Advisory).",
+    "teacher_review_required": false,
+    "advisory_stats": {
+      "total_criteria": 1,
+      "agreed_count": 0,
+      "overridden_count": 0,
+      "blank_skipped": 1
+    }
+  }
+]

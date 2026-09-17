@@ -6,7 +6,7 @@ import sys
 import uuid
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, Form, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, HTTPException, UploadFile
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_db
@@ -20,7 +20,7 @@ _BACKEND_ROOT = Path(__file__).resolve().parents[3]
 _JOBS_DIR = _BACKEND_ROOT / "var" / "jobs"
 
 
-def _spawn_worker(job_id: str, input_path: Path, barem_path: Path, output_dir: Path, log_path: Path) -> None:
+def _spawn_worker(job_id: str, input_path: Path, barem_source: Path, output_dir: Path, log_path: Path) -> int:
     # A real OS subprocess, not a FastAPI BackgroundTask: it must keep
     # grading even if this API process is killed/restarted mid-run, so it
     # cannot share a process (or an event loop) with uvicorn. On Windows,
@@ -43,8 +43,11 @@ def _spawn_worker(job_id: str, input_path: Path, barem_path: Path, output_dir: P
     env = {**os.environ, "PYTHONIOENCODING": "utf-8"}
 
     with log_path.open("wb") as log_file:
-        subprocess.Popen(
-            [sys.executable, "-m", "app.worker", job_id, str(input_path), str(barem_path), str(output_dir)],
+        # The PID goes onto the job row so a later API restart can tell a
+        # still-detached worker from one that was killed — see
+        # app/services/job_recovery.py.
+        process = subprocess.Popen(
+            [sys.executable, "-m", "app.worker", job_id, str(input_path), str(barem_source), str(output_dir)],
             cwd=str(_BACKEND_ROOT),
             stdout=log_file,
             stderr=subprocess.STDOUT,
@@ -52,50 +55,105 @@ def _spawn_worker(job_id: str, input_path: Path, barem_path: Path, output_dir: P
             env=env,
             **kwargs,
         )
+    return process.pid
+
+
+def _materialise_barems(db: Session, input_path: Path, barem_dir: Path) -> list[str]:
+    """Write out one barem per `ma_de` the input actually uses.
+
+    Every student declares their own `ma_de`, so a single file can mix exam
+    codes and the run needs a barem for each. Rather than making the teacher
+    pick them, the library is indexed by `ma_de` and matched automatically —
+    which is the whole point of storing rubrics server-side.
+
+    Only the codes present in the input are written: dropping the rest keeps
+    the worker's log readable and stops an unrelated draft rubric in the
+    library from being loaded (and, if it duplicated a `ma_de`, from making
+    `load_barems()` refuse the whole run).
+    """
+    try:
+        data = json.loads(input_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise HTTPException(status_code=400, detail=f"File bài làm không phải JSON hợp lệ: {exc}") from exc
+    if not isinstance(data, dict):
+        raise HTTPException(status_code=400, detail="File bài làm phải là object {'HS_1': {...}}.")
+
+    wanted: dict[str, list[str]] = {}
+    missing_ma_de: list[str] = []
+    for hs_key, entry in data.items():
+        if not hs_key.startswith("HS_") or not isinstance(entry, dict):
+            continue
+        ma_de = entry.get("ma_de")
+        if ma_de is None:
+            missing_ma_de.append(hs_key)
+            continue
+        wanted.setdefault(str(ma_de), []).append(hs_key)
+
+    if missing_ma_de:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                f"{len(missing_ma_de)} học sinh thiếu 'ma_de' (vd {', '.join(missing_ma_de[:5])}). "
+                "Mỗi học sinh phải khai mã đề của mình để hệ thống chọn đúng barem."
+            ),
+        )
+    if not wanted:
+        raise HTTPException(status_code=400, detail="File bài làm không có học sinh nào (khoá HS_1, HS_2, …).")
+
+    by_ma_de: dict[str, BaremDoc] = {}
+    for doc in db.query(BaremDoc).order_by(BaremDoc.updated_at.desc()).all():
+        if doc.ma_de and str(doc.ma_de) in wanted and str(doc.ma_de) not in by_ma_de:
+            # Newest wins when the library holds several for one code — the
+            # alternative is refusing to grade over a stale duplicate.
+            by_ma_de[str(doc.ma_de)] = doc
+
+    unmatched = sorted(set(wanted) - set(by_ma_de))
+    if unmatched:
+        raise HTTPException(
+            status_code=404,
+            detail=(
+                f"Kho barem không có mã đề: {', '.join(unmatched)} "
+                f"(bài làm có các mã đề {', '.join(sorted(wanted))}). "
+                "Soạn hoặc tải barem cho những mã đề đó lên kho rồi chấm lại."
+            ),
+        )
+
+    barem_dir.mkdir(parents=True, exist_ok=True)
+    for ma_de, doc in sorted(by_ma_de.items()):
+        (barem_dir / f"ma_de_{ma_de}.json").write_text(doc.content, encoding="utf-8")
+    return sorted(by_ma_de)
 
 
 @router.post("/jobs", response_model=GradingJobCreated)
 async def create_grading_job(
     input_file: UploadFile,
-    barem_file: UploadFile | None = None,
-    barem_id: str | None = Form(None),
     db: Session = Depends(get_db),
 ) -> GradingJobCreated:
-    """Grade a Results-format JSON against a barem.
+    """Grade a Results-format JSON, picking a barem per student's `ma_de`.
 
-    The barem comes either as an uploaded file or, more usually now, as the id
-    of one already in the library (`/api/v1/barems`) — the same rubric the
-    pipeline flow picks from, so a teacher who has saved one does not have to
-    keep a copy of the file around to grade with it.
+    No barem is chosen by hand any more: the input says which exam code each
+    student sat, and the library is searched for a rubric per code.
     """
-    if barem_file is None and not barem_id:
-        raise HTTPException(status_code=400, detail="Cần chọn barem từ thư viện (barem_id) hoặc tải lên barem_file.")
-
     job_id = uuid.uuid4().hex
     job_dir = _JOBS_DIR / job_id
     job_dir.mkdir(parents=True, exist_ok=True)
 
     input_path = job_dir / "input.json"
-    barem_path = job_dir / "barem.json"
     with input_path.open("wb") as f:
         shutil.copyfileobj(input_file.file, f)
 
-    if barem_file is not None:
-        with barem_path.open("wb") as f:
-            shutil.copyfileobj(barem_file.file, f)
-    else:
-        doc = db.get(BaremDoc, barem_id)
-        if doc is None:
-            raise HTTPException(status_code=404, detail="Không tìm thấy barem trong thư viện.")
-        # `content` is the rubric stored verbatim, so this writes the same bytes
-        # an upload would have — the worker below sees no difference.
-        barem_path.write_text(doc.content, encoding="utf-8")
+    barem_dir = job_dir / "barems"
+    ma_de_list = _materialise_barems(db, input_path, barem_dir)
 
     job = GradingJob(job_id=job_id, status=JobStatus.PENDING)
     db.add(job)
     db.commit()
 
-    _spawn_worker(job_id, input_path, barem_path, job_dir / "output", job_dir / "worker.log")
+    print(f"[grading] job {job_id}: mã đề {ma_de_list}", flush=True)
+    job.worker_pid = _spawn_worker(
+        job_id, input_path, barem_dir, job_dir / "output", job_dir / "worker.log"
+    )
+    db.commit()
 
     return GradingJobCreated(job_id=job_id, status=JobStatus.PENDING)
 

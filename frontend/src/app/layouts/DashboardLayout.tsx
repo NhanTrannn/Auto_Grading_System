@@ -16,6 +16,11 @@ import JobHistorySidebar from "@/modules/grading/JobHistorySidebar";
 
 import styles from "./DashboardLayout.module.css";
 
+// Same VITE_BACKEND_PORT read by vite.config.ts's dev/preview proxies (see
+// its comment) — kept in sync via `.env`, not hardcoded here, so the sidebar
+// never silently drifts from where "/api" is actually proxied to.
+const BACKEND_PORT = Number(import.meta.env.VITE_BACKEND_PORT) || 8000;
+
 const NAV_SECTIONS = [
   {
     title: "Chấm điểm",
@@ -28,6 +33,7 @@ const NAV_SECTIONS = [
     title: "Chuẩn bị",
     items: [
       { to: "/barem", label: "Soạn barem", icon: <IconFile size={16} />, end: true },
+      { to: "/barem/kho", label: "Kho barem", icon: <IconHistory size={16} />, end: true },
     ],
   },
   {
@@ -107,7 +113,12 @@ export default function DashboardLayout() {
 
         <footer className={styles.footer}>
           <div className={styles.services}>
-            <ServiceRow name="Backend" port={8000} state={health.api} />
+            {/* Display-only label, no fixed default: this dev server's own
+                proxy target (vite.config.ts server/preview.proxy) is the
+                actual port in use — hardcoding 8000 here drifts silently
+                whenever that changes (this machine currently runs the
+                backend on 8001, another local project already held 8000). */}
+            <ServiceRow name="Backend" port={BACKEND_PORT} state={health.api} />
             {health.api === "up" && health.llmConfigured === false && (
               <div className={styles.warning}>Chưa cấu hình LLM trong .env — OCR và chấm điểm đều không chạy được</div>
             )}

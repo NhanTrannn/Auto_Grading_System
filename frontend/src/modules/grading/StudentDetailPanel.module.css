@@ -77,6 +77,11 @@
 
 /* ── Sample (one question) ───────────────────────────────── */
 .sample {
+  /* `.body` is a column flex container that scrolls. Without this, each card
+     is a shrinkable flex item and gets squashed below its content height once
+     the questions overflow the panel -- `overflow: hidden` below then clips
+     the criteria mid-row instead of the panel simply scrolling. */
+  flex-shrink: 0;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background: var(--color-surface);

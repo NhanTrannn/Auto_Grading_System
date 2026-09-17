@@ -2,6 +2,7 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import DashboardLayout from "@/app/layouts/DashboardLayout";
 import BaremBuilderPage from "@/pages/BaremBuilderPage";
+import BaremLibraryPage from "@/pages/BaremLibraryPage";
 import DashboardPage from "@/pages/DashboardPage";
 import JobDetailPage from "@/pages/JobDetailPage";
 import OcrPage from "@/pages/OcrPage";
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
       { path: "/pipeline", element: <PipelinePage /> },
       { path: "/pipeline/:jobId", element: <PipelineJobPage /> },
       { path: "/barem", element: <BaremBuilderPage /> },
+      { path: "/barem/kho", element: <BaremLibraryPage /> },
       { path: "/ocr", element: <Navigate to="/ocr/roi" replace /> },
       { path: "/ocr/:moduleId", element: <OcrPage /> },
       { path: "*", element: <Navigate to="/" replace /> },

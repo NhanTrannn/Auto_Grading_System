@@ -35,9 +35,7 @@ export default function PipelinePage() {
 
   async function handleSubmit(input: {
     uploadId: string;
-    maDe: string;
-    baremId: string;
-    rois: RoiConfigEntry[];
+    groups: { maDe: string; rois: RoiConfigEntry[]; baremId?: string }[];
   }) {
     setSubmitting(true);
     setError(null);

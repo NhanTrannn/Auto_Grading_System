@@ -113,7 +113,10 @@
   position: absolute;
   border: 2px solid;
   border-radius: 2px;
-  cursor: pointer;
+  cursor: move;
+  /* Without this a touch drag scrolls the page instead of moving the box,
+     and the pointermove events stop arriving mid-gesture. */
+  touch-action: none;
   transition: background var(--transition-fast);
 }
 
@@ -133,6 +136,27 @@
   background: rgba(91, 83, 232, 0.22);
   box-shadow: 0 0 0 2px var(--color-accent);
 }
+
+/* ── Resize grips (selected box only) ────────────────────── */
+.handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px; /* centre the grip on its edge/corner */
+  border: 1px solid var(--color-bg);
+  border-radius: 2px;
+  background: var(--color-accent);
+  touch-action: none; /* let the pointer handlers own the gesture on touch */
+}
+
+.handle_nw { top: 0;    left: 0;    cursor: nwse-resize; }
+.handle_n  { top: 0;    left: 50%;  cursor: ns-resize; }
+.handle_ne { top: 0;    left: 100%; cursor: nesw-resize; }
+.handle_w  { top: 50%;  left: 0;    cursor: ew-resize; }
+.handle_e  { top: 50%;  left: 100%; cursor: ew-resize; }
+.handle_sw { top: 100%; left: 0;    cursor: nesw-resize; }
+.handle_s  { top: 100%; left: 50%;  cursor: ns-resize; }
+.handle_se { top: 100%; left: 100%; cursor: nwse-resize; }
 
 .boxTag {
   position: absolute;
@@ -226,16 +250,22 @@
   border-color: var(--color-accent);
 }
 
+.fieldNote {
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: var(--color-text-faint);
+}
+
 .pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-2);
 }
 
-.coords {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--color-text-muted);
+.coordsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
 }
 
 /* ── Suggestions ─────────────────────────────────────────── */
@@ -263,6 +293,8 @@
 .suggestion {
   display: flex;
   align-items: center;
+  /* `.suggestions` scrolls as a column flex container -- rows must not shrink. */
+  flex-shrink: 0;
   gap: 4px;
 }
 

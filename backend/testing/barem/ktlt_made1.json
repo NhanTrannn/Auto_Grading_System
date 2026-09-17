@@ -1,0 +1,395 @@
+{
+  "ma_de": "1",
+  "subject": "Môn Kỹ thuật lập trình",
+  "total_score": 10,
+  "teacher_barem": [
+    {
+      "sample_id": "cau_1_001",
+      "question_number": 1,
+      "question": {
+        "text": "Câu 1: (1.00 điểm) \n#include <iostream>\nusing namespace std;\nint main(){\n    int a = 7;\n    int b = 3;\n    float c = a / b;\n    cout << c;\n    return 0;\n}\nSau khi thực hiện xong chương trình, kết quả in ra màn hình là:",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Kết quả in ra màn hình là gì?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_1_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T1",
+          "question_type": "matching",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_1_001_main"
+          ],
+          "content": "Ghi đúng kết quả chương trình. Nêu rõ đáp án đúng và mức điểm bán phần nếu có.",
+          "score": 1,
+          "expected_outputs": [
+            "2"
+          ],
+          "expected_output_tokens": [
+            "2"
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_2_001",
+      "question_number": 2,
+      "question": {
+        "text": "Câu 2: (0.5 điểm) Trong ngôn ngữ C++, từ khóa nào được sử dụng để kết thúc ngay lập tức vòng lặp hiện tại và chuyển sang câu lệnh kế tiếp sau vòng lặp đó?",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Câu lệnh đó là gì",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_2_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T2",
+          "question_type": "matching",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_2_001_main"
+          ],
+          "content": "Ghi đúng câu lệnh đáp án",
+          "score": 1,
+          "expected_outputs": [
+            "break"
+          ],
+          "expected_output_tokens": []
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_3_001",
+      "question_number": 3,
+      "question": {
+        "text": "Câu 3: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nint main()\n{\n    int a = 12, b = 7;\n    int *pa = &a, *pb = &b;\n    cout << \"&a=\" << &a << endl;\n    cout << \"&pa=\" << &pa << endl;\n    cout << \"&b=\" << &b << endl;\n    cout << \"&pb=\" << &pb << endl;\n    *pb = a % 5;\n    pa = pb;\n    *pa = *pb + a;\n    cout << &(*pa) << \" \";\n    cout << *(&a) << \" \";\n    cout << pb - pa << \" \";\n    cout << (*pb) + (*pa) << \" \";\n    return 0;\n}\nBốn dòng đầu tiên được in ra màn hình là:\n&a=0x6ffdf0\n&pa=0x6ffde8\n&b=0x6ffdec\n&pb=0x6ffde0\nNhững dòng tiếp theo được in ra màn hình là:",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Những dòng tiếp theo được in ra màn hình là gì:",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_3_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T3",
+          "question_type": "matching",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_3_001_main"
+          ],
+          "content": "Ghi đúng dòng in ra màn hình (2 điểm)",
+          "score": 2,
+          "expected_outputs": [
+            "0x6ffdec 12 0 28"
+          ],
+          "expected_output_tokens": [
+            "0x6ffdec",
+            "12",
+            "0",
+            "28"
+          ],
+          "grader_note": "Lưu ý dấu cách và xuống dòng",
+          "partial_credit_rule": [
+            {
+              "type": "count_correct_tokens",
+              "partial_score": 0.25,
+              "condition": "correct_token_count == 1"
+            },
+            {
+              "type": "count_correct_tokens",
+              "partial_score": 0.75,
+              "condition": "correct_token_count in [2,3]"
+            },
+            {
+              "type": "count_correct_tokens",
+              "partial_score": 1,
+              "condition": "correct_token_count == 4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_4_001",
+      "question_number": 4,
+      "question": {
+        "text": "Câu 4: (0.5 điểm)  Cho chương trình C++ sau nhằm mục đích nhân đôi giá trị của biến n trong hàm main:\n#include <iostream>\nusing namespace std;\nvoid NhanDoi(...................) { // (1)\n    x = x * 2;\n}\nint main() {\n    int n = 5;\n    nhanDoi(n);\n    cout << n; // Kết quả mong muốn in ra màn hình là 10\n    return 0;\n}\nĐể chương trình in đúng kết quả, phần khai báo tham số tại (1) là",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Phần điền vào ô (1) để in ra kết quả mong muốn là",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_4_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T4",
+          "question_type": "matching",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_4_001_main"
+          ],
+          "content": "Ghi đúng đáp án ô (1) để ra kết quả mong muốn",
+          "score": 2,
+          "expected_outputs": [
+            "int &x"
+          ],
+          "expected_output_tokens": []
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_5_001",
+      "question_number": 5,
+      "question": {
+        "text": "Câu 5: (1.00 điểm) Chương trình dưới đây dùng để kiểm tra một số nguyên n có phải là số chẵn hay không. Hãy kiêm tra xem chương trinh có bị lỗi hay không, nêu có chỉ ra lỗi sai và giải thích nguyên nhân bằng một câu: \nint n = 4;\nif (n % 2 = 0) {\n    cout << \"n la so chan\";\n}",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Chương trình dưới đây dùng để kiểm tra một số nguyên n có phải là số chẵn hay không. Hãy kiêm tra xem chương trinh có bị lỗi hay không, nêu có chỉ ra lỗi sai và giải thích nguyên nhân bằng một câu: ",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_5_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T5",
+          "question_type": "logical",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_5_001_main"
+          ],
+          "content": "Chấm theo logic trả lời được ý đúng là dùng phép gán thay vì phép so sánh là được tròn điểm khác thì 0 điểm",
+          "score": 1,
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": "Chương trình có lỗi vì dùng phép gán = thay cho phép so sánh == trong điều kiện, phải viết n % 2 == 0."
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_6_001",
+      "question_number": 6,
+      "question": {
+        "text": "Câu 6: (0.5 điểm) Sinh viên thực hiện các yêu cầu sau:",
+        "parts": [
+          {
+            "part_label": "a",
+            "text": "Khai báo kiểu dữ liệu cấu trúc (struct) Sinhvien gồm các thuộc tính (thành phần) sau (1 điểm):",
+            "tables": [
+              {
+                "table_id": "TB1",
+                "table_slot": [
+                  {
+                    "cell_id": "R1C1",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C1",
+                    "text": "Tên thuộc tính"
+                  },
+                  {
+                    "cell_id": "R1C2",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C2",
+                    "text": "Kiểu dữ liệu"
+                  },
+                  {
+                    "cell_id": "R1C3",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C3",
+                    "text": "Ý nghĩa"
+                  },
+                  {
+                    "cell_id": "R2C1",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C1",
+                    "text": "MaSV"
+                  },
+                  {
+                    "cell_id": "R2C2",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R2C3",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C3",
+                    "text": "Mã sinh viên"
+                  },
+                  {
+                    "cell_id": "R3C1",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C1",
+                    "text": "HoTen"
+                  },
+                  {
+                    "cell_id": "R3C2",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R3C3",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C3",
+                    "text": "Họ và tên sinh viên"
+                  },
+                  {
+                    "cell_id": "R4C1",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C1",
+                    "text": "NamSinh"
+                  },
+                  {
+                    "cell_id": "R4C2",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C2",
+                    "text": "Kiểu số nguyên"
+                  },
+                  {
+                    "cell_id": "R4C3",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C3",
+                    "text": "Năm sinh"
+                  },
+                  {
+                    "cell_id": "R5C1",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C1",
+                    "text": "NoiSinh"
+                  },
+                  {
+                    "cell_id": "R5C2",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R5C3",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C3",
+                    "text": "Nơi sinh"
+                  },
+                  {
+                    "cell_id": "R6C1",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C1",
+                    "text": "DTB"
+                  },
+                  {
+                    "cell_id": "R6C2",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C2",
+                    "text": "Số thực"
+                  },
+                  {
+                    "cell_id": "R6C3",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C3",
+                    "text": "Điểm trung bình"
+                  }
+                ]
+              }
+            ],
+            "answer_slots": [
+              {
+                "slot_id": "cau_6_001_a"
+              }
+            ]
+          },
+          {
+            "part_label": "b",
+            "text": "Hãy viêt hàm NhapSV để nhập thông tin của một sinh viên từ bàn phím (2 điểm). Thông tin từ bảng part a",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_6_001_b"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T6",
+          "question_type": "logical",
+          "part_label": "a",
+          "slot_ids": [
+            "cau_6_001_a"
+          ],
+          "content": "Khai báo đúng đầy đủ kiểu dữ liệu cấu trúc (struct) Sinhvien thiếu một ý trừ 0,25 điểm",
+          "score": 1,
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": ""
+          }
+        },
+        {
+          "criterion_id": "T6_2",
+          "question_type": "logical",
+          "part_label": "b",
+          "slot_ids": [
+            "cau_6_001_b"
+          ],
+          "content": "Viết đúng hàm NhapSV để nhập thông tin của một sinh viên từ bàn phím",
+          "score": 2,
+          "expected_outputs": []
+        }
+      ]
+    }
+  ]
+}

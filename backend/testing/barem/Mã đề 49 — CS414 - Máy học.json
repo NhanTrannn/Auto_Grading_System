@@ -1,0 +1,337 @@
+{
+  "ma_de": "49",
+  "subject": "CS414 - Máy học",
+  "total_score": 10,
+  "teacher_barem": [
+    {
+      "sample_id": "cau_1_001",
+      "question_number": 1,
+      "question": {
+        "text": "Câu 1: (1.00 điểm) Calculate the number of trainable parameters in a Convolutional (Conv2D) layer with 32 filters, each of size 5 × 5, taking a color RGB image (3 channels) as input, and using bias.",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Số tham số huấn luyện được của lớp Conv2D.",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_1_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T1",
+          "question_type": "logical",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_1_001_main"
+          ],
+          "content": "Ghi đúng kết quả. Nêu rõ đáp án đúng và mức điểm bán phần nếu có.",
+          "score": 1,
+          "expected_outputs": [
+            "2432"
+          ],
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": "Mỗi filter: 5 × 5 × 3 (kênh) = 75 trọng số, cộng 1 bias = 76.\nCó 32 filter: 76 × 32 = 2432.\n\nCông thức tổng quát: (k_h × k_w × C_in + 1) × C_out = (5 × 5 × 3 + 1) × 32 = 2432"
+          },
+          "grader_note": "Chấm theo kết quả cuối. Ra đúng 2432 là trọn điểm, bất kể trình bày cách nào — '2432', '76 × 32 = 2432', '(5*5*3+1)*32 = 2432' đều đúng trọn điểm. Viết đúng công thức nhưng bấm sai số: 0.5đ. Quên bias (ra 2400): 0.5đ. Đơn vị hay chữ 'tham số' viết kèm không ảnh hưởng."
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_2_001",
+      "question_number": 2,
+      "question": {
+        "text": "Câu 2: (1.00 điểm) Consider a Vanilla RNN architecture configured as follows:\nInput: A feature vector of size $x_t \\in \\R^{100}$\nHidden layer: The hidden layer has hidden_size = 32 neurons, with the following update equation:\n                                      $h_t = \\tanh(W_{hh}h_{t-1} + W_{xh}x_t +b_h)$\nOutput layer: A Fully Connected layer maps $h_t$ to an output vector $y_t \\in \\R^{20}$ using a bias $b_y$.\nWhat is the total number of trainable parameters in the entire RNN network? ",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "What is the total number of trainable parameters in the entire RNN network?",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_2_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T2",
+          "question_type": "logical",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_2_001_main"
+          ],
+          "content": "Ghi đúng kết quả. Nêu rõ đáp án đúng và mức điểm bán phần nếu có.",
+          "score": 1,
+          "expected_outputs": [
+            "4916"
+          ],
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": "W_hh : 32 × 32  = 1024\nW_xh : 32 × 100 = 3200\nb_h  : 32\nW_y  : 20 × 32  = 640\nb_y  : 20\n\nTổng = 1024 + 3200 + 32 + 640 + 20 = 4916"
+          },
+          "grader_note": "Chấm theo tổng cuối cùng. Ra đúng 4916 là trọn điểm, mọi cách trình bày. LƯU Ý: đề này đầu ra là 20 chiều (không phải 10) nên W_y = 20 × 32 = 640 và b_y = 20 — đáp án 4586 (tính nhầm đầu ra 10 chiều như các mã đề khác) là SAI, chỉ được mức bán phần 0.5đ nếu phần còn lại tính đúng. Tổng sai nhưng liệt kê đúng từ 3 thành phần trở lên (W_hh=1024, W_xh=3200, b_h=32, W_y=640, b_y=20): 0.5đ. Quên hẳn lớp FC đầu ra (ra 4256): 0.5đ. Viết 4.916 hay 4,916 vẫn tính là 4916."
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_3_001",
+      "question_number": 3,
+      "question": {
+        "text": "Câu 3: (1.00 điểm) Which problems are unique to deep learning and do not occur in traditional machine learning models such as Naive Bayes or Random Forest?",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Nêu các vấn đề chỉ xuất hiện ở deep learning mà Naive Bayes hay Random Forest không gặp.",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_3_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T3",
+          "question_type": "logical",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_3_001_main"
+          ],
+          "content": "Nêu các vấn đề đặc thù của deep learning mà Naive Bayes/Random Forest không gặp.",
+          "score": 1,
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": "- Vanishing/Exploding Gradient: khi lan truyền ngược qua nhiều lớp, gradient có thể tiến về 0 hoặc bùng nổ. Naive Bayes và Random Forest không huấn luyện bằng gradient descent nên không gặp.\n- Cần lượng dữ liệu lớn: mạng có hàng triệu tham số nên dễ overfit nếu thiếu dữ liệu, trong khi Naive Bayes/Random Forest hoạt động tốt với dữ liệu nhỏ.\n- Yêu cầu tài nguyên tính toán lớn (GPU/TPU) và thời gian huấn luyện dài.\n- Tính \"hộp đen\" (black-box): khó diễn giải, trong khi Random Forest đọc được feature importance và Naive Bayes đọc được xác suất từng đặc trưng.\n- Nhạy cảm với khởi tạo trọng số và hyperparameter (learning rate, batch size, kiến trúc mạng, optimizer...), cần Batch Normalization hay khởi tạo Xavier/He để huấn luyện ổn định.\n- Hàm mất mát không lồi (non-convex), dễ kẹt ở cực tiểu địa phương/điểm yên ngựa; Random Forest và Naive Bayes không có bài toán tối ưu kiểu này.\n- Dễ bị tấn công đối kháng (adversarial examples): thay đổi rất nhỏ ở đầu vào cũng làm mô hình dự đoán sai hoàn toàn."
+          },
+          "grader_note": "Nêu đúng từ 3 vấn đề hợp lệ trở lên = trọn 1.0đ. Nêu được 2 vấn đề = 0.5đ, 1 vấn đề = 0.25đ. Mỗi phát biểu SAI về bản chất trừ thêm 0.25đ. Không bắt buộc trùng danh sách trong đáp án mẫu — mọi vấn đề đúng và thực sự đặc thù của deep learning đều được tính. Học sinh so sánh với SVM, Logistic Regression hay Decision Tree thay vì Naive Bayes/Random Forest vẫn chấp nhận, miễn vấn đề nêu ra thực sự đặc thù của deep learning."
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_4_001",
+      "question_number": 4,
+      "question": {
+        "text": "Câu 4: (1.00 điểm) Please explain how MobileNet model resolve the problem of overfitting?",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Giải thích các cách MobileNet hạn chế overfitting.",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_4_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T4",
+          "question_type": "logical",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_4_001_main"
+          ],
+          "content": "Giải thích các kỹ thuật MobileNet dùng để hạn chế overfitting.",
+          "score": 1,
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": "- Depthwise Separable Convolution: tách một conv thường thành depthwise conv (lọc theo từng kênh riêng) và pointwise conv 1×1 (trộn kênh). Cách này giảm số tham số và phép tính khoảng 8-9 lần so với conv 3×3 tiêu chuẩn; mô hình ít tham số hơn thì khả năng \"học thuộc\" dữ liệu huấn luyện giảm, nên ít overfit hơn.\n- Width multiplier α và resolution multiplier ρ: hai siêu tham số cho phép thu nhỏ số kênh và độ phân giải đầu vào, giúp chọn được kích thước mô hình vừa với lượng dữ liệu có sẵn thay vì dùng một mạng quá lớn.\n- Batch Normalization + ReLU sau mỗi lớp depthwise và pointwise: ổn định phân phối đặc trưng khi huấn luyện, đồng thời có hiệu ứng regularization nhẹ.\n- Dropout ở lớp Fully Connected cuối và weight decay (L2) trên các trọng số.\n- Vì mô hình vốn đã nhỏ, MobileNet chủ động dùng ÍT regularization và ít data augmentation hơn các mạng lớn — bài báo gốc nêu rõ mô hình nhỏ gặp vấn đề overfitting nhẹ hơn; đặc biệt gần như không đặt weight decay lên các filter depthwise vì chúng có rất ít tham số."
+          },
+          "grader_note": "Nêu đúng từ 2 kỹ thuật hợp lệ trở lên kèm giải thích = trọn 1.0đ. Chỉ 1 kỹ thuật = 0.5đ. Mỗi phát biểu SAI trừ thêm 0.25đ. Nêu tên kỹ thuật mà không giải thích vì sao nó giảm overfitting thì tính nửa. Ý CỐT LÕI của câu này là Depthwise Separable Convolution giúp giảm mạnh số tham số → mô hình nhỏ hơn → ít overfit: học sinh nêu và giải thích được ý này coi như đã có 1 kỹ thuật hợp lệ. Các ý về width/resolution multiplier, BatchNorm, dropout, weight decay, data augmentation đều được tính. Học sinh trả lời theo hướng 'MobileNet nhỏ nên ít overfit hơn mạng lớn' mà có giải thích lý do (ít tham số) vẫn được tính là một ý đúng."
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_5_001",
+      "question_number": 5,
+      "question": {
+        "text": "Câu 5: (1.50 điểm) Complete the forward method in the PyTorch ResidualBlock class below. Your implementation must perform the following operations in order:\nStep 1: Pass input x through conv1 → bn1 → relu.\nStep 2: Pass the result through conv2 → bn2.\nStep 3: Add the original input x (residual/skip connection) to the output of bn2.\nStep 4: Pass the added result through relu and return it.\n\nimport torch\nimport torch.nn as nn\n\nclass ResidualBlock(nn.Module):\n\n    def __init__(self, channels: int):\n        super().__init__()\n        self.conv1 = nn.Conv2d(\n            channels, channels, kernel_size=3, padding=1, bias=False\n        )\n        self.bn1 = nn.BatchNorm2d(channels)\n        self.relu = nn.ReLU()\n        self.conv2 = nn.Conv2d(\n            channels, channels, kernel_size=3, padding=1, bias=False\n        )\n        self.bn2 = nn.BatchNorm2d(channels)\n\n    def forward(self, x: torch.Tensor) -> torch.Tensor:\n        # TODO: Implement the forward pass logic\n        pass",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Viết thân hàm forward theo đúng 4 bước đã cho.",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_5_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T5",
+          "question_type": "logical",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_5_001_main"
+          ],
+          "content": "Viết đúng thân hàm forward theo 4 bước đã cho. Chấp nhận mọi cách viết tương đương về kết quả (gộp dòng, đặt tên biến khác, dùng F.relu thay self.relu).",
+          "score": 1.5,
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": "def forward(self, x: torch.Tensor) -> torch.Tensor:\n    identity = x  # Lưu lại input gốc để dùng cho skip connection (Step 3)\n\n    # Step 1: Pass input x through conv1 -> bn1 -> relu\n    out = self.conv1(x)\n    out = self.bn1(out)\n    out = self.relu(out)\n\n    # Step 2: Pass the result through conv2 -> bn2\n    out = self.conv2(out)\n    out = self.bn2(out)\n\n    # Step 3: Add the original input x (residual/skip connection)\n    out = out + identity\n\n    # Step 4: Pass the added result through relu and return it\n    out = self.relu(out)\n\n    return out"
+          },
+          "grader_note": "Thang điểm theo bước: Step 1 (conv1 → bn1 → relu) 0.5đ; Step 2 (conv2 → bn2) 0.5đ; Step 3 (cộng x gốc vào output của bn2) 0.25đ; Step 4 (relu rồi return) 0.25đ. Sai thứ tự giữa các bước tính là sai bước đó. Không viết gì hoặc không dùng các layer đã khai sẵn thì 0 điểm. KHÔNG trừ điểm vì đặt tên biến khác, gộp nhiều bước vào một dòng, hay thiếu type hint."
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_6_001",
+      "question_number": 6,
+      "question": {
+        "text": "Câu 6: (1.00 điểm) In a traditional RNN Sequence-to-Sequence (Seq2Seq) model for Machine Translation, what is the information bottleneck problem, and how does the Attention Mechanism resolve it when translating long sentences? Answer in 3–5 sentences.",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Nêu information bottleneck problem của Seq2Seq RNN và cách Attention khắc phục khi dịch câu dài. Trả lời 3–5 câu.",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_6_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T6",
+          "question_type": "logical",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_6_001_main"
+          ],
+          "content": "Nêu được information bottleneck problem của Seq2Seq RNN, và giải thích được Attention khắc phục nó thế nào.",
+          "score": 1,
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": "Trong mô hình Seq2Seq RNN truyền thống, toàn bộ câu nguồn — dù dài hay ngắn — đều bị encoder nén lại thành một vector ngữ cảnh (context vector) có kích thước cố định duy nhất (thường là hidden state cuối cùng của encoder). Với câu dài, một vector cố định không đủ khả năng lưu giữ hết toàn bộ thông tin ngữ nghĩa, dẫn đến mất mát thông tin (đặc biệt là thông tin ở đầu câu) — đây gọi là information bottleneck problem. Attention Mechanism giải quyết bằng cách cho decoder, tại mỗi bước sinh từ, \"nhìn lại\" toàn bộ các hidden state của encoder thay vì chỉ dùng một context vector duy nhất, và tính trọng số attention để xác định phần nào của câu nguồn liên quan nhất đến từ đang sinh ra. Nhờ đó decoder truy cập trực tiếp thông tin từ bất kỳ vị trí nào trong câu nguồn, cải thiện đáng kể chất lượng dịch câu dài."
+          },
+          "grader_note": "Chia đôi: 0.5đ cho ý nêu đúng bottleneck (câu nguồn bị nén vào MỘT context vector kích thước cố định, câu dài thì mất thông tin); 0.5đ cho ý nêu đúng cách Attention khắc phục (decoder nhìn vào toàn bộ hidden state của encoder qua trọng số attention thay vì một vector duy nhất). Mỗi ý chỉ nói đúng một nửa thì cho 0.25đ. Nêu sai bản chất thì ý đó 0đ. KHÔNG trừ điểm vì viết dài hơn hay ngắn hơn 3-5 câu."
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_7_001",
+      "question_number": 7,
+      "question": {
+        "text": "Câu 7: (1.00 điểm) What is the key advantage of using \"Add and Norm\" module in a Transformer architecture? Answer in 3–5 sentences.",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Nêu lợi ích chính của module \"Add and Norm\" trong kiến trúc Transformer. Trả lời 3–5 câu.",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_7_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T7",
+          "question_type": "logical",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_7_001_main"
+          ],
+          "content": "Nêu được lợi ích của cả hai thành phần Add (residual connection) và Norm (Layer Normalization).",
+          "score": 1,
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": "Module \"Add and Norm\" trong Transformer gồm hai phần: Add (residual/skip connection — cộng input với output của sub-layer, ví dụ Multi-Head Attention hoặc Feed-Forward) và Norm (Layer Normalization). Phần Add (residual connection) giúp gradient có thể lan truyền trực tiếp qua các lớp sâu mà không bị suy giảm, từ đó giảm vấn đề vanishing gradient và giúp huấn luyện các mạng Transformer rất sâu (nhiều lớp encoder/decoder) ổn định hơn. Phần Norm (Layer Normalization) chuẩn hóa lại đầu ra (theo từng vị trí/token, trên chiều feature) để có mean và variance ổn định, giúp tăng tốc độ hội tụ và ổn định quá trình huấn luyện. Nhờ kết hợp cả hai, \"Add and Norm\" giúp mô hình Transformer học sâu hơn, hội tụ nhanh hơn và tránh được các vấn đề về độ ổn định số học trong quá trình lan truyền ngược."
+          },
+          "grader_note": "Chia đôi: 0.5đ cho Add — residual connection giúp gradient lan truyền qua nhiều lớp, giảm vanishing gradient, huấn luyện được mạng sâu; 0.5đ cho Norm — Layer Normalization ổn định phân phối đầu ra, hội tụ nhanh và ổn định hơn. Chỉ nhắc tên mà không nói tác dụng thì ý đó 0.25đ. KHÔNG trừ điểm vì viết dài hơn hay ngắn hơn 3-5 câu."
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_8_001",
+      "question_number": 8,
+      "question": {
+        "text": "Câu 8: (1.50 điểm) Which abilities of LLMs have made them so popular nowadays? For each ability, please provide a 2-3 sentence explanation.",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Nêu các khả năng khiến LLM trở nên phổ biến, mỗi khả năng giải thích 2–3 câu.",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_8_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T8",
+          "question_type": "logical",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_8_001_main"
+          ],
+          "content": "Nêu các khả năng khiến LLM phổ biến, mỗi khả năng kèm giải thích ngắn.",
+          "score": 1.5,
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": "In-Context Learning (Few-shot/Zero-shot Learning): LLM có thể học và thực hiện một tác vụ mới chỉ dựa vào vài ví dụ (hoặc không cần ví dụ) cung cấp trực tiếp trong prompt, không cần fine-tune lại mô hình.\nSinh ngôn ngữ tự nhiên mạch lạc (Natural Language Generation): tạo ra văn bản trôi chảy, giống văn phong con người, phù hợp ngữ cảnh — ứng dụng vào viết lách, tóm tắt, hỏi đáp.\nKhả năng suy luận (Reasoning): thực hiện suy luận nhiều bước, giải bài toán logic/toán học đơn giản qua kỹ thuật như Chain-of-Thought.\nKiến thức tổng quát rộng (General World Knowledge): nhờ huấn luyện trên dữ liệu khổng lồ, LLM bao quát nhiều lĩnh vực mà không cần huấn luyện chuyên biệt."
+          },
+          "grader_note": "0.5đ cho mỗi khả năng nêu đúng KÈM giải thích hợp lý, tối đa 3 khả năng (1.5đ). Nêu tên đúng nhưng không giải thích hoặc giải thích sai thì khả năng đó chỉ 0.25đ. Mọi khả năng có thật của LLM đều chấp nhận, không bắt buộc trùng đáp án mẫu. KHÔNG trừ điểm nếu học sinh nêu nhiều hơn 3 khả năng; chấm 3 cái tốt nhất."
+        }
+      ]
+    },
+    {
+      "sample_id": "cau_9_001",
+      "question_number": 9,
+      "question": {
+        "text": "Câu 9: (1.00 điểm) What are some common ways to apply Large Language Models (LLMs) to software development and coding? Describe at least three applications and briefly explain how LLMs can be used in each case.",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Nêu ít nhất 3 ứng dụng của LLM trong phát triển phần mềm, giải thích ngắn cách dùng ở từng ứng dụng.",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_9_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T9",
+          "question_type": "logical",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_9_001_main"
+          ],
+          "content": "Nêu ít nhất 3 ứng dụng của LLM trong phát triển phần mềm, mỗi ứng dụng kèm giải thích ngắn.",
+          "score": 1,
+          "expected_value": {
+            "keywords": [],
+            "sample_solution": "1) Code generation: sinh code từ mô tả bằng ngôn ngữ tự nhiên, giúp viết boilerplate, hàm hoặc cả module nhanh hơn (VD GitHub Copilot).\n2) Code completion / suggestion: gợi ý hoàn thành đoạn code đang viết dở dựa trên ngữ cảnh file hiện tại.\n3) Debugging và Code review: phân tích code để phát hiện bug, giải thích nguyên nhân, đề xuất cách sửa và gợi ý cải thiện chất lượng.\n4) Giải thích code / tài liệu hoá: đọc đoạn code phức tạp rồi giải thích bằng ngôn ngữ tự nhiên, hoặc sinh docstring/comment tự động.\n5) Chuyển đổi ngôn ngữ lập trình: dịch code giữa các ngôn ngữ (VD Python → Java) trong khi giữ nguyên logic."
+          },
+          "grader_note": "Đủ 3 ứng dụng đúng kèm giải thích = 1.0đ. Thiếu một ứng dụng trừ 0.25đ. Nêu tên ứng dụng nhưng không giải thích cách dùng thì ứng dụng đó tính nửa. Mọi ứng dụng có thật đều chấp nhận, không bắt buộc trùng danh sách trong đáp án mẫu."
+        }
+      ]
+    }
+  ]
+}

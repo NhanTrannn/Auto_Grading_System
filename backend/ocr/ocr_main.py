@@ -23,14 +23,17 @@ inside `backend/ocr/` so the `app` package is importable:
 
 roi_config.json shape:
 {
-  "ma_de": "1",
+  "ma_de": "1",                                 // mã đề mặc định cho mọi học sinh
   "template_pages": ["de/page_1.png", "de/page_2.png"],   // multi-page exam
   "crop_dir": "crops",                          // optional, default "crops"
   "students": [
+    // "ma_de" riêng của từng em (tuỳ chọn) — thiếu thì lấy "ma_de" ở trên.
+    // Kết quả ghi ma_de vào TỪNG học sinh, vì pipeline.py chọn barem theo đó.
     {"hs_key": "HS_1", "pages": ["hs1/p1.png", "hs1/p2.png"]},
-    {"hs_key": "HS_2", "pages": ["hs2/p1.png", "hs2/p2.png"]}
+    {"hs_key": "HS_2", "ma_de": "2", "pages": ["hs2/p1.png", "hs2/p2.png"]}
   ],
   "rois": [
+    {"cau_key": "MA_DE",     "page": 1, "x": 100, "y": 100, "w": 200, "h": 50,  "task_type": "short_text"},
     {"cau_key": "Cau_01",    "page": 1, "x": 100, "y": 200, "w": 300, "h": 80,  "task_type": "short_text"},
     {"cau_key": "Cau_08_1",  "page": 1, "x": 120, "y": 400, "w": 250, "h": 60,  "task_type": "short_text"},
     {"cau_key": "Cau_15b_1", "page": 2, "x": 100, "y": 900, "w": 500, "h": 200, "task_type": "table", "n_rows": 3, "n_cols": 2},
@@ -45,6 +48,15 @@ ROI refers to are never aligned (alignment is the expensive CV step).
 
 Single-page back-compat: `"template_image": "..."` and `{"hs_key", "image"}`
 are still accepted and treated as a one-page list.
+
+One reserved cau_key: "MA_DE" marks the box where the exam code is printed.
+It is OCR'd like any short_text region, but instead of becoming an answer its
+text is parsed into that student's "ma_de", overriding the one configured
+above — so a class can be graded without sorting the images into Made_N
+folders. An unreadable or empty box falls back to the configured code rather
+than guessing, because the wrong rubric marks every question wrong while
+still looking like an ordinary result. The raw OCR text stays in the output
+under "MA_DE" so a misread can be traced.
 
 "cau_key" follows pipeline.py's Cau_XX / Cau_XX_N / Cau_XXa / Cau_XXa_N
 convention (see convert_results_to_samples()'s regex `Cau_(\\d+)([a-z]?)(?:_(\\d+))?`).
@@ -67,6 +79,8 @@ import argparse
 import asyncio
 import json
 import os
+import re
+import unicodedata
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional
 
@@ -155,9 +169,16 @@ async def _ocr_roi(roi: Dict[str, Any], crop: np.ndarray) -> Dict[str, Any]:
             "status": "failed_all_samples",
             "content": {"error": "Không encode được ảnh crop."},
         }
+    # The exam code is printed by the exam author, not written by the student,
+    # so it needs module3's "printed" prompt — every handwriting prompt is told
+    # to skip printed text and returns an empty result for this box. Forced
+    # here rather than left to the roi's declared task_type, because there is
+    # exactly one right answer for this region and a wrong one fails silently
+    # (empty OCR -> exam code falls back to the folder name).
+    task_type = "printed" if roi["cau_key"] == MA_DE_KEY else roi["task_type"]
     result = await run_ocr_single(
         buf.tobytes(),
-        roi["task_type"],
+        task_type,
         n_rows=roi.get("n_rows"),
         n_cols=roi.get("n_cols"),
     )
@@ -175,7 +196,9 @@ def _cau_entry_for_roi(
     if crop.size == 0:
         return {"status": "failed_at_cropping", "content": {"lines": []}}
 
-    if roi["task_type"] == "diagram":
+    # Checked before the diagram branch: the exam code is always OCR'd as
+    # printed text, whatever task_type the config happens to carry for it.
+    if roi["task_type"] == "diagram" and roi["cau_key"] != MA_DE_KEY:
         crop_path = crop_dir / f"{hs_key}_{roi['cau_key']}.png"
         _write_image(crop_path, crop)
         return {
@@ -212,6 +235,59 @@ def _roi_page(roi: Dict[str, Any]) -> int:
         return 1
 
 
+# Reserved `cau_key` for the region holding the exam code printed on the paper.
+# Not a question: pipeline.py's `convert_results_to_samples` matches cau_keys
+# against `Cau_(\d+)([a-z]?)(?:_(\d+))?$`, which this deliberately does not
+# match, so grading skips it while the OCR text still lands in the Results JSON
+# where a misread can be inspected.
+MA_DE_KEY = "MA_DE"
+
+# "MÃ ĐỀ: 1", "Ma de 1", "MADE:2" — the printed label sits inside the same box
+# as the code, so it has to come off before the code can be read.
+_MA_DE_LABEL_RE = re.compile(r"^\s*m[aă]\s*d[eê]\s*[:.\-]?\s*", re.IGNORECASE)
+
+
+def _strip_accents(text: str) -> str:
+    """Fold Vietnamese diacritics so a label can be matched case/accent-blind.
+
+    `đ`/`Đ` (U+0111/U+0110) must be handled separately: unlike every other
+    Vietnamese letter they are single codepoints with a stroke, not a base
+    letter plus a combining mark, so NFD leaves them untouched and "MÃ ĐỀ"
+    folds to "MA ĐE" — which no ASCII pattern for "ma de" can match.
+    """
+    folded = text.replace("đ", "d").replace("Đ", "D")
+    return "".join(
+        c for c in unicodedata.normalize("NFD", folded) if not unicodedata.combining(c)
+    )
+
+
+def _parse_ma_de(lines: List[str]) -> Optional[str]:
+    """Pull the exam code out of what OCR read in the MA_DE region.
+
+    Returns None when nothing usable was read, so the caller can fall back to
+    the code configured for the student rather than inventing one — grading
+    against the wrong rubric is far worse than grading against the folder's.
+    """
+    for raw in lines:
+        text = _strip_accents(str(raw)).strip()
+        if not text:
+            continue
+        without_label = _MA_DE_LABEL_RE.sub("", text)
+        token = without_label.split()[0].strip(":.-") if without_label.split() else ""
+        # A token carrying a digit is taken as-is, so alphanumeric codes like
+        # "A2" survive. A purely alphabetic one means the label was worded
+        # differently than expected ("Đề số 2" leaves "De"), so fall back to
+        # the digits in the line rather than returning a fragment of the label.
+        if token and any(ch.isdigit() for ch in token):
+            return token
+        digits = re.findall(r"\d+", text)
+        if digits:
+            return digits[-1]
+        if token:
+            return token
+    return None
+
+
 def build_results_json(
     config: Dict[str, Any],
     save_crops: bool = False,
@@ -244,10 +320,17 @@ def build_results_json(
 
     report("Bắt đầu OCR")
 
-    output: Dict[str, Any] = {"ma_de": config.get("ma_de", "1")}
+    # `ma_de` đi theo TỪNG HỌC SINH, không phải theo file: một phiên chấm có
+    # thể trộn nhiều mã đề, và pipeline.py chọn barem cho mỗi em dựa vào giá
+    # trị này. Mỗi student trong roi_config khai `ma_de` riêng được; không
+    # khai thì lấy `ma_de` chung của config.
+    default_ma_de = str(config.get("ma_de", "1"))
+    output: Dict[str, Any] = {}
 
     for student in students:
         hs_key = student["hs_key"]
+        configured_ma_de = str(student.get("ma_de", default_ma_de))
+        entries: Dict[str, Any] = {"ma_de": configured_ma_de}
         student_paths = _page_list(student, "pages", "image")
 
         # Align page-by-page: a student whose page 3 is a bad photo should only
@@ -271,7 +354,6 @@ def build_results_json(
             else:
                 aligned_pages[page] = align["image"]
 
-        entries: Dict[str, Any] = {}
         for roi in rois:
             page = _roi_page(roi)
             aligned_img = aligned_pages.get(page)
@@ -281,6 +363,31 @@ def build_results_json(
                 entries[roi["cau_key"]] = _cau_entry_for_roi(
                     roi, aligned_img, crop_dir, hs_key, save_crops
                 )
+
+            # Read the exam code off the paper rather than trusting the folder
+            # the images came in. Only overrides the configured code when OCR
+            # actually returned something parseable: a blank or unreadable box
+            # must fall back, because the wrong rubric scores every question
+            # of that student wrong while looking like a normal result.
+            if roi["cau_key"] == MA_DE_KEY:
+                read = _parse_ma_de(
+                    (entries[MA_DE_KEY].get("content") or {}).get("lines") or []
+                )
+                if read:
+                    entries["ma_de"] = read
+                    if read != configured_ma_de:
+                        print(
+                            f"[ocr] {hs_key}: mã đề đọc từ ảnh là {read!r}, "
+                            f"khác mã đề của thư mục ({configured_ma_de!r}) — dùng {read!r}.",
+                            flush=True,
+                        )
+                else:
+                    print(
+                        f"[ocr] {hs_key}: không đọc được mã đề từ ảnh, "
+                        f"giữ {configured_ma_de!r} theo thư mục.",
+                        flush=True,
+                    )
+
             done += 1
             # Reported even on the failed path so a class where one page fails
             # to align doesn't look like the run stalled.

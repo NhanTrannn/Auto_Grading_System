@@ -33,6 +33,11 @@ class PipelineJob(Base):
     barem_name: Mapped[str | None] = mapped_column(String, nullable=True)
     error: Mapped[str | None] = mapped_column(String, nullable=True)
     result_path: Mapped[str | None] = mapped_column(String, nullable=True)
+    # PID of the detached worker process, so a restart of THIS API process can
+    # tell "the worker is still grading" from "the worker was killed" — see
+    # app/services/job_recovery.py. Nullable: rows created before this column
+    # existed have none, and ensure_columns() adds it to older databases.
+    worker_pid: Mapped[int | None] = mapped_column(Integer, nullable=True)
     created_at: Mapped[datetime.datetime] = mapped_column(
         DateTime, default=datetime.datetime.utcnow
     )

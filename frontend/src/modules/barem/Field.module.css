@@ -19,6 +19,16 @@
   color: var(--color-danger);
 }
 
+.fieldName {
+  padding: 1px 5px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  color: var(--color-text-faint);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-sm);
+}
+
 .hint {
   font-size: 11.5px;
   line-height: 1.45;
@@ -69,6 +79,10 @@
 .textarea {
   resize: vertical;
   line-height: 1.5;
+  /* The box sizes itself to its content (see TextArea); this stops a 300-line
+     listing from pushing the rest of the form off the screen. */
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 .select {

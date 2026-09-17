@@ -26,7 +26,7 @@ export const PRESET_INFO: Record<
     label: "Khớp đáp án",
     hint: "So khớp chính xác chuỗi/token",
     prompt: "Kết quả in ra màn hình là gì?",
-    content: "Ghi đúng kết quả chương trình. Nêu rõ đáp án đúng và mức điểm bán phần nếu có.",
+    content: "Ghi đúng kết quả. Nêu rõ đáp án đúng và mức điểm bán phần nếu có.",
   },
   logical: {
     label: "Suy luận / code",

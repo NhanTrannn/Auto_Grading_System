@@ -1,0 +1,65 @@
+{
+  "ma_de": "1",
+  "subject": "Môn Kỹ thuật lập trình",
+  "total_score": 2,
+  "teacher_barem": [
+    {
+      "sample_id": "cau_3_001",
+      "question_number": 3,
+      "question": {
+        "text": "Câu 3: (0.5 điểm) Cho một chương trình như sau:\n#include <iostream>\nusing namespace std;\nint main()\n{\n    int a = 12, b = 7;\n    int *pa = &a, *pb = &b;\n    cout << \"&a=\" << &a << endl;\n    cout << \"&pa=\" << &pa << endl;\n    cout << \"&b=\" << &b << endl;\n    cout << \"&pb=\" << &pb << endl;\n    *pb = a % 5;\n    pa = pb;\n    *pa = *pb + a;\n    cout << &(*pa) << \" \";\n    cout << *(&a) << \" \";\n    cout << pb - pa << \" \";\n    cout << (*pb) + (*pa) << \" \";\n    return 0;\n}\nBốn dòng đầu tiên được in ra màn hình là:\n&a=0x6ffdf0\n&pa=0x6ffde8\n&b=0x6ffdec\n&pb=0x6ffde0\nNhững dòng tiếp theo được in ra màn hình là:",
+        "parts": [
+          {
+            "part_label": "main",
+            "text": "Những dòng tiếp theo được in ra màn hình là gì:",
+            "tables": [],
+            "answer_slots": [
+              {
+                "slot_id": "cau_3_001_main"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "criterion_id": "T3",
+          "question_type": "matching",
+          "part_label": "main",
+          "slot_ids": [
+            "cau_3_001_main"
+          ],
+          "content": "Ghi đúng dòng in ra màn hình (2 điểm)",
+          "score": 2,
+          "expected_outputs": [
+            "0x6ffdec 12 0 28"
+          ],
+          "expected_output_tokens": [
+            "0x6ffdec",
+            "12",
+            "0",
+            "28"
+          ],
+          "grader_note": "Lưu ý dấu cách và xuống dòng",
+          "partial_credit_rule": [
+            {
+              "type": "count_correct_tokens",
+              "partial_score": 0.25,
+              "condition": "correct_token_count == 1"
+            },
+            {
+              "type": "count_correct_tokens",
+              "partial_score": 0.75,
+              "condition": "correct_token_count in [2,3]"
+            },
+            {
+              "type": "count_correct_tokens",
+              "partial_score": 1,
+              "condition": "correct_token_count == 4"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

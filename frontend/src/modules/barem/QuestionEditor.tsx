@@ -14,9 +14,11 @@ import Card from "@/components/core/Card";
 import type { Criterion, QuestionPart, QuestionTable, RubricQuestion } from "@/types/barem";
 
 import CriterionEditor from "./CriterionEditor";
+import { collectCriterionIds, replaceCriterion, uniqueCriterionId } from "./criterionTree";
 import { deepClone, makeTable, nextPartLabel, slotId, slotsForTable } from "./factory";
 import { Field, NumberInput, Row, TextArea, TextInput } from "./Field";
 import { flattenCriteria, questionTotal } from "./flatten";
+import { renamePartLabel } from "./renamePart";
 import { countScoreMentions, rescoreQuestion, rewriteScoreInText } from "./rescore";
 import styles from "./QuestionEditor.module.css";
 import TableSlotEditor from "./TableSlotEditor";
@@ -81,18 +83,6 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
     onChange({ ...question, grading_rule: updater(deepClone(question.grading_rule)) });
   }
 
-  function replaceCriterion(criteria: Criterion[], id: string, next: Criterion | null): Criterion[] {
-    return criteria
-      .map((criterion) => {
-        if (criterion.criterion_id === id) return next;
-        if (criterion.sub_criteria?.length) {
-          return { ...criterion, sub_criteria: replaceCriterion(criterion.sub_criteria, id, next) };
-        }
-        return criterion;
-      })
-      .filter((criterion): criterion is Criterion => criterion !== null);
-  }
-
   function addSubCriterion(parentId: string) {
     updateCriteria((criteria) => {
       const walk = (items: Criterion[]): Criterion[] =>
@@ -107,7 +97,10 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
               sub_criteria: [
                 ...children,
                 {
-                  criterion_id: `${parentId}${children.length + 1}`,
+                  criterion_id: uniqueCriterionId(
+                    `${parentId}${children.length + 1}`,
+                    collectCriterionIds(question.grading_rule),
+                  ),
                   question_type: "matching",
                   content: "",
                   score: 0,
@@ -122,7 +115,7 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
     });
   }
 
-  function renderCriterion(criterion: Criterion, depth: number, parent?: Criterion) {
+  function renderCriterion(criterion: Criterion, depth: number, index: number, parent?: Criterion) {
     const partLabel = criterion.part_label ?? "";
     const part = parts.find((p) => p.part_label === partLabel);
     const cells = (part?.tables ?? []).flatMap((table) => table.table_slot.map((cell) => cell.cell_id));
@@ -140,7 +133,10 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
 
     return (
       <CriterionEditor
-        key={criterion.criterion_id}
+        // Position, not id: while an author is mid-rename two criteria can
+        // briefly share an id, and React would then treat them as one element
+        // and carry the first one's local state onto the second.
+        key={`${depth}:${index}`}
         criterion={criterion}
         availableSlots={allSlots}
         availablePartLabels={partLabels}
@@ -152,7 +148,7 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
         onRemove={() => updateCriteria((criteria) => replaceCriterion(criteria, criterion.criterion_id, null))}
         onAddSubCriterion={() => addSubCriterion(criterion.criterion_id)}
       >
-        {criterion.sub_criteria?.map((sub) => renderCriterion(sub, depth + 1, criterion))}
+        {criterion.sub_criteria?.map((sub, i) => renderCriterion(sub, depth + 1, i, criterion))}
       </CriterionEditor>
     );
   }
@@ -175,14 +171,14 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
       >
         <div className={styles.stack}>
           <Row>
-            <Field label="question_number" hint="KEY THẬT dùng để ghép barem với dữ liệu OCR.">
+            <Field label="Số thứ tự câu" name="question_number" hint="KEY THẬT dùng để ghép barem với dữ liệu OCR.">
               <TextInput
                 value={String(question.question_number)}
                 onChange={(value) => onChange({ ...question, question_number: Number(value) || 0 })}
                 mono
               />
             </Field>
-            <Field label="sample_id" hint="Chỉ để người đọc — pipeline không join theo field này.">
+            <Field label="Mã định danh câu" name="sample_id" hint="Chỉ để người đọc — pipeline không join theo field này.">
               <TextInput value={question.sample_id} onChange={(sample_id) => onChange({ ...question, sample_id })} mono />
             </Field>
             <Field
@@ -202,15 +198,27 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
           {rescoreBlocked && <p className={styles.rescoreBlocked}>{rescoreBlocked}</p>}
 
           <Field
-            label="question.text"
+            label="Đề bài" name="question.text"
             required
-            hint="Nguyên văn đề bài, kể cả chương trình C++. Nếu đề có phần IN SẴN (chữ ký hàm, biến khai sẵn) PHẢI ghi rõ ở đây — nếu không LLM sẽ tưởng sinh viên thiếu và trừ điểm oan."
+            hint={
+              <>
+                Nguyên văn đề bài, kể cả chương trình C++. Nếu đề có phần IN SẴN (chữ ký hàm, biến
+                khai sẵn) PHẢI ghi rõ ở đây — nếu không LLM sẽ tưởng sinh viên thiếu và trừ điểm
+                oan. Tab để thụt lề, Shift+Tab lùi lại, Esc để rời ô.
+                <br />
+                Công thức toán: gõ LaTeX giữa <code>$…$</code> (giữa dòng) hoặc <code>$$…$$</code>{" "}
+                (riêng một dòng) rồi xem bản dựng ngay bên dưới; hoặc chép ký hiệu:{" "}
+                <code>∈ ∉ ⊂ ℝ ℕ × · ÷ ≤ ≥ ≠ ≈ Σ ∏ √ ∞ ∂ ∇ α β θ λ μ σ ⁰¹²³ⁿ ₀₁₂ₜ</code>
+              </>
+            }
           >
             <TextArea
               value={question.question.text}
               onChange={(text) => onChange({ ...question, question: { ...question.question, text } })}
               rows={6}
               mono
+              code
+              math
             />
           </Field>
         </div>
@@ -251,10 +259,19 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
           {parts.map((part, index) => (
             <div key={index} className={styles.part}>
               <Row>
-                <Field label="part_label" required>
-                  <TextInput value={part.part_label} onChange={(part_label) => updatePart(index, (p) => ({ ...p, part_label }))} mono />
+                <Field
+                  label="Thuộc phần nào của câu"
+                  name="part_label"
+                  required
+                  hint="Đổi nhãn này sẽ đổi luôn slot_id của các ô bên dưới và mọi tiêu chí đang trỏ tới chúng — vì slot_id lúc chấm được sinh từ chính part_label."
+                >
+                  <TextInput
+                    value={part.part_label}
+                    onChange={(part_label) => onChange(renamePartLabel(question, index, part_label))}
+                    mono
+                  />
                 </Field>
-                <Field label="note" hint="Ghi chú cho người soạn, không ảnh hưởng chấm điểm.">
+                <Field label="Ghi chú" name="note" hint="Ghi chú cho người soạn, không ảnh hưởng chấm điểm.">
                   <TextInput
                     value={part.note ?? ""}
                     onChange={(note) => updatePart(index, (p) => ({ ...p, note: note || undefined }))}
@@ -262,11 +279,16 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
                 </Field>
               </Row>
 
-              <Field label="text" hint="Yêu cầu của riêng phần này.">
-                <TextArea value={part.text} onChange={(text) => updatePart(index, (p) => ({ ...p, text }))} rows={2} />
+              <Field label="Nội dung" name="text" hint="Yêu cầu của riêng phần này.">
+                <TextArea
+                  value={part.text}
+                  onChange={(text) => updatePart(index, (p) => ({ ...p, text }))}
+                  rows={2}
+                  math
+                />
               </Field>
 
-              <Field label="answer_slots" hint="Mỗi dòng một slot_id. Đây là khoá nối với dữ liệu OCR của sinh viên.">
+              <Field label="Các ô trả lời" name="answer_slots" hint="Mỗi dòng một slot_id. Đây là khoá nối với dữ liệu OCR của sinh viên.">
                 <div className={styles.slotList}>
                   {part.answer_slots.map((slot, slotIndex) => (
                     <div key={slotIndex} className={styles.slotRow}>
@@ -391,7 +413,10 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
               updateCriteria((criteria) => [
                 ...criteria,
                 {
-                  criterion_id: `T${question.question_number}_${criteria.length + 1}`,
+                  criterion_id: uniqueCriterionId(
+                    `T${question.question_number}_${criteria.length + 1}`,
+                    collectCriterionIds(criteria),
+                  ),
                   question_type: "matching",
                   part_label: partLabels[0] ?? "main",
                   slot_ids: parts[0]?.answer_slots.map((s) => s.slot_id) ?? [],
@@ -410,7 +435,7 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
           {question.grading_rule.length === 0 && (
             <p className={styles.empty}>Chưa có tiêu chí nào — câu này sẽ không được chấm điểm.</p>
           )}
-          {question.grading_rule.map((criterion) => renderCriterion(criterion, 0))}
+          {question.grading_rule.map((criterion, i) => renderCriterion(criterion, 0, i))}
         </div>
       </Card>
     </div>

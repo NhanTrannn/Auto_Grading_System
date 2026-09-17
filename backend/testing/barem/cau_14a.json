@@ -1,0 +1,182 @@
+{
+  "ma_de": "1",
+  "subject": "IT001 - Nhập môn lập trình",
+  "total_score": 0.25,
+  "teacher_barem": [
+    {
+      "sample_id": "cau_14",
+      "question_number": 14,
+      "question": {
+        "text": "Câu 14: (1.0 điểm) Sinh viên thực hiện yêu cầu sau:",
+        "parts": [
+          {
+            "part_label": "a",
+            "text": "Khai báo kiểu dữ liệu cấu trúc (struct) Sinhvien gồm các thuộc tính (thành phần) sau (0.25 điểm):",
+            "tables": [
+              {
+                "table_id": "TB1",
+                "table_slot": [
+                  {
+                    "cell_id": "R1C1",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C1",
+                    "text": "Tên thuộc tính"
+                  },
+                  {
+                    "cell_id": "R1C2",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C2",
+                    "text": "Kiểu dữ liệu"
+                  },
+                  {
+                    "cell_id": "R1C3",
+                    "source": "printed",
+                    "row_id": "R1",
+                    "col_id": "C3",
+                    "text": "Ý nghĩa"
+                  },
+                  {
+                    "cell_id": "R2C1",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C1",
+                    "text": "MaSV"
+                  },
+                  {
+                    "cell_id": "R2C2",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R2C3",
+                    "source": "printed",
+                    "row_id": "R2",
+                    "col_id": "C3",
+                    "text": "Mã sinh viên"
+                  },
+                  {
+                    "cell_id": "R3C1",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C1",
+                    "text": "HoTen"
+                  },
+                  {
+                    "cell_id": "R3C2",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R3C3",
+                    "source": "printed",
+                    "row_id": "R3",
+                    "col_id": "C3",
+                    "text": "Họ và tên sinh viên"
+                  },
+                  {
+                    "cell_id": "R4C1",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C1",
+                    "text": "NamSinh"
+                  },
+                  {
+                    "cell_id": "R4C2",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C2",
+                    "text": "Kiểu số nguyên"
+                  },
+                  {
+                    "cell_id": "R4C3",
+                    "source": "printed",
+                    "row_id": "R4",
+                    "col_id": "C3",
+                    "text": "Năm sinh"
+                  },
+                  {
+                    "cell_id": "R5C1",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C1",
+                    "text": "NoiSinh"
+                  },
+                  {
+                    "cell_id": "R5C2",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C2",
+                    "text": "Kiểu chuỗi ký tự"
+                  },
+                  {
+                    "cell_id": "R5C3",
+                    "source": "printed",
+                    "row_id": "R5",
+                    "col_id": "C3",
+                    "text": "Nơi sinh"
+                  },
+                  {
+                    "cell_id": "R6C1",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C1",
+                    "text": "DTB"
+                  },
+                  {
+                    "cell_id": "R6C2",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C2",
+                    "text": "Số thực"
+                  },
+                  {
+                    "cell_id": "R6C3",
+                    "source": "printed",
+                    "row_id": "R6",
+                    "col_id": "C3",
+                    "text": "Điểm trung bình"
+                  }
+                ]
+              }
+            ],
+            "answer_slots": [
+              {
+                "slot_id": "cau_14_001_a"
+              }
+            ]
+          }
+        ]
+      },
+      "grading_rule": [
+        {
+          "part_label": "a",
+          "criterion_id": "T14A",
+          "content": "Khai báo struct Sinhvien với đúng tên và kiểu dữ liệu các thuộc tính (0.25đ).",
+          "score": 0.25,
+          "grader_note": "Tên các thuộc tính phải đúng như đề (MaSV, HoTen, NamSinh, NoiSinh, DTB). Bắt buộc có dấu chấm phẩy (;) sau dấu } đóng struct, thiếu dấu này => 0đ. Cho phép dùng typedef struct.",
+          "expected_value": {
+            "keywords": [
+              "Sinhvien",
+              "MaSV",
+              "HoTen",
+              "NamSinh",
+              "NoiSinh",
+              "DTB"
+            ],
+            "sample_solution": "struct Sinhvien  // Hoac dung typedef\n{\n    string MaSV;\n    string HoTen;\n    int NamSinh;\n    string NoiSinh;\n    float DTB;\n};"
+          },
+          "question_type": "logical",
+          "slot_ids": [
+            "cau_14_001_a"
+          ]
+        }
+      ]
+    }
+  ]
+}

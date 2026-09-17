@@ -24,8 +24,9 @@ def load_barem(barem_path: str) -> dict:
     return engine.load_barem(barem_path)
 
 
-def run_batch(test_input_path: str, barem_path: str, output_path: str | None = None) -> dict:
-    return engine.run_batch(test_input_path, barem_path, output_path)
+def run_batch(test_input_path: str, barem_source: str, output_path: str | None = None) -> dict:
+    """`barem_source` is a barem file OR a directory of them, keyed by ma_de."""
+    return engine.run_batch(test_input_path, barem_source, output_path)
 
 
 def grade_sample(sample: dict, barem_dict: dict) -> dict:

@@ -1,0 +1,15 @@
+{
+  "HS_2": {
+    "ma_de": "1",
+    "Cau_03": {
+      "type": "short_text",
+      "status": "completed",
+      "image_path": "/testing/fake/HS_2.jpg",
+      "content": {
+        "lines": [
+          "0x6ffdec 12 0 27"
+        ]
+      }
+    }
+  }
+}

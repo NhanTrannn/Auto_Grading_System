@@ -38,6 +38,25 @@ function loadDraft(): ExamRubric {
   return blankExam();
 }
 
+/**
+ * How many questions the autosaved draft holds, without mounting the editor.
+ *
+ * The library needs this to warn before replacing work in progress. Opening a
+ * rubric is undoable in the moment, but only in the moment: the undo stack is a
+ * ref, and the autosave overwrites the stored draft 400ms later, so a reload
+ * after opening leaves nothing to go back to.
+ */
+export function storedDraftQuestionCount(): number {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return 0;
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed?.teacher_barem) ? parsed.teacher_barem.length : 0;
+  } catch {
+    return 0;
+  }
+}
+
 export function useBaremDraft() {
   const [exam, setExamState] = useState<ExamRubric>(loadDraft);
   const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
