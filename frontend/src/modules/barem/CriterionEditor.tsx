@@ -19,16 +19,34 @@ import Button from "@/components/core/Button";
 import type { AnswerSlot, Criterion, LogicalExpectedValue, PartialCreditRule, QuestionType } from "@/types/barem";
 import { QUESTION_TYPES } from "@/types/barem";
 
+import { useAdvancedMode } from "./advancedMode";
 import ConditionalEditor from "./ConditionalEditor";
+import ConfirmDelete from "./ConfirmDelete";
 import MatchingPreview from "./MatchingPreview";
 import { Checkbox, EntryListInput, Field, ListInput, NumberInput, Row, Select, TextArea, TextInput } from "./Field";
 import styles from "./CriterionEditor.module.css";
 
 const TYPE_LABELS: Record<QuestionType, string> = {
-  matching: "matching — so khớp chính xác chuỗi/token",
-  logical: "logical — chấm theo logic, LLM quyết định",
-  table: "table — chấm đúng 1 ô của bảng",
-  visual: "visual — Vision LLM đọc ảnh trực tiếp",
+  matching: "So khớp đáp án — kết quả in ra, giá trị cụ thể",
+  logical: "Chấm theo logic — viết code, giải thích",
+  table: "Một ô trong bảng",
+  visual: "Hình vẽ — AI đọc thẳng từ ảnh bài làm",
+};
+
+/** Short form for the criterion's header badge. */
+const TYPE_BADGES: Record<QuestionType, string> = {
+  matching: "So khớp",
+  logical: "Logic",
+  table: "Ô bảng",
+  visual: "Hình vẽ",
+};
+
+const RULE_TYPE_LABELS: Record<string, string> = {
+  count_correct_tokens: "Theo số mảnh đúng",
+  count_wrong_tokens: "Theo số mảnh sai",
+  custom_condition: "Điều kiện tự viết",
+  date_partial_match: "Ngày tháng: đúng tháng + năm",
+  position_tolerance: "Chỉ sai 2 vị trí đầu/cuối",
 };
 
 interface CriterionEditorProps {
@@ -115,6 +133,7 @@ export default function CriterionEditor({
   onAddSubCriterion,
   children,
 }: CriterionEditorProps) {
+  const advanced = useAdvancedMode();
   const isWrapper = Boolean(criterion.sub_criteria?.length);
   const type = criterion.question_type as QuestionType | undefined;
   const patch = (updates: Partial<Criterion>) => onChange({ ...criterion, ...updates });
@@ -142,30 +161,32 @@ export default function CriterionEditor({
             </Badge>
           ) : (
             <Badge tone={type ? "accent" : "warning"} dot={false}>
-              {type ?? "chưa chọn loại"}
+              {type ? (TYPE_BADGES[type] ?? type) : "chưa chọn kiểu chấm"}
             </Badge>
           )}
         </div>
-        <button type="button" className={styles.remove} onClick={onRemove}>
-          Xoá
-        </button>
+        <ConfirmDelete compact label="Xoá" onConfirm={onRemove} />
       </header>
 
       <div className={styles.body}>
         <Row>
           {!isWrapper && (
-            <Field label="Kiểu chấm" name="question_type" required hint="Quyết định trực tiếp hàm chấm nào chạy.">
+            <Field label="Kiểu chấm" name="question_type" required hint="Quyết định cách hệ thống chấm tiêu chí này.">
               <Select
                 value={(criterion.question_type as string) ?? ""}
                 onChange={(value) => patch({ question_type: value })}
                 options={[
-                  { value: "", label: "— chọn loại —" },
+                  { value: "", label: "— chọn kiểu chấm —" },
                   ...QUESTION_TYPES.map((item) => ({ value: item, label: TYPE_LABELS[item] })),
                 ]}
               />
             </Field>
           )}
-          <Field label="Thuộc phần nào của câu" name="part_label" hint="Phần của câu mà tiêu chí này chấm.">
+          <Field
+            label="Thuộc phần" name="part_label"
+            advanced={availablePartLabels.length <= 1}
+            hint="Phần của câu mà tiêu chí này chấm."
+          >
             <Select
               value={criterion.part_label ?? ""}
               onChange={(value) => patch({ part_label: value })}
@@ -178,14 +199,14 @@ export default function CriterionEditor({
           {inAllOrNothingGroup ? (
             <Field
               label="Tỷ trọng trong nhóm" name="weight"
-              hint="Nhóm all_or_nothing: điểm thật nằm ở tiêu chí cha, weight chỉ là tỷ trọng nội bộ."
+              hint="Nhóm “đúng hết mới được điểm”: điểm thật nằm ở tiêu chí cha, đây chỉ là tỷ trọng nội bộ."
             >
               <NumberInput value={criterion.weight ?? null} step={0.05} onChange={(weight) => patch({ weight: weight ?? undefined })} />
             </Field>
           ) : derivedScore !== undefined ? (
             <Field
               label="Tỷ trọng trong nhóm" name="weight"
-              hint={`Tiêu chí này chia theo tỷ trọng từ điểm của tiêu chí cha ⇒ đang là ${derivedScore.toFixed(2)} điểm. Muốn ghi điểm tuyệt đối thì xoá weight rồi nhập score.`}
+              hint={`Tiêu chí này chia theo tỷ trọng từ điểm của tiêu chí cha ⇒ đang là ${derivedScore.toFixed(2)} điểm. Muốn ghi điểm cố định thì xoá tỷ trọng rồi nhập điểm.`}
             >
               <NumberInput
                 value={criterion.weight ?? null}
@@ -203,7 +224,7 @@ export default function CriterionEditor({
         <Field
           label="Mô tả tiêu chí" name="content"
           required
-          hint="Nguồn chính LLM dùng để hiểu tiêu chí. Viết càng cụ thể càng tốt — nêu rõ cả ví dụ SAI nếu muốn chấm chặt, vì mặc định LLM được dặn 'chấp nhận cách làm tương đương'."
+          hint="Nguồn chính AI chấm dùng để hiểu tiêu chí. Viết càng cụ thể càng tốt — nêu rõ cả ví dụ SAI nếu muốn chấm chặt, vì mặc định AI được dặn 'chấp nhận cách làm tương đương'."
         >
           <TextArea value={criterion.content ?? ""} onChange={(content) => patch({ content })} rows={3} math />
         </Field>
@@ -221,7 +242,11 @@ export default function CriterionEditor({
         </Field>
 
         {!isWrapper && (
-          <Field label="Chấm dựa trên ô nào" name="slot_ids" hint="Chọn đúng slot giúp lấy bài làm chính xác hơn là lọc theo part_label.">
+          <Field
+            label="Chấm dựa trên ô trả lời nào" name="slot_ids"
+            advanced={availableSlots.length <= 1}
+            hint="Chọn đúng ô giúp lấy bài làm chính xác hơn."
+          >
             <div className={styles.slotPicker}>
               {availableSlots.length === 0 && <span className={styles.emptyHint}>Câu này chưa có answer_slot nào.</span>}
               {availableSlots.map((slot) => {
@@ -254,13 +279,13 @@ export default function CriterionEditor({
               checked={Boolean(criterion.all_or_nothing)}
               onChange={(all_or_nothing) => patch(toggleAllOrNothing(criterion, all_or_nothing))}
               label="Đúng hết mới được điểm" name="all_or_nothing"
-              hint="Chỉ cho điểm khi TẤT CẢ tiêu chí con đúng; điểm cộng 1 lần cho cả nhóm bằng 'score' của tiêu chí cha. Tắt đi thì mỗi tiêu chí con phải tự có điểm — chỗ nào chưa có sẽ được gán weight để chia đều từ điểm của tiêu chí cha."
+              hint="Chỉ cho điểm khi TẤT CẢ tiêu chí con đúng; cả nhóm được cộng một lần bằng điểm của tiêu chí cha. Tắt đi thì mỗi tiêu chí con tự có điểm — chỗ nào chưa có sẽ được chia đều từ điểm của tiêu chí cha."
             />
             {!criterion.all_or_nothing && criterion.grader_note && (
               <div className={styles.notice}>
-                Nhóm này có <code>grader_note</code> và tiêu chí con loại <code>table</code> ⇒ pipeline sẽ bật{" "}
-                <code>group_llm_decided</code>: chính LLM đọc ghi chú rồi tự quyết điểm cả nhóm, thay vì cộng dồn
-                điểm từng ô. Điểm hiển thị của từng ô vẫn đúng nhưng không còn quyết định điểm thật của nhóm.
+                Nhóm này có ghi chú cho người chấm, nên nếu các tiêu chí con là ô bảng thì AI sẽ đọc ghi chú và{" "}
+                <strong>tự quyết điểm cả nhóm</strong> thay vì cộng dồn điểm từng ô. Điểm từng ô vẫn hiển thị để đối
+                chiếu nhưng không quyết định điểm thật của nhóm.
               </div>
             )}
           </>
@@ -323,7 +348,10 @@ export default function CriterionEditor({
             />
 
             <fieldset className={styles.subsection}>
-              <legend>Các mức điểm bán phần <code className={styles.legendName}>partial_credit_rule</code></legend>
+              <legend>
+                Các mức điểm bán phần
+                {advanced && <code className={styles.legendName}>partial_credit_rule</code>}
+              </legend>
               <p className={styles.sectionNote}>
                 Khai được <strong>nhiều mức</strong>. Khi chấm, hệ thống thử <em>tất cả</em> rồi lấy mức có{" "}
                 <strong>partial_score cao nhất</strong> trong số các mức khớp — nên thứ tự khai không quan trọng.
@@ -352,13 +380,7 @@ export default function CriterionEditor({
                         <Select
                           value={rule.type}
                           onChange={(value) => update({ type: value })}
-                          options={[
-                            { value: "count_correct_tokens", label: "count_correct_tokens" },
-                            { value: "count_wrong_tokens", label: "count_wrong_tokens" },
-                            { value: "custom_condition", label: "custom_condition" },
-                            { value: "date_partial_match", label: "date_partial_match" },
-                            { value: "position_tolerance", label: "position_tolerance" },
-                          ]}
+                          options={Object.entries(RULE_TYPE_LABELS).map(([value, label]) => ({ value, label }))}
                         />
                       </Field>
                       <Field label="Điểm được hưởng" name="partial_score">
@@ -417,7 +439,7 @@ export default function CriterionEditor({
                     })
                   }
                 >
-                  Thêm conditional_outputs
+                  Thêm đáp án theo từng học sinh
                 </Button>
               )}
             </fieldset>
@@ -428,7 +450,7 @@ export default function CriterionEditor({
           <Row>
             <Field
               label="Từ khoá bắt buộc có" name="keywords"
-              hint="Mỗi dòng một từ khoá. CHỈ liệt kê thứ sinh viên THỰC SỰ phải tự gõ — tên hàm đề đã in sẵn sẽ luôn báo 'missing' và đẩy tín hiệu sai vào prompt LLM."
+              hint="Mỗi dòng một từ khoá. CHỈ liệt kê thứ sinh viên THỰC SỰ phải tự viết — tên hàm đề đã in sẵn sẽ luôn bị báo là thiếu và làm AI chấm hiểu sai."
             >
               <ListInput
                 value={asLogicalValue(criterion.expected_value).keywords ?? []}
@@ -442,7 +464,7 @@ export default function CriterionEditor({
             <Field
               label="Đáp án mẫu"
               name="sample_solution"
-              hint="Đưa nguyên văn cho LLM dưới mục “ĐÁP ÁN / LOGIC KỲ VỌNG” để đối chiếu — kèm sẵn câu dặn bài học sinh KHÔNG cần giống hệt, chỉ cần đúng logic. Không bị quét từ khoá, nên viết được cả lời giải thích lẫn code. Tab để thụt lề, Esc để rời ô."
+              hint="Đưa nguyên văn cho AI chấm để đối chiếu — kèm sẵn lời dặn bài học sinh KHÔNG cần giống hệt, chỉ cần đúng logic. Viết được cả lời giải thích lẫn code. Tab để thụt lề, Esc để rời ô."
             >
               <TextArea
                 value={asLogicalValue(criterion.expected_value).sample_solution ?? ""}
@@ -476,7 +498,7 @@ export default function CriterionEditor({
             </Field>
             <Field
               label="Ví dụ gợi ý cho ô này" name="expected_value.sample_solution"
-              hint="CHỈ là ví dụ gợi ý cho LLM — không dùng so khớp cứng, vì đề dạng 'cho 3 ví dụ' chấp nhận mọi cặp hợp lệ."
+              hint="CHỈ là ví dụ gợi ý cho AI chấm — không so khớp cứng, vì đề dạng 'cho 3 ví dụ' chấp nhận mọi cặp hợp lệ."
             >
               <TextInput
                 value={asLogicalValue(criterion.expected_value).sample_solution ?? ""}
@@ -489,8 +511,8 @@ export default function CriterionEditor({
 
         {!isWrapper && type === "visual" && (
           <div className={styles.notice}>
-            Vision LLM chấm trực tiếp từ ảnh bài làm dựa trên <code>content</code> và <code>grader_note</code> — không
-            có heuristic advisory, không blend điểm, không cần khai <code>expected_*</code>.
+            AI đọc thẳng ảnh bài làm và chấm dựa trên <strong>Mô tả tiêu chí</strong> và{" "}
+            <strong>Ghi chú cho người chấm</strong> ở trên — không cần khai đáp án.
           </div>
         )}
 

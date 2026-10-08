@@ -21,25 +21,37 @@ async function readError(res: Response): Promise<string> {
   }
 }
 
-/** Step 1: unpack both archives and report what's inside them. */
+/**
+ * Step 1: unpack the archive(s) and report what's inside them.
+ *
+ * The blank-exam archive is optional now. ROIs are detected on each student's
+ * own paper instead of being measured once on a clean template and warped, so
+ * the template no longer takes part in cropping at all — it only serves as a
+ * tidier backdrop while mapping regions.
+ */
 export async function createUpload(
-  templateZip: File,
   studentsZip: File,
+  templateZip?: File | null,
 ): Promise<UploadInventory> {
   const formData = new FormData();
-  formData.append("template_zip", templateZip);
   formData.append("students_zip", studentsZip);
+  if (templateZip) formData.append("template_zip", templateZip);
 
   const res = await fetch(`${API_BASE}/uploads`, { method: "POST", body: formData });
   if (!res.ok) throw new Error(await readError(res));
   return res.json();
 }
 
-/** URL of one blank exam page — the ROI editor draws its boxes over this. */
-/** `maDe` picks that code's own blank pages when the archive is split by code. */
-export function templatePageUrl(uploadId: string, page: number, maDe?: string): string {
+/**
+ * URL of the page the ROI editor draws its boxes over.
+ *
+ * Falls back to the first student's paper when no blank exam was uploaded —
+ * the layout is the same on every copy, and boxes are stored as page-relative
+ * fractions, so which copy it is does not matter.
+ */
+export function referencePageUrl(uploadId: string, page: number, maDe?: string): string {
   const query = maDe ? `?ma_de=${encodeURIComponent(maDe)}` : "";
-  return `${API_BASE}/uploads/${uploadId}/template/${page}${query}`;
+  return `${API_BASE}/uploads/${uploadId}/reference/${page}${query}`;
 }
 
 /**

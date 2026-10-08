@@ -59,8 +59,8 @@ _VALID_TASK_TYPES = {"short_text", "long_text", "code", "table", "diagram"}
 
 @router.post("/uploads", response_model=UploadInventory)
 async def create_upload(
-    template_zip: UploadFile = File(...),
     students_zip: UploadFile = File(...),
+    template_zip: UploadFile | None = File(None),
 ) -> UploadInventory:
     upload_id = uuid.uuid4().hex
     root = _UPLOADS_DIR / upload_id
@@ -68,20 +68,28 @@ async def create_upload(
     students_root = root / "students"
     root.mkdir(parents=True, exist_ok=True)
 
-    for upload, dest in ((template_zip, "template.zip"), (students_zip, "students.zip")):
+    # Zip đề mẫu giờ là TUỲ CHỌN. ROI được dò trên bài của chính từng học
+    # sinh nên tờ mẫu sạch không còn tham gia vào việc cắt ảnh; nó chỉ còn
+    # ích lợi làm nền sạch để khai bố cục cho dễ nhìn. Không có thì màn khai
+    # bố cục dùng bài của em đầu tiên trong mã đề đó.
+    uploads = [(students_zip, "students.zip")]
+    if template_zip is not None:
+        uploads.append((template_zip, "template.zip"))
+    for upload, dest in uploads:
         with (root / dest).open("wb") as f:
             shutil.copyfileobj(upload.file, f)
 
     try:
-        zip_intake.extract_zip(root / "template.zip", template_root)
+        if template_zip is not None:
+            zip_intake.extract_zip(root / "template.zip", template_root)
         zip_intake.extract_zip(root / "students.zip", students_root)
     except Exception as exc:  # noqa: BLE001 - bad archive is user input, not a crash
         shutil.rmtree(root, ignore_errors=True)
         raise HTTPException(status_code=400, detail=f"Không giải nén được file zip: {exc}") from exc
 
-    templates = zip_intake.group_template_pages(template_root)
-    template_pages = zip_intake.list_template_pages(template_root)
-    if not template_pages:
+    templates = zip_intake.group_template_pages(template_root) if template_root.is_dir() else {}
+    template_pages = zip_intake.list_template_pages(template_root) if template_root.is_dir() else []
+    if template_zip is not None and not template_pages:
         shutil.rmtree(root, ignore_errors=True)
         raise HTTPException(
             status_code=400, detail="File zip đề mẫu không chứa ảnh .png/.jpg nào."
@@ -148,6 +156,41 @@ async def get_template_page(upload_id: str, page: int, ma_de: str | None = None)
     return FileResponse(pages[page - 1])
 
 
+@router.get("/uploads/{upload_id}/reference/{page}")
+async def get_reference_page(upload_id: str, page: int, ma_de: str | None = None) -> FileResponse:
+    """Trang nền cho màn khai bố cục ROI.
+
+    Không còn tờ mẫu bắt buộc: bố cục được khai theo TỈ LỆ trang và khung thật
+    dùng để cắt là khung module1 dò được trên bài của từng em, nên nền chỉ cần
+    là một tờ có đúng bố cục đó. Ưu tiên ảnh đề mẫu nếu người dùng có nộp (nền
+    sạch, dễ nhìn), không thì lấy bài của em ĐẦU TIÊN trong mã đề.
+    """
+    upload_root = _UPLOADS_DIR / upload_id
+    if not upload_root.is_dir():
+        raise HTTPException(status_code=404, detail="upload not found")
+
+    template_root = upload_root / "template"
+    if template_root.is_dir():
+        pages = (
+            zip_intake.template_pages_for(zip_intake.group_template_pages(template_root), ma_de)
+            if ma_de
+            else zip_intake.list_template_pages(template_root)
+        )
+        if 1 <= page <= len(pages):
+            return FileResponse(pages[page - 1])
+
+    groups = zip_intake.group_students(upload_root / "students")
+    pool = [g for g in groups if not ma_de or g.ma_de == ma_de] or groups
+    first = next((g.students[0] for g in pool if g.students), None)
+    if first is None:
+        raise HTTPException(status_code=404, detail="Không có bài nào để làm trang nền.")
+    if page < 1 or page > len(first.pages):
+        raise HTTPException(
+            status_code=404, detail=f"Bài mẫu chỉ có {len(first.pages)} trang."
+        )
+    return FileResponse(first.pages[page - 1])
+
+
 # ── Step 2: run one exam code ───────────────────────────────────────────────
 
 
@@ -178,11 +221,28 @@ def _validate_rois(rois: object, page_count: int) -> list[dict]:
                 status_code=400, detail=f"{label} là bảng nên bắt buộc có n_rows và n_cols."
             )
 
+        # Toạ độ là TỈ LỆ trang (0..1), không phải pixel: mỗi bài chụp một cỡ
+        # ảnh khác nhau nên pixel không dùng chung được. Chặn ở đây chứ không
+        # để ocr_main phát hiện, vì lúc đó phiên đã chạy được vài phút.
+        for axis in ("x", "y", "w", "h"):
+            value = roi.get(axis)
+            if not isinstance(value, (int, float)) or isinstance(value, bool):
+                raise HTTPException(status_code=400, detail=f"{label} thiếu toạ độ {axis}.")
+            if not 0.0 <= float(value) <= 1.0:
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        f"{label} có {axis}={value}: toạ độ phải là tỉ lệ trang trong "
+                        "khoảng 0..1. Vùng đo bằng pixel theo tờ mẫu không dùng lại được, "
+                        "hãy khai lại bố cục."
+                    ),
+                )
+
         page = int(roi.get("page", 1) or 1)
         if page < 1 or page > page_count:
             raise HTTPException(
                 status_code=400,
-                detail=f"{label} trỏ tới trang {page} nhưng đề mẫu chỉ có {page_count} trang.",
+                detail=f"{label} trỏ tới trang {page} nhưng bài làm chỉ có {page_count} trang.",
             )
 
         if roi["cau_key"] in seen:
@@ -290,9 +350,8 @@ async def create_pipeline_job(
     payload: PipelineJobCreate, db: Session = Depends(get_db)
 ) -> PipelineJobCreated:
     upload_root = _UPLOADS_DIR / payload.upload_id
-    template_root = upload_root / "template"
     students_root = upload_root / "students"
-    if not template_root.is_dir() or not students_root.is_dir():
+    if not students_root.is_dir():
         raise HTTPException(status_code=404, detail="upload không tồn tại (hoặc đã bị dọn).")
 
     if not payload.groups:
@@ -305,7 +364,6 @@ async def create_pipeline_job(
             status_code=400, detail=f"Mã đề bị khai trùng trong cùng một phiên: {', '.join(sorted(duplicates))}."
         )
 
-    templates = zip_intake.group_template_pages(template_root)
     students_by_code = {g.ma_de: g for g in zip_intake.group_students(students_root)}
 
     job_id = uuid.uuid4().hex
@@ -328,17 +386,15 @@ async def create_pipeline_job(
         if entry is None:
             raise HTTPException(status_code=404, detail=f"Không thấy mã đề '{ma_de}' trong zip bài làm.")
 
-        pages = zip_intake.template_pages_for(templates, ma_de)
-        if not pages:
+        # Số trang lấy từ chính bài làm, không từ tờ mẫu nữa — tờ mẫu chỉ còn
+        # là nền tuỳ chọn cho màn khai bố cục.
+        page_count = max((len(st.pages) for st in entry.students), default=0)
+        if not page_count:
             raise HTTPException(
-                status_code=400,
-                detail=(
-                    f"Mã đề '{ma_de}' không có ảnh đề mẫu. Zip đề mẫu cần thư mục "
-                    f"'Made_{ma_de}' riêng, hoặc để ảnh phẳng ở gốc thì bộ ảnh đó dùng chung cho mọi mã đề."
-                ),
+                status_code=400, detail=f"Mã đề '{ma_de}' không có ảnh bài làm nào."
             )
 
-        rois = _validate_rois(group.roi_config.get("rois"), len(pages))
+        rois = _validate_rois(group.roi_config.get("rois"), page_count)
 
         barem = _resolve_barem(db, group)
         # Force the barem's OWN "ma_de" field to match this group's ma_de
@@ -368,7 +424,6 @@ async def create_pipeline_job(
         configs.append(
             {
                 "ma_de": ma_de,
-                "template_pages": [str(p) for p in pages],
                 "crop_dir": str(job_dir / "crops"),
                 "students": students,
                 "rois": rois,

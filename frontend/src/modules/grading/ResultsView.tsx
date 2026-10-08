@@ -8,12 +8,15 @@ import StatCard from "@/components/core/StatCard";
 import type { GradingJobResult, StudentSummary } from "@/types/grading";
 
 import { downloadJson, downloadStudentSummaryCsv } from "./downloadUtils";
+import { openPrintableReport, type ReportMeta } from "./printReport";
 import ScoreDistribution from "./ScoreDistribution";
 import styles from "./ResultsView.module.css";
 import StudentDetailPanel from "./StudentDetailPanel";
 
 interface ResultsViewProps {
   result: GradingJobResult;
+  /** Heading and job details printed at the top of the PDF report. */
+  reportMeta: ReportMeta;
 }
 
 type SortKey = "hs" | "score" | "ratio" | "wrong";
@@ -43,7 +46,8 @@ function bandOf(s: StudentSummary): Exclude<Band, "all"> {
   return "low";
 }
 
-export default function ResultsView({ result }: ResultsViewProps) {
+export default function ResultsView({ result, reportMeta }: ResultsViewProps) {
+  const [popupBlocked, setPopupBlocked] = useState(false);
   const [search, setSearch] = useState("");
   const [band, setBand] = useState<Band>("all");
   const [sortKey, setSortKey] = useState<SortKey>("hs");
@@ -137,6 +141,14 @@ export default function ResultsView({ result }: ResultsViewProps) {
           actions={
             <>
               <Button
+                size="sm"
+                icon={<IconDownload size={14} />}
+                title="Báo cáo chi tiết: phổ điểm, bảng điểm, bài làm OCR và lý do chấm từng tiêu chí"
+                onClick={() => setPopupBlocked(!openPrintableReport(result, reportMeta))}
+              >
+                PDF
+              </Button>
+              <Button
                 variant="secondary"
                 size="sm"
                 icon={<IconDownload size={14} />}
@@ -155,6 +167,11 @@ export default function ResultsView({ result }: ResultsViewProps) {
             </>
           }
         >
+          {popupBlocked && (
+            <p className={styles.popupBlocked}>
+              Trình duyệt đã chặn cửa sổ báo cáo. Cho phép cửa sổ bật lên (popup) cho trang này rồi bấm PDF lại.
+            </p>
+          )}
           <div className={styles.toolbar}>
             <div className={styles.searchBox}>
               <IconSearch size={15} />

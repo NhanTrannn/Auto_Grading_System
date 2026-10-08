@@ -127,15 +127,15 @@ export default function ConditionalEditor({
         <Field
           label="Bước 1 · Lấy 'value' từ đâu" name="condition_source"
           required
-          hint="Bắt buộc khi có conditional_outputs. Thiếu field này pipeline sẽ bỏ qua hoàn toàn việc chọn nhánh và chấm sai toàn bộ."
+          hint="Bắt buộc. Bỏ trống thì hệ thống không biết chọn đáp án nào và chấm sai toàn bộ học sinh."
         >
           <Select
             value={sourceType}
             onChange={setSourceType}
             options={[
-              { value: "none", label: "— chưa khai —" },
-              { value: "sample_field", label: "sample_field — đọc từ dữ liệu gốc (STT thật)" },
-              { value: "self_reported", label: "self_reported — đọc từ slot sinh viên tự ghi" },
+              { value: "none", label: "— chưa chọn —" },
+              { value: "sample_field", label: "STT thật của học sinh (từ danh sách lớp)" },
+              { value: "self_reported", label: "Con số học sinh tự ghi trong bài" },
             ]}
           />
         </Field>
@@ -155,9 +155,9 @@ export default function ConditionalEditor({
 
         {conditionSource?.type === "self_reported" && (
           <Field
-            label="Chấm dựa trên ô nào" name="slot_ids"
+            label="Học sinh ghi con số đó ở ô nào" name="slot_ids"
             required
-            hint="Chấm theo con số học sinh THỰC SỰ dùng để tính, nên không phạt oan khi họ nhớ nhầm STT nhưng làm nhất quán. Chọn nhiều slot thì nội dung các slot được nối lại. Học sinh bỏ trống slot ⇒ chấm sai luôn, không qua LLM."
+            hint="Chấm theo con số học sinh THỰC SỰ dùng để tính, nên không phạt oan khi họ nhớ nhầm STT nhưng làm nhất quán. Chọn nhiều ô thì nội dung các ô được nối lại. Học sinh bỏ trống ô ⇒ chấm sai luôn, không qua AI."
           >
             <div className={styles.slotPicker}>
               {availableSlots.length === 0 && <span className={styles.slotEmpty}>Câu này chưa khai slot nào.</span>}
@@ -243,7 +243,7 @@ export default function ConditionalEditor({
               />
             </Field>
 
-            <Field label="…và token cho điểm bán phần" name="expected_output_tokens" hint="Mỗi ô một token, tìm theo đúng thứ tự này.">
+            <Field label="…và các mảnh cho điểm bán phần" name="expected_output_tokens" hint="Mỗi ô một mảnh, tìm theo đúng thứ tự này.">
               <EntryListInput
                 ordered
                 value={branch.expected_output_tokens ?? []}
@@ -294,7 +294,7 @@ export default function ConditionalEditor({
             </p>
           )}
           {rows.some((row) => row.firstError) && (
-            <p className={styles.warn}>
+            <p className={styles.error}>
               Có điều kiện không đọc được: {rows.find((row) => row.firstError)?.firstError}. Khi chấm thật, lỗi này chỉ
               hiện ra dưới dạng cảnh báo trong log và nhánh đó luôn bị bỏ qua.
             </p>

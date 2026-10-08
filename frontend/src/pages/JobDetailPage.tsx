@@ -37,7 +37,7 @@ export default function JobDetailPage() {
       <JobStatusView jobId={jobId ?? null} status={status} error={error} />
 
       {result ? (
-        <ResultsView result={result} />
+        <ResultsView result={result} reportMeta={{ title: `Phiên ${jobId?.slice(0, 12) ?? ""}` }} />
       ) : (
         !loading && (
           <Card>

@@ -7,6 +7,7 @@
  */
 import { useEffect, useLayoutEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
 
+import { useAdvancedMode } from "./advancedMode";
 import { autoGrow, handleCodeKeyDown } from "./codeTextArea";
 import { hasOpenMath } from "./mathText";
 import styles from "./Field.module.css";
@@ -43,32 +44,92 @@ interface FieldProps {
   /** What the teacher reads. Write it in Vietnamese, not as a JSON key. */
   label: ReactNode;
   /**
-   * The JSON key this control writes, shown small and greyed beside the label.
+   * The JSON key this control writes — shown small and greyed beside the label
+   * in "Nâng cao" mode, and as the label's tooltip otherwise.
    *
-   * Kept visible on purpose: the barem is a file people also read, diff and
+   * Never dropped outright: the barem is a file people also read, diff and
    * paste error messages about, and every validation message names the key
    * rather than the label. Dropping it would leave "Điểm cả câu" with no way to
-   * connect to a `score` mentioned in a warning. Leading with the key instead —
-   * which is what this form used to do — made the whole page read like a schema
-   * dump.
+   * connect to a `score` mentioned in a warning. Showing it permanently made
+   * the page read like a schema dump for teachers who never open the JSON.
    */
   name?: string;
   hint?: ReactNode;
   /** Marks a field the backend requires — not HTML validation, just a cue. */
   required?: boolean;
+  /** Plumbing the editor already fills in — hidden unless "Nâng cao" is on. */
+  advanced?: boolean;
   children: ReactNode;
 }
 
-export function Field({ label, name, hint, required, children }: FieldProps) {
+/** Hints at most this long stay inline; longer ones fold behind ⓘ. */
+const INLINE_HINT_MAX = 90;
+
+function isShortHint(hint: ReactNode): boolean {
+  return typeof hint === "string" && hint.length <= INLINE_HINT_MAX;
+}
+
+/**
+ * The ⓘ that opens a long hint.
+ *
+ * A `<span role="button">`, not a `<button>`: it sits inside the Field's
+ * `<label>`, and a real button there becomes the label's first labelable
+ * descendant, so clicking the label text would press ⓘ instead of focusing the
+ * input. preventDefault likewise stops the click from also focusing the input.
+ */
+function HintToggle({ open, onToggle }: { open: boolean; onToggle: () => void }) {
+  return (
+    <span
+      role="button"
+      tabIndex={0}
+      aria-expanded={open}
+      title={open ? "Ẩn hướng dẫn" : "Xem hướng dẫn"}
+      className={`${styles.hintToggle} ${open ? styles.hintToggleOpen : ""}`}
+      onClick={(event) => {
+        event.preventDefault();
+        onToggle();
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onToggle();
+        }
+      }}
+    >
+      i
+    </span>
+  );
+}
+
+/**
+ * Every field used to print its full hint permanently — five or six lines under
+ * some inputs — so the controls drowned in prose. Short hints still read inline;
+ * long ones are one click away.
+ */
+function useHint(hint: ReactNode) {
+  const [open, setOpen] = useState(false);
+  if (!hint) return { toggle: null, body: null };
+  if (isShortHint(hint)) return { toggle: null, body: <span className={styles.hint}>{hint}</span> };
+  return {
+    toggle: <HintToggle open={open} onToggle={() => setOpen((value) => !value)} />,
+    body: open ? <span className={`${styles.hint} ${styles.hintPanel}`}>{hint}</span> : null,
+  };
+}
+
+export function Field({ label, name, hint, required, advanced, children }: FieldProps) {
+  const showAdvanced = useAdvancedMode();
+  const { toggle, body } = useHint(hint);
+  if (advanced && !showAdvanced) return null;
   return (
     <label className={styles.field}>
-      <span className={styles.label}>
+      <span className={styles.label} title={name && !showAdvanced ? name : undefined}>
         {label}
         {required && <span className={styles.required}>*</span>}
-        {name && <code className={styles.fieldName}>{name}</code>}
+        {name && showAdvanced && <code className={styles.fieldName}>{name}</code>}
+        {toggle}
       </span>
       {children}
-      {hint && <span className={styles.hint}>{hint}</span>}
+      {body}
     </label>
   );
 }
@@ -389,15 +450,18 @@ interface CheckboxProps {
 }
 
 export function Checkbox({ checked, onChange, label, name, hint }: CheckboxProps) {
+  const showAdvanced = useAdvancedMode();
+  const { toggle, body } = useHint(hint);
   return (
     <label className={styles.checkbox}>
       <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />
       <span>
-        <span className={styles.checkboxLabel}>
+        <span className={styles.checkboxLabel} title={name && !showAdvanced ? name : undefined}>
           {label}
-          {name && <code className={styles.fieldName}>{name}</code>}
+          {name && showAdvanced && <code className={styles.fieldName}>{name}</code>}
+          {toggle}
         </span>
-        {hint && <span className={styles.hint}>{hint}</span>}
+        {body}
       </span>
     </label>
   );

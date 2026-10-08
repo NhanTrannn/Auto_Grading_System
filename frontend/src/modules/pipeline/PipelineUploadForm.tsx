@@ -103,6 +103,7 @@ export default function PipelineUploadForm({
   const [roiSource, setRoiSource] = useState<RoiSource>("editor");
   const [shareRois, setShareRois] = useState(true);
   const [roisByCode, setRoisByCode] = useState<Record<string, RoiConfigEntry[]>>({});
+  const [pageSizes, setPageSizes] = useState<Record<string, { w: number; h: number }>>({});
   const [sharedRois, setSharedRois] = useState<RoiConfigEntry[]>([]);
   const [roiFileError, setRoiFileError] = useState<string | null>(null);
   const [mapperFor, setMapperFor] = useState<string | null>(null);
@@ -141,8 +142,65 @@ export default function PipelineUploadForm({
     else setRoisByCode((prev) => ({ ...prev, [maDe]: next }));
   };
 
-  const pagesOf = (maDe: string): UploadMaDe["template_pages"] =>
-    groups.find((g) => g.ma_de === maDe)?.template_pages ?? [];
+  /**
+   * Pages to map regions on.
+   *
+   * The blank-exam archive is optional now, so when it is missing the page
+   * count comes from the students' own papers — the backdrop served for each
+   * page falls back to the first student's copy, and the layout is identical
+   * on every copy anyway.
+   */
+  const pagesOf = (maDe: string): UploadMaDe["template_pages"] => {
+    const group = groups.find((g) => g.ma_de === maDe);
+    if (!group) return [];
+    if (group.template_pages.length) return group.template_pages;
+    const count = Math.max(0, ...group.students.map((st) => st.page_count));
+    return Array.from({ length: count }, (_, i) => ({
+      page: i + 1,
+      filename: `Trang ${i + 1}`,
+    }));
+  };
+
+  /**
+   * Backdrop pixel size per code+page, filled in by RoiMapper as images load.
+   *
+   * Regions are drawn in backdrop pixels but submitted as page-relative
+   * fractions: OCR detects the boxes on each student's own paper now, and
+   * every paper is photographed at a different size, so pixels measured on one
+   * copy mean nothing on another.
+   */
+  const pageSizeKey = (maDe: string, page: number) =>
+    `${effectiveShare ? "*" : maDe}#${page}`;
+
+  const rememberPageSize = (maDe: string) => (page: number, size: { w: number; h: number }) =>
+    setPageSizes((prev) => {
+      const key = pageSizeKey(maDe, page);
+      const known = prev[key];
+      if (known && known.w === size.w && known.h === size.h) return prev;
+      return { ...prev, [key]: size };
+    });
+
+  /**
+   * Pixel boxes -> page fractions, the shape `roi_config` is stored in.
+   *
+   * A region already inside 0..1 is left alone: regions can also arrive from an
+   * imported roi_config file, which is stored in fractions already, and
+   * dividing those a second time would quietly shrink every box into the
+   * top-left corner.
+   */
+  const toRelative = (maDe: string, list: RoiConfigEntry[]): RoiConfigEntry[] =>
+    list.map((roi) => {
+      const size = pageSizes[pageSizeKey(maDe, roi.page ?? 1)];
+      if (!size || !size.w || !size.h) return roi;
+      if (roi.x <= 1 && roi.y <= 1 && roi.w <= 1 && roi.h <= 1) return roi;
+      return {
+        ...roi,
+        x: roi.x / size.w,
+        y: roi.y / size.h,
+        w: roi.w / size.w,
+        h: roi.h / size.h,
+      };
+    });
 
   // The cau_key picker is driven by the rubric of whichever code is open.
   useEffect(() => {
@@ -172,7 +230,7 @@ export default function PipelineUploadForm({
     return {
       group,
       rois,
-      issues: rois.length ? validateRois(rois, group.template_pages.length) : [],
+      issues: rois.length ? validateRois(rois, pagesOf(group.ma_de).length) : [],
       ocrCalls: estimateOcrCalls(rois, group.student_count),
     };
   });
@@ -183,11 +241,11 @@ export default function PipelineUploadForm({
   const allIssues = perCode.flatMap((p) => p.issues.map((i) => `[mã đề ${p.group.ma_de}] ${i}`));
 
   async function handleRead() {
-    if (!templateZip[0] || !studentsZip[0]) return;
+    if (!studentsZip[0]) return;
     setReading(true);
     setReadError(null);
     try {
-      const result = await createUpload(templateZip[0], studentsZip[0]);
+      const result = await createUpload(studentsZip[0], templateZip[0]);
       setInventory(result);
       setSelected(result.ma_de_list.map((g) => g.ma_de));
       setRoisByCode({});
@@ -227,13 +285,13 @@ export default function PipelineUploadForm({
       <Step
         index={1}
         title="Tải dữ liệu"
-        subtitle="Hai file .zip: ảnh đề mẫu và ảnh bài làm cả lớp"
+        subtitle="Zip ảnh bài làm cả lớp; zip đề mẫu chỉ là tuỳ chọn"
         done={inventory !== null}
       >
         <div className={styles.grid}>
           <FileDrop
-            label="Zip ảnh đề mẫu (bản chưa làm)"
-            hint="Nhiều mã đề thì tách thư mục Made_1/, Made_2/ — để phẳng thì bộ ảnh đó dùng chung"
+            label="Zip ảnh đề mẫu (tuỳ chọn)"
+            hint="Chỉ dùng làm nền sạch khi gán vùng — không có thì lấy bài của em đầu tiên"
             accept=".zip,application/zip"
             disabled={disabled || reading}
             files={templateZip}
@@ -265,14 +323,14 @@ export default function PipelineUploadForm({
         <div className={styles.stepFooter}>
           <Button
             onClick={handleRead}
-            disabled={!templateZip[0] || !studentsZip[0] || disabled}
+            disabled={!studentsZip[0] || disabled}
             loading={reading}
           >
             {inventory ? "Đọc lại file zip" : "Đọc file zip"}
           </Button>
           {inventory && (
             <span className={styles.readSummary}>
-              {inventory.template_pages.length} trang đề · {inventory.ma_de_list.length} mã đề
+              {inventory.ma_de_list.length} mã đề
             </span>
           )}
         </div>
@@ -308,7 +366,7 @@ export default function PipelineUploadForm({
                       {on ? <IconCheck size={13} /> : null} Mã đề {group.ma_de}
                     </span>
                     <span className={styles.maDeMeta}>
-                      {group.student_count} học sinh · {group.template_pages.length} trang đề
+                      {group.student_count} học sinh · {pagesOf(group.ma_de).length} trang
                       {group.template_shared ? " (dùng chung)" : ""}
                     </span>
                     {!overrideId && (
@@ -391,14 +449,14 @@ export default function PipelineUploadForm({
                       <td>{student.folder}</td>
                       <td
                         className={
-                          student.page_count < group.template_pages.length
+                          student.page_count < pagesOf(group.ma_de).length
                             ? styles.pageWarn
                             : undefined
                         }
                       >
                         {student.page_count}
-                        {student.page_count < group.template_pages.length &&
-                          ` (đề có ${group.template_pages.length})`}
+                        {student.page_count < pagesOf(group.ma_de).length &&
+                          ` (cần ${pagesOf(group.ma_de).length})`}
                       </td>
                     </tr>
                   ))}
@@ -494,7 +552,7 @@ export default function PipelineUploadForm({
                       {effectiveShare ? "Dùng chung mọi mã đề" : `Mã đề ${group.ma_de}`}
                     </span>
                     <span className={styles.codeRoiMeta}>
-                      {entry.rois.length} vùng · {group.template_pages.length} trang
+                      {entry.rois.length} vùng · {pagesOf(group.ma_de).length} trang
                     </span>
                   </div>
 
@@ -576,7 +634,7 @@ export default function PipelineUploadForm({
                   uploadId: inventory.upload_id,
                   groups: selectedGroups.map((g) => ({
                     maDe: g.ma_de,
-                    rois: roisOf(g.ma_de),
+                    rois: toRelative(g.ma_de, roisOf(g.ma_de)),
                     baremId: baremOverride[g.ma_de] || undefined,
                   })),
                 })
@@ -619,6 +677,7 @@ export default function PipelineUploadForm({
                 suggestions={suggestions}
                 rois={roisOf(mapperFor)}
                 onChange={(next) => setRoisOf(mapperFor, next)}
+                onPageSize={rememberPageSize(mapperFor)}
               />
             </div>
           </div>

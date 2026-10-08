@@ -35,6 +35,41 @@
   color: var(--color-text-faint);
 }
 
+.hintPanel {
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text-muted);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-sm);
+}
+
+.hintToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  margin-left: 3px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 10.5px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-text-faint);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
+}
+
+.hintToggle:hover,
+.hintToggle:focus-visible,
+.hintToggleOpen {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  outline: none;
+}
+
 .input {
   width: 100%;
   padding: 7px 10px;

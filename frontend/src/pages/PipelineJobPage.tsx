@@ -37,8 +37,16 @@ export default function PipelineJobPage() {
 
   // The review screen needs the OCR text beside each crop; fetch it once the
   // OCR stage is past, independently of whether grading has finished.
+  //
+  // Routing between two jobs keeps this component mounted (same route, new
+  // param), so `ocr` must be dropped and refetched on every jobId change —
+  // guarding the fetch on `ocr` being empty used to skip it entirely and leave
+  // the previous job's OCR on screen until a manual reload. Crops are fetched
+  // by jobId and stay correct, so a stale hit would pair this job's image with
+  // the other job's text and look like an OCR error rather than a bug.
   useEffect(() => {
-    if (!jobId || !ocrAvailable || ocr) return;
+    setOcr(null);
+    if (!jobId || !ocrAvailable) return;
     let cancelled = false;
     getPipelineOcrResult(jobId)
       .then((data) => {
@@ -50,7 +58,7 @@ export default function PipelineJobPage() {
     return () => {
       cancelled = true;
     };
-  }, [jobId, ocrAvailable, ocr]);
+  }, [jobId, ocrAvailable]);
 
   return (
     <>
@@ -102,7 +110,15 @@ export default function PipelineJobPage() {
             <Tabs items={TABS} active={view} onChange={setView} />
           </div>
           {view === "table" ? (
-            <ResultsView result={result} />
+            <ResultsView
+              result={result}
+              reportMeta={{
+                title: `Phiên ${jobId?.slice(0, 12) ?? ""}`,
+                maDe: job?.ma_de,
+                baremName: job?.barem_name,
+                createdAt: job?.created_at,
+              }}
+            />
           ) : (
             <StudentReview jobId={jobId as string} result={result} ocr={ocr} />
           )}
