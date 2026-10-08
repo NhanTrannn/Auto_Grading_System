@@ -23,7 +23,10 @@ import Card from "@/components/core/Card";
 import EmptyState from "@/components/core/EmptyState";
 import { IconAlert, IconCheck, IconDownload, IconFile, IconUpload } from "@/components/core/Icon";
 import PageHeader from "@/components/core/PageHeader";
+import { AdvancedModeProvider, useAdvancedToggle } from "@/modules/barem/advancedMode";
+import ConfirmDelete from "@/modules/barem/ConfirmDelete";
 import ExamMetaBar from "@/modules/barem/ExamMetaBar";
+import ModeSwitch from "@/modules/barem/ModeSwitch";
 import { makeQuestion } from "@/modules/barem/factory";
 import { downloadExam, migrateExam, serialiseExam, type MigrationNote } from "@/modules/barem/migrate";
 import QuestionEditor from "@/modules/barem/QuestionEditor";
@@ -42,7 +45,11 @@ export default function BaremBuilderPage() {
   const [importError, setImportError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [openedBarem, setOpenedBarem] = useState<{ baremId: string; name: string } | null>(null);
+  // Non-null while the "name this barem" box is open (first save of a draft).
+  const [pendingName, setPendingName] = useState<string | null>(null);
+  const [advanced, setAdvanced] = useAdvancedToggle();
   const fileInput = useRef<HTMLInputElement>(null);
 
   // The library hands a rubric over through router state rather than by writing
@@ -56,6 +63,8 @@ export default function BaremBuilderPage() {
     draft.replaceExam(incoming.exam);
     setOpenedBarem({ baremId: incoming.baremId, name: incoming.name ?? "" });
     setSaveMessage(null);
+    setSaveError(null);
+    setPendingName(null);
     window.history.replaceState({}, "");
     // Runs once per navigation carrying a rubric; draft is stable for the page.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,61 +111,56 @@ export default function BaremBuilderPage() {
    * same problems again at grading time anyway.
    *
    * Saves back over the opened rubric, or creates a new one when editing a draft.
-   *
    * Always creating would turn "open from the library, fix a typo, save" into a
    * second copy with the same name — and the pickers list every copy, so the
    * next run is a coin flip over which one gets graded against.
    *
-   * A successful save then clears the editor. Saving used to leave the rubric
-   * sitting in the editor and in the autosave key, so the next barem started
-   * as a copy of the previous one — with no "new barem" action anywhere in the
-   * UI (`useBaremDraft`'s `reset` existed but nothing called it), the only way
-   * out was deleting every question by hand. Clearing is safe because the
-   * content is on the server by this point — reopening it from the library is
-   * the recovery path.
+   * After the first save the editor keeps the rubric and links to the new
+   * library entry, so the next save updates it. Saving used to clear the
+   * editor instead, because there was no other way to start a fresh barem;
+   * "Barem mới" now does that explicitly, so a teacher who saves halfway
+   * through no longer has to go to the library to keep working.
    */
-  async function handleSaveToLibrary() {
+  async function saveToLibrary(name?: string) {
     setSaving(true);
     setSaveMessage(null);
+    setSaveError(null);
     try {
       if (openedBarem) {
         const saved = await updateBarem(openedBarem.baremId, { content: exam });
-        clearAfterSave(`Đã cập nhật “${saved.name}” trong kho (${saved.question_count} câu)`);
+        setSaveMessage(`Đã cập nhật “${saved.name}” trong kho (${saved.question_count} câu).`);
         return;
       }
-      const name =
-        window.prompt("Tên barem để lưu vào thư viện:", `Mã đề ${exam.ma_de} — ${exam.subject}`) ??
-        "";
-      if (!name.trim()) return;
+      if (!name?.trim()) return;
       const saved = await createBarem(name.trim(), exam);
-      clearAfterSave(`Đã lưu “${saved.name}” vào kho (${saved.question_count} câu)`);
+      setOpenedBarem({ baremId: saved.barem_id, name: saved.name });
+      setPendingName(null);
+      setSaveMessage(`Đã lưu “${saved.name}” vào kho (${saved.question_count} câu). Lần lưu sau sẽ cập nhật bản này.`);
     } catch (err) {
-      setSaveMessage(`Lưu thất bại: ${(err as Error).message}`);
+      setSaveError(`Lưu thất bại: ${(err as Error).message}`);
     } finally {
       setSaving(false);
     }
   }
 
+  function handleSaveClick() {
+    if (openedBarem) void saveToLibrary();
+    else setPendingName(`Mã đề ${exam.ma_de} — ${exam.subject}`);
+  }
+
   /**
-   * Reset to a blank rubric after the content is safely in the library.
-   *
-   * `setOpenedBarem(null)` is the load-bearing line: leaving it set would point
-   * the next save at the rubric just stored, so the blank one that replaced it
-   * here would overwrite it on the next click — silently destroying the thing
-   * this function just finished saving.
-   *
-   * `reset` goes through `setExam`, so "Hoàn tác" can still pull the rubric
-   * back into the editor — but it cannot restore `openedBarem`, so saving after
-   * an undo creates a *second* library entry under the same name rather than
-   * updating the first. The message therefore points at the library, not at
-   * undo; reopening from there restores the content and the link together.
+   * Start a blank rubric. `setOpenedBarem(null)` is load-bearing: leaving it
+   * set would point the next save at the rubric that was just open, so the
+   * blank one would overwrite it on the next click.
    */
-  function clearAfterSave(message: string) {
+  function startNewBarem() {
     draft.reset();
     setOpenedBarem(null);
+    setPendingName(null);
     setMigrationNotes(null);
     setImportError(null);
-    setSaveMessage(`${message} — trình soạn đã dọn trống để soạn đề mới. Mở lại từ Kho barem nếu cần sửa tiếp.`);
+    setSaveError(null);
+    setSaveMessage(null);
   }
 
   return (
@@ -188,6 +192,15 @@ export default function BaremBuilderPage() {
                 Hoàn tác
               </Button>
             )}
+            {exam.teacher_barem.length > 0 ? (
+              <ConfirmDelete
+                label="Barem mới"
+                variant="secondary"
+                size="md"
+                armedLabel={openedBarem ? "Bấm lần nữa để mở barem trống" : "Bấm lần nữa — bản nháp sẽ bị dọn"}
+                onConfirm={startNewBarem}
+              />
+            ) : null}
             <Button variant="secondary" icon={<IconUpload size={15} />} onClick={() => fileInput.current?.click()}>
               Nạp barem
             </Button>
@@ -203,13 +216,48 @@ export default function BaremBuilderPage() {
               icon={<IconCheck size={15} />}
               disabled={exam.teacher_barem.length === 0 || saving}
               loading={saving}
-              onClick={handleSaveToLibrary}
+              onClick={handleSaveClick}
             >
               {openedBarem ? "Lưu thay đổi" : "Lưu vào kho"}
             </Button>
           </div>
         }
       />
+
+      {openedBarem && (
+        <p className={styles.openedBarem}>
+          Đang sửa: <strong>{openedBarem.name}</strong>
+        </p>
+      )}
+
+      {pendingName !== null && (
+        <form
+          className={styles.namePanel}
+          onSubmit={(event) => {
+            event.preventDefault();
+            void saveToLibrary(pendingName);
+          }}
+        >
+          <label className={styles.nameLabel}>
+            Tên barem trong kho
+            <input
+              className={styles.nameInput}
+              value={pendingName}
+              autoFocus
+              onChange={(event) => setPendingName(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Escape") setPendingName(null);
+              }}
+            />
+          </label>
+          <Button type="submit" size="sm" loading={saving} disabled={!pendingName.trim() || saving}>
+            Lưu
+          </Button>
+          <Button type="button" size="sm" variant="ghost" onClick={() => setPendingName(null)}>
+            Huỷ
+          </Button>
+        </form>
+      )}
 
       {saveMessage && (
         <div className={styles.saveMessage}>
@@ -218,6 +266,17 @@ export default function BaremBuilderPage() {
         </div>
       )}
 
+      {saveError && (
+        <div className={styles.importError}>
+          <IconAlert size={15} />
+          {saveError}
+        </div>
+      )}
+
+      <div className={styles.modeBar}>
+        <ModeSwitch advanced={advanced} onChange={setAdvanced} />
+      </div>
+
       {importError && (
         <div className={styles.importError}>
           <IconAlert size={15} />
@@ -225,6 +284,7 @@ export default function BaremBuilderPage() {
         </div>
       )}
 
+      <AdvancedModeProvider value={advanced}>
       <div className={styles.metaBar}>
         <ExamMetaBar
           maDe={exam.ma_de}
@@ -273,7 +333,9 @@ export default function BaremBuilderPage() {
           {draft.activeQuestion ? (
             <QuestionEditor
               question={draft.activeQuestion}
+              takenNumbers={exam.teacher_barem.map((q) => q.question_number)}
               onChange={(next) => draft.updateQuestion(draft.activeQuestion!.question_number, () => next)}
+              onRenumber={(next) => draft.changeQuestionNumber(draft.activeQuestion!.question_number, next)}
               onRemove={() => draft.removeQuestion(draft.activeQuestion!.question_number)}
               onDuplicate={() => draft.duplicateQuestion(draft.activeQuestion!.question_number)}
             />
@@ -292,6 +354,7 @@ export default function BaremBuilderPage() {
           )}
         </main>
       </div>
+      </AdvancedModeProvider>
 
       <StatusBar
         report={report}

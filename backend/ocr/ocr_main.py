@@ -1,12 +1,22 @@
 """
-Bridge: template + ROI config + student page images  -->  "Results" format
-JSON that backend/pipeline.py's load_input()/convert_results_to_samples()
-consumes directly (see ../structure/structure_input.txt and
-../CLAUDE.md#input-format for the target shape).
+Bridge: ROI layout + student page images  -->  "Results" format JSON that
+backend/pipeline.py's load_input()/convert_results_to_samples() consumes
+directly (see ../structure/structure_input.txt and ../CLAUDE.md#input-format
+for the target shape).
 
-Pure OCR connector — module1 (ROI suggestion) + module2 (alignment) +
-module3 (handwriting OCR), nothing else. It does NOT call pipeline.py; see
-main.py in this same directory for the OCR -> grading bridge.
+Pure OCR connector — module1 (dò ROI ngay trên bài của từng học sinh, kèm
+cảnh báo ảnh nghiêng mượn từ module2) + module3 (handwriting OCR), nothing
+else. It does NOT call pipeline.py; see main.py in this same directory for
+the OCR -> grading bridge.
+
+KHÔNG còn bước căn ảnh về tờ mẫu. Trước đây toạ độ ROI được đo một lần trên
+tờ đề sạch rồi mọi bài được warp về khung tờ đó (module2.align_images); ảnh
+chụp chéo hay nghiêng làm warp thất bại và mất trắng cả trang — đo trên phiên
+thật, HS_16 (chụp chéo, 41/750 điểm khớp) và HS_29 (nghiêng 5.97°, 22/750)
+mỗi em mất 4 câu và bị báo là "không làm bài". Giờ khung được dò trực tiếp
+trên bài của chính em đó rồi ghép với bố cục theo tỉ lệ trang, nên không còn
+bước nào để hỏng; ô nào không tìm được khung thì mang status "needs_review"
+để giáo viên xem, không bị chấm 0.
 
 This script imports module1/module2/module3 as plain Python functions
 in-process (no HTTP, no need to run `uvicorn app.main:app`). Run it from
@@ -16,15 +26,14 @@ inside `backend/ocr/` so the `app` package is importable:
     python ocr_main.py --config roi_config.json --output results.json
 
     # helper to bootstrap a roi_config.json: run Module 1's ROI detector on
-    # the template page and print the raw detections (x/y/w/h/type) as JSON —
+    # ONE page of ONE student and print the detections with RELATIVE coords —
     # copy the ones you want into roi_config.json's "rois" list and add the
     # missing "cau_key"/"task_type" (and "n_rows"/"n_cols" for tables) by hand.
-    python ocr_main.py --suggest-rois template.jpg
+    python ocr_main.py --suggest-rois hs1/p1.jpg
 
 roi_config.json shape:
 {
   "ma_de": "1",                                 // mã đề mặc định cho mọi học sinh
-  "template_pages": ["de/page_1.png", "de/page_2.png"],   // multi-page exam
   "crop_dir": "crops",                          // optional, default "crops"
   "students": [
     // "ma_de" riêng của từng em (tuỳ chọn) — thiếu thì lấy "ma_de" ở trên.
@@ -32,22 +41,25 @@ roi_config.json shape:
     {"hs_key": "HS_1", "pages": ["hs1/p1.png", "hs1/p2.png"]},
     {"hs_key": "HS_2", "ma_de": "2", "pages": ["hs2/p1.png", "hs2/p2.png"]}
   ],
+  // x/y/w/h là TỈ LỆ trang (0..1), KHÔNG phải pixel: mỗi bài chụp một cỡ nên
+  // pixel không dùng chung được. Chúng chỉ mô tả bố cục tờ đề; khung thật
+  // dùng để cắt là khung module1 dò được trên chính bài của từng học sinh.
   "rois": [
-    {"cau_key": "MA_DE",     "page": 1, "x": 100, "y": 100, "w": 200, "h": 50,  "task_type": "short_text"},
-    {"cau_key": "Cau_01",    "page": 1, "x": 100, "y": 200, "w": 300, "h": 80,  "task_type": "short_text"},
-    {"cau_key": "Cau_08_1",  "page": 1, "x": 120, "y": 400, "w": 250, "h": 60,  "task_type": "short_text"},
-    {"cau_key": "Cau_15b_1", "page": 2, "x": 100, "y": 900, "w": 500, "h": 200, "task_type": "table", "n_rows": 3, "n_cols": 2},
-    {"cau_key": "Cau_13c",   "page": 2, "x": 100, "y": 1200,"w": 400, "h": 300, "task_type": "diagram"}
+    {"cau_key": "MA_DE",     "page": 1, "x": 0.11, "y": 0.05, "w": 0.30, "h": 0.02, "task_type": "short_text"},
+    {"cau_key": "Cau_01",    "page": 1, "x": 0.11, "y": 0.24, "w": 0.80, "h": 0.03, "task_type": "short_text"},
+    {"cau_key": "Cau_08_1",  "page": 1, "x": 0.12, "y": 0.42, "w": 0.80, "h": 0.07, "task_type": "short_text"},
+    {"cau_key": "Cau_15b_1", "page": 2, "x": 0.11, "y": 0.40, "w": 0.80, "h": 0.23, "task_type": "table", "n_rows": 3, "n_cols": 2},
+    {"cau_key": "Cau_13c",   "page": 2, "x": 0.11, "y": 0.63, "w": 0.80, "h": 0.16, "task_type": "diagram"}
   ]
 }
 
-"page" is 1-based and indexes BOTH lists positionally: ROI page 2 is cropped
-from the student's 2nd page after aligning it to the template's 2nd page. It
-defaults to 1 when absent, so a single-page config stays valid. Pages that no
-ROI refers to are never aligned (alignment is the expensive CV step).
+"page" is 1-based and indexes the student's own page list: ROI page 2 is
+cropped from the student's 2nd page. It defaults to 1 when absent, so a
+single-page config stays valid. Pages that no ROI refers to are never read.
 
-Single-page back-compat: `"template_image": "..."` and `{"hs_key", "image"}`
-are still accepted and treated as a one-page list.
+Single-page back-compat: `{"hs_key", "image"}` is still accepted as a one-page
+list. `"template_pages"`/`"template_image"` are REJECTED — a config still
+carrying them was measured in pixels against a template and must be re-mapped.
 
 One reserved cau_key: "MA_DE" marks the box where the exam code is printed.
 It is OCR'd like any short_text region, but instead of becoming an answer its
@@ -87,7 +99,13 @@ from typing import Any, Callable, Dict, List, Optional
 import cv2
 import numpy as np
 
-from ocr_modules.module2 import align_images
+from ocr_modules.module1 import detect_page_rois
+
+# Vùng đã khai nhưng không tìm thấy khung tương ứng trên bài của em này. KHÁC
+# hẳn "học sinh bỏ trống": máy không đọc được, nên phải đẩy sang giáo viên xem
+# thay vì chấm 0. Gộp hai thứ này lại chính là lỗi đã khiến HS_16 và HS_29 mất
+# trắng 4 câu mỗi em mà báo cáo vẫn ghi "Student left this part blank".
+REGION_NOT_FOUND = "needs_review"
 
 # on_progress(done, total, message) — called once per ROI processed. Optional:
 # the CLI passes a writer that appends to --progress-file, the web worker
@@ -152,11 +170,21 @@ def _crop(img: np.ndarray, roi: Dict[str, Any]) -> np.ndarray:
     return img[y : y + h, x : x + w]
 
 
-def suggest_rois(template_path: str) -> None:
-    from ocr_modules.module1 import process_image
+def suggest_rois(page_path: str) -> None:
+    """In các khung dò được trên một trang, kèm toạ độ TỈ LỆ để dán vào config.
 
-    img = _read_image(template_path)
-    result = process_image(img, Path(template_path).name)
+    Chạy trên một bài bất kỳ của lớp chứ không cần tờ mẫu sạch — bố cục là như
+    nhau, và toạ độ tỉ lệ dùng lại được cho mọi bài dù ảnh chụp to nhỏ khác cỡ.
+    """
+    from ocr_modules.module1 import process_image, to_relative
+
+    img = _read_image(page_path)
+    height, width = img.shape[:2]
+    result = process_image(img, Path(page_path).name)
+    result["rois"] = [
+        {**to_relative(r, width, height), "type": r.get("type", "table")}
+        for r in result["rois"]
+    ]
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
@@ -187,12 +215,12 @@ async def _ocr_roi(roi: Dict[str, Any], crop: np.ndarray) -> Dict[str, Any]:
 
 def _cau_entry_for_roi(
     roi: Dict[str, Any],
-    aligned_img: np.ndarray,
+    page_img: np.ndarray,
     crop_dir: Path,
     hs_key: str,
     save_crop: bool,
 ) -> Dict[str, Any]:
-    crop = _crop(aligned_img, roi)
+    crop = _crop(page_img, roi)
     if crop.size == 0:
         return {"status": "failed_at_cropping", "content": {"lines": []}}
 
@@ -293,23 +321,34 @@ def build_results_json(
     save_crops: bool = False,
     on_progress: Optional[ProgressFn] = None,
 ) -> Dict[str, Any]:
-    template_paths = _page_list(config, "template_pages", "template_image")
+    if config.get("template_pages") or config.get("template_image"):
+        raise ValueError(
+            "roi_config còn khai 'template_pages'/'template_image' theo kiểu cũ. "
+            "Pipeline không căn bài về tờ mẫu nữa — ROI được dò ngay trên bài của "
+            "từng học sinh, và toạ độ trong 'rois' phải là TỈ LỆ trang (0..1). "
+            "Hãy khai lại bố cục trong màn gán vùng."
+        )
+
     crop_dir = Path(config.get("crop_dir", "crops"))
     crop_dir.mkdir(parents=True, exist_ok=True)
 
     rois: List[Dict[str, Any]] = config["rois"]
     students: List[Dict[str, Any]] = config["students"]
 
-    # Only pages that actually carry an ROI are ever loaded/aligned — alignment
-    # is the expensive CV step and a 9-page exam usually has answers on a few.
-    pages_in_use = sorted({_roi_page(roi) for roi in rois})
-    template_pages: Dict[int, np.ndarray] = {}
-    for page in pages_in_use:
-        if page > len(template_paths):
-            raise ValueError(
-                f"ROI trỏ tới trang {page} nhưng đề mẫu chỉ có {len(template_paths)} trang."
-            )
-        template_pages[page] = _read_image(template_paths[page - 1])
+    for roi in rois:
+        for axis in ("x", "y", "w", "h"):
+            value = roi.get(axis)
+            if not isinstance(value, (int, float)) or not 0.0 <= float(value) <= 1.0:
+                raise ValueError(
+                    f"ROI {roi.get('cau_key')!r} có {axis}={value!r}: toạ độ phải là "
+                    "tỉ lệ trang trong khoảng 0..1, không phải pixel."
+                )
+
+    # Bố cục của từng trang, để `detect_page_rois` biết khung nào là câu nào.
+    slots_by_page: Dict[int, List[Dict[str, Any]]] = {}
+    for roi in rois:
+        slots_by_page.setdefault(_roi_page(roi), []).append(roi)
+    pages_in_use = sorted(slots_by_page)
 
     total = len(students) * len(rois)
     done = 0
@@ -333,35 +372,51 @@ def build_results_json(
         entries: Dict[str, Any] = {"ma_de": configured_ma_de}
         student_paths = _page_list(student, "pages", "image")
 
-        # Align page-by-page: a student whose page 3 is a bad photo should only
-        # lose page 3's answers, not the whole submission.
-        aligned_pages: Dict[int, Optional[np.ndarray]] = {}
+        # Dò từng trang riêng: một trang chụp hỏng chỉ mất các câu của trang
+        # đó, không kéo theo cả bài. Không còn bước warp nào để hỏng — chỉ có
+        # khung dò được hay không, và ô nào không có khung thì nói thẳng.
+        page_images: Dict[int, Optional[np.ndarray]] = {}
+        page_boxes: Dict[int, Dict[str, Any]] = {}
         page_error: Dict[int, str] = {}
         for page in pages_in_use:
             if page > len(student_paths):
-                aligned_pages[page] = None
+                page_images[page] = None
                 page_error[page] = f"thiếu trang {page}"
                 continue
             try:
-                align = align_images(template_pages[page], _read_image(student_paths[page - 1]))
+                img = _read_image(student_paths[page - 1])
+                found = detect_page_rois(img, f"{hs_key}_p{page}", slots=slots_by_page[page])
             except Exception as exc:  # noqa: BLE001 - one bad page must not abort the class
-                aligned_pages[page] = None
+                page_images[page] = None
                 page_error[page] = str(exc)
                 continue
-            if align["error"] is not None:
-                aligned_pages[page] = None
-                page_error[page] = align["error"].get("error_type", "ALIGN_ERROR")
-            else:
-                aligned_pages[page] = align["image"]
+            page_images[page] = img
+            page_boxes[page] = found["matched"]
+            if found["skew_warning"]:
+                print(f"[ocr] {hs_key} trang {page}: {found['skew_warning']}", flush=True)
+            if found["missing"]:
+                page_error[page] = f"không thấy khung {', '.join(found['missing'])}"
+                print(
+                    f"[ocr] {hs_key} trang {page}: không dò được khung cho "
+                    f"{', '.join(found['missing'])} — chuyển sang giáo viên xem lại.",
+                    flush=True,
+                )
 
         for roi in rois:
             page = _roi_page(roi)
-            aligned_img = aligned_pages.get(page)
-            if aligned_img is None:
-                entries[roi["cau_key"]] = {"status": "failed_at_cropping", "content": {"lines": []}}
+            img = page_images.get(page)
+            box = page_boxes.get(page, {}).get(roi["cau_key"])
+            if img is None or box is None:
+                entries[roi["cau_key"]] = {
+                    "status": REGION_NOT_FOUND,
+                    "content": {"lines": []},
+                    "reason": page_error.get(page, "không dò được khung trên trang này"),
+                }
             else:
+                # `box` là pixel trên chính ảnh của em này (module1 trả về sau
+                # khi ghép), nên crop thẳng, không qua ảnh warp nào.
                 entries[roi["cau_key"]] = _cau_entry_for_roi(
-                    roi, aligned_img, crop_dir, hs_key, save_crops
+                    {**roi, **box}, img, crop_dir, hs_key, save_crops
                 )
 
             # Read the exam code off the paper rather than trusting the folder

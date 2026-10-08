@@ -3046,7 +3046,7 @@ def _grade_with_llm_advised_core(
             "llm_used": False,
             "grading_method": "blank_skip",
             "stage": "heuristic",
-            "llm_reasoning": "Student left this part blank.",
+            "llm_reasoning": "Học sinh bỏ trống phần này.",
             "cot_reasoning": "",
             "confidence": 1.0,
             "heuristic_score": heuristic_result.get("score", 0),
@@ -5422,7 +5422,6 @@ Vi du:
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-
     out = str(output_dir / "grading_results.json")
     print(f"\n{'='*60}")
     print("  System 4 (LLM_Advisory)")

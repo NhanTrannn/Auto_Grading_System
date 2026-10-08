@@ -114,6 +114,13 @@ def pad_tables(table_bboxes, img_height, img_width):
     Mở rộng (padding) tọa độ cho mọi khung bảng tìm được — không lọc bớt
     khung nào theo nội dung bên trong (đã bỏ bước lọc bảng đề theo mật độ
     chữ so với bản trước).
+
+    Chỉ nới theo CHIỀU NGANG. Bản gốc nới thêm `pad` xuống dưới (`y + h + pad`)
+    mà không nới lên trên, nên mọi khung đều phình xuống: đo trên trang 2 mã đề
+    76 (2216x3260) pad là 82px trong khi khe giữa hai khung liền nhau chỉ 89px,
+    nên đáy khung câu 6 tụt xuống cách đỉnh khung câu 7 đúng 7px và nuốt trọn
+    dòng chữ in "Question 7:" nằm trong khe đó. Ảnh cắt vì thế kèm tiêu đề của
+    câu kế tiếp, và OCR đọc nó thành một dòng bài làm.
     """
     padded_table_bboxes = []
 
@@ -125,7 +132,7 @@ def pad_tables(table_bboxes, img_height, img_width):
         pad = round(50 * page_scale(img_height))
 
         y_start = y
-        y_end = y + h + pad
+        y_end = y + h
 
         x_start = x - pad
         x_end = x + w + pad
@@ -200,6 +207,265 @@ def drop_first_page_header_boxes(sorted_rois, n=N_HEADER_BOXES_FIRST_PAGE):
     "thông tin sinh viên" chứ không phải ô đáp án.
     """
     return sorted_rois[n:]
+
+
+# =====================================================================
+# ======  GẮN KHUNG DÒ ĐƯỢC VÀO TỪNG CÂU (thay cho align module 2)  ===
+# =====================================================================
+#
+# Trước đây toạ độ ROI được đo MỘT LẦN trên tờ đề mẫu sạch, rồi mọi bài của
+# học sinh được warp về đúng khung tờ mẫu đó (module2.align_images) để dùng
+# chung toạ độ. Cách đó hỏng cả trang khi ảnh chụp chéo hoặc nghiêng: đo trên
+# phiên chấm thật, HS_16 (41/750 điểm khớp, ảnh chụp chéo thành hình thang) và
+# HS_29 (22/750, nghiêng 5.97°) mất trắng 4 câu mỗi em, và hệ thống báo là
+# "học sinh không làm bài".
+#
+# Giờ ROI được dò trực tiếp trên tờ của chính học sinh, nên không còn bước
+# warp nào để hỏng. Đổi lại phải trả lời được "khung này là câu mấy" mà không
+# có toạ độ chung. Cách làm: người dùng khai bố cục MỘT LẦN dưới dạng TỈ LỆ
+# trang (0..1) thay vì pixel, rồi mỗi khung dò được ghép với ô bố cục chồng
+# lên nó nhiều nhất.
+#
+# Không gán theo thứ tự đọc: bộ dò không phải lúc nào cũng ra đúng số khung.
+# Trên 19 bài thật của 3 mã đề, 18 bài ra đúng 3+4 khung, riêng HS_24 ra 5 —
+# khung thừa là dải mép giấy bên phải (x=1947, w=157, h=3148 = suốt chiều cao
+# trang). Tâm dọc của dải đó rơi vào giữa trang nên nó chen vào vị trí thứ 3,
+# đẩy khung câu 9 thật xuống thứ 4. Gán theo thứ tự thì cả trang lệch một nấc
+# mà không có dấu hiệu gì. Ghép theo tỉ lệ thì dải mép không chồng đủ lên ô
+# nào nên bị loại, và câu 9 vẫn về đúng chỗ.
+
+# Ngưỡng chồng lấn tối thiểu để coi một khung là ứng viên của một ô bố cục.
+# Trên dữ liệu thật, khung đúng chồng lên ô của nó 0.85-0.95; dải mép giấy của
+# HS_24 chồng cao nhất 0.06. Khoảng cách giữa hai nhóm rất rộng nên 0.35 nằm
+# giữa mà không sát mép nào.
+MIN_LAYOUT_OVERLAP = 0.35
+
+# Phép canh bố cục (fit_layout_to_page) chỉ được xê dịch tối đa chừng này theo
+# mỗi trục, tính theo tỉ lệ trang. Lệch do khung ảnh chụp đo được trên dữ liệu
+# thật là 0.04, còn khoảng cách giữa hai ô liền nhau là 0.16 — chặn ở 0.10 nằm
+# giữa hai mức đó. Không có chặn này, một trang chỉ dò ra vài khung sẽ bị trượt
+# nguyên bố cục sang ô kế bên: cả trang vẫn "khớp", vẫn ra điểm, nhưng mỗi câu
+# chấm bằng bài của câu khác — hỏng âm thầm, đúng kiểu ta đang tránh.
+MAX_LAYOUT_SHIFT = 0.10
+
+
+def to_relative(box, img_width: int, img_height: int) -> dict:
+    """Đổi toạ độ pixel sang tỉ lệ trang (0..1) để so được giữa các ảnh khác cỡ."""
+    return {
+        "x": box["x"] / img_width,
+        "y": box["y"] / img_height,
+        "w": box["w"] / img_width,
+        "h": box["h"] / img_height,
+    }
+
+
+def to_absolute(rel, img_width: int, img_height: int) -> dict:
+    """Ngược của `to_relative` — tỉ lệ trang về pixel của một ảnh cụ thể."""
+    x = round(rel["x"] * img_width)
+    y = round(rel["y"] * img_height)
+    return {
+        "x": max(0, x),
+        "y": max(0, y),
+        "w": min(img_width - max(0, x), round(rel["w"] * img_width)),
+        "h": min(img_height - max(0, y), round(rel["h"] * img_height)),
+    }
+
+
+def overlap_ratio(a, b) -> float:
+    """
+    Tỉ lệ chồng lấn (IoU) của hai hình chữ nhật cùng hệ toạ độ tỉ lệ.
+
+    Dùng IoU chứ không dùng "phần giao / diện tích ô" vì chỉ IoU mới phạt được
+    khung to quá khổ: dải mép giấy của HS_24 phủ suốt chiều cao trang nên nó
+    chứa trọn nhiều ô, "phần giao / diện tích ô" sẽ ra 1.0 và ghép nhầm hết.
+    """
+    ax2, ay2 = a["x"] + a["w"], a["y"] + a["h"]
+    bx2, by2 = b["x"] + b["w"], b["y"] + b["h"]
+
+    inter_w = min(ax2, bx2) - max(a["x"], b["x"])
+    inter_h = min(ay2, by2) - max(a["y"], b["y"])
+    if inter_w <= 0 or inter_h <= 0:
+        return 0.0
+
+    inter = inter_w * inter_h
+    union = a["w"] * a["h"] + b["w"] * b["h"] - inter
+    return inter / union if union > 0 else 0.0
+
+
+def _center(box):
+    return box["x"] + box["w"] / 2, box["y"] + box["h"] / 2
+
+
+def _shift_slots(slots, sx, sy, dx, dy):
+    """Co giãn + tịnh tiến bố cục quanh gốc toạ độ trang."""
+    return [
+        {**s, "x": s["x"] * sx + dx, "y": s["y"] * sy + dy, "w": s["w"] * sx, "h": s["h"] * sy}
+        for s in slots
+    ]
+
+
+def _total_overlap(rel_rois, slots):
+    return sum(max((overlap_ratio(r, s) for r in rel_rois), default=0.0) for s in slots)
+
+
+def fit_layout_to_page(rel_rois, slots):
+    """
+    Canh bố cục đã khai về đúng vị trí trên trang này, trước khi ghép từng ô.
+
+    Toạ độ tỉ lệ một mình không đủ, vì nó chuẩn hoá theo KHUNG ẢNH chứ không
+    theo TỜ GIẤY: hai ảnh chụp cùng một tờ nhưng lấy nhiều/ít mặt bàn phía trên
+    sẽ cho tỉ lệ khác nhau. Đo thật trên mã đề 38 trang 1, HS_21 và HS_31 lệch
+    xuống 0.04 so với tờ mẫu, trong khi các khung câu 1-3 chỉ cao 0.031 — lệch
+    hơn một thân khung nên chồng lấn về 0 và không ô nào ghép được, dù bố cục
+    tờ giấy giống hệt.
+
+    Ước lượng theo kiểu RANSAC thu nhỏ: mỗi cặp (khung, ô) đề cử một phép tịnh
+    tiến, chấm điểm bằng tổng chồng lấn của cả bố cục, giữ phép tốt nhất, rồi
+    tinh chỉnh thêm co giãn bằng bình phương tối thiểu trên các cặp đã khớp.
+    Số khung mỗi trang chỉ vài cái nên duyệt hết mọi cặp vẫn rẻ.
+
+    Trả về danh sách slots đã canh (vẫn theo tỉ lệ trang).
+    """
+    if not rel_rois or not slots:
+        return slots
+
+    best = (_total_overlap(rel_rois, slots), slots)
+    for roi in rel_rois:
+        rcx, rcy = _center(roi)
+        for slot in slots:
+            scx, scy = _center(slot)
+            dx, dy = rcx - scx, rcy - scy
+            if abs(dx) > MAX_LAYOUT_SHIFT or abs(dy) > MAX_LAYOUT_SHIFT:
+                continue
+            moved = _shift_slots(slots, 1.0, 1.0, dx, dy)
+            score = _total_overlap(rel_rois, moved)
+            if score > best[0]:
+                best = (score, moved)
+
+    aligned = best[1]
+
+    # Tinh chỉnh: khớp thô ở trên chỉ tịnh tiến, còn ảnh chụp gần/xa làm tờ
+    # giấy to nhỏ khác nhau (~2% trên dữ liệu thật). Lấy các cặp đã khớp, hồi
+    # quy tuyến tính tâm-ô theo tâm-khung cho mỗi trục.
+    pairs = []
+    for slot_index, slot in enumerate(aligned):
+        candidate = max(rel_rois, key=lambda r: overlap_ratio(r, slot))
+        if overlap_ratio(candidate, slot) >= MIN_LAYOUT_OVERLAP:
+            pairs.append((slots[slot_index], candidate))
+    if len(pairs) < 2:
+        return aligned
+
+    def fit(axis):
+        src = [_center(s)[axis] for s, _ in pairs]
+        dst = [_center(r)[axis] for _, r in pairs]
+        n = len(src)
+        mean_s, mean_d = sum(src) / n, sum(dst) / n
+        var = sum((v - mean_s) ** 2 for v in src)
+        if var < 1e-9:
+            return 1.0, mean_d - mean_s
+        cov = sum((s - mean_s) * (d - mean_d) for s, d in zip(src, dst))
+        scale = cov / var
+        # Ảnh chụp cùng tờ giấy thì tỉ lệ phải gần 1; ra ngoài khoảng này nghĩa
+        # là hồi quy bám vào cặp khớp sai, thà giữ tịnh tiến thuần.
+        if not 0.9 <= scale <= 1.1:
+            return 1.0, mean_d - mean_s
+        return scale, mean_d - scale * mean_s
+
+    sx, dx = fit(0)
+    sy, dy = fit(1)
+    if abs(dx) > MAX_LAYOUT_SHIFT or abs(dy) > MAX_LAYOUT_SHIFT:
+        return aligned
+    refined = _shift_slots(slots, sx, sy, dx, dy)
+    return refined if _total_overlap(rel_rois, refined) >= best[0] else aligned
+
+
+def match_rois_to_layout(rois, img_width, img_height, slots, min_overlap=MIN_LAYOUT_OVERLAP):
+    """
+    Ghép danh sách khung dò được trên MỘT trang với bố cục đã khai của trang đó.
+
+    `slots` là list dict, mỗi cái có `cau_key` cùng `x`/`y`/`w`/`h` theo TỈ LỆ
+    trang. Trả về:
+
+        {
+          "matched":   {cau_key: {"x","y","w","h","overlap"} (pixel của ảnh này)},
+          "unmatched": [khung dò được nhưng không thuộc ô nào (pixel)],
+          "missing":   [cau_key không tìm được khung nào],
+        }
+
+    Ghép tham lam theo độ chồng lấn giảm dần, mỗi khung và mỗi ô chỉ dùng một
+    lần — nên hai ô sát nhau không thể cùng nhận một khung.
+
+    `missing` phải được báo lên như "cần xem lại", KHÔNG được coi là học sinh
+    bỏ trống: đó chính là kiểu nhầm lẫn đã khiến HS_16/HS_29 bị chấm 0 oan.
+    """
+    rel_rois = [to_relative(r, img_width, img_height) for r in rois]
+    slots = fit_layout_to_page(rel_rois, slots)
+
+    pairs = []
+    for roi_index, rel in enumerate(rel_rois):
+        for slot_index, slot in enumerate(slots):
+            score = overlap_ratio(rel, slot)
+            if score >= min_overlap:
+                pairs.append((score, roi_index, slot_index))
+
+    pairs.sort(key=lambda p: p[0], reverse=True)
+
+    used_rois: set[int] = set()
+    used_slots: set[int] = set()
+    matched: dict = {}
+    for score, roi_index, slot_index in pairs:
+        if roi_index in used_rois or slot_index in used_slots:
+            continue
+        used_rois.add(roi_index)
+        used_slots.add(slot_index)
+        matched[slots[slot_index]["cau_key"]] = {**rois[roi_index], "overlap": round(score, 4)}
+
+    return {
+        "matched": matched,
+        "unmatched": [r for i, r in enumerate(rois) if i not in used_rois],
+        "missing": [s["cau_key"] for i, s in enumerate(slots) if i not in used_slots],
+    }
+
+
+def detect_page_rois(
+    img,
+    filename: str,
+    slots=None,
+    is_first_page: bool = False,
+    skew_threshold: float = 2.0,
+):
+    """
+    Bước dò ROI hoàn chỉnh cho MỘT trang của MỘT học sinh — gộp việc trước đây
+    chia cho module1 (dò khung) và module2 (căn ảnh).
+
+    Không warp ảnh nữa; thay vào đó dò khung ngay trên ảnh gốc rồi ghép với
+    `slots` (bố cục theo tỉ lệ trang). Vẫn gọi `module2.check_image_skew` để
+    cảnh báo ảnh chụp nghiêng: ảnh nghiêng nhiều thì khung dò ra cũng méo, và
+    người chấm cần biết điều đó thay vì nhận một ảnh cắt xộc xệch không lời
+    giải thích. Đây là CẢNH BÁO, không phải lỗi chặn — khác hẳn module2 cũ,
+    nơi nghiêng quá ngưỡng là vứt cả trang.
+
+    `slots=None` thì chỉ trả về danh sách khung thô (dùng cho màn khai bố cục).
+    """
+    # Nhập tại chỗ: module2 kéo theo nhánh align nặng, còn module1 vẫn phải
+    # dùng được độc lập (CLI `--suggest-rois`, test) khi không cần tới nó.
+    from ocr_modules.module2 import check_image_skew
+
+    img_height, img_width = img.shape[:2]
+
+    page = process_image(img, filename=filename, is_first_page=is_first_page)
+
+    skew_ok, skew_angle = check_image_skew(img, skew_threshold=skew_threshold)
+    page["skew"] = round(float(skew_angle), 2)
+    page["skew_warning"] = (
+        None if skew_ok else f"Ảnh chụp nghiêng {skew_angle:.1f}° — khung cắt có thể lệch."
+    )
+
+    if slots is None:
+        return page
+
+    page.update(match_rois_to_layout(page["rois"], img_width, img_height, slots))
+    return page
 
 
 def process_image(img, filename: str, is_first_page: bool = False):

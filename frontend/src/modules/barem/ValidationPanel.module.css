@@ -114,6 +114,14 @@
   border-radius: var(--radius-sm);
 }
 
+.itemError {
+  background: var(--color-danger-bg);
+}
+
+.itemError .message {
+  color: var(--color-danger);
+}
+
 .jump,
 .globalTag {
   flex: none;

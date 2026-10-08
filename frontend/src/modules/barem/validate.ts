@@ -192,7 +192,7 @@ function validateScoring(questions: RubricQuestion[], declaredTotal: number, iss
   if (Math.abs(rounded - declaredTotal) > 0.01) {
     issues.push({
       level: "error",
-      message: `Tổng điểm tính từ barem (${rounded}) khác total_score khai báo (${declaredTotal}).`,
+      message: `Tổng điểm các tiêu chí (${rounded}) khác “Tổng điểm đề” khai báo (${declaredTotal}) — sửa ô Tổng điểm đề hoặc điểm của các câu cho khớp.`,
     });
   }
 

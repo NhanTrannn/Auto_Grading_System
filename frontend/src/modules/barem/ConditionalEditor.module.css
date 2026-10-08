@@ -196,3 +196,13 @@
   background: var(--color-warning-bg);
   border-radius: var(--radius-sm);
 }
+
+.error {
+  margin: 0;
+  padding: var(--space-2);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+  border-radius: var(--radius-sm);
+}

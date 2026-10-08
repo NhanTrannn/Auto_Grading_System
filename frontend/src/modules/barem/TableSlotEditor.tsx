@@ -17,6 +17,7 @@ import { useMemo } from "react";
 import Button from "@/components/core/Button";
 import type { AnswerSlot, QuestionTable, TableSlotCell } from "@/types/barem";
 
+import ConfirmDelete from "./ConfirmDelete";
 import { Field, NumberInput, Row, TextInput } from "./Field";
 import styles from "./TableSlotEditor.module.css";
 
@@ -104,7 +105,7 @@ export default function TableSlotEditor({
   return (
     <div className={styles.wrapper}>
       <Row>
-        <Field label="Mã bảng" name="table_id">
+        <Field label="Mã bảng" name="table_id" advanced>
           <TextInput value={table.table_id} onChange={(value) => onChange({ ...table, table_id: value })} mono />
         </Field>
         <Field label="Số hàng" hint="Tính cả hàng tiêu đề">
@@ -201,12 +202,10 @@ export default function TableSlotEditor({
         <div className={styles.footerActions}>
           {unslottedStudentCells.length > 0 && (
             <Button size="sm" variant="secondary" onClick={() => onSyncSlots(table)}>
-              Tạo answer_slot cho {unslottedStudentCells.length} ô còn thiếu
+              Nối {unslottedStudentCells.length} ô học sinh điền với bài làm
             </Button>
           )}
-          <Button size="sm" variant="ghost" onClick={onRemove}>
-            Xoá bảng
-          </Button>
+          <ConfirmDelete compact label="Xoá bảng" onConfirm={onRemove} />
         </div>
       </div>
     </div>

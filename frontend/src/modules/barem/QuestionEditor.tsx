@@ -7,12 +7,14 @@
  * must already exist, and a table criterion addresses a cell of that part's
  * table_slot. Splitting them would mean editing blind on both sides.
  */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Button from "@/components/core/Button";
 import Card from "@/components/core/Card";
 import type { Criterion, QuestionPart, QuestionTable, RubricQuestion } from "@/types/barem";
 
+import { useAdvancedMode } from "./advancedMode";
+import ConfirmDelete from "./ConfirmDelete";
 import CriterionEditor from "./CriterionEditor";
 import { collectCriterionIds, replaceCriterion, uniqueCriterionId } from "./criterionTree";
 import { deepClone, makeTable, nextPartLabel, slotId, slotsForTable } from "./factory";
@@ -25,12 +27,85 @@ import TableSlotEditor from "./TableSlotEditor";
 
 interface QuestionEditorProps {
   question: RubricQuestion;
+  /** Numbers already used by other questions, so a renumber can't collide. */
+  takenNumbers: number[];
   onChange: (question: RubricQuestion) => void;
+  onRenumber: (nextNumber: number) => void;
   onRemove: () => void;
   onDuplicate: () => void;
 }
 
-export default function QuestionEditor({ question, onChange, onRemove, onDuplicate }: QuestionEditorProps) {
+/**
+ * Question number, committed on blur/Enter instead of per keystroke.
+ *
+ * The number is the key the whole editor selects by, and every slot_id embeds
+ * it, so applying "1" → "12" one character at a time would renumber twice and
+ * pass through states like "" (= 0). Holding the text locally until the author
+ * is done means only a finished, valid, unused number is ever applied.
+ */
+function QuestionNumberInput({
+  value,
+  takenNumbers,
+  onCommit,
+}: {
+  value: number;
+  takenNumbers: number[];
+  onCommit: (next: number) => void;
+}) {
+  const [text, setText] = useState(String(value));
+  const [problem, setProblem] = useState<string | null>(null);
+
+  useEffect(() => {
+    setText(String(value));
+    setProblem(null);
+  }, [value]);
+
+  function commit() {
+    const next = Number(text.trim());
+    if (!/^\d+$/.test(text.trim()) || next < 1) {
+      setProblem("Số câu phải là số nguyên dương.");
+      setText(String(value));
+      return;
+    }
+    if (next !== value && takenNumbers.includes(next)) {
+      setProblem(`Đã có câu ${next} — chọn số khác.`);
+      setText(String(value));
+      return;
+    }
+    setProblem(null);
+    if (next !== value) onCommit(next);
+  }
+
+  return (
+    <>
+      <input
+        className={styles.numberInput}
+        value={text}
+        inputMode="numeric"
+        onChange={(event) => setText(event.target.value)}
+        onBlur={commit}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") event.currentTarget.blur();
+          if (event.key === "Escape") {
+            setText(String(value));
+            event.currentTarget.blur();
+          }
+        }}
+      />
+      {problem && <span className={styles.numberProblem}>{problem}</span>}
+    </>
+  );
+}
+
+export default function QuestionEditor({
+  question,
+  takenNumbers,
+  onChange,
+  onRenumber,
+  onRemove,
+  onDuplicate,
+}: QuestionEditorProps) {
+  const advanced = useAdvancedMode();
   const parts = question.question.parts;
   const allSlots = parts.flatMap((part) => part.answer_slots);
   const partLabels = parts.map((part) => part.part_label);
@@ -163,22 +238,26 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
             <Button size="sm" variant="secondary" onClick={onDuplicate}>
               Nhân bản
             </Button>
-            <Button size="sm" variant="ghost" onClick={onRemove}>
-              Xoá câu
-            </Button>
+            <ConfirmDelete label="Xoá câu" onConfirm={onRemove} />
           </div>
         }
       >
         <div className={styles.stack}>
           <Row>
-            <Field label="Số thứ tự câu" name="question_number" hint="KEY THẬT dùng để ghép barem với dữ liệu OCR.">
-              <TextInput
-                value={String(question.question_number)}
-                onChange={(value) => onChange({ ...question, question_number: Number(value) || 0 })}
-                mono
+            <Field
+              label="Số thứ tự câu" name="question_number"
+              hint="Phải khớp số câu trên tờ đề — dùng để ghép bài làm của học sinh với câu này."
+            >
+              <QuestionNumberInput
+                value={question.question_number}
+                takenNumbers={takenNumbers}
+                onCommit={onRenumber}
               />
             </Field>
-            <Field label="Mã định danh câu" name="sample_id" hint="Chỉ để người đọc — pipeline không join theo field này.">
+            <Field
+              label="Mã định danh câu" name="sample_id" advanced
+              hint="Chỉ để người đọc — pipeline không ghép dữ liệu theo trường này."
+            >
               <TextInput value={question.sample_id} onChange={(sample_id) => onChange({ ...question, sample_id })} mono />
             </Field>
             <Field
@@ -203,7 +282,7 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
             hint={
               <>
                 Nguyên văn đề bài, kể cả chương trình C++. Nếu đề có phần IN SẴN (chữ ký hàm, biến
-                khai sẵn) PHẢI ghi rõ ở đây — nếu không LLM sẽ tưởng sinh viên thiếu và trừ điểm
+                khai sẵn) PHẢI ghi rõ ở đây — nếu không AI chấm sẽ tưởng sinh viên thiếu và trừ điểm
                 oan. Tab để thụt lề, Shift+Tab lùi lại, Esc để rời ô.
                 <br />
                 Công thức toán: gõ LaTeX giữa <code>$…$</code> (giữa dòng) hoặc <code>$$…$$</code>{" "}
@@ -226,7 +305,11 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
 
       <Card
         title="Các phần trả lời"
-        subtitle="Mỗi part là một vùng trả lời vật lý trên tờ giấy thi"
+        subtitle={
+          parts.length > 1
+            ? "Mỗi phần (a, b, c…) là một vùng trả lời riêng trên tờ giấy thi"
+            : "Câu có nhiều ý a, b, c… thì bấm “+ Phần” để tách vùng trả lời"
+        }
         actions={
           <Button
             size="sm"
@@ -250,36 +333,41 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
               });
             }}
           >
-            + Part
+            + Phần
           </Button>
         }
       >
         <div className={styles.stack}>
-          {parts.length === 0 && <p className={styles.empty}>Chưa có part nào — câu này chưa có vùng trả lời để chấm.</p>}
+          {parts.length === 0 && <p className={styles.empty}>Chưa có phần nào — câu này chưa có vùng trả lời để chấm.</p>}
           {parts.map((part, index) => (
             <div key={index} className={styles.part}>
-              <Row>
-                <Field
-                  label="Thuộc phần nào của câu"
-                  name="part_label"
-                  required
-                  hint="Đổi nhãn này sẽ đổi luôn slot_id của các ô bên dưới và mọi tiêu chí đang trỏ tới chúng — vì slot_id lúc chấm được sinh từ chính part_label."
-                >
-                  <TextInput
-                    value={part.part_label}
-                    onChange={(part_label) => onChange(renamePartLabel(question, index, part_label))}
-                    mono
-                  />
-                </Field>
-                <Field label="Ghi chú" name="note" hint="Ghi chú cho người soạn, không ảnh hưởng chấm điểm.">
-                  <TextInput
-                    value={part.note ?? ""}
-                    onChange={(note) => updatePart(index, (p) => ({ ...p, note: note || undefined }))}
-                  />
-                </Field>
-              </Row>
+              {(advanced || parts.length > 1) && (
+                <Row>
+                  <Field
+                    label="Tên phần" name="part_label"
+                    required
+                    hint="VD: a, b, c. Đổi tên ở đây thì mã ô trả lời và mọi tiêu chí đang trỏ tới phần này cũng được đổi theo."
+                  >
+                    <TextInput
+                      value={part.part_label}
+                      onChange={(part_label) => onChange(renamePartLabel(question, index, part_label))}
+                      mono
+                    />
+                  </Field>
+                  <Field label="Ghi chú" name="note" advanced hint="Ghi chú cho người soạn, không ảnh hưởng chấm điểm.">
+                    <TextInput
+                      value={part.note ?? ""}
+                      onChange={(note) => updatePart(index, (p) => ({ ...p, note: note || undefined }))}
+                    />
+                  </Field>
+                </Row>
+              )}
 
-              <Field label="Nội dung" name="text" hint="Yêu cầu của riêng phần này.">
+              <Field
+                label={parts.length > 1 ? "Yêu cầu riêng của phần này" : "Yêu cầu riêng (nếu có)"}
+                name="text"
+                hint="Chỉ ghi yêu cầu chưa có trong đề bài, VD “Hãy tìm 3 ví dụ”. Không cần chép lại đề."
+              >
                 <TextArea
                   value={part.text}
                   onChange={(text) => updatePart(index, (p) => ({ ...p, text }))}
@@ -288,7 +376,10 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
                 />
               </Field>
 
-              <Field label="Các ô trả lời" name="answer_slots" hint="Mỗi dòng một slot_id. Đây là khoá nối với dữ liệu OCR của sinh viên.">
+              <Field
+                label="Các ô trả lời" name="answer_slots" advanced
+                hint="Mỗi dòng một slot_id — khoá nối với dữ liệu OCR của sinh viên. Thường đã được tạo tự động."
+              >
                 <div className={styles.slotList}>
                   {part.answer_slots.map((slot, slotIndex) => (
                     <div key={slotIndex} className={styles.slotRow}>
@@ -384,18 +475,16 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
               </div>
 
               <div className={styles.partFooter}>
-                <button
-                  type="button"
-                  className={styles.partRemove}
-                  onClick={() =>
+                <ConfirmDelete
+                  compact
+                  label={parts.length > 1 ? `Xoá phần '${part.part_label}'` : "Xoá phần trả lời"}
+                  onConfirm={() =>
                     onChange({
                       ...question,
                       question: { ...question.question, parts: parts.filter((_, i) => i !== index) },
                     })
                   }
-                >
-                  Xoá part '{part.part_label}'
-                </button>
+                />
               </div>
             </div>
           ))}
@@ -403,8 +492,8 @@ export default function QuestionEditor({ question, onChange, onRemove, onDuplica
       </Card>
 
       <Card
-        title="Tiêu chí chấm (grading_rule)"
-        subtitle="Tiêu chí có tiêu chí con sẽ không được chấm trực tiếp — chỉ các tiêu chí lá mới tính điểm"
+        title="Tiêu chí chấm"
+        subtitle="Tiêu chí có tiêu chí con là một nhóm — điểm được tính ở các tiêu chí con"
         actions={
           <Button
             size="sm"

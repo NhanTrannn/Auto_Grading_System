@@ -1,12 +1,13 @@
 """
-OCR -> grading bridge: runs ocr_main.py's OCR connector (module1/2/3), then
-grades the freshly-produced Results-format JSON through ../pipeline.py in
+OCR -> grading bridge: runs ocr_main.py's OCR connector (module1 + module3),
+then grades the freshly-produced Results-format JSON through ../pipeline.py in
 the same command.
 
 Two-step, one command:
-  1. build_results_json() (ocr_main.py, in-process import) — align each
-     student page to the template (module2), crop every ROI, OCR it
-     (module3), write the "Results" JSON pipeline.py's load_input() expects.
+  1. build_results_json() (ocr_main.py, in-process import) — detect the answer
+     regions on each student's OWN page (module1, no warping onto a clean
+     template any more), crop every ROI, OCR it (module3), write the "Results"
+     JSON pipeline.py's load_input() expects.
   2. Shell out to ../pipeline.py via `subprocess` (SAME interpreter running
      this script) to grade that JSON against a barem — equivalent to running
      `python pipeline.py --input ... --barem ... --output-dir ...` by hand.

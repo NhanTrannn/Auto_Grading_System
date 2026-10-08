@@ -57,6 +57,47 @@ export function storedDraftQuestionCount(): number {
   }
 }
 
+/**
+ * Give a question a new number, carrying every id derived from it along.
+ *
+ * `slot_id`s are not cosmetic: pipeline.py builds the student side of the join
+ * as `cau_<question_number>_001_<part_label>`, so a question renumbered without
+ * them would grade against no student answer at all. Criterion ids follow too,
+ * since validate_barem() rejects duplicates across the whole barem.
+ *
+ * `(?!\d)` rather than `\b`: in `T5_1` the `5` and `_` are both word
+ * characters, so `\b` never matched there and duplicating question 5 used to
+ * leave every `T5_*` id unrenamed — a guaranteed duplicate-id error.
+ */
+export function renumberQuestion(question: RubricQuestion, nextNumber: number): RubricQuestion {
+  const from = question.question_number;
+  const clone = deepClone(question);
+  const oldPrefix = `cau_${from}_001`;
+  const newPrefix = `cau_${nextNumber}_001`;
+  const idPattern = new RegExp(`^T${from}(?!\\d)`);
+  const renameIds = (criteria: Criterion[]): Criterion[] =>
+    criteria.map((criterion) => ({
+      ...criterion,
+      criterion_id: criterion.criterion_id.replace(idPattern, `T${nextNumber}`),
+      slot_ids: criterion.slot_ids?.map((id) => id.replace(oldPrefix, newPrefix)),
+      sub_criteria: criterion.sub_criteria ? renameIds(criterion.sub_criteria) : undefined,
+    }));
+
+  clone.question_number = nextNumber;
+  clone.sample_id = clone.sample_id === oldPrefix ? newPrefix : clone.sample_id;
+  clone.grading_rule = renameIds(clone.grading_rule);
+  clone.question.parts = clone.question.parts.map((part) => ({
+    ...part,
+    answer_slots: part.answer_slots.map((slot) => ({
+      ...slot,
+      slot_id: slot.slot_id.replace(oldPrefix, newPrefix),
+    })),
+  }));
+  return clone;
+}
+
+const byNumber = (a: RubricQuestion, b: RubricQuestion) => a.question_number - b.question_number;
+
 export function useBaremDraft() {
   const [exam, setExamState] = useState<ExamRubric>(loadDraft);
   const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
@@ -87,7 +128,15 @@ export function useBaremDraft() {
     setExamState((current) => {
       const previous = undoStack.current.pop();
       setUndoDepth(undoStack.current.length);
-      return previous ?? current;
+      const restored = previous ?? current;
+      // Undoing a renumber or a delete can leave the selection pointing at a
+      // number the restored exam doesn't have, which blanks the editor.
+      setSelectedQuestion((selected) =>
+        restored.teacher_barem.some((q) => q.question_number === selected)
+          ? selected
+          : (restored.teacher_barem[0]?.question_number ?? null),
+      );
+      return restored;
     });
   }, []);
 
@@ -114,6 +163,24 @@ export function useBaremDraft() {
           question.question_number === questionNumber ? updater(deepClone(question)) : question,
         ),
       }));
+    },
+    [setExam],
+  );
+
+  /**
+   * Renumber through here, never through updateQuestion: the selection is keyed
+   * by question_number, so changing the number in place left the editor showing
+   * "Chưa chọn câu nào" after the first keystroke.
+   */
+  const changeQuestionNumber = useCallback(
+    (from: number, to: number) => {
+      setExam((draft) => ({
+        ...draft,
+        teacher_barem: draft.teacher_barem
+          .map((question) => (question.question_number === from ? renumberQuestion(question, to) : question))
+          .sort(byNumber),
+      }));
+      setSelectedQuestion(to);
     },
     [setExam],
   );
@@ -148,32 +215,7 @@ export function useBaremDraft() {
         const source = draft.teacher_barem.find((q) => q.question_number === questionNumber);
         if (!source) return draft;
         const nextNumber = Math.max(...draft.teacher_barem.map((q) => q.question_number)) + 1;
-        const clone = deepClone(source);
-        clone.question_number = nextNumber;
-        clone.sample_id = `cau_${nextNumber}_001`;
-        // IDs must stay unique across the whole barem — validate_barem() errors
-        // on a duplicate criterion_id, and slot_ids are the join key to OCR data.
-        const renameIds = (criteria: Criterion[]): Criterion[] =>
-          criteria.map((criterion) => ({
-            ...criterion,
-            criterion_id: criterion.criterion_id.replace(
-              new RegExp(`^T${questionNumber}\\b`),
-              `T${nextNumber}`,
-            ),
-            slot_ids: criterion.slot_ids?.map((id) =>
-              id.replace(`cau_${questionNumber}_001`, `cau_${nextNumber}_001`),
-            ),
-            sub_criteria: criterion.sub_criteria ? renameIds(criterion.sub_criteria) : undefined,
-          }));
-        clone.grading_rule = renameIds(clone.grading_rule);
-        clone.question.parts = clone.question.parts.map((part) => ({
-          ...part,
-          answer_slots: part.answer_slots.map((slot) => ({
-            ...slot,
-            slot_id: slot.slot_id.replace(`cau_${questionNumber}_001`, `cau_${nextNumber}_001`),
-          })),
-        }));
-        return { ...draft, teacher_barem: [...draft.teacher_barem, clone] };
+        return { ...draft, teacher_barem: [...draft.teacher_barem, renumberQuestion(source, nextNumber)] };
       });
     },
     [setExam],
@@ -280,6 +322,7 @@ export function useBaremDraft() {
     replaceExam,
     updateMeta,
     updateQuestion,
+    changeQuestionNumber,
     addQuestion,
     removeQuestion,
     duplicateQuestion,

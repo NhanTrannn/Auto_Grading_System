@@ -6,6 +6,7 @@
  * they sit above the editor where they stay visible without competing for the
  * space the question editor actually needs.
  */
+import { useAdvancedMode } from "./advancedMode";
 import styles from "./ExamMetaBar.module.css";
 
 interface ExamMetaBarProps {
@@ -24,12 +25,15 @@ export default function ExamMetaBar({
   computedTotal,
   onChange,
 }: ExamMetaBarProps) {
+  const advanced = useAdvancedMode();
   const matches = Math.abs(computedTotal - totalScore) <= 0.01;
 
   return (
     <div className={styles.bar}>
       <label className={styles.field} style={{ flex: "0 0 92px" }}>
-        <span className={styles.label}>Mã đề <code className={styles.fieldName}>ma_de</code></span>
+        <span className={styles.label} title={advanced ? undefined : "ma_de"}>
+          Mã đề {advanced && <code className={styles.fieldName}>ma_de</code>}
+        </span>
         <input
           className={`${styles.input} ${styles.mono}`}
           value={maDe}
@@ -38,7 +42,9 @@ export default function ExamMetaBar({
       </label>
 
       <label className={`${styles.field} ${styles.grow}`}>
-        <span className={styles.label}>Môn học <code className={styles.fieldName}>subject</code></span>
+        <span className={styles.label} title={advanced ? undefined : "subject"}>
+          Môn học {advanced && <code className={styles.fieldName}>subject</code>}
+        </span>
         <input
           className={styles.input}
           value={subject}
@@ -48,7 +54,9 @@ export default function ExamMetaBar({
       </label>
 
       <label className={styles.field} style={{ flex: "0 0 108px" }}>
-        <span className={styles.label}>Tổng điểm đề <code className={styles.fieldName}>total_score</code></span>
+        <span className={styles.label} title={advanced ? undefined : "total_score"}>
+          Tổng điểm đề {advanced && <code className={styles.fieldName}>total_score</code>}
+        </span>
         <input
           className={`${styles.input} ${styles.mono}`}
           type="number"

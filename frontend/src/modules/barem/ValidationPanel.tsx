@@ -22,14 +22,16 @@ interface ValidationPanelProps {
 function IssueList({
   issues,
   onJump,
+  isError = false,
 }: {
   issues: ValidationIssue[];
   onJump: (questionNumber: number) => void;
+  isError?: boolean;
 }) {
   return (
     <ul className={styles.list}>
       {issues.map((issue, index) => (
-        <li key={index} className={styles.item}>
+        <li key={index} className={`${styles.item} ${isError ? styles.itemError : ""}`}>
           {issue.questionNumber !== undefined ? (
             <button type="button" className={styles.jump} onClick={() => onJump(issue.questionNumber!)}>
               Câu {issue.questionNumber}
@@ -80,7 +82,7 @@ export default function ValidationPanel({ report, declaredTotal, onJumpToQuestio
             <IconAlert size={14} />
             Lỗi — chặn chạy
           </h3>
-          <IssueList issues={report.errors} onJump={onJumpToQuestion} />
+          <IssueList issues={report.errors} onJump={onJumpToQuestion} isError />
         </section>
       )}
 
