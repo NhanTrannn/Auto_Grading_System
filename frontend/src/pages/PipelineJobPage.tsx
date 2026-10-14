@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Button from "@/components/core/Button";
 import Card from "@/components/core/Card";
+import ConfirmDelete from "@/components/core/ConfirmDelete";
 import EmptyState from "@/components/core/EmptyState";
 import { IconDownload, IconGrade, IconLayers, IconPlus, IconScan } from "@/components/core/Icon";
 import PageHeader from "@/components/core/PageHeader";
@@ -14,7 +15,7 @@ import LiveLogPanel from "@/modules/pipeline/LiveLogPanel";
 import PipelineProgress from "@/modules/pipeline/PipelineProgress";
 import StudentReview from "@/modules/pipeline/StudentReview";
 import { usePipelineJob } from "@/modules/pipeline/usePipelineJob";
-import { getPipelineOcrResult } from "@/services/pipelineApi";
+import { deletePipelineJob, getPipelineOcrResult } from "@/services/pipelineApi";
 import type { OcrResultsFile } from "@/types/pipeline";
 
 type View = "table" | "review";
@@ -26,9 +27,22 @@ const TABS: TabItem<View>[] = [
 
 export default function PipelineJobPage() {
   const { jobId } = useParams<{ jobId: string }>();
-  const { job, error, result, loading } = usePipelineJob(jobId ?? null);
+  const navigate = useNavigate();
+  const { job, error, result, loading, reloadResult } = usePipelineJob(jobId ?? null);
   const [view, setView] = useState<View>("table");
   const [ocr, setOcr] = useState<OcrResultsFile | null>(null);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+
+  async function handleDelete() {
+    if (!jobId) return;
+    setDeleteError(null);
+    try {
+      await deletePipelineJob(jobId);
+      navigate("/pipeline");
+    } catch (err) {
+      setDeleteError((err as Error).message);
+    }
+  }
 
   const busy = job?.status === "pending" || job?.status === "running";
   // The intermediate Results JSON exists from the moment OCR finishes, so the
@@ -91,9 +105,23 @@ export default function PipelineJobPage() {
             <Button to="/pipeline" variant="secondary" icon={<IconPlus size={15} />}>
               Phiên mới
             </Button>
+            {job && !busy && (
+              <ConfirmDelete
+                size="md"
+                label="Xoá phiên"
+                armedLabel="Bấm lần nữa — xoá cả kết quả và ảnh cắt"
+                onConfirm={handleDelete}
+              />
+            )}
           </>
         }
       />
+
+      {deleteError && (
+        <p style={{ color: "var(--color-danger)", margin: "0 0 var(--space-4)" }}>
+          Không xoá được phiên: {deleteError}
+        </p>
+      )}
 
       {job && <PipelineProgress job={job} />}
       {jobId && <LiveLogPanel jobId={jobId} active={Boolean(busy)} />}
@@ -120,7 +148,12 @@ export default function PipelineJobPage() {
               }}
             />
           ) : (
-            <StudentReview jobId={jobId as string} result={result} ocr={ocr} />
+            <StudentReview
+              jobId={jobId as string}
+              result={result}
+              ocr={ocr}
+              onResultChanged={reloadResult}
+            />
           )}
         </>
       ) : (

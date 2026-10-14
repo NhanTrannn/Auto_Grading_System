@@ -1,7 +1,10 @@
 import type { GradingJobResult } from "@/types/grading";
 import type {
+  JobEdits,
   JobLog,
   OcrResultsFile,
+  StorageCleanup,
+  StorageSummary,
   PipelineJobCreated,
   PipelineJobStatus,
   RoiConfigEntry,
@@ -115,6 +118,74 @@ export async function getPipelineJobLog(jobId: string, offset: number): Promise<
   const res = await fetch(`${API_BASE}/jobs/${jobId}/log?offset=${offset}`);
   if (!res.ok) throw new Error(await readError(res));
   return res.json();
+}
+
+// ── managing runs ───────────────────────────────────────────────────────────
+
+/** Delete a run: its results in the DB and its directory on disk. */
+export async function deletePipelineJob(jobId: string): Promise<{ freed_bytes: number }> {
+  const res = await fetch(`${API_BASE}/jobs/${jobId}`, { method: "DELETE" });
+  if (!res.ok) throw new Error(await readError(res));
+  return res.json();
+}
+
+export async function getStorage(): Promise<StorageSummary> {
+  const res = await fetch(`${API_BASE}/storage`);
+  if (!res.ok) throw new Error(await readError(res));
+  return res.json();
+}
+
+/** Remove uploads no run uses (older than a day) and already-unpacked ZIPs. */
+export async function cleanupStorage(): Promise<StorageCleanup> {
+  const res = await fetch(`${API_BASE}/storage/cleanup`, { method: "POST" });
+  if (!res.ok) throw new Error(await readError(res));
+  return res.json();
+}
+
+/** Teacher fixes to OCR readings, `{hs_key: {cau_key: correction}}`. */
+export async function getJobEdits(jobId: string): Promise<JobEdits> {
+  const res = await fetch(`${API_BASE}/jobs/${jobId}/edits`);
+  if (!res.ok) throw new Error(await readError(res));
+  return res.json();
+}
+
+/** Save what the student really wrote; an empty `text` clears the correction. */
+export async function saveOcrCorrection(
+  jobId: string,
+  hsKey: string,
+  cauKey: string,
+  text: string,
+  correctedBy?: string,
+): Promise<void> {
+  const res = await fetch(
+    `${API_BASE}/jobs/${jobId}/students/${encodeURIComponent(hsKey)}/regions/${encodeURIComponent(cauKey)}/ocr`,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, corrected_by: correctedBy || null }),
+    },
+  );
+  if (!res.ok) throw new Error(await readError(res));
+}
+
+/** Set one criterion's score by hand (posting the AI score back undoes it). */
+export async function overrideCriterionScore(
+  jobId: string,
+  hsKey: string,
+  criterionId: string,
+  newScore: number,
+  note?: string,
+  createdBy?: string,
+): Promise<void> {
+  const res = await fetch(
+    `${API_BASE}/jobs/${jobId}/students/${encodeURIComponent(hsKey)}/criteria/${encodeURIComponent(criterionId)}/override`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ new_score: newScore, note: note || null, created_by: createdBy || null }),
+    },
+  );
+  if (!res.ok) throw new Error(await readError(res));
 }
 
 /** URL of one student's cropped answer region, for the review screen. */

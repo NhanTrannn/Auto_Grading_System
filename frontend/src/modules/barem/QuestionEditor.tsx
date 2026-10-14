@@ -14,7 +14,7 @@ import Card from "@/components/core/Card";
 import type { Criterion, QuestionPart, QuestionTable, RubricQuestion } from "@/types/barem";
 
 import { useAdvancedMode } from "./advancedMode";
-import ConfirmDelete from "./ConfirmDelete";
+import ConfirmDelete from "@/components/core/ConfirmDelete";
 import CriterionEditor from "./CriterionEditor";
 import { collectCriterionIds, replaceCriterion, uniqueCriterionId } from "./criterionTree";
 import { deepClone, makeTable, nextPartLabel, slotId, slotsForTable } from "./factory";

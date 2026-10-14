@@ -21,7 +21,7 @@ import { QUESTION_TYPES } from "@/types/barem";
 
 import { useAdvancedMode } from "./advancedMode";
 import ConditionalEditor from "./ConditionalEditor";
-import ConfirmDelete from "./ConfirmDelete";
+import ConfirmDelete from "@/components/core/ConfirmDelete";
 import MatchingPreview from "./MatchingPreview";
 import { Checkbox, EntryListInput, Field, ListInput, NumberInput, Row, Select, TextArea, TextInput } from "./Field";
 import styles from "./CriterionEditor.module.css";

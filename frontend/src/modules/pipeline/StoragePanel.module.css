@@ -1,0 +1,51 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-3);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-sm);
+}
+
+.label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.value {
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+
+.sub {
+  font-size: 11.5px;
+  color: var(--color-text-faint);
+}
+
+.message {
+  margin: var(--space-3) 0 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-success);
+}
+
+.error {
+  margin: var(--space-3) 0 0;
+  font-size: 12.5px;
+  color: var(--color-danger);
+}
+
+.note {
+  margin: var(--space-3) 0 0;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}

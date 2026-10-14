@@ -24,7 +24,7 @@ import EmptyState from "@/components/core/EmptyState";
 import { IconAlert, IconCheck, IconDownload, IconFile, IconUpload } from "@/components/core/Icon";
 import PageHeader from "@/components/core/PageHeader";
 import { AdvancedModeProvider, useAdvancedToggle } from "@/modules/barem/advancedMode";
-import ConfirmDelete from "@/modules/barem/ConfirmDelete";
+import ConfirmDelete from "@/components/core/ConfirmDelete";
 import ExamMetaBar from "@/modules/barem/ExamMetaBar";
 import ModeSwitch from "@/modules/barem/ModeSwitch";
 import { makeQuestion } from "@/modules/barem/factory";

@@ -5,6 +5,7 @@ import Card from "@/components/core/Card";
 import { IconLayers } from "@/components/core/Icon";
 import PageHeader from "@/components/core/PageHeader";
 import PipelineUploadForm from "@/modules/pipeline/PipelineUploadForm";
+import StoragePanel from "@/modules/pipeline/StoragePanel";
 import { createPipelineJob } from "@/services/pipelineApi";
 import type { RoiConfigEntry } from "@/types/pipeline";
 
@@ -62,6 +63,10 @@ export default function PipelinePage() {
       />
 
       <PipelineUploadForm disabled={submitting} error={error} onSubmit={handleSubmit} />
+
+      <div className={styles.help}>
+        <StoragePanel />
+      </div>
 
       <div className={styles.help}>
         <Card

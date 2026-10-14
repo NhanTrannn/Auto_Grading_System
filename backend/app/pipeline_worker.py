@@ -29,8 +29,25 @@ from pathlib import Path
 from app.db.session import SessionLocal
 from app.models.pipeline_job import PipelineJob
 from app.schemas.grading import JobStatus
-from app.services import ocr_engine
+from app.services import ocr_engine, results_store
 from app.services.grading_engine import wrapper
+
+
+def _ingest(db, job_id: str) -> None:
+    """Copy the run's files into the result tables.
+
+    Never allowed to change the run's outcome: the files are already written
+    and the UI reads them, so a failure here is logged and left for the
+    startup back-fill to retry (ingested_at stays NULL).
+    """
+    try:
+        results_store.ingest_pipeline_job(db, job_id)
+        print("[worker] Đã lưu kết quả vào database", flush=True)
+    except Exception:  # noqa: BLE001
+        db.rollback()
+        print("[worker] Lưu kết quả vào database thất bại (file kết quả vẫn còn):", flush=True)
+        traceback.print_exc()
+        sys.stdout.flush()
 
 
 def main() -> None:
@@ -121,6 +138,7 @@ def main() -> None:
         job.status = JobStatus.DONE
         job.result_path = str(result_file)
         db.commit()
+        _ingest(db, job_id)
     except Exception as exc:  # noqa: BLE001 - reported via job status, not raised
         # The traceback goes to the job's log file (this process's stdout is
         # redirected there), which the UI's live log panel already tails — so
@@ -134,6 +152,8 @@ def main() -> None:
             job.status = JobStatus.FAILED
             job.error = f"{type(exc).__name__}: {exc}"
             db.commit()
+        # A run that failed during grading still has its OCR — worth keeping.
+        _ingest(db, job_id)
     finally:
         db.close()
 

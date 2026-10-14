@@ -215,6 +215,59 @@ columns missing from an existing table, and only for columns that are nullable
 or defaulted; it never drops, renames or retypes, so it cannot lose data.
 Anything beyond new nullable columns still needs real Alembic migrations.
 
+## Result tables
+
+A pipeline run's outcome used to exist in the database only as a
+`pipeline_jobs` row pointing at `grading_results.json`; every score, OCR line,
+crop and LLM reason lived in files. `app/models/results.py` normalises them
+into tables (each `ON DELETE CASCADE` from its parent):
+
+| Table | One row per | Notes |
+|---|---|---|
+| `uploads` | `POST /pipeline/uploads` | `pipeline_jobs.upload_id` links runs to it |
+| `job_exams` | exam code in a run | live `barem_id` link (SET NULL on delete) + `barem_name`/`barem_content` snapshot at grading time |
+| `student_submissions` | student in a run | `source_folder` = the student's folder in the ZIP, previously returned once and lost |
+| `source_pages` | photographed page | |
+| `answer_regions` | cropped answer box | box geometry, `crop_path`, `ocr_status`/`ocr_text` (never edited), `ocr_text_corrected` for a teacher's fix |
+| `question_results` | graded question | |
+| `criterion_results` | graded criterion | display columns + `raw` = full pipeline.py dict |
+| `teacher_overrides` | manual score change | append-only audit trail; newest row wins |
+
+The files are still written and still what the existing endpoints serve.
+`app/services/results_store.py` copies them into the tables once per run:
+from `pipeline_worker.py` when a run ends (also after a grading failure, to
+keep its OCR), and from the API startup back-fill for runs whose
+`ingested_at` is NULL — so an existing database fills itself on first start.
+`python -m app.db.backfill [<job_id> --force]` does the same by hand. Ingestion
+is one-shot per run: re-running it would discard OCR corrections and overrides,
+so it is skipped unless forced. Paths are stored relative to `var/`
+(`pipeline_jobs/<id>/crops/...`) so the database survives moving between
+Docker (`/app/var`) and a bare-metal install.
+
+`app/db/session.py` sets three per-connection SQLite pragmas: `foreign_keys=ON`
+(SQLite ignores every `ON DELETE CASCADE` otherwise), `journal_mode=WAL` (the
+worker commits progress while the API reads) and `busy_timeout=10000`.
+`pipeline_jobs.upload_id` on a database created before this change is added by
+`ensure_columns` without its FK constraint — SQLite can't add one via ALTER.
+
+### Managing runs (`app/api/routes/manage.py`, mounted under `/pipeline`)
+
+| Endpoint | Does |
+|---|---|
+| `DELETE /jobs/{id}` | Deletes the row (results cascade) and `var/pipeline_jobs/<id>/`. 409 while its worker is alive. The upload is kept. |
+| `GET /storage` / `POST /storage/cleanup` | Sizes, and removal of uploads no run uses that are **over 24h old** (younger ones may belong to a teacher still mapping regions) plus already-unpacked ZIPs. New uploads delete their ZIPs right after extraction. |
+| `GET /jobs/{id}/edits` | OCR corrections, `{hs_key: {cau_key: {...}}}`. |
+| `PUT /jobs/{id}/students/{hs}/regions/{cau}/ocr` | Sets `ocr_text_corrected` (empty clears it). Does **not** re-grade. |
+| `POST /jobs/{id}/students/{hs}/criteria/{cid}/override` | Appends a `teacher_overrides` row. Rejects scores above max, and criteria in an all-or-nothing / LLM-decided group (their points are awarded per group, not summed). Posting the AI score back is the undo. |
+
+Overrides are applied on the way out by `results_store.apply_overrides()` in
+`GET /jobs/{id}/result`: the criterion gets the teacher's score (`ai_score` and
+`teacher_override` keep the rest), and question/student totals and `wrong`
+move with it — so the results table, the review screen and the PDF agree
+without each doing the arithmetic. The files on disk keep the machine's
+verdict. An override equal to the AI score (an undo) stays in the audit trail
+but isn't applied or badged.
+
 **`pipeline_worker.py` runs both halves in its own single process**: it imports
 `ocr_main.build_results_json` (via `app/services/ocr_engine.py`) and
 `pipeline.run_batch` (via `app/services/grading_engine/wrapper.py`), and writes

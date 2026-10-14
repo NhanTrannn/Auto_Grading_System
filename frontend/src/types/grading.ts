@@ -20,12 +20,24 @@ export interface StudentSummary {
   wrong: string[];
 }
 
+/** A teacher's score change, applied by the backend on top of the AI verdict. */
+export interface TeacherOverrideInfo {
+  new_score: number;
+  old_score: number | null;
+  note: string | null;
+  created_by: string | null;
+  created_at: string | null;
+}
+
 export interface CriterionResult {
   criterion_id: string;
   score: number;
   max_score: number;
   status: string;
   llm_reasoning?: string;
+  /** Present only when overridden: what the AI gave before the teacher changed it. */
+  ai_score?: number;
+  teacher_override?: TeacherOverrideInfo;
   [key: string]: unknown;
 }
 

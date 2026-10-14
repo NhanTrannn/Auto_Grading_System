@@ -8,6 +8,7 @@ from app.core.config import get_settings
 from app.db.migrate import ensure_columns
 from app.db.session import Base, SessionLocal, engine
 from app.services.job_recovery import fail_orphaned_jobs
+from app.services.results_store import backfill_all
 from app import models  # noqa: F401 - registers ORM models on Base before create_all
 
 settings = get_settings()
@@ -33,6 +34,22 @@ async def lifespan(app: FastAPI):
         orphaned = fail_orphaned_jobs(db)
         if orphaned:
             print(f"[startup] {orphaned} phiên chấm mồ côi đã được đánh dấu failed", flush=True)
+
+        # Runs finished before the result tables existed (or whose worker
+        # couldn't write them) still only exist as files; load them once.
+        # Cheap after the first time — it only touches rows with
+        # ingested_at NULL — and never allowed to block startup.
+        try:
+            counts = backfill_all(db)
+            if counts["uploads"] or counts["jobs"] or counts["failed"]:
+                print(
+                    f"[startup] Nạp vào database: {counts['jobs']} phiên, {counts['uploads']} lần upload"
+                    + (f", {counts['failed']} phiên lỗi" if counts["failed"] else ""),
+                    flush=True,
+                )
+        except Exception as exc:  # noqa: BLE001
+            db.rollback()
+            print(f"[startup] Bỏ qua nạp dữ liệu cũ: {type(exc).__name__}: {exc}", flush=True)
     finally:
         db.close()
 

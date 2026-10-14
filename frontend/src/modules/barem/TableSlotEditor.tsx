@@ -17,7 +17,7 @@ import { useMemo } from "react";
 import Button from "@/components/core/Button";
 import type { AnswerSlot, QuestionTable, TableSlotCell } from "@/types/barem";
 
-import ConfirmDelete from "./ConfirmDelete";
+import ConfirmDelete from "@/components/core/ConfirmDelete";
 import { Field, NumberInput, Row, TextInput } from "./Field";
 import styles from "./TableSlotEditor.module.css";
 

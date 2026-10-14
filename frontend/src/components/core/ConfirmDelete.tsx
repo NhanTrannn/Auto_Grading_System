@@ -9,7 +9,7 @@
  */
 import { useEffect, useState } from "react";
 
-import Button from "@/components/core/Button";
+import Button from "./Button";
 
 import styles from "./ConfirmDelete.module.css";
 

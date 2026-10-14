@@ -42,7 +42,7 @@ from app.schemas.pipeline import (
     UploadMaDe,
     UploadStudent,
 )
-from app.services import zip_intake
+from app.services import results_store, zip_intake
 
 router = APIRouter()
 
@@ -61,6 +61,7 @@ _VALID_TASK_TYPES = {"short_text", "long_text", "code", "table", "diagram"}
 async def create_upload(
     students_zip: UploadFile = File(...),
     template_zip: UploadFile | None = File(None),
+    db: Session = Depends(get_db),
 ) -> UploadInventory:
     upload_id = uuid.uuid4().hex
     root = _UPLOADS_DIR / upload_id
@@ -87,6 +88,12 @@ async def create_upload(
         shutil.rmtree(root, ignore_errors=True)
         raise HTTPException(status_code=400, detail=f"Không giải nén được file zip: {exc}") from exc
 
+    # Nothing reads the archives once they're unpacked — every later step uses
+    # the extracted images — so keeping them only doubled the upload's size on
+    # disk (113 of 231 MB measured on a real instance).
+    for _, dest in uploads:
+        (root / dest).unlink(missing_ok=True)
+
     templates = zip_intake.group_template_pages(template_root) if template_root.is_dir() else {}
     template_pages = zip_intake.list_template_pages(template_root) if template_root.is_dir() else []
     if template_zip is not None and not template_pages:
@@ -101,6 +108,11 @@ async def create_upload(
         raise HTTPException(
             status_code=400, detail="File zip bài làm không chứa ảnh .png/.jpg nào."
         )
+
+    # Only a valid upload gets a row — the error paths above already deleted
+    # their directory, so recording them would leave rows pointing at nothing.
+    results_store.register_upload(db, upload_id, has_template=template_zip is not None)
+    db.commit()
 
     return UploadInventory(
         upload_id=upload_id,
@@ -376,6 +388,9 @@ async def create_pipeline_job(
     student_map: dict[str, str] = {}
     used_numbers: set[int] = set()
     barem_names: list[str] = []
+    # (ma_de, library barem, the exact content written for grading) — stored
+    # as job_exams once the job row exists.
+    exam_barems: list[tuple[str, BaremDoc, str]] = []
     total_students = 0
     total_rois = 0
     total_steps = 0
@@ -410,10 +425,10 @@ async def create_pipeline_job(
         # barem" despite a barem file visibly sitting right next to them.
         barem_content = json.loads(barem.content)
         barem_content["ma_de"] = ma_de
-        (barem_dir / f"ma_de_{ma_de}.json").write_text(
-            json.dumps(barem_content, ensure_ascii=False), encoding="utf-8"
-        )
+        barem_text = json.dumps(barem_content, ensure_ascii=False)
+        (barem_dir / f"ma_de_{ma_de}.json").write_text(barem_text, encoding="utf-8")
         barem_names.append(barem.name)
+        exam_barems.append((ma_de, barem, barem_text))
 
         students = []
         for index, student in enumerate(entry.students, start=1):
@@ -450,8 +465,18 @@ async def create_pipeline_job(
         progress_total=total_steps,
         ma_de=", ".join(seen_codes),
         barem_name=", ".join(barem_names),
+        upload_id=payload.upload_id,
     )
+    # Uploads made before the uploads table existed have no row yet, and the
+    # job's FK needs one.
+    results_store.register_upload(
+        db, payload.upload_id, has_template=(upload_root / "template").is_dir()
+    )
+    db.flush()  # the upload row must exist before the job row references it
     db.add(job)
+    db.flush()
+    for ma_de, barem, barem_text in exam_barems:
+        results_store.record_job_exam(db, job_id, ma_de, barem, barem_text)
     db.commit()
 
     job.worker_pid = _spawn_worker(job_id, job_dir)
@@ -498,6 +523,8 @@ async def get_pipeline_job_result(job_id: str, db: Session = Depends(get_db)) ->
     except FileNotFoundError as exc:
         raise HTTPException(status_code=500, detail=f"result files missing: {exc}") from exc
 
+    # Teacher score changes live in the DB; the files keep the machine's verdict.
+    results_store.apply_overrides(db, job_id, grading_results, student_summary)
     return GradingJobResult(grading_results=grading_results, student_summary=student_summary)
 
 

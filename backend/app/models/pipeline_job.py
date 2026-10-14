@@ -1,6 +1,6 @@
 import datetime
 
-from sqlalchemy import DateTime, Integer, String
+from sqlalchemy import DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.session import Base
@@ -38,6 +38,14 @@ class PipelineJob(Base):
     # app/services/job_recovery.py. Nullable: rows created before this column
     # existed have none, and ensure_columns() adds it to older databases.
     worker_pid: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    # Which upload this run read its pages from. Nullable for the same reason
+    # as worker_pid; back-filled from the page paths in roi_configs.json.
+    upload_id: Mapped[str | None] = mapped_column(
+        ForeignKey("uploads.upload_id", ondelete="SET NULL"), nullable=True, index=True
+    )
+    # When results_store last loaded this run's files into the result tables;
+    # NULL means "not yet", which is what the startup back-fill looks for.
+    ingested_at: Mapped[datetime.datetime | None] = mapped_column(DateTime, nullable=True)
     created_at: Mapped[datetime.datetime] = mapped_column(
         DateTime, default=datetime.datetime.utcnow
     )

@@ -246,3 +246,156 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ── teacher corrections ──────────────────────────────────────────────── */
+
+.tipRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.tipRow .tip {
+  flex: 1 1 360px;
+}
+
+.reviewer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--color-text-muted);
+}
+
+.reviewerInput,
+.overrideInput,
+.editArea {
+  padding: 6px var(--space-2);
+  font-family: inherit;
+  font-size: 12.5px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.reviewerInput:focus,
+.overrideInput:focus,
+.editArea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-focus);
+}
+
+/* The machine reading stays visible but steps back once a teacher corrected it. */
+.readTextStale {
+  opacity: 0.6;
+  text-decoration: line-through;
+  text-decoration-color: var(--color-text-faint);
+}
+
+.fixedLabel {
+  color: var(--color-accent);
+}
+
+.fixedText {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.editBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.editArea {
+  font-family: var(--font-mono);
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.editActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.linkButton {
+  padding: 0;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.linkButton:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.linkButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pushRight {
+  margin-left: auto;
+}
+
+.editError {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--color-danger);
+}
+
+.overrideInfo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px var(--space-2);
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-size: 12.5px;
+  color: var(--color-text);
+  background: var(--color-accent-soft);
+  border-radius: var(--radius-sm);
+}
+
+.overrideForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-sm);
+}
+
+.overrideField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--color-text-muted);
+}
+
+.overrideField .overrideInput {
+  width: 110px;
+}
+
+.overrideNote {
+  flex: 1 1 220px;
+}
+
+.overrideNote .overrideInput {
+  width: 100%;
+}

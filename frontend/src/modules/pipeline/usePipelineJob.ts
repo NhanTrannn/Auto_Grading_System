@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { getPipelineJob, getPipelineJobResult } from "@/services/pipelineApi";
 import type { GradingJobResult } from "@/types/grading";
@@ -64,5 +64,16 @@ export function usePipelineJob(jobId: string | null) {
     };
   }, [jobId]);
 
-  return state;
+  /**
+   * Refetch the graded result after a teacher edit. Score overrides are applied
+   * server-side, so this one fetch updates the table, the review screen and the
+   * PDF together. Rejects on failure so the caller can show it.
+   */
+  const reloadResult = useCallback(async () => {
+    if (!jobId) return;
+    const result = await getPipelineJobResult(jobId);
+    setState((s) => ({ ...s, result }));
+  }, [jobId]);
+
+  return { ...state, reloadResult };
 }

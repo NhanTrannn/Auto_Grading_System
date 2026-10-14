@@ -97,3 +97,30 @@ export interface OcrCauEntry {
 
 /** `{ma_de, HS_1: {Cau_01: {...}}, ...}` as produced by ocr_main.py. */
 export type OcrResultsFile = Record<string, string | Record<string, OcrCauEntry>>;
+
+export interface OcrCorrection {
+  text: string;
+  corrected_by: string | null;
+  corrected_at: string | null;
+}
+
+export interface JobEdits {
+  ocr_corrections: Record<string, Record<string, OcrCorrection>>;
+}
+
+export interface StorageSummary {
+  jobs_count: number;
+  jobs_bytes: number;
+  uploads_count: number;
+  uploads_bytes: number;
+  orphan_uploads_count: number;
+  orphan_uploads_bytes: number;
+  leftover_zip_bytes: number;
+}
+
+export interface StorageCleanup {
+  removed_uploads: number;
+  removed_zips: number;
+  freed_bytes: number;
+  storage: StorageSummary;
+}

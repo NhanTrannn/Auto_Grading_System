@@ -4,9 +4,9 @@ import Badge, { type Tone } from "@/components/core/Badge";
 import Button from "@/components/core/Button";
 import EmptyState from "@/components/core/EmptyState";
 import { IconChevronRight, IconImage } from "@/components/core/Icon";
-import { cropUrl } from "@/services/pipelineApi";
+import { cropUrl, getJobEdits, overrideCriterionScore, saveOcrCorrection } from "@/services/pipelineApi";
 import type { CriterionResult, GradingJobResult, GradingResultSample } from "@/types/grading";
-import type { OcrCauEntry, OcrResultsFile } from "@/types/pipeline";
+import type { JobEdits, OcrCauEntry, OcrCorrection, OcrResultsFile } from "@/types/pipeline";
 
 import styles from "./StudentReview.module.css";
 
@@ -14,6 +14,8 @@ interface StudentReviewProps {
   jobId: string;
   result: GradingJobResult;
   ocr: OcrResultsFile | null;
+  /** Refetch the result after a score override (rejects on failure). */
+  onResultChanged: () => Promise<void>;
 }
 
 const STATUS_TONE: Record<string, Tone> = {
@@ -65,16 +67,125 @@ function ocrText(entry: OcrCauEntry): string {
   return JSON.stringify(content);
 }
 
+const REVIEWER_KEY = "mmlab.reviewer";
+
+function loadReviewer(): string {
+  try {
+    return localStorage.getItem(REVIEWER_KEY) ?? "";
+  } catch {
+    return "";
+  }
+}
+
+function formatTime(iso: string | null): string {
+  return iso ? new Date(iso.endsWith("Z") ? iso : `${iso}Z`).toLocaleString("vi-VN") : "";
+}
+
+/**
+ * The OCR reading, plus the teacher's correction when there is one.
+ *
+ * Correcting only records what the student really wrote; it does not
+ * re-grade, since the score came from the misread text. That's why the
+ * criterion rows below carry their own "Sửa điểm".
+ */
+function OcrBlock({
+  text,
+  correction,
+  onSave,
+}: {
+  text: string;
+  correction: OcrCorrection | undefined;
+  onSave: (value: string) => Promise<void>;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function save(value: string) {
+    setBusy(true);
+    setError(null);
+    try {
+      await onSave(value);
+      setEditing(false);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className={styles.readBox}>
+      <span className={styles.readLabel}>Máy đọc được</span>
+      <pre className={`${styles.readText} ${correction ? styles.readTextStale : ""}`}>{text || "(trống)"}</pre>
+
+      {correction && !editing && (
+        <>
+          <span className={`${styles.readLabel} ${styles.fixedLabel}`}>
+            Giáo viên sửa{correction.corrected_by ? ` · ${correction.corrected_by}` : ""}
+            {correction.corrected_at ? ` · ${formatTime(correction.corrected_at)}` : ""}
+          </span>
+          <pre className={`${styles.readText} ${styles.fixedText}`}>{correction.text}</pre>
+        </>
+      )}
+
+      {editing ? (
+        <div className={styles.editBox}>
+          <textarea
+            className={styles.editArea}
+            value={draft}
+            rows={Math.min(10, Math.max(2, draft.split("\n").length))}
+            autoFocus
+            onChange={(e) => setDraft(e.target.value)}
+          />
+          <div className={styles.editActions}>
+            <Button size="sm" loading={busy} onClick={() => save(draft)}>
+              Lưu
+            </Button>
+            <Button size="sm" variant="ghost" disabled={busy} onClick={() => setEditing(false)}>
+              Huỷ
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.editActions}>
+          <button
+            type="button"
+            className={styles.linkButton}
+            onClick={() => {
+              setDraft(correction?.text ?? text);
+              setEditing(true);
+            }}
+          >
+            {correction ? "Sửa lại" : "Sửa chữ máy đọc sai"}
+          </button>
+          {correction && (
+            <button type="button" className={styles.linkButton} disabled={busy} onClick={() => save("")}>
+              Bỏ bản sửa
+            </button>
+          )}
+        </div>
+      )}
+      {error && <span className={styles.editError}>{error}</span>}
+    </div>
+  );
+}
+
 function RegionCard({
   jobId,
   hsKey,
   cauKey,
   entry,
+  correction,
+  onSaveOcr,
 }: {
   jobId: string;
   hsKey: string;
   cauKey: string;
   entry: OcrCauEntry;
+  correction: OcrCorrection | undefined;
+  onSaveOcr: (cauKey: string, value: string) => Promise<void>;
 }) {
   const [broken, setBroken] = useState(false);
   const text = ocrText(entry);
@@ -86,6 +197,7 @@ function RegionCard({
         <Badge tone={entry.status === "completed" ? "success" : "danger"}>
           {label(entry.status)}
         </Badge>
+        {correction && <Badge tone="accent">Đã sửa chữ</Badge>}
       </div>
       <div className={styles.regionBody}>
         <div className={styles.cropBox}>
@@ -104,32 +216,176 @@ function RegionCard({
             />
           )}
         </div>
-        <div className={styles.readBox}>
-          <span className={styles.readLabel}>Máy đọc được</span>
-          <pre className={styles.readText}>{text || "(trống)"}</pre>
-        </div>
+        <OcrBlock text={text} correction={correction} onSave={(value) => onSaveOcr(cauKey, value)} />
       </div>
     </div>
   );
 }
 
-function CriterionRow({ cr }: { cr: CriterionResult }) {
+/**
+ * A criterion's verdict, with the teacher's score change on top of it.
+ *
+ * Overrides are applied by the backend to the result every screen reads, so
+ * after saving, the parent just reloads that result — the totals here, the
+ * results table and the PDF all move together.
+ */
+function CriterionRow({
+  cr,
+  onOverride,
+}: {
+  cr: CriterionResult;
+  onOverride: (criterionId: string, score: number, note: string) => Promise<void>;
+}) {
   const reasoning = typeof cr.llm_reasoning === "string" ? cr.llm_reasoning : null;
+  const override = cr.teacher_override;
+  const maxScore = Number(cr.max_score ?? 0);
+  const [editing, setEditing] = useState(false);
+  const [score, setScore] = useState("");
+  const [note, setNote] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function submit(value: number, noteText: string) {
+    setBusy(true);
+    setError(null);
+    try {
+      await onOverride(cr.criterion_id, value, noteText);
+      setEditing(false);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  const parsed = Number(score.replace(",", "."));
+  const valid = score.trim() !== "" && Number.isFinite(parsed) && parsed >= 0 && parsed <= maxScore;
+
   return (
     <div className={styles.criterion}>
       <div className={styles.criterionHeader}>
         <span className={styles.criterionId}>{cr.criterion_id}</span>
         <span className={styles.criterionScore}>
-          {Number(cr.score ?? 0).toFixed(2)} / {Number(cr.max_score ?? 0).toFixed(2)}
+          {Number(cr.score ?? 0).toFixed(2)} / {maxScore.toFixed(2)}
         </span>
         <Badge tone={tone(cr.status)}>{label(cr.status)}</Badge>
+        {override && <Badge tone="accent">GV đã sửa điểm</Badge>}
+        {!editing && (
+          <button
+            type="button"
+            className={`${styles.linkButton} ${styles.pushRight}`}
+            onClick={() => {
+              setScore(String(cr.score ?? 0));
+              setNote("");
+              setEditing(true);
+            }}
+          >
+            Sửa điểm
+          </button>
+        )}
       </div>
+
+      {override && (
+        <div className={styles.overrideInfo}>
+          Máy chấm <strong>{Number(cr.ai_score ?? 0).toFixed(2)}</strong> → giáo viên sửa thành{" "}
+          <strong>{override.new_score.toFixed(2)}</strong>
+          {override.created_by && <> · {override.created_by}</>}
+          {override.created_at && <> · {formatTime(override.created_at)}</>}
+          {override.note && <> — “{override.note}”</>}
+          <button
+            type="button"
+            className={styles.linkButton}
+            disabled={busy}
+            onClick={() => submit(Number(cr.ai_score ?? 0), "Hoàn về điểm máy chấm")}
+          >
+            Hoàn về điểm máy chấm
+          </button>
+        </div>
+      )}
+
+      {editing && (
+        <form
+          className={styles.overrideForm}
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (valid) void submit(parsed, note.trim());
+          }}
+        >
+          <label className={styles.overrideField}>
+            Điểm mới (0 – {maxScore.toFixed(2)})
+            <input
+              className={styles.overrideInput}
+              type="number"
+              step={0.05}
+              min={0}
+              max={maxScore}
+              value={score}
+              autoFocus
+              onChange={(e) => setScore(e.target.value)}
+            />
+          </label>
+          <label className={`${styles.overrideField} ${styles.overrideNote}`}>
+            Lý do (không bắt buộc)
+            <input
+              className={styles.overrideInput}
+              value={note}
+              placeholder="VD: OCR đọc sai, học sinh làm đúng"
+              onChange={(e) => setNote(e.target.value)}
+            />
+          </label>
+          <Button size="sm" type="submit" loading={busy} disabled={!valid}>
+            Lưu điểm
+          </Button>
+          <Button size="sm" variant="ghost" type="button" disabled={busy} onClick={() => setEditing(false)}>
+            Huỷ
+          </Button>
+        </form>
+      )}
+      {error && <span className={styles.editError}>{error}</span>}
+
       {reasoning && <p className={styles.criterionReason}>{reasoning}</p>}
     </div>
   );
 }
 
-export default function StudentReview({ jobId, result, ocr }: StudentReviewProps) {
+export default function StudentReview({ jobId, result, ocr, onResultChanged }: StudentReviewProps) {
+  const [edits, setEdits] = useState<JobEdits["ocr_corrections"]>({});
+  const [reviewer, setReviewer] = useState(loadReviewer);
+
+  useEffect(() => {
+    let cancelled = false;
+    getJobEdits(jobId)
+      .then((data) => {
+        if (!cancelled) setEdits(data.ocr_corrections);
+      })
+      .catch(() => {
+        // Non-fatal: the screen still works, just without earlier corrections shown.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [jobId]);
+
+  function rememberReviewer(name: string) {
+    setReviewer(name);
+    try {
+      localStorage.setItem(REVIEWER_KEY, name);
+    } catch {
+      // Remembered for this session only.
+    }
+  }
+
+  async function handleSaveOcr(hsKey: string, cauKey: string, value: string) {
+    await saveOcrCorrection(jobId, hsKey, cauKey, value, reviewer.trim());
+    const data = await getJobEdits(jobId);
+    setEdits(data.ocr_corrections);
+  }
+
+  async function handleOverride(hsKey: string, criterionId: string, score: number, note: string) {
+    await overrideCriterionScore(jobId, hsKey, criterionId, score, note, reviewer.trim());
+    await onResultChanged();
+  }
+
   const students = useMemo(
     () => [...result.student_summary].sort((a, b) => {
       const na = Number(a.hs.split("_").pop());
@@ -217,10 +473,22 @@ export default function StudentReview({ jobId, result, ocr }: StudentReviewProps
         </Button>
       </header>
 
-      <p className={styles.tip}>
-        Dùng phím ← → để lướt qua cả lớp. Ảnh bên trái là đúng vùng máy đã cắt; chữ bên phải là
-        thứ máy đọc ra — lệch nhau nghĩa là OCR sai, không phải học sinh sai.
-      </p>
+      <div className={styles.tipRow}>
+        <p className={styles.tip}>
+          Dùng phím ← → để lướt qua cả lớp. Ảnh bên trái là đúng vùng máy đã cắt; chữ bên phải là
+          thứ máy đọc ra — lệch nhau nghĩa là OCR sai, không phải học sinh sai. Sửa chữ chỉ để ghi lại
+          bài làm đúng; muốn đổi điểm thì bấm “Sửa điểm” ở tiêu chí.
+        </p>
+        <label className={styles.reviewer}>
+          Người soát
+          <input
+            className={styles.reviewerInput}
+            value={reviewer}
+            placeholder="Tên giáo viên"
+            onChange={(e) => rememberReviewer(e.target.value)}
+          />
+        </label>
+      </div>
 
       {samples.map((sample) => {
         const cauKeys = Object.keys(regions).filter(
@@ -247,6 +515,8 @@ export default function StudentReview({ jobId, result, ocr }: StudentReviewProps
                     hsKey={current.hs}
                     cauKey={key}
                     entry={regions[key]}
+                    correction={edits[current.hs]?.[key]}
+                    onSaveOcr={(cauKey, value) => handleSaveOcr(current.hs, cauKey, value)}
                   />
                 ))}
               </div>
@@ -254,7 +524,11 @@ export default function StudentReview({ jobId, result, ocr }: StudentReviewProps
 
             <div className={styles.criteria}>
               {(sample.criterion_results ?? []).map((cr) => (
-                <CriterionRow key={cr.criterion_id} cr={cr} />
+                <CriterionRow
+                  key={`${current.hs}:${cr.criterion_id}`}
+                  cr={cr}
+                  onOverride={(criterionId, score, note) => handleOverride(current.hs, criterionId, score, note)}
+                />
               ))}
             </div>
           </section>
@@ -282,6 +556,8 @@ export default function StudentReview({ jobId, result, ocr }: StudentReviewProps
                   hsKey={current.hs}
                   cauKey={key}
                   entry={regions[key]}
+                  correction={edits[current.hs]?.[key]}
+                  onSaveOcr={(cauKey, value) => handleSaveOcr(current.hs, cauKey, value)}
                 />
               ))}
             </div>
