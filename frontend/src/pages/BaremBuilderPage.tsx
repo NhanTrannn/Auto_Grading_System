@@ -24,6 +24,8 @@ import EmptyState from "@/components/core/EmptyState";
 import { IconAlert, IconCheck, IconDownload, IconFile, IconUpload } from "@/components/core/Icon";
 import PageHeader from "@/components/core/PageHeader";
 import { AdvancedModeProvider, useAdvancedToggle } from "@/modules/barem/advancedMode";
+import AssistantPanel from "@/modules/barem/assistant/AssistantPanel";
+import { applyProposal, type AssistantReply } from "@/modules/barem/assistant/fromDraft";
 import ConfirmDelete from "@/components/core/ConfirmDelete";
 import ExamMetaBar from "@/modules/barem/ExamMetaBar";
 import ModeSwitch from "@/modules/barem/ModeSwitch";
@@ -50,6 +52,7 @@ export default function BaremBuilderPage() {
   // Non-null while the "name this barem" box is open (first save of a draft).
   const [pendingName, setPendingName] = useState<string | null>(null);
   const [advanced, setAdvanced] = useAdvancedToggle();
+  const [assistantOpen, setAssistantOpen] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
 
   // The library hands a rubric over through router state rather than by writing
@@ -81,6 +84,19 @@ export default function BaremBuilderPage() {
       ),
     [report.errors],
   );
+
+  /**
+   * Apply an assistant proposal as ONE exam replacement, so a single "Hoàn tác"
+   * undoes the whole thing, then select the first question it touched.
+   */
+  function applyAssistantProposal(reply: AssistantReply, selected: Set<string>): string {
+    const next = applyProposal(exam, reply, selected);
+    draft.replaceExam(next);
+    const touched = reply.questions.map((q) => q.number).filter((n) => selected.has(`q${n}`));
+    const first = touched.find((n) => next.teacher_barem.some((q) => q.question_number === n));
+    if (first !== undefined) draft.setSelectedQuestion(first);
+    return `đã áp dụng ${selected.size} thay đổi (bấm “Hoàn tác” nếu muốn bỏ)`;
+  }
 
   const nextQuestionNumber =
     exam.teacher_barem.length === 0
@@ -165,64 +181,69 @@ export default function BaremBuilderPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow={
-          <>
-            <IconFile size={13} />
-            Soạn barem
-          </>
-        }
-        title="Trình soạn barem chấm điểm"
-        description="Soạn rubric đúng schema pipeline.py đọc, kiểm tra ngay bằng chính luật validate_barem() của backend, rồi xuất ra sample_parem.json dùng thẳng cho phiên chấm."
-        actions={
-          <div className={styles.headerActions}>
-            <input
-              ref={fileInput}
-              type="file"
-              accept="application/json,.json"
-              hidden
-              onChange={(event) => {
-                const file = event.target.files?.[0];
-                if (file) void handleImport(file);
-                event.target.value = "";
-              }}
-            />
-            {draft.canUndo && (
-              <Button variant="ghost" onClick={draft.undo}>
-                Hoàn tác
-              </Button>
-            )}
-            {exam.teacher_barem.length > 0 ? (
-              <ConfirmDelete
-                label="Barem mới"
-                variant="secondary"
-                size="md"
-                armedLabel={openedBarem ? "Bấm lần nữa để mở barem trống" : "Bấm lần nữa — bản nháp sẽ bị dọn"}
-                onConfirm={startNewBarem}
+      <div className={assistantOpen ? styles.layoutWithAssistant : undefined}>
+        <PageHeader
+          eyebrow={
+            <>
+              <IconFile size={13} />
+              Soạn barem
+            </>
+          }
+          title="Trình soạn barem chấm điểm"
+          description="Soạn rubric đúng schema pipeline.py đọc, kiểm tra ngay bằng chính luật validate_barem() của backend, rồi xuất ra sample_parem.json dùng thẳng cho phiên chấm."
+          actions={
+            <div className={styles.headerActions}>
+              <input
+                ref={fileInput}
+                type="file"
+                accept="application/json,.json"
+                hidden
+                onChange={(event) => {
+                  const file = event.target.files?.[0];
+                  if (file) void handleImport(file);
+                  event.target.value = "";
+                }}
               />
-            ) : null}
-            <Button variant="secondary" icon={<IconUpload size={15} />} onClick={() => fileInput.current?.click()}>
-              Nạp barem
-            </Button>
-            <Button
-              variant="secondary"
-              icon={<IconDownload size={15} />}
-              disabled={exam.teacher_barem.length === 0}
-              onClick={() => downloadExam(exam)}
-            >
-              Xuất file
-            </Button>
-            <Button
-              icon={<IconCheck size={15} />}
-              disabled={exam.teacher_barem.length === 0 || saving}
-              loading={saving}
-              onClick={handleSaveClick}
-            >
-              {openedBarem ? "Lưu thay đổi" : "Lưu vào kho"}
-            </Button>
-          </div>
-        }
-      />
+              {draft.canUndo && (
+                <Button variant="ghost" onClick={draft.undo}>
+                  Hoàn tác
+                </Button>
+              )}
+              {exam.teacher_barem.length > 0 ? (
+                <ConfirmDelete
+                  label="Barem mới"
+                  variant="secondary"
+                  size="md"
+                  armedLabel={openedBarem ? "Bấm lần nữa để mở barem trống" : "Bấm lần nữa — bản nháp sẽ bị dọn"}
+                  onConfirm={startNewBarem}
+                />
+              ) : null}
+              <Button variant={assistantOpen ? "primary" : "secondary"} onClick={() => setAssistantOpen((v) => !v)}>
+                ✦ Trợ lý AI
+              </Button>
+              <Button variant="secondary" icon={<IconUpload size={15} />} onClick={() => fileInput.current?.click()}>
+                Nạp barem
+              </Button>
+              <Button
+                variant="secondary"
+                icon={<IconDownload size={15} />}
+                disabled={exam.teacher_barem.length === 0}
+                onClick={() => downloadExam(exam)}
+              >
+                Xuất file
+              </Button>
+              <Button
+                icon={<IconCheck size={15} />}
+                disabled={exam.teacher_barem.length === 0 || saving}
+                loading={saving}
+                onClick={handleSaveClick}
+              >
+                {openedBarem ? "Lưu thay đổi" : "Lưu vào kho"}
+              </Button>
+            </div>
+          }
+        />
+      </div>
 
       {openedBarem && (
         <p className={styles.openedBarem}>
@@ -273,7 +294,7 @@ export default function BaremBuilderPage() {
         </div>
       )}
 
-      <div className={styles.modeBar}>
+      <div className={`${styles.modeBar} ${assistantOpen ? styles.layoutWithAssistant : ""}`}>
         <ModeSwitch advanced={advanced} onChange={setAdvanced} />
       </div>
 
@@ -285,7 +306,7 @@ export default function BaremBuilderPage() {
       )}
 
       <AdvancedModeProvider value={advanced}>
-      <div className={styles.metaBar}>
+      <div className={`${styles.metaBar} ${assistantOpen ? styles.layoutWithAssistant : ""}`}>
         <ExamMetaBar
           maDe={exam.ma_de}
           subject={exam.subject}
@@ -318,7 +339,7 @@ export default function BaremBuilderPage() {
         </div>
       )}
 
-      <div className={styles.layout}>
+      <div className={`${styles.layout} ${assistantOpen ? styles.layoutWithAssistant : ""}`}>
         <aside className={styles.rail}>
           <QuestionRail
             questions={exam.teacher_barem}
@@ -355,6 +376,14 @@ export default function BaremBuilderPage() {
         </main>
       </div>
       </AdvancedModeProvider>
+
+      <AssistantPanel
+        open={assistantOpen}
+        exam={exam}
+        errors={report.errors}
+        onClose={() => setAssistantOpen(false)}
+        onApply={applyAssistantProposal}
+      />
 
       <StatusBar
         report={report}

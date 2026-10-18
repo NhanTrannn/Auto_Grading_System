@@ -16,6 +16,10 @@ python-multipart
 opencv-python-headless>=4.10
 numpy>=1.26
 
+# Barem assistant: reads the teacher's exam file (app/services/barem_assistant.py).
+pypdf
+python-docx
+
 # dev/test only
 pytest
 httpx

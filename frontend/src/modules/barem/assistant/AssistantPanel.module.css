@@ -1,0 +1,258 @@
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  width: min(440px, 100vw);
+  padding-top: env(safe-area-inset-top, 0px);
+  background: var(--color-surface);
+  border-left: 1px solid var(--color-border);
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.12);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.close {
+  padding: 2px 6px;
+  font-size: 14px;
+  color: var(--color-text-faint);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: var(--color-text);
+}
+
+.docBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-sunken);
+}
+
+.docName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--color-text);
+}
+
+.link {
+  padding: 0;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  overflow-y: auto;
+}
+
+.welcome {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.welcome p {
+  margin: 0;
+}
+
+.welcome ul {
+  margin: var(--space-1) 0 var(--space-3);
+  padding-left: 18px;
+}
+
+.hint {
+  font-size: 11.5px;
+  color: var(--color-text-faint);
+}
+
+.userMsg,
+.botMsg {
+  max-width: 92%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.userMsg {
+  align-self: flex-end;
+  color: var(--color-accent-contrast);
+  background: var(--color-accent);
+}
+
+.botMsg {
+  align-self: flex-start;
+  color: var(--color-text);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+}
+
+.msgText {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.notes {
+  margin: var(--space-2) 0 0;
+  padding: var(--space-2) var(--space-3) var(--space-2) 26px;
+  font-size: 12px;
+  color: var(--color-warning);
+  background: var(--color-warning-bg);
+  border-radius: var(--radius-sm);
+}
+
+.proposal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.changeList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.changeList label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px var(--space-2);
+  padding: 4px var(--space-2);
+  font-size: 12.5px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.changeList input {
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.changeLabel {
+  font-weight: 650;
+}
+
+.changeDetail {
+  color: var(--color-text-muted);
+}
+
+.change_remove .changeLabel {
+  color: var(--color-danger);
+}
+
+.change_locked label {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.applied {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-success);
+}
+
+.thinking {
+  margin: 0;
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.error {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  font-size: 12.5px;
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+  border-radius: var(--radius-sm);
+}
+
+.quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4) 0;
+}
+
+.composer {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4) calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+}
+
+.input {
+  flex: 1;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  resize: none;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-focus);
+}
+
+/* `hidden` keeps the chat mounted while closed; display:flex above would override it. */
+.panel[hidden] {
+  display: none;
+}

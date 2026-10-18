@@ -379,3 +379,25 @@ An earlier run, before this folder was flattened, caught a different one:
 raises `IndexError` (not just "not found") on a shallower container filesystem
 path. Now moot — `wrapper.py` needs one fixed relative offset in both dev and
 the image.
+
+## Barem assistant (`app/services/barem_assistant.py`, `POST /barem-assistant/{extract,chat}`)
+
+A chat drawer in the barem builder (`frontend/src/modules/barem/assistant/`). The teacher
+uploads the exam (`.pdf` with text, or `.docx` — tables included; scanned PDFs are
+rejected) and describes answers and partial credit in plain language; the assistant
+drafts or edits questions and the teacher accepts them question by question. Both
+endpoints are stateless — the browser sends the chat history, the current barem and
+the document text on every turn — and nothing is written to the library.
+
+The model never writes the barem schema. It answers in a small draft format (number,
+text, parts, criteria with `type` ∈ matching/logical/visual, `score`, `answers`,
+`tokens`, `partial: [{min_correct, score}]`, `keywords`, `sample_solution`), and
+`fromDraft.ts` builds real questions with the editor's own factory — so `slot_id`s,
+criterion ids and `partial_credit_rule` (`count_correct_tokens`,
+`correct_token_count >= N`) are always well-formed. Questions with printed tables or
+`conditional_outputs` are **locked**: the draft format can't express them, so they're
+hidden from the model, filtered out of its answer server-side, and refused client-side.
+
+Uses the same `LLM_MODEL_API` / `LLM_API_KEY` / `LLM_MODEL_NAME` as grading (loads the
+repo-root `.env` itself, so it works outside Docker). Each chat turn is one LLM call
+carrying the document text and the current draft.

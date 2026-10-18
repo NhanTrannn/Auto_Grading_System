@@ -151,6 +151,13 @@
   border-radius: var(--radius-lg);
 }
 
+/* Leave room for the assistant drawer instead of covering the editor. */
+@media (min-width: 1200px) {
+  .layoutWithAssistant {
+    margin-right: 440px;
+  }
+}
+
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
